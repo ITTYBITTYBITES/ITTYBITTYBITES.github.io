@@ -1,0 +1,232 @@
+{
+  "id": "disaster",
+  "name": "CRISIS HQ",
+  "universe": "frontier",
+  "icon": ">>",
+  "color": "#D32F2F",
+  "tags": [
+    "disaster",
+    "emergency",
+    "response"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "QUAKE",
+      "prompt": "Drop, cover, and hold on during shaking.",
+      "question": "Action:",
+      "correct": "Earthquake Protocol",
+      "wrong": [
+        "Evacuate",
+        "Stand in Doorway",
+        "Run Outside"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "HURRICANE",
+      "prompt": "Boarding up windows before a Category 4 storm.",
+      "question": "Identify:",
+      "correct": "Hurricane Preparation",
+      "wrong": [
+        "Tornado Prep",
+        "Flood Prep",
+        "Blizzard Prep"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "TSUNAMI",
+      "prompt": "Ocean water suddenly receding far from shore.",
+      "question": "Identify:",
+      "correct": "Tsunami Warning Sign",
+      "wrong": [
+        "Low Tide",
+        "Current Change",
+        "Storm Surge"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "TRIAGE",
+      "prompt": "Sorting many injured people by severity to treat the most critical first.",
+      "question": "Identify:",
+      "correct": "Medical Triage",
+      "wrong": [
+        "First Come First Serve",
+        "Random Selection",
+        "Age Priority"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "FLOOD",
+      "prompt": "Never driving through standing water of unknown depth.",
+      "question": "Identify:",
+      "correct": "Turn Around Don't Drown",
+      "wrong": [
+        "Drive Slowly",
+        "Use 4WD",
+        "Follow Other Cars"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "WILDFIRE",
+      "prompt": "Creating a firebreak by removing vegetation in a strip.",
+      "question": "Identify:",
+      "correct": "Firebreak",
+      "wrong": [
+        "Backfire",
+        "Controlled Burn",
+        "Fire Line"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "EVACUATION",
+      "prompt": "Following designated routes away from the danger zone.",
+      "question": "Identify:",
+      "correct": "Evacuation Route",
+      "wrong": [
+        "Shelter in Place",
+        "Bug Out",
+        "Rally Point"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "AFTERSHOCK",
+      "prompt": "Smaller earthquakes following the main event for days.",
+      "question": "Identify:",
+      "correct": "Aftershocks",
+      "wrong": [
+        "Foreshocks",
+        "Tremors",
+        "Replicas"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SHELTER",
+      "prompt": "Taking cover in a basement or interior room during a tornado.",
+      "question": "Identify:",
+      "correct": "Tornado Shelter Protocol",
+      "wrong": [
+        "Earthquake Protocol",
+        "Hurricane Protocol",
+        "Flood Protocol"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "LEVEE",
+      "prompt": "Earthen barrier holding back floodwaters from a city.",
+      "question": "Identify:",
+      "correct": "Levee",
+      "wrong": [
+        "Dam",
+        "Seawall",
+        "Dike"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "EAS",
+      "prompt": "Emergency broadcast interrupting TV and radio programming.",
+      "question": "Identify:",
+      "correct": "Emergency Alert System",
+      "wrong": [
+        "News Bulletin",
+        "Weather Report",
+        "Public Service"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "HAZMAT",
+      "prompt": "Chemical spill requiring specialized protective equipment.",
+      "question": "Identify:",
+      "correct": "Hazardous Materials Incident",
+      "wrong": [
+        "Industrial Accident",
+        "Toxic Release",
+        "Gas Leak"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "STAGING",
+      "prompt": "Area where rescue resources gather before deploying.",
+      "question": "Identify:",
+      "correct": "Staging Area",
+      "wrong": [
+        "Base Camp",
+        "Command Post",
+        "Rally Point"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "SEARCH",
+      "prompt": "Using a grid pattern to systematically search an area.",
+      "question": "Identify:",
+      "correct": "Grid Search Pattern",
+      "wrong": [
+        "Spiral Search",
+        "Random Search",
+        "Line Search"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "PANDEMIC",
+      "prompt": "Disease spreading rapidly across multiple countries simultaneously.",
+      "question": "Identify:",
+      "correct": "Pandemic",
+      "wrong": [
+        "Epidemic",
+        "Outbreak",
+        "Endemic"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "RESILIENCE",
+      "prompt": "Community rebuilding stronger after a natural disaster.",
+      "question": "Identify:",
+      "correct": "Community Resilience",
+      "wrong": [
+        "Recovery",
+        "Reconstruction",
+        "Restoration"
+      ],
+      "difficulty": 2,
+      "stroop": 2
+    }
+  ]
+}

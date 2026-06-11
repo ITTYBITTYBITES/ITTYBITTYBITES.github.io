@@ -1,0 +1,220 @@
+{
+  "id": "law",
+  "name": "LEGAL BRIEF",
+  "icon": "o",
+  "color": "#FFD700",
+  "tags": [
+    "law"
+  ],
+  "scenarios": [
+    {
+      "flash": "RIGHTS",
+      "prompt": "Police search your car without a warrant or consent.",
+      "question": "Identify:",
+      "correct": "4th Amendment Violation",
+      "wrong": [
+        "Legal Search",
+        "Probable Cause",
+        "Terry Stop"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CRIME",
+      "prompt": "Taking something from a store without paying.",
+      "question": "Classify:",
+      "correct": "Theft",
+      "wrong": [
+        "Robbery",
+        "Burglary",
+        "Fraud"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CONTRACT",
+      "prompt": "One party fails to deliver what was promised in agreement.",
+      "question": "Identify:",
+      "correct": "Breach of Contract",
+      "wrong": [
+        "Fraud",
+        "Negligence",
+        "Tort"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SILENCE",
+      "prompt": "You have the right to remain silent. Anything you say...",
+      "question": "Identify:",
+      "correct": "Miranda Rights",
+      "wrong": [
+        "Habeas Corpus",
+        "Due Process",
+        "Fifth Amendment"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "FORCE",
+      "prompt": "Using reasonable physical force to protect yourself from attack.",
+      "question": "Classify:",
+      "correct": "Self-Defense",
+      "wrong": [
+        "Assault",
+        "Battery",
+        "Vigilantism"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "NEGLIGENCE",
+      "prompt": "Doctor operates on wrong leg due to not checking chart.",
+      "question": "Classify:",
+      "correct": "Medical Malpractice",
+      "wrong": [
+        "Criminal Negligence",
+        "Assault",
+        "Fraud"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "WITNESS",
+      "prompt": "Person lying under oath in a court of law.",
+      "question": "Identify:",
+      "correct": "Perjury",
+      "wrong": [
+        "Contempt",
+        "Obstruction",
+        "Fraud"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "PROPERTY",
+      "prompt": "Using someone else's creative work without permission.",
+      "question": "Identify:",
+      "correct": "Copyright Infringement",
+      "wrong": [
+        "Plagiarism",
+        "Fair Use",
+        "Public Domain"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "JURY",
+      "prompt": "Twelve citizens deciding the guilt or innocence of the accused.",
+      "question": "Identify:",
+      "correct": "Trial by Jury",
+      "wrong": [
+        "Grand Jury",
+        "Bench Trial",
+        "Arbitration"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "BAIL",
+      "prompt": "Paying money to be released from jail before trial.",
+      "question": "Identify:",
+      "correct": "Posting Bail",
+      "wrong": [
+        "Plea Bargain",
+        "Parole",
+        "Probation"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "EVIDENCE",
+      "prompt": "Judge ruling certain evidence cannot be shown to jury.",
+      "question": "Identify:",
+      "correct": "Suppression of Evidence",
+      "wrong": [
+        "Mistrial",
+        "Objection",
+        "Dismissal"
+      ],
+      "difficulty": 3,
+      "stroop": 1
+    },
+    {
+      "flash": "INTENT",
+      "prompt": "Accidentally causing someone's death through reckless driving.",
+      "question": "Identify:",
+      "correct": "Manslaughter",
+      "wrong": [
+        "Murder",
+        "Assault",
+        "Negligence"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "SEARCH",
+      "prompt": "Officer finding drugs in plain sight during a legal traffic stop.",
+      "question": "Identify:",
+      "correct": "Plain View Doctrine",
+      "wrong": [
+        "Illegal Search",
+        "Probable Cause",
+        "Warrant"
+      ],
+      "difficulty": 3,
+      "stroop": 2
+    },
+    {
+      "flash": "DOUBLE",
+      "prompt": "Being tried again for the same crime after acquittal.",
+      "question": "Identify:",
+      "correct": "Double Jeopardy",
+      "wrong": [
+        "Mistrial",
+        "Appeal",
+        "Retrial"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "FRAUD",
+      "prompt": "Pretending to be someone else to gain financial benefit.",
+      "question": "Identify:",
+      "correct": "Identity Fraud",
+      "wrong": [
+        "Forgery",
+        "Embezzlement",
+        "Larceny"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "CUSTODY",
+      "prompt": "Parent given sole decision-making authority over a child.",
+      "question": "Identify:",
+      "correct": "Sole Custody",
+      "wrong": [
+        "Joint Custody",
+        "Guardianship",
+        "Adoption"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    }
+  ],
+  "universe": "society"
+}

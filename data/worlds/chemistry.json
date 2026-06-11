@@ -1,0 +1,232 @@
+{
+  "id": "chemistry",
+  "name": "REACTION LAB",
+  "universe": "science",
+  "icon": ">>",
+  "color": "#E74C3C",
+  "tags": [
+    "chemistry",
+    "elements",
+    "reactions"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "ACID",
+      "prompt": "Substance with pH less than 7 that donates hydrogen ions.",
+      "question": "Identify:",
+      "correct": "Acid",
+      "wrong": [
+        "Base",
+        "Neutral",
+        "Buffer"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "BASE",
+      "prompt": "Substance with pH greater than 7 that accepts hydrogen ions.",
+      "question": "Identify:",
+      "correct": "Base",
+      "wrong": [
+        "Acid",
+        "Neutral",
+        "Salt"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CATALYST",
+      "prompt": "Substance speeding up a reaction without being consumed.",
+      "question": "Identify:",
+      "correct": "Catalyst",
+      "wrong": [
+        "Reactant",
+        "Product",
+        "Solvent"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "BOND",
+      "prompt": "Two atoms sharing a pair of electrons.",
+      "question": "Identify:",
+      "correct": "Covalent Bond",
+      "wrong": [
+        "Ionic Bond",
+        "Metallic Bond",
+        "Hydrogen Bond"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "ELEMENT",
+      "prompt": "Pure substance made of only one type of atom.",
+      "question": "Identify:",
+      "correct": "Chemical Element",
+      "wrong": [
+        "Compound",
+        "Mixture",
+        "Molecule"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "EXOTHERMIC",
+      "prompt": "Reaction releasing heat and raising the temperature.",
+      "question": "Identify:",
+      "correct": "Exothermic Reaction",
+      "wrong": [
+        "Endothermic",
+        "Equilibrium",
+        "Isothermal"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "PRECIPITATE",
+      "prompt": "Solid forming and sinking when two clear solutions are mixed.",
+      "question": "Identify:",
+      "correct": "Precipitation Reaction",
+      "wrong": [
+        "Crystallization",
+        "Filtration",
+        "Sedimentation"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "ISOTOPE",
+      "prompt": "Atoms of same element with different numbers of neutrons.",
+      "question": "Identify:",
+      "correct": "Isotopes",
+      "wrong": [
+        "Ions",
+        "Allotropes",
+        "Isomers"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "MOLE",
+      "prompt": "6.022 x 10^23 particles of a substance.",
+      "question": "Identify:",
+      "correct": "Avogadro's Number",
+      "wrong": [
+        "Atomic Mass",
+        "Molecular Weight",
+        "Dalton"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "REDOX",
+      "prompt": "One substance gaining electrons while another loses them.",
+      "question": "Identify:",
+      "correct": "Redox Reaction",
+      "wrong": [
+        "Acid-Base",
+        "Decomposition",
+        "Synthesis"
+      ],
+      "difficulty": 3,
+      "stroop": 1
+    },
+    {
+      "flash": "SOLUTION",
+      "prompt": "Salt completely disappearing when stirred into water.",
+      "question": "Identify:",
+      "correct": "Dissolution",
+      "wrong": [
+        "Melting",
+        "Evaporation",
+        "Suspension"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "POLYMER",
+      "prompt": "Long chain molecule made of repeating smaller units.",
+      "question": "Identify:",
+      "correct": "Polymer",
+      "wrong": [
+        "Monomer",
+        "Oligomer",
+        "Crystal"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "GAS",
+      "prompt": "Baking soda and vinegar producing bubbles.",
+      "question": "Identify:",
+      "correct": "Gas Evolution Reaction",
+      "wrong": [
+        "Effervescence",
+        "Boiling",
+        "Decomposition"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "PH",
+      "prompt": "Litmus paper turning red when dipped in lemon juice.",
+      "question": "Identify:",
+      "correct": "Acidic Solution",
+      "wrong": [
+        "Basic Solution",
+        "Neutral",
+        "Buffer"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "ENDOTHERMIC",
+      "prompt": "Ice pack getting cold when chemicals inside are mixed.",
+      "question": "Identify:",
+      "correct": "Endothermic Reaction",
+      "wrong": [
+        "Exothermic",
+        "Phase Change",
+        "Sublimation"
+      ],
+      "difficulty": 2,
+      "stroop": 2
+    },
+    {
+      "flash": "ALLOY",
+      "prompt": "Mixing copper and tin to create a harder metal.",
+      "question": "Identify:",
+      "correct": "Bronze Alloy",
+      "wrong": [
+        "Compound",
+        "Amalgam",
+        "Composite"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    }
+  ]
+}

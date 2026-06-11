@@ -1,0 +1,232 @@
+{
+  "id": "gamedev",
+  "name": "GAME ENGINE",
+  "universe": "tech",
+  "icon": ">>",
+  "color": "#E67E22",
+  "tags": [
+    "gamedev",
+    "programming",
+    "design"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "LOOP",
+      "prompt": "Code that runs every frame to update game state.",
+      "question": "Identify:",
+      "correct": "Game Loop",
+      "wrong": [
+        "Event Handler",
+        "Callback",
+        "Thread"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SPRITE",
+      "prompt": "2D image displayed and moved on screen as a character.",
+      "question": "Identify:",
+      "correct": "Sprite",
+      "wrong": [
+        "Texture",
+        "Mesh",
+        "Polygon"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "PHYSICS",
+      "prompt": "Objects falling and bouncing realistically without manual coding.",
+      "question": "Identify:",
+      "correct": "Physics Engine",
+      "wrong": [
+        "Animation",
+        "Scripting",
+        "Rendering"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SHADER",
+      "prompt": "GPU program controlling how a surface appears with light.",
+      "question": "Identify:",
+      "correct": "Fragment Shader",
+      "wrong": [
+        "Vertex Shader",
+        "Compute Shader",
+        "Geometry Shader"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "COLLISION",
+      "prompt": "Two game objects detecting when they overlap.",
+      "question": "Identify:",
+      "correct": "Collision Detection",
+      "wrong": [
+        "Raycasting",
+        "Trigger Zone",
+        "Bounds Check"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "STATE",
+      "prompt": "Character switching between idle, walking, jumping, and attacking.",
+      "question": "Identify:",
+      "correct": "State Machine",
+      "wrong": [
+        "Behavior Tree",
+        "Event System",
+        "Command Pattern"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "PATHFIND",
+      "prompt": "Enemy finding the shortest route around obstacles to reach player.",
+      "question": "Identify:",
+      "correct": "A* Pathfinding",
+      "wrong": [
+        "Dijkstra",
+        "Breadth First",
+        "Random Walk"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "LOD",
+      "prompt": "Far-away mountains using fewer polygons than nearby rocks.",
+      "question": "Identify:",
+      "correct": "Level of Detail",
+      "wrong": [
+        "Frustum Culling",
+        "Occlusion Culling",
+        "Mipmapping"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "DELTA",
+      "prompt": "Multiplying movement speed by time between frames.",
+      "question": "Identify:",
+      "correct": "Delta Time",
+      "wrong": [
+        "Fixed Time",
+        "Frame Rate",
+        "Tick Rate"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "SINGLETON",
+      "prompt": "Manager class that only has one instance accessible globally.",
+      "question": "Identify:",
+      "correct": "Singleton Pattern",
+      "wrong": [
+        "Factory Pattern",
+        "Observer Pattern",
+        "Strategy Pattern"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "TWEEN",
+      "prompt": "Value smoothly changing from one number to another over time.",
+      "question": "Identify:",
+      "correct": "Tweening",
+      "wrong": [
+        "Lerping",
+        "Easing",
+        "Interpolation"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "PARTICLE",
+      "prompt": "Hundreds of tiny images creating a fire or explosion effect.",
+      "question": "Identify:",
+      "correct": "Particle System",
+      "wrong": [
+        "Sprite Sheet",
+        "Animation",
+        "Shader Effect"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "RAYCAST",
+      "prompt": "Invisible line checking what it hits in the game world.",
+      "question": "Identify:",
+      "correct": "Raycast",
+      "wrong": [
+        "Collision Box",
+        "Trigger Area",
+        "Physics Query"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "POOL",
+      "prompt": "Reusing bullet objects instead of creating and destroying them.",
+      "question": "Identify:",
+      "correct": "Object Pooling",
+      "wrong": [
+        "Garbage Collection",
+        "Memory Management",
+        "Caching"
+      ],
+      "difficulty": 3,
+      "stroop": 1
+    },
+    {
+      "flash": "UI",
+      "prompt": "Health bar shrinking smoothly as player takes damage.",
+      "question": "Identify:",
+      "correct": "UI Animation",
+      "wrong": [
+        "HUD Update",
+        "State Change",
+        "Event Trigger"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "TILEMAP",
+      "prompt": "Building a level from small reusable square pieces.",
+      "question": "Identify:",
+      "correct": "Tilemap",
+      "wrong": [
+        "Sprite Sheet",
+        "Grid System",
+        "Voxel Map"
+      ],
+      "difficulty": 1,
+      "stroop": 2
+    }
+  ]
+}

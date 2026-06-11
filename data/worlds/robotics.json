@@ -1,0 +1,232 @@
+{
+  "id": "robotics",
+  "name": "MECH LAB",
+  "universe": "tech",
+  "icon": ">>",
+  "color": "#E74C3C",
+  "tags": [
+    "robots",
+    "automation",
+    "sensors"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "SENSOR",
+      "prompt": "Robot arm detecting the exact distance to an object with light.",
+      "question": "Identify:",
+      "correct": "LIDAR Sensor",
+      "wrong": [
+        "Ultrasonic",
+        "Infrared",
+        "Radar"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "SERVO",
+      "prompt": "Motor precisely controlling the angle of a robot joint.",
+      "question": "Identify:",
+      "correct": "Servo Motor",
+      "wrong": [
+        "Stepper Motor",
+        "DC Motor",
+        "Hydraulic"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "INVERSE",
+      "prompt": "Calculating joint angles needed to reach a specific point in space.",
+      "question": "Identify:",
+      "correct": "Inverse Kinematics",
+      "wrong": [
+        "Forward Kinematics",
+        "Path Planning",
+        "Motion Control"
+      ],
+      "difficulty": 3,
+      "stroop": 0
+    },
+    {
+      "flash": "AUTONOMY",
+      "prompt": "Robot vacuum mapping a room and avoiding obstacles on its own.",
+      "question": "Identify:",
+      "correct": "Autonomous Navigation",
+      "wrong": [
+        "Remote Control",
+        "Pre-programmed",
+        "Random Walk"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "GRIPPER",
+      "prompt": "Robot hand adjusting grip pressure based on object fragility.",
+      "question": "Identify:",
+      "correct": "Force Feedback Control",
+      "wrong": [
+        "Open Loop",
+        "Binary Grip",
+        "Fixed Pressure"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "SWARM",
+      "prompt": "Hundreds of small robots coordinating without central control.",
+      "question": "Identify:",
+      "correct": "Swarm Robotics",
+      "wrong": [
+        "Centralized Control",
+        "Master-Slave",
+        "Hierarchical"
+      ],
+      "difficulty": 3,
+      "stroop": 1
+    },
+    {
+      "flash": "PID",
+      "prompt": "Controller continuously adjusting motor speed to match target.",
+      "question": "Identify:",
+      "correct": "PID Controller",
+      "wrong": [
+        "Bang-Bang Control",
+        "Open Loop",
+        "Fuzzy Logic"
+      ],
+      "difficulty": 3,
+      "stroop": 0
+    },
+    {
+      "flash": "DOF",
+      "prompt": "Number of independent directions a robot arm can move.",
+      "question": "Identify:",
+      "correct": "Degrees of Freedom",
+      "wrong": [
+        "Axes",
+        "Joints",
+        "Links"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "COBOT",
+      "prompt": "Robot designed to safely work alongside humans in a factory.",
+      "question": "Identify:",
+      "correct": "Collaborative Robot",
+      "wrong": [
+        "Industrial Robot",
+        "Service Robot",
+        "Humanoid"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SLAM",
+      "prompt": "Robot building a map while simultaneously tracking its own position.",
+      "question": "Identify:",
+      "correct": "SLAM Algorithm",
+      "wrong": [
+        "GPS Tracking",
+        "Dead Reckoning",
+        "Beacon Navigation"
+      ],
+      "difficulty": 3,
+      "stroop": 1
+    },
+    {
+      "flash": "ACTUATOR",
+      "prompt": "Device converting electrical signal into physical movement.",
+      "question": "Identify:",
+      "correct": "Actuator",
+      "wrong": [
+        "Sensor",
+        "Controller",
+        "Transducer"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "OBSTACLE",
+      "prompt": "Robot stopping immediately when detecting a person in its path.",
+      "question": "Identify:",
+      "correct": "Collision Avoidance",
+      "wrong": [
+        "Emergency Stop",
+        "Path Deviation",
+        "Speed Reduction"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "LOCOMOTION",
+      "prompt": "Four-legged robot dynamically balancing while walking on rough terrain.",
+      "question": "Identify:",
+      "correct": "Dynamic Walking",
+      "wrong": [
+        "Static Walking",
+        "Wheeled Motion",
+        "Crawling"
+      ],
+      "difficulty": 2,
+      "stroop": 2
+    },
+    {
+      "flash": "PAYLOAD",
+      "prompt": "Maximum weight a robot arm can lift at full extension.",
+      "question": "Identify:",
+      "correct": "Payload Capacity",
+      "wrong": [
+        "Torque Limit",
+        "Reach Limit",
+        "Speed Limit"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "VISION",
+      "prompt": "Camera system guiding robot to pick specific items from a bin.",
+      "question": "Identify:",
+      "correct": "Machine Vision Picking",
+      "wrong": [
+        "Manual Selection",
+        "Random Grab",
+        "Pre-sorted"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "TEACH",
+      "prompt": "Operator physically moving robot arm through desired path.",
+      "question": "Identify:",
+      "correct": "Teach Pendant Programming",
+      "wrong": [
+        "Offline Programming",
+        "AI Learning",
+        "Voice Control"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    }
+  ]
+}

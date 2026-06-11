@@ -1,0 +1,232 @@
+{
+  "id": "homerepair",
+  "name": "FIX IT",
+  "universe": "life",
+  "icon": ">>",
+  "color": "#795548",
+  "tags": [
+    "home",
+    "repair",
+    "tools"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "STUD",
+      "prompt": "Knocking on drywall to find the solid wood behind it.",
+      "question": "Identify:",
+      "correct": "Stud Finding",
+      "wrong": [
+        "Insulation Check",
+        "Pipe Locating",
+        "Wire Testing"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "LEAK",
+      "prompt": "Water stain on ceiling below the bathroom.",
+      "question": "Identify:",
+      "correct": "Plumbing Leak",
+      "wrong": [
+        "Roof Leak",
+        "Condensation",
+        "Foundation Crack"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "BREAKER",
+      "prompt": "Lights and outlets in one room suddenly stop working.",
+      "question": "Identify:",
+      "correct": "Tripped Circuit Breaker",
+      "wrong": [
+        "Power Outage",
+        "Blown Fuse",
+        "Loose Wire"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CAULK",
+      "prompt": "Applying flexible sealant around bathtub edges.",
+      "question": "Identify:",
+      "correct": "Caulking",
+      "wrong": [
+        "Grouting",
+        "Spackling",
+        "Putty"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "LEVEL",
+      "prompt": "Tool with a bubble used to check if a shelf is straight.",
+      "question": "Identify:",
+      "correct": "Spirit Level",
+      "wrong": [
+        "Square",
+        "Plumb Bob",
+        "Ruler"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "DRAIN",
+      "prompt": "Slow sink drain cleared with a plunger.",
+      "question": "Identify:",
+      "correct": "Minor Clog",
+      "wrong": [
+        "Broken Pipe",
+        "Vent Blockage",
+        "Main Line Issue"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "PILOT",
+      "prompt": "Gas furnace not igniting due to small flame being out.",
+      "question": "Identify:",
+      "correct": "Pilot Light Out",
+      "wrong": [
+        "Gas Leak",
+        "Thermostat Failure",
+        "Ignitor Broken"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "GROUT",
+      "prompt": "White material filling gaps between bathroom tiles.",
+      "question": "Identify:",
+      "correct": "Tile Grout",
+      "wrong": [
+        "Caulk",
+        "Mortar",
+        "Adhesive"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "INSULATE",
+      "prompt": "Adding pink fiberglass batts between wall studs.",
+      "question": "Identify:",
+      "correct": "Wall Insulation",
+      "wrong": [
+        "Soundproofing",
+        "Vapor Barrier",
+        "Fire Block"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "ANCHOR",
+      "prompt": "Plastic insert in drywall to hold a heavy shelf bracket.",
+      "question": "Identify:",
+      "correct": "Wall Anchor",
+      "wrong": [
+        "Toggle Bolt",
+        "Stud Screw",
+        "Masonry Nail"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "GFCI",
+      "prompt": "Outlet near the sink with test and reset buttons.",
+      "question": "Identify:",
+      "correct": "GFCI Outlet",
+      "wrong": [
+        "USB Outlet",
+        "Smart Outlet",
+        "Switched Outlet"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "PAINT",
+      "prompt": "Applying painter's tape along edges before painting a wall.",
+      "question": "Identify:",
+      "correct": "Masking",
+      "wrong": [
+        "Priming",
+        "Cutting In",
+        "Edging"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SHUTOFF",
+      "prompt": "Turning handle under toilet to stop water flow during emergency.",
+      "question": "Identify:",
+      "correct": "Shutoff Valve",
+      "wrong": [
+        "Flush Valve",
+        "Fill Valve",
+        "Overflow Tube"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "MOLD",
+      "prompt": "Black spots appearing on bathroom ceiling from moisture.",
+      "question": "Identify:",
+      "correct": "Mold Growth",
+      "wrong": [
+        "Dirt",
+        "Smoke Damage",
+        "Water Stain"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "VOLTAGE",
+      "prompt": "Using a non-contact tester to check if a wire is live.",
+      "question": "Identify:",
+      "correct": "Voltage Tester",
+      "wrong": [
+        "Multimeter",
+        "Ohmmeter",
+        "Ammeter"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "TRAP",
+      "prompt": "U-shaped pipe under the sink preventing sewer gas.",
+      "question": "Identify:",
+      "correct": "P-Trap",
+      "wrong": [
+        "S-Trap",
+        "Drain Pipe",
+        "Vent Pipe"
+      ],
+      "difficulty": 2,
+      "stroop": 2
+    }
+  ]
+}

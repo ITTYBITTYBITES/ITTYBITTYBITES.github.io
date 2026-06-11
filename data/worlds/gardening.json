@@ -1,0 +1,232 @@
+{
+  "id": "gardening",
+  "name": "GARDEN OPS",
+  "universe": "life",
+  "icon": ">>",
+  "color": "#27AE60",
+  "tags": [
+    "plants",
+    "soil",
+    "gardening"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "SOIL",
+      "prompt": "Dark crumbly material rich in decomposed organic matter.",
+      "question": "Identify:",
+      "correct": "Compost",
+      "wrong": [
+        "Topsoil",
+        "Peat Moss",
+        "Mulch"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "PRUNE",
+      "prompt": "Cutting dead branches to encourage new growth.",
+      "question": "Identify:",
+      "correct": "Pruning",
+      "wrong": [
+        "Trimming",
+        "Topping",
+        "Grafting"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "PH",
+      "prompt": "Blueberries thriving in soil with pH below 5.5.",
+      "question": "Identify:",
+      "correct": "Acidic Soil",
+      "wrong": [
+        "Alkaline Soil",
+        "Neutral Soil",
+        "Sandy Soil"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "PEST",
+      "prompt": "Tiny white insects clustering under plant leaves.",
+      "question": "Identify:",
+      "correct": "Whiteflies",
+      "wrong": [
+        "Aphids",
+        "Mealybugs",
+        "Spider Mites"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "SEED",
+      "prompt": "Soaking seeds in water overnight before planting.",
+      "question": "Identify:",
+      "correct": "Scarification",
+      "wrong": [
+        "Stratification",
+        "Germination",
+        "Propagation"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "COMPANION",
+      "prompt": "Planting basil next to tomatoes to repel pests.",
+      "question": "Identify:",
+      "correct": "Companion Planting",
+      "wrong": [
+        "Crop Rotation",
+        "Intercropping",
+        "Succession Planting"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "NITROGEN",
+      "prompt": "Leaves turning yellow starting from the bottom of the plant.",
+      "question": "Identify:",
+      "correct": "Nitrogen Deficiency",
+      "wrong": [
+        "Overwatering",
+        "Root Rot",
+        "Sun Damage"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "MULCH",
+      "prompt": "Layer of material spread around plants to retain moisture.",
+      "question": "Identify:",
+      "correct": "Mulching",
+      "wrong": [
+        "Composting",
+        "Tilling",
+        "Aerating"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "BULB",
+      "prompt": "Underground structure planted in fall that blooms in spring.",
+      "question": "Identify:",
+      "correct": "Flower Bulb",
+      "wrong": [
+        "Tuber",
+        "Rhizome",
+        "Corm"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "DRAINAGE",
+      "prompt": "Water pooling on soil surface and not soaking in.",
+      "question": "Identify:",
+      "correct": "Poor Drainage",
+      "wrong": [
+        "Overwatering",
+        "Clay Soil",
+        "Compaction"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "POLLINATE",
+      "prompt": "Bee transferring pollen from one flower to another.",
+      "question": "Identify:",
+      "correct": "Cross Pollination",
+      "wrong": [
+        "Self Pollination",
+        "Wind Pollination",
+        "Hand Pollination"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "FROST",
+      "prompt": "Covering plants with cloth before a cold night.",
+      "question": "Identify:",
+      "correct": "Frost Protection",
+      "wrong": [
+        "Shade Cover",
+        "Wind Break",
+        "Rain Shield"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "GRAFT",
+      "prompt": "Joining a branch from one tree onto the trunk of another.",
+      "question": "Identify:",
+      "correct": "Grafting",
+      "wrong": [
+        "Budding",
+        "Layering",
+        "Division"
+      ],
+      "difficulty": 3,
+      "stroop": 1
+    },
+    {
+      "flash": "ANNUAL",
+      "prompt": "Plant that completes its life cycle in one growing season.",
+      "question": "Identify:",
+      "correct": "Annual Plant",
+      "wrong": [
+        "Perennial",
+        "Biennial",
+        "Evergreen"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "COMPOST",
+      "prompt": "Kitchen scraps breaking down into dark nutrient-rich soil.",
+      "question": "Identify:",
+      "correct": "Composting",
+      "wrong": [
+        "Mulching",
+        "Vermicomposting",
+        "Fermenting"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "WILT",
+      "prompt": "Plant drooping despite moist soil on a hot day.",
+      "question": "Identify:",
+      "correct": "Heat Stress",
+      "wrong": [
+        "Underwatering",
+        "Root Rot",
+        "Disease"
+      ],
+      "difficulty": 2,
+      "stroop": 2
+    }
+  ]
+}

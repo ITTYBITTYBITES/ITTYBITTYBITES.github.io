@@ -1,0 +1,222 @@
+{
+  "id": "crime",
+  "name": "CASE FILE",
+  "icon": "o",
+  "color": "#922B21",
+  "tags": [
+    "crime",
+    "forensics",
+    "investigation"
+  ],
+  "scenarios": [
+    {
+      "flash": "EVIDENCE",
+      "prompt": "Fingerprints found on weapon match suspect.",
+      "question": "Identify:",
+      "correct": "Physical Evidence",
+      "wrong": [
+        "Circumstantial",
+        "Testimonial",
+        "Digital"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "ALIBI",
+      "prompt": "Suspect claims to have been elsewhere during crime.",
+      "question": "Identify:",
+      "correct": "Alibi Defense",
+      "wrong": [
+        "Insanity Defense",
+        "Self-Defense",
+        "Mistaken Identity"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "MOTIVE",
+      "prompt": "Suspect recently discovered victim changed their will.",
+      "question": "Identify:",
+      "correct": "Financial Motive",
+      "wrong": [
+        "Revenge",
+        "Passion",
+        "Opportunity"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "FORENSIC",
+      "prompt": "Blood spatter pattern indicates direction of attack.",
+      "question": "Identify:",
+      "correct": "Blood Spatter Analysis",
+      "wrong": [
+        "DNA Analysis",
+        "Ballistics",
+        "Toxicology"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "WITNESS",
+      "prompt": "Person saw suspect leaving the building at time of crime.",
+      "question": "Identify:",
+      "correct": "Eyewitness Testimony",
+      "wrong": [
+        "Expert Testimony",
+        "Character Witness",
+        "Hearsay"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "CHAIN",
+      "prompt": "Evidence handled without proper documentation.",
+      "question": "Identify:",
+      "correct": "Broken Chain of Custody",
+      "wrong": [
+        "Contamination",
+        "Tampering",
+        "Spoliation"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "DIGITAL",
+      "prompt": "Deleted files recovered from suspect hard drive.",
+      "question": "Identify:",
+      "correct": "Digital Forensics",
+      "wrong": [
+        "Data Recovery",
+        "Hacking",
+        "Surveillance"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "COLD",
+      "prompt": "Unsolved case reopened after new DNA technology available.",
+      "question": "Identify:",
+      "correct": "Cold Case",
+      "wrong": [
+        "Active Case",
+        "Pending Case",
+        "Closed Case"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "PRINT",
+      "prompt": "Unique pattern left by a finger on a smooth surface.",
+      "question": "Identify:",
+      "correct": "Fingerprint Evidence",
+      "wrong": [
+        "DNA Evidence",
+        "Trace Evidence",
+        "Circumstantial"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "BLOOD",
+      "prompt": "Pattern of drops indicating direction of movement.",
+      "question": "Identify:",
+      "correct": "Blood Spatter Analysis",
+      "wrong": [
+        "DNA Profiling",
+        "Luminol Test",
+        "Ballistics"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "ALIBI",
+      "prompt": "Suspect can prove they were elsewhere during the crime.",
+      "question": "Identify:",
+      "correct": "Verified Alibi",
+      "wrong": [
+        "False Alibi",
+        "Testimony",
+        "Circumstantial"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "MOTIVE",
+      "prompt": "Financial benefit from a person's death.",
+      "question": "Identify:",
+      "correct": "Insurance Motive",
+      "wrong": [
+        "Revenge",
+        "Jealousy",
+        "Cover-up"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "TRACE",
+      "prompt": "Microscopic fibers found on victim matching suspect's jacket.",
+      "question": "Identify:",
+      "correct": "Trace Evidence",
+      "wrong": [
+        "DNA Evidence",
+        "Fingerprint",
+        "Ballistics"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "DIGITAL",
+      "prompt": "Deleted files recovered from suspect's hard drive.",
+      "question": "Identify:",
+      "correct": "Digital Forensics",
+      "wrong": [
+        "Surveillance",
+        "Wiretapping",
+        "Hacking"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "WEAPON",
+      "prompt": "Rifling marks on bullet matching a specific firearm.",
+      "question": "Identify:",
+      "correct": "Ballistic Match",
+      "wrong": [
+        "Caliber Match",
+        "Residue Test",
+        "Serial Trace"
+      ],
+      "difficulty": 3,
+      "stroop": 1
+    },
+    {
+      "flash": "DECAY",
+      "prompt": "Body temperature used to estimate time since death.",
+      "question": "Identify:",
+      "correct": "Algor Mortis",
+      "wrong": [
+        "Rigor Mortis",
+        "Livor Mortis",
+        "Decomposition"
+      ],
+      "difficulty": 3,
+      "stroop": 2
+    }
+  ],
+  "universe": "society"
+}

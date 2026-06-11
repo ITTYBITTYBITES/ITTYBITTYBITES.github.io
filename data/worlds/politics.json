@@ -1,0 +1,232 @@
+{
+  "id": "politics",
+  "name": "CAPITOL",
+  "universe": "society",
+  "icon": ">>",
+  "color": "#C0392B",
+  "tags": [
+    "politics",
+    "government",
+    "policy"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "BRANCH",
+      "prompt": "Branch of government that makes laws.",
+      "question": "Identify:",
+      "correct": "Legislative Branch",
+      "wrong": [
+        "Executive",
+        "Judicial",
+        "Administrative"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "VETO",
+      "prompt": "President rejecting a bill passed by Congress.",
+      "question": "Identify:",
+      "correct": "Presidential Veto",
+      "wrong": [
+        "Filibuster",
+        "Pocket Veto",
+        "Override"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "FILIBUSTER",
+      "prompt": "Senator speaking for hours to delay a vote.",
+      "question": "Identify:",
+      "correct": "Filibuster",
+      "wrong": [
+        "Debate",
+        "Veto",
+        "Obstruction"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "AMENDMENT",
+      "prompt": "Formal change or addition to the Constitution.",
+      "question": "Identify:",
+      "correct": "Constitutional Amendment",
+      "wrong": [
+        "Executive Order",
+        "Law",
+        "Ruling"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "ELECTORAL",
+      "prompt": "System where states cast votes for president based on population.",
+      "question": "Identify:",
+      "correct": "Electoral College",
+      "wrong": [
+        "Popular Vote",
+        "Caucus",
+        "Primary"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "LOBBY",
+      "prompt": "Groups spending money to influence lawmakers' decisions.",
+      "question": "Identify:",
+      "correct": "Lobbying",
+      "wrong": [
+        "Campaigning",
+        "Protesting",
+        "Petitioning"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "GERRYMANDER",
+      "prompt": "Drawing district boundaries to favor one political party.",
+      "question": "Identify:",
+      "correct": "Gerrymandering",
+      "wrong": [
+        "Redistricting",
+        "Reapportionment",
+        "Zoning"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "EXECUTIVE",
+      "prompt": "President issuing a directive without Congressional approval.",
+      "question": "Identify:",
+      "correct": "Executive Order",
+      "wrong": [
+        "Law",
+        "Amendment",
+        "Resolution"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "IMPEACH",
+      "prompt": "House of Representatives charging a president with misconduct.",
+      "question": "Identify:",
+      "correct": "Impeachment",
+      "wrong": [
+        "Removal",
+        "Resignation",
+        "Recall"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "FEDERAL",
+      "prompt": "System dividing power between national and state governments.",
+      "question": "Identify:",
+      "correct": "Federalism",
+      "wrong": [
+        "Unitarism",
+        "Confederalism",
+        "Devolution"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "CAUCUS",
+      "prompt": "Small group meeting to select candidates within a party.",
+      "question": "Identify:",
+      "correct": "Political Caucus",
+      "wrong": [
+        "Primary Election",
+        "Convention",
+        "Town Hall"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "SANCTION",
+      "prompt": "Country restricting trade with another to force policy change.",
+      "question": "Identify:",
+      "correct": "Economic Sanctions",
+      "wrong": [
+        "Embargo",
+        "Tariff",
+        "Blockade"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "DIPLOMAT",
+      "prompt": "Representing one country's interests in another country.",
+      "question": "Identify:",
+      "correct": "Diplomacy",
+      "wrong": [
+        "Espionage",
+        "Trade",
+        "Immigration"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "REFERENDUM",
+      "prompt": "Citizens voting directly on a specific policy question.",
+      "question": "Identify:",
+      "correct": "Referendum",
+      "wrong": [
+        "Election",
+        "Poll",
+        "Survey"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "PARTISAN",
+      "prompt": "Making decisions based on party loyalty rather than merit.",
+      "question": "Identify:",
+      "correct": "Partisanship",
+      "wrong": [
+        "Bipartisanship",
+        "Nonpartisan",
+        "Independent"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "TERM",
+      "prompt": "Maximum time a US president can serve in office.",
+      "question": "Identify:",
+      "correct": "Two Term Limit",
+      "wrong": [
+        "One Term",
+        "Three Terms",
+        "Unlimited"
+      ],
+      "difficulty": 1,
+      "stroop": 2
+    }
+  ]
+}

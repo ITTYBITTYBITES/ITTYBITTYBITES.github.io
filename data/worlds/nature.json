@@ -1,0 +1,220 @@
+{
+  "id": "nature",
+  "name": "FIELD LOG",
+  "icon": "o",
+  "color": "#2ECC71",
+  "tags": [
+    "nature"
+  ],
+  "scenarios": [
+    {
+      "flash": "PREDATOR",
+      "prompt": "Animal with forward-facing eyes, sharp teeth, silent movement.",
+      "question": "Classify:",
+      "correct": "Predator",
+      "wrong": [
+        "Prey",
+        "Scavenger",
+        "Herbivore"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "WEATHER",
+      "prompt": "Green-tinted sky, large hail, rotating wall cloud.",
+      "question": "Identify:",
+      "correct": "Tornado Forming",
+      "wrong": [
+        "Hurricane",
+        "Thunderstorm",
+        "Dust Storm"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "DANGER",
+      "prompt": "Bright red and yellow frog sitting openly on forest floor.",
+      "question": "Identify:",
+      "correct": "Warning Coloration",
+      "wrong": [
+        "Camouflage",
+        "Mimicry",
+        "Bioluminescence"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "PLANT",
+      "prompt": "Three-leafed plant, red in fall, causes severe rash on contact.",
+      "question": "Identify:",
+      "correct": "Poison Ivy",
+      "wrong": [
+        "Poison Oak",
+        "Sumac",
+        "Virginia Creeper"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SNAKE",
+      "prompt": "Triangular head, vertical pupils, heat-sensing pits.",
+      "question": "Classify:",
+      "correct": "Venomous",
+      "wrong": [
+        "Non-venomous",
+        "Constrictor",
+        "Harmless"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SURVIVAL",
+      "prompt": "Lost in woods. Highest priority for first 3 hours.",
+      "question": "Priority:",
+      "correct": "Shelter",
+      "wrong": [
+        "Water",
+        "Food",
+        "Fire"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "PREDATOR",
+      "prompt": "Bird of prey circling high above an open field.",
+      "question": "Identify:",
+      "correct": "Hunting Behavior",
+      "wrong": [
+        "Migration",
+        "Territory Display",
+        "Mating Ritual"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "VOLCANO",
+      "prompt": "Mountain with smoke and ash rising from the summit.",
+      "question": "Identify:",
+      "correct": "Volcanic Activity",
+      "wrong": [
+        "Forest Fire",
+        "Geyser",
+        "Dust Storm"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "TIDE",
+      "prompt": "Ocean water retreating unusually far from the shore.",
+      "question": "Identify:",
+      "correct": "Tsunami Warning Sign",
+      "wrong": [
+        "Low Tide",
+        "Drought",
+        "Current Change"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "NEST",
+      "prompt": "Small mammal hoarding food in underground burrow.",
+      "question": "Identify:",
+      "correct": "Hibernation Preparation",
+      "wrong": [
+        "Nesting",
+        "Foraging",
+        "Territory Marking"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "CORAL",
+      "prompt": "Vibrant reef turning white across large areas.",
+      "question": "Identify:",
+      "correct": "Coral Bleaching",
+      "wrong": [
+        "Algae Bloom",
+        "Pollution",
+        "Natural Cycle"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "SWARM",
+      "prompt": "Thousands of bees leaving the hive together.",
+      "question": "Identify:",
+      "correct": "Swarming",
+      "wrong": [
+        "Migration",
+        "Aggression",
+        "Colony Collapse"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "CAMOUFLAGE",
+      "prompt": "Insect that looks exactly like a leaf.",
+      "question": "Identify:",
+      "correct": "Mimicry",
+      "wrong": [
+        "Camouflage",
+        "Adaptation",
+        "Evolution"
+      ],
+      "difficulty": 3,
+      "stroop": 2
+    },
+    {
+      "flash": "MIGRATION",
+      "prompt": "Thousands of wildebeest crossing a river together.",
+      "question": "Identify:",
+      "correct": "Seasonal Migration",
+      "wrong": [
+        "Stampede",
+        "Flooding Response",
+        "Predator Escape"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SYMBIOSIS",
+      "prompt": "Small fish cleaning parasites from a shark's teeth.",
+      "question": "Identify:",
+      "correct": "Mutualism",
+      "wrong": [
+        "Parasitism",
+        "Commensalism",
+        "Competition"
+      ],
+      "difficulty": 3,
+      "stroop": 1
+    },
+    {
+      "flash": "EROSION",
+      "prompt": "River gradually carving a deep canyon over millions of years.",
+      "question": "Identify:",
+      "correct": "Water Erosion",
+      "wrong": [
+        "Tectonic Activity",
+        "Glaciation",
+        "Weathering"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    }
+  ],
+  "universe": "life"
+}
