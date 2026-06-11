@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The 2-Second Witness - Train Your Brain to Decide in 2 Seconds</title>
-<meta name="description" content="60 worlds, 960 scenarios, 6 universes. The cognitive speed game based on the Stroop Effect. Free on Google Play.">
+<title>The 2-Second Witness - Train Your Brain | Brain Training Game</title>
+<meta name="description" content="60 worlds, 960 scenarios, 6 universes. Free cognitive speed game based on the Stroop Effect. Download on Google Play.">
+<meta name="keywords" content="brain training, cognitive training, stroop effect, brain game, puzzle game, trivia game, mental fitness">
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 body { background: #05070A; color: #B0B8CC; font-family: 'Courier New', Courier, monospace; line-height: 1.8; }
 a { color: #00F5FF; text-decoration: none; }
 a:hover { color: #FFD700; }
 
-.container { max-width: 800px; margin: 0 auto; padding: 20px; }
+.container { max-width: 900px; margin: 0 auto; padding: 20px; }
 
-/* Header */
 .header { text-align: center; padding: 40px 0 20px; border-bottom: 2px solid #00F5FF; margin-bottom: 30px; }
 .header h1 { color: #00F5FF; font-size: 28px; letter-spacing: 2px; margin-bottom: 10px; }
 .header p { color: #B0B8CC; font-size: 14px; }
@@ -22,48 +22,45 @@ a:hover { color: #FFD700; }
 .cta-gold { border-color: #FFD700; color: #FFD700; }
 .cta-gold:hover { background: #FFD700; color: #05070A; }
 
-/* Stats bar */
 .stats { display: flex; justify-content: space-around; padding: 20px 0; border-bottom: 1px solid #1a1a2e; margin-bottom: 30px; }
 .stat { text-align: center; }
 .stat-num { color: #00F5FF; font-size: 28px; font-weight: bold; }
 .stat-label { color: #5D6D7E; font-size: 11px; }
 
-/* Sections */
 .section { margin-bottom: 40px; }
 .section h2 { color: #00F5FF; font-size: 20px; margin-bottom: 15px; border-left: 4px solid #00F5FF; padding-left: 12px; }
 .section h3 { color: #FFD700; font-size: 16px; margin: 20px 0 10px; }
 
-/* Universe grid */
 .universe-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 15px 0; }
 .universe-card { border: 1px solid #1a1a2e; padding: 12px; background: rgba(10, 16, 32, 0.8); }
 .universe-card h4 { font-size: 14px; margin-bottom: 5px; }
 .universe-card p { font-size: 11px; color: #5D6D7E; }
 
-/* Blog posts */
 .blog-card { border-left: 4px solid #00F5FF; padding: 15px; margin: 15px 0; background: rgba(10, 16, 32, 0.5); }
 .blog-card h3 { color: #00F5FF; margin-bottom: 5px; }
-.blog-card p { font-size: 13px; }
+.blog-card p { font-size: 13px; margin-top: 5px; }
 
-/* Product recommendations */
-.product { display: flex; gap: 15px; padding: 15px; margin: 15px 0; border: 1px solid #1a1a2e; background: rgba(10, 16, 32, 0.5); }
-.product-info { flex: 1; }
-.product-info h4 { color: #FFD700; font-size: 14px; margin-bottom: 5px; }
-.product-info p { font-size: 12px; color: #5D6D7E; }
-.product-link { display: inline-block; margin-top: 8px; padding: 6px 14px; border: 1px solid #FFD700; color: #FFD700; font-size: 12px; }
+.product-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0; }
+.product { padding: 15px; border: 1px solid #1a1a2e; background: rgba(10, 16, 32, 0.5); }
+.product h4 { color: #FFD700; font-size: 13px; margin-bottom: 5px; }
+.product p { font-size: 11px; color: #5D6D7E; margin-bottom: 8px; }
+.product-link { display: inline-block; padding: 6px 14px; border: 1px solid #FFD700; color: #FFD700; font-size: 12px; font-family: 'Courier New', monospace; }
 .product-link:hover { background: #FFD700; color: #05070A; }
+.product-cat { color: #00F5FF; font-size: 10px; text-transform: uppercase; margin-bottom: 5px; display: block; }
 
-/* Ad container */
 .ad-container { text-align: center; padding: 15px 0; margin: 20px 0; min-height: 60px; }
 
-/* Footer */
 .footer { text-align: center; padding: 30px 0; border-top: 1px solid #1a1a2e; margin-top: 40px; font-size: 12px; color: #5D6D7E; }
+.disclosure { font-size: 10px; color: #5D6D7E; margin: 10px 0; padding: 10px; border: 1px solid #1a1a2e; }
 
-/* Responsive */
+.nav { display: flex; gap: 15px; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
+.nav a { color: #5D6D7E; font-size: 12px; padding: 5px 10px; border: 1px solid #1a1a2e; }
+.nav a:hover { color: #00F5FF; border-color: #00F5FF; }
+
 @media (max-width: 600px) {
-    .universe-grid { grid-template-columns: 1fr; }
+    .universe-grid, .product-grid { grid-template-columns: 1fr; }
     .header h1 { font-size: 22px; }
     .stats { flex-wrap: wrap; gap: 15px; }
-    .product { flex-direction: column; }
 }
 </style>
 </head>
@@ -79,6 +76,17 @@ a:hover { color: #FFD700; }
     <a href="https://ittybittybites.itch.io/2-second-witness" class="cta-btn cta-gold">PLAY WEB DEMO</a>
 </div>
 
+<!-- NAV -->
+<div class="nav">
+    <a href="#about">About</a>
+    <a href="#universes">Universes</a>
+    <a href="#science">The Science</a>
+    <a href="#books">Books</a>
+    <a href="#gear">Gear</a>
+    <a href="#games">Games</a>
+    <a href="#download">Download</a>
+</div>
+
 <!-- STATS -->
 <div class="stats">
     <div class="stat"><div class="stat-num">60</div><div class="stat-label">WORLDS</div></div>
@@ -91,92 +99,249 @@ a:hover { color: #FFD700; }
 <div class="ad-container" id="ad-top"></div>
 
 <!-- ABOUT -->
-<div class="section">
+<div class="section" id="about">
     <h2>WHAT IS THE 2-SECOND WITNESS?</h2>
-    <p>A rapid-fire cognitive training game built on real psychology. The Stroop Effect makes your brain fight itself when information conflicts. Each round, a flash word primes your brain, then you have 2 seconds to process what you see and identify the truth.</p>
-    <p style="margin-top: 10px;">This is not trivia. Every scenario is designed to exploit the gap between what you THINK you saw and what was actually there. Your instincts will betray you.</p>
+    <p>A rapid-fire cognitive training game built on real psychology. The Stroop Effect makes your brain fight itself when information conflicts. Each round, a flash word primes your brain, then you have just 2 seconds to process what you see and identify the truth.</p>
+    <p style="margin-top: 10px;">This is not trivia. Every scenario is designed to exploit the gap between what you THINK you saw and what was actually there. Your instincts will betray you. Your assumptions will trick you. Train yourself to override System 1 and see clearly under pressure.</p>
+    <p style="margin-top: 10px;">Choose from 4 difficulty levels: RECRUIT (forgiving), AGENT (balanced), OPERATIVE (intense), or GHOST (brutal). Earn XP, climb 10 ranks from Recruit to Null, and collect 16 badges including 4 secret ones.</p>
 </div>
 
 <!-- UNIVERSES -->
-<div class="section">
+<div class="section" id="universes">
     <h2>6 UNIVERSES TO EXPLORE</h2>
     <div class="universe-grid">
-        <div class="universe-card"><h4 style="color: #00F5FF;">>> TECH OPS</h4><p>Cyber security, AI, blockchain, robotics, game dev, hardware, IoT, telecom, web dev</p></div>
-        <div class="universe-card"><h4 style="color: #00D4FF;">** SCIENCE LAB</h4><p>Chemistry, genetics, quantum physics, astronomy, ecology, geology, microbiology, engineering</p></div>
-        <div class="universe-card"><h4 style="color: #2ECC71;">++ LIFE SCIENCES</h4><p>Medical, nature, food, gardening, pets, fitness, first aid, nutrition, home repair, parenting</p></div>
-        <div class="universe-card"><h4 style="color: #FFD700;">$$ SOCIETY & MIND</h4><p>Law, finance, psychology, crime, influence, history, politics, philosophy, sociology, economics</p></div>
-        <div class="universe-card"><h4 style="color: #FF6B35;"><> FRONTIER</h4><p>Space, survival, ocean, aviation, heist, arctic, volcano, wilderness, disaster, military</p></div>
-        <div class="universe-card"><h4 style="color: #9B59FF;">~~ CREATIVE ARTS</h4><p>Music, art, film, architecture, design, photography, writing, geography, cooking, fashion</p></div>
+        <div class="universe-card"><h4 style="color: #00F5FF;">>> TECH OPS</h4><p>Cyber security, AI, blockchain, robotics, game dev, hardware, IoT, telecom, web dev, automotive</p></div>
+        <div class="universe-card"><h4 style="color: #00D4FF;">** SCIENCE LAB</h4><p>Chemistry, genetics, quantum physics, astronomy, ecology, geology, microbiology, weather, engineering</p></div>
+        <div class="universe-card"><h4 style="color: #2ECC71;">++ LIFE SCIENCES</h4><p>Medical, nature, food safety, gardening, pets, fitness, first aid, nutrition, home repair, parenting</p></div>
+        <div class="universe-card"><h4 style="color: #FFD700;">$$ SOCIETY & MIND</h4><p>Law, finance, psychology, forensics, influence, history, politics, philosophy, sociology, economics</p></div>
+        <div class="universe-card"><h4 style="color: #FF6B35;"><> FRONTIER</h4><p>Space, survival, deep ocean, aviation, heist, arctic ops, volcanoes, wilderness, disaster response, military</p></div>
+        <div class="universe-card"><h4 style="color: #9B59FF;">~~ CREATIVE ARTS</h4><p>Music theory, art history, filmmaking, architecture, design, photography, creative writing, geography, cooking, fashion</p></div>
     </div>
 </div>
 
-<!-- AD BANNER 2 -->
-<div class="ad-container" id="ad-mid"></div>
-
-<!-- BLOG SECTION -->
-<div class="section">
-    <h2>BRAIN TRAINING RESOURCES</h2>
+<!-- THE SCIENCE -->
+<div class="section" id="science">
+    <h2>THE SCIENCE BEHIND THE GAME</h2>
 
     <div class="blog-card">
         <h3>What is the Stroop Effect?</h3>
-        <p>The Stroop Effect is a psychological phenomenon where your brain struggles when information conflicts. Try reading the COLOR of a word when the word itself spells a different color. Your brain has to override its automatic response -- that's System 2 overriding System 1. The 2-Second Witness is built entirely on this principle.</p>
+        <p>Named after John Ridley Stroop in 1935, the Stroop Effect is a psychological phenomenon where your brain struggles when information conflicts. Try reading the COLOR of a word when the word itself spells a different color -- your brain has to override its automatic response. That delay is your System 1 fighting your System 2. The 2-Second Witness weaponizes this effect in every round.</p>
     </div>
 
     <div class="blog-card">
         <h3>System 1 vs System 2 Thinking</h3>
-        <p>Nobel Prize winner Daniel Kahneman identified two systems of thinking. System 1 is fast, automatic, and often wrong. System 2 is slow, deliberate, and accurate. Most games test knowledge. The 2-Second Witness tests your ability to override System 1 and engage System 2 under pressure. That's a skill that transfers to real life -- from driving decisions to medical diagnoses.</p>
+        <p>Nobel Prize winner Daniel Kahneman identified two systems of thinking in his groundbreaking research. System 1 is fast, automatic, intuitive -- and often wrong. System 2 is slow, deliberate, analytical -- and more accurate. Most people rely on System 1 for nearly everything. The 2-Second Witness forces you to recognize when System 1 is leading you astray and activate System 2 under time pressure. This is the same skill that separates expert doctors, pilots, and detectives from novices.</p>
     </div>
 
     <div class="blog-card">
         <h3>Why 2 Seconds?</h3>
-        <p>Research shows that most snap judgments happen in under 2 seconds. First impressions, threat assessment, pattern recognition -- your brain makes these calls before you're even conscious of them. Training yourself to be accurate in that 2-second window makes you sharper in every area of life.</p>
+        <p>Research in cognitive psychology shows that most snap judgments happen in under 2 seconds. First impressions, threat assessment, pattern recognition -- your brain makes these calls before you are even conscious of them. Malcolm Gladwell explored this in "Blink" -- the idea that rapid cognition can be trained and improved. By repeatedly practicing accurate identification under a 2-second constraint, you build neural pathways that make you faster and more accurate in real-world decision making.</p>
+    </div>
+
+    <div class="blog-card">
+        <h3>Cognitive Priming and Misdirection</h3>
+        <p>Before each scenario, a flash word appears on screen. This is cognitive priming -- your brain absorbs the word and it influences your perception of what comes next. At easy difficulty levels, the flash word matches the answer (building flow state). At harder levels, the flash word actively misleads you toward the wrong answer. This is the Stroop conflict in action: your primed brain says one thing, but the evidence says another. Training yourself to override the prime is what makes you sharper.</p>
+    </div>
+
+    <div class="blog-card">
+        <h3>Flow State and Difficulty Waves</h3>
+        <p>Psychologist Mihaly Csikszentmihalyi described "flow" as the optimal state of consciousness where you are fully immersed and performing at your best. The 2-Second Witness is designed to create flow through difficulty waves -- rounds get progressively harder, then ease off with breather rounds every 10 levels, then push you again. This keeps you in the "challenge sweet spot" where the game is hard enough to be engaging but not so hard that you give up. The result: sessions where you look up and realize 30 minutes have passed.</p>
     </div>
 </div>
 
-<!-- RECOMMENDED PRODUCTS (Amazon Affiliate) -->
-<div class="section">
-    <h2>RECOMMENDED READING</h2>
-    <p style="font-size: 12px; color: #5D6D7E; margin-bottom: 10px;">As an Amazon Associate I earn from qualifying purchases.</p>
+<!-- AD BANNER 2 -->
+<div class="ad-container" id="ad-mid1"></div>
 
-    <div class="product">
-        <div class="product-info">
-            <h4>Thinking, Fast and Slow -- Daniel Kahneman</h4>
-            <p>The definitive book on System 1 and System 2 thinking. Nobel Prize winner explains how your brain makes decisions and where it goes wrong. The science behind The 2-Second Witness.</p>
-            <a href="REPLACE_WITH_YOUR_AMAZON_AFFILIATE_LINK_1" class="product-link">View on Amazon</a>
+<!-- AFFILIATE DISCLOSURE -->
+<div class="disclosure">
+    As an Amazon Associate I earn from qualifying purchases. Some links on this page are affiliate links. If you buy something through these links, I may earn a small commission at no extra cost to you. I only recommend products I genuinely believe are valuable for brain training and personal development.
+</div>
+
+<!-- BOOKS -->
+<div class="section" id="books">
+    <h2>RECOMMENDED BOOKS</h2>
+
+    <h3>Psychology & Decision Making</h3>
+    <div class="product-grid">
+        <div class="product">
+            <span class="product-cat">BESTSELLER</span>
+            <h4>Thinking, Fast and Slow</h4>
+            <p>Daniel Kahneman. The definitive guide to System 1 and System 2 thinking. Nobel Prize-winning research explained clearly. The science behind The 2-Second Witness.</p>
+            <a href="https://www.amazon.com/dp/0374533555?tag=ittybittybite-20" class="product-link">View on Amazon</a>
+        </div>
+        <div class="product">
+            <span class="product-cat">ESSENTIAL</span>
+            <h4>Blink: The Power of Thinking Without Thinking</h4>
+            <p>Malcolm Gladwell. How experts make split-second decisions. Why rapid cognition can be trained and improved. The inspiration for the 2-second time limit.</p>
+            <a href="https://www.amazon.com/dp/0316010669?tag=ittybittybite-20" class="product-link">View on Amazon</a>
+        </div>
+        <div class="product">
+            <span class="product-cat">POPULAR</span>
+            <h4>The Art of Thinking Clearly</h4>
+            <p>Rolf Dobelli. 99 cognitive biases explained in short chapters. Understand every trick your brain plays on you. Perfect companion to the Psychology universe.</p>
+            <a href="https://www.amazon.com/dp/0062219693?tag=ittybittybite-20" class="product-link">View on Amazon</a>
+        </div>
+        <div class="product">
+            <span class="product-cat">CLASSIC</span>
+            <h4>Predictably Irrational</h4>
+            <p>Dan Ariely. Why we make the decisions we do and how to recognize irrational patterns. Fascinating experiments that reveal hidden biases in everyday choices.</p>
+            <a href="https://www.amazon.com/dp/0061353248?tag=ittybittybite-20" class="product-link">View on Amazon</a>
+        </div>
+        <div class="product">
+            <span class="product-cat">MIND-BENDING</span>
+            <h4>The Invisible Gorilla</h4>
+            <p>Chabris & Simons. The famous experiment where people miss a gorilla on screen. Reveals how attention and perception fail us in shocking ways.</p>
+            <a href="https://www.amazon.com/dp/0307459667?tag=ittybittybite-20" class="product-link">View on Amazon</a>
+        </div>
+        <div class="product">
+            <span class="product-cat">PRACTICAL</span>
+            <h4>Nudge: The Final Edition</h4>
+            <p>Thaler & Sunstein. How small design choices shape big decisions. The psychology of choice architecture that influences millions every day.</p>
+            <a href="https://www.amazon.com/dp/014313700X?tag=ittybittybite-20" class="product-link">View on Amazon</a>
         </div>
     </div>
 
-    <div class="product">
-        <div class="product-info">
-            <h4>The Art of Thinking Clearly -- Rolf Dobelli</h4>
-            <p>99 cognitive biases explained in short, clear chapters. Perfect companion for understanding why The 2-Second Witness tricks your brain the way it does.</p>
-            <a href="REPLACE_WITH_YOUR_AMAZON_AFFILIATE_LINK_2" class="product-link">View on Amazon</a>
+    <h3>Brain Training & Performance</h3>
+    <div class="product-grid">
+        <div class="product">
+            <span class="product-cat">NEUROSCIENCE</span>
+            <h4>Brain Rules</h4>
+            <p>John Medina. 12 principles for surviving and thriving based on how the brain actually works. Backed by peer-reviewed science, written for normal humans.</p>
+            <a href="https://www.amazon.com/dp/0983263612?tag=ittybittybite-20" class="product-link">View on Amazon</a>
         </div>
-    </div>
-
-    <div class="product">
-        <div class="product-info">
-            <h4>Blink -- Malcolm Gladwell</h4>
-            <p>The power of thinking without thinking. Explores how experts make split-second decisions and how you can train your rapid cognition. Exactly what The 2-Second Witness helps you practice.</p>
-            <a href="REPLACE_WITH_YOUR_AMAZON_AFFILIATE_LINK_3" class="product-link">View on Amazon</a>
+        <div class="product">
+            <span class="product-cat">PERFORMANCE</span>
+            <h4>Peak: Secrets from the New Science of Expertise</h4>
+            <p>Anders Ericsson. The researcher behind the "10,000 hour rule" explains what deliberate practice really means. How to get better at anything faster.</p>
+            <a href="https://www.amazon.com/dp/0544947223?tag=ittybittybite-20" class="product-link">View on Amazon</a>
+        </div>
+        <div class="product">
+            <span class="product-cat">HABITS</span>
+            <h4>Atomic Habits</h4>
+            <p>James Clear. Tiny changes, remarkable results. The most practical guide to building good habits and breaking bad ones. 10M+ copies sold worldwide.</p>
+            <a href="https://www.amazon.com/dp/0735211299?tag=ittybittybite-20" class="product-link">View on Amazon</a>
+        </div>
+        <div class="product">
+            <span class="product-cat">FLOW STATE</span>
+            <h4>Flow: The Psychology of Optimal Experience</h4>
+            <p>Mihaly Csikszentmihalyi. The groundbreaking research on flow state -- the zone where performance peaks and time disappears. The feeling The 2-Second Witness is designed to create.</p>
+            <a href="https://www.amazon.com/dp/0061339202?tag=ittybittybite-20" class="product-link">View on Amazon</a>
         </div>
     </div>
 </div>
 
 <!-- AD BANNER 3 -->
+<div class="ad-container" id="ad-mid2"></div>
+
+<!-- GEAR -->
+<div class="section" id="gear">
+    <h2>BRAIN TRAINING GEAR</h2>
+
+    <h3>Puzzles & Physical Brain Training</h3>
+    <div class="product-grid">
+        <div class="product">
+            <span class="product-cat">TOP RATED</span>
+            <h4>Rubik's Speed Cube</h4>
+            <p>The classic brain training tool. Improves spatial reasoning, pattern recognition, and problem-solving speed. The physical equivalent of rapid cognitive training.</p>
+            <a href="https://www.amazon.com/dp/B09FHKRXWZ?tag=ittybittybite-20" class="product-link">View on Amazon</a>
+        </div>
+        <div class="product">
+            <span class="product-cat">RELAXING</span>
+            <h4>1000-Piece Jigsaw Puzzle</h4>
+            <p>Ravensburger quality. Puzzles improve visual-spatial reasoning, short-term memory, and attention to detail. Perfect wind-down after intense 2-Second Witness sessions.</p>
+            <a href="https://www.amazon.com/dp/B07WJJGDNF?tag=ittybittybite-20" class="product-link">View on Amazon</a>
+        </div>
+        <div class="product">
+            <span class="product-cat">STRATEGY</span>
+            <h4>Chess Set</h4>
+            <p>The ultimate brain training game. 1500 years of strategic thinking in one board. Improves planning, pattern recognition, and decision-making under pressure.</p>
+            <a href="https://www.amazon.com/dp/B07BKTD2FK?tag=ittybittybite-20" class="product-link">View on Amazon</a>
+        </div>
+        <div class="product">
+            <span class="product-cat">PARTY</span>
+            <h4>Codenames Board Game</h4>
+            <p>Word association party game that tests rapid pattern recognition and creative thinking. One of the highest-rated board games of all time. 2-8 players.</p>
+            <a href="https://www.amazon.com/dp/B014Q1XX9S?tag=ittybittybite-20" class="product-link">View on Amazon</a>
+        </div>
+    </div>
+
+    <h3>Tech & Productivity</h3>
+    <div class="product-grid">
+        <div class="product">
+            <span class="product-cat">FOCUS</span>
+            <h4>Noise Cancelling Headphones</h4>
+            <p>Sony WH-1000XM5. Block distractions and enter deep focus. Essential for brain training sessions, studying, or any deep work that requires concentration.</p>
+            <a href="https://www.amazon.com/dp/B0BX2L8PGH?tag=ittybittybite-20" class="product-link">View on Amazon</a>
+        </div>
+        <div class="product">
+            <span class="product-cat">WELLNESS</span>
+            <h4>Blue Light Blocking Glasses</h4>
+            <p>Reduce eye strain during screen time. Especially useful for late-night gaming sessions. Protect your eyes while you train your brain.</p>
+            <a href="https://www.amazon.com/dp/B0BQ6CWL6N?tag=ittybittybite-20" class="product-link">View on Amazon</a>
+        </div>
+        <div class="product">
+            <span class="product-cat">JOURNAL</span>
+            <h4>Moleskine Classic Notebook</h4>
+            <p>Track your brain training progress, write down insights, or journal your cognitive improvement journey. Writing by hand improves memory retention.</p>
+            <a href="https://www.amazon.com/dp/8883701127?tag=ittybittybite-20" class="product-link">View on Amazon</a>
+        </div>
+        <div class="product">
+            <span class="product-cat">TIMER</span>
+            <h4>Pomodoro Timer Cube</h4>
+            <p>Physical timer for focused work sessions. Flip to set 5, 15, 25, or 30 minutes. No phone distractions. Train your brain to focus in timed bursts.</p>
+            <a href="https://www.amazon.com/dp/B09WRGS68M?tag=ittybittybite-20" class="product-link">View on Amazon</a>
+        </div>
+    </div>
+</div>
+
+<!-- GAMES -->
+<div class="section" id="games">
+    <h2>MORE BRAIN GAMES</h2>
+    <div class="product-grid">
+        <div class="product">
+            <span class="product-cat">CARD GAME</span>
+            <h4>SET: The Family Game of Visual Perception</h4>
+            <p>Find matching patterns among cards with different shapes, colors, numbers, and shading. Pure visual pattern recognition speed. Mensa Select winner.</p>
+            <a href="https://www.amazon.com/dp/B00000IV34?tag=ittybittybite-20" class="product-link">View on Amazon</a>
+        </div>
+        <div class="product">
+            <span class="product-cat">MEMORY</span>
+            <h4>Simon Electronic Memory Game</h4>
+            <p>The classic follow-the-pattern game. Tests short-term memory, pattern recognition, and sequential recall. Gets harder every round, just like The 2-Second Witness.</p>
+            <a href="https://www.amazon.com/dp/B071J2Z4MY?tag=ittybittybite-20" class="product-link">View on Amazon</a>
+        </div>
+        <div class="product">
+            <span class="product-cat">LOGIC</span>
+            <h4>Rush Hour Traffic Jam Puzzle</h4>
+            <p>Slide cars to free the red car from the grid. 40 challenge cards from beginner to expert. Builds logical thinking and spatial planning skills.</p>
+            <a href="https://www.amazon.com/dp/B00000DMER?tag=ittybittybite-20" class="product-link">View on Amazon</a>
+        </div>
+        <div class="product">
+            <span class="product-cat">SPEED</span>
+            <h4>Spot It! / Dobble</h4>
+            <p>Find the matching symbol between two cards as fast as possible. Tests visual processing speed and pattern recognition. Perfect warm-up for The 2-Second Witness.</p>
+            <a href="https://www.amazon.com/dp/B0039S7NO6?tag=ittybittybite-20" class="product-link">View on Amazon</a>
+        </div>
+    </div>
+</div>
+
+<!-- AD BANNER 4 -->
 <div class="ad-container" id="ad-bottom"></div>
 
 <!-- DOWNLOAD CTA -->
-<div class="section" style="text-align: center; padding: 30px 0;">
+<div class="section" id="download" style="text-align: center; padding: 30px 0;">
     <h2 style="border: none; text-align: center; padding: 0;">READY TO TEST YOUR BRAIN?</h2>
-    <p style="margin: 15px 0;">60 worlds. 960 scenarios. How fast can you see the truth?</p>
+    <p style="margin: 15px 0;">60 worlds. 960 scenarios. 6 universes. 4 difficulty levels.</p>
+    <p style="margin-bottom: 20px; color: #5D6D7E;">Free to play. No account required. Works offline.</p>
     <a href="https://play.google.com/store/apps/details?id=com.ittybittybites.the2secondwitness" class="cta-btn">DOWNLOAD FREE ON GOOGLE PLAY</a>
+    <a href="https://ittybittybites.itch.io/2-second-witness" class="cta-btn cta-gold">TRY THE WEB DEMO FIRST</a>
 </div>
 
 <!-- FOOTER -->
 <div class="footer">
     <p>The 2-Second Witness by Itty Bitty Bites</p>
     <p style="margin-top: 5px;"><a href="privacy_policy.html">Privacy Policy</a></p>
+    <p style="margin-top: 5px;">As an Amazon Associate I earn from qualifying purchases.</p>
     <p style="margin-top: 5px;">#The2SecondWitness</p>
 </div>
 
@@ -189,22 +354,19 @@ function loadAd(containerId) {
     if (!container) return;
     var wrapper = document.createElement('div');
     container.appendChild(wrapper);
-
     var optScript = document.createElement('script');
     optScript.textContent = "atOptions = { 'key' : '92610d8b982621e3b955565af9a0e78c', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };";
     wrapper.appendChild(optScript);
-
     var adScript = document.createElement('script');
     adScript.type = 'text/javascript';
     adScript.src = 'https://www.highperformanceformat.com/92610d8b982621e3b955565af9a0e78c/invoke.js';
     wrapper.appendChild(adScript);
 }
-
 loadAd('ad-top');
-loadAd('ad-mid');
+loadAd('ad-mid1');
+loadAd('ad-mid2');
 loadAd('ad-bottom');
 </script>
 
-<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
-</body>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a0a0a235e97c8480',t:'MTc4MTE4MTA5NQ=='};var a=document.createElement('script');a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
 </html>
