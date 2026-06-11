@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 2-Second Witness - Train Your Brain to Decide in 2 Seconds</title>
+<meta name="description" content="60 worlds, 960 scenarios, 6 universes. The cognitive speed game based on the Stroop Effect. Free on Google Play.">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #05070A; color: #B0B8CC; font-family: 'Courier New', Courier, monospace; line-height: 1.8; }
+a { color: #00F5FF; text-decoration: none; }
+a:hover { color: #FFD700; }
+
+.container { max-width: 800px; margin: 0 auto; padding: 20px; }
+
+/* Header */
+.header { text-align: center; padding: 40px 0 20px; border-bottom: 2px solid #00F5FF; margin-bottom: 30px; }
+.header h1 { color: #00F5FF; font-size: 28px; letter-spacing: 2px; margin-bottom: 10px; }
+.header p { color: #B0B8CC; font-size: 14px; }
+.cta-btn { display: inline-block; margin: 20px 10px 0; padding: 14px 28px; border: 2px solid #00F5FF; color: #00F5FF; font-family: 'Courier New', monospace; font-size: 16px; letter-spacing: 1px; transition: all 0.2s; }
+.cta-btn:hover { background: #00F5FF; color: #05070A; }
+.cta-gold { border-color: #FFD700; color: #FFD700; }
+.cta-gold:hover { background: #FFD700; color: #05070A; }
+
+/* Stats bar */
+.stats { display: flex; justify-content: space-around; padding: 20px 0; border-bottom: 1px solid #1a1a2e; margin-bottom: 30px; }
+.stat { text-align: center; }
+.stat-num { color: #00F5FF; font-size: 28px; font-weight: bold; }
+.stat-label { color: #5D6D7E; font-size: 11px; }
+
+/* Sections */
+.section { margin-bottom: 40px; }
+.section h2 { color: #00F5FF; font-size: 20px; margin-bottom: 15px; border-left: 4px solid #00F5FF; padding-left: 12px; }
+.section h3 { color: #FFD700; font-size: 16px; margin: 20px 0 10px; }
+
+/* Universe grid */
+.universe-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 15px 0; }
+.universe-card { border: 1px solid #1a1a2e; padding: 12px; background: rgba(10, 16, 32, 0.8); }
+.universe-card h4 { font-size: 14px; margin-bottom: 5px; }
+.universe-card p { font-size: 11px; color: #5D6D7E; }
+
+/* Blog posts */
+.blog-card { border-left: 4px solid #00F5FF; padding: 15px; margin: 15px 0; background: rgba(10, 16, 32, 0.5); }
+.blog-card h3 { color: #00F5FF; margin-bottom: 5px; }
+.blog-card p { font-size: 13px; }
+
+/* Product recommendations */
+.product { display: flex; gap: 15px; padding: 15px; margin: 15px 0; border: 1px solid #1a1a2e; background: rgba(10, 16, 32, 0.5); }
+.product-info { flex: 1; }
+.product-info h4 { color: #FFD700; font-size: 14px; margin-bottom: 5px; }
+.product-info p { font-size: 12px; color: #5D6D7E; }
+.product-link { display: inline-block; margin-top: 8px; padding: 6px 14px; border: 1px solid #FFD700; color: #FFD700; font-size: 12px; }
+.product-link:hover { background: #FFD700; color: #05070A; }
+
+/* Ad container */
+.ad-container { text-align: center; padding: 15px 0; margin: 20px 0; min-height: 60px; }
+
+/* Footer */
+.footer { text-align: center; padding: 30px 0; border-top: 1px solid #1a1a2e; margin-top: 40px; font-size: 12px; color: #5D6D7E; }
+
+/* Responsive */
+@media (max-width: 600px) {
+    .universe-grid { grid-template-columns: 1fr; }
+    .header h1 { font-size: 22px; }
+    .stats { flex-wrap: wrap; gap: 15px; }
+    .product { flex-direction: column; }
+}
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<!-- HEADER -->
+<div class="header">
+    <h1>THE 2-SECOND WITNESS</h1>
+    <p>Train your brain to decide in 2 seconds. Based on the Stroop Effect.</p>
+    <a href="https://play.google.com/store/apps/details?id=com.ittybittybites.the2secondwitness" class="cta-btn">GET IT ON GOOGLE PLAY</a>
+    <a href="https://ittybittybites.itch.io/2-second-witness" class="cta-btn cta-gold">PLAY WEB DEMO</a>
+</div>
+
+<!-- STATS -->
+<div class="stats">
+    <div class="stat"><div class="stat-num">60</div><div class="stat-label">WORLDS</div></div>
+    <div class="stat"><div class="stat-num">960</div><div class="stat-label">SCENARIOS</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">UNIVERSES</div></div>
+    <div class="stat"><div class="stat-num">4</div><div class="stat-label">DIFFICULTY LEVELS</div></div>
+</div>
+
+<!-- AD BANNER 1 -->
+<div class="ad-container" id="ad-top"></div>
+
+<!-- ABOUT -->
+<div class="section">
+    <h2>WHAT IS THE 2-SECOND WITNESS?</h2>
+    <p>A rapid-fire cognitive training game built on real psychology. The Stroop Effect makes your brain fight itself when information conflicts. Each round, a flash word primes your brain, then you have 2 seconds to process what you see and identify the truth.</p>
+    <p style="margin-top: 10px;">This is not trivia. Every scenario is designed to exploit the gap between what you THINK you saw and what was actually there. Your instincts will betray you.</p>
+</div>
+
+<!-- UNIVERSES -->
+<div class="section">
+    <h2>6 UNIVERSES TO EXPLORE</h2>
+    <div class="universe-grid">
+        <div class="universe-card"><h4 style="color: #00F5FF;">>> TECH OPS</h4><p>Cyber security, AI, blockchain, robotics, game dev, hardware, IoT, telecom, web dev</p></div>
+        <div class="universe-card"><h4 style="color: #00D4FF;">** SCIENCE LAB</h4><p>Chemistry, genetics, quantum physics, astronomy, ecology, geology, microbiology, engineering</p></div>
+        <div class="universe-card"><h4 style="color: #2ECC71;">++ LIFE SCIENCES</h4><p>Medical, nature, food, gardening, pets, fitness, first aid, nutrition, home repair, parenting</p></div>
+        <div class="universe-card"><h4 style="color: #FFD700;">$$ SOCIETY & MIND</h4><p>Law, finance, psychology, crime, influence, history, politics, philosophy, sociology, economics</p></div>
+        <div class="universe-card"><h4 style="color: #FF6B35;"><> FRONTIER</h4><p>Space, survival, ocean, aviation, heist, arctic, volcano, wilderness, disaster, military</p></div>
+        <div class="universe-card"><h4 style="color: #9B59FF;">~~ CREATIVE ARTS</h4><p>Music, art, film, architecture, design, photography, writing, geography, cooking, fashion</p></div>
+    </div>
+</div>
+
+<!-- AD BANNER 2 -->
+<div class="ad-container" id="ad-mid"></div>
+
+<!-- BLOG SECTION -->
+<div class="section">
+    <h2>BRAIN TRAINING RESOURCES</h2>
+
+    <div class="blog-card">
+        <h3>What is the Stroop Effect?</h3>
+        <p>The Stroop Effect is a psychological phenomenon where your brain struggles when information conflicts. Try reading the COLOR of a word when the word itself spells a different color. Your brain has to override its automatic response -- that's System 2 overriding System 1. The 2-Second Witness is built entirely on this principle.</p>
+    </div>
+
+    <div class="blog-card">
+        <h3>System 1 vs System 2 Thinking</h3>
+        <p>Nobel Prize winner Daniel Kahneman identified two systems of thinking. System 1 is fast, automatic, and often wrong. System 2 is slow, deliberate, and accurate. Most games test knowledge. The 2-Second Witness tests your ability to override System 1 and engage System 2 under pressure. That's a skill that transfers to real life -- from driving decisions to medical diagnoses.</p>
+    </div>
+
+    <div class="blog-card">
+        <h3>Why 2 Seconds?</h3>
+        <p>Research shows that most snap judgments happen in under 2 seconds. First impressions, threat assessment, pattern recognition -- your brain makes these calls before you're even conscious of them. Training yourself to be accurate in that 2-second window makes you sharper in every area of life.</p>
+    </div>
+</div>
+
+<!-- RECOMMENDED PRODUCTS (Amazon Affiliate) -->
+<div class="section">
+    <h2>RECOMMENDED READING</h2>
+    <p style="font-size: 12px; color: #5D6D7E; margin-bottom: 10px;">As an Amazon Associate I earn from qualifying purchases.</p>
+
+    <div class="product">
+        <div class="product-info">
+            <h4>Thinking, Fast and Slow -- Daniel Kahneman</h4>
+            <p>The definitive book on System 1 and System 2 thinking. Nobel Prize winner explains how your brain makes decisions and where it goes wrong. The science behind The 2-Second Witness.</p>
+            <a href="REPLACE_WITH_YOUR_AMAZON_AFFILIATE_LINK_1" class="product-link">View on Amazon</a>
+        </div>
+    </div>
+
+    <div class="product">
+        <div class="product-info">
+            <h4>The Art of Thinking Clearly -- Rolf Dobelli</h4>
+            <p>99 cognitive biases explained in short, clear chapters. Perfect companion for understanding why The 2-Second Witness tricks your brain the way it does.</p>
+            <a href="REPLACE_WITH_YOUR_AMAZON_AFFILIATE_LINK_2" class="product-link">View on Amazon</a>
+        </div>
+    </div>
+
+    <div class="product">
+        <div class="product-info">
+            <h4>Blink -- Malcolm Gladwell</h4>
+            <p>The power of thinking without thinking. Explores how experts make split-second decisions and how you can train your rapid cognition. Exactly what The 2-Second Witness helps you practice.</p>
+            <a href="REPLACE_WITH_YOUR_AMAZON_AFFILIATE_LINK_3" class="product-link">View on Amazon</a>
+        </div>
+    </div>
+</div>
+
+<!-- AD BANNER 3 -->
+<div class="ad-container" id="ad-bottom"></div>
+
+<!-- DOWNLOAD CTA -->
+<div class="section" style="text-align: center; padding: 30px 0;">
+    <h2 style="border: none; text-align: center; padding: 0;">READY TO TEST YOUR BRAIN?</h2>
+    <p style="margin: 15px 0;">60 worlds. 960 scenarios. How fast can you see the truth?</p>
+    <a href="https://play.google.com/store/apps/details?id=com.ittybittybites.the2secondwitness" class="cta-btn">DOWNLOAD FREE ON GOOGLE PLAY</a>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+    <p>The 2-Second Witness by Itty Bitty Bites</p>
+    <p style="margin-top: 5px;"><a href="privacy_policy.html">Privacy Policy</a></p>
+    <p style="margin-top: 5px;">#The2SecondWitness</p>
+</div>
+
+</div>
+
+<!-- ADSTERRA BANNER ADS -->
+<script>
+function loadAd(containerId) {
+    var container = document.getElementById(containerId);
+    if (!container) return;
+    var wrapper = document.createElement('div');
+    container.appendChild(wrapper);
+
+    var optScript = document.createElement('script');
+    optScript.textContent = "atOptions = { 'key' : '92610d8b982621e3b955565af9a0e78c', 'format' : 'iframe', 'height' : 50, 'width' : 320, 'params' : {} };";
+    wrapper.appendChild(optScript);
+
+    var adScript = document.createElement('script');
+    adScript.type = 'text/javascript';
+    adScript.src = 'https://www.highperformanceformat.com/92610d8b982621e3b955565af9a0e78c/invoke.js';
+    wrapper.appendChild(adScript);
+}
+
+loadAd('ad-top');
+loadAd('ad-mid');
+loadAd('ad-bottom');
+</script>
+
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v833ccba57c9e4d2798f2e76cebdd09a11778172276447" integrity="sha512-57MDmcccJXYtNnH+ZiBwzC4jb2rvgVCEokYN+L/nLlmO8rfYT/gIpW2A569iJ/3b+0UEasghjuZH/ma3wIs/EQ==" data-cf-beacon='{"version":"2024.11.0","token":"1954b47c125f43f8b4338b3c4f804e4f","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body>
+</html>
