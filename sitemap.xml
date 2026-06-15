@@ -18,8 +18,70 @@
   <url><loc>https://ittybittybites.github.io/rapid-thinking.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://ittybittybites.github.io/priming-effect.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://ittybittybites.github.io/best-psychology-books.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ittybittybites.github.io/library.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://ittybittybites.github.io/feed.html</loc><changefreq>weekly</changefreq><priority>0.8</priority></url>
   <url><loc>https://ittybittybites.github.io/survival-skills.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://ittybittybites.github.io/dunning-kruger.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://ittybittybites.github.io/how-doctors-think.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://ittybittybites.github.io/privacy_policy.html</loc><changefreq>yearly</changefreq><priority>0.3</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/thinking-fast-and-slow.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/blink-the-power-of-thinking-without-thinking.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/predictably-irrational.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/the-black-swan.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/noise-a-flaw-in-human-judgment.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/the-invisible-gorilla.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/stumbling-on-happiness.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/the-undoing-project.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/the-art-of-thinking-clearly.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/decisive.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/deep-work.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/flow-the-psychology-of-optimal-experience.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/stolen-focus.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/range-why-generalists-triumph.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/how-we-learn.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/your-brain-at-work.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/the-organized-mind.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/the-learning-brain.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/memory-the-classic-guide.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/the-mind-map-book.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/atomic-habits.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/the-power-of-habit.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/willpower.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/mindset.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/grit.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/mastery.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/the-art-of-learning.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/bounce.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/talent-is-overrated.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/the-sports-gene.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/influence-the-psychology-of-persuasion.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/thinking-in-bets.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/superforecasting.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/the-psychology-of-money.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/sources-of-power.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/the-memory-illusion.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/behave.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/moonwalking-with-einstein.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/peak-secrets-from-the-new-science-of-expertise.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/why-we-sleep.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/brain-rules.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/the-brain-that-changes-itself.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/the-future-of-the-mind.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/make-it-stick.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/the-neuroscientist-talks-about-memory.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/the-emotional-brain.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/emotional-intelligence.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/the-body-keeps-the-score.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/the-genius-in-all-of-us.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/the-talent-code.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/sony-wh-1000xm5-noise-cancelling-headphones.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/speed-cube-3x3-magnetic.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/gunnar-blue-light-blocking-glasses.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/sundaysilks-3d-sleep-mask.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/mechanical-tactile-puzzle-fidget.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/pomodoro-focus-timer-cube.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/moleskine-classic-field-journal.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/white-noise-sound-machine.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/standing-desk-converter.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
+  <url><loc>https://ittybittybites.github.io/library/ergonomic-office-chair.html</loc><changefreq>monthly</changefreq><priority>0.6</priority></url>
 </urlset>

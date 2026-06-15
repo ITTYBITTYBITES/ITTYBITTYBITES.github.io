@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Intel Feed | Field Incident Reports on Cognitive Interference & Human Factor Decision Error</title>
+<meta name="description" content="Field incident reports analyzing cognitive interference, cognitive fatigue optimization, Stroop effect analysis, and human factor decision error across aerospace, finance, and industrial operations.">
+<meta name="keywords" content="cognitive interference, human factor decision error, Stroop effect analysis, cognitive fatigue optimization, perceptual blindness, alert fatigue, rapid decision making, System 1 vs System 2, cognitive overload, inattentional blindness">
+<meta name="author" content="ITTY BITTY BITES">
+<link rel="canonical" href="https://ittybittybites.github.io/feed.html">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ittybittybites.github.io/feed.html">
+<meta property="og:title" content="Intel Feed | Field Incident Reports on Cognitive Interference & Human Factor Decision Error">
+<meta property="og:description" content="Field incident reports analyzing cognitive interference, cognitive fatigue optimization, and human factor decision error across high-stakes domains.">
+<meta property="og:image" content="https://ittybittybites.github.io/og-cover.png">
+<meta property="og:site_name" content="The 2-Second Witness">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://ittybittybites.github.io/feed.html">
+<meta name="twitter:title" content="Intel Feed | Field Incident Reports on Cognitive Interference & Human Factor Decision Error">
+<meta name="twitter:description" content="Field incident reports analyzing cognitive interference, cognitive fatigue optimization, and human factor decision error.">
+<meta name="twitter:image" content="https://ittybittybites.github.io/og-cover.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@400;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        gold: { 400: '#facc15', 500: '#eab308' },
+        amber: { 400: '#fbbf24', 500: '#f59e0b' },
+        slate: { 950: '#020617', 900: '#0f172a', 800: '#1e293b' },
+        zinc: { 950: '#09090b', 900: '#18181b' },
+        emerald: { 400: '#34d399', 500: '#10b981', 950: '#022c22' },
+        cyan: { 400: '#22d3ee', 500: '#06b6d4', 950: '#083344' },
+        rose: { 500: '#f43f5e', 400: '#fb7185' },
+        orange: { 400: '#fb923c', 500: '#f97316' }
+      },
+      fontFamily: {
+        mono: ['JetBrains Mono', 'monospace'],
+        display: ['Orbitron', 'sans-serif'],
+        body: ['Inter', 'sans-serif']
+      }
+    }
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  "name": "Intel Feed",
+  "description": "Field incident reports on cognitive interference, cognitive fatigue optimization, Stroop effect analysis, and human factor decision error.",
+  "url": "https://ittybittybites.github.io/feed.html",
+  "isPartOf": {
+    "@type": "WebApplication",
+    "name": "The 2-Second Witness",
+    "url": "https://ittybittybites.github.io/"
+  }
+}
+</script>
+
+<style>
+:root {
+  --bg: #020617;
+  --bg-alt: #09090b;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --cyan: #22d3ee;
+  --emerald: #34d399;
+  --gold: #facc15;
+  --rose: #f43f5e;
+  --orange: #fb923c;
+  --border: rgba(34,211,238,0.12);
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(rgba(34,211,238,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: -1;
+  animation: gridScroll 24s linear infinite;
+}
+@keyframes gridScroll {
+  from { transform: translateY(0); }
+  to { transform: translateY(60px); }
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px);
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* Navigation */
+.nav-node {
+  position: relative;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  transition: all 0.2s ease;
+  background: rgba(15,23,42,0.6);
+}
+.nav-node:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
+  box-shadow: 0 4px 14px rgba(34,211,238,0.18), inset 0 -1px 0 rgba(34,211,238,0.3);
+  transform: translateY(-1px);
+}
+.nav-node.active {
+  color: var(--emerald);
+  border-color: var(--emerald);
+  background: rgba(52,211,153,0.08);
+  box-shadow: 0 0 16px rgba(52,211,153,0.2), inset 0 -1px 0 rgba(52,211,153,0.4);
+}
+
+/* Hero */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--rose);
+  color: var(--rose);
+  padding: 10px 20px;
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  box-shadow: 0 0 18px rgba(244,63,94,0.15);
+  background: rgba(244,63,94,0.04);
+}
+.hero-badge::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  background: var(--rose);
+  border-radius: 50%;
+}
+
+/* Case Study Cards */
+.case-study {
+  background: rgba(15,23,42,0.75);
+  border: 1px solid var(--border);
+  border-left: 2px solid var(--rose);
+  border-radius: 8px;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+.case-study:hover {
+  border-color: var(--rose);
+  box-shadow: 0 0 30px rgba(244,63,94,0.12);
+  transform: translateY(-3px);
+}
+.case-tag {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  font-weight: 700;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+/* Diagnostic Matrix */
+.diagnostic-matrix {
+  background: rgba(15,23,42,0.85);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+}
+.toggle-btn {
+  padding: 10px 20px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.toggle-btn:hover { color: var(--cyan); border-color: var(--cyan); }
+.toggle-btn.active {
+  background: rgba(34,211,238,0.12);
+  color: var(--cyan);
+  border-color: var(--cyan);
+  box-shadow: 0 0 12px rgba(34,211,238,0.2);
+}
+.timeline-line {
+  position: absolute;
+  left: 24px;
+  top: 40px;
+  bottom: 40px;
+  width: 2px;
+  background: rgba(148,163,184,0.2);
+  transition: background 0.5s ease;
+}
+.timeline-step {
+  position: relative;
+  padding-left: 60px;
+  padding-bottom: 24px;
+  transition: all 0.4s ease;
+}
+.timeline-step:last-child { padding-bottom: 0; }
+.timeline-dot {
+  position: absolute;
+  left: 16px;
+  top: 4px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 2px solid;
+  background: var(--bg);
+  transition: all 0.4s ease;
+  z-index: 2;
+}
+.timeline-label {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  transition: color 0.4s ease;
+}
+.timeline-desc {
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--muted);
+  transition: color 0.4s ease;
+}
+.timeline-time {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  color: var(--muted);
+  margin-bottom: 4px;
+  transition: color 0.4s ease;
+}
+
+/* Pathway states */
+.matrix.system1 .timeline-line { background: rgba(244,63,94,0.3); }
+.matrix.system1 .timeline-dot { border-color: var(--rose); box-shadow: 0 0 10px rgba(244,63,94,0.4); }
+.matrix.system1 .timeline-label { color: var(--rose); }
+.matrix.system1 .timeline-time { color: var(--rose-400); }
+.matrix.system1 .outcome-title { color: var(--rose); }
+.matrix.system1 .outcome-box { border-color: var(--rose); background: rgba(244,63,94,0.08); }
+
+.matrix.system2 .timeline-line { background: rgba(52,211,153,0.3); }
+.matrix.system2 .timeline-dot { border-color: var(--emerald); box-shadow: 0 0 10px rgba(52,211,153,0.4); }
+.matrix.system2 .timeline-label { color: var(--emerald); }
+.matrix.system2 .timeline-time { color: var(--emerald); }
+.matrix.system2 .outcome-title { color: var(--emerald); }
+.matrix.system2 .outcome-box { border-color: var(--emerald); background: rgba(52,211,153,0.08); }
+
+.outcome-box {
+  border: 1px solid;
+  border-radius: 8px;
+  padding: 20px;
+  text-align: center;
+  transition: all 0.4s ease;
+}
+
+/* Footer */
+.footer-link { color: var(--muted); transition: color 0.2s; }
+.footer-link:hover { color: var(--cyan); }
+
+/* Responsive */
+@media (max-width: 640px) {
+  .nav-inner { gap: 6px; }
+  .nav-node { font-size: 9px; padding: 5px 8px; letter-spacing: 1px; }
+  .hero h1 { font-size: 32px; letter-spacing: 2px; }
+  .timeline-step { padding-left: 50px; }
+  .timeline-dot { left: 12px; }
+  .timeline-line { left: 20px; }
+}
+</style>
+</head>
+<body class="bg-slate-950 text-slate-50 font-mono leading-relaxed overflow-x-hidden relative antialiased">
+
+<!-- NAV -->
+<nav class="bg-slate-950/95 border-b border-cyan-400/10 py-3 sticky top-0 z-50 backdrop-blur-md">
+  <div class="nav-inner max-w-[1200px] mx-auto px-5 flex justify-center gap-2 md:gap-3 flex-wrap">
+    <a href="index.html" class="nav-node">HQ</a>
+    <a href="stroop-effect.html" class="nav-node">STROOP</a>
+    <a href="cognitive-biases.html" class="nav-node">BIASES</a>
+    <a href="decision-making.html" class="nav-node">DECISIONS</a>
+    <a href="social-engineering.html" class="nav-node">SECURITY</a>
+    <a href="library.html" class="nav-node">LOCKER</a>
+    <a href="feed.html" class="nav-node active">INTEL FEED</a>
+    <a href="best-brain-games.html" class="nav-node">TRAINING</a>
+    <a href="flow-state.html" class="nav-node">FLOW</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="relative min-h-[45vh] flex flex-col justify-center items-center py-20 md:py-24 bg-zinc-950">
+  <div class="max-w-[1100px] mx-auto px-5 text-center relative z-10">
+    <div class="hero-badge mb-6">FIELD INTELLIGENCE DIVISION</div>
+    <h1 class="font-display text-4xl md:text-5xl lg:text-6xl text-cyan-400 tracking-[4px] md:tracking-[6px] font-black uppercase mb-5 drop-shadow-[0_0_40px_rgba(34,211,238,0.35)]">INTEL FEED</h1>
+    <p class="text-slate-300 text-base md:text-lg max-w-2xl mx-auto font-body leading-relaxed">Field incident reports and cognitive interference analysis from high-stakes operational environments. Stroop effect analysis, human factor decision error, and cognitive fatigue optimization protocols.</p>
+  </div>
+</section>
+
+<!-- CASE STUDY 01 -->
+<section class="py-20 md:py-28 relative bg-slate-950">
+  <div class="max-w-[1100px] mx-auto px-5 relative z-10">
+    <article class="case-study p-8 md:p-12">
+      <span class="case-tag bg-rose-500 text-slate-950">CASE STUDY 01</span>
+      <h2 class="font-display text-xl md:text-2xl text-cyan-400 tracking-[2px] mb-4">Cognitive Overload in Aerospace Operations</h2>
+      <h3 class="font-display text-sm text-gold-400 tracking-[1px] uppercase mb-2">Operational Context</h3>
+      <p class="text-slate-300 text-base md:text-lg leading-relaxed mb-5 font-body">During high-stress flight adjustments, pilots must rapidly interpret multiple dashboard indicators while managing altitude, airspeed, navigation, and communication channels simultaneously. Under this cognitive load, the brain's System 1 processing begins to override System 2 verification, producing exactly the kind of cognitive interference measured by the Stroop effect.</p>
+      <h3 class="font-display text-sm text-gold-400 tracking-[1px] uppercase mb-2">Incident Analysis</h3>
+      <p class="text-slate-400 text-sm md:text-base leading-relaxed mb-5 font-body">When an unexpected alert fires during a critical maneuver, the pilot's visual attention tunnels toward the brightest or most recently changed instrument. This is a classic human factor decision error: the salient signal crowds out the significant signal. The pilot misreads a stable altitude indicator as a conflicting warning because the flashing alert primed the brain to expect conflict, a direct parallel to how misleading primes function in the 2-Second Witness trial loop.</p>
+      <h3 class="font-display text-sm text-gold-400 tracking-[1px] uppercase mb-2">Cognitive Fatigue Optimization Response</h3>
+      <p class="text-slate-400 text-sm md:text-base leading-relaxed mb-5 font-body">Aerospace human factors research recommends reducing simultaneous data streams during high-workload phases, using color-coded priority hierarchies, and enforcing deliberate cross-check rituals. These countermeasures force a System 2 override even when System 1 is screaming for an immediate reaction. The same principle applies to cognitive training: when the 2-second window compresses, the agent who has rehearsed override protocols maintains accuracy while the untrained agent defaults to the loudest stimulus.</p>
+      <h3 class="font-display text-sm text-gold-400 tracking-[1px] uppercase mb-2">Training Transfer</h3>
+      <p class="text-slate-400 text-sm md:text-base leading-relaxed font-body">The 2-Second Witness simulates this overload environment by presenting conflicting prime and witness data under time pressure. Agents who practice bias override in the app build the same neural reflex that prevents a pilot from misidentifying a dashboard indicator during a high-stress flight adjustment.</p>
+    </article>
+  </div>
+</section>
+
+<!-- CASE STUDY 02 -->
+<section class="py-20 md:py-28 relative bg-zinc-950">
+  <div class="max-w-[1100px] mx-auto px-5 relative z-10">
+    <article class="case-study p-8 md:p-12">
+      <span class="case-tag bg-amber-500 text-slate-950">CASE STUDY 02</span>
+      <h2 class="font-display text-xl md:text-2xl text-cyan-400 tracking-[2px] mb-4">Perceptual Blindness in High-Frequency Market Trading</h2>
+      <h3 class="font-display text-sm text-gold-400 tracking-[1px] uppercase mb-2">Operational Context</h3>
+      <p class="text-slate-300 text-base md:text-lg leading-relaxed mb-5 font-body">High-frequency trading environments demand split-second pattern recognition across thousands of data points. Analysts scan candlestick charts, order-book depth, and news tickers while algorithms execute trades in milliseconds. In this context, perceptual blindness, also known as inattentional blindness, becomes a critical failure mode.</p>
+      <h3 class="font-display text-sm text-gold-400 tracking-[1px] uppercase mb-2">Incident Analysis</h3>
+      <p class="text-slate-400 text-sm md:text-base leading-relaxed mb-5 font-body">A trader spots a familiar bullish pattern and triggers a system-wide liquidation based on a perceived confirmation signal. The pattern was real, but the context had shifted: a simultaneous liquidity anomaly invalidated the signal. The trader's brain, operating on pattern-matching autopilot, failed to register the contradictory data because it was not part of the expected pattern. This is a textbook System 1 failure: rapid recognition without System 2 verification.</p>
+      <h3 class="font-display text-sm text-gold-400 tracking-[1px] uppercase mb-2">Stroop Effect Analysis</h3>
+      <p class="text-slate-400 text-sm md:text-base leading-relaxed mb-5 font-body">The situation mirrors the Stroop effect at scale. The trader's brain processes the familiar pattern faster than it processes the conflicting context, creating a measurable interference between recognition and reality. The result is a human factor decision error committed under speed pressure, with financial consequences measured in milliseconds.</p>
+      <h3 class="font-display text-sm text-gold-400 tracking-[1px] uppercase mb-2">Training Transfer</h3>
+      <p class="text-slate-400 text-sm md:text-base leading-relaxed font-body">The 2-Second Witness trains agents to detect conflicting primes within a 2-second witness window. The same cognitive override that prevents a trader from executing on a flawed pattern recognition signal is the override that lets an agent ignore a misleading flash word and select the correct answer. Both require the discipline to distrust the first automatic read.</p>
+    </article>
+  </div>
+</section>
+
+<!-- CASE STUDY 03 -->
+<section class="py-20 md:py-28 relative bg-slate-950">
+  <div class="max-w-[1100px] mx-auto px-5 relative z-10">
+    <article class="case-study p-8 md:p-12">
+      <span class="case-tag bg-orange-500 text-slate-950">CASE STUDY 03</span>
+      <h2 class="font-display text-xl md:text-2xl text-cyan-400 tracking-[2px] mb-4">Human Factors and Systemic Overrides in Industrial Networks</h2>
+      <h3 class="font-display text-sm text-gold-400 tracking-[1px] uppercase mb-2">Operational Context</h3>
+      <p class="text-slate-300 text-base md:text-lg leading-relaxed mb-5 font-body">Industrial control rooms generate thousands of automated alerts daily. Technicians monitor network health, safety thresholds, and equipment status across sprawling systems. Over time, the sheer volume of routine alerts produces a cognitive state known as alert fatigue, where the brain habituates to warning signals and begins treating them as background noise.</p>
+      <h3 class="font-display text-sm text-gold-400 tracking-[1px] uppercase mb-2">Incident Analysis</h3>
+      <p class="text-slate-400 text-sm md:text-base leading-relaxed mb-5 font-body">A critical safety alarm is triggered during a routine maintenance window. Because the technician has processed hundreds of similar alerts that resolved automatically, System 1 classifies the alarm as routine and bypasses the protocol. The override is not malicious; it is the result of cognitive repetition exhaustion. The brain has learned to filter the signal before it ever reaches conscious analysis, a direct example of how automated processing can create catastrophic human factor decision error.</p>
+      <h3 class="font-display text-sm text-gold-400 tracking-[1px] uppercase mb-2">Cognitive Fatigue Optimization Response</h3>
+      <p class="text-slate-400 text-sm md:text-base leading-relaxed mb-5 font-body">Industrial human factors engineering addresses this by designing alert triage systems, rotating monitoring duties, and embedding forced verification steps for high-severity alarms. These interventions re-engage System 2 at the precise moment System 1 would otherwise dismiss the threat. The goal is not to eliminate automation but to prevent the human operator from becoming automated.</p>
+      <h3 class="font-display text-sm text-gold-400 tracking-[1px] uppercase mb-2">Training Transfer</h3>
+      <p class="text-slate-400 text-sm md:text-base leading-relaxed font-body">In the 2-Second Witness, agents face a constant stream of priming words designed to become familiar and then suddenly deceptive. Training against this repetition exhaustion teaches the same vigilance that prevents a technician from bypassing a crucial safety protocol. The override reflex is identical: pause, verify, then act.</p>
+    </article>
+  </div>
+</section>
+
+<!-- DIAGNOSTIC MATRIX -->
+<section class="py-20 md:py-28 relative bg-zinc-950" id="diagnostic">
+  <div class="max-w-[1000px] mx-auto px-5 relative z-10">
+    <div class="diagnostic-matrix p-8 md:p-12">
+      <div class="flex items-center gap-3 mb-8">
+        <span class="text-[10px] tracking-[2px] text-slate-950 bg-cyan-400 px-3 py-1 uppercase font-bold">DIAGNOSTIC MATRIX</span>
+        <h2 class="font-display text-lg md:text-xl text-cyan-400 tracking-[2px]">COGNITIVE INTERFERENCE BREAKDOWN</h2>
+      </div>
+      <p class="text-slate-400 text-sm md:text-base mb-8 max-w-2xl font-body">A client-side visualization of the 2-second human decision window. Toggle between the System 1 failure pathway and the System 2 override pathway. No data is stored, transmitted, or retained.</p>
+
+      <div class="flex flex-col sm:flex-row gap-3 mb-10">
+        <button type="button" id="btn-system1" class="toggle-btn active" onclick="setPathway('system1')">System 1 Failure Pathway</button>
+        <button type="button" id="btn-system2" class="toggle-btn" onclick="setPathway('system2')">System 2 Override Pathway</button>
+      </div>
+
+      <div id="matrix" class="matrix system1">
+        <div class="relative py-4">
+          <div class="timeline-line"></div>
+
+          <div class="timeline-step">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">0 ms</div>
+            <div class="timeline-label">Stimulus Detected</div>
+            <div class="timeline-desc">A flash word and scenario appear simultaneously. The visual system registers both inputs within the first 100 milliseconds.</div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">200 ms</div>
+            <div class="timeline-label">System 1 Activation</div>
+            <div class="timeline-desc">Automatic processing kicks in. The brain prioritizes the most salient cue, usually the priming word, because it is processed faster than contextual details.</div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">800 ms</div>
+            <div class="timeline-label">Interference Point</div>
+            <div class="timeline-desc system1-only">The priming word conflicts with the witness data. System 1 cannot resolve the conflict and defaults to the faster, more familiar signal.</div>
+            <div class="timeline-desc system2-only hidden">System 2 recognizes the conflict between the prime and the witness. The conscious override process begins, diverting attention from the misleading cue.</div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">1500 ms</div>
+            <div class="timeline-label">Decision Window</div>
+            <div class="timeline-desc system1-only">With no System 2 intervention, the first available option matching the prime is selected. The decision is fast but unverified.</div>
+            <div class="timeline-desc system2-only hidden">Despite time pressure, System 2 completes a rapid verification against the actual witness data, rejecting the prime's suggestion.</div>
+          </div>
+
+          <div class="timeline-step">
+            <div class="timeline-dot"></div>
+            <div class="timeline-time">2000 ms</div>
+            <div class="timeline-label">Response Executed</div>
+            <div class="timeline-desc system1-only">The wrong answer is submitted. The error is committed before the conflict ever reached conscious awareness.</div>
+            <div class="timeline-desc system2-only hidden">The correct answer is submitted. The override succeeded because the agent had rehearsed the pause-and-verify reflex.</div>
+          </div>
+        </div>
+
+        <div class="outcome-box mt-6">
+          <div class="outcome-title font-display text-lg tracking-[2px] uppercase mb-2" id="outcome-title">ERROR COMMITTED</div>
+          <p class="text-slate-400 text-sm md:text-base font-body" id="outcome-desc">System 1 reacts automatically to the priming stimulus. The 2-second window closes before System 2 can verify the input, and the wrong option is selected.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AUTOMATED INTEL STREAM -->
+<section class="py-20 md:py-28 relative bg-zinc-950">
+  <div class="max-w-[1200px] mx-auto px-5 relative z-10">
+    <div class="flex items-center gap-3 mb-10">
+      <span class="text-[10px] tracking-[2px] text-slate-950 bg-rose-500 px-3 py-1 uppercase font-bold">LIVE STREAM</span>
+      <h2 class="font-display text-lg md:text-xl text-cyan-400 tracking-[2px]">AUTOMATED INTEL STREAM</h2>
+      <span class="flex-1 h-px bg-gradient-to-r from-cyan-400/20 to-transparent"></span>
+    </div>
+    <div id="automated-intel-stream" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Dynamic content injected by feed-injector.js -->
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-16 md:py-24 relative bg-slate-950">
+  <div class="max-w-[1100px] mx-auto px-5 text-center relative z-10">
+    <h2 class="font-display text-lg md:text-xl text-cyan-400 tracking-[2px] mb-3">RETURN TO OPERATIONS</h2>
+    <p class="text-slate-400 text-sm md:text-base mb-6 max-w-xl mx-auto font-body">Apply these protocols in the field. The 2-Second Witness is waiting.</p>
+    <a href="index.html" class="inline-flex items-center justify-center gap-2 px-8 py-4 border-2 border-cyan-400 text-cyan-400 font-mono text-sm tracking-[1px] uppercase hover:bg-cyan-400 hover:text-slate-950 transition-all"><< BACK TO HQ</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-cyan-400/10 py-10 text-center text-[10px] text-slate-500 bg-zinc-950">
+  <div class="max-w-[1200px] mx-auto px-5">
+    <p>THE 2-SECOND WITNESS // COGNITIVE TRAINING DIVISION // ITTY BITTY BITES</p>
+    <p class="mt-2"><a href="index.html" class="footer-link">HQ</a> | <a href="library.html" class="footer-link">Locker</a> | <a href="privacy_policy.html" class="footer-link">Privacy Policy</a></p>
+    <p class="mt-2">No user data is stored on this page. All diagnostics run in browser memory only.</p>
+  </div>
+</footer>
+
+<script>
+  // Pure client-side state. No storage, no tracking, no data retention.
+  function setPathway(mode) {
+    const matrix = document.getElementById('matrix');
+    const btn1 = document.getElementById('btn-system1');
+    const btn2 = document.getElementById('btn-system2');
+    const title = document.getElementById('outcome-title');
+    const desc = document.getElementById('outcome-desc');
+    const s1Descs = document.querySelectorAll('.system1-only');
+    const s2Descs = document.querySelectorAll('.system2-only');
+
+    if (mode === 'system1') {
+      matrix.classList.remove('system2');
+      matrix.classList.add('system1');
+      btn1.classList.add('active');
+      btn2.classList.remove('active');
+      title.textContent = 'ERROR COMMITTED';
+      desc.textContent = 'System 1 reacts automatically to the priming stimulus. The 2-second window closes before System 2 can verify the input, and the wrong option is selected.';
+      s1Descs.forEach(el => el.classList.remove('hidden'));
+      s2Descs.forEach(el => el.classList.add('hidden'));
+    } else {
+      matrix.classList.remove('system1');
+      matrix.classList.add('system2');
+      btn2.classList.add('active');
+      btn1.classList.remove('active');
+      title.textContent = 'ERROR AVOIDED';
+      desc.textContent = 'System 2 recognizes the cognitive interference and deliberately overrides the priming stimulus. The correct option is selected despite the time pressure.';
+      s1Descs.forEach(el => el.classList.add('hidden'));
+      s2Descs.forEach(el => el.classList.remove('hidden'));
+    }
+  }
+</script>
+
+<script src="feed-injector.js"></script>
+
+</body>
+</html>
