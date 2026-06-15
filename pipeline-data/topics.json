@@ -1,0 +1,270 @@
+{
+  "version": 1,
+  "description": "Cognitive training topic matrix for intel page generation. Each topic generates cross-product pages with every persona.",
+  "topics": [
+    {
+      "slug": "working-memory-fatigue",
+      "title": "Working Memory Fatigue Minimization",
+      "focus": "cognitive energy retention under extended task demands",
+      "icon": "⚡",
+      "color": "#22d3ee",
+      "universe": "science",
+      "relatedBooks": [
+        "thinking-fast-and-slow",
+        "make-it-stick",
+        "the-organized-mind"
+      ]
+    },
+    {
+      "slug": "attentional-blink-deflection",
+      "title": "Attentional Blink Deflection",
+      "focus": "rapid visual processing across sequential target discrimination",
+      "icon": "◈",
+      "color": "#34d399",
+      "universe": "science",
+      "relatedBooks": [
+        "blink-the-power-of-thinking-without-thinking",
+        "the-invisible-gorilla"
+      ]
+    },
+    {
+      "slug": "two-second-recognition-window",
+      "title": "The 2-Second Recognition Window",
+      "focus": "high-velocity situational awareness and threat identification",
+      "icon": "⏱",
+      "color": "#facc15",
+      "universe": "frontier",
+      "relatedBooks": [
+        "thinking-fast-and-slow",
+        "decisive",
+        "noise-a-flaw-in-human-judgment"
+      ]
+    },
+    {
+      "slug": "cognitive-load-overflow",
+      "title": "Cognitive Load Overflow Management",
+      "focus": "information processing triage under stress saturation",
+      "icon": "⬡",
+      "color": "#f87171",
+      "universe": "science",
+      "relatedBooks": [
+        "the-organized-mind",
+        "deep-work",
+        "your-brain-at-work"
+      ]
+    },
+    {
+      "slug": "perceptual-degradation",
+      "title": "Perceptual Degradation Reversal",
+      "focus": "sensory accuracy maintenance under fatigue states",
+      "icon": "◉",
+      "color": "#a78bfa",
+      "universe": "science",
+      "relatedBooks": [
+        "blink-the-power-of-thinking-without-thinking",
+        "brain-rules"
+      ]
+    },
+    {
+      "slug": "decision-anchor-drift",
+      "title": "Decision Anchor Drift Correction",
+      "focus": "anchoring bias identification and override",
+      "icon": "⚓",
+      "color": "#fb923c",
+      "universe": "society",
+      "relatedBooks": [
+        "predictably-irrational",
+        "thinking-in-bets",
+        "decisive"
+      ]
+    },
+    {
+      "slug": "stroop-interference-cascade",
+      "title": "Stroop Interference Cascade",
+      "focus": "conflicting stimulus resolution under time pressure",
+      "icon": "⌇",
+      "color": "#22d3ee",
+      "universe": "science",
+      "relatedBooks": [
+        "thinking-fast-and-slow",
+        "the-invisible-gorilla",
+        "your-brain-at-work"
+      ]
+    },
+    {
+      "slug": "priming-contamination",
+      "title": "Priming Contamination Shield",
+      "focus": "subliminal cue resistance and context-independent evaluation",
+      "icon": "◁",
+      "color": "#34d399",
+      "universe": "society",
+      "relatedBooks": [
+        "blink-the-power-of-thinking-without-thinking",
+        "influence-the-psychology-of-persuasion"
+      ]
+    },
+    {
+      "slug": "availability-heuristic-bias",
+      "title": "Availability Heuristic Bias Override",
+      "focus": "memory-recall accuracy and recency bias mitigation",
+      "icon": "▣",
+      "color": "#facc15",
+      "universe": "society",
+      "relatedBooks": [
+        "thinking-fast-and-slow",
+        "the-art-of-thinking-clearly"
+      ]
+    },
+    {
+      "slug": "status-quo-commitment",
+      "title": "Status Quo Commitment Escape",
+      "focus": "default-option resistance and change blindness",
+      "icon": "↺",
+      "color": "#f87171",
+      "universe": "society",
+      "relatedBooks": [
+        "predictably-irrational",
+        "decisive",
+        "nudge"
+      ]
+    },
+    {
+      "slug": "sunk-cost-fallacy",
+      "title": "Sunk Cost Fallacy Break",
+      "focus": "irrational resource commitment and escalation correction",
+      "icon": "⬡",
+      "color": "#a78bfa",
+      "universe": "society",
+      "relatedBooks": [
+        "thinking-in-bets",
+        "the-art-of-thinking-clearly"
+      ]
+    },
+    {
+      "slug": "confirmation-bias-loop",
+      "title": "Confirmation Bias Loop Interrupt",
+      "focus": "disconfirming evidence integration and belief updating",
+      "icon": "◎",
+      "color": "#fb923c",
+      "universe": "society",
+      "relatedBooks": [
+        "thinking-fast-and-slow",
+        "superforecasting",
+        "the-black-swan"
+      ]
+    },
+    {
+      "slug": "framing-effect-sensitivity",
+      "title": "Framing Effect Sensitivity Training",
+      "focus": "message framing discrimination and loss/gain parsing",
+      "icon": "▤",
+      "color": "#22d3ee",
+      "universe": "society",
+      "relatedBooks": [
+        "predictably-irrational",
+        "thinking-fast-and-slow",
+        "decisive"
+      ]
+    },
+    {
+      "slug": "overconfidence-calibration",
+      "title": "Overconfidence Calibration Drill",
+      "focus": "precision vs confidence alignment and calibration training",
+      "icon": "◔",
+      "color": "#34d399",
+      "universe": "science",
+      "relatedBooks": [
+        "noise-a-flaw-in-human-judgment",
+        "superforecasting",
+        "thinking-in-bets"
+      ]
+    },
+    {
+      "slug": "base-rate-neglect",
+      "title": "Base Rate Neglect Correction",
+      "focus": "statistical prior application and prior probability respect",
+      "icon": "∑",
+      "color": "#facc15",
+      "universe": "science",
+      "relatedBooks": [
+        "thinking-fast-and-slow",
+        "superforecasting",
+        "the-black-swan"
+      ]
+    },
+    {
+      "slug": "hindsight-bias-override",
+      "title": "Hindsight Bias Override Protocol",
+      "focus": "outcome prediction accuracy and surprise calibration",
+      "icon": "◁",
+      "color": "#f87171",
+      "universe": "society",
+      "relatedBooks": [
+        "the-black-swan",
+        "superforecasting",
+        "decisive"
+      ]
+    },
+    {
+      "slug": "optimism-realism-gap",
+      "title": "Optimism-Realism Gap Training",
+      "focus": "probability calibration and planning fallacy reduction",
+      "icon": "⌂",
+      "color": "#a78bfa",
+      "universe": "society",
+      "relatedBooks": [
+        "thinking-in-bets",
+        "superforecasting",
+        "the-art-of-thinking-clearly"
+      ]
+    },
+    {
+      "slug": "representativeness-heuristic",
+      "title": "Representativeness Heuristic Shield",
+      "focus": "category membership verification and base rate respect",
+      "icon": "▣",
+      "color": "#fb923c",
+      "universe": "science",
+      "relatedBooks": [
+        "thinking-fast-and-slow",
+        "the-black-swan"
+      ]
+    },
+    {
+      "slug": "planning-fallacy",
+      "title": "Planning Fallacy Reduction Protocol",
+      "focus": "estimation accuracy improvement and reference class forecasting",
+      "icon": "⏳",
+      "color": "#22d3ee",
+      "universe": "society",
+      "relatedBooks": [
+        "decisive",
+        "superforecasting",
+        "predictably-irrational"
+      ]
+    },
+    {
+      "slug": "bandwagon-effect",
+      "title": "Bandwagon Effect Resistance",
+      "focus": "consensus-independent evaluation and social proof filtering",
+      "icon": "⬆",
+      "color": "#34d399",
+      "universe": "society",
+      "relatedBooks": [
+        "influence-the-psychology-of-persuasion",
+        "the-invisible-gorilla"
+      ]
+    },
+    {
+      "slug": "learning",
+      "title": "Learning",
+      "focus": "discovered from live ScienceDaily feed — Learning a musical instrument in your 70s could help protect",
+      "icon": "📡",
+      "color": "#22d3ee",
+      "universe": "science",
+      "relatedBooks": [],
+      "source": "sciencedaily",
+      "discoveredAt": "2026-06-15T19:21:09.115Z"
+    }
+  ]
+}

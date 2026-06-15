@@ -1,0 +1,232 @@
+{
+  "id": "parenting",
+  "name": "FAMILY HQ",
+  "universe": "life",
+  "icon": ">>",
+  "color": "#AD1457",
+  "tags": [
+    "parenting",
+    "children",
+    "development"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "MILESTONE",
+      "prompt": "Baby pulling up to standing position at furniture.",
+      "question": "Identify:",
+      "correct": "Motor Milestone",
+      "wrong": [
+        "Cognitive Milestone",
+        "Social Milestone",
+        "Language Milestone"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "FEVER",
+      "prompt": "Child's temperature at 101F with no other symptoms.",
+      "question": "Identify:",
+      "correct": "Low Grade Fever",
+      "wrong": [
+        "Emergency",
+        "Normal Variation",
+        "Teething"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "TANTRUM",
+      "prompt": "Toddler screaming on the floor in a grocery store.",
+      "question": "Identify:",
+      "correct": "Age-Appropriate Behavior",
+      "wrong": [
+        "Behavioral Disorder",
+        "Spoiled",
+        "Manipulation"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SAFETY",
+      "prompt": "Covering electrical outlets and securing furniture to walls.",
+      "question": "Identify:",
+      "correct": "Childproofing",
+      "wrong": [
+        "Baby Proofing",
+        "Safety Audit",
+        "Home Inspection"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SLEEP",
+      "prompt": "Newborn waking every 2-3 hours through the night.",
+      "question": "Identify:",
+      "correct": "Normal Newborn Pattern",
+      "wrong": [
+        "Sleep Disorder",
+        "Hunger Issue",
+        "Colic"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "TEETH",
+      "prompt": "Baby drooling excessively and chewing on everything at 6 months.",
+      "question": "Identify:",
+      "correct": "Teething",
+      "wrong": [
+        "Hunger",
+        "Oral Fixation",
+        "Illness"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SPEECH",
+      "prompt": "Two-year-old using fewer than 50 words.",
+      "question": "Identify:",
+      "correct": "Speech Delay Screening Needed",
+      "wrong": [
+        "Normal Development",
+        "Shyness",
+        "Bilingual Delay"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "ALLERGY",
+      "prompt": "Introducing peanut butter to a baby at 6 months with supervision.",
+      "question": "Identify:",
+      "correct": "Early Allergen Introduction",
+      "wrong": [
+        "Dangerous Practice",
+        "Too Early",
+        "Choking Risk"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "SCREEN",
+      "prompt": "AAP recommending no screen time before 18 months.",
+      "question": "Identify:",
+      "correct": "Screen Time Guidelines",
+      "wrong": [
+        "Outdated Advice",
+        "Suggestion Only",
+        "For TV Only"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "BOUNDARY",
+      "prompt": "Child testing rules by doing exactly what was told not to.",
+      "question": "Identify:",
+      "correct": "Boundary Testing",
+      "wrong": [
+        "Defiance",
+        "Behavioral Problem",
+        "Hearing Issue"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "COLIC",
+      "prompt": "Baby crying intensely for 3+ hours daily with no apparent cause.",
+      "question": "Identify:",
+      "correct": "Colic",
+      "wrong": [
+        "Hunger",
+        "Pain",
+        "Gas"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "CRAWL",
+      "prompt": "Baby moving backward before figuring out forward crawling.",
+      "question": "Identify:",
+      "correct": "Normal Development",
+      "wrong": [
+        "Delay",
+        "Motor Issue",
+        "Weakness"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "VACCINE",
+      "prompt": "Mild fever and fussiness after routine childhood shots.",
+      "question": "Identify:",
+      "correct": "Normal Vaccine Response",
+      "wrong": [
+        "Allergic Reaction",
+        "Infection",
+        "Side Effect"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SOLID",
+      "prompt": "Starting rice cereal and pureed foods around 6 months.",
+      "question": "Identify:",
+      "correct": "Introduction of Solids",
+      "wrong": [
+        "Weaning",
+        "Supplementing",
+        "Transitioning"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "REGRESSION",
+      "prompt": "Potty-trained child having accidents after new sibling arrives.",
+      "question": "Identify:",
+      "correct": "Developmental Regression",
+      "wrong": [
+        "Defiance",
+        "Medical Issue",
+        "Forgetting"
+      ],
+      "difficulty": 2,
+      "stroop": 2
+    },
+    {
+      "flash": "PLAY",
+      "prompt": "Children playing side by side but not together at age 2.",
+      "question": "Identify:",
+      "correct": "Parallel Play",
+      "wrong": [
+        "Cooperative Play",
+        "Solitary Play",
+        "Onlooker Play"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    }
+  ]
+}

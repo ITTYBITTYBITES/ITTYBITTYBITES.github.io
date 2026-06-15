@@ -1,0 +1,232 @@
+{
+  "id": "cooking",
+  "name": "MASTER CHEF",
+  "universe": "creative",
+  "icon": ">>",
+  "color": "#FF5722",
+  "tags": [
+    "cooking",
+    "techniques",
+    "cuisine"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "BRAISE",
+      "prompt": "Searing meat then slow-cooking in liquid with lid on.",
+      "question": "Identify:",
+      "correct": "Braising",
+      "wrong": [
+        "Stewing",
+        "Roasting",
+        "Poaching"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "JULIENNE",
+      "prompt": "Cutting vegetables into thin matchstick-shaped strips.",
+      "question": "Identify:",
+      "correct": "Julienne Cut",
+      "wrong": [
+        "Brunoise",
+        "Chiffonade",
+        "Batonnet"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "REDUCE",
+      "prompt": "Boiling sauce uncovered until it thickens by evaporation.",
+      "question": "Identify:",
+      "correct": "Reduction",
+      "wrong": [
+        "Concentration",
+        "Dehydration",
+        "Caramelization"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "FOLD",
+      "prompt": "Gently combining whipped cream into batter without deflating.",
+      "question": "Identify:",
+      "correct": "Folding",
+      "wrong": [
+        "Mixing",
+        "Stirring",
+        "Whipping"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "MISE",
+      "prompt": "Having all ingredients measured and ready before cooking.",
+      "question": "Identify:",
+      "correct": "Mise en Place",
+      "wrong": [
+        "Prep Work",
+        "Staging",
+        "Setup"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "PROOF",
+      "prompt": "Dough rising in a warm spot before baking.",
+      "question": "Identify:",
+      "correct": "Proofing",
+      "wrong": [
+        "Fermenting",
+        "Resting",
+        "Blooming"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "TEMPER",
+      "prompt": "Slowly adding hot liquid to eggs to prevent scrambling.",
+      "question": "Identify:",
+      "correct": "Tempering",
+      "wrong": [
+        "Whisking",
+        "Emulsifying",
+        "Blending"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "ROUX",
+      "prompt": "Equal parts butter and flour cooked as a sauce base.",
+      "question": "Identify:",
+      "correct": "Roux",
+      "wrong": [
+        "Slurry",
+        "Reduction",
+        "Stock"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "BASTE",
+      "prompt": "Spooning pan juices over meat during roasting.",
+      "question": "Identify:",
+      "correct": "Basting",
+      "wrong": [
+        "Glazing",
+        "Marinating",
+        "Drizzling"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SAUTE",
+      "prompt": "Cooking quickly in a small amount of fat over high heat.",
+      "question": "Identify:",
+      "correct": "Sauteing",
+      "wrong": [
+        "Frying",
+        "Stir-frying",
+        "Pan-frying"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "UMAMI",
+      "prompt": "Fifth basic taste described as savory or meaty.",
+      "question": "Identify:",
+      "correct": "Umami",
+      "wrong": [
+        "Sweet",
+        "Salty",
+        "Bitter"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "EMULSION",
+      "prompt": "Oil and vinegar staying combined in a stable mixture.",
+      "question": "Identify:",
+      "correct": "Emulsion",
+      "wrong": [
+        "Solution",
+        "Suspension",
+        "Colloid"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "CONFIT",
+      "prompt": "Cooking meat slowly submerged in its own fat.",
+      "question": "Identify:",
+      "correct": "Confit",
+      "wrong": [
+        "Deep Fry",
+        "Poach",
+        "Braise"
+      ],
+      "difficulty": 3,
+      "stroop": 0
+    },
+    {
+      "flash": "BLANCH",
+      "prompt": "Brief boiling followed by ice water plunge to stop cooking.",
+      "question": "Identify:",
+      "correct": "Blanching",
+      "wrong": [
+        "Parboiling",
+        "Steaming",
+        "Shocking"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "FLAMBEE",
+      "prompt": "Igniting alcohol in a pan for flavor and presentation.",
+      "question": "Identify:",
+      "correct": "Flambe",
+      "wrong": [
+        "Deglaze",
+        "Reduce",
+        "Caramelize"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "SOUS VIDE",
+      "prompt": "Cooking vacuum-sealed food in precisely controlled water temperature.",
+      "question": "Identify:",
+      "correct": "Sous Vide",
+      "wrong": [
+        "Poaching",
+        "Braising",
+        "Steaming"
+      ],
+      "difficulty": 2,
+      "stroop": 2
+    }
+  ]
+}

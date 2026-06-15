@@ -1,0 +1,232 @@
+{
+  "id": "wilderness",
+  "name": "WILD TRAIL",
+  "universe": "frontier",
+  "icon": ">>",
+  "color": "#1B5E20",
+  "tags": [
+    "wilderness",
+    "tracking",
+    "navigation"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "TRACK",
+      "prompt": "Cloven hoof prints in mud heading toward a water source.",
+      "question": "Identify:",
+      "correct": "Deer Tracks",
+      "wrong": [
+        "Elk Tracks",
+        "Moose Tracks",
+        "Goat Tracks"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "STAR",
+      "prompt": "Finding north by locating the North Star at night.",
+      "question": "Identify:",
+      "correct": "Celestial Navigation",
+      "wrong": [
+        "Compass Reading",
+        "GPS",
+        "Dead Reckoning"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "MOSS",
+      "prompt": "Growth on trees being thicker on the north side.",
+      "question": "Identify:",
+      "correct": "Natural Compass Indicator",
+      "wrong": [
+        "Random Growth",
+        "Disease",
+        "Age Sign"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SHELTER",
+      "prompt": "Building a lean-to with branches against a fallen tree.",
+      "question": "Identify:",
+      "correct": "Emergency Shelter",
+      "wrong": [
+        "Permanent Camp",
+        "Blind",
+        "Hide"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "FIRE",
+      "prompt": "Using a bow drill to create friction and ignite tinder.",
+      "question": "Identify:",
+      "correct": "Primitive Fire Starting",
+      "wrong": [
+        "Flint Strike",
+        "Lens Ignition",
+        "Chemical Reaction"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "WATER",
+      "prompt": "Collecting morning dew from grass with a cloth.",
+      "question": "Identify:",
+      "correct": "Dew Collection",
+      "wrong": [
+        "Rain Harvesting",
+        "Condensation Trap",
+        "Spring Finding"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "SCAT",
+      "prompt": "Identifying animal droppings to know what's nearby.",
+      "question": "Identify:",
+      "correct": "Scat Analysis",
+      "wrong": [
+        "Track Reading",
+        "Sign Cutting",
+        "Spoor Tracking"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "KNOT",
+      "prompt": "Tying a bowline loop that won't slip under tension.",
+      "question": "Identify:",
+      "correct": "Bowline Knot",
+      "wrong": [
+        "Clove Hitch",
+        "Figure Eight",
+        "Sheet Bend"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "WEATHER",
+      "prompt": "Red sky at morning indicating bad weather approaching.",
+      "question": "Identify:",
+      "correct": "Weather Prediction Sign",
+      "wrong": [
+        "Superstition",
+        "Coincidence",
+        "Myth"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "EDIBLE",
+      "prompt": "Crushing a leaf and rubbing it on inner wrist to test for reaction.",
+      "question": "Identify:",
+      "correct": "Universal Edibility Test",
+      "wrong": [
+        "Taste Test",
+        "Smell Test",
+        "Visual Check"
+      ],
+      "difficulty": 3,
+      "stroop": 0
+    },
+    {
+      "flash": "SIGNAL",
+      "prompt": "Three of anything in the wild signals distress.",
+      "question": "Identify:",
+      "correct": "Distress Signal Pattern",
+      "wrong": [
+        "Camp Marker",
+        "Trail Blaze",
+        "Territory Marker"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CORDAGE",
+      "prompt": "Twisting plant fibers together to make strong rope.",
+      "question": "Identify:",
+      "correct": "Natural Cordage",
+      "wrong": [
+        "Weaving",
+        "Braiding",
+        "Knitting"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "CONTOUR",
+      "prompt": "Lines on a map that are close together indicating steep terrain.",
+      "question": "Identify:",
+      "correct": "Steep Slope",
+      "wrong": [
+        "Valley",
+        "Plateau",
+        "Ridge"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CACHE",
+      "prompt": "Hanging food bag from a tree branch away from camp.",
+      "question": "Identify:",
+      "correct": "Bear Hang",
+      "wrong": [
+        "Food Storage",
+        "Drying Rack",
+        "Bait Station"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "FORD",
+      "prompt": "Crossing a river at a wide shallow section with good footing.",
+      "question": "Identify:",
+      "correct": "River Ford",
+      "wrong": [
+        "Bridge",
+        "Dam",
+        "Crossing Point"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "TERRAIN",
+      "prompt": "Using terrain features to confirm position on a map.",
+      "question": "Identify:",
+      "correct": "Terrain Association",
+      "wrong": [
+        "GPS Fix",
+        "Triangulation",
+        "Dead Reckoning"
+      ],
+      "difficulty": 2,
+      "stroop": 2
+    }
+  ]
+}

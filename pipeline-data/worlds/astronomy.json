@@ -1,0 +1,232 @@
+{
+  "id": "astronomy",
+  "name": "STAR MAP",
+  "universe": "science",
+  "icon": ">>",
+  "color": "#2C3E50",
+  "tags": [
+    "stars",
+    "planets",
+    "cosmos"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "DWARF",
+      "prompt": "Small dense star at the end of its life cycle.",
+      "question": "Identify:",
+      "correct": "White Dwarf",
+      "wrong": [
+        "Red Dwarf",
+        "Brown Dwarf",
+        "Neutron Star"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "GALAXY",
+      "prompt": "Billions of stars held together by gravity in a spiral shape.",
+      "question": "Identify:",
+      "correct": "Spiral Galaxy",
+      "wrong": [
+        "Elliptical Galaxy",
+        "Irregular Galaxy",
+        "Dwarf Galaxy"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "NOVA",
+      "prompt": "White dwarf briefly brightening after pulling matter from a companion star.",
+      "question": "Identify:",
+      "correct": "Nova",
+      "wrong": [
+        "Supernova",
+        "Hypernova",
+        "Solar Flare"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "PULSAR",
+      "prompt": "Rapidly spinning neutron star emitting beams of radiation.",
+      "question": "Identify:",
+      "correct": "Pulsar",
+      "wrong": [
+        "Quasar",
+        "Magnetar",
+        "Black Hole"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "PARALLAX",
+      "prompt": "Nearby star appearing to shift position as Earth orbits the Sun.",
+      "question": "Identify:",
+      "correct": "Stellar Parallax",
+      "wrong": [
+        "Proper Motion",
+        "Aberration",
+        "Precession"
+      ],
+      "difficulty": 3,
+      "stroop": 1
+    },
+    {
+      "flash": "SPECTRUM",
+      "prompt": "Analyzing starlight to determine what elements a star contains.",
+      "question": "Identify:",
+      "correct": "Spectroscopy",
+      "wrong": [
+        "Photometry",
+        "Astrometry",
+        "Interferometry"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "HABITABLE",
+      "prompt": "Distance from a star where liquid water could exist on a planet.",
+      "question": "Identify:",
+      "correct": "Habitable Zone",
+      "wrong": [
+        "Frost Line",
+        "Roche Limit",
+        "Hill Sphere"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "MAIN",
+      "prompt": "Star fusing hydrogen into helium in its core for billions of years.",
+      "question": "Identify:",
+      "correct": "Main Sequence Star",
+      "wrong": [
+        "Giant Star",
+        "Supergiant",
+        "Protostar"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "TRANSIT",
+      "prompt": "Planet passing in front of its star causing a tiny dip in brightness.",
+      "question": "Identify:",
+      "correct": "Transit Method",
+      "wrong": [
+        "Radial Velocity",
+        "Direct Imaging",
+        "Microlensing"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "NEBULA",
+      "prompt": "Glowing cloud of gas expelled by a dying star.",
+      "question": "Identify:",
+      "correct": "Planetary Nebula",
+      "wrong": [
+        "Emission Nebula",
+        "Reflection Nebula",
+        "Dark Nebula"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "BINARY",
+      "prompt": "Two stars orbiting around their common center of mass.",
+      "question": "Identify:",
+      "correct": "Binary Star System",
+      "wrong": [
+        "Double Star",
+        "Star Cluster",
+        "Constellation"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "MAGNITUDE",
+      "prompt": "Scale measuring how bright a star appears from Earth.",
+      "question": "Identify:",
+      "correct": "Apparent Magnitude",
+      "wrong": [
+        "Absolute Magnitude",
+        "Luminosity",
+        "Flux"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "ASTEROID",
+      "prompt": "Rocky body orbiting the Sun between Mars and Jupiter.",
+      "question": "Identify:",
+      "correct": "Asteroid Belt",
+      "wrong": [
+        "Kuiper Belt",
+        "Oort Cloud",
+        "Debris Disk"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "EXPANSION",
+      "prompt": "Galaxies moving apart from each other at increasing speeds.",
+      "question": "Identify:",
+      "correct": "Cosmic Expansion",
+      "wrong": [
+        "Gravity",
+        "Dark Energy",
+        "Big Bang Echo"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "EXOPLANET",
+      "prompt": "Planet orbiting a star other than our Sun.",
+      "question": "Identify:",
+      "correct": "Exoplanet",
+      "wrong": [
+        "Rogue Planet",
+        "Dwarf Planet",
+        "Moon"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "DARK",
+      "prompt": "Invisible matter detected only by its gravitational effects.",
+      "question": "Identify:",
+      "correct": "Dark Matter",
+      "wrong": [
+        "Dark Energy",
+        "Antimatter",
+        "Neutrinos"
+      ],
+      "difficulty": 3,
+      "stroop": 2
+    }
+  ]
+}

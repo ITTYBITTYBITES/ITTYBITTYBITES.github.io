@@ -1,0 +1,232 @@
+{
+  "id": "art",
+  "name": "GALLERY",
+  "universe": "creative",
+  "icon": ">>",
+  "color": "#FF5722",
+  "tags": [
+    "art",
+    "painting",
+    "movements"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "IMPRESSIONISM",
+      "prompt": "Painting capturing light and color with visible brush strokes.",
+      "question": "Identify:",
+      "correct": "Impressionism",
+      "wrong": [
+        "Realism",
+        "Expressionism",
+        "Romanticism"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "PERSPECTIVE",
+      "prompt": "Parallel lines appearing to converge at a distant point.",
+      "question": "Identify:",
+      "correct": "Linear Perspective",
+      "wrong": [
+        "Aerial Perspective",
+        "Isometric View",
+        "Orthographic"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CONTRAST",
+      "prompt": "Placing dark values next to light values for visual impact.",
+      "question": "Identify:",
+      "correct": "Value Contrast",
+      "wrong": [
+        "Color Contrast",
+        "Texture Contrast",
+        "Scale Contrast"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "ABSTRACT",
+      "prompt": "Painting using shapes and colors without representing real objects.",
+      "question": "Identify:",
+      "correct": "Abstract Art",
+      "wrong": [
+        "Surrealism",
+        "Minimalism",
+        "Expressionism"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "FRESCO",
+      "prompt": "Painting applied directly onto wet plaster on a wall.",
+      "question": "Identify:",
+      "correct": "Fresco",
+      "wrong": [
+        "Mural",
+        "Mosaic",
+        "Tempera"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "CANVAS",
+      "prompt": "Fabric stretched over a wooden frame for oil painting.",
+      "question": "Identify:",
+      "correct": "Canvas",
+      "wrong": [
+        "Panel",
+        "Paper",
+        "Board"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "PALETTE",
+      "prompt": "Board used for mixing paint colors before applying.",
+      "question": "Identify:",
+      "correct": "Palette",
+      "wrong": [
+        "Easel",
+        "Canvas",
+        "Brush"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CUBISM",
+      "prompt": "Subject shown from multiple viewpoints simultaneously.",
+      "question": "Identify:",
+      "correct": "Cubism",
+      "wrong": [
+        "Surrealism",
+        "Futurism",
+        "Dadaism"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "SCULPTURE",
+      "prompt": "Three-dimensional art created by carving marble.",
+      "question": "Identify:",
+      "correct": "Subtractive Sculpture",
+      "wrong": [
+        "Additive Sculpture",
+        "Casting",
+        "Assemblage"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "COMPOSITION",
+      "prompt": "Arrangement of visual elements to guide the viewer's eye.",
+      "question": "Identify:",
+      "correct": "Composition",
+      "wrong": [
+        "Layout",
+        "Design",
+        "Balance"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SURREALISM",
+      "prompt": "Dreamlike imagery combining unrelated objects in strange ways.",
+      "question": "Identify:",
+      "correct": "Surrealism",
+      "wrong": [
+        "Dadaism",
+        "Expressionism",
+        "Symbolism"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "MEDIUM",
+      "prompt": "Oil paint, watercolor, and acrylic as different types.",
+      "question": "Identify:",
+      "correct": "Painting Medium",
+      "wrong": [
+        "Technique",
+        "Style",
+        "Genre"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "GOLDEN",
+      "prompt": "Ratio approximately 1:1.618 found in nature and art.",
+      "question": "Identify:",
+      "correct": "Golden Ratio",
+      "wrong": [
+        "Rule of Thirds",
+        "Fibonacci",
+        "Symmetry"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "POP",
+      "prompt": "Art movement using imagery from mass media and advertising.",
+      "question": "Identify:",
+      "correct": "Pop Art",
+      "wrong": [
+        "Commercial Art",
+        "Graphic Design",
+        "Illustration"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CHIAROSCURO",
+      "prompt": "Dramatic contrast between light and dark in painting.",
+      "question": "Identify:",
+      "correct": "Chiaroscuro",
+      "wrong": [
+        "Sfumato",
+        "Tenebrism",
+        "Glazing"
+      ],
+      "difficulty": 3,
+      "stroop": 1
+    },
+    {
+      "flash": "PATINA",
+      "prompt": "Green coating forming on bronze sculpture over time.",
+      "question": "Identify:",
+      "correct": "Patina",
+      "wrong": [
+        "Corrosion",
+        "Tarnish",
+        "Oxidation"
+      ],
+      "difficulty": 2,
+      "stroop": 2
+    }
+  ]
+}

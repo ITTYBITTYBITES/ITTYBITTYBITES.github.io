@@ -1,0 +1,232 @@
+{
+  "id": "photography",
+  "name": "LENS LAB",
+  "universe": "creative",
+  "icon": ">>",
+  "color": "#FF9800",
+  "tags": [
+    "photography",
+    "camera",
+    "composition"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "APERTURE",
+      "prompt": "Opening in the lens controlling how much light enters.",
+      "question": "Identify:",
+      "correct": "Aperture",
+      "wrong": [
+        "Shutter Speed",
+        "ISO",
+        "Focal Length"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SHUTTER",
+      "prompt": "Length of time the camera sensor is exposed to light.",
+      "question": "Identify:",
+      "correct": "Shutter Speed",
+      "wrong": [
+        "Aperture",
+        "ISO",
+        "Frame Rate"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "ISO",
+      "prompt": "Sensor sensitivity to light, higher values add grain.",
+      "question": "Identify:",
+      "correct": "ISO Setting",
+      "wrong": [
+        "Aperture",
+        "Shutter Speed",
+        "White Balance"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "RULE",
+      "prompt": "Placing subject at intersection of imaginary thirds lines.",
+      "question": "Identify:",
+      "correct": "Rule of Thirds",
+      "wrong": [
+        "Golden Ratio",
+        "Center Composition",
+        "Symmetry"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "BOKEH",
+      "prompt": "Blurred background making the subject stand out sharply.",
+      "question": "Identify:",
+      "correct": "Shallow Depth of Field",
+      "wrong": [
+        "Motion Blur",
+        "Soft Focus",
+        "Lens Flare"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "GOLDEN",
+      "prompt": "Warm light just after sunrise or before sunset.",
+      "question": "Identify:",
+      "correct": "Golden Hour",
+      "wrong": [
+        "Blue Hour",
+        "Midday",
+        "Twilight"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "EXPOSURE",
+      "prompt": "Image too bright with lost detail in highlights.",
+      "question": "Identify:",
+      "correct": "Overexposed",
+      "wrong": [
+        "Underexposed",
+        "High Key",
+        "Blown Out"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "RAW",
+      "prompt": "Unprocessed image file containing maximum data from sensor.",
+      "question": "Identify:",
+      "correct": "RAW File Format",
+      "wrong": [
+        "JPEG",
+        "PNG",
+        "TIFF"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "WIDE",
+      "prompt": "Lens making objects appear farther apart and smaller.",
+      "question": "Identify:",
+      "correct": "Wide Angle Lens",
+      "wrong": [
+        "Telephoto",
+        "Macro",
+        "Fisheye"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "MACRO",
+      "prompt": "Extreme close-up showing tiny details of an insect.",
+      "question": "Identify:",
+      "correct": "Macro Photography",
+      "wrong": [
+        "Micro Photography",
+        "Close-Up",
+        "Telephoto"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "HISTOGRAM",
+      "prompt": "Graph showing distribution of tones from dark to light.",
+      "question": "Identify:",
+      "correct": "Histogram",
+      "wrong": [
+        "Light Meter",
+        "Exposure Meter",
+        "Waveform"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "LONG",
+      "prompt": "Car headlights appearing as streaks of light in a night photo.",
+      "question": "Identify:",
+      "correct": "Long Exposure",
+      "wrong": [
+        "Motion Blur",
+        "Light Painting",
+        "Slow Sync"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "WHITE",
+      "prompt": "Adjusting colors so a white object looks truly white.",
+      "question": "Identify:",
+      "correct": "White Balance",
+      "wrong": [
+        "Color Correction",
+        "Tint",
+        "Saturation"
+      ],
+      "difficulty": 1,
+      "stroop": 1
+    },
+    {
+      "flash": "LEADING",
+      "prompt": "Road or fence drawing the viewer's eye into the image.",
+      "question": "Identify:",
+      "correct": "Leading Lines",
+      "wrong": [
+        "Rule of Thirds",
+        "Frame within Frame",
+        "Symmetry"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "HDR",
+      "prompt": "Combining multiple exposures to capture full range of light.",
+      "question": "Identify:",
+      "correct": "High Dynamic Range",
+      "wrong": [
+        "Bracketing",
+        "Tone Mapping",
+        "Exposure Blending"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "NOISE",
+      "prompt": "Grainy speckled appearance in photos taken in low light.",
+      "question": "Identify:",
+      "correct": "Digital Noise",
+      "wrong": [
+        "Film Grain",
+        "Compression Artifact",
+        "Banding"
+      ],
+      "difficulty": 2,
+      "stroop": 2
+    }
+  ]
+}

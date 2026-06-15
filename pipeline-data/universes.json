@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "universes": [
+    {
+      "id": "tech",
+      "name": "TECH",
+      "full_name": "TECH OPS",
+      "icon": ">>",
+      "color": "#00F5FF",
+      "description": "Technology, digital systems, machines, and engineering.",
+      "sort_order": 1
+    },
+    {
+      "id": "science",
+      "name": "SCIENCE",
+      "full_name": "SCIENCE LAB",
+      "icon": "**",
+      "color": "#00D4FF",
+      "description": "Physics, chemistry, biology, and natural phenomena.",
+      "sort_order": 2
+    },
+    {
+      "id": "life",
+      "name": "LIFE",
+      "full_name": "LIFE SCIENCES",
+      "icon": "++",
+      "color": "#2ECC71",
+      "description": "Health, nature, food, home, and living things.",
+      "sort_order": 3
+    },
+    {
+      "id": "society",
+      "name": "SOCIETY",
+      "full_name": "SOCIETY & MIND",
+      "icon": "$$",
+      "color": "#FFD700",
+      "description": "Law, money, psychology, culture, and human systems.",
+      "sort_order": 4
+    },
+    {
+      "id": "frontier",
+      "name": "FRONTIER",
+      "full_name": "FRONTIER",
+      "icon": "<>",
+      "color": "#FF6B35",
+      "description": "Exploration, danger, survival, and the unknown.",
+      "sort_order": 5
+    },
+    {
+      "id": "creative",
+      "name": "CREATIVE",
+      "full_name": "CREATIVE ARTS",
+      "icon": "~~",
+      "color": "#9B59FF",
+      "description": "Arts, expression, design, and imagination.",
+      "sort_order": 6
+    }
+  ]
+}

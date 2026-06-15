@@ -1,0 +1,232 @@
+{
+  "id": "sociology",
+  "name": "SOCIAL LAB",
+  "universe": "society",
+  "icon": ">>",
+  "color": "#1ABC9C",
+  "tags": [
+    "society",
+    "culture",
+    "groups"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "NORM",
+      "prompt": "Unwritten rule that you face forward in an elevator.",
+      "question": "Identify:",
+      "correct": "Social Norm",
+      "wrong": [
+        "Law",
+        "Custom",
+        "Tradition"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "ROLE",
+      "prompt": "Behaving differently at work versus with friends.",
+      "question": "Identify:",
+      "correct": "Social Role",
+      "wrong": [
+        "Identity",
+        "Persona",
+        "Character"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CLASS",
+      "prompt": "Invisible barriers preventing upward economic movement.",
+      "question": "Identify:",
+      "correct": "Social Stratification",
+      "wrong": [
+        "Discrimination",
+        "Poverty",
+        "Inequality"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "DEVIANCE",
+      "prompt": "Breaking social rules that most people follow.",
+      "question": "Identify:",
+      "correct": "Social Deviance",
+      "wrong": [
+        "Crime",
+        "Rebellion",
+        "Nonconformity"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "GROUP",
+      "prompt": "Individuals performing worse when part of a larger team.",
+      "question": "Identify:",
+      "correct": "Social Loafing",
+      "wrong": [
+        "Groupthink",
+        "Conformity",
+        "Diffusion"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "STIGMA",
+      "prompt": "Negative label attached to a person based on a characteristic.",
+      "question": "Identify:",
+      "correct": "Social Stigma",
+      "wrong": [
+        "Prejudice",
+        "Discrimination",
+        "Stereotype"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "INSTITUTION",
+      "prompt": "Family, education, religion, and government as pillars of society.",
+      "question": "Identify:",
+      "correct": "Social Institutions",
+      "wrong": [
+        "Organizations",
+        "Associations",
+        "Communities"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "MOBILITY",
+      "prompt": "Child of factory workers becoming a doctor.",
+      "question": "Identify:",
+      "correct": "Upward Social Mobility",
+      "wrong": [
+        "Horizontal Mobility",
+        "Downward Mobility",
+        "Structural Mobility"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CULTURE",
+      "prompt": "Values, beliefs, and practices shared by a group of people.",
+      "question": "Identify:",
+      "correct": "Culture",
+      "wrong": [
+        "Civilization",
+        "Society",
+        "Community"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "BYSTANDER",
+      "prompt": "Many people witnessing an emergency but nobody helping.",
+      "question": "Identify:",
+      "correct": "Bystander Effect",
+      "wrong": [
+        "Apathy",
+        "Cowardice",
+        "Social Loafing"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "ETHNO",
+      "prompt": "Judging another culture by the standards of your own.",
+      "question": "Identify:",
+      "correct": "Ethnocentrism",
+      "wrong": [
+        "Racism",
+        "Xenophobia",
+        "Nationalism"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "RITUAL",
+      "prompt": "Repeated ceremonial activity that reinforces group bonds.",
+      "question": "Identify:",
+      "correct": "Social Ritual",
+      "wrong": [
+        "Tradition",
+        "Custom",
+        "Habit"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "ANOMIE",
+      "prompt": "Feeling of disconnection when social norms break down.",
+      "question": "Identify:",
+      "correct": "Anomie",
+      "wrong": [
+        "Alienation",
+        "Depression",
+        "Apathy"
+      ],
+      "difficulty": 3,
+      "stroop": 1
+    },
+    {
+      "flash": "CAPITAL",
+      "prompt": "Network of relationships that provide opportunities.",
+      "question": "Identify:",
+      "correct": "Social Capital",
+      "wrong": [
+        "Human Capital",
+        "Cultural Capital",
+        "Financial Capital"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "GENDER",
+      "prompt": "Socially constructed expectations about how men and women should behave.",
+      "question": "Identify:",
+      "correct": "Gender Roles",
+      "wrong": [
+        "Sex Differences",
+        "Biology",
+        "Identity"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "POWER",
+      "prompt": "Ability to influence others' behavior even against their will.",
+      "question": "Identify:",
+      "correct": "Social Power",
+      "wrong": [
+        "Authority",
+        "Influence",
+        "Control"
+      ],
+      "difficulty": 2,
+      "stroop": 2
+    }
+  ]
+}

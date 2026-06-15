@@ -1,0 +1,209 @@
+{
+  "version": 1,
+  "description": "Target persona matrix for intel page generation. Each persona cross-products with every topic.",
+  "personas": [
+    {
+      "slug": "competitive-fps-gamers",
+      "name": "Competitive FPS Gamers",
+      "description": "Esports competitors, twitch-shooter players, and reaction-based gaming athletes",
+      "tags": [
+        "esports",
+        "reaction time",
+        "visual tracking",
+        "multiplayer"
+      ],
+      "universe": "creative"
+    },
+    {
+      "slug": "android-mobile-developers",
+      "name": "Android Mobile Developers",
+      "description": "Software engineers, mobile app developers, and full-stack engineers",
+      "tags": [
+        "software engineering",
+        "debugging",
+        "code review",
+        "IDE"
+      ],
+      "universe": "tech"
+    },
+    {
+      "slug": "first-responders",
+      "name": "Tactical First Responders",
+      "description": "EMTs, paramedics, firefighters, and emergency medical personnel",
+      "tags": [
+        "emergency response",
+        "field triage",
+        "split-second decisions",
+        "triage"
+      ],
+      "universe": "frontier"
+    },
+    {
+      "slug": "stock-traders",
+      "name": "Day Traders & Stock Traders",
+      "description": "Active traders, financial market operators, and investment analysts",
+      "tags": [
+        "high-frequency decisions",
+        "risk management",
+        "market analysis"
+      ],
+      "universe": "society"
+    },
+    {
+      "slug": "air-traffic-controllers",
+      "name": "Air Traffic Controllers",
+      "description": "ATC personnel, aviation safety operators, and flight sequencing specialists",
+      "tags": [
+        "multi-source monitoring",
+        "rapid sequencing",
+        "safety-critical decisions"
+      ],
+      "universe": "frontier"
+    },
+    {
+      "slug": "surgeons",
+      "name": "Surgeons & Medical Operators",
+      "description": "Surgical physicians, procedural specialists, and medical operators",
+      "tags": [
+        "surgical decision making",
+        "cognitive load management",
+        "stress resilience"
+      ],
+      "universe": "life"
+    },
+    {
+      "slug": "military-pilots",
+      "name": "Military Pilots",
+      "description": "Combat aviators, military flight crews, and tactical air operators",
+      "tags": [
+        "cockpit cognition",
+        "spatial awareness",
+        "G-force attention management"
+      ],
+      "universe": "frontier"
+    },
+    {
+      "slug": "cybersecurity-analysts",
+      "name": "Cybersecurity Analysts",
+      "description": "SOC analysts, penetration testers, and threat intelligence operators",
+      "tags": [
+        "threat detection",
+        "pattern recognition",
+        "incident response"
+      ],
+      "universe": "tech"
+    },
+    {
+      "slug": "athletes",
+      "name": "Elite Athletes",
+      "description": "Professional competitors, sports athletes, and performance performers",
+      "tags": [
+        "in-game decision speed",
+        "pressure management",
+        "attention control"
+      ],
+      "universe": "life"
+    },
+    {
+      "slug": "students",
+      "name": "Students & Exam Takers",
+      "description": "Academic students, professional exam candidates, and certification testers",
+      "tags": [
+        "test performance",
+        "working memory",
+        "time pressure management"
+      ],
+      "universe": "life"
+    },
+    {
+      "slug": "lawyers",
+      "name": "Trial Lawyers",
+      "description": "Litigators, trial attorneys, and courtroom advocates",
+      "tags": [
+        "rapid case analysis",
+        "argument construction",
+        "pressure arguments"
+      ],
+      "universe": "society"
+    },
+    {
+      "slug": "radiologists",
+      "name": "Radiologists",
+      "description": "Medical imaging specialists, diagnostic radiologists, and imaging analysts",
+      "tags": [
+        "image pattern recognition",
+        "diagnosis speed",
+        "false positive reduction"
+      ],
+      "universe": "science"
+    },
+    {
+      "slug": "remote-software-engineers",
+      "name": "Remote Software Engineers",
+      "description": "Remote Software Engineers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "software-engineers",
+        "remote",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "tech",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-15T19:21:09.115Z"
+    },
+    {
+      "slug": "field-software-engineers",
+      "name": "Field Software Engineers",
+      "description": "Field Software Engineers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "software-engineers",
+        "field",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "tech",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-15T19:21:09.115Z"
+    },
+    {
+      "slug": "senior-software-engineers",
+      "name": "Senior Software Engineers",
+      "description": "Senior Software Engineers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "software-engineers",
+        "senior",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "tech",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-15T19:21:43.714Z"
+    },
+    {
+      "slug": "junior-software-engineers",
+      "name": "Junior Software Engineers",
+      "description": "Junior Software Engineers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "software-engineers",
+        "junior",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "tech",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-15T19:21:43.714Z"
+    }
+  ]
+}
