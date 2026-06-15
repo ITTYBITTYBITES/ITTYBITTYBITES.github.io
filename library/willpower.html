@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Willpower — Habit Formation Analysis | The 2-Second Witness</title>
+<meta name="description" content="Deep dive analysis of Willpower by Roy Baumeister as a habit formation resource for cognitive speed and bias override training.">
+<meta name="keywords" content="neuroplasticity training, automatic skill acquisition, routine optimization, deliberate practice habits">
+<meta name="author" content="ITTY BITTY BITES">
+<link rel="canonical" href="https://ittybittybites.github.io/library/willpower.html">
+
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ittybittybites.github.io/library/willpower.html">
+<meta property="og:title" content="Willpower — Habit Formation Analysis | The 2-Second Witness">
+<meta property="og:description" content="Deep dive analysis of Willpower by Roy Baumeister as a habit formation resource for cognitive speed and bias override training.">
+<meta property="og:image" content="https://ittybittybites.github.io/og-cover.png">
+<meta property="og:site_name" content="The 2-Second Witness">
+<meta property="article:section" content="Habit Formation">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://ittybittybites.github.io/library/willpower.html">
+<meta name="twitter:title" content="Willpower — Habit Formation Analysis | The 2-Second Witness">
+<meta name="twitter:description" content="Deep dive analysis of Willpower by Roy Baumeister as a habit formation resource for cognitive speed and bias override training.">
+<meta name="twitter:image" content="https://ittybittybites.github.io/og-cover.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@400;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        gold: { 400: '#facc15', 500: '#eab308' },
+        slate: { 950: '#020617', 900: '#0f172a', 800: '#1e293b' },
+        zinc: { 950: '#09090b', 900: '#18181b' },
+        emerald: { 400: '#34d399', 500: '#10b981', 950: '#022c22' },
+        cyan: { 400: '#22d3ee', 500: '#06b6d4', 950: '#083344' }
+      },
+      fontFamily: {
+        mono: ['JetBrains Mono', 'monospace'],
+        display: ['Orbitron', 'sans-serif'],
+        body: ['Inter', 'sans-serif']
+      }
+    }
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Willpower",
+  "description": "Deep dive analysis of Willpower by Roy Baumeister as a habit formation resource for cognitive speed and bias override training.",
+  "author": {
+    "@type": "Organization",
+    "name": "ITTY BITTY BITES"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "ITTY BITTY BITES"
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://ittybittybites.github.io/library/willpower.html"
+  }
+}
+</script>
+
+<style>
+:root {
+  --bg: #020617;
+  --bg-alt: #09090b;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --cyan: #22d3ee;
+  --emerald: #34d399;
+  --gold: #facc15;
+  --border: rgba(34,211,238,0.12);
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(rgba(34,211,238,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: -1;
+  animation: gridScroll 24s linear infinite;
+}
+@keyframes gridScroll {
+  from { transform: translateY(0); }
+  to { transform: translateY(60px); }
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px);
+  pointer-events: none;
+  z-index: 999;
+}
+.nav-node {
+  position: relative;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  transition: all 0.2s ease;
+  background: rgba(15,23,42,0.6);
+}
+.nav-node:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
+  box-shadow: 0 4px 14px rgba(34,211,238,0.18), inset 0 -1px 0 rgba(34,211,238,0.3);
+  transform: translateY(-1px);
+}
+.nav-node.active {
+  color: var(--emerald);
+  border-color: var(--emerald);
+  background: rgba(52,211,153,0.08);
+  box-shadow: 0 0 16px rgba(52,211,153,0.2), inset 0 -1px 0 rgba(52,211,153,0.4);
+}
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--emerald);
+  color: var(--emerald);
+  padding: 8px 16px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  box-shadow: 0 0 12px rgba(52,211,153,0.15);
+  background: rgba(52,211,153,0.04);
+}
+.article-card {
+  background: rgba(15,23,42,0.85);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.article-card:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 24px rgba(34,211,238,0.1);
+}
+.article-body p {
+  margin-bottom: 1.25rem;
+  color: #94a3b8;
+  line-height: 1.75;
+}
+.article-body strong { color: #f8fafc; }
+.cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 32px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 1px;
+  border: 2px solid var(--gold);
+  color: var(--gold);
+  background: transparent;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.cta-btn:hover {
+  background: var(--gold);
+  color: var(--bg);
+  box-shadow: 0 0 28px rgba(250,204,21,0.35);
+}
+.footer-link { color: var(--muted); transition: color 0.2s; }
+.footer-link:hover { color: var(--cyan); }
+@media (max-width: 640px) {
+  .nav-inner { gap: 6px; }
+  .nav-node { font-size: 9px; padding: 5px 8px; letter-spacing: 1px; }
+  .hero h1 { font-size: 32px; letter-spacing: 2px; }
+}
+</style>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-6P6NPFW4FZ');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1566091161594729" crossorigin="anonymous"></script>
+</head>
+<body class="bg-slate-950 text-slate-50 font-mono leading-relaxed overflow-x-hidden relative antialiased">
+
+<nav class="bg-slate-950/95 border-b border-cyan-400/10 py-3 sticky top-0 z-50 backdrop-blur-md">
+  <div class="nav-inner max-w-[1200px] mx-auto px-5 flex justify-center gap-2 md:gap-3 flex-wrap">
+    <a href="../index.html" class="nav-node">HQ</a>
+    <a href="../stroop-effect.html" class="nav-node">STROOP</a>
+    <a href="../cognitive-biases.html" class="nav-node">BIASES</a>
+    <a href="../decision-making.html" class="nav-node">DECISIONS</a>
+    <a href="../social-engineering.html" class="nav-node">SECURITY</a>
+    <a href="../library.html" class="nav-node">LOCKER</a>
+    <a href="../feed.html" class="nav-node">INTEL FEED</a>
+  </div>
+</nav>
+
+<section class="hero relative min-h-[40vh] flex flex-col justify-center items-center py-20 md:py-24 bg-zinc-950">
+  <div class="max-w-[1100px] mx-auto px-5 text-center relative z-10">
+    <span class="badge mb-6">HABIT FORMATION // FIELD ANALYSIS</span>
+    <h1 class="font-display text-3xl md:text-4xl lg:text-5xl text-cyan-400 tracking-[3px] md:tracking-[5px] font-black uppercase mb-4 drop-shadow-[0_0_40px_rgba(34,211,238,0.35)]">Willpower</h1>
+    <p class="text-slate-300 text-sm md:text-base font-body max-w-2xl mx-auto">Deep dive analysis of Willpower by Roy Baumeister as a habit formation resource for cognitive speed and bias override training.</p>
+  </div>
+</section>
+
+<section class="py-16 md:py-24 relative bg-slate-950">
+  <div class="max-w-[900px] mx-auto px-5 relative z-10">
+    <div class="article-card p-8 md:p-12">
+      <div class="flex flex-wrap gap-3 mb-8">
+        <span class="text-[10px] tracking-[2px] text-slate-950 bg-cyan-400 px-3 py-1 uppercase font-bold">Habit Formation</span>
+        <span class="text-[10px] tracking-[2px] text-cyan-400 uppercase border border-cyan-400/30 px-3 py-1">Roy Baumeister</span>
+      </div>
+
+      <div class="article-body font-body text-sm md:text-base">
+        <p>Willpower by Roy Baumeister operates as a critical resource within the Habit Formation training pipeline. The work deconstructs the mental machinery that governs rapid judgment, attention allocation, and error correction under compressed time windows. For operators training with The 2-Second Witness, this material provides the conceptual scaffolding that transforms isolated trial performance into a reproducible cognitive strategy.</p>
+<p>The central conflict explored across these pages is the friction between automatic processing and deliberate verification. When a priming stimulus enters the decision loop, the untrained brain defaults to the fastest associative match rather than the most accurate one. This is the exact Stroop effect analysis and cognitive interference breakdown that our two-second scenarios weaponize, and the protocols in Willpower teach readers how to interrupt that default before an error is locked in.</p>
+<p>Applied inside the training loop, the principles from Willpower become a field manual for human factor decision error reduction. Whether the scenario involves speed reading, pattern matching, or conflicting verbal cues, the reader learns to recognize the signature of an incoming System 1 trap and deploy a System 2 override. That pause, even if it lasts only a fraction of a second, is the decisive gap that separates correct identification from a committed mistake.</p>
+      </div>
+
+      <div class="mt-10 pt-8 border-t border-cyan-400/10">
+        <p class="text-slate-400 text-xs uppercase tracking-[2px] mb-4">Target Keywords</p>
+        <div class="flex flex-wrap gap-2 mb-8">
+          <span class="text-[10px] text-slate-400 border border-slate-700 px-2 py-1 rounded">neuroplasticity training</span><span class="text-[10px] text-slate-400 border border-slate-700 px-2 py-1 rounded">automatic skill acquisition</span><span class="text-[10px] text-slate-400 border border-slate-700 px-2 py-1 rounded">routine optimization</span><span class="text-[10px] text-slate-400 border border-slate-700 px-2 py-1 rounded">deliberate practice habits</span>
+        </div>
+        <a href="https://www.amazon.com/dp/0143122231/?tag=ittybittybite-20" class="cta-btn w-full md:w-auto" aria-label="Acquire Willpower from Amazon">Acquire from Amazon >></a>
+      </div>
+    </div>
+
+    <div class="text-center mt-12">
+      <a href="../library.html" class="inline-flex items-center justify-center gap-2 px-6 py-3 border border-cyan-400 text-cyan-400 font-mono text-xs tracking-[1px] uppercase hover:bg-cyan-400 hover:text-slate-950 transition-all"><< Return to Locker</a>
+    </div>
+  </div>
+</section>
+
+<footer class="border-t border-cyan-400/10 py-10 text-center text-[10px] text-slate-500 bg-zinc-950">
+  <div class="max-w-[1200px] mx-auto px-5">
+    <p>THE 2-SECOND WITNESS // COGNITIVE TRAINING DIVISION // ITTY BITTY BITES</p>
+    <p class="mt-2"><a href="../index.html" class="footer-link">HQ</a> | <a href="../library.html" class="footer-link">Locker</a> | <a href="../feed.html" class="footer-link">Intel Feed</a> | <a href="../privacy_policy.html" class="footer-link">Privacy Policy</a></p>
+    <p class="mt-2">As an Amazon Associate I earn from qualifying purchases.</p>
+  </div>
+</footer>
+
+</body>
+</html>
