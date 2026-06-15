@@ -1,0 +1,60 @@
+name: Automated Programmatic SEO Engine Build
+
+on:
+  schedule:
+    - cron: '37 4 * * *'
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - 'core-data/**'
+      - 'pipeline-data/**'
+      - 'templates/**'
+      - 'build-engine.js'
+      - 'package.json'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout Repository Code Base
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 1
+
+      - name: Initialize Node.js Environment
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: Install Application Dependencies
+        run: |
+          npm ci
+
+      - name: Execute Programmatic Site Compilation Engine
+        run: node build-engine.js
+        env:
+          NODE_ENV: production
+
+      - name: Configure Git Identity
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+      - name: Automatically Commit and Push Generated Static Assets
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "Automated programmatic index expansion [skip ci]"
+          branch: main
+          file_pattern: |
+            library/*.html
+            intel/*.html
+            sitemap.xml
+            library.html
+          skip_dirty: false
+          commit_options: '--no-verify'
