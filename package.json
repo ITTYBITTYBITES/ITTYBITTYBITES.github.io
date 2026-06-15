@@ -1,0 +1,31 @@
+{
+  "name": "ittybittybites-ssg-engine",
+  "version": "1.0.0",
+  "description": "Automated Programmatic SEO Engine — Static Site Generation Pipeline for The 2-Second Witness",
+  "main": "build-engine.js",
+  "scripts": {
+    "build": "node build-engine.js",
+    "build:library": "node build-engine.js --section=library",
+    "build:intel": "node build-engine.js --section=intel",
+    "build:feeds": "node build-engine.js --section=feeds",
+    "lint": "echo 'No linter configured'",
+    "test": "node build-engine.js --dry-run"
+  },
+  "keywords": [
+    "ssg",
+    "static-site-generator",
+    "programmatic-seo",
+    "github-actions",
+    "cognitive-training"
+  ],
+  "author": "ITTY BITTY BITES",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.6.8",
+    "xmlbuilder2": "^3.1.1",
+    "rss-parser": "^3.13.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
