@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cognitive Arcade - Diagnostic Evaluation Terminal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&display=swap');
+        body {
+            font-family: 'JetBrains+Mono', monospace;
+            background-color: #0b0f19;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #475569;
+        }
+    </style>
+</head>
+<body class="text-slate-100 min-h-screen flex flex-col selection:bg-teal-500 selection:text-slate-900">
+
+    <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur px-6 py-4 flex flex-wrap justify-between items-center gap-4 z-10">
+        <div class="flex items-center space-x-3">
+            <div class="w-3 h-3 rounded-full bg-teal-400 animate-pulse"></div>
+            <h1 class="text-lg font-bold tracking-wider text-slate-200">COGNITIVE.ARCADE // v1.0.0</h1>
+        </div>
+        <nav class="flex items-center space-x-6 text-xs font-bold uppercase tracking-widest text-slate-400">
+            <a href="index.html" class="hover:text-teal-400 transition-colors">Home</a>
+            <a href="library.html" class="hover:text-teal-400 transition-colors">Library</a>
+            <a href="feed.html" class="hover:text-teal-400 transition-colors">Feed</a>
+            <a href="arcade.html" class="text-teal-400 border-b-2 border-teal-400 pb-1">Tactical Arcade</a>
+        </nav>
+    </header>
+
+    <div class="flex-1 flex flex-col md:flex-row overflow-hidden">
+        
+        <aside class="w-full md:w-80 bg-slate-950 border-r border-slate-800 flex flex-col overflow-y-auto custom-scrollbar">
+            <div class="p-4 border-b border-slate-900 bg-slate-900/30">
+                <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500">Diagnostic Core Matrix</span>
+                <p class="text-xs text-slate-400 mt-1">Select an evaluation profile to mount the interactive sandbox loop.</p>
+            </div>
+            <nav class="p-2 space-y-1" id="sidebar-menu">
+                </nav>
+        </aside>
+
+        <main class="flex-1 bg-slate-900/40 p-4 lg:p-6 flex flex-col overflow-y-auto custom-scrollbar">
+            
+            <div class="flex-1 bg-slate-950 border border-slate-800 rounded-xl p-6 flex flex-col justify-between shadow-2xl relative min-h-[520px]">
+                
+                <div class="flex justify-between items-start border-b border-slate-800 pb-4 mb-6">
+                    <div>
+                        <span id="module-id" class="text-xs font-bold text-teal-400 tracking-wider">MODULE_01</span>
+                        <h2 id="module-title" class="text-xl font-bold tracking-tight text-white mt-0.5">---</h2>
+                        <p id="module-desc" class="text-xs text-slate-400 mt-1 max-w-2xl">---</p>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-[10px] text-slate-500 block font-bold uppercase tracking-wider">Metric Logging</span>
+                        <div id="module-score" class="text-sm font-bold text-emerald-400 mt-1">SCORE: 0</div>
+                    </div>
+                </div>
+
+                <div id="sandbox-viewport" class="flex-1 flex flex-col justify-center items-center border border-slate-900 bg-slate-950/50 rounded-lg p-4 relative min-h-[300px]">
+                    </div>
+
+                <div id="monetization-block" class="mt-6 pt-4 border-t border-slate-800 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 bg-slate-900/20 -mx-6 -mb-6 p-6 rounded-b-xl">
+                    <div>
+                        <span class="text-[10px] font-bold tracking-widest uppercase text-slate-500 block">Recommended Cognitive Hardware/Resource</span>
+                        <h4 id="product-title" class="text-xs font-bold text-slate-200 mt-1">---</h4>
+                    </div>
+                    <a id="product-link" href="#" target="_blank" rel="noopener noreferrer" class="px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-bold text-xs uppercase tracking-wider rounded transition-all shadow-md shrink-0">
+                        Acquire Resource &rarr;
+                    </a>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        // GLOBAL MONETIZATION & TRACKING TAG ENGINE
+        let ASSOCIATE_TAG = "cogarcade-20"; // Fallback default tracking parameter
+        
+        // Step 1: Scan execution footprints across local configurations if simulated
+        try {
+            const scripts = document.getElementsByTagName('script');
+            // Scan window context or local storage configurations
+            if(localStorage.getItem('amazon_associate_tag')) {
+                ASSOCIATE_TAG = localStorage.getItem('amazon_associate_tag');
+            }
+        } catch (e) {
+            console.warn("Local storage fallback extraction halted. Reverting to architecture macro tag.", e);
+        }
+
+        // MODULE INDEX SPECIFICATION DATA MODEL
+        const MODULE_REGISTRY = [
+            {
+                id: "MODULE_01",
+                title: "ATTENTIONAL BLINK ASSESSOR",
+                desc: "Rapid-fire character streams (100ms). Track and extract hidden sequential numeric targets buried deep inside structural noise.",
+                asid: "B08BCCT898",
+                prodTitle: "Premium Blue-Light Isolation Eyewear (High Contrast Lens Layer)",
+                type: "dom_rsvpm"
+            },
+            {
+                id: "MODULE_02",
+                title: "STROOP INTERFERENCE CALIBRATOR",
+                desc: "Process complex text-vs-color cognitive conflict pipelines under a continuously diminishing 1.5-second ticking timeline window.",
+                asid: "B08BCCT898",
+                prodTitle: "Premium Blue-Light Isolation Eyewear (Anti-Fatigue Filter)",
+                type: "dom_stroop"
+            },
+            {
+                id: "MODULE_03",
+                title: "SPATIAL MATRIX EXPANSION",
+                desc: "Observe an arrays of blocks flashing coordinates sequentially; duplicate the precise structural trace route without errors.",
+                asid: "0374533555",
+                prodTitle: "Thinking, Fast and Slow by Daniel Kahneman (Paperback Edition)",
+                type: "canvas_spatial"
+            },
+            {
+                id: "MODULE_04",
+                title: "N-BACK SENTINEL LOG",
+                desc: "A continuous sensory stream tracking matrix. Flash response triggers if active coordinate layout matches target status exactly 2 steps prior.",
+                asid: "0374533555",
+                prodTitle: "Thinking, Fast and Slow by Daniel Kahneman (Analytical Mindset Standard)",
+                type: "dom_nback"
+            },
+            {
+                id: "MODULE_05",
+                title: "SACCADIC RAPID TARGET ACQUISITION",
+                desc: "High-speed peripheral target elements manifest randomly across spatial coordinates. Tracks microsecond precision visual mechanics.",
+                asid: "B08BCCT898",
+                prodTitle: "Premium Blue-Light Isolation Eyewear (Full Radiation Shield)",
+                type: "canvas_saccadic"
+            },
+            {
+                id: "MODULE_06",
+                title: "TACHISTOSCOPE RECOGNITION MATRIX",
+                desc: "Complex character strings display for ultra-low millisecond intervals (16-30ms). Reconstruct string values from iconic sensory buffer storage.",
+                asid: "B08BCCT898",
+                prodTitle: "Premium Blue-Light Isolation Eyewear (Glare Suppression Set)",
+                type: "dom_tachisto"
+            },
+            {
+                id: "MODULE_07",
+                title: "WORKING MEMORY CALIBRATION CHURN",
+                desc: "Solve rapidly changing mathematical operations while structural alphanumeric noise matrices flash directly in the peripheral margins.",
+                asid: "0374533555",
+                prodTitle: "Thinking, Fast and Slow by Daniel Kahneman (System 1 & System 2 Study)",
+                type: "dom_mathchurn"
+            },
+            {
+                id: "MODULE_08",
+                title: "SHIFTING ATTENTIONAL ATTRIBUTE SELECTOR",
+                desc: "Match objects rapidly against a master card. The governing verification constraint switches dynamically between 'Color Pattern' and 'Shape Vector'.",
+                asid: "0374533555",
+                prodTitle: "Thinking, Fast and Slow by Daniel Kahneman (Cognitive bias Framework)",
+                type: "dom_shifting"
+            },
+            {
+                id: "MODULE_09",
+                title: "SIGNAL DETECTION FILTER",
+                desc: "Analyze visual noise environments to catch and trigger on faint, coherently moving particle arrays buried within heavy randomized scatter matrices.",
+                asid: "B08BCCT898",
+                prodTitle: "Premium Blue-Light Isolation Eyewear (Contrast Amplification Glass)",
+                type: "canvas_signal"
+            },
+            {
+                id: "MODULE_10",
+                title: "METRONOMIC RHYTHM ANCHOR",
+                desc: "Tap the input tracking terminal to cleanly lock onto structural visual offset cadences—evaluating structural microsecond processing clocks.",
+                asid: "0374533555",
+                prodTitle: "Thinking, Fast and Slow by Daniel Kahneman (Behavioral Economics Canon)",
+                type: "canvas_rhythm"
+            }
+        ];
+
+        // GLOBAL APPLICATION CONTEXT ENGINE STATE
+        let activeModuleIndex = 0;
+        let activeEngineLoop = null; // Holds teardown reference handles for runtime intervals/timeouts/animationframes
+        let gameScore = 0;
+
+        // SIDEBAR INITIALIZATION ENGINE
+        function compileSidebarMatrix() {
+            const menuContainer = document.getElementById('sidebar-menu');
+            menuContainer.innerHTML = '';
+            
+            MODULE_REGISTRY.forEach((mod, idx) => {
+                const btn = document.createElement('button');
+                btn.className = `w-full text-left p-3 rounded-lg text-xs font-bold tracking-wide transition-all uppercase mb-1 flex items-center justify-between border ${
+                    idx === activeModuleIndex 
+                    ? 'bg-teal-500/10 text-teal-400 border-teal-500/30 shadow-sm shadow-teal-500/5' 
+                    : 'text-slate-400 border-transparent hover:bg-slate-900 hover:text-slate-200'
+                }`;
+                btn.innerHTML = `
+                    <div class="flex flex-col">
+                        <span class="text-[9px] text-slate-500 font-mono tracking-widest">${mod.id}</span>
+                        <span class="mt-0.5 truncate max-w-[200px]">${mod.title}</span>
+                    </div>
+                    <span class="text-[10px] text-slate-600 font-mono">&rarr;</span>
+                `;
+                btn.addEventListener('click', () => swapEvaluationModule(idx));
+                menuContainer.appendChild(btn);
+            });
+        }
+
+        // ECOMMERCE LINK COMPILER 
+        function updateMonetizationAnchors(mod) {
+            const titleElem = document.getElementById('product-title');
+            const linkElem = document.getElementById('product-link');
+            
+            titleElem.textContent = mod.prodTitle;
+            linkElem.href = `https://www.amazon.com/dp/${mod.asid}/?tag=${ASSOCIATE_TAG}`;
+        }
+
+        // SYSTEM TEARDOWN FOR GRAPHICS PIPELINE AND DOM INTERVALS
+        function cleanActiveEngineLoop() {
+            if (activeEngineLoop) {
+                if (activeEngineLoop.intervals) activeEngineLoop.intervals.forEach(clearInterval);
+                if (activeEngineLoop.timeouts) activeEngineLoop.timeouts.forEach(clearTimeout);
+                if (activeEngineLoop.animationFrame) cancelAnimationFrame(activeEngineLoop.animationFrame);
+                if (activeEngineLoop.destroyListeners) activeEngineLoop.destroyListeners();
+            }
+            activeEngineLoop = { intervals: [], timeouts: [], animationFrame: null, destroyListeners: () => {} };
+            gameScore = 0;
+            updateScoreUI();
+        }
+
+        function updateScoreUI() {
+            document.getElementById('module-score').textContent = `SCORE: ${gameScore}`;
+        }
+
+        // SWAP MODULE EXECUTION ROUTER
+        function swapEvaluationModule(index) {
+            cleanActiveEngineLoop();
+            activeModuleIndex = index;
+            compileSidebarMatrix();
+            
+            const targetMod = MODULE_REGISTRY[index];
+            document.getElementById('module-id').textContent = targetMod.id;
+            document.getElementById('module-title').textContent = targetMod.title;
+            document.getElementById('module-desc').textContent = targetMod.desc;
+            
+            updateMonetizationAnchors(targetMod);
+            
+            const viewport = document.getElementById('sandbox-viewport');
+            viewport.innerHTML = ''; // Wipe DOM canvas traces clean
+            
+            // ROUTE DETECTED COMPONENT STRATEGY
+            switch (targetMod.type) {
+                case "dom_rsvpm": mountRSVPLoop(viewport); break;
+                case "dom_stroop": mountStroopLoop(viewport); break;
+                case "canvas_spatial": mountSpatialLoop(viewport); break;
+                case "dom_nback": mountNBackLoop(viewport); break;
+                case "canvas_saccadic": mountSaccadicLoop(viewport); break;
+                case "dom_tachisto": mountTachistoLoop(viewport); break;
+                case "dom_mathchurn": mountMathChurnLoop(viewport); break;
+                case "dom_shifting": mountShiftingLoop(viewport); break;
+                case "canvas_signal": mountSignalLoop(viewport); break;
+                case "canvas_rhythm": mountRhythmLoop(viewport); break;
+            }
+        }
+
+        // =====================================================================
+        // ENGINE LOGIC MODULE 01: ATTENTIONAL BLINK ASSESSOR
+        // =====================================================================
+        function mountRSVPLoop(container) {
+            container.innerHTML = `
+                <div class="text-center w-full max-w-xs">
+                    <div id="rsvp-char" class="text-6xl font-bold font-mono tracking-tight text-white mb-6 h-16 flex items-center justify-center">READY</div>
+                    <button id="rsvp-start" class="w-full bg-teal-600 hover:bg-teal-500 text-slate-950 font-bold text-xs uppercase p-3 tracking-widest rounded transition-all">Engage Character Capture</button>
+                    <div id="rsvp-input-zone" class="hidden mt-4 space-y-2">
+                        <p class="text-xs text-slate-400">Input any sequence numeric characters identified in correct chronology:</p>
+                        <input type="text" id="rsvp-ans" class="bg-slate-900 border border-slate-700 rounded p-2 text-center text-white w-full tracking-widest focus:outline-none focus:border-teal-500 uppercase font-mono" maxlength="2">
+                        <button id="rsvp-submit" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs uppercase p-2 rounded transition-all">Submit Evaluation</button>
+                    </div>
+                </div>
+            `;
+            
+            const charBox = document.getElementById('rsvp-char');
+            const startBtn = document.getElementById('rsvp-start');
+            const inputZone = document.getElementById('rsvp-input-zone');
+            const ansInput = document.getElementById('rsvp-ans');
+            const submitBtn = document.getElementById('rsvp-submit');
+            
+            let targetsGenerated = [];
+            
+            startBtn.addEventListener('click', () => {
+                startBtn.classList.add('hidden');
+                inputZone.classList.add('hidden');
+                ansInput.value = '';
+                targetsGenerated = [];
+                
+                const sequence = [];
+                const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+                const nums = "23456789";
+                
+                for(let i=0; i<18; i++) sequence.push(chars[Math.floor(Math.random()*chars.length)]);
+                
+                // Inject targets with explicit blink spacing index offset
+                const idx1 = 4 + Math.floor(Math.random()*3);
+                const idx2 = idx1 + 2 + Math.floor(Math.random()*3); 
+                
+                targetsGenerated.push(nums[Math.floor(Math.random()*nums.length)]);
+                targetsGenerated.push(nums[Math.floor(Math.random()*nums.length)]);
+                
+                sequence[idx1] = targetsGenerated[0];
+                sequence[idx2] = targetsGenerated[1];
+                
+                let currentFrame = 0;
+                const intervalId = setInterval(() => {
+                    if (currentFrame < sequence.length) {
+                        charBox.textContent = sequence[currentFrame];
+                        currentFrame++;
+                    } else {
+                        clearInterval(intervalId);
+                        charBox.textContent = "?";
+                        inputZone.classList.remove('hidden');
+                        ansInput.focus();
+                    }
+                }, 100);
+                activeEngineLoop.intervals.push(intervalId);
+            });
+
+            submitBtn.addEventListener('click', () => {
+                const guess = ansInput.value.trim();
+                const actual = targetsGenerated.join('');
+                if (guess === actual) {
+                    gameScore += 100;
+                    charBox.textContent = "SUCCESS";
+                    charBox.className = "text-6xl font-bold font-mono tracking-tight text-emerald-400 mb-6 h-16 flex items-center justify-center";
+                } else {
+                    charBox.textContent = `FAIL [${actual}]`;
+                    charBox.className = "text-3xl font-bold font-mono tracking-tight text-rose-500 mb-6 h-16 flex items-center justify-center";
+                }
+                updateScoreUI();
+                startBtn.classList.remove('hidden');
+                startBtn.textContent = "Restart Diagnostic Module";
+                inputZone.classList.add('hidden');
+            });
+        }
+
+        // =====================================================================
+        // ENGINE LOGIC MODULE 02: STROOP INTERFERENCE CALIBRATOR
+        // =====================================================================
+        function mountStroopLoop(container) {
+            container.innerHTML = `
+                <div class="text-center w-full max-w-md">
+                    <div class="relative w-full h-2 bg-slate-800 rounded-full overflow-hidden mb-8">
+                        <div id="stroop-progress" class="absolute top-0 left-0 h-full bg-amber-500 w-full transition-all duration-100 linear"></div>
+                    </div>
+                    <div id="stroop-word" class="text-5xl font-extrabold tracking-wide mb-8 h-12">READY</div>
+                    <div class="grid grid-cols-2 gap-3" id="stroop-buttons">
+                        </div>
+                </div>
+            `;
+            
+            const wordEl = document.getElementById('stroop-word');
+            const progEl = document.getElementById('stroop-progress');
+            const btnContainer = document.getElementById('stroop-buttons');
+            
+            const options = [
+                { name: "RED", color: "text-red-500", hex: "#ef4444" },
+                { name: "GREEN", color: "text-emerald-500", hex: "#10b981" },
+                { name: "BLUE", color: "text-blue-500", hex: "#3b82f6" },
+                { name: "YELLOW", color: "text-amber-400", hex: "#fbbf24" }
+            ];
+            
+            let correctOption = null;
+            let timerId = null;
+            let currentWidth = 100;
+            
+            function nextStroop() {
+                clearInterval(timerId);
+                currentWidth = 100;
+                progEl.style.width = `100%`;
+                
+                const textIndex = Math.floor(Math.random() * options.length);
+                const colorIndex = Math.floor(Math.random() * options.length);
+                
+                correctOption = options[colorIndex];
+                wordEl.textContent = options[textIndex].name;
+                
+                // Clear out text styling cleanly
+                wordEl.className = `text-5xl font-extrabold tracking-wide mb-8 h-12 ${options[colorIndex].color}`;
+                
+                timerId = setInterval(() => {
+                    currentWidth -= 6.66; // Exhaust timeline matrix over roughly 1500ms
+                    if(currentWidth <= 0) {
+                        clearInterval(timerId);
+                        evaluateChoice(null); // Time out fault failure
+                    } else {
+                        progEl.style.width = `${currentWidth}%`;
+                    }
+                }, 100);
+                activeEngineLoop.intervals.push(timerId);
+            }
+            
+            function evaluateChoice(chosenHex) {
+                if(chosenHex && chosenHex === correctOption.hex) {
+                    gameScore += 25;
+                    updateScoreUI();
+                    nextStroop();
+                } else {
+                    clearInterval(timerId);
+                    wordEl.textContent = "TERMINATED";
+                    wordEl.className = "text-3xl font-extrabold tracking-wide mb-8 h-12 text-rose-500";
+                    btnContainer.innerHTML = `<button id='stroop-reset' class='col-span-2 p-3 bg-slate-800 rounded font-bold text-xs uppercase tracking-widest hover:bg-slate-700'>Re-initialize Core</button>`;
+                    document.getElementById('stroop-reset').addEventListener('click', () => {
+                        initStroopView();
+                        nextStroop();
+                    });
+                }
+            }
+            
+            function initStroopView() {
+                btnContainer.innerHTML = '';
+                options.forEach(opt => {
+                    const b = document.createElement('button');
+                    b.className = "p-4 bg-slate-900 border border-slate-800 rounded-lg text-sm font-bold tracking-wider hover:border-slate-600 active:scale-[0.98] transition-all";
+                    b.textContent = opt.name;
+                    b.addEventListener('click', () => evaluateChoice(opt.hex));
+                    btnContainer.appendChild(b);
+                });
+            }
+            
+            initStroopView();
+            wordEl.textContent = "CALIBRATE SYSTEM";
+            wordEl.className = "text-2xl font-bold tracking-wide mb-8 h-12 text-teal-400 flex items-center justify-center cursor-pointer";
+            wordEl.addEventListener('click', function startHandler() {
+                wordEl.removeEventListener('click', startHandler);
+                nextStroop();
+            });
+        }
+
+        // =====================================================================
+        // ENGINE LOGIC MODULE 03: SPATIAL MATRIX EXPANSION
+        // =====================================================================
+        function mountSpatialLoop(container) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 320;
+            canvas.height = 320;
+            canvas.className = "border border-slate-800 rounded bg-slate-950 max-w-full cursor-pointer";
+            container.appendChild(canvas);
+            
+            const ctx = canvas.getContext('2d');
+            const gridSize = 3;
+            const tileSize = 90;
+            const gap = 12;
+            const offset = 16;
+            
+            let sequence = [];
+            let userSequence = [];
+            let currentLevel = 2;
+            let mode = "WATCH"; // WATCH, INPUT, FAILED
+            let flashTile = null;
+            
+            function getTileRect(row, col) {
+                return {
+                    x: offset + col * (tileSize + gap),
+                    y: offset + row * (tileSize + gap),
+                    w: tileSize,
+                    h: tileSize
+                };
+            }
+            
+            function render() {
+                ctx.clearRect(0,0, canvas.width, canvas.height);
+                for(let r=0; r<gridSize; r++) {
+                    for(let c=0; c<gridSize; c++) {
+                        const rect = getTileRect(r,c);
+                        const isFlash = flashTile && flashTile.row === r && flashTile.col === c;
+                        
+                        if(mode === "FAILED") {
+                            ctx.fillStyle = "#f43f5e";
+                        } else if(isFlash) {
+                            ctx.fillStyle = "#2dd4bf";
+                        } else {
+                            ctx.fillStyle = "#1e293b";
+                        }
+                        ctx.fillRect(rect.x, rect.y, rect.w, rect.h);
+                        
+                        // Structural node framing
+                        ctx.strokeStyle = "#334155";
+                        ctx.lineWidth = 1;
+                        ctx.strokeRect(rect.x, rect.y, rect.w, rect.h);
+                    }
+                }
+                
+                if (mode === "WATCH") {
+                    ctx.fillStyle = "rgba(11, 15, 25, 0.6)";
+                    ctx.fillRect(0, 0, canvas.width, 24);
+                    ctx.fillStyle = "#fbbf24";
+                    ctx.font = "bold 10px monospace";
+                    ctx.fillText("OBSERVE VECTOR FLASH PATHWAY", 15, 16);
+                } else if(mode === "INPUT") {
+                    ctx.fillStyle = "rgba(11, 15, 25, 0.6)";
+                    ctx.fillRect(0, 0, canvas.width, 24);
+                    ctx.fillStyle = "#34d399";
+                    ctx.font = "bold 10px monospace";
+                    ctx.fillText("DUPLICATE SPATIAL MATRIX TRACE", 15, 16);
+                } else {
+                    ctx.fillStyle = "#ffffff";
+                    ctx.font = "bold 12px monospace";
+                    ctx.fillText("FAILURE DETECTED. CLICK REBOOT.", 40, canvas.height/2);
+                }
+            }
+            
+            function triggerSequence() {
+                mode = "WATCH";
+                userSequence = [];
+                sequence = [];
+                for(let i=0; i<currentLevel; i++) {
+                    sequence.push({
+                        row: Math.floor(Math.random()*gridSize),
+                        col: Math.floor(Math.random()*gridSize)
+                    });
+                }
+                
+                let seqIdx = 0;
+                function playNext() {
+                    if(seqIdx < sequence.length) {
+                        flashTile = sequence[seqIdx];
+                        render();
+                        const t1 = setTimeout(() => {
+                            flashTile = null;
+                            render();
+                            seqIdx++;
+                            const t2 = setTimeout(playNext, 200);
+                            activeEngineLoop.timeouts.push(t2);
+                        }, 500);
+                        activeEngineLoop.timeouts.push(t1);
+                    } else {
+                        mode = "INPUT";
+                        render();
+                    }
+                }
+                playNext();
+            }
+            
+            canvas.addEventListener('click', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const mx = e.clientX - rect.left;
+                const my = e.clientY - rect.top;
+                
+                if(mode === "FAILED") {
+                    currentLevel = 2;
+                    triggerSequence();
+                    return;
+                }
+                if(mode !== "INPUT") return;
+                
+                for(let r=0; r<gridSize; r++) {
+                    for(let c=0; c<gridSize; c++) {
+                        const tRect = getTileRect(r,c);
+                        if(mx >= tRect.x && mx <= tRect.x+tRect.w && my >= tRect.y && my <= tRect.y+tRect.h) {
+                            flashTile = {row: r, col: c};
+                            render();
+                            const tOut = setTimeout(() => { flashTile = null; render(); }, 150);
+                            activeEngineLoop.timeouts.push(tOut);
+                            
+                            const target = sequence[userSequence.length];
+                            if(target.row === r && target.col === c) {
+                                userSequence.push({row:r, col:c});
+                                if(userSequence.length === sequence.length) {
+                                    gameScore += currentLevel * 50;
+                                    updateScoreUI();
+                                    currentLevel++;
+                                    const tNext = setTimeout(triggerSequence, 800);
+                                    activeEngineLoop.timeouts.push(tNext);
+                                }
+                            } else {
+                                mode = "FAILED";
+                                render();
+                            }
+                            return;
+                        }
+                    }
+                }
+            });
+            
+            triggerSequence();
+        }
+
+        // =====================================================================
+        // ENGINE LOGIC MODULE 04: N-BACK SENTINEL LOG
+        // =====================================================================
+        function mountNBackLoop(container) {
+            container.innerHTML = `
+                <div class="text-center w-full max-w-sm">
+                    <p class="text-xs text-slate-400 mb-4">Target Condition: Active symbol matches the structural state exactly <span class="text-teal-400 font-bold">2 steps prior</span>.</p>
+                    <div class="grid grid-cols-3 gap-4 mb-6">
+                        <div id="nb-0" class="h-20 bg-slate-900 border border-slate-800 rounded flex items-center justify-center text-2xl font-bold transition-all text-slate-700">A</div>
+                        <div id="nb-1" class="h-20 bg-slate-900 border border-slate-800 rounded flex items-center justify-center text-2xl font-bold transition-all text-slate-700">B</div>
+                        <div id="nb-2" class="h-20 bg-slate-900 border border-slate-800 rounded flex items-center justify-center text-2xl font-bold transition-all text-slate-700">C</div>
+                    </div>
+                    <button id="nb-match" class="w-full bg-teal-600 hover:bg-teal-500 text-slate-950 font-bold p-4 rounded text-xs uppercase tracking-widest active:scale-[0.99] transition-all">MATCH DETECTED</button>
+                </div>
+            `;
+            
+            const nodes = [document.getElementById('nb-0'), document.getElementById('nb-1'), document.getElementById('nb-2')];
+            const matchBtn = document.getElementById('nb-match');
+            const history = [];
+            let activeIndex = -1;
+            let stepHandled = false;
+            
+            function pipelineStep() {
+                // Clear state visualization indicators safely
+                nodes.forEach(n => {
+                    n.className = "h-20 bg-slate-900 border border-slate-800 rounded flex items-center justify-center text-2xl font-bold text-slate-700";
+                    n.textContent = "-";
+                });
+                
+                // Track missing response frames
+                if(!stepHandled && history.length >= 3) {
+                    const pastTarget = history[history.length - 3];
+                    const currentPos = history[history.length - 1];
+                    if (pastTarget === currentPos) {
+                        gameScore = Math.max(0, gameScore - 50);
+                        updateScoreUI();
+                    }
+                }
+                
+                stepHandled = false;
+                
+                // Force a calculated 35% probability of historical collision pattern match
+                let nextNodeIdx = Math.floor(Math.random() * 3);
+                if(history.length >= 2 && Math.random() < 0.35) {
+                    nextNodeIdx = history[history.length - 2];
+                }
+                
+                history.push(nextNodeIdx);
+                activeIndex = nextNodeIdx;
+                
+                const labels = ["Ω", "Ψ", "Φ"];
+                const targetNode = nodes[nextNodeIdx];
+                targetNode.textContent = labels[nextNodeIdx];
+                targetNode.className = "h-20 bg-teal-500/10 border-teal-500 text-teal-400 rounded flex items-center justify-center text-3xl font-extrabold shadow-sm";
+            }
+            
+            matchBtn.addEventListener('click', () => {
+                if(stepHandled) return; // Prevent continuous micro-input spams
+                stepHandled = true;
+                
+                if(history.length < 3) {
+                    gameScore = Math.max(0, gameScore - 25);
+                } else {
+                    const current = history[history.length - 1];
+                    const compare = history[history.length - 3];
+                    if(current === compare) {
+                        gameScore += 100;
+                        nodes[activeIndex].className = "h-20 bg-emerald-500/20 border-emerald-500 text-emerald-400 rounded flex items-center justify-center text-3xl font-extrabold shadow-md";
+                    } else {
+                        gameScore = Math.max(0, gameScore - 50);
+                        nodes[activeIndex].className = "h-20 bg-rose-500/20 border-rose-500 text-rose-500 rounded flex items-center justify-center text-3xl font-extrabold shadow-md";
+                    }
+                }
+                updateScoreUI();
+            });
+            
+            pipelineStep();
+            const logInterval = setInterval(pipelineStep, 2000);
+            activeEngineLoop.intervals.push(logInterval);
+        }
+
+        // =====================================================================
+        // ENGINE LOGIC MODULE 05: SACCADIC RAPID TARGET ACQUISITION
+        // =====================================================================
+        function mountSaccadicLoop(container) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 440;
+            canvas.height = 300;
+            canvas.className = "border border-slate-800 rounded bg-slate-950 max-w-full cursor-crosshair";
+            container.appendChild(canvas);
+            
+            const ctx = canvas.getContext('2d');
+            let targetX = 0;
+            let targetY = 0;
+            let radius = 8;
+            let lastSpawnTime = Date.now();
+            
+            function relocateTarget() {
+                targetX = radius + Math.random() * (canvas.width - radius * 2);
+                targetY = radius + Math.random() * (canvas.height - radius * 2);
+                lastSpawnTime = Date.now();
+            }
+            
+            function loop() {
+                ctx.clearRect(0,0, canvas.width, canvas.height);
+                
+                // Track degradation timeline rules
+                const elapsed = Date.now() - lastSpawnTime;
+                if(elapsed > 1200) {
+                    relocateTarget();
+                }
+                
+                // Draw calibration network reticle
+                ctx.strokeStyle = "#1e293b";
+                ctx.lineWidth = 1;
+                ctx.beginPath(); ctx.moveTo(canvas.width/2, 0); ctx.lineTo(canvas.width/2, canvas.height); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(0, canvas.height/2); ctx.lineTo(canvas.width, canvas.height/2); ctx.stroke();
+                
+                // Draw target array node configuration
+                ctx.fillStyle = "#ef4444";
+                ctx.beginPath();
+                ctx.arc(targetX, targetY, radius, 0, Math.PI * 2);
+                ctx.fill();
+                
+                // Accentuating dynamic acquisition tracker ring
+                ctx.strokeStyle = "rgba(239, 68, 68, 0.4)";
+                ctx.lineWidth = 2;
+                ctx.beginPath();
+                ctx.arc(targetX, targetY, radius + (elapsed / 30), 0, Math.PI * 2);
+                ctx.stroke();
+                
+                activeEngineLoop.animationFrame = requestAnimationFrame(loop);
+            }
+            
+            canvas.addEventListener('mousedown', (e) => {
+                const rect = canvas.getBoundingClientRect();
+                const mx = e.clientX - rect.left;
+                const my = e.clientY - rect.top;
+                
+                const dist = Math.hypot(mx - targetX, my - targetY);
+                if (dist <= radius + 12) {
+                    gameScore += 40;
+                    relocateTarget();
+                } else {
+                    gameScore = Math.max(0, gameScore - 15);
+                }
+                updateScoreUI();
+            });
+            
+            relocateTarget();
+            loop();
+        }
+
+        // =====================================================================
+        // ENGINE LOGIC MODULE 06: TACHISTOSCOPE RECOGNITION MATRIX
+        // =====================================================================
+        function mountTachistoLoop(container) {
+            container.innerHTML = `
+                <div class="text-center w-full max-w-xs">
+                    <div id="t-display" class="bg-slate-900 border border-slate-800 rounded p-6 text-3xl font-bold tracking-widest text-white h-20 flex items-center justify-center font-mono mb-6 shadow-inner">READY</div>
+                    <button id="t-flash" class="w-full bg-teal-600 hover:bg-teal-500 text-slate-950 font-bold p-3 rounded text-xs uppercase tracking-widest transition-all mb-4">Trigger Optical Flash</button>
+                    <div id="t-input-block" class="hidden space-y-2">
+                        <input type="text" id="t-user-input" class="bg-slate-950 border border-slate-700 text-center rounded p-2 text-white w-full uppercase tracking-widest font-mono focus:outline-none focus:border-teal-500" placeholder="ENTER ARRAY">
+                        <button id="t-verify" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold p-2 text-xs uppercase tracking-widest rounded">Verify Array</button>
+                    </div>
+                </div>
+            `;
+            
+            const display = document.getElementById('t-display');
+            const flashBtn = document.getElementById('t-flash');
+            const inputBlock = document.getElementById('t-input-block');
+            const userInput = document.getElementById('t-user-input');
+            const verifyBtn = document.getElementById('t-verify');
+            
+            let generatedString = "";
+            
+            flashBtn.addEventListener('click', () => {
+                inputBlock.classList.add('hidden');
+                userInput.value = '';
+                
+                const dataset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+                generatedString = "";
+                for(let i=0; i<5; i++) {
+                    generatedString += dataset[Math.floor(Math.random() * dataset.length)];
+                }
+                
+                display.textContent = generatedString;
+                
+                // Hardcoded 25 millisecond Tachistoscopic visual boundary limit parameters
+                const outTimeout = setTimeout(() => {
+                    display.textContent = "#####";
+                    inputBlock.classList.remove('hidden');
+                    userInput.focus();
+                }, 25);
+                activeEngineLoop.timeouts.push(outTimeout);
+            });
+            
+            verifyBtn.addEventListener('click', () => {
+                const cleanInput = userInput.value.trim().toUpperCase();
+                if(cleanInput === generatedString) {
+                    gameScore += 150;
+                    display.textContent = "VALIDATED";
+                    display.className = "bg-slate-900 border border-slate-800 rounded p-6 text-2xl font-bold tracking-widest text-emerald-400 h-20 flex items-center justify-center font-mono mb-6";
+                } else {
+                    display.textContent = `ERROR: ${generatedString}`;
+                    display.className = "bg-slate-900 border border-slate-800 rounded p-6 text-lg font-bold tracking-widest text-rose-500 h-20 flex items-center justify-center font-mono mb-6";
+                }
+                updateScoreUI();
+                inputBlock.classList.add('hidden');
+            });
+        }
+
+        // =====================================================================
+        // ENGINE LOGIC MODULE 07: WORKING MEMORY CALIBRATION CHURN
+        // =====================================================================
+        function mountMathChurnLoop(container) {
+            container.innerHTML = `
+                <div class="w-full max-w-md flex flex-col md:flex-row gap-4 items-center relative">
+                    <div class="absolute left-0 text-[10px] text-slate-700 select-none font-mono pointer-events-none uppercase hidden md:block">
+                        X92-FD9<br>K74-PLQ<br>M11-ZXC<br>P02-VBN
+                    </div>
+                    <div class="absolute right-0 text-[10px] text-slate-700 select-none font-mono pointer-events-none uppercase hidden md:block text-right">
+                        010101<br>110010<br>001101<br>111100
+                    </div>
+                    <div class="mx-auto text-center bg-slate-950 p-6 rounded-xl border border-slate-800 w-full max-w-xs z-10">
+                        <div id="churn-eq" class="text-3xl font-extrabold text-white mb-6 tracking-tight h-10 flex items-center justify-center font-mono">---</div>
+                        <input type="number" id="churn-ans" class="bg-slate-900 border border-slate-700 rounded p-3 text-center text-xl text-white w-full font-mono focus:outline-none focus:border-teal-500 mb-3" placeholder="?">
+                        <button id="churn-submit" class="w-full bg-teal-600 hover:bg-teal-500 text-slate-950 font-bold p-3 rounded text-xs uppercase tracking-widest transition-all">Submit Solution</button>
+                    </div>
+                </div>
+            `;
+            
+            const eqBox = document.getElementById('churn-eq');
+            const ansInput = document.getElementById('churn-ans');
+            const submitBtn = document.getElementById('churn-submit');
+            
+            let currentSolution = 0;
+            
+            function generateEquation() {
+                const val1 = 10 + Math.floor(Math.random() * 89);
+                const val2 = 10 + Math.floor(Math.random() * 89);
+                const operators = ['+', '-', '*'];
+                const activeOp = operators[Math.floor(Math.random() * 2)]; // Limit to + and - for fast cognitive arithmetic constraints
+                
+                if(activeOp === '+') {
+                    currentSolution = val1 + val2;
+                } else {
+                    currentSolution = val1 - val2;
+                }
+                
+                eqBox.textContent = `${val1} ${activeOp} ${val2}`;
+                ansInput.value = '';
+                ansInput.focus();
+            }
+            
+            submitBtn.addEventListener('click', () => {
+                const userVal = parseInt(ansInput.value, 10);
+                if(userVal === currentSolution) {
+                    gameScore += 60;
+                } else {
+                    gameScore = Math.max(0, gameScore - 30);
+                }
+                updateScoreUI();
+                generateEquation();
+            });
+            
+            ansInput.addEventListener('keydown', (e) => {
+                if(e.key === 'Enter') submitBtn.click();
+            });
+            
+            generateEquation();
+        }
+
+        // =====================================================================
+        // ENGINE LOGIC MODULE 08: SHIFTING ATTENTIONAL ATTRIBUTE SELECTOR
+        // =====================================================================
+        function mountShiftingLoop(container) {
+            container.innerHTML = `
+                <div class="text-center w-full max-w-sm">
+                    <div class="mb-4 bg-slate-900 border border-slate-800 p-2 rounded flex justify-between items-center px-4">
+                        <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400">ACTIVE RULE LAYER:</span>
+                        <span id="shift-rule" class="text-xs font-extrabold text-amber-400 tracking-widest uppercase bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">COLOR PATTERN</span>
+                    </div>
+                    <div class="bg-slate-950 border border-slate-800 rounded-xl p-4 mb-6 flex flex-col items-center justify-center">
+                        <span class="text-[10px] text-slate-500 block uppercase font-mono tracking-wider mb-2">Target Match Criteria Element</span>
+                        <div id="shift-target" class="w-16 h-16 rounded flex items-center justify-center font-extrabold text-3xl shadow-lg"></div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button id="shift-opt-0" class="p-4 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-xl flex flex-col items-center justify-center transition-all active:scale-95"></button>
+                        <button id="shift-opt-1" class="p-4 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-xl flex flex-col items-center justify-center transition-all active:scale-95"></button>
+                    </div>
+                </div>
+            `;
+            
+            const ruleLabel = document.getElementById('shift-rule');
+            const targetBox = document.getElementById('shift-target');
+            const opt0 = document.getElementById('shift-opt-0');
+            const opt1 = document.getElementById('shift-opt-1');
+            
+            const rules = ["COLOR", "SHAPE"];
+            let activeRule = "COLOR";
+            
+            const shapes = ["▲", "■", "●", "◆"];
+            const colors = [
+                { name: "RED", bg: "bg-red-500", text: "text-red-500" },
+                { name: "BLUE", bg: "bg-blue-500", text: "text-blue-500" },
+                { name: "GREEN", bg: "bg-emerald-500", text: "text-emerald-500" }
+            ];
+            
+            let stateData = {};
+            
+            function buildCycle() {
+                if(Math.random() < 0.25) { // 25% transformation calculation variance per step execution instance
+                    activeRule = rules[Math.floor(Math.random() * rules.length)];
+                    ruleLabel.textContent = activeRule === "COLOR" ? "COLOR PATTERN" : "SHAPE VECTOR";
+                    ruleLabel.className = activeRule === "COLOR" 
+                        ? "text-xs font-extrabold text-amber-400 tracking-widest uppercase bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20"
+                        : "text-xs font-extrabold text-cyan-400 tracking-widest uppercase bg-cyan-500/10 px-2 py-0.5 rounded border border-cyan-500/20";
+                }
+                
+                const targetShape = shapes[Math.floor(Math.random()*shapes.length)];
+                const targetColor = colors[Math.floor(Math.random()*colors.length)];
+                
+                targetBox.textContent = targetShape;
+                targetBox.className = `w-16 h-16 rounded flex items-center justify-center font-extrabold text-3xl shadow-lg bg-slate-900 border border-slate-700 ${targetColor.text}`;
+                
+                // Match configuration strategy logic sets
+                const matchIndex = Math.random() < 0.5 ? 0 : 1;
+                
+                const opt0Data = { shape: shapes[Math.floor(Math.random()*shapes.length)], color: colors[Math.floor(Math.random()*colors.length)] };
+                const opt1Data = { shape: shapes[Math.floor(Math.random()*shapes.length)], color: colors[Math.floor(Math.random()*colors.length)] };
+                
+                if(activeRule === "COLOR") {
+                    if(matchIndex === 0) opt0Data.color = targetColor; else opt1Data.color = targetColor;
+                } else {
+                    if(matchIndex === 0) opt0Data.shape = targetShape; else opt1Data.shape = targetShape;
+                }
+                
+                opt0.textContent = opt0Data.shape;
+                opt0.className = `p-4 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-xl flex flex-col items-center justify-center transition-all text-2xl font-bold ${opt0Data.color.text}`;
+                
+                opt1.textContent = opt1Data.shape;
+                opt1.className = `p-4 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-xl flex flex-col items-center justify-center transition-all text-2xl font-bold ${opt1Data.color.text}`;
+                
+                stateData = { matchIdx: matchIndex };
+            }
+            
+            function processUserDecision(idx) {
+                if(idx === stateData.matchIdx) {
+                    gameScore += 50;
+                } else {
+                    gameScore = Math.max(0, gameScore - 20);
+                }
+                updateScoreUI();
+                buildCycle();
+            }
+            
+            opt0.addEventListener('click', () => processUserDecision(0));
+            opt1.addEventListener('click', () => processUserDecision(1));
+            
+            buildCycle();
+        }
+
+        // =====================================================================
+        // ENGINE LOGIC MODULE 09: SIGNAL DETECTION FILTER
+        // =====================================================================
+        function mountSignalLoop(container) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 400;
+            canvas.height = 300;
+            canvas.className = "border border-slate-800 rounded bg-slate-950 max-w-full cursor-pointer";
+            container.appendChild(canvas);
+            
+            const ctx = canvas.getContext('2d');
+            const noiseCount = 180;
+            const signalCount = 35;
+            
+            let noiseParticles = [];
+            let signalParticles = [];
+            let signalActive = false;
+            let signalCooldown = 0;
+            
+            // Initialization loop mapping
+            for(let i=0; i<noiseCount; i++) {
+                noiseParticles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: (Math.random() - 0.5) * 4,
+                    vy: (Math.random() - 0.5) * 4
+                });
+            }
+            
+            for(let i=0; i<signalCount; i++) {
+                signalParticles.push({
+                    x: Math.random() * canvas.width,
+                    y: Math.random() * canvas.height,
+                    vx: 2.5, // Standard coherent linear directional motion flow values
+                    vy: 0
+                });
+            }
+            
+            function update() {
+                ctx.clearRect(0,0, canvas.width, canvas.height);
+                
+                // Track internal timing windows for signal manifestation state
+                signalCooldown++;
+                if(!signalActive && signalCooldown > 180 && Math.random() < 0.02) {
+                    signalActive = true;
+                    signalCooldown = 0;
+                }
+                if(signalActive && signalCooldown > 120) { // Keep active vector up for exactly 2 seconds
+                    signalActive = false;
+                    signalCooldown = 0;
+                }
+                
+                // Draw Randomized Vector Matrix Fields
+                ctx.fillStyle = "rgba(100, 116, 139, 0.4)";
+                noiseParticles.forEach(p => {
+                    p.x += p.vx; p.y += p.vy;
+                    if(p.x < 0) p.x = canvas.width; if(p.x > canvas.width) p.x = 0;
+                    if(p.y < 0) p.y = canvas.height; if(p.y > canvas.height) p.y = 0;
+                    ctx.fillRect(p.x, p.y, 2, 2);
+                });
+                
+                // Manage Coherent Directional Signal Group
+                if(signalActive) {
+                    ctx.fillStyle = "rgba(45, 212, 191, 0.5)"; // Add discrete focal signature variant tint tracking layer
+                    signalParticles.forEach(p => {
+                        p.x += p.vx; p.y += p.vy;
+                        if(p.x > canvas.width) p.x = 0;
+                        ctx.fillRect(p.x, p.y, 2, 2);
+                    });
+                }
+                
+                // View HUD context overlays
+                ctx.fillStyle = "rgba(15, 23, 42, 0.8)";
+                ctx.fillRect(0, canvas.height - 24, canvas.width, 24);
+                ctx.fillStyle = "#64748b";
+                ctx.font = "bold 9px monospace";
+                ctx.fillText("CLICK ANYWHERE IF COHERENT RIGHTWARD FLOW DETECTED", 15, canvas.height - 10);
+                
+                activeEngineLoop.animationFrame = requestAnimationFrame(update);
+            }
+            
+            canvas.addEventListener('click', () => {
+                if(signalActive) {
+                    gameScore += 120;
+                    signalActive = false;
+                    signalCooldown = -60; // Extra programmatic penalty cooldown buffering space injected
+                } else {
+                    gameScore = Math.max(0, gameScore - 60);
+                }
+                updateScoreUI();
+            });
+            
+            update();
+        }
+
+        // =====================================================================
+        // ENGINE LOGIC MODULE 10: METRONOMIC RHYTHM ANCHOR
+        // =====================================================================
+        function mountRhythmLoop(container) {
+            const canvas = document.createElement('canvas');
+            canvas.width = 400;
+            canvas.height = 240;
+            canvas.className = "border border-slate-800 rounded bg-slate-950 max-w-full cursor-pointer";
+            container.appendChild(canvas);
+            
+            const ctx = canvas.getContext('2d');
+            const period = 1000; // Flash rhythm pattern interval loop targets: 1000ms
+            let lastPulseTime = Date.now();
+            let feedbackString = "INITIALIZE CADENCE";
+            let feedbackColor = "#64748b";
+            
+            function loop() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                const now = Date.now();
+                const elapsed = now - lastPulseTime;
+                
+                if(elapsed >= period) {
+                    lastPulseTime = now - (elapsed % period);
+                }
+                
+                // Evaluate flash brightness thresholds
+                let flashOpacity = 0;
+                if(elapsed < 150) {
+                    flashOpacity = 1 - (elapsed / 150);
+                }
+                
+                // Draw rhythmic flash layer indicators
+                ctx.fillStyle = `rgba(20, 184, 166, ${flashOpacity * 0.25})`;
+                ctx.fillRect(0,0, canvas.width, canvas.height);
+                
+                // Center Anchor Point Node
+                ctx.strokeStyle = elapsed < 150 ? "#2dd4bf" : "#334155";
+                ctx.lineWidth = 3;
+                ctx.beginPath();
+                ctx.arc(canvas.width/2, canvas.height/2 - 20, 24, 0, Math.PI*2);
+                ctx.stroke();
+                
+                // Display operational accuracy feedback string matrix
+                ctx.fillStyle = feedbackColor;
+                ctx.font = "bold 14px monospace";
+                ctx.textAlign = "center";
+                ctx.fillText(feedbackString, canvas.width/2, canvas.height/2 + 40);
+                
+                ctx.fillStyle = "#475569";
+                ctx.font = "9px monospace";
+                ctx.fillText("TAP SCREEN EXACTLY WITH THE PULSE WAVE MOMENTUM", canvas.width/2, canvas.height - 20);
+                
+                activeEngineLoop.animationFrame = requestAnimationFrame(loop);
+            }
+            
+            canvas.addEventListener('mousedown', () => {
+                const now = Date.now();
+                const diff = Math.abs((now - lastPulseTime) % period);
+                const distanceToPulse = Math.min(diff, period - diff);
+                
+                if(distanceToPulse <= 60) {
+                    feedbackString = `EXCELLENT [Offset: ${distanceToPulse}ms]`;
+                    feedbackColor = "#34d399";
+                    gameScore += 80;
+                } else if(distanceToPulse <= 140) {
+                    feedbackString = `ACCEPATBLE [Offset: ${distanceToPulse}ms]`;
+                    feedbackColor = "#fbbf24";
+                    gameScore += 20;
+                } else {
+                    feedbackString = `DESYNC FAULT [Offset: ${distanceToPulse}ms]`;
+                    feedbackColor = "#f43f5e";
+                    gameScore = Math.max(0, gameScore - 40);
+                }
+                updateScoreUI();
+            });
+            
+            loop();
+        }
+
+        // ENTRY POINT ON DOM PREPARATION COMPLETE
+        document.addEventListener('DOMContentLoaded', () => {
+            swapEvaluationModule(0);
+        });
+    </script>
+</body>
+</html>
