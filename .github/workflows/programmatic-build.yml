@@ -25,6 +25,7 @@ jobs:
         with:
           persist-credentials: false
           fetch-depth: 1
+          submodules: false
 
       - name: Initialize Node.js Environment
         uses: actions/setup-node@v4
