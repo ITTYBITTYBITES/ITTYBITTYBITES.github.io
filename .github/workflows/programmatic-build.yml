@@ -20,24 +20,21 @@ jobs:
     timeout-minutes: 15
 
     steps:
-      # Use actions/checkout WITHOUT git submodule processing
-      - name: Checkout files only
-        uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-          fetch-depth: 1
-          submodules: false
-          filter: blob:none
-
-      # Manually clean any submodule references
-      - name: Clean submodule references
+      # Download files as a zip directly from GitHub — bypasses git entirely, no submodule errors
+      - name: Download repository as zip
         run: |
-          rm -f .gitmodules
-          rm -rf .git/modules
-          git config --global --unset-all submodule.repo.url 2>/dev/null || true
-          echo "repo" >> .gitignore
-          git add .gitignore
-          git commit -m "Add repo to gitignore" --no-verify || true
+          curl -L -o repo.zip "https://github.com/ITTYBITTYBITES/ITTYBITTYBITES.github.io/archive/refs/heads/main.zip"
+          unzip -q repo.zip
+          mv ITTYBITTYBITES.github.io-main/* .
+          mv ITTYBITTYBITES.github.io-main/.* . 2>/dev/null || true
+          rm -rf ITTYBITTYBITES.github.io-main repo.zip
+          # Remove any .git folder to prevent submodule processing
+          rm -rf .git
+
+      - name: Initialize git in downloaded files
+        run: |
+          git init
+          git remote add origin https://github.com/ITTYBITTYBITES/ITTYBITTYBITES.github.io.git
 
       - name: Initialize Node.js Environment
         uses: actions/setup-node@v4
