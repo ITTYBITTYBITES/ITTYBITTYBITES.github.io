@@ -31,7 +31,14 @@ jobs:
       - name: Initialize git
         run: |
           git init
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git remote add origin https://github.com/ITTYBITTYBITES/ITTYBITTYBITES.github.io.git
+
+      - name: Fetch main branch
+        run: |
+          git fetch origin main
+          git reset --soft origin/main
 
       - name: Initialize Node.js Environment
         uses: actions/setup-node@v4
@@ -47,20 +54,11 @@ jobs:
         env:
           NODE_ENV: production
 
-      - name: Configure Git Identity
+      - name: Commit and push generated files
         run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
+          git add --all
+          git diff --cached --quiet && echo "No changes to commit" || git commit -m "Automated programmatic index expansion [skip ci]"
+          git push origin main --force
 
-      - name: Automatically Commit and Push Generated Static Assets
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "Automated programmatic index expansion [skip ci]"
-          branch: main
-          file_pattern: |
-            library/*.html
-            intel/*.html
-            sitemap.xml
-            library.html
-          skip_dirty_check: false
-          commit_options: '--no-verify'
+      - name: Notify completion
+        run: echo "Build complete - site updated"
