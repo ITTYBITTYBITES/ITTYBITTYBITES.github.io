@@ -19,28 +19,29 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 15
     env:
-      ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION: 'true'
+      GIT_ALLOW_PROTOCOL: submodule:none
+      GIT_DISABLE_SUBMODULE_CHECK: 'true'
 
     steps:
       - name: Checkout Repository Code Base
         uses: actions/checkout@v4
         with:
           persist-credentials: false
-          fetch-depth: 1
+          fetch-depth: 0
           submodules: false
+
+      - name: Remove submodule references from git history
+        run: |
+          git config --global submodule.recurse false
+          git config --global submodule.repo.url ""
+          rm -f .gitmodules
+          echo "repo" >> .gitignore
 
       - name: Initialize Node.js Environment
         uses: actions/setup-node@v4
         with:
           node-version: '20'
           cache: 'npm'
-
-      - name: Clean git submodule references
-        run: |
-          git config --local submodule.repo.url ""
-          git config --local --unset-all submodule.repo.url 2>/dev/null || true
-          rm -f .gitmodules
-          echo "repo" >> .gitignore
 
       - name: Install Application Dependencies
         run: |
