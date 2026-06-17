@@ -14,54 +14,43 @@ on:
       - 'build-engine.js'
       - 'package.json'
 
+permissions:
+  contents: write
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 15
 
     steps:
-      - name: Download repository as zip
-        run: |
-          curl -L -o repo.zip "https://github.com/ITTYBITTYBITES/ITTYBITTYBITES.github.io/archive/refs/heads/main.zip"
-          unzip -q repo.zip
-          mv ITTYBITTYBITES.github.io-main/* .
-          mv ITTYBITTYBITES.github.io-main/.* . 2>/dev/null || true
-          rm -rf ITTYBITTYBITES.github.io-main repo.zip
-
-      - name: Initialize git
-        run: |
-          git init
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git remote add origin https://github.com/ITTYBITTYBITES/ITTYBITTYBITES.github.io.git
-
-      - name: Fetch main branch
-        run: |
-          git fetch origin main
-          git reset --soft origin/main
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Initialize Node.js Environment
         uses: actions/setup-node@v4
         with:
           node-version: '22'
+          cache: 'npm'
 
       - name: Install Application Dependencies
-        run: |
-          npm ci
+        run: npm ci
 
       - name: Execute Programmatic Site Compilation Engine
         run: node build-engine.js
         env:
           NODE_ENV: production
 
-      - name: Commit and push generated files
+      - name: Commit and Push Generated Files
         run: |
-          # Ensure node_modules is in gitignore
-          echo "node_modules/" >> .gitignore
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
           git add --all
-          git reset node_modules/
+          git reset node_modules/ 2>/dev/null || true
+          git reset .npm/ 2>/dev/null || true
           git diff --cached --quiet && echo "No changes to commit" || git commit -m "Automated programmatic index expansion [skip ci]"
-          git push origin main --force
+          git push origin main
 
-      - name: Notify completion
-        run: echo "Build complete - site updated"
+      - name: Notify Completion
+        run: echo "Build complete — site updated successfully"

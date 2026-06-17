@@ -727,8 +727,13 @@ body::before { content: ''; position: fixed; inset: 0; background: linear-gradie
     <a href="../stroop-effect.html" class="nav-node">STROOP</a>
     <a href="../cognitive-biases.html" class="nav-node">BIASES</a>
     <a href="../decision-making.html" class="nav-node">DECISIONS</a>
+    <a href="../social-engineering.html" class="nav-node">SECURITY</a>
+    <a href="./" class="nav-node" style="color:var(--cyan);border-color:var(--cyan)">INTEL MATRIX</a>
+    <a href="../arcade.html" class="nav-node">ARCADE</a>
     <a href="../library.html" class="nav-node">LOCKER</a>
-    <a href="./" class="nav-node" style="color:var(--cyan);border-color:var(--cyan)">INTEL</a>
+    <a href="../feed.html" class="nav-node">INTEL FEED</a>
+    <a href="../best-brain-games.html" class="nav-node">TRAINING</a>
+    <a href="../flow-state.html" class="nav-node">FLOW</a>
   </div>
 </nav>
 <section class="relative min-h-[35vh] flex flex-col justify-center items-center py-16 bg-zinc-950">
@@ -822,8 +827,15 @@ body::before { content: ''; position: fixed; inset: 0; background: linear-gradie
   <div class="max-w-[1200px] mx-auto px-5 flex justify-center gap-2 md:gap-3 flex-wrap">
     <a href="../index.html" class="nav-node">HQ</a>
     <a href="../stroop-effect.html" class="nav-node">STROOP</a>
+    <a href="../cognitive-biases.html" class="nav-node">BIASES</a>
+    <a href="../decision-making.html" class="nav-node">DECISIONS</a>
+    <a href="../social-engineering.html" class="nav-node">SECURITY</a>
+    <a href="./" class="nav-node" style="color:var(--cyan);border-color:var(--cyan)">INTEL MATRIX</a>
+    <a href="../arcade.html" class="nav-node">ARCADE</a>
     <a href="../library.html" class="nav-node">LOCKER</a>
-    <a href="./" class="nav-node" style="color:var(--cyan);border-color:var(--cyan)">INTEL</a>
+    <a href="../feed.html" class="nav-node">INTEL FEED</a>
+    <a href="../best-brain-games.html" class="nav-node">TRAINING</a>
+    <a href="../flow-state.html" class="nav-node">FLOW</a>
   </div>
 </nav>
 <section class="py-16 text-center bg-zinc-950">

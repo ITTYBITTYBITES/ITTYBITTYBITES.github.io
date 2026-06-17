@@ -204,6 +204,108 @@
       "universe": "tech",
       "source": "auto-generated",
       "discoveredAt": "2026-06-15T19:21:43.714Z"
+    },
+    {
+      "slug": "supervisory-software-engineers",
+      "name": "Supervisory Software Engineers",
+      "description": "Supervisory Software Engineers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "software-engineers",
+        "supervisory",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "tech",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-17T21:35:09.317Z"
+    },
+    {
+      "slug": "sleep-deprived-software-engineers",
+      "name": "Sleep-Deprived Software Engineers",
+      "description": "Sleep-Deprived Software Engineers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "software-engineers",
+        "sleep-deprived",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "tech",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-17T21:35:09.317Z"
+    },
+    {
+      "slug": "high-stress-software-engineers",
+      "name": "High-Stress Software Engineers",
+      "description": "High-Stress Software Engineers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "software-engineers",
+        "high-stress",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "tech",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-17T21:37:15.230Z"
+    },
+    {
+      "slug": "multi-project-software-engineers",
+      "name": "Multi-Project Software Engineers",
+      "description": "Multi-Project Software Engineers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "software-engineers",
+        "multi-project",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "tech",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-17T21:37:15.230Z"
+    },
+    {
+      "slug": "cross-functional-software-engineers",
+      "name": "Cross-Functional Software Engineers",
+      "description": "Cross-Functional Software Engineers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "software-engineers",
+        "cross-functional",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "tech",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-17T21:38:16.526Z"
+    },
+    {
+      "slug": "high-volume-software-engineers",
+      "name": "High-Volume Software Engineers",
+      "description": "High-Volume Software Engineers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "software-engineers",
+        "high-volume",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "tech",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-17T21:38:16.526Z"
     }
   ]
 }
