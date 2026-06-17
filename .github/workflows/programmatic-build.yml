@@ -20,7 +20,6 @@ jobs:
     timeout-minutes: 15
 
     steps:
-      # Download files as a zip directly from GitHub — bypasses git entirely, no submodule errors
       - name: Download repository as zip
         run: |
           curl -L -o repo.zip "https://github.com/ITTYBITTYBITES/ITTYBITTYBITES.github.io/archive/refs/heads/main.zip"
@@ -28,10 +27,8 @@ jobs:
           mv ITTYBITTYBITES.github.io-main/* .
           mv ITTYBITTYBITES.github.io-main/.* . 2>/dev/null || true
           rm -rf ITTYBITTYBITES.github.io-main repo.zip
-          # Remove any .git folder to prevent submodule processing
-          rm -rf .git
 
-      - name: Initialize git in downloaded files
+      - name: Initialize git
         run: |
           git init
           git remote add origin https://github.com/ITTYBITTYBITES/ITTYBITTYBITES.github.io.git
@@ -39,8 +36,7 @@ jobs:
       - name: Initialize Node.js Environment
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-          cache: 'npm'
+          node-version: '22'
 
       - name: Install Application Dependencies
         run: |
@@ -66,5 +62,5 @@ jobs:
             intel/*.html
             sitemap.xml
             library.html
-          skip_dirty: false
+          skip_dirty_check: false
           commit_options: '--no-verify'
