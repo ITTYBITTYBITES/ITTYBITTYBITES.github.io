@@ -1258,6 +1258,40 @@
       "universe": "frontier",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T16:22:06.848Z"
+    },
+    {
+      "slug": "high-stress-police-officers",
+      "name": "High-Stress Police Officers",
+      "description": "High-Stress Police Officers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "police-officers",
+        "high-stress",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "frontier",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T16:25:37.481Z"
+    },
+    {
+      "slug": "multi-project-police-officers",
+      "name": "Multi-Project Police Officers",
+      "description": "Multi-Project Police Officers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "police-officers",
+        "multi-project",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "frontier",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T16:25:37.481Z"
     }
   ]
 }
