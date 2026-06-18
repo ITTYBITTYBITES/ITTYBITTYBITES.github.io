@@ -952,6 +952,40 @@
       "universe": "life",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T14:26:04.173Z"
+    },
+    {
+      "slug": "remote-pilots",
+      "name": "Remote Pilots",
+      "description": "Remote Pilots — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "pilots",
+        "remote",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "frontier",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T14:54:09.620Z"
+    },
+    {
+      "slug": "field-pilots",
+      "name": "Field Pilots",
+      "description": "Field Pilots — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "pilots",
+        "field",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "frontier",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T14:54:09.620Z"
     }
   ]
 }

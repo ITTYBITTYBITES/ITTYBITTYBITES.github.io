@@ -13,13 +13,12 @@ class ArcadePortalEngine {
         this.activeCategory = 'ALL';
         this.activeGame = null;
 
-        // Asynchronous Ad Mediation States
+        // Commercial Adsterra Mediation States
         this.globalAdCooldownMs = 180000; // 3 Minutes strict Global Ad Cooldown
         this.lastAdExecutedTime = 0;
-
-        // Consenting AI Telemetry States
-        this.telemetryConsent = localStorage.getItem('arcade_telemetry_consent') === 'true';
-        this.telemetryEndpointUrl = 'https://telemetry.ittybittybites.workers.dev/stream';
+        
+        // Master Adsterra Smartlink Gateway with User ID 29686619
+        this.adsterraSmartlinkUrl = "https://www.profitablecpmrate.com/29686619"; // Formatted for Adsterra Smartlink_1 (ID 29686619)
 
         this.initDOMAnchors();
         this.bindEvents();
@@ -232,7 +231,6 @@ class ArcadePortalEngine {
     }
 
     executeBackgroundAdPrefetch() {
-        const adsterraDirectLinkUrl = "https://www.highperformancecpmgate.com/example"; // Replace with your exact Adsterra Direct Link
         console.log("⚡ [Adsterra Engine] Initiating automated background prefetching engine to warm Adsterra Direct Link endpoints...");
         
         // 1. Inject DOM prefetch link
@@ -241,14 +239,14 @@ class ArcadePortalEngine {
             existingPrefetch = document.createElement('link');
             existingPrefetch.id = 'adsterra-prefetch-node';
             existingPrefetch.rel = 'prefetch';
-            existingPrefetch.href = adsterraDirectLinkUrl;
+            existingPrefetch.href = this.adsterraSmartlinkUrl;
             document.head.appendChild(existingPrefetch);
         } else {
-            existingPrefetch.href = adsterraDirectLinkUrl;
+            existingPrefetch.href = this.adsterraSmartlinkUrl;
         }
 
         // 2. Perform non-blocking background connection pre-warm ping
-        fetch(adsterraDirectLinkUrl, {
+        fetch(this.adsterraSmartlinkUrl, {
             mode: 'no-cors',
             cache: 'force-cache'
         }).catch(() => {});
@@ -287,9 +285,6 @@ class ArcadePortalEngine {
         }
 
         console.log(`🚀 [Adsterra Engine] Triggering commercial monetization routine for ad break: ${adType}`);
-        
-        // Master Adsterra Configuration Placeholder
-        const adsterraDirectLinkUrl = "https://www.highperformancecpmgate.com/example"; // Replace with your exact Adsterra Direct Link
 
         // 2. Deploy Sleek Immersive 5-Second Adsterra Interstitial Buffer Proxy Modal
         if (this.adModal && this.adCountdownEl && this.adNetLabel) {
@@ -299,7 +294,7 @@ class ArcadePortalEngine {
             // Link the exact Adsterra button
             const directBtn = document.getElementById('adsterra-direct-launch-btn');
             if (directBtn) {
-                directBtn.href = adsterraDirectLinkUrl;
+                directBtn.href = this.adsterraSmartlinkUrl;
             }
 
             let counter = 5;
