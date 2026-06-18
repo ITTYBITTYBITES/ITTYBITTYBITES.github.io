@@ -986,6 +986,40 @@
       "universe": "frontier",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T14:54:09.620Z"
+    },
+    {
+      "slug": "senior-pilots",
+      "name": "Senior Pilots",
+      "description": "Senior Pilots — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "pilots",
+        "senior",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "frontier",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T14:55:09.189Z"
+    },
+    {
+      "slug": "junior-pilots",
+      "name": "Junior Pilots",
+      "description": "Junior Pilots — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "pilots",
+        "junior",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "frontier",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T14:55:09.189Z"
     }
   ]
 }
