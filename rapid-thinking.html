@@ -17,8 +17,6 @@
     </script>
     <!-- Google AdSense Universal Publisher Tag -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1566091161594729" crossorigin="anonymous"></script>
-
-    <!-- Accelerated Core Styling -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap');
         :root { --bg: #020617; --cyan: #22d3ee; --emerald: #34d399; --gold: #facc15; --rose: #f43f5e; --border: rgba(34,211,238,0.15); }
@@ -30,15 +28,13 @@
         .nav-node { font-size: 13px; font-family: 'Orbitron', sans-serif; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 18px; border: 1px solid #1e293b; border-radius: 8px; color: #94a3b8; transition: all 0.2s ease; text-decoration: none; display: inline-block; background: #0b0f19; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
         .nav-node:hover { color: #22d3ee; border-color: #22d3ee; background: rgba(34,211,238,0.1); transform: translateY(-1px); }
         .nav-node.active { color: #22d3ee; border-color: #22d3ee; font-weight: 900; background: rgba(34,211,238,0.15); box-shadow: 0 0 20px rgba(34,211,238,0.4); }
-        .article-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
-        @media (min-width: 1024px) { .article-grid { grid-template-columns: 1fr 320px; } }
-        .tactical-panel { background: #0b0f19; border: 1px solid var(--border); border-radius: 16px; padding: 32px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+        .tactical-panel { background: #0b0f19; border: 1px solid var(--border); border-radius: 16px; padding: 36px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
         h1, h2, h3, h4 { font-family: 'Orbitron', sans-serif; font-weight: 900; letter-spacing: 1px; color: #white; }
         h1 { color: var(--cyan); font-size: 2.4rem; text-transform: uppercase; text-shadow: 0 0 25px rgba(34,211,238,0.4); margin-bottom: 18px; }
         h2 { color: var(--cyan); font-size: 1.6rem; margin-top: 40px; margin-bottom: 18px; border-left: 4px solid var(--cyan); padding-left: 16px; }
         h3 { color: var(--gold); font-size: 1.25rem; margin-top: 30px; margin-bottom: 14px; }
         p { color: #cbd5e1; margin-bottom: 18px; font-size: 1rem; }
-        ul, ol { color: #cbd5e1; margin-left: 24px; margin-bottom: 24px; space-y: 8px; }
+        ul, ol { color: #cbd5e1; margin-left: 24px; margin-bottom: 24px; list-style-type: disc; }
         li { margin-bottom: 8px; }
         a { color: var(--cyan); text-decoration: none; font-weight: bold; transition: color 0.2s; }
         a:hover { color: var(--gold); }
@@ -48,18 +44,18 @@
         .btn-deploy:hover { background: #fef08a; transform: translateY(-2px); color: #020617; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col selection:bg-cyan-500 selection:text-slate-900 antialiased bg-slate-950">
+<body class="min-h-screen flex flex-col selection:bg-cyan-500 selection:text-slate-900 antialiased bg-slate-950 font-mono">
 
     <!-- GLOBAL UNIFIED TACTICAL NAVIGATION -->
-<nav class="bg-slate-950 border-b border-cyan-400/20 py-3 sticky top-0 z-50 backdrop-blur-md shadow-2xl select-none font-mono">
-  <div class="max-w-[1200px] mx-auto px-4 flex justify-center gap-2 sm:gap-4 flex-wrap items-center">
-    <a href="index.html" class="nav-node ">HQ</a>
-    <a href="arcade.html" class="nav-node ">TACTICAL ARCADE</a>
-    <a href="intel/index.html" class="nav-node ">INTEL MATRIX</a>
-    <a href="feed.html" class="nav-node ">INTEL FEED</a>
-    <a href="library.html" class="nav-node ">GEAR LOCKER</a>
-  </div>
-</nav>
+    <nav class="bg-slate-950 border-b border-cyan-400/20 py-3 sticky top-0 z-50 backdrop-blur-md shadow-2xl select-none font-mono">
+      <div class="max-w-[1200px] mx-auto px-4 flex justify-center gap-2 sm:gap-4 flex-wrap items-center font-bold">
+        <a href="index.html" class="nav-node ">HQ</a>
+        <a href="arcade.html" class="nav-node ">TACTICAL ARCADE</a>
+        <a href="intel/index.html" class="nav-node">INTEL MATRIX</a>
+        <a href="feed.html" class="nav-node ">INTEL FEED</a>
+        <a href="library.html" class="nav-node ">GEAR LOCKER</a>
+      </div>
+    </nav>
 
     <!-- MASTER THEATER BRIEFING CONTAINER -->
     <main class="max-w-[1200px] w-full mx-auto px-5 py-12 flex-1 flex flex-col justify-center">
@@ -70,165 +66,7 @@
         </div>
 
         <div class="tactical-panel flex-1 w-full font-mono space-y-6">
-            <!-- MASTER THEATER BRIEFING CONTAINER -->
-    <main class="max-w-[1200px] w-full mx-auto px-5 py-12 flex-1 flex flex-col justify-center">
-        
-        <div class="flex items-center space-x-3 mb-6 font-mono font-bold text-xs">
-            <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span class="text-cyan-400 uppercase tracking-widest">RESEARCH & INTELLIGENCE BRIEFING // ITTY BITTY BITES</span>
-        </div>
-
-        <div class="tactical-panel flex-1 w-full font-mono space-y-6">
-            <!-- MASTER THEATER BRIEFING CONTAINER -->
-    <main class="max-w-[1200px] w-full mx-auto px-5 py-12 flex-1 flex flex-col justify-center">
-        
-        <div class="flex items-center space-x-3 mb-6 font-mono font-bold text-xs">
-            <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span class="text-cyan-400 uppercase tracking-widest">RESEARCH & INTELLIGENCE BRIEFING // ITTY BITTY BITES</span>
-        </div>
-
-        <div class="tactical-panel flex-1 w-full font-mono space-y-6">
-            <!-- MASTER THEATER BRIEFING CONTAINER -->
-    <main class="max-w-[1200px] w-full mx-auto px-5 py-12 flex-1 flex flex-col justify-center">
-        
-        <div class="flex items-center space-x-3 mb-6 font-mono font-bold text-xs">
-            <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span class="text-cyan-400 uppercase tracking-widest">RESEARCH & INTELLIGENCE BRIEFING // ITTY BITTY BITES</span>
-        </div>
-
-        <div class="tactical-panel flex-1 w-full font-mono space-y-6">
-            <!-- MASTER THEATER BRIEFING CONTAINER -->
-    <main class="max-w-[1200px] w-full mx-auto px-5 py-12 flex-1 flex flex-col justify-center">
-        
-        <div class="flex items-center space-x-3 mb-6 font-mono font-bold text-xs">
-            <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span class="text-cyan-400 uppercase tracking-widest">RESEARCH & INTELLIGENCE BRIEFING // ITTY BITTY BITES</span>
-        </div>
-
-        <div class="tactical-panel flex-1 w-full font-mono space-y-6">
-            <!-- MASTER THEATER BRIEFING CONTAINER -->
-    <main class="max-w-[1200px] w-full mx-auto px-5 py-12 flex-1 flex flex-col justify-center">
-        
-        <div class="flex items-center space-x-3 mb-6 font-mono font-bold text-xs">
-            <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span class="text-cyan-400 uppercase tracking-widest">RESEARCH & INTELLIGENCE BRIEFING // ITTY BITTY BITES</span>
-        </div>
-
-        <div class="tactical-panel flex-1 w-full font-mono space-y-6">
-            <!-- MASTER THEATER BRIEFING CONTAINER -->
-    <main class="max-w-[1200px] w-full mx-auto px-5 py-12 flex-1 flex flex-col justify-center">
-        
-        <div class="flex items-center space-x-3 mb-6 font-mono font-bold text-xs">
-            <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span class="text-cyan-400 uppercase tracking-widest">RESEARCH & INTELLIGENCE BRIEFING // ITTY BITTY BITES</span>
-        </div>
-
-        <div class="tactical-panel flex-1 w-full font-mono space-y-6">
-            <!-- MASTER THEATER BRIEFING CONTAINER -->
-    <main class="max-w-[1200px] w-full mx-auto px-5 py-12 flex-1 flex flex-col justify-center">
-        
-        <div class="flex items-center space-x-3 mb-6 font-mono font-bold text-xs">
-            <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span class="text-cyan-400 uppercase tracking-widest">RESEARCH & INTELLIGENCE BRIEFING // ITTY BITTY BITES</span>
-        </div>
-
-        <div class="tactical-panel flex-1 w-full font-mono space-y-6">
-            <!-- MASTER THEATER BRIEFING CONTAINER -->
-    <main class="max-w-[1200px] w-full mx-auto px-5 py-12 flex-1 flex flex-col justify-center">
-        
-        <div class="flex items-center space-x-3 mb-6 font-mono font-bold text-xs">
-            <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span class="text-cyan-400 uppercase tracking-widest">RESEARCH & INTELLIGENCE BRIEFING // ITTY BITTY BITES</span>
-        </div>
-
-        <div class="tactical-panel flex-1 w-full font-mono space-y-6">
-            <!-- MASTER THEATER BRIEFING CONTAINER -->
-    <main class="max-w-[1200px] w-full mx-auto px-5 py-12 flex-1 flex flex-col justify-center">
-        
-        <div class="flex items-center space-x-3 mb-6 font-mono font-bold text-xs">
-            <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span class="text-cyan-400 uppercase tracking-widest">RESEARCH & INTELLIGENCE BRIEFING // ITTY BITTY BITES</span>
-        </div>
-
-        <div class="tactical-panel flex-1 w-full font-mono space-y-6">
-            <!-- MASTER THEATER BRIEFING CONTAINER -->
-    <main class="max-w-[1200px] w-full mx-auto px-5 py-12 flex-1 flex flex-col justify-center">
-        
-        <div class="flex items-center space-x-3 mb-6 font-mono font-bold text-xs">
-            <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span class="text-cyan-400 uppercase tracking-widest">RESEARCH & INTELLIGENCE BRIEFING // ITTY BITTY BITES</span>
-        </div>
-
-        <div class="tactical-panel flex-1 w-full font-mono space-y-6">
-            <!-- MASTER THEATER BRIEFING CONTAINER -->
-    <main class="max-w-[1200px] w-full mx-auto px-5 py-12 flex-1 flex flex-col justify-center">
-        
-        <div class="flex items-center space-x-3 mb-6 font-mono font-bold text-xs">
-            <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span class="text-cyan-400 uppercase tracking-widest">RESEARCH & INTELLIGENCE BRIEFING // ITTY BITTY BITES</span>
-        </div>
-
-        <div class="tactical-panel flex-1 w-full font-mono space-y-6">
-            <!-- MASTER THEATER BRIEFING CONTAINER -->
-    <main class="max-w-[1200px] w-full mx-auto px-5 py-12 flex-1 flex flex-col justify-center">
-        
-        <div class="flex items-center space-x-3 mb-6 font-mono font-bold text-xs">
-            <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span class="text-cyan-400 uppercase tracking-widest">RESEARCH & INTELLIGENCE BRIEFING // ITTY BITTY BITES</span>
-        </div>
-
-        <div class="tactical-panel flex-1 w-full font-mono space-y-6">
-            <!-- MASTER THEATER BRIEFING CONTAINER -->
-    <main class="max-w-[1200px] w-full mx-auto px-5 py-12 flex-1 flex flex-col justify-center">
-        
-        <div class="flex items-center space-x-3 mb-6 font-mono font-bold text-xs">
-            <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span class="text-cyan-400 uppercase tracking-widest">RESEARCH & INTELLIGENCE BRIEFING // ITTY BITTY BITES</span>
-        </div>
-
-        <div class="tactical-panel flex-1 w-full font-mono space-y-6">
-            <!-- MASTER THEATER BRIEFING CONTAINER -->
-    <main class="max-w-[1200px] w-full mx-auto px-5 py-12 flex-1 flex flex-col justify-center">
-        
-        <div class="flex items-center space-x-3 mb-6 font-mono font-bold text-xs">
-            <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span class="text-cyan-400 uppercase tracking-widest">RESEARCH & INTELLIGENCE BRIEFING // ITTY BITTY BITES</span>
-        </div>
-
-        <div class="tactical-panel flex-1 w-full font-mono space-y-6">
-            <!-- MASTER THEATER BRIEFING CONTAINER -->
-    <main class="max-w-[1200px] w-full mx-auto px-5 py-12 flex-1 flex flex-col justify-center">
-        
-        <div class="flex items-center space-x-3 mb-6 font-mono font-bold text-xs">
-            <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span class="text-cyan-400 uppercase tracking-widest">RESEARCH & INTELLIGENCE BRIEFING // ITTY BITTY BITES</span>
-        </div>
-
-        <div class="tactical-panel flex-1 w-full font-mono space-y-6">
-            <!-- MASTER THEATER BRIEFING CONTAINER -->
-    <main class="max-w-[1200px] w-full mx-auto px-5 py-12 flex-1 flex flex-col justify-center">
-        
-        <div class="flex items-center space-x-3 mb-6 font-mono font-bold text-xs">
-            <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span class="text-cyan-400 uppercase tracking-widest">RESEARCH & INTELLIGENCE BRIEFING // ITTY BITTY BITES</span>
-        </div>
-
-        <div class="tactical-panel flex-1 w-full font-mono space-y-6">
-            <!-- MASTER THEATER BRIEFING CONTAINER -->
-    <main class="max-w-[1200px] w-full mx-auto px-5 py-12 flex-1 flex flex-col justify-center">
-        
-        <!-- Briefing Header Badge -->
-        <div class="flex items-center space-x-3 mb-6">
-            <span class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></span>
-            <span class="text-xs font-mono font-bold tracking-widest text-cyan-400 uppercase">RESEARCH & INTELLIGENCE BRIEFING // ITTY BITTY BITES</span>
-        </div>
-
-        <div class="tactical-panel flex-1 w-full font-mono space-y-6">
-            <div class="container">
-
-
-
-<h1>How to Think Faster Under Pressure: 8 Techniques from High-Stakes Professionals</h1>
+            <h1>How to Think Faster Under Pressure: 8 Techniques from High-Stakes Professionals</h1>
 <p class="meta">Last updated: June 2026 | By Itty Bitty Bites</p>
 
 <p>Pilots, surgeons, firefighters, and special forces operators all share one skill: the ability to make accurate decisions when time is running out and stakes are highest. Here are the 8 techniques they use.</p><h2>1. OODA Loop (Observe, Orient, Decide, Act)</h2><p>Developed by fighter pilot John Boyd. The person who cycles through OODA fastest wins. Observe the situation, orient yourself to what matters, decide on action, act. Then immediately observe the result and repeat.</p><h2>2. Chunking</h2><p>Experts group information into meaningful "chunks." A beginner sees 20 separate chess pieces. A grandmaster sees 4-5 familiar patterns. Chunking reduces cognitive load and speeds processing.</p><h2>3. Pre-Loading Decisions</h2><p>"If X happens, I will do Y." Emergency procedures are pre-loaded decisions. You do not decide what to do during the emergency -- you execute the procedure you already memorized.</p><h2>4. Prioritization Triage</h2><p>Under pressure, you cannot address everything. Military and medical professionals triage: address the most critical issue first, ignore everything else until it is handled.</p><h2>5. Controlled Breathing</h2><p>Box breathing (4 seconds in, 4 hold, 4 out, 4 hold) activates the parasympathetic nervous system within 30 seconds, reducing panic and restoring cognitive function.</p><h2>6. Simulation Training</h2><p>Every high-stakes profession trains through simulation. Pilots use flight simulators. Surgeons practice on models. The brain does not strongly distinguish between simulated and real experience -- both build pattern recognition.</p><h2>7. After-Action Review</h2><p>After every event, high-performance teams debrief: What was supposed to happen? What actually happened? Why the difference? What will we do differently? This closes the feedback loop that builds expertise.</p><h2>8. Deliberate Calm</h2><p>The most experienced professionals appear calm under pressure not because they feel no stress, but because they have trained their response to stress. Arousal improves performance up to a point (Yerkes-Dodson law), then degrades it. Managing your arousal level IS a trainable skill.</p><div class="highlight"><p><a href="https://play.google.com/store/apps/details?id=com.ittybittybites.the2secondwitness">The 2-Second Witness</a> is simulation training for rapid thinking. 960 scenarios across 60 worlds, each requiring a correct identification under time pressure. The GHOST difficulty level replicates the stress of real high-stakes decision making.</p></div>
@@ -294,177 +132,10 @@
         </div>
 
     </main>
+        
         </div>
 
-        <!-- Automated Topic Matrix Navigation Hook -->
-        <div class="mt-12 pt-8 border-t border-slate-900 grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-gold uppercase block">TACTICAL OPERATIONAL PROTOCOLS</span>
-                    <h4 class="text-base font-bold text-white mt-2">Explore 672 Programmatic AI Briefings</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Systematic neural override protocols customized for 32 real-world elite operator roles.</p>
-                </div>
-                <a href="intel/index.html" class="mt-6 px-5 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Launch Protocol Matrix &rarr;
-                </a>
-            </div>
-
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-emerald-400 uppercase block">INTERACTIVE EVALUATION TERMINAL</span>
-                    <h4 class="text-base font-bold text-white mt-2">Cognitive Diagnostic Arcade</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Test your reaction buffers, working memory churn, and signal detection filters live in secure sandboxes.</p>
-                </div>
-                <a href="arcade.html" class="mt-6 px-5 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Enter Tactical Arcade &rarr;
-                </a>
-            </div>
-        </div>
-
-    </main>
-        </div>
-
-        <!-- Automated Topic Matrix Navigation Hook -->
-        <div class="mt-12 pt-8 border-t border-slate-900 grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-gold uppercase block">TACTICAL OPERATIONAL PROTOCOLS</span>
-                    <h4 class="text-base font-bold text-white mt-2">Explore 672 Programmatic AI Briefings</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Systematic neural override protocols customized for 32 real-world elite operator roles.</p>
-                </div>
-                <a href="intel/index.html" class="mt-6 px-5 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Launch Protocol Matrix &rarr;
-                </a>
-            </div>
-
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-emerald-400 uppercase block">INTERACTIVE EVALUATION TERMINAL</span>
-                    <h4 class="text-base font-bold text-white mt-2">Cognitive Diagnostic Arcade</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Test your reaction buffers, working memory churn, and signal detection filters live in secure sandboxes.</p>
-                </div>
-                <a href="arcade.html" class="mt-6 px-5 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Enter Tactical Arcade &rarr;
-                </a>
-            </div>
-        </div>
-
-    </main>
-        </div>
-
-        <!-- Automated Topic Matrix Navigation Hook -->
-        <div class="mt-12 pt-8 border-t border-slate-900 grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-gold uppercase block">TACTICAL OPERATIONAL PROTOCOLS</span>
-                    <h4 class="text-base font-bold text-white mt-2">Explore 672 Programmatic AI Briefings</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Systematic neural override protocols customized for 32 real-world elite operator roles.</p>
-                </div>
-                <a href="intel/index.html" class="mt-6 px-5 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Launch Protocol Matrix &rarr;
-                </a>
-            </div>
-
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-emerald-400 uppercase block">INTERACTIVE EVALUATION TERMINAL</span>
-                    <h4 class="text-base font-bold text-white mt-2">Cognitive Diagnostic Arcade</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Test your reaction buffers, working memory churn, and signal detection filters live in secure sandboxes.</p>
-                </div>
-                <a href="arcade.html" class="mt-6 px-5 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Enter Tactical Arcade &rarr;
-                </a>
-            </div>
-        </div>
-
-    </main>
-        </div>
-
-        <!-- Automated Topic Matrix Navigation Hook -->
-        <div class="mt-12 pt-8 border-t border-slate-900 grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-gold uppercase block">TACTICAL OPERATIONAL PROTOCOLS</span>
-                    <h4 class="text-base font-bold text-white mt-2">Explore 672 Programmatic AI Briefings</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Systematic neural override protocols customized for 32 real-world elite operator roles.</p>
-                </div>
-                <a href="intel/index.html" class="mt-6 px-5 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Launch Protocol Matrix &rarr;
-                </a>
-            </div>
-
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-emerald-400 uppercase block">INTERACTIVE EVALUATION TERMINAL</span>
-                    <h4 class="text-base font-bold text-white mt-2">Cognitive Diagnostic Arcade</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Test your reaction buffers, working memory churn, and signal detection filters live in secure sandboxes.</p>
-                </div>
-                <a href="arcade.html" class="mt-6 px-5 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Enter Tactical Arcade &rarr;
-                </a>
-            </div>
-        </div>
-
-    </main>
-        </div>
-
-        <!-- Automated Topic Matrix Navigation Hook -->
-        <div class="mt-12 pt-8 border-t border-slate-900 grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-gold uppercase block">TACTICAL OPERATIONAL PROTOCOLS</span>
-                    <h4 class="text-base font-bold text-white mt-2">Explore 672 Programmatic AI Briefings</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Systematic neural override protocols customized for 32 real-world elite operator roles.</p>
-                </div>
-                <a href="intel/index.html" class="mt-6 px-5 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Launch Protocol Matrix &rarr;
-                </a>
-            </div>
-
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-emerald-400 uppercase block">INTERACTIVE EVALUATION TERMINAL</span>
-                    <h4 class="text-base font-bold text-white mt-2">Cognitive Diagnostic Arcade</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Test your reaction buffers, working memory churn, and signal detection filters live in secure sandboxes.</p>
-                </div>
-                <a href="arcade.html" class="mt-6 px-5 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Enter Tactical Arcade &rarr;
-                </a>
-            </div>
-        </div>
-
-    </main>
-        </div>
-
-        <!-- Automated Topic Matrix Navigation Hook -->
-        <div class="mt-12 pt-8 border-t border-slate-900 grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-gold uppercase block">TACTICAL OPERATIONAL PROTOCOLS</span>
-                    <h4 class="text-base font-bold text-white mt-2">Explore 672 Programmatic AI Briefings</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Systematic neural override protocols customized for 32 real-world elite operator roles.</p>
-                </div>
-                <a href="intel/index.html" class="mt-6 px-5 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Launch Protocol Matrix &rarr;
-                </a>
-            </div>
-
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-emerald-400 uppercase block">INTERACTIVE EVALUATION TERMINAL</span>
-                    <h4 class="text-base font-bold text-white mt-2">Cognitive Diagnostic Arcade</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Test your reaction buffers, working memory churn, and signal detection filters live in secure sandboxes.</p>
-                </div>
-                <a href="arcade.html" class="mt-6 px-5 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Enter Tactical Arcade &rarr;
-                </a>
-            </div>
-        </div>
-
-    </main>
-        </div>
-
-        <!-- Automated Topic Matrix Navigation Hook -->
+        <!-- Automated Catalog Navigation Hook -->
         <div class="mt-12 pt-8 border-t border-slate-900 grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
             <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
                 <div>
@@ -479,9 +150,9 @@
 
             <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
                 <div>
-                    <span class="text-[10px] tracking-widest font-black text-emerald-400 uppercase block">INTERACTIVE EVALUATION TERMINAL</span>
-                    <h4 class="text-base font-bold text-white mt-2">Cognitive Diagnostic Arcade</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Test your reaction buffers, working memory churn, and signal detection filters live in secure sandboxes.</p>
+                    <span class="text-[10px] tracking-widest font-black text-emerald-400 uppercase block">INTERACTIVE ENTERTAINMENT THEATER</span>
+                    <h4 class="text-base font-bold text-white mt-2">Commercial Gaming Arcade</h4>
+                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Experience Cosmic Tunnel 3D, Grid Delver, and our high-speed reflex interceptors live.</p>
                 </div>
                 <a href="arcade.html" class="mt-6 px-5 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
                     Enter Tactical Arcade &rarr;
@@ -490,287 +161,6 @@
         </div>
 
     </main>
-        </div>
-
-        <!-- Automated Topic Matrix Navigation Hook -->
-        <div class="mt-12 pt-8 border-t border-slate-900 grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-gold uppercase block">TACTICAL OPERATIONAL PROTOCOLS</span>
-                    <h4 class="text-base font-bold text-white mt-2">Explore Classified Mission Briefings</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Systematic neural override training and decision interference deflection operational protocols.</p>
-                </div>
-                <a href="intel/index.html" class="mt-6 px-5 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Launch Protocol Matrix &rarr;
-                </a>
-            </div>
-
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-emerald-400 uppercase block">INTERACTIVE EVALUATION TERMINAL</span>
-                    <h4 class="text-base font-bold text-white mt-2">Cognitive Diagnostic Arcade</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Test your reaction buffers, working memory churn, and signal detection filters live in secure sandboxes.</p>
-                </div>
-                <a href="arcade.html" class="mt-6 px-5 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Enter Tactical Arcade &rarr;
-                </a>
-            </div>
-        </div>
-
-    </main>
-        </div>
-
-        <!-- Automated Topic Matrix Navigation Hook -->
-        <div class="mt-12 pt-8 border-t border-slate-900 grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-gold uppercase block">TACTICAL OPERATIONAL PROTOCOLS</span>
-                    <h4 class="text-base font-bold text-white mt-2">Explore Classified Mission Briefings</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Systematic neural override training and decision interference deflection operational protocols.</p>
-                </div>
-                <a href="intel/index.html" class="mt-6 px-5 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Launch Protocol Matrix &rarr;
-                </a>
-            </div>
-
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-emerald-400 uppercase block">INTERACTIVE EVALUATION TERMINAL</span>
-                    <h4 class="text-base font-bold text-white mt-2">Cognitive Diagnostic Arcade</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Test your reaction buffers, working memory churn, and signal detection filters live in secure sandboxes.</p>
-                </div>
-                <a href="arcade.html" class="mt-6 px-5 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Enter Tactical Arcade &rarr;
-                </a>
-            </div>
-        </div>
-
-    </main>
-        </div>
-
-        <!-- Automated Topic Matrix Navigation Hook -->
-        <div class="mt-12 pt-8 border-t border-slate-900 grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-gold uppercase block">TACTICAL OPERATIONAL PROTOCOLS</span>
-                    <h4 class="text-base font-bold text-white mt-2">Explore Classified Mission Briefings</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Systematic neural override training and decision interference deflection operational protocols.</p>
-                </div>
-                <a href="intel/index.html" class="mt-6 px-5 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Launch Protocol Matrix &rarr;
-                </a>
-            </div>
-
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-emerald-400 uppercase block">INTERACTIVE EVALUATION TERMINAL</span>
-                    <h4 class="text-base font-bold text-white mt-2">Cognitive Diagnostic Arcade</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Test your reaction buffers, working memory churn, and signal detection filters live in secure sandboxes.</p>
-                </div>
-                <a href="arcade.html" class="mt-6 px-5 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Enter Tactical Arcade &rarr;
-                </a>
-            </div>
-        </div>
-
-    </main>
-        </div>
-
-        <!-- Automated Topic Matrix Navigation Hook -->
-        <div class="mt-12 pt-8 border-t border-slate-900 grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-gold uppercase block">TACTICAL OPERATIONAL PROTOCOLS</span>
-                    <h4 class="text-base font-bold text-white mt-2">Explore Classified Mission Briefings</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Systematic neural override training and decision interference deflection operational protocols.</p>
-                </div>
-                <a href="intel/index.html" class="mt-6 px-5 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Launch Protocol Matrix &rarr;
-                </a>
-            </div>
-
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-emerald-400 uppercase block">INTERACTIVE EVALUATION TERMINAL</span>
-                    <h4 class="text-base font-bold text-white mt-2">Cognitive Diagnostic Arcade</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Test your reaction buffers, working memory churn, and signal detection filters live in secure sandboxes.</p>
-                </div>
-                <a href="arcade.html" class="mt-6 px-5 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Enter Tactical Arcade &rarr;
-                </a>
-            </div>
-        </div>
-
-    </main>
-        </div>
-
-        <!-- Automated Topic Matrix Navigation Hook -->
-        <div class="mt-12 pt-8 border-t border-slate-900 grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-gold uppercase block">TACTICAL OPERATIONAL PROTOCOLS</span>
-                    <h4 class="text-base font-bold text-white mt-2">Explore Classified Mission Briefings</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Systematic neural override training and decision interference deflection operational protocols.</p>
-                </div>
-                <a href="intel/index.html" class="mt-6 px-5 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Launch Protocol Matrix &rarr;
-                </a>
-            </div>
-
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-emerald-400 uppercase block">INTERACTIVE EVALUATION TERMINAL</span>
-                    <h4 class="text-base font-bold text-white mt-2">Cognitive Diagnostic Arcade</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Test your reaction buffers, working memory churn, and signal detection filters live in secure sandboxes.</p>
-                </div>
-                <a href="arcade.html" class="mt-6 px-5 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Enter Tactical Arcade &rarr;
-                </a>
-            </div>
-        </div>
-
-    </main>
-        </div>
-
-        <!-- Automated Topic Matrix Navigation Hook -->
-        <div class="mt-12 pt-8 border-t border-slate-900 grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-gold uppercase block">TACTICAL OPERATIONAL PROTOCOLS</span>
-                    <h4 class="text-base font-bold text-white mt-2">Explore Classified Mission Briefings</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Systematic neural override training and decision interference deflection operational protocols.</p>
-                </div>
-                <a href="intel/index.html" class="mt-6 px-5 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Launch Protocol Matrix &rarr;
-                </a>
-            </div>
-
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-emerald-400 uppercase block">INTERACTIVE EVALUATION TERMINAL</span>
-                    <h4 class="text-base font-bold text-white mt-2">Cognitive Diagnostic Arcade</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Test your reaction buffers, working memory churn, and signal detection filters live in secure sandboxes.</p>
-                </div>
-                <a href="arcade.html" class="mt-6 px-5 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Enter Tactical Arcade &rarr;
-                </a>
-            </div>
-        </div>
-
-    </main>
-        </div>
-
-        <!-- Automated Topic Matrix Navigation Hook -->
-        <div class="mt-12 pt-8 border-t border-slate-900 grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-gold uppercase block">TACTICAL OPERATIONAL PROTOCOLS</span>
-                    <h4 class="text-base font-bold text-white mt-2">Explore Classified Mission Briefings</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Systematic neural override training and decision interference deflection operational protocols.</p>
-                </div>
-                <a href="intel/index.html" class="mt-6 px-5 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Launch Protocol Matrix &rarr;
-                </a>
-            </div>
-
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-emerald-400 uppercase block">INTERACTIVE EVALUATION TERMINAL</span>
-                    <h4 class="text-base font-bold text-white mt-2">Cognitive Diagnostic Arcade</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Test your reaction buffers, working memory churn, and signal detection filters live in secure sandboxes.</p>
-                </div>
-                <a href="arcade.html" class="mt-6 px-5 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Enter Tactical Arcade &rarr;
-                </a>
-            </div>
-        </div>
-
-    </main>
-        </div>
-
-        <!-- Automated Topic Matrix Navigation Hook -->
-        <div class="mt-12 pt-8 border-t border-slate-900 grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-gold uppercase block">TACTICAL OPERATIONAL PROTOCOLS</span>
-                    <h4 class="text-base font-bold text-white mt-2">Explore Classified Mission Briefings</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Systematic neural override training and decision interference deflection operational protocols.</p>
-                </div>
-                <a href="intel/index.html" class="mt-6 px-5 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Launch Protocol Matrix &rarr;
-                </a>
-            </div>
-
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-emerald-400 uppercase block">INTERACTIVE EVALUATION TERMINAL</span>
-                    <h4 class="text-base font-bold text-white mt-2">Cognitive Diagnostic Arcade</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Test your reaction buffers, working memory churn, and signal detection filters live in secure sandboxes.</p>
-                </div>
-                <a href="arcade.html" class="mt-6 px-5 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Enter Tactical Arcade &rarr;
-                </a>
-            </div>
-        </div>
-
-    </main>
-        </div>
-
-        <!-- Automated Topic Matrix Navigation Hook -->
-        <div class="mt-12 pt-8 border-t border-slate-900 grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-gold uppercase block">TACTICAL OPERATIONAL PROTOCOLS</span>
-                    <h4 class="text-base font-bold text-white mt-2">Explore Classified Mission Briefings</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Systematic neural override training and decision interference deflection operational protocols.</p>
-                </div>
-                <a href="intel/index.html" class="mt-6 px-5 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Launch Protocol Matrix &rarr;
-                </a>
-            </div>
-
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-emerald-400 uppercase block">INTERACTIVE EVALUATION TERMINAL</span>
-                    <h4 class="text-base font-bold text-white mt-2">Cognitive Diagnostic Arcade</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Test your reaction buffers, working memory churn, and signal detection filters live in secure sandboxes.</p>
-                </div>
-                <a href="arcade.html" class="mt-6 px-5 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Enter Tactical Arcade &rarr;
-                </a>
-            </div>
-        </div>
-
-    </main>
-        </div>
-
-        <!-- Automated Topic Matrix Navigation Hook -->
-        <div class="mt-12 pt-8 border-t border-slate-900 grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-gold uppercase block">TACTICAL OPERATIONAL PROTOCOLS</span>
-                    <h4 class="text-base font-bold text-white mt-2">Explore Classified Mission Briefings</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Systematic neural override training and decision interference deflection operational protocols.</p>
-                </div>
-                <a href="intel/index.html" class="mt-6 px-5 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Launch Protocol Matrix &rarr;
-                </a>
-            </div>
-
-            <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
-                <div>
-                    <span class="text-[10px] tracking-widest font-black text-emerald-400 uppercase block">INTERACTIVE EVALUATION TERMINAL</span>
-                    <h4 class="text-base font-bold text-white mt-2">Cognitive Diagnostic Arcade</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Test your reaction buffers, working memory churn, and signal detection filters live in secure sandboxes.</p>
-                </div>
-                <a href="arcade.html" class="mt-6 px-5 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
-                    Enter Tactical Arcade &rarr;
-                </a>
-            </div>
-        </div>
-
-    </main>
-
 
     <!-- UNIFIED LEGAL & MISSION FOOTER -->
     <footer class="border-t border-slate-900 bg-slate-950 py-16 px-6 mt-auto text-slate-500 font-mono text-xs leading-relaxed select-none">
@@ -821,7 +211,7 @@
                         <span>⚡ WEB SIMULATION</span> <span>&rarr;</span>
                     </a>
                     <p class="text-[11px] text-slate-500 leading-relaxed pt-3">
-                        All interactive sandbox mechanics across our portal ingest 100% anonymized behavioral coordinate mapping exactly compliant with GDPR and EU AI Act open-source research parameters.
+                        All interactive gaming mechanics are exactly formatted for high-performance execution and secure ad mediation. Earning qualifying referral commissions via vetted field gear recommendations.
                     </p>
                 </div>
             </div>
@@ -837,6 +227,5 @@
             </div>
         </div>
     </footer>
-
 </body>
 </html>

@@ -1156,6 +1156,40 @@
       "universe": "frontier",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T15:23:42.000Z"
+    },
+    {
+      "slug": "remote-police-officers",
+      "name": "Remote Police Officers",
+      "description": "Remote Police Officers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "police-officers",
+        "remote",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "frontier",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T15:32:14.592Z"
+    },
+    {
+      "slug": "field-police-officers",
+      "name": "Field Police Officers",
+      "description": "Field Police Officers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "police-officers",
+        "field",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "frontier",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T15:32:14.592Z"
     }
   ]
 }
