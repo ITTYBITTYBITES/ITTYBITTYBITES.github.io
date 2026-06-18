@@ -1598,6 +1598,40 @@
       "universe": "society",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T22:40:30.329Z"
+    },
+    {
+      "slug": "senior-financial-advisors",
+      "name": "Senior Financial Advisors",
+      "description": "Senior Financial Advisors — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "financial-advisors",
+        "senior",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "society",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T22:41:25.404Z"
+    },
+    {
+      "slug": "junior-financial-advisors",
+      "name": "Junior Financial Advisors",
+      "description": "Junior Financial Advisors — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "financial-advisors",
+        "junior",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "society",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T22:41:25.404Z"
     }
   ]
 }
