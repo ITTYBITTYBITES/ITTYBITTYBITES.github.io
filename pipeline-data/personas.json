@@ -850,6 +850,40 @@
       "universe": "life",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T14:02:01.116Z"
+    },
+    {
+      "slug": "high-stress-pharmacists",
+      "name": "High-Stress Pharmacists",
+      "description": "High-Stress Pharmacists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "pharmacists",
+        "high-stress",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "life",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T14:16:47.811Z"
+    },
+    {
+      "slug": "multi-project-pharmacists",
+      "name": "Multi-Project Pharmacists",
+      "description": "Multi-Project Pharmacists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "pharmacists",
+        "multi-project",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "life",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T14:16:47.811Z"
     }
   ]
 }
