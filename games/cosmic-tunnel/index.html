@@ -209,6 +209,7 @@
                     this.isPointerSteering = false;
                     
                     touchZone.addEventListener('pointerdown', (e) => {
+            try { e.target.setPointerCapture(e.pointerId); } catch(err){}
                         e.preventDefault();
                         this.lastTouchX = e.clientX;
                         this.isPointerSteering = true;

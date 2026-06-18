@@ -15,6 +15,7 @@
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap');
+        body, html { overscroll-behavior: none; touch-action: none; -webkit-touch-callout: none; }
         body { font-family: 'JetBrains+Mono', monospace; background-color: #090d16; color: #f8fafc; margin: 0; padding: 16px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; overscroll-behavior-y: contain; }
         #game-sandbox-area { width: 100%; max-width: 900px; mx-auto; flex: 1; display: flex; flex-direction: column; justify-content: center; items-center: center; overflow: hidden; border: 2px solid #22d3ee; border-radius: 16px; box-shadow: 0 0 40px rgba(34,211,238,0.15); }
     </style>
@@ -55,11 +56,11 @@
         dpad.className = 'absolute bottom-4 left-4 right-4 flex justify-between select-none z-50 font-mono';
         dpad.innerHTML = `<div class='flex gap-2'><button id='btn-up' class='px-6 py-4 bg-slate-900/80 border-2 border-cyan-400 text-cyan-400 font-black rounded-xl text-lg active:bg-cyan-400 active:text-black'>▲ ADVANCE</button></div><div class='flex gap-2'><button id='btn-l' class='px-5 py-4 bg-slate-900/80 border-2 border-gold text-gold font-black rounded-xl text-lg active:bg-gold active:text-black'>◀ ROTATE</button><button id='btn-r' class='px-5 py-4 bg-slate-900/80 border-2 border-gold text-gold font-black rounded-xl text-lg active:bg-gold active:text-black'>ROTATE ▶</button></div>`;
         document.getElementById('game-sandbox-area').appendChild(dpad);
-        document.getElementById('btn-up').addEventListener('pointerdown', (e)=>{ e.preventDefault(); keys.up=true; });
+        document.getElementById('btn-up').addEventListener('pointerdown', (e)=>{ try { e.target.setPointerCapture(e.pointerId); } catch(err){} e.preventDefault(); keys.up=true; });
         document.getElementById('btn-up').addEventListener('pointerup', (e)=>{ keys.up=false; });
-        document.getElementById('btn-l').addEventListener('pointerdown', (e)=>{ e.preventDefault(); keys.left=true; });
+        document.getElementById('btn-l').addEventListener('pointerdown', (e)=>{ try { e.target.setPointerCapture(e.pointerId); } catch(err){} e.preventDefault(); keys.left=true; });
         document.getElementById('btn-l').addEventListener('pointerup', (e)=>{ keys.left=false; });
-        document.getElementById('btn-r').addEventListener('pointerdown', (e)=>{ e.preventDefault(); keys.right=true; });
+        document.getElementById('btn-r').addEventListener('pointerdown', (e)=>{ try { e.target.setPointerCapture(e.pointerId); } catch(err){} e.preventDefault(); keys.right=true; });
         document.getElementById('btn-r').addEventListener('pointerup', (e)=>{ keys.right=false; });
 
 

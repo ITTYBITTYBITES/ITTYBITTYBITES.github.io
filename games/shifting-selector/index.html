@@ -14,6 +14,7 @@
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap');
+        body, html { overscroll-behavior: none; touch-action: none; -webkit-touch-callout: none; }
         body { font-family: 'JetBrains+Mono', monospace; background-color: #090d16; color: #f8fafc; margin: 0; padding: 24px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
     </style>
 </head>
@@ -101,8 +102,10 @@
         }
 
         opt0.style.touchAction='none'; opt1.style.touchAction='none';
-        opt0.addEventListener('pointerdown', (e) => { e.preventDefault(); verify(0); });
-        opt1.addEventListener('pointerdown', (e) => { e.preventDefault(); verify(1); });
+        opt0.addEventListener('pointerdown', (e) => {
+            try { e.target.setPointerCapture(e.pointerId); } catch(err){} e.preventDefault(); verify(0); });
+        opt1.addEventListener('pointerdown', (e) => {
+            try { e.target.setPointerCapture(e.pointerId); } catch(err){} e.preventDefault(); verify(1); });
         build();
         
     </script>

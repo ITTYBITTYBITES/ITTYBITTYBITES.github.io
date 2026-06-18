@@ -111,7 +111,8 @@ class QuantumSentinelEngine {
         wrapper.appendChild(this.canvas);
 
         // Bind interactive target interception
-        this.canvas.addEventListener('pointerdown', (e) => { e.preventDefault(); this.handleReticleInterception(e); });
+        this.canvas.addEventListener('pointerdown', (e) => {
+            try { e.target.setPointerCapture(e.pointerId); } catch(err){} e.preventDefault(); this.handleReticleInterception(e); });
         this.canvas.style.touchAction = 'none';
 
         // Spawn initial targets

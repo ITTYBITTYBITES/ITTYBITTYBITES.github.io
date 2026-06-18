@@ -15,6 +15,7 @@
     </script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap');
+        body, html { overscroll-behavior: none; touch-action: none; -webkit-touch-callout: none; }
         body { font-family: 'JetBrains+Mono', monospace; background-color: #090d16; color: #f8fafc; margin: 0; padding: 16px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; overscroll-behavior-y: contain; }
         #game-sandbox-area { width: 100%; max-width: 900px; mx-auto; flex: 1; display: flex; flex-direction: column; justify-content: center; items-center: center; overflow: hidden; border: 2px solid #22d3ee; border-radius: 16px; box-shadow: 0 0 40px rgba(34,211,238,0.15); }
     </style>
@@ -39,9 +40,9 @@
         dpad.className = 'absolute bottom-4 left-4 right-4 flex justify-between select-none z-50 font-mono';
         dpad.innerHTML = `<div class='flex gap-3'><button id='btn-la' class='px-6 py-4 bg-slate-900/80 border-2 border-cyan-400 text-cyan-400 font-black rounded-xl text-lg'>◀ ROTATE</button><button id='btn-ra' class='px-6 py-4 bg-slate-900/80 border-2 border-cyan-400 text-cyan-400 font-black rounded-xl text-lg'>ROTATE ▶</button></div><div><button id='btn-fire' class='px-8 py-4 bg-rose-500 hover:bg-rose-400 text-black font-black rounded-xl text-lg shadow-lg'>🚀 FIRE BLASter</button></div>`;
         document.getElementById('game-sandbox-area').appendChild(dpad);
-        document.getElementById('btn-la').addEventListener('pointerdown', (e)=>{ e.preventDefault(); ship.a-=0.4; });
-        document.getElementById('btn-ra').addEventListener('pointerdown', (e)=>{ e.preventDefault(); ship.a+=0.4; });
-        document.getElementById('btn-fire').addEventListener('pointerdown', (e)=>{ e.preventDefault(); bullets.push({ x: ship.x, y: ship.y, vx: Math.cos(ship.a)*10, vy: Math.sin(ship.a)*10 }); });
+        document.getElementById('btn-la').addEventListener('pointerdown', (e)=>{ try { e.target.setPointerCapture(e.pointerId); } catch(err){} e.preventDefault(); ship.a-=0.4; });
+        document.getElementById('btn-ra').addEventListener('pointerdown', (e)=>{ try { e.target.setPointerCapture(e.pointerId); } catch(err){} e.preventDefault(); ship.a+=0.4; });
+        document.getElementById('btn-fire').addEventListener('pointerdown', (e)=>{ try { e.target.setPointerCapture(e.pointerId); } catch(err){} e.preventDefault(); bullets.push({ x: ship.x, y: ship.y, vx: Math.cos(ship.a)*10, vy: Math.sin(ship.a)*10 }); });
 
         for(let i=0; i<6; i++) rocks.push({ x:Math.random()*800, y:Math.random()*500, vx:(Math.random()-0.5)*3, vy:(Math.random()-0.5)*3, r:30 });
 
