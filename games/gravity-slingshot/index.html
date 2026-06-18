@@ -27,17 +27,18 @@
 
     <script>
         const canvas = document.createElement('canvas');
-        canvas.width = 800; canvas.height = 500;
-        canvas.className = 'w-full h-full block bg-black cursor-pointer';
+        const logicalWidth = 800; const logicalHeight = 500;
+        canvas.width = logicalWidth; canvas.height = logicalHeight;
+        canvas.className = 'w-full block bg-black cursor-pointer';
+        canvas.style.aspectRatio = '16 / 10';
+        canvas.style.objectFit = 'cover';
         document.getElementById('game-sandbox-area').appendChild(canvas);
 
         const ctx = canvas.getContext('2d');
         // DevicePixelRatio Retina Scaling Correction
         const dpr = window.devicePixelRatio || 1;
-        canvas.style.width = `${canvas.width}px`;
-        canvas.style.height = `${canvas.height}px`;
-        canvas.width *= dpr;
-        canvas.height *= dpr;
+        canvas.width = logicalWidth * dpr;
+        canvas.height = logicalHeight * dpr;
         ctx.scale(dpr, dpr);
         const holes = [{x:300, y:250, mass:4000}, {x:550, y:180, mass:3000}];
         const target = {x:720, y:400, radius:24};
@@ -50,16 +51,18 @@
             e.preventDefault();
             if(isL) return;
             const rect = canvas.getBoundingClientRect();
-            const tx = (e.clientX - rect.left)*(canvas.width/rect.width);
-            const ty = (e.clientY - rect.top)*(canvas.height/rect.height);
-            probe.vx = (tx - probe.x)*0.08; probe.vy = (ty - probe.y)*0.08;
-            isL = true;
+            if(rect.width > 0) {
+                const tx = (e.clientX - rect.left)*(logicalWidth/rect.width);
+                const ty = (e.clientY - rect.top)*(logicalHeight/rect.height);
+                probe.vx = (tx - probe.x)*0.08; probe.vy = (ty - probe.y)*0.08;
+                isL = true;
+            }
         });
 
         function resetP() { probe.x=80; probe.y=80; probe.vx=0; probe.vy=0; isL=false; }
 
         function loop() {
-            ctx.fillStyle = 'rgba(2,6,23,0.3)'; ctx.fillRect(0,0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(2,6,23,0.3)'; ctx.fillRect(0,0, logicalWidth, logicalHeight);
 
             // Holes
             holes.forEach(h => {
@@ -82,10 +85,10 @@
                 ctx.fillStyle = '#22d3ee'; ctx.beginPath(); ctx.arc(probe.x, probe.y, probe.radius, 0, Math.PI*2); ctx.fill();
 
                 if(Math.hypot(probe.x-target.x, probe.y-target.y) <= target.radius) {
-                    resetP(); xp += 150; target.x = 200+Math.random()*500; target.y = 100+Math.random()*300;
+                    resetP(); xp += 150; target.x = 200+Math.random()*400; target.y = 100+Math.random()*300;
                     if(xp%300===0 && window.parent) window.parent.postMessage({ type: "ARCADE_TRIGGER_AD", adType: "interstitial" }, "*");
                 }
-                if(probe.x<0||probe.x>canvas.width||probe.y<0||probe.y>canvas.height) resetP();
+                if(probe.x<0||probe.x>logicalWidth||probe.y<0||probe.y>logicalHeight) resetP();
             } else {
                 ctx.fillStyle = '#facc15'; ctx.beginPath(); ctx.arc(probe.x, probe.y, probe.radius, 0, Math.PI*2); ctx.fill();
             }
@@ -93,7 +96,7 @@
             // HUD
             ctx.fillStyle = '#22d3ee'; ctx.font = 'bold 16px monospace';
             ctx.fillText(`OPERATIONAL SLINGSHOTS // XP SCORE: ${xp}`, 20, 30);
-            ctx.fillText(`◈ TAP ANYWHERE TO SLINGSHOT EXPLORATION CAPSULE ◈`, 20, canvas.height - 20);
+            ctx.fillText(`◈ TAP ANYWHERE TO SLINGSHOT EXPLORATION CAPSULE ◈`, 20, logicalHeight - 20);
 
             requestAnimationFrame(loop);
         }
