@@ -14,8 +14,9 @@ class ArcadePortalEngine {
         this.activeGame = null;
 
         // Commercial Adsterra Mediation States
-        this.globalAdCooldownMs = 3000; // 3 Seconds while launch testing
+        this.globalAdCooldownMs = 180000; // 3 Minutes strict Commercial Ad Standard
         this.lastAdExecutedTime = 0;
+        this.activeGameWindow = null;
         
         // Master Adsterra Smartlink Gateway with Anti-Adblock Encrypted Proxy
         this.adsterraSmartlinkUrl = "https://undergocutlery.com/q9gfrv2v8?key=2cd3374e4c6ba143d74108a029fb0dd5"; // Formatted for Popunder Smartlink_1 (ID 3317235)
@@ -56,10 +57,15 @@ class ArcadePortalEngine {
             this.theaterToggleBtn.addEventListener('click', () => this.toggleTheaterScaling());
         }
 
-        // Test ad trigger button
-        const testAdBtn = document.getElementById('test-ad-sponsorship-btn');
-        if (testAdBtn) {
-            testAdBtn.addEventListener('click', () => this.executeAdsterraMonetizationLoop(null, 'manual_test'));
+        // Instant sponsorship skip / continue button
+        const instantSkipBtn = document.getElementById('instant-ad-skip-btn');
+        if (instantSkipBtn) {
+            instantSkipBtn.addEventListener('click', () => {
+                if (this.adModal) this.adModal.classList.add('hidden');
+                this.lastAdExecutedTime = Date.now();
+                if (this.activeGameWindow) this.activeGameWindow.postMessage({ type: "ARCADE_AD_COMPLETE" }, "*");
+                this.notifyPlayerStatus("◈ Sponsorship Bypassed — Execution Resumed");
+            });
         }
 
         // Phase 2 PostMessage Orchestrator
@@ -272,6 +278,7 @@ class ArcadePortalEngine {
     }
 
     executeAdsterraMonetizationLoop(targetFrameWindow, adType) {
+        this.activeGameWindow = targetFrameWindow;
         const now = Date.now();
 
         // 1. Strict Global Ad Cooldown Timer (3 Minutes / 180000ms)
