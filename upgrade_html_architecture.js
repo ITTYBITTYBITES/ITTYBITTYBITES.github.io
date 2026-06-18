@@ -140,6 +140,7 @@ const GLOBAL_FOOTER = `
             <div class="text-slate-400">© 2026 ITTY BITTY BITES // CLASSIFIED COGNITIVE TRAINING DIVISION</div>
             <div class="flex flex-wrap justify-center gap-6 text-slate-400">
                 <a href="privacy_policy.html" class="hover:text-cyan-400 transition-colors">Privacy Policy</a>
+                <a href="terms_of_service.html" class="hover:text-cyan-400 transition-colors">Terms of Service</a>
                 <a href="sitemap.xml" class="hover:text-cyan-400 transition-colors">Sitemap XML</a>
                 <a href="feed.html" class="hover:text-cyan-400 transition-colors">RSS Database</a>
             </div>
