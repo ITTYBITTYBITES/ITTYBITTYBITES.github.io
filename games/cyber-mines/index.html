@@ -48,7 +48,11 @@
                 b.className = "w-12 h-12 bg-slate-950 border border-slate-800 rounded-lg text-xl font-black text-cyan-400 flex items-center justify-center hover:bg-slate-800";
                 b.textContent = "?";
                 b.style.touchAction='none'; b.addEventListener('pointerdown', (e) => { e.preventDefault(); try{ e.target.setPointerCapture(e.pointerId); }catch(err){}
-                    if(Math.random()<0.2) { b.textContent="💥"; b.className="w-12 h-12 bg-rose-500 text-black rounded-lg text-xl font-black"; }
+                    if(b.textContent !== "?") return;
+                    if(Math.random()<0.2) {
+                        b.textContent="💥"; b.className="w-12 h-12 bg-rose-500 text-black rounded-lg text-xl font-black";
+                        if(window.parent) window.parent.postMessage({ type: "ARCADE_TRIGGER_AD", adType: "interstitial" }, "*");
+                    }
                     else { b.textContent="◈"; b.className="w-12 h-12 bg-emerald-500/20 text-emerald-400 border border-emerald-500 rounded-lg text-xl font-black"; flags+=10; mScore.textContent=`FLAGGED: ${flags}`; }
                 });
                 mGrid.appendChild(b);
