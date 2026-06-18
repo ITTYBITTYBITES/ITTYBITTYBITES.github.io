@@ -831,70 +831,7 @@ body::before { content: ''; position: fixed; inset: 0; background: linear-gradie
   </div>
 </section>
     <!-- UNIFIED LEGAL & MISSION FOOTER -->
-    <footer class="border-t border-slate-900 bg-slate-950 py-16 px-6 mt-auto text-slate-500 font-mono text-xs leading-relaxed select-none">
-        <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-16 border-b border-slate-900 pb-16">
-            <div>
-                <h4 class="text-cyan-400 font-bold uppercase tracking-wider text-sm mb-4 font-['Orbitron'] flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span> Tactical Briefings</h4>
-                <div class="space-y-2.5 flex flex-col text-xs font-mono font-medium text-slate-300">
-                    <a href="../stroop-effect.html" class="hover:text-gold transition-colors py-1 block">◈ The Stroop Effect</a>
-                    <a href="../cognitive-biases.html" class="hover:text-gold transition-colors py-1 block">◈ 25 Cognitive Biases</a>
-                    <a href="../decision-making.html" class="hover:text-gold transition-colors py-1 block">◈ System 1 vs System 2</a>
-                    <a href="../rapid-thinking.html" class="hover:text-gold transition-colors py-1 block">◈ Rapid Thinking Protocols</a>
-                    <a href="../dunning-kruger.html" class="hover:text-gold transition-colors py-1 block">◈ Dunning-Kruger Analysis</a>
-                    <a href="../flow-state.html" class="hover:text-gold transition-colors py-1 block">◈ Flow State Triggers</a>
-                </div>
-            </div>
-
-            <div>
-                <h4 class="text-cyan-400 font-bold uppercase tracking-wider text-sm mb-4 font-['Orbitron'] flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> Research Hub</h4>
-                <div class="space-y-2.5 flex flex-col text-xs font-mono font-medium text-slate-300">
-                    <a href="../social-engineering.html" class="hover:text-gold transition-colors py-1 block">◈ 10 Social Engineering Defenses</a>
-                    <a href="../how-doctors-think.html" class="hover:text-gold transition-colors py-1 block">◈ How Doctors Think (Pattern Rec)</a>
-                    <a href="../logical-fallacies.html" class="hover:text-gold transition-colors py-1 block">◈ 15 Logical Fallacies</a>
-                    <a href="../pattern-recognition.html" class="hover:text-gold transition-colors py-1 block">◈ Pattern Recognition in Ops</a>
-                    <a href="../priming-effect.html" class="hover:text-gold transition-colors py-1 block">◈ Cognitive Priming Override</a>
-                    <a href="../false-memory.html" class="hover:text-gold transition-colors py-1 block">◈ The False Memory Problem</a>
-                </div>
-            </div>
-
-            <div>
-                <h4 class="text-cyan-400 font-bold uppercase tracking-wider text-sm mb-4 font-['Orbitron'] flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-gold"></span> Field Manuals</h4>
-                <div class="space-y-2.5 flex flex-col text-xs font-mono font-medium text-slate-300">
-                    <a href="../survival-skills.html" class="hover:text-gold transition-colors py-1 block">◈ 10 Wilderness Survival Skills</a>
-                    <a href="../first-aid-basics.html" class="hover:text-gold transition-colors py-1 block">◈ First Aid Operational Basics</a>
-                    <a href="../food-safety.html" class="hover:text-gold transition-colors py-1 block">◈ Food Safety Defenses</a>
-                    <a href="../cybersecurity-beginners.html" class="hover:text-gold transition-colors py-1 block">◈ Cybersecurity for Beginners</a>
-                    <a href="../best-brain-games.html" class="hover:text-gold transition-colors py-1 block">◈ Best Diagnostic Brain Games</a>
-                    <a href="../brain-training-tips.html" class="hover:text-gold transition-colors py-1 block">◈ Brain Training Optimization</a>
-                </div>
-            </div>
-
-            <div>
-                <h4 class="text-cyan-400 font-bold uppercase tracking-wider text-sm mb-4 font-['Orbitron'] flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span> Active Theaters</h4>
-                <div class="flex flex-col space-y-3 mt-2">
-                    <a href="https://play.google.com/store/apps/details?id=com.ittybittybites.the2secondwitness" target="_blank" rel="noopener" class="px-5 py-3.5 bg-cyan-500/10 hover:bg-cyan-500 hover:text-slate-950 text-cyan-400 border border-cyan-400/30 rounded-xl font-bold transition-all flex items-center justify-between text-xs shadow-lg tracking-wider">
-                        <span>🚀 ANDROID APP</span> <span>&rarr;</span>
-                    </a>
-                    <a href="https://ittybittybites.itch.io/2-second-witness" target="_blank" rel="noopener" class="px-5 py-3.5 bg-gold/10 hover:bg-gold hover:text-slate-950 text-gold border border-gold/30 rounded-xl font-bold transition-all flex items-center justify-between text-xs shadow-lg tracking-wider">
-                        <span>⚡ WEB SIMULATION</span> <span>&rarr;</span>
-                    </a>
-                    <p class="text-[11px] text-slate-500 leading-relaxed pt-3">
-                        All interactive sandbox execution mechanics across our portal operate entirely locally within your secure client sandbox. Zero background telemetry or path tracking data is collected.
-                    </p>
-                </div>
-            </div>
-        </div>
-
-        <div class="max-w-[1400px] mx-auto text-center text-xs text-slate-500 tracking-widest uppercase flex flex-col sm:flex-row items-center justify-between gap-6 font-mono font-bold">
-            <div class="text-slate-400">© 2026 ITTY BITTY BITES // CLASSIFIED COGNITIVE TRAINING DIVISION</div>
-            <div class="flex flex-wrap justify-center gap-6 text-slate-400">
-                <a href="../privacy_policy.html" class="hover:text-cyan-400 transition-colors">Privacy Policy</a>
-                <a href="../terms_of_service.html" class="hover:text-cyan-400 transition-colors">Terms of Service</a>
-                <a href="../sitemap.xml" class="hover:text-cyan-400 transition-colors">Sitemap XML</a>
-                <a href="../feed.html" class="hover:text-cyan-400 transition-colors">RSS Database</a>
-            </div>
-        </div>
-    </footer>
+    ${makeGlobalFooter('../')}
 </body>
 </html>`;
 }
@@ -1090,9 +1027,12 @@ ${cards}
 // ─── Step 8b: Update Automated Dynamic Showcases on HQ and Feeds ─────────────────
 
 function updateDynamicShowcases(intelPages) {
-  console.log('\n⚡ Integrating newest dynamic protocol pages into HQ and Feeds showcases...');
+  console.log('\n⚡ Integrating newest dynamic protocol pages into HQ and Feeds showcases (True Daily Rotator active)...');
   
-  const freshest = intelPages.slice(0, 12);
+  // Deterministic daily rotator formula
+  const todayDay = Math.floor(Date.now() / (1000 * 60 * 60 * 24));
+  const startIndex = (todayDay * 12) % intelPages.length;
+  const freshest = [...intelPages.slice(startIndex), ...intelPages.slice(0, startIndex)].slice(0, 12);
   
   const showcaseCards = freshest.map(p => `
       <a href="intel/${p.slug}.html" class="bg-slate-900/60 border border-slate-800 rounded-xl p-6 hover:border-cyan-400 hover:bg-slate-900/90 transition-all flex flex-col justify-between group shadow-xl hover:shadow-cyan-400/5 font-mono select-none">
@@ -1102,11 +1042,11 @@ function updateDynamicShowcases(intelPages) {
             <span class="text-xs text-slate-500 font-mono font-bold">2-SEC</span>
           </div>
           <h3 class="font-display font-bold text-sm text-slate-100 group-hover:text-cyan-400 transition-colors leading-relaxed mt-2">${p.title}</h3>
-          <p class="text-slate-400 text-xs mt-2.5 line-clamp-2 leading-relaxed">Neural override training and decision interference deflection operational protocol.</p>
+          <p class="text-slate-400 text-xs mt-2.5 line-clamp-2 leading-relaxed font-mono">Neural override training and decision interference deflection operational protocol.</p>
         </div>
         <div class="mt-6 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono">
-          <span class="text-slate-500 group-hover:text-gold transition-colors font-bold tracking-wider">CLASSIFIED</span>
-          <span class="text-cyan-400 font-bold tracking-widest group-hover:translate-x-1 transition-transform">ACCESS &rarr;</span>
+          <span class="text-slate-500 group-hover:text-gold transition-colors font-bold tracking-wider font-mono">CLASSIFIED</span>
+          <span class="text-cyan-400 font-bold tracking-widest group-hover:translate-x-1 transition-transform font-mono">ACCESS &rarr;</span>
         </div>
       </a>`).join('\n');
 
@@ -1114,15 +1054,15 @@ function updateDynamicShowcases(intelPages) {
 <section id="autonomous-protocol-showcase" class="py-24 md:py-32 relative bg-slate-950 section-pattern-grid font-mono select-none border-t border-slate-900">
   <div class="max-w-[1400px] mx-auto px-5 relative z-10">
     <div class="flex items-center gap-3 mb-12">
-      <span class="text-[10px] tracking-widest text-slate-950 bg-cyan-400 px-3 py-1 uppercase font-bold">OPERATIONAL PROTOCOLS</span>
+      <span class="text-[10px] tracking-widest text-slate-950 bg-cyan-400 px-3 py-1 uppercase font-bold font-mono">OPERATIONAL PROTOCOLS</span>
       <h2 class="font-display text-xl sm:text-2xl text-cyan-400 tracking-wider font-black uppercase font-['Orbitron']">RECENT TACTICAL RELEASES</h2>
       <span class="flex-1 h-px bg-gradient-to-r from-cyan-400/20 to-transparent"></span>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       ${showcaseCards}
     </div>
     <div class="mt-12 text-center font-mono">
-      <a href="intel/index.html" class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-black tracking-widest text-xs uppercase rounded-xl transition-all shadow-xl active:scale-95 inline-block">Explore Entire Intelligence Briefing Database &rarr;</a>
+      <a href="intel/index.html" class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-black tracking-widest text-xs uppercase rounded-xl transition-all shadow-xl active:scale-95 inline-block font-mono cursor-pointer">Explore Entire Intelligence Briefing Database &rarr;</a>
     </div>
   </div>
 </section>`;
@@ -1281,3 +1221,72 @@ async function main() {
 }
 
 main();
+function makeGlobalFooter(prefix = '') {
+  return `    <!-- UNIFIED LEGAL & MISSION FOOTER -->
+    <footer class="border-t border-slate-900 bg-slate-950 py-16 px-6 mt-auto text-slate-500 font-mono text-xs leading-relaxed select-none shrink-0">
+        <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-16 border-b border-slate-900 pb-16 text-left">
+            <div>
+                <h4 class="text-cyan-400 font-bold uppercase tracking-wider text-sm mb-4 font-['Orbitron'] flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span> Tactical Briefings</h4>
+                <div class="space-y-2.5 flex flex-col text-xs font-mono font-medium text-slate-300">
+                    <a href="{{PREFIX}}stroop-effect.html" class="hover:text-gold transition-colors py-1 block">◈ The Stroop Effect</a>
+                    <a href="{{PREFIX}}cognitive-biases.html" class="hover:text-gold transition-colors py-1 block">◈ 25 Cognitive Biases</a>
+                    <a href="{{PREFIX}}decision-making.html" class="hover:text-gold transition-colors py-1 block">◈ System 1 vs System 2</a>
+                    <a href="{{PREFIX}}rapid-thinking.html" class="hover:text-gold transition-colors py-1 block">◈ Rapid Thinking Protocols</a>
+                    <a href="{{PREFIX}}dunning-kruger.html" class="hover:text-gold transition-colors py-1 block">◈ Dunning-Kruger Analysis</a>
+                    <a href="{{PREFIX}}flow-state.html" class="hover:text-gold transition-colors py-1 block">◈ Flow State Triggers</a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-cyan-400 font-bold uppercase tracking-wider text-sm mb-4 font-['Orbitron'] flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> Research Hub</h4>
+                <div class="space-y-2.5 flex flex-col text-xs font-mono font-medium text-slate-300">
+                    <a href="{{PREFIX}}social-engineering.html" class="hover:text-gold transition-colors py-1 block">◈ 10 Social Engineering Defenses</a>
+                    <a href="{{PREFIX}}how-doctors-think.html" class="hover:text-gold transition-colors py-1 block">◈ How Doctors Think (Pattern Rec)</a>
+                    <a href="{{PREFIX}}logical-fallacies.html" class="hover:text-gold transition-colors py-1 block">◈ 15 Logical Fallacies</a>
+                    <a href="{{PREFIX}}pattern-recognition.html" class="hover:text-gold transition-colors py-1 block">◈ Pattern Recognition in Ops</a>
+                    <a href="{{PREFIX}}priming-effect.html" class="hover:text-gold transition-colors py-1 block">◈ Cognitive Priming Override</a>
+                    <a href="{{PREFIX}}false-memory.html" class="hover:text-gold transition-colors py-1 block">◈ The False Memory Problem</a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-cyan-400 font-bold uppercase tracking-wider text-sm mb-4 font-['Orbitron'] flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-gold"></span> Field Manuals</h4>
+                <div class="space-y-2.5 flex flex-col text-xs font-mono font-medium text-slate-300">
+                    <a href="{{PREFIX}}survival-skills.html" class="hover:text-gold transition-colors py-1 block">◈ 10 Wilderness Survival Skills</a>
+                    <a href="{{PREFIX}}first-aid-basics.html" class="hover:text-gold transition-colors py-1 block">◈ First Aid Operational Basics</a>
+                    <a href="{{PREFIX}}food-safety.html" class="hover:text-gold transition-colors py-1 block">◈ Food Safety Defenses</a>
+                    <a href="{{PREFIX}}cybersecurity-beginners.html" class="hover:text-gold transition-colors py-1 block">◈ Cybersecurity for Beginners</a>
+                    <a href="{{PREFIX}}best-brain-games.html" class="hover:text-gold transition-colors py-1 block">◈ Best Diagnostic Brain Games</a>
+                    <a href="{{PREFIX}}brain-training-tips.html" class="hover:text-gold transition-colors py-1 block">◈ Brain Training Optimization</a>
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-cyan-400 font-bold uppercase tracking-wider text-sm mb-4 font-['Orbitron'] flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span> Active Theaters</h4>
+                <div class="flex flex-col space-y-3 mt-2">
+                    <a href="https://play.google.com/store/apps/details?id=com.ittybittybites.the2secondwitness" target="_blank" rel="noopener" class="px-5 py-3.5 bg-cyan-500/10 hover:bg-cyan-500 hover:text-slate-950 text-cyan-400 border border-cyan-400/30 rounded-xl font-bold transition-all flex items-center justify-between text-xs shadow-lg tracking-wider font-mono">
+                        <span>🚀 ANDROID APP</span> <span>&rarr;</span>
+                    </a>
+                    <a href="https://ittybittybites.itch.io/2-second-witness" target="_blank" rel="noopener" class="px-5 py-3.5 bg-gold/10 hover:bg-gold hover:text-slate-950 text-gold border border-gold/30 rounded-xl font-bold transition-all flex items-center justify-between text-xs shadow-lg tracking-wider font-mono">
+                        <span>⚡ WEB SIMULATION</span> <span>&rarr;</span>
+                    </a>
+                    <p class="text-[11px] text-slate-500 leading-relaxed pt-3">
+                        All interactive sandbox execution mechanics across our portal operate entirely locally within your secure client sandbox. Zero background telemetry or path tracking data is collected.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="max-w-[1400px] mx-auto text-center text-xs text-slate-500 tracking-widest uppercase flex flex-col sm:flex-row items-center justify-between gap-6 font-mono font-bold">
+            <div class="text-slate-400">© 2026 ITTY BITTY BITES // CLASSIFIED COGNITIVE TRAINING DIVISION</div>
+            <div class="flex flex-wrap justify-center gap-6 text-slate-400 font-mono">
+                <a href="{{PREFIX}}privacy_policy.html" class="hover:text-cyan-400 transition-colors">Privacy Policy</a>
+                <a href="{{PREFIX}}terms_of_service.html" class="hover:text-cyan-400 transition-colors">Terms of Service</a>
+                <a href="{{PREFIX}}about.html" class="hover:text-cyan-400 transition-colors">About Us</a>
+                <a href="{{PREFIX}}contact.html" class="hover:text-cyan-400 transition-colors">Contact Us</a>
+                <a href="{{PREFIX}}sitemap.xml" class="hover:text-cyan-400 transition-colors">Sitemap XML</a>
+                <a href="{{PREFIX}}feed.html" class="hover:text-cyan-400 transition-colors">RSS Database</a>
+            </div>
+        </div>
+    </footer>`.replace(/\{\{PREFIX\}\}/g, prefix);
+}

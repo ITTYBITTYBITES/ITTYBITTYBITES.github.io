@@ -81,56 +81,57 @@ const GLOBAL_STYLES = `
         .btn-deploy:hover { background: #fef08a; transform: translateY(-2px); color: #020617; }
     </style>`;
 
-const GLOBAL_FOOTER = `
+function buildGlobalFooter(prefix = '') {
+  return `
     <!-- UNIFIED LEGAL & MISSION FOOTER -->
-    <footer class="border-t border-slate-900 bg-slate-950 py-16 px-6 mt-auto text-slate-500 font-mono text-xs leading-relaxed select-none">
-        <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-16 border-b border-slate-900 pb-16">
+    <footer class="border-t border-slate-900 bg-slate-950 py-16 px-6 mt-auto text-slate-500 font-mono text-xs leading-relaxed select-none shrink-0 font-mono">
+        <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-16 border-b border-slate-900 pb-16 font-mono text-left">
             <div>
                 <h4 class="text-cyan-400 font-bold uppercase tracking-wider text-sm mb-4 font-['Orbitron'] flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span> Tactical Briefings</h4>
-                <div class="space-y-2.5 flex flex-col text-xs font-mono font-medium text-slate-300">
-                    <a href="stroop-effect.html" class="hover:text-gold transition-colors py-1 block">◈ The Stroop Effect</a>
-                    <a href="cognitive-biases.html" class="hover:text-gold transition-colors py-1 block">◈ 25 Cognitive Biases</a>
-                    <a href="decision-making.html" class="hover:text-gold transition-colors py-1 block">◈ System 1 vs System 2</a>
-                    <a href="rapid-thinking.html" class="hover:text-gold transition-colors py-1 block">◈ Rapid Thinking Protocols</a>
-                    <a href="dunning-kruger.html" class="hover:text-gold transition-colors py-1 block">◈ Dunning-Kruger Analysis</a>
-                    <a href="flow-state.html" class="hover:text-gold transition-colors py-1 block">◈ Flow State Triggers</a>
+                <div class="space-y-2.5 flex flex-col text-xs font-mono font-medium text-slate-300 font-mono">
+                    <a href="{{PREFIX}}stroop-effect.html" class="hover:text-gold transition-colors py-1 block">◈ The Stroop Effect</a>
+                    <a href="{{PREFIX}}cognitive-biases.html" class="hover:text-gold transition-colors py-1 block">◈ 25 Cognitive Biases</a>
+                    <a href="{{PREFIX}}decision-making.html" class="hover:text-gold transition-colors py-1 block">◈ System 1 vs System 2</a>
+                    <a href="{{PREFIX}}rapid-thinking.html" class="hover:text-gold transition-colors py-1 block">◈ Rapid Thinking Protocols</a>
+                    <a href="{{PREFIX}}dunning-kruger.html" class="hover:text-gold transition-colors py-1 block">◈ Dunning-Kruger Analysis</a>
+                    <a href="{{PREFIX}}flow-state.html" class="hover:text-gold transition-colors py-1 block">◈ Flow State Triggers</a>
                 </div>
             </div>
 
             <div>
                 <h4 class="text-cyan-400 font-bold uppercase tracking-wider text-sm mb-4 font-['Orbitron'] flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> Research Hub</h4>
-                <div class="space-y-2.5 flex flex-col text-xs font-mono font-medium text-slate-300">
-                    <a href="social-engineering.html" class="hover:text-gold transition-colors py-1 block">◈ 10 Social Engineering Defenses</a>
-                    <a href="how-doctors-think.html" class="hover:text-gold transition-colors py-1 block">◈ How Doctors Think (Pattern Rec)</a>
-                    <a href="logical-fallacies.html" class="hover:text-gold transition-colors py-1 block">◈ 15 Logical Fallacies</a>
-                    <a href="pattern-recognition.html" class="hover:text-gold transition-colors py-1 block">◈ Pattern Recognition in Ops</a>
-                    <a href="priming-effect.html" class="hover:text-gold transition-colors py-1 block">◈ Cognitive Priming Override</a>
-                    <a href="false-memory.html" class="hover:text-gold transition-colors py-1 block">◈ The False Memory Problem</a>
+                <div class="space-y-2.5 flex flex-col text-xs font-mono font-medium text-slate-300 font-mono">
+                    <a href="{{PREFIX}}social-engineering.html" class="hover:text-gold transition-colors py-1 block">◈ 10 Social Engineering Defenses</a>
+                    <a href="{{PREFIX}}how-doctors-think.html" class="hover:text-gold transition-colors py-1 block">◈ How Doctors Think (Pattern Rec)</a>
+                    <a href="{{PREFIX}}logical-fallacies.html" class="hover:text-gold transition-colors py-1 block">◈ 15 Logical Fallacies</a>
+                    <a href="{{PREFIX}}pattern-recognition.html" class="hover:text-gold transition-colors py-1 block">◈ Pattern Recognition in Ops</a>
+                    <a href="{{PREFIX}}priming-effect.html" class="hover:text-gold transition-colors py-1 block">◈ Cognitive Priming Override</a>
+                    <a href="{{PREFIX}}false-memory.html" class="hover:text-gold transition-colors py-1 block">◈ The False Memory Problem</a>
                 </div>
             </div>
 
             <div>
                 <h4 class="text-cyan-400 font-bold uppercase tracking-wider text-sm mb-4 font-['Orbitron'] flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-gold"></span> Field Manuals</h4>
-                <div class="space-y-2.5 flex flex-col text-xs font-mono font-medium text-slate-300">
-                    <a href="survival-skills.html" class="hover:text-gold transition-colors py-1 block">◈ 10 Wilderness Survival Skills</a>
-                    <a href="first-aid-basics.html" class="hover:text-gold transition-colors py-1 block">◈ First Aid Operational Basics</a>
-                    <a href="food-safety.html" class="hover:text-gold transition-colors py-1 block">◈ Food Safety Defenses</a>
-                    <a href="cybersecurity-beginners.html" class="hover:text-gold transition-colors py-1 block">◈ Cybersecurity for Beginners</a>
-                    <a href="best-brain-games.html" class="hover:text-gold transition-colors py-1 block">◈ Best Diagnostic Brain Games</a>
-                    <a href="brain-training-tips.html" class="hover:text-gold transition-colors py-1 block">◈ Brain Training Optimization</a>
+                <div class="space-y-2.5 flex flex-col text-xs font-mono font-medium text-slate-300 font-mono">
+                    <a href="{{PREFIX}}survival-skills.html" class="hover:text-gold transition-colors py-1 block">◈ 10 Wilderness Survival Skills</a>
+                    <a href="{{PREFIX}}first-aid-basics.html" class="hover:text-gold transition-colors py-1 block">◈ First Aid Operational Basics</a>
+                    <a href="{{PREFIX}}food-safety.html" class="hover:text-gold transition-colors py-1 block">◈ Food Safety Defenses</a>
+                    <a href="{{PREFIX}}cybersecurity-beginners.html" class="hover:text-gold transition-colors py-1 block">◈ Cybersecurity for Beginners</a>
+                    <a href="{{PREFIX}}best-brain-games.html" class="hover:text-gold transition-colors py-1 block">◈ Best Diagnostic Brain Games</a>
+                    <a href="{{PREFIX}}brain-training-tips.html" class="hover:text-gold transition-colors py-1 block">◈ Brain Training Optimization</a>
                 </div>
             </div>
 
             <div>
                 <h4 class="text-cyan-400 font-bold uppercase tracking-wider text-sm mb-4 font-['Orbitron'] flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-rose-500 animate-ping"></span> Active Theaters</h4>
-                <div class="flex flex-col space-y-3 mt-2">
-                    <a href="https://play.google.com/store/apps/details?id=com.ittybittybites.the2secondwitness" target="_blank" rel="noopener" class="px-5 py-3.5 bg-cyan-500/10 hover:bg-cyan-500 hover:text-slate-950 text-cyan-400 border border-cyan-400/30 rounded-xl font-bold transition-all flex items-center justify-between text-xs shadow-lg tracking-wider">
+                <div class="flex flex-col space-y-3 mt-2 font-mono font-bold">
+                    <a href="https://play.google.com/store/apps/details?id=com.ittybittybites.the2secondwitness" target="_blank" rel="noopener" class="px-5 py-3.5 bg-cyan-500/10 hover:bg-cyan-500 hover:text-slate-950 text-cyan-400 border border-cyan-400/30 rounded-xl font-bold transition-all flex items-center justify-between text-xs shadow-lg tracking-wider font-mono cursor-pointer">
                         <span>🚀 ANDROID APP</span> <span>&rarr;</span>
                     </a>
-                    <a href="https://ittybittybites.itch.io/2-second-witness" target="_blank" rel="noopener" class="px-5 py-3.5 bg-gold/10 hover:bg-gold hover:text-slate-950 text-gold border border-gold/30 rounded-xl font-bold transition-all flex items-center justify-between text-xs shadow-lg tracking-wider">
+                    <a href="https://ittybittybites.itch.io/2-second-witness" target="_blank" rel="noopener" class="px-5 py-3.5 bg-gold/10 hover:bg-gold hover:text-slate-950 text-gold border border-gold/30 rounded-xl font-bold transition-all flex items-center justify-between text-xs shadow-lg tracking-wider font-mono cursor-pointer">
                         <span>⚡ WEB SIMULATION</span> <span>&rarr;</span>
                     </a>
-                    <p class="text-[11px] text-slate-500 leading-relaxed pt-3">
+                    <p class="text-[11px] text-slate-500 leading-relaxed pt-3 font-mono font-normal">
                         All interactive sandbox execution mechanics across our portal operate entirely locally within your secure client sandbox. Zero background telemetry or path tracking data is collected.
                     </p>
                 </div>
@@ -140,15 +141,16 @@ const GLOBAL_FOOTER = `
         <div class="max-w-[1400px] mx-auto text-center text-xs text-slate-500 tracking-widest uppercase flex flex-col sm:flex-row items-center justify-between gap-6 font-mono font-bold">
             <div class="text-slate-400">© 2026 ITTY BITTY BITES // CLASSIFIED COGNITIVE TRAINING DIVISION</div>
             <div class="flex flex-wrap justify-center gap-6 text-slate-400 font-mono">
-                <a href="privacy_policy.html" class="hover:text-cyan-400 transition-colors">Privacy Policy</a>
-                <a href="terms_of_service.html" class="hover:text-cyan-400 transition-colors">Terms of Service</a>
-                <a href="about.html" class="hover:text-cyan-400 transition-colors">About Us</a>
-                <a href="contact.html" class="hover:text-cyan-400 transition-colors">Contact Us</a>
-                <a href="sitemap.xml" class="hover:text-cyan-400 transition-colors">Sitemap XML</a>
-                <a href="feed.html" class="hover:text-cyan-400 transition-colors">RSS Database</a>
+                <a href="{{PREFIX}}privacy_policy.html" class="hover:text-cyan-400 transition-colors">Privacy Policy</a>
+                <a href="{{PREFIX}}terms_of_service.html" class="hover:text-cyan-400 transition-colors">Terms of Service</a>
+                <a href="{{PREFIX}}about.html" class="hover:text-cyan-400 transition-colors">About Us</a>
+                <a href="{{PREFIX}}contact.html" class="hover:text-cyan-400 transition-colors">Contact Us</a>
+                <a href="{{PREFIX}}sitemap.xml" class="hover:text-cyan-400 transition-colors">Sitemap XML</a>
+                <a href="{{PREFIX}}feed.html" class="hover:text-cyan-400 transition-colors">RSS Database</a>
             </div>
         </div>
-    </footer>`;
+    </footer>`.replace(/\{\{PREFIX\}\}/g, prefix);
+}
 
 FILES_TO_UPGRADE.forEach(filename => {
   const filePath = path.join(ROOT, filename);
@@ -161,7 +163,7 @@ FILES_TO_UPGRADE.forEach(filename => {
     content = content.replace(/<!-- GLOBAL UNIFIED TACTICAL NAVIGATION -->[\s\S]*?<\/nav>/i, freshNav);
     content = content.replace(/<nav class="bg-slate-950[^>]*>[\s\S]*?<\/nav>/i, freshNav);
     // Replace old footer with our brand new rich footer
-    content = content.replace(/<!-- UNIFIED LEGAL & MISSION FOOTER -->[\s\S]*?<\/footer>/i, GLOBAL_FOOTER);
+    content = content.replace(/<!-- UNIFIED LEGAL & MISSION FOOTER -->[\s\S]*?<\/footer>/i, buildGlobalFooter(''));
     fs.writeFileSync(filePath, content, 'utf-8');
     console.log(`  ✓ Master dynamic asset upgraded: ${filename}`);
     return;
@@ -264,7 +266,7 @@ ${GLOBAL_STYLES}
 
     </main>
 
-${GLOBAL_FOOTER}
+${buildGlobalFooter('')}
 
 </body>
 </html>`;
@@ -278,7 +280,7 @@ if (fs.existsSync(TEMPLATE_PATH)) {
   let tpl = fs.readFileSync(TEMPLATE_PATH, 'utf-8');
   const freshTplNav = buildGlobalNav('none', '../');
   tpl = tpl.replace(/<nav class="bg-slate-950[^>]*>[\s\S]*?<\/nav>/i, freshTplNav);
-  tpl = tpl.replace(/<!-- UNIFIED LEGAL & MISSION FOOTER -->[\s\S]*?<\/footer>/i, GLOBAL_FOOTER.replace(/href="/g, 'href="../'));
+  tpl = tpl.replace(/<!-- UNIFIED LEGAL & MISSION FOOTER -->[\s\S]*?<\/footer>/i, buildGlobalFooter('').replace(/href="/g, 'href="../'));
   fs.writeFileSync(TEMPLATE_PATH, tpl, 'utf-8');
   console.log(`  ✓ Master ssg template updated: templates/template.html`);
 }
