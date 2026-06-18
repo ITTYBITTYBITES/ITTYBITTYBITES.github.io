@@ -32,6 +32,21 @@
         .nav-node.active { color: #22d3ee; border-color: #22d3ee; font-weight: bold; background: rgba(34,211,238,0.08); }
         .bg-radial { background: radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.08) 0%, rgba(2, 6, 23, 1) 70%); }
     </style>
+    <!-- Universal Automated Cache-Busting & Auto-Refresh Guard -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script>
+        (function() {
+            const clientVer = localStorage.getItem('arcade_client_deployment_ver');
+            const liveVer = 'v=1781821243';
+            if (clientVer !== liveVer) {
+                localStorage.setItem('arcade_client_deployment_ver', liveVer);
+                if (window.caches) { caches.keys().then(n => n.forEach(c => caches.delete(c))); }
+                if (clientVer) { window.location.reload(true); }
+            }
+        })();
+    </script>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-cyan-500 selection:text-slate-900 bg-radial antialiased">
 
@@ -197,9 +212,9 @@
     <footer class="border-t border-slate-900 bg-slate-950 py-8 px-6 mt-auto text-slate-500 font-mono text-xs leading-relaxed">
         <div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
             <div>
-                <h4 class="text-slate-300 font-bold uppercase tracking-wider text-[11px] mb-2 font-['Orbitron']">AI Telemetry & Data Use Notice</h4>
+                <h4 class="text-slate-300 font-bold uppercase tracking-wider text-[11px] mb-2 font-['Orbitron']">Local Sandbox Privacy Notice</h4>
                 <p class="text-[11px]">
-                    All interactive gameplay telemetry collected via this portal is 100% anonymized behavioral coordinate mapping. Zero personally identifiable identifiers (PII), browser IP footprints, or device hashes are ingested, fully fulfilling GDPR and EU AI Act open-source research compliance standards.
+                    All interactive gameplay operates entirely locally within your device browser. Zero personally identifiable identifiers (PII), behavioral tracking datasets, or background AI telemetry are collected.
                 </p>
             </div>
             <div>

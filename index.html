@@ -435,6 +435,21 @@ body::after {
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-6P6NPFW4FZ');</script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1566091161594729" crossorigin="anonymous"></script>
+    <!-- Universal Automated Cache-Busting & Auto-Refresh Guard -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script>
+        (function() {
+            const clientVer = localStorage.getItem('arcade_client_deployment_ver');
+            const liveVer = 'v=1781821243';
+            if (clientVer !== liveVer) {
+                localStorage.setItem('arcade_client_deployment_ver', liveVer);
+                if (window.caches) { caches.keys().then(n => n.forEach(c => caches.delete(c))); }
+                if (clientVer) { window.location.reload(true); }
+            }
+        })();
+    </script>
 </head>
 <body class="bg-slate-950 text-slate-50 font-mono leading-relaxed overflow-x-hidden relative antialiased">
 

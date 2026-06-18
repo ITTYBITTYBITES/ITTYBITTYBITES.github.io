@@ -191,9 +191,25 @@ body::after {
 <!-- Google AdSense Universal Publisher Tag -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1566091161594729" crossorigin="anonymous"></script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1566091161594729" crossorigin="anonymous"></script>
+    <!-- Universal Automated Cache-Busting & Auto-Refresh Guard -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script>
+        (function() {
+            const clientVer = localStorage.getItem('arcade_client_deployment_ver');
+            const liveVer = 'v=1781821243';
+            if (clientVer !== liveVer) {
+                localStorage.setItem('arcade_client_deployment_ver', liveVer);
+                if (window.caches) { caches.keys().then(n => n.forEach(c => caches.delete(c))); }
+                if (clientVer) { window.location.reload(true); }
+            }
+        })();
+    </script>
 </head>
 <body class="bg-slate-950 text-slate-50 font-mono leading-relaxed overflow-x-hidden relative antialiased">
 
+<!-- GLOBAL UNIFIED TACTICAL NAVIGATION -->
 <!-- GLOBAL UNIFIED TACTICAL NAVIGATION -->
 <!-- GLOBAL UNIFIED TACTICAL NAVIGATION -->
 <!-- GLOBAL UNIFIED TACTICAL NAVIGATION -->
@@ -289,6 +305,7 @@ body::after {
     
     
     
+    
     <!-- UNIFIED LEGAL & MISSION FOOTER -->
     <footer class="border-t border-slate-900 bg-slate-950 py-16 px-6 mt-auto text-slate-500 font-mono text-xs leading-relaxed select-none">
         <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-16 border-b border-slate-900 pb-16">
@@ -338,7 +355,7 @@ body::after {
                         <span>⚡ WEB SIMULATION</span> <span>&rarr;</span>
                     </a>
                     <p class="text-[11px] text-slate-500 leading-relaxed pt-3">
-                        All interactive sandbox mechanics across our portal ingest 100% anonymized behavioral coordinate mapping exactly compliant with GDPR and EU AI Act open-source research parameters.
+                        All interactive sandbox execution mechanics across our portal operate entirely locally within your secure client sandbox. Zero background telemetry or path tracking data is collected.
                     </p>
                 </div>
             </div>

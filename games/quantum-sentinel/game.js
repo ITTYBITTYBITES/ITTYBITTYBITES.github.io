@@ -15,8 +15,7 @@ class QuantumSentinelEngine {
         this.isPaused = false;
         this.isGameOver = false;
         this.lastTargetSpawnTime = Date.now();
-        this.interceptionHistoryBatch = [];
-        this.totalInterceptions = 0;
+                this.totalInterceptions = 0;
 
         // Visual Canvas states
         this.canvas = null;
@@ -269,7 +268,7 @@ class QuantumSentinelEngine {
                 this.activeTargets.splice(i, 1);
 
                 // Track & Stream Phase 5 AI Telemetry
-                this.logTurnTelemetryPacket(t.x, t.y, thinkingDeltaMs);
+                
 
                 // Check for Wave Completion
                 if (this.targetsCleared >= this.waveTargetCount) {
@@ -397,30 +396,6 @@ class QuantumSentinelEngine {
         if(btn) {
             btn.addEventListener('click', reboot);
             btn.addEventListener('pointerdown', reboot);
-        }
-    }
-
-    // Phase 5 Granular AI Telemetry Batch Hub
-    logTurnTelemetryPacket(tx, ty, latencyMs) {
-        const packet = {
-            moveIdx: this.totalInterceptions,
-            playerState: { score: this.score, shields: this.shields, wave: this.wave },
-            selectedCoord: { x: Math.floor(tx), y: Math.floor(ty) },
-            thinkingDeltaMs: latencyMs
-        };
-
-        this.interceptionHistoryBatch.push(packet);
-
-        if (this.interceptionHistoryBatch.length >= 5) {
-            console.log("🚀 [TELEMETRY BATCH] Ingesting 5-interception Quantum latency batch upwards...");
-            window.parent.postMessage({
-                type: "ARCADE_TELEMETRY_STREAM",
-                payload: {
-                    timestamp: Date.now(),
-                    moves: [...this.interceptionHistoryBatch]
-                }
-            }, "*");
-            this.interceptionHistoryBatch = [];
         }
     }
 

@@ -1530,6 +1530,40 @@
       "universe": "society",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T21:09:13.099Z"
+    },
+    {
+      "slug": "time-critical-teachers",
+      "name": "Time-Critical Teachers",
+      "description": "Time-Critical Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "teachers",
+        "time-critical",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "society",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T22:20:55.684Z"
+    },
+    {
+      "slug": "decentralized-teachers",
+      "name": "Decentralized Teachers",
+      "description": "Decentralized Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "teachers",
+        "decentralized",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "society",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T22:20:55.684Z"
     }
   ]
 }

@@ -259,7 +259,7 @@ class GridDelverEngine {
         this.resolveCardEncounter(targetNode);
 
         // Track & Ingest Phase 5 AI Telemetry
-        this.logTurnTelemetryPacket(destX, destY, thinkingDeltaMs);
+        
 
         // Reveal subsequent neighbors
         this.revealAdjacentNodes(destX, destY);
@@ -391,33 +391,6 @@ class GridDelverEngine {
             this.totalMoves = 0;
             this.generateLevelTheater();
         });
-    }
-
-    // Phase 5: Granular High-Value AI Telemetry Batch Hub
-    logTurnTelemetryPacket(destX, destY, thinkingTimeMs) {
-        const packet = {
-            moveIdx: this.totalMoves,
-            playerState: { hp: this.playerHp, gold: this.gold, lvl: this.level, timeRemainingMs: this.timeRemainingMs },
-            selectedCoord: { x: destX, y: destY },
-            thinkingDeltaMs: thinkingTimeMs
-        };
-
-        this.moveHistoryBatch.push(packet);
-
-        // Every 5 moves, compile batch and transmit upwards to Parent Portal Guard
-        if (this.moveHistoryBatch.length >= 5) {
-            console.log("🚀 [TELEMETRY BATCH] Compiling 5-move tactical logic batch upwards...");
-            window.parent.postMessage({
-                type: "ARCADE_TELEMETRY_STREAM",
-                payload: {
-                    timestamp: Date.now(),
-                    moves: [...this.moveHistoryBatch]
-                }
-            }, "*");
-
-            // Clean batch queue
-            this.moveHistoryBatch = [];
-        }
     }
 
     appendLogEntry(txt, theme) {

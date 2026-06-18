@@ -45,6 +45,21 @@
         /* Ticker instructions */
         .bottom-chatter { position: absolute; bottom: 16px; left: 0; right: 0; text-align: center; font-size: 11px; font-weight: bold; letter-spacing: 2px; color: #64748b; z-index: 15; pointer-events: none; uppercase; }
     </style>
+    <!-- Universal Automated Cache-Busting & Auto-Refresh Guard -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script>
+        (function() {
+            const clientVer = localStorage.getItem('arcade_client_deployment_ver');
+            const liveVer = 'v=1781821243';
+            if (clientVer !== liveVer) {
+                localStorage.setItem('arcade_client_deployment_ver', liveVer);
+                if (window.caches) { caches.keys().then(n => n.forEach(c => caches.delete(c))); }
+                if (clientVer) { window.location.reload(true); }
+            }
+        })();
+    </script>
 </head>
 <body>
 

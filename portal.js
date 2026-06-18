@@ -378,13 +378,7 @@ class ArcadePortalEngine {
         }
     }
 
-    // ─── Secure Consenting AI Telemetry Dispatcher ──────────────────────────────
-    ingestTelemetryStream(payload) {
-        // Phase 3 Opt-in Loop Guard
-        if (!this.telemetryConsent) {
-            console.warn("⚠ [AI TELEMETRY] Telemetry stream discarded at browser level due to player local consent profile.");
-            return;
-        }
+
 
         // Strict Regex / JSON Sanitize and Validation Filter
         const cleanedBatch = this.validateAndSanitizeTelemetry(payload);

@@ -37,6 +37,21 @@
         a { color: var(--cyan); text-decoration: none; font-weight: bold; transition: color 0.2s; }
         a:hover { color: var(--gold); }
     </style>
+    <!-- Universal Automated Cache-Busting & Auto-Refresh Guard -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script>
+        (function() {
+            const clientVer = localStorage.getItem('arcade_client_deployment_ver');
+            const liveVer = 'v=1781821243';
+            if (clientVer !== liveVer) {
+                localStorage.setItem('arcade_client_deployment_ver', liveVer);
+                if (window.caches) { caches.keys().then(n => n.forEach(c => caches.delete(c))); }
+                if (clientVer) { window.location.reload(true); }
+            }
+        })();
+    </script>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-cyan-500 selection:text-slate-900 antialiased bg-slate-950 font-mono">
 
@@ -75,7 +90,7 @@
                 Our gaming platform is hosted purely as a decoupled, commercial entertainment and video/interstitial ad monetization ecosystem. 
             </p>
             <ul>
-                <li><strong>No Telemetry:</strong> We do NOT collect, harvest, or log any personally identifiable identifiers (PII), browser IP footprints, or automated background AI path datasets.</li>
+                <li><strong>No Telemetry:</strong> We do NOT collect, harvest, or log any personally identifiable identifiers (PII), browser IP footprints, or background tracking systems.</li>
                 <li><strong>Ad Loops:</strong> In exchange for full free access to our premium high-frame-rate HTML5 game sandboxes (`Cosmic Tunnel 3D`, `Grid Delver`, `Quantum Sentinel`, etc.), players agree to execute our cascading ad Waterfall routines upon level completion or game-over states.</li>
             </ul>
 
@@ -136,6 +151,7 @@
     
     
     
+    
     <!-- UNIFIED LEGAL & MISSION FOOTER -->
     <footer class="border-t border-slate-900 bg-slate-950 py-16 px-6 mt-auto text-slate-500 font-mono text-xs leading-relaxed select-none">
         <div class="max-w-[1400px] mx-auto grid grid-cols-1 md:grid-cols-4 gap-10 mb-16 border-b border-slate-900 pb-16">
@@ -185,7 +201,7 @@
                         <span>⚡ WEB SIMULATION</span> <span>&rarr;</span>
                     </a>
                     <p class="text-[11px] text-slate-500 leading-relaxed pt-3">
-                        All interactive sandbox mechanics across our portal ingest 100% anonymized behavioral coordinate mapping exactly compliant with GDPR and EU AI Act open-source research parameters.
+                        All interactive sandbox execution mechanics across our portal operate entirely locally within your secure client sandbox. Zero background telemetry or path tracking data is collected.
                     </p>
                 </div>
             </div>
