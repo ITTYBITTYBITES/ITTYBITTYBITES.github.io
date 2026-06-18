@@ -27,27 +27,39 @@
 
     <script>
         const canvas = document.createElement('canvas');
-        canvas.width = 800; canvas.height = 500;
-        canvas.className = 'w-full h-full block bg-slate-950 cursor-none';
+        const logicalWidth = 800; const logicalHeight = 500;
+        canvas.width = logicalWidth; canvas.height = logicalHeight;
+        canvas.className = 'w-full block bg-slate-950 cursor-none';
+        canvas.style.aspectRatio = '16 / 10';
+        canvas.style.objectFit = 'cover';
         document.getElementById('game-sandbox-area').appendChild(canvas);
 
         const ctx = canvas.getContext('2d');
         // DevicePixelRatio Retina Scaling Correction
         const dpr = window.devicePixelRatio || 1;
-        canvas.style.width = `${canvas.width}px`;
-        canvas.style.height = `${canvas.height}px`;
-        canvas.width *= dpr;
-        canvas.height *= dpr;
+        canvas.width = logicalWidth * dpr;
+        canvas.height = logicalHeight * dpr;
         ctx.scale(dpr, dpr);
-        const paddle = { x: canvas.width/2, y: canvas.height - 40, width: 120, height: 16 };
-        const ball = { x: canvas.width/2, y: canvas.height/2, vx: 5, vy: -6, radius: 10 };
+        const paddle = { x: logicalWidth/2, y: logicalHeight - 40, width: 120, height: 16 };
+        const ball = { x: logicalWidth/2, y: logicalHeight/2, vx: 5, vy: -6, radius: 10 };
         let bricks = [];
         let score = 0, xp = 0;
 
         canvas.style.touchAction='none';
-        window.addEventListener('pointermove', (e) => {
+        const updatePaddle = (e) => {
             const rect = canvas.getBoundingClientRect();
-            paddle.x = (e.clientX - rect.left)*(canvas.width/rect.width);
+            if(rect.width > 0) {
+                const clientX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+                if(clientX > 0) {
+                    paddle.x = (clientX - rect.left)*(logicalWidth/rect.width);
+                    paddle.x = Math.max(paddle.width/2, Math.min(logicalWidth - paddle.width/2, paddle.x));
+                }
+            }
+        };
+        window.addEventListener('pointermove', updatePaddle);
+        canvas.addEventListener('pointerdown', (e) => {
+            try { e.target.setPointerCapture(e.pointerId); } catch(err){}
+            updatePaddle(e);
         });
 
         function makeBricks() {
@@ -61,15 +73,15 @@
         makeBricks();
 
         function loop() {
-            ctx.fillStyle = '#020617'; ctx.fillRect(0,0, canvas.width, canvas.height);
+            ctx.fillStyle = '#020617'; ctx.fillRect(0,0, logicalWidth, logicalHeight);
 
             // Ball Physics
             ball.x += ball.vx; ball.y += ball.vy;
-            if(ball.x<=ball.radius || ball.x>=canvas.width-ball.radius) ball.vx *= -1;
+            if(ball.x<=ball.radius || ball.x>=logicalWidth-ball.radius) ball.vx *= -1;
             if(ball.y<=ball.radius) ball.vy *= -1;
 
-            if(ball.y >= canvas.height) {
-                ball.x = canvas.width/2; ball.y = canvas.height/2; ball.vy = -6;
+            if(ball.y >= logicalHeight) {
+                ball.x = logicalWidth/2; ball.y = logicalHeight/2; ball.vy = -6;
                 if(window.parent) window.parent.postMessage({ type: "ARCADE_TRIGGER_AD", adType: "interstitial" }, "*");
             }
 
@@ -104,7 +116,7 @@
             // HUD
             ctx.fillStyle = '#22d3ee'; ctx.font = 'bold 16px monospace';
             ctx.fillText(`TARGET ARRAYS: ${bricks.length} // XP METRIC: ${score}`, 20, 30);
-            ctx.fillText(`◈ SLIDE MOUSE TO DEFLECT PADDLE DEFLECTION LOOP ◈`, 20, canvas.height - 15);
+            ctx.fillText(`◈ SLIDE MOUSE TO DEFLECT PADDLE DEFLECTION LOOP ◈`, 20, logicalHeight - 15);
 
             requestAnimationFrame(loop);
         }
