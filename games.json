@@ -3,11 +3,21 @@
     "id": "grid-delver",
     "title": "Grid Delver: 1-Minute Micro-Rogue",
     "category": "Tactical Roguelikes",
-    "description": "A crisp 5x5 grid strategic dungeon crawler. Discover stairs, defeat shadow monsters, disarm traps, and collect gold tokens under intense time pressure.",
+    "description": "A crisp 5x5 grid strategic dungeon crawler. Discover stairs, defeat shadow beasts, disarm wire traps, and collect gold tokens under intense 60-second ticking chrono pressure.",
     "thumbnail_url": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=600&auto=format&fit=crop&q=80",
     "directory_path": "games/grid-delver/index.html",
     "asid": "0374533555",
     "prodTitle": "Thinking, Fast and Slow by Daniel Kahneman (Premium Agent Edition)"
+  },
+  {
+    "id": "quantum-sentinel",
+    "title": "Quantum Sentinel: Fast Spatial Reflex",
+    "category": "Reaction & Speed",
+    "description": "Elite high-speed peripheral target defense terminal. Intercept sub-second quantum reticle flashes across complex 2D visual coordinate fields with absolute microsecond precision.",
+    "thumbnail_url": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
+    "directory_path": "games/quantum-sentinel/index.html",
+    "asid": "0316010669",
+    "prodTitle": "Blink: The Power of Thinking Without Thinking by Malcolm Gladwell"
   },
   {
     "id": "attentional-blink",
@@ -93,7 +103,7 @@
     "id": "signal-detection",
     "title": "Signal Detection Filter",
     "category": "Perception Filters",
-    "description": "Analyze heavy visual scatter environments to catch and trigger on faint, coherently moving particle arrays buried within massive randomized structural noise.",
+    "description": "Analyze heavy visual scatter environments to catch and trigger on faint, coherently moving particle arrays buried within heavy randomized structural noise.",
     "thumbnail_url": "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=600&auto=format&fit=crop&q=80",
     "directory_path": "games/signal-detection/index.html",
     "asid": "B0BX2L8PGH",
@@ -104,7 +114,7 @@
     "title": "Metronomic Rhythm Anchor",
     "category": "Reaction & Speed",
     "description": "Tap the input tracking terminal to cleanly lock onto structural visual offset cadences—evaluating real-time microsecond internal processing clocks.",
-    "thumbnail_url": "https://images.unsplash.com/photo-1511512578047-dfb367046420?w=600&auto=format&fit=crop&q=80",
+    "thumbnail_url": "https://images.unsplash.com/photo-1507499739999-097706ad8914?w=600&auto=format&fit=crop&q=80",
     "directory_path": "games/metronomic-rhythm/index.html",
     "asid": "B00A2JBMRE",
     "prodTitle": "Pure Acoustic White Noise Sound Generator Terminal"

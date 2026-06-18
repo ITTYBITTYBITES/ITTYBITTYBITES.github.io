@@ -1,6 +1,6 @@
 /**
- * CORE ARCADE PORTAL ENGINE & CLIENT-SIDE ROUTER // v1.0.0
- * Fully autonomous Phase 1-5 specification implementation.
+ * MASTER ARCADE PORTAL ENGINE, CASCADE AD WATERFALL & CLIENT-SIDE ROUTER // v3.0
+ * Pure Phase 1-5 specification implementation with complete legal hardening and AI telemetry guard.
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -13,8 +13,13 @@ class ArcadePortalEngine {
         this.activeCategory = 'ALL';
         this.activeGame = null;
 
-        // Telemetry state
+        // Asynchronous Ad Mediation States
+        this.globalAdCooldownMs = 180000; // 3 Minutes strict Global Ad Cooldown
+        this.lastAdExecutedTime = 0;
+
+        // Consenting AI Telemetry States
         this.telemetryConsent = localStorage.getItem('arcade_telemetry_consent') === 'true';
+        this.telemetryEndpointUrl = 'https://telemetry.ittybittybites.workers.dev/stream';
 
         this.initDOMAnchors();
         this.bindEvents();
@@ -23,7 +28,6 @@ class ArcadePortalEngine {
 
     initDOMAnchors() {
         this.gridTheater = document.getElementById('browse-grid-theater');
-        this.categorySidebar = document.getElementById('category-sidebar');
         this.gameTheater = document.getElementById('game-theater');
         this.gameIframe = document.getElementById('secure-game-frame');
         this.gameTitleEl = document.getElementById('active-game-title');
@@ -32,11 +36,12 @@ class ArcadePortalEngine {
         this.prodTitleEl = document.getElementById('monetize-title');
         this.prodLinkEl = document.getElementById('monetize-link');
 
-        // Modal overlay anchors
+        // Waterfall Modal Simulation Anchors
         this.adModal = document.getElementById('ad-simulation-modal');
+        this.adNetLabel = document.getElementById('ad-network-identifier');
         this.adCountdownEl = document.getElementById('ad-countdown-ticker');
 
-        // Consent anchors
+        // Consent UI Anchors
         this.consentCheckbox = document.getElementById('telemetry-consent-checkbox');
         if (this.consentCheckbox) {
             this.consentCheckbox.checked = this.telemetryConsent;
@@ -44,24 +49,24 @@ class ArcadePortalEngine {
     }
 
     bindEvents() {
-        // Hash routing interceptor
+        // Hash routing orchestrator
         window.addEventListener('hashchange', () => this.handleRoutingState());
 
-        // Theater mode toggle
+        // Theater aspect toggle
         if (this.theaterToggleBtn) {
             this.theaterToggleBtn.addEventListener('click', () => this.toggleTheaterScaling());
         }
 
-        // Telemetry consent toggle
+        // Telemetry Consent Guard Toggle
         if (this.consentCheckbox) {
             this.consentCheckbox.addEventListener('change', (e) => {
                 this.telemetryConsent = e.target.checked;
                 localStorage.setItem('arcade_telemetry_consent', e.target.checked);
-                this.notifyPlayerStatus(this.telemetryConsent ? "AI Telemetry Online — Banner Ads Off" : "AI Telemetry Halted");
+                this.notifyPlayerStatus(this.telemetryConsent ? "◈ AI Telemetry Online — Tracking Ads Blocked" : "◈ AI Telemetry Halted");
             });
         }
 
-        // Phase 2 & Phase 3 Parent-Side PostMessage Orchestrator
+        // Phase 2 & Phase 3 Parent PostMessage Orchestrator
         window.addEventListener('message', (e) => this.interceptFrameTelecommunications(e));
     }
 
@@ -74,30 +79,31 @@ class ArcadePortalEngine {
             this.compileCategories();
             this.handleRoutingState();
         } catch (err) {
-            console.error("Failed to fetch games.json registry:", err);
+            console.error("Failed to fetch games.json catalog:", err);
             if (this.gridTheater) {
-                this.gridTheater.innerHTML = `<div class="p-8 bg-rose-500/10 border border-rose-500/30 text-rose-500 rounded-xl max-w-lg mx-auto text-center font-mono">
-                    <h3 class="font-bold text-lg mb-2">SYSTEM REGISTRY FAULT</h3>
-                    <p class="text-xs">Unable to parse games.json catalog. Verify file access.</p>
+                this.gridTheater.innerHTML = `<div class="p-8 bg-rose-500/10 border-2 border-rose-500/30 text-rose-500 rounded-2xl max-w-lg mx-auto text-center font-mono shadow-2xl">
+                    <h3 class="font-bold text-xl mb-2">MASTER REGISTRY FAULT</h3>
+                    <p class="text-xs">Unable to ingest games.json metadata catalog. Verify directory privileges.</p>
                 </div>`;
             }
         }
     }
 
     compileCategories() {
-        if (!this.categorySidebar) return;
-        this.categorySidebar.innerHTML = '';
+        const sidebar = document.getElementById('category-sidebar');
+        if (!sidebar) return;
+        sidebar.innerHTML = '';
 
         const categories = ['ALL', ...new Set(this.gamesRegistry.map(g => g.category))];
 
         categories.forEach(cat => {
             const btn = document.createElement('button');
-            btn.className = `w-full text-left px-4 py-3 rounded-lg text-xs font-mono font-bold uppercase transition-all flex items-center justify-between border ${
+            btn.className = `w-full text-left px-4 py-3.5 rounded-xl text-xs font-mono font-bold uppercase transition-all flex items-center justify-between border ${
                 cat === this.activeCategory
-                ? 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30 shadow-md shadow-cyan-500/5'
+                ? 'bg-cyan-500/15 text-cyan-400 border-cyan-500/40 shadow-lg shadow-cyan-500/10'
                 : 'text-slate-400 border-transparent hover:bg-slate-900 hover:text-slate-200'
             }`;
-            btn.innerHTML = `<span>◈ ${cat}</span><span class="text-[10px] text-slate-600 font-mono tracking-widest">[${
+            btn.innerHTML = `<span>◈ ${cat}</span><span class="text-[10px] text-slate-500 font-mono tracking-widest">[${
                 cat === 'ALL' ? this.gamesRegistry.length : this.gamesRegistry.filter(g => g.category === cat).length
             }]</span>`;
 
@@ -107,7 +113,7 @@ class ArcadePortalEngine {
                 this.renderBrowseGrid();
             });
 
-            this.categorySidebar.appendChild(btn);
+            sidebar.appendChild(btn);
         });
     }
 
@@ -121,24 +127,31 @@ class ArcadePortalEngine {
 
         filtered.forEach(game => {
             const card = document.createElement('div');
-            card.className = "bg-slate-950/80 border border-slate-800 rounded-xl overflow-hidden hover:border-cyan-400/50 transition-all group flex flex-col justify-between cursor-pointer shadow-xl hover:shadow-cyan-400/5";
+            card.className = "bg-slate-950/80 border-2 border-slate-800/80 rounded-2xl overflow-hidden hover:border-cyan-400 transition-all group flex flex-col justify-between cursor-pointer shadow-2xl hover:shadow-cyan-400/10";
             
+            // Inline SVG fallback thumbnail generator
+            const svgPlaceholder = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='375' viewBox='0 0 600 375'><rect width='600' height='375' fill='%230f172a'/><circle cx='300' cy='187' r='80' fill='%2322d3ee' opacity='0.15'/><path d='M300 137l50 86h-100z' fill='%2322d3ee' opacity='0.4'/><text x='300' y='295' font-family='monospace' font-size='16' font-weight='bold' fill='%2364748b' text-anchor='middle'>◈ ${game.id.toUpperCase()} ◈</text></svg>`;
+
             card.innerHTML = `
                 <div>
                     <div class="relative aspect-[16/10] bg-slate-900 overflow-hidden border-b border-slate-800">
-                        <img src="${game.thumbnail_url}" alt="${game.title}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+                        <img 
+                            src="${game.thumbnail_url || svgPlaceholder}" 
+                            onerror="this.onerror=null; this.src='${svgPlaceholder}';" 
+                            alt="${game.title}" 
+                            class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 block">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
-                        <span class="absolute bottom-2.5 left-3 text-[10px] font-mono tracking-widest font-bold px-2 py-0.5 rounded bg-cyan-400/10 text-cyan-400 border border-cyan-400/20">◈ ${game.category}</span>
+                        <span class="absolute bottom-3 left-3.5 text-[10px] font-mono tracking-widest font-black px-2.5 py-1 rounded-md bg-cyan-400/15 text-cyan-400 border border-cyan-400/30 uppercase">◈ ${game.category}</span>
                     </div>
-                    <div class="p-5">
-                        <span class="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-wider block">${game.id}</span>
-                        <h3 class="font-mono font-bold text-base text-slate-100 mt-1 tracking-tight group-hover:text-cyan-400 transition-colors">${game.title}</h3>
-                        <p class="font-mono text-xs text-slate-400 mt-2 line-clamp-3 leading-relaxed">${game.description}</p>
+                    <div class="p-6">
+                        <span class="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest block">${game.id}</span>
+                        <h3 class="font-display font-black text-lg text-white mt-1.5 tracking-tight group-hover:text-cyan-400 transition-colors">${game.title}</h3>
+                        <p class="font-mono text-xs text-slate-400 mt-2.5 line-clamp-3 leading-relaxed">${game.description}</p>
                     </div>
                 </div>
-                <div class="px-5 pb-5 pt-2 flex items-center justify-between border-t border-slate-900/80 mt-2 font-mono">
-                    <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-wider flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Sandbox Secure</span>
-                    <span class="text-xs font-bold text-slate-300 group-hover:translate-x-1 transition-transform tracking-wider">ENGAGE &rarr;</span>
+                <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-slate-900/80 mt-2 font-mono">
+                    <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-wider flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Sandbox Secure</span>
+                    <span class="text-xs font-black text-cyan-400 group-hover:translate-x-1.5 transition-transform tracking-widest uppercase font-mono">ENGAGE &rarr;</span>
                 </div>
             `;
 
@@ -170,11 +183,12 @@ class ArcadePortalEngine {
     returnToBrowseGrid() {
         this.activeGame = null;
         if (this.gameIframe) {
-            this.gameIframe.src = ''; // Clear memory
+            this.gameIframe.src = ''; // Clean WebAssembly buffer memory
         }
 
         if (this.gameTheater) this.gameTheater.classList.add('hidden');
-        if (this.categorySidebar) this.categorySidebar.closest('aside').classList.remove('hidden');
+        const aside = document.querySelector('aside');
+        if (aside) aside.classList.remove('hidden');
         if (this.gridTheater) this.gridTheater.classList.remove('hidden');
 
         this.renderBrowseGrid();
@@ -185,13 +199,14 @@ class ArcadePortalEngine {
         this.activeGame = game;
 
         if (this.gridTheater) this.gridTheater.classList.add('hidden');
-        if (this.categorySidebar) this.categorySidebar.closest('aside').classList.add('hidden');
+        const aside = document.querySelector('aside');
+        if (aside) aside.classList.add('hidden'); // Isolate platform viewport completely
         if (this.gameTheater) this.gameTheater.classList.remove('hidden');
 
         if (this.gameTitleEl) this.gameTitleEl.textContent = game.title;
         if (this.gameDescEl) this.gameDescEl.textContent = game.description;
 
-        // Configure Monetization Node
+        // Configure Personally Vetted Hardware Node
         if (this.prodTitleEl && game.prodTitle) {
             this.prodTitleEl.textContent = game.prodTitle;
         }
@@ -200,7 +215,7 @@ class ArcadePortalEngine {
             this.prodLinkEl.href = `https://www.amazon.com/dp/${game.asid}/?tag=${assocTag}`;
         }
 
-        // Secure sandbox DOM injection
+        // Complete Strict Iframe Injection
         if (this.gameIframe) {
             this.gameIframe.src = game.directory_path;
         }
@@ -208,7 +223,7 @@ class ArcadePortalEngine {
         if (this.gameTheater) {
             this.gameTheater.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
-        this.notifyPlayerStatus(`Mounted Secure Sandbox: ${game.id}`);
+        this.notifyPlayerStatus(`Mounted Secure Operative Sandbox: ${game.id}`);
     }
 
     toggleTheaterScaling() {
@@ -217,31 +232,77 @@ class ArcadePortalEngine {
         
         if (frameBox) {
             frameBox.classList.toggle('max-w-[1000px]');
-            frameBox.classList.toggle('max-w-[1400px]');
-            this.notifyPlayerStatus("Theater Aspect Ratio Adjusted");
+            frameBox.classList.toggle('max-w-[1500px]');
+            this.notifyPlayerStatus("◈ Theater Viewport Scaling Calibrated");
         }
     }
 
-    // Phase 2 & Phase 3 PostMessage Hub
+    // ─── Asynchronous Cascading Ad Mediation Orchestrator ────────────────────────
     interceptFrameTelecommunications(e) {
-        // Confirm origin
         if (!e.data || typeof e.data !== 'object') return;
 
         switch (e.data.type) {
             case "ARCADE_TRIGGER_AD":
-                this.executeInHouseAdSequence(e.source);
+                this.executeCascadingAdWaterfall(e.source, e.data.adType);
                 break;
             
-
             case "ARCADE_TELEMETRY_STREAM":
                 this.ingestTelemetryStream(e.data.payload);
                 break;
         }
     }
 
-    executeInHouseAdSequence(targetFrameWindow) {
-        if (!this.adModal || !this.adCountdownEl) return;
+    executeCascadingAdWaterfall(targetFrameWindow, adType) {
+        const now = Date.now();
 
+        // 1. Strict Global Ad Cooldown Timer (3 Minutes / 180000ms)
+        if (now - this.lastAdExecutedTime < this.globalAdCooldownMs) {
+            console.log(`⚡ [AD MEDIATION] Global Ad Cooldown active (${((this.globalAdCooldownMs - (now - this.lastAdExecutedTime)) / 1000).toFixed(1)}s remaining). Skipping ad Waterfall and firing instant complete validation...`);
+            if (targetFrameWindow) {
+                targetFrameWindow.postMessage({ type: "ARCADE_AD_COMPLETE" }, "*");
+            }
+            return;
+        }
+
+        console.log(`🚀 [AD MEDIATION] Triggering Cascading Waterfall sequence for ad type: ${adType}`);
+        
+        // 2. Try Primary Network Loader (AdinPlay commercial SDK simulation)
+        this.tryPrimaryAdNetwork(targetFrameWindow, adType, (primarySuccess) => {
+            if (primarySuccess) {
+                this.lastAdExecutedTime = Date.now();
+                return;
+            }
+
+            console.warn("⚠ [AD MEDIATION] Primary Network (AdinPlay) fill rate low or failed. Instantly cascading to Backup Network...");
+            
+            // 3. Cascade to Backup Network Loader (AppLixir SDK simulation)
+            this.tryBackupAdNetwork(targetFrameWindow, adType, (backupSuccess) => {
+                if (backupSuccess) {
+                    this.lastAdExecutedTime = Date.now();
+                    return;
+                }
+
+                console.error("❌ [AD MEDIATION] Entire Waterfall cascade exhausted. Executing automated immediate postMessage complete handshake to guarantee 100% user retention.");
+                if (targetFrameWindow) {
+                    targetFrameWindow.postMessage({ type: "ARCADE_AD_COMPLETE" }, "*");
+                }
+            });
+        });
+    }
+
+    tryPrimaryAdNetwork(targetWindow, adType, callback) {
+        if (!this.adModal || !this.adCountdownEl || !this.adNetLabel) {
+            callback(false);
+            return;
+        }
+
+        // Simulate 90% Primary Fill Rate
+        if (Math.random() < 0.1) {
+            setTimeout(() => callback(false), 200); // 200ms fail latency
+            return;
+        }
+
+        this.adNetLabel.textContent = "PRIMARY NETWORK // ADINPLAY TACTICAL PROXY";
         this.adModal.classList.remove('hidden');
         let counter = 5;
         this.adCountdownEl.textContent = `${counter}s`;
@@ -251,69 +312,92 @@ class ArcadePortalEngine {
             if (counter <= 0) {
                 clearInterval(ticker);
                 this.adModal.classList.add('hidden');
-                
-                // Transmit completion handshake back to sandbox
-                if (targetFrameWindow) {
-                    targetFrameWindow.postMessage({ type: "ARCADE_AD_COMPLETE" }, "*");
-                }
-                this.notifyPlayerStatus("In-House Sponsorship Validated — Sandbox Resumed");
+                if (targetWindow) targetWindow.postMessage({ type: "ARCADE_AD_COMPLETE" }, "*");
+                this.notifyPlayerStatus("◈ Primary Sponsorship Handshake Confirmed");
+                callback(true);
             } else {
                 this.adCountdownEl.textContent = `${counter}s`;
             }
         }, 1000);
     }
 
-    ingestTelemetryStream(payload) {
-        // Phase 3 Consent Guard
-        if (!this.telemetryConsent) {
-            console.warn("AI Telemetry rejected by user local profile. Discarding batch.");
+    tryBackupAdNetwork(targetWindow, adType, callback) {
+        if (!this.adModal || !this.adCountdownEl || !this.adNetLabel) {
+            callback(false);
             return;
         }
 
-        // Phase 4 Sanitize / Validation Guard
-        const sanitized = this.sanitizeTelemetryPayload(payload);
-        if (!sanitized) {
-            console.error("Telemetry packet failed Phase 4 structural security check. Terminated.");
-            return;
-        }
+        this.adNetLabel.textContent = "BACKUP NETWORK // APPLIXIR VIDEO FALLBACK";
+        this.adModal.classList.remove('hidden');
+        let counter = 4;
+        this.adCountdownEl.textContent = `${counter}s`;
 
-        this.streamDataToLogEngine(sanitized);
+        const ticker = setInterval(() => {
+            counter--;
+            if (counter <= 0) {
+                clearInterval(ticker);
+                this.adModal.classList.add('hidden');
+                if (targetWindow) targetWindow.postMessage({ type: "ARCADE_AD_COMPLETE" }, "*");
+                this.notifyPlayerStatus("◈ Backup Network Handshake Confirmed");
+                callback(true);
+            } else {
+                this.adCountdownEl.textContent = `${counter}s`;
+            }
+        }, 1000);
     }
 
-    sanitizeTelemetryPayload(payload) {
-        if (!payload || typeof payload !== 'object') return null;
+    // ─── Secure Consenting AI Telemetry Dispatcher ──────────────────────────────
+    ingestTelemetryStream(payload) {
+        // Phase 3 Opt-in Loop Guard
+        if (!this.telemetryConsent) {
+            console.warn("⚠ [AI TELEMETRY] Telemetry stream discarded at browser level due to player local consent profile.");
+            return;
+        }
 
-        // Verify structure & strip unauthorized input strings
-        const clean = {
-            timestamp: payload.timestamp || Date.now(),
-            gameId: this.activeGame ? this.activeGame.id : 'unknown',
-            moves: []
+        // Strict Regex / JSON Sanitize and Validation Filter
+        const cleanedBatch = this.validateAndSanitizeTelemetry(payload);
+        if (!cleanedBatch) {
+            console.error("❌ [AI TELEMETRY FAULT] Payload failed strict structural Regex/JSON sanitization check. Dropping packet immediately.");
+            return;
+        }
+
+        this.dispatchToServerlessWorker(cleanedBatch);
+    }
+
+    validateAndSanitizeTelemetry(raw) {
+        if (!raw || typeof raw !== 'object') return null;
+
+        const pristine = {
+            timestamp: parseInt(raw.timestamp || Date.now(), 10),
+            gameId: typeof raw.gameId === 'string' ? raw.gameId.replace(/[^a-zA-Z0-9_-]/g, '') : (this.activeGame ? this.activeGame.id : 'unknown'),
+            batchUuid: `LOG_${Math.random().toString(36).substring(2,9).toUpperCase()}`,
+            dataBatches: []
         };
 
-        if (Array.isArray(payload.moves)) {
-            clean.moves = payload.moves.map(m => ({
-                status: typeof m.status === 'string' ? m.status.replace(/[^a-zA-Z0-9_-]/g, '') : 'active',
+        if (Array.isArray(raw.moves)) {
+            pristine.dataBatches = raw.moves.map(item => ({
+                moveIndex: parseInt(item.moveIdx || item.moveIndex || 0, 10),
                 selectedCoord: {
-                    x: parseInt(m.selectedCoord?.x || 0, 10),
-                    y: parseInt(m.selectedCoord?.y || 0, 10)
+                    x: parseInt(item.selectedCoord?.x || 0, 10),
+                    y: parseInt(item.selectedCoord?.y || 0, 10)
                 },
-                thinkingDeltaMs: parseInt(m.thinkingDeltaMs || 0, 10)
-            }));
+                thinkingDeltaMs: parseInt(item.thinkingDeltaMs || 0, 10)
+            })).filter(b => b.thinkingDeltaMs > 0); // Keep only valid timing actions
         }
 
-        return clean;
+        return pristine;
     }
 
-    streamDataToLogEngine(cleanBatch) {
-        console.log("🚀 [AI TELEMETRY STREAM] Transmitting sanitized anonymized dataset batch:", cleanBatch);
+    dispatchToServerlessWorker(pristineBatch) {
+        console.log("🚀 [AI TELEMETRY DISPATCHER] Streaming pristine verified logic packet to Serverless Cloud Worker:", pristineBatch);
         
-        // Mock non-blocking API endpoint transmission
-        fetch('https://ittybittybites.github.io/telemetry-endpoint-mock', {
+        // Asynchronous POST pointing to the user's live Cloudflare Worker endpoint
+        fetch(this.telemetryEndpointUrl, {
             method: 'POST',
-            mode: 'no-cors',
+            mode: 'no-cors', // Non-blocking fire and forget
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(cleanBatch)
-        }).catch(() => {}); // Fire and forget
+            body: JSON.stringify(pristineBatch)
+        }).catch(() => {});
     }
 
     notifyPlayerStatus(msg) {
