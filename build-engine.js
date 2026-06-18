@@ -1144,8 +1144,8 @@ function generateHtmlSitemap(libraryPages, intelPages) {
   const intelLinksByTopic = topics.map(topic => {
     const briefings = intelPages.filter(p => p.topic === topic.slug);
     const rows = briefings.map(p => {
-      const per = personas.find(pr => per.slug === p.persona);
-      return `<a href="./intel/${p.slug}.html" class="block py-1 text-slate-400 hover:text-cyan-400 text-xs transition-colors truncate">→ Standard Setup for ${per?.name || p.persona}</a>`;
+      const per = personas.find(pr => pr.slug === p.persona);
+      return `<a href="./intel/${p.slug}.html" class="block py-1 text-slate-400 hover:text-cyan-400 text-xs transition-colors truncate font-mono">→ Standard Setup for ${per?.name || p.persona}</a>`;
     }).join('');
     
     return `
@@ -1169,7 +1169,7 @@ function generateHtmlSitemap(libraryPages, intelPages) {
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1566091161594729" crossorigin="anonymous"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Definitive HTML Sitemap | Complete Repository Crawl Index</title>
-<meta name="description" content="Authoritative 1-click HTML Sitemap index mapping exactly ${allUrls.length || 420} web assets, gaming sandboxes, and structural operational briefings.">
+<meta name="description" content="Authoritative 1-click HTML Sitemap index mapping exactly \${intelPages.length + libraryPages.length + 24 || 420} web assets, gaming sandboxes, and structural operational briefings.">
 <link rel="canonical" href="${BASE_URL}/sitemap.html">
 <script src="https://cdn.tailwindcss.com"></script>
 <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
