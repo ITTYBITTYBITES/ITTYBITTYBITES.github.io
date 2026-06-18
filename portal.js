@@ -268,26 +268,54 @@ class ArcadePortalEngine {
 
         console.log(`🚀 [AD MEDIATION] Triggering Cascading Waterfall sequence for ad type: ${adType}`);
         
-        // 2. Try Primary Network Loader (AdinPlay commercial SDK simulation)
+        // 2. Execute Official Google H5 Web-Gaming Ad Placement API adBreak()
+        const adConfigObj = {
+            type: adType === 'rewarded' ? 'reward' : 'next',
+            name: adType === 'rewarded' ? 'operative_perk' : 'level_clear',
+            beforeAd: () => {
+                console.log("⚡ [Google H5 Ads] Suspending game audio & execution tickers...");
+            },
+            afterAd: () => {
+                console.log("⚡ [Google H5 Ads] Ad execution complete. Resuming sandbox...");
+                this.lastAdExecutedTime = Date.now();
+                if (targetFrameWindow) targetFrameWindow.postMessage({ type: "ARCADE_AD_COMPLETE" }, "*");
+            },
+            adBreakDone: (placementInfo) => {
+                console.log("◈ [Google H5 Ads] Break routine concluded:", placementInfo);
+                // If ad Break failed or didn't show an ad, instantly cascade to Backup Proxies
+                if (!placementInfo || placementInfo.breakStatus !== 'viewed') {
+                    console.warn("⚠ [Google H5 Ads] Live ad not viewed or Getting Ready. Cascading to Backup Mediation Proxies...");
+                    this.cascadeToBackupProxies(targetFrameWindow, adType);
+                }
+            }
+        };
+
+        // Fire Google adBreak or fallback directly if SDK still initializing
+        if (typeof window.adBreak === 'function') {
+            try {
+                window.adBreak(adConfigObj);
+            } catch(e) {
+                console.warn("⚠ window.adBreak execution fault. Cascading to Backup Mediation...");
+                this.cascadeToBackupProxies(targetFrameWindow, adType);
+            }
+        } else {
+            console.warn("⚠ Google H5 adBreak SDK missing or Getting Ready. Executing Backup Waterfall...");
+            this.cascadeToBackupProxies(targetFrameWindow, adType);
+        }
+    }
+
+    cascadeToBackupProxies(targetFrameWindow, adType) {
         this.tryPrimaryAdNetwork(targetFrameWindow, adType, (primarySuccess) => {
             if (primarySuccess) {
                 this.lastAdExecutedTime = Date.now();
                 return;
             }
-
-            console.warn("⚠ [AD MEDIATION] Primary Network (AdinPlay) fill rate low or failed. Instantly cascading to Backup Network...");
-            
-            // 3. Cascade to Backup Network Loader (AppLixir SDK simulation)
             this.tryBackupAdNetwork(targetFrameWindow, adType, (backupSuccess) => {
                 if (backupSuccess) {
                     this.lastAdExecutedTime = Date.now();
                     return;
                 }
-
-                console.error("❌ [AD MEDIATION] Entire Waterfall cascade exhausted. Executing automated immediate postMessage complete handshake to guarantee 100% user retention.");
-                if (targetFrameWindow) {
-                    targetFrameWindow.postMessage({ type: "ARCADE_AD_COMPLETE" }, "*");
-                }
+                if (targetFrameWindow) targetFrameWindow.postMessage({ type: "ARCADE_AD_COMPLETE" }, "*");
             });
         });
     }
