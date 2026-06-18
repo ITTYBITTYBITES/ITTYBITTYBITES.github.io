@@ -612,6 +612,40 @@
       "universe": "life",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T13:04:26.143Z"
+    },
+    {
+      "slug": "supervisory-nurses",
+      "name": "Supervisory Nurses",
+      "description": "Supervisory Nurses — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "nurses",
+        "supervisory",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "life",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T13:05:25.968Z"
+    },
+    {
+      "slug": "sleep-deprived-nurses",
+      "name": "Sleep-Deprived Nurses",
+      "description": "Sleep-Deprived Nurses — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "nurses",
+        "sleep-deprived",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "life",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T13:05:25.968Z"
     }
   ]
 }
