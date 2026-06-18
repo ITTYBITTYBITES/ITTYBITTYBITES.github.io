@@ -181,6 +181,7 @@ class ArcadePortalEngine {
     }
 
     returnToBrowseGrid() {
+        document.body.style.overflow = ''; // Kill double scrollbars and restore parent scroll
         this.activeGame = null;
         if (this.gameIframe) {
             this.gameIframe.src = ''; // Clean WebAssembly buffer memory
@@ -196,6 +197,7 @@ class ArcadePortalEngine {
     }
 
     mountSecureGameTheater(game) {
+        document.body.style.overflow = 'hidden'; // Kill double scrollbars and lock parent scroll
         this.activeGame = game;
 
         if (this.gridTheater) this.gridTheater.classList.add('hidden');
