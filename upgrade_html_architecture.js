@@ -205,6 +205,8 @@ FILES_TO_UPGRADE.forEach(filename => {
       gtag('js', new Date());
       gtag('config', 'G-6P6NPFW4FZ');
     </script>
+    <!-- Google AdSense Universal Publisher Tag -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1566091161594729" crossorigin="anonymous"></script>
 ${GLOBAL_STYLES}
 </head>
 <body class="min-h-screen flex flex-col selection:bg-cyan-500 selection:text-slate-900 antialiased bg-slate-950">

@@ -726,6 +726,8 @@ body::before { content: ''; position: fixed; inset: 0; background: linear-gradie
   gtag('js', new Date());
   gtag('config', 'G-6P6NPFW4FZ');
 </script>
+<!-- Google AdSense Universal Publisher Tag -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1566091161594729" crossorigin="anonymous"></script>
 </head>
 <body class="bg-slate-950 text-slate-50 font-mono leading-relaxed overflow-x-hidden relative antialiased">
 <nav class="bg-slate-950 border-b border-cyan-400/20 py-3 sticky top-0 z-50 backdrop-blur-md shadow-2xl select-none font-mono">
@@ -878,6 +880,8 @@ function generateIntelHub(topics, personas, intelPages) {
   gtag('js', new Date());
   gtag('config', 'G-6P6NPFW4FZ');
 </script>
+<!-- Google AdSense Universal Publisher Tag -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1566091161594729" crossorigin="anonymous"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Intel Matrix | The 2-Second Witness</title>
 <meta name="description" content="Programmatic cognitive training protocol matrix — ${intelPages.length} pages across ${topics.length} topics and ${personas.length} personas. Auto-generated ${CONFIG.buildTimestamp}.">

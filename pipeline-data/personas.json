@@ -884,6 +884,40 @@
       "universe": "life",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T14:16:47.811Z"
+    },
+    {
+      "slug": "cross-functional-pharmacists",
+      "name": "Cross-Functional Pharmacists",
+      "description": "Cross-Functional Pharmacists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "pharmacists",
+        "cross-functional",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "life",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T14:25:10.999Z"
+    },
+    {
+      "slug": "high-volume-pharmacists",
+      "name": "High-Volume Pharmacists",
+      "description": "High-Volume Pharmacists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "pharmacists",
+        "high-volume",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "life",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T14:25:10.999Z"
     }
   ]
 }
