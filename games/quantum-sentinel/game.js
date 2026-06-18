@@ -320,10 +320,22 @@ class QuantumSentinelEngine {
         if (this.audioCtx) this.audioCtx.suspend();
 
         console.log(`🚀 [AD HOOK] Suspending Quantum Sentinel tickers and Web Audio. Halting for ${type} network bridge...`);
-        window.parent.postMessage({ type: "ARCADE_TRIGGER_AD", adType: type }, "*");
+        if (window.parent && window.parent !== window) {
+            window.parent.postMessage({ type: "ARCADE_TRIGGER_AD", adType: type }, "*");
+        }
+
+        // Safety Fallback Guard: if parent iframe orchestrator does not confirm within 2.5s, unfreeze automatically
+        if(this.adFallbackTimer) clearTimeout(this.adFallbackTimer);
+        this.adFallbackTimer = setTimeout(() => {
+            if(this.isPaused) {
+                console.log("⚡ [SAFETY FALLBACK] Network bridge unconfirmed. Automatically resuming operative stream...");
+                this.resumeAfterInterruption();
+            }
+        }, 2500);
     }
 
     resumeAfterInterruption() {
+        if(this.adFallbackTimer) clearTimeout(this.adFallbackTimer);
         this.isPaused = false;
         if (this.audioCtx) this.audioCtx.resume();
         console.log("🚀 [AD HOOK CONFIRMED] Asynchronous handshake received from Parent Hub. Resuming Quantum Sentinel execution loop...");
@@ -372,7 +384,7 @@ class QuantumSentinelEngine {
 
         wrapper.appendChild(modal);
 
-        document.getElementById('sentinel-reboot-btn').addEventListener('click', () => {
+        const reboot = () => {
             this.score = 0;
             this.shields = 100;
             this.wave = 1;
@@ -380,7 +392,12 @@ class QuantumSentinelEngine {
             this.isGameOver = false;
             this.isPaused = false;
             this.mountCanvasTheater();
-        });
+        };
+        const btn = document.getElementById('sentinel-reboot-btn');
+        if(btn) {
+            btn.addEventListener('click', reboot);
+            btn.addEventListener('pointerdown', reboot);
+        }
     }
 
     // Phase 5 Granular AI Telemetry Batch Hub
