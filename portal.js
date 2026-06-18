@@ -378,54 +378,6 @@ class ArcadePortalEngine {
         }
     }
 
-
-
-        // Strict Regex / JSON Sanitize and Validation Filter
-        const cleanedBatch = this.validateAndSanitizeTelemetry(payload);
-        if (!cleanedBatch) {
-            console.error("❌ [AI TELEMETRY FAULT] Payload failed strict structural Regex/JSON sanitization check. Dropping packet immediately.");
-            return;
-        }
-
-        this.dispatchToServerlessWorker(cleanedBatch);
-    }
-
-    validateAndSanitizeTelemetry(raw) {
-        if (!raw || typeof raw !== 'object') return null;
-
-        const pristine = {
-            timestamp: parseInt(raw.timestamp || Date.now(), 10),
-            gameId: typeof raw.gameId === 'string' ? raw.gameId.replace(/[^a-zA-Z0-9_-]/g, '') : (this.activeGame ? this.activeGame.id : 'unknown'),
-            batchUuid: `LOG_${Math.random().toString(36).substring(2,9).toUpperCase()}`,
-            dataBatches: []
-        };
-
-        if (Array.isArray(raw.moves)) {
-            pristine.dataBatches = raw.moves.map(item => ({
-                moveIndex: parseInt(item.moveIdx || item.moveIndex || 0, 10),
-                selectedCoord: {
-                    x: parseInt(item.selectedCoord?.x || 0, 10),
-                    y: parseInt(item.selectedCoord?.y || 0, 10)
-                },
-                thinkingDeltaMs: parseInt(item.thinkingDeltaMs || 0, 10)
-            })).filter(b => b.thinkingDeltaMs > 0); // Keep only valid timing actions
-        }
-
-        return pristine;
-    }
-
-    dispatchToServerlessWorker(pristineBatch) {
-        console.log("🚀 [AI TELEMETRY DISPATCHER] Streaming pristine verified logic packet to Serverless Cloud Worker:", pristineBatch);
-        
-        // Asynchronous POST pointing to the user's live Cloudflare Worker endpoint
-        fetch(this.telemetryEndpointUrl, {
-            method: 'POST',
-            mode: 'no-cors', // Non-blocking fire and forget
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(pristineBatch)
-        }).catch(() => {});
-    }
-
     notifyPlayerStatus(msg) {
         const bar = document.getElementById('terminal-notification-bar');
         if (!bar) return;
