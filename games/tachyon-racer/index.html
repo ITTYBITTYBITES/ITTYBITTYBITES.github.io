@@ -27,42 +27,54 @@
 
     <script>
         const canvas = document.createElement('canvas');
-        canvas.width = 800; canvas.height = 500;
-        canvas.className = 'w-full h-full block bg-slate-950 cursor-none';
+        const logicalWidth = 800; const logicalHeight = 500;
+        canvas.width = logicalWidth; canvas.height = logicalHeight;
+        canvas.className = 'w-full block bg-slate-950 cursor-none';
+        canvas.style.aspectRatio = '16 / 10';
+        canvas.style.objectFit = 'cover';
         document.getElementById('game-sandbox-area').appendChild(canvas);
 
         const ctx = canvas.getContext('2d');
         // DevicePixelRatio Retina Scaling Correction
         const dpr = window.devicePixelRatio || 1;
-        canvas.style.width = `${canvas.width}px`;
-        canvas.style.height = `${canvas.height}px`;
-        canvas.width *= dpr;
-        canvas.height *= dpr;
+        canvas.width = logicalWidth * dpr;
+        canvas.height = logicalHeight * dpr;
         ctx.scale(dpr, dpr);
-        let px = 400, score = 0, speed = 8;
+        let px = logicalWidth/2, score = 0, speed = 8;
         let obstacles = [];
 
         canvas.style.touchAction='none';
-        window.addEventListener('pointermove', (e) => {
+        const updatePlayer = (e) => {
             const rect = canvas.getBoundingClientRect();
-            px = (e.clientX - rect.left)*(canvas.width/rect.width);
+            if(rect.width > 0) {
+                const clientX = e.clientX || (e.touches && e.touches[0] ? e.touches[0].clientX : 0);
+                if(clientX > 0) {
+                    px = (clientX - rect.left)*(logicalWidth/rect.width);
+                    px = Math.max(18, Math.min(logicalWidth - 18, px));
+                }
+            }
+        };
+        window.addEventListener('pointermove', updatePlayer);
+        canvas.addEventListener('pointerdown', (e) => {
+            try { e.target.setPointerCapture(e.pointerId); } catch(err){}
+            updatePlayer(e);
         });
 
         function makeO() {
             obstacles = [];
-            for(let i=0; i<8; i++) obstacles.push({ y: -i*180, x: Math.random()*(canvas.width-120), width: 120 });
+            for(let i=0; i<8; i++) obstacles.push({ y: -i*180, x: Math.random()*(logicalWidth-120), width: 120 });
         }
         makeO();
 
         function loop() {
-            ctx.fillStyle = '#020617'; ctx.fillRect(0,0, canvas.width, canvas.height);
+            ctx.fillStyle = '#020617'; ctx.fillRect(0,0, logicalWidth, logicalHeight);
 
             // Process obstacles
             for(let i=obstacles.length-1; i>=0; i--) {
                 const ob = obstacles[i];
                 ob.y += speed;
 
-                if(ob.y >= canvas.height - 50 && ob.y <= canvas.height - 20) {
+                if(ob.y >= logicalHeight - 50 && ob.y <= logicalHeight - 20) {
                     if(px >= ob.x && px <= ob.x+ob.width) {
                         score = Math.max(0, score - 50); makeO();
                         if(window.parent) window.parent.postMessage({ type: "ARCADE_TRIGGER_AD", adType: "interstitial" }, "*");
@@ -70,19 +82,19 @@
                     }
                 }
 
-                if(ob.y > canvas.height) { ob.y = -200; ob.x = Math.random()*(canvas.width-120); score += 10; }
+                if(ob.y > logicalHeight) { ob.y = -200; ob.x = Math.random()*(logicalWidth-120); score += 10; }
 
                 ctx.fillStyle = '#f43f5e'; ctx.fillRect(ob.x, ob.y, ob.width, 24);
                 ctx.strokeStyle = '#fecdd3'; ctx.strokeRect(ob.x, ob.y, ob.width, 24);
             }
 
             // Draw player
-            ctx.fillStyle = '#22d3ee'; ctx.beginPath(); ctx.arc(px, canvas.height - 35, 18, 0, Math.PI*2); ctx.fill();
+            ctx.fillStyle = '#22d3ee'; ctx.beginPath(); ctx.arc(px, logicalHeight - 35, 18, 0, Math.PI*2); ctx.fill();
 
             // HUD
             ctx.fillStyle = '#facc15'; ctx.font = 'bold 16px monospace';
             ctx.fillText(`HYPER-SPEED DISTANCE: ${score} // VELOCITY: ${speed}x`, 20, 30);
-            ctx.fillText(`◈ SLIDE MOUSE TO DODGE TACHYON CORRIDOR BARRIERS ◈`, 20, canvas.height - 20);
+            ctx.fillText(`◈ SLIDE MOUSE TO DODGE TACHYON CORRIDOR BARRIERS ◈`, 20, logicalHeight - 20);
 
             requestAnimationFrame(loop);
         }
