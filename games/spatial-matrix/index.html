@@ -47,7 +47,8 @@
         for(let i=0; i<9; i++) {
             const t = document.createElement('div');
             t.className = "bg-slate-950 border-2 border-slate-800/80 hover:border-slate-700 rounded-xl aspect-[1/1] flex items-center justify-center text-xl font-bold cursor-pointer transition-all shadow-inner active:scale-95";
-            t.addEventListener('click', () => handleTap(i));
+            t.style.touchAction='none';
+            t.addEventListener('pointerdown', (e) => { e.preventDefault(); handleTap(i); });
             board.appendChild(t);
             tiles.push(t);
         }

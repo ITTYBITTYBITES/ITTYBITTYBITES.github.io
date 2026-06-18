@@ -67,7 +67,9 @@
             requestAnimationFrame(loop);
         }
 
-        canvas.addEventListener('mousedown', () => {
+        canvas.style.touchAction='none';
+        canvas.addEventListener('pointerdown', (e) => {
+            e.preventDefault();
             const now = Date.now();
             const diff = Math.abs((now - lastPulse) % period);
             const offset = Math.min(diff, period - diff);

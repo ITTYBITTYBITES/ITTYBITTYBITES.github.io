@@ -36,14 +36,17 @@
         let launchStartX = 0, launchStartY = 0, isDragging = false;
         let xp = 0;
 
-        canvas.addEventListener('mousedown', (e) => {
+        canvas.style.touchAction='none';
+        canvas.addEventListener('pointerdown', (e) => {
+            e.preventDefault();
             const rect = canvas.getBoundingClientRect();
             launchStartX = (e.clientX - rect.left)*(canvas.width/rect.width);
             launchStartY = (e.clientY - rect.top)*(canvas.height/rect.height);
             isDragging = true;
         });
 
-        canvas.addEventListener('mouseup', (e) => {
+        canvas.addEventListener('pointerup', (e) => {
+            e.preventDefault();
             if(!isDragging) return;
             const rect = canvas.getBoundingClientRect();
             const endX = (e.clientX - rect.left)*(canvas.width/rect.width);

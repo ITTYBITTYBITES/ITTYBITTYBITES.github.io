@@ -111,7 +111,8 @@ class QuantumSentinelEngine {
         wrapper.appendChild(this.canvas);
 
         // Bind interactive target interception
-        this.canvas.addEventListener('mousedown', (e) => this.handleReticleInterception(e));
+        this.canvas.addEventListener('pointerdown', (e) => { e.preventDefault(); this.handleReticleInterception(e); });
+        this.canvas.style.touchAction = 'none';
 
         // Spawn initial targets
         this.activeTargets = [];

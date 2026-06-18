@@ -201,19 +201,28 @@
                     if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') this.keys.right = false;
                 });
 
-                // Mobile Native Touch & Swiping
+                // Flawless Unified Pointer Capture Steering Engine
                 const touchZone = document.getElementById('touch-orchestrator');
                 if (touchZone) {
-                    touchZone.addEventListener('touchstart', (e) => {
-                        this.touchStartX = e.touches[0].clientX;
-                        this.lastTouchX = this.touchStartX;
+                    touchZone.style.touchAction = 'none';
+                    this.canvas.style.touchAction = 'none';
+                    this.isPointerSteering = false;
+                    
+                    touchZone.addEventListener('pointerdown', (e) => {
+                        e.preventDefault();
+                        this.lastTouchX = e.clientX;
+                        this.isPointerSteering = true;
                     });
-                    touchZone.addEventListener('touchmove', (e) => {
-                        const currentX = e.touches[0].clientX;
+                    touchZone.addEventListener('pointermove', (e) => {
+                        if (!this.isPointerSteering) return;
+                        e.preventDefault();
+                        const currentX = e.clientX;
                         const deltaX = currentX - this.lastTouchX;
-                        this.targetPlayerAngle += deltaX * 0.008; // High precision angle shift
+                        this.targetPlayerAngle += deltaX * 0.008;
                         this.lastTouchX = currentX;
                     });
+                    touchZone.addEventListener('pointerup', (e) => { this.isPointerSteering = false; });
+                    touchZone.addEventListener('pointercancel', (e) => { this.isPointerSteering = false; });
                 }
             }
 

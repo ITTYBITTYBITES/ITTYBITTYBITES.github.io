@@ -36,7 +36,8 @@
         const ball = { x: 400, y: 250, vx: 7, vy: 5, r: 10 };
         let score1 = 0, scoreAi = 0;
 
-        window.addEventListener('mousemove', (e) => {
+        canvas.style.touchAction='none';
+        window.addEventListener('pointermove', (e) => {
             const rect = canvas.getBoundingClientRect();
             p1.y = (e.clientY - rect.top)*(canvas.height/rect.height) - p1.h/2;
         });

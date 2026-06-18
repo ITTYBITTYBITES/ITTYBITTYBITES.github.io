@@ -35,9 +35,10 @@
         let lines = [], blocks = [];
         let px = canvas.width/2;
 
-        window.addEventListener('mousemove', (e) => {
+        canvas.style.touchAction='none';
+        window.addEventListener('pointermove', (e) => {
             const rect = canvas.getBoundingClientRect();
-            px = (e.clientX - rect.left)*(canvas.width/rect.width);
+            if(e.clientX > 0) px = (e.clientX - rect.left)*(canvas.width/rect.width);
         });
 
         for(let i=0; i<15; i++) blocks.push({ x: 100+Math.random()*(canvas.width-200), z: 500+i*250 });

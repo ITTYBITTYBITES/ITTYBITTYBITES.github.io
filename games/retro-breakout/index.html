@@ -35,7 +35,8 @@
         let balls = [{ x: canvas.width/2, y: canvas.height/2, vx: 5, vy: -5, r: 8 }];
         let bricks = []; let score = 0;
 
-        window.addEventListener('mousemove', (e) => {
+        canvas.style.touchAction='none';
+        window.addEventListener('pointermove', (e) => {
             const rect = canvas.getBoundingClientRect();
             paddle.x = (e.clientX - rect.left)*(canvas.width/rect.width);
         });

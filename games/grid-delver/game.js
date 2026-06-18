@@ -207,7 +207,8 @@ class GridDelverEngine {
                     card.innerHTML = `<span class="card-icon text-slate-700">?</span>`;
                 }
 
-                card.addEventListener('click', () => this.handlePlayerMove(x, y));
+                card.addEventListener('pointerdown', (e) => { e.preventDefault(); this.handlePlayerMove(x, y); });
+                card.style.touchAction = 'none';
                 this.gridBoardEl.appendChild(card);
             }
         }

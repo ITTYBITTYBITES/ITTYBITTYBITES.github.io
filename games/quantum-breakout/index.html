@@ -36,7 +36,8 @@
         let bricks = [];
         let score = 0, xp = 0;
 
-        window.addEventListener('mousemove', (e) => {
+        canvas.style.touchAction='none';
+        window.addEventListener('pointermove', (e) => {
             const rect = canvas.getBoundingClientRect();
             paddle.x = (e.clientX - rect.left)*(canvas.width/rect.width);
         });

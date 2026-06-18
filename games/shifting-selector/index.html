@@ -100,8 +100,9 @@
             build();
         }
 
-        opt0.addEventListener('click', () => verify(0));
-        opt1.addEventListener('click', () => verify(1));
+        opt0.style.touchAction='none'; opt1.style.touchAction='none';
+        opt0.addEventListener('pointerdown', (e) => { e.preventDefault(); verify(0); });
+        opt1.addEventListener('pointerdown', (e) => { e.preventDefault(); verify(1); });
         build();
         
     </script>

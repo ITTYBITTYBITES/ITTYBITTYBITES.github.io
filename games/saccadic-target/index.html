@@ -66,7 +66,9 @@
             requestAnimationFrame(draw);
         }
 
-        canvas.addEventListener('mousedown', (e) => {
+        canvas.style.touchAction='none';
+        canvas.addEventListener('pointerdown', (e) => {
+            e.preventDefault();
             const rect = canvas.getBoundingClientRect();
             const scaleX = canvas.width / rect.width;
             const scaleY = canvas.height / rect.height;

@@ -34,6 +34,14 @@
         let rocks = [], bullets = [];
         let ship = { x: 400, y: 250, a: 0 };
         let score = 0;
+        canvas.style.touchAction='none';
+        const dpad = document.createElement('div');
+        dpad.className = 'absolute bottom-4 left-4 right-4 flex justify-between select-none z-50 font-mono';
+        dpad.innerHTML = `<div class='flex gap-3'><button id='btn-la' class='px-6 py-4 bg-slate-900/80 border-2 border-cyan-400 text-cyan-400 font-black rounded-xl text-lg'>◀ ROTATE</button><button id='btn-ra' class='px-6 py-4 bg-slate-900/80 border-2 border-cyan-400 text-cyan-400 font-black rounded-xl text-lg'>ROTATE ▶</button></div><div><button id='btn-fire' class='px-8 py-4 bg-rose-500 hover:bg-rose-400 text-black font-black rounded-xl text-lg shadow-lg'>🚀 FIRE BLASter</button></div>`;
+        document.getElementById('game-sandbox-area').appendChild(dpad);
+        document.getElementById('btn-la').addEventListener('pointerdown', (e)=>{ e.preventDefault(); ship.a-=0.4; });
+        document.getElementById('btn-ra').addEventListener('pointerdown', (e)=>{ e.preventDefault(); ship.a+=0.4; });
+        document.getElementById('btn-fire').addEventListener('pointerdown', (e)=>{ e.preventDefault(); bullets.push({ x: ship.x, y: ship.y, vx: Math.cos(ship.a)*10, vy: Math.sin(ship.a)*10 }); });
 
         for(let i=0; i<6; i++) rocks.push({ x:Math.random()*800, y:Math.random()*500, vx:(Math.random()-0.5)*3, vy:(Math.random()-0.5)*3, r:30 });
 

@@ -36,7 +36,9 @@
         const probe = {x:80, y:80, vx:0, vy:0, radius:10};
         let isL = false, xp = 0;
 
-        canvas.addEventListener('click', (e) => {
+        canvas.style.touchAction='none';
+        canvas.addEventListener('pointerdown', (e) => {
+            e.preventDefault();
             if(isL) return;
             const rect = canvas.getBoundingClientRect();
             const tx = (e.clientX - rect.left)*(canvas.width/rect.width);

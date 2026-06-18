@@ -73,7 +73,9 @@
             requestAnimationFrame(update);
         }
 
-        canvas.addEventListener('click', () => {
+        canvas.style.touchAction='none';
+        canvas.addEventListener('pointerdown', (e) => {
+            e.preventDefault();
             if(active) {
                 xp += 120; active = false; cool = -50;
                 if(window.parent && xp % 360 === 0) window.parent.postMessage({ type: "ARCADE_TRIGGER_AD", adType: "interstitial" }, "*");

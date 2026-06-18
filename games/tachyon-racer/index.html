@@ -34,7 +34,8 @@
         let px = 400, score = 0, speed = 8;
         let obstacles = [];
 
-        window.addEventListener('mousemove', (e) => {
+        canvas.style.touchAction='none';
+        window.addEventListener('pointermove', (e) => {
             const rect = canvas.getBoundingClientRect();
             px = (e.clientX - rect.left)*(canvas.width/rect.width);
         });

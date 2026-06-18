@@ -49,6 +49,19 @@
         let px = 1.5, py = 1.5, pa = 0;
         let score = 0, lvl = 1, isOver = false;
         const keys = { left:false, right:false, up:false, down:false };
+        canvas.style.touchAction='none';
+        // Mobile On-Screen Controls Overlay
+        const dpad = document.createElement('div');
+        dpad.className = 'absolute bottom-4 left-4 right-4 flex justify-between select-none z-50 font-mono';
+        dpad.innerHTML = `<div class='flex gap-2'><button id='btn-up' class='px-6 py-4 bg-slate-900/80 border-2 border-cyan-400 text-cyan-400 font-black rounded-xl text-lg active:bg-cyan-400 active:text-black'>▲ ADVANCE</button></div><div class='flex gap-2'><button id='btn-l' class='px-5 py-4 bg-slate-900/80 border-2 border-gold text-gold font-black rounded-xl text-lg active:bg-gold active:text-black'>◀ ROTATE</button><button id='btn-r' class='px-5 py-4 bg-slate-900/80 border-2 border-gold text-gold font-black rounded-xl text-lg active:bg-gold active:text-black'>ROTATE ▶</button></div>`;
+        document.getElementById('game-sandbox-area').appendChild(dpad);
+        document.getElementById('btn-up').addEventListener('pointerdown', (e)=>{ e.preventDefault(); keys.up=true; });
+        document.getElementById('btn-up').addEventListener('pointerup', (e)=>{ keys.up=false; });
+        document.getElementById('btn-l').addEventListener('pointerdown', (e)=>{ e.preventDefault(); keys.left=true; });
+        document.getElementById('btn-l').addEventListener('pointerup', (e)=>{ keys.left=false; });
+        document.getElementById('btn-r').addEventListener('pointerdown', (e)=>{ e.preventDefault(); keys.right=true; });
+        document.getElementById('btn-r').addEventListener('pointerup', (e)=>{ keys.right=false; });
+
 
         window.addEventListener('keydown', (e) => {
             if(e.key==='ArrowLeft'||e.key==='a') keys.left = true;

@@ -102,7 +102,8 @@
                 const b = document.createElement('button');
                 b.className = "py-5 px-6 bg-slate-900 hover:bg-slate-800 border-2 border-slate-800 hover:border-cyan-400/60 rounded-xl text-base font-black tracking-widest text-white transition-all active:scale-95 shadow-lg uppercase font-mono";
                 b.textContent = opt.name;
-                b.addEventListener('click', () => evaluate(opt.hex));
+                b.style.touchAction='none';
+                b.addEventListener('pointerdown', (e) => { e.preventDefault(); evaluate(opt.hex); });
                 btnContainer.appendChild(b);
             });
         }
@@ -110,7 +111,9 @@
         initView();
         wordEl.textContent = "ENGAGE CALIBRATION";
         wordEl.className = "text-3xl font-black tracking-wider mb-10 h-20 flex items-center justify-center select-none bg-cyan-500/10 border-2 border-cyan-500 text-cyan-400 rounded-2xl p-4 cursor-pointer shadow-lg active:scale-98 transition-all animate-pulse";
-        wordEl.addEventListener('click', function startH() {
+        wordEl.style.touchAction='none';
+        wordEl.addEventListener('pointerdown', function startH(e) {
+            e.preventDefault();
             wordEl.removeEventListener('click', startH);
             nextStroop();
         });

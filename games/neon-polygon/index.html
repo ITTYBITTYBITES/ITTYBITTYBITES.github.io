@@ -35,7 +35,9 @@
 
         for(let i=0; i<8; i++) enemies.push({ a: Math.random()*Math.PI*2, dist: 300+Math.random()*300, id:`E_${i}` });
 
-        canvas.addEventListener('click', (e) => {
+        canvas.style.touchAction='none';
+        canvas.addEventListener('pointerdown', (e) => {
+            e.preventDefault();
             const rect = canvas.getBoundingClientRect();
             const cx = canvas.width/2, cy = canvas.height/2;
             const mx = (e.clientX - rect.left)*(canvas.width/rect.width);
