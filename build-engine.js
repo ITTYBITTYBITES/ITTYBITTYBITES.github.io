@@ -1029,10 +1029,16 @@ ${cards}
 function updateDynamicShowcases(intelPages) {
   console.log('\n⚡ Integrating newest dynamic protocol pages into HQ and Feeds showcases (True Daily Rotator active)...');
   
-  // Deterministic daily rotator formula
+  // Highly authoritative Hybrid Rotator: prioritizes daily newly created content + deterministic deep inventory
   const todayDay = Math.floor(Date.now() / (1000 * 60 * 60 * 24));
-  const startIndex = (todayDay * 12) % intelPages.length;
-  const freshest = [...intelPages.slice(startIndex), ...intelPages.slice(0, startIndex)].slice(0, 12);
+  const masterLength = 336; // baseline core inventory
+  const newlyCreated = intelPages.length > masterLength ? intelPages.slice(masterLength) : [];
+  const coreClassics = intelPages.slice(0, masterLength);
+  
+  const rotIndex = (todayDay * 6) % coreClassics.length;
+  const rotatedClassics = [...coreClassics.slice(rotIndex), ...coreClassics.slice(0, rotIndex)].slice(0, 12);
+  
+  const freshest = [...newlyCreated.reverse(), ...rotatedClassics].slice(0, 12);
   
   const showcaseCards = freshest.map(p => `
       <a href="intel/${p.slug}.html" class="bg-slate-900/60 border border-slate-800 rounded-xl p-6 hover:border-cyan-400 hover:bg-slate-900/90 transition-all flex flex-col justify-between group shadow-xl hover:shadow-cyan-400/5 font-mono select-none">
