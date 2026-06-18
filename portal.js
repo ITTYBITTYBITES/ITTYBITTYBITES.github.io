@@ -231,7 +231,9 @@ class ArcadePortalEngine {
     }
 
     returnToBrowseGrid() {
-        document.body.style.overflow = ''; // Kill double scrollbars and restore parent scroll
+        document.body.style.overflow = ''; 
+        document.body.style.overscrollBehavior = '';
+        document.documentElement.style.overscrollBehavior = '';
         this.activeGame = null;
         if (this.gameIframe) {
             this.gameIframe.src = ''; // Clean WebAssembly buffer memory
@@ -248,7 +250,9 @@ class ArcadePortalEngine {
     }
 
     mountSecureGameTheater(game) {
-        document.body.style.overflow = 'hidden'; // Kill double scrollbars and lock parent scroll
+        document.body.style.overflow = 'hidden'; 
+        document.body.style.overscrollBehavior = 'none';
+        document.documentElement.style.overscrollBehavior = 'none';
         this.activeGame = game;
 
         if (this.browseHub) this.browseHub.classList.add('hidden');

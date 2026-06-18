@@ -1394,6 +1394,40 @@
       "universe": "society",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T19:12:16.913Z"
+    },
+    {
+      "slug": "senior-teachers",
+      "name": "Senior Teachers",
+      "description": "Senior Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "teachers",
+        "senior",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "society",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T19:44:25.101Z"
+    },
+    {
+      "slug": "junior-teachers",
+      "name": "Junior Teachers",
+      "description": "Junior Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "teachers",
+        "junior",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "society",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T19:44:25.101Z"
     }
   ]
 }

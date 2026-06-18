@@ -72,7 +72,7 @@
             noiseL.innerHTML = nl; noiseR.innerHTML = nr;
         }
 
-        submitBtn.addEventListener('click', () => {
+        submitBtn.style.touchAction='none'; submitBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); try{ e.target.setPointerCapture(e.pointerId); }catch(err){}
             const val = parseInt(ansInput.value, 10);
             if (val === ans) {
                 xp += 60;

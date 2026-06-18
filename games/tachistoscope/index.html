@@ -46,7 +46,7 @@
         let stringVal = "";
         let xp = 0;
 
-        flashBtn.addEventListener('click', () => {
+        flashBtn.style.touchAction='none'; flashBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); try{ e.target.setPointerCapture(e.pointerId); }catch(err){}
             inputBlock.classList.add('hidden');
             inputEl.value = '';
 
@@ -65,7 +65,7 @@
             }, 30);
         });
 
-        verifyBtn.addEventListener('click', () => {
+        verifyBtn.style.touchAction='none'; verifyBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); try{ e.target.setPointerCapture(e.pointerId); }catch(err){}
             const guess = inputEl.value.trim().toUpperCase();
             if (guess === stringVal) {
                 xp += 150;

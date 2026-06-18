@@ -44,7 +44,7 @@
         let targets = [];
         let intervalId = null;
 
-        startBtn.addEventListener('click', () => {
+        startBtn.style.touchAction='none'; startBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); try{ e.target.setPointerCapture(e.pointerId); }catch(err){}
             startBtn.classList.add('hidden');
             inputZone.classList.add('hidden');
             ansInput.value = '';
@@ -78,7 +78,7 @@
             }, 100);
         });
 
-        submitBtn.addEventListener('click', () => {
+        submitBtn.style.touchAction='none'; submitBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); try{ e.target.setPointerCapture(e.pointerId); }catch(err){}
             const guess = ansInput.value.trim();
             const actual = targets.join('');
             if (guess === actual) {
