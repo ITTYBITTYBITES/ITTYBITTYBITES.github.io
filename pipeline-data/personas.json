@@ -646,6 +646,40 @@
       "universe": "life",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T13:05:25.968Z"
+    },
+    {
+      "slug": "high-stress-nurses",
+      "name": "High-Stress Nurses",
+      "description": "High-Stress Nurses — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "nurses",
+        "high-stress",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "life",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T13:09:25.788Z"
+    },
+    {
+      "slug": "multi-project-nurses",
+      "name": "Multi-Project Nurses",
+      "description": "Multi-Project Nurses — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "nurses",
+        "multi-project",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "life",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T13:09:25.788Z"
     }
   ]
 }
