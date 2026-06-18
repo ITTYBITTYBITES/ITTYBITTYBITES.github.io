@@ -95,7 +95,8 @@
             scoreEl.textContent = `OPERATIVE XP: ${score}`;
         }
 
-        matchBtn.addEventListener('click', verify);
+        matchBtn.style.touchAction='none';
+        matchBtn.addEventListener('pointerdown', (e) => { e.preventDefault(); try{ e.target.setPointerCapture(e.pointerId); }catch(err){} verify(); });
         window.addEventListener('keydown', (e) => { if(e.code === 'Space') { e.preventDefault(); verify(); } });
 
         step();

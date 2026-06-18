@@ -1462,6 +1462,40 @@
       "universe": "society",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T19:54:49.328Z"
+    },
+    {
+      "slug": "high-stress-teachers",
+      "name": "High-Stress Teachers",
+      "description": "High-Stress Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "teachers",
+        "high-stress",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "society",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T21:08:11.633Z"
+    },
+    {
+      "slug": "multi-project-teachers",
+      "name": "Multi-Project Teachers",
+      "description": "Multi-Project Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "teachers",
+        "multi-project",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "society",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T21:08:11.633Z"
     }
   ]
 }
