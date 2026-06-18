@@ -1360,6 +1360,40 @@
       "universe": "frontier",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T16:51:59.985Z"
+    },
+    {
+      "slug": "remote-teachers",
+      "name": "Remote Teachers",
+      "description": "Remote Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "teachers",
+        "remote",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "society",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T19:12:16.913Z"
+    },
+    {
+      "slug": "field-teachers",
+      "name": "Field Teachers",
+      "description": "Field Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "teachers",
+        "field",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "society",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T19:12:16.913Z"
     }
   ]
 }
