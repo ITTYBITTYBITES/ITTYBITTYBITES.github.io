@@ -1326,6 +1326,40 @@
       "universe": "frontier",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T16:46:14.047Z"
+    },
+    {
+      "slug": "time-critical-police-officers",
+      "name": "Time-Critical Police Officers",
+      "description": "Time-Critical Police Officers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "police-officers",
+        "time-critical",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "frontier",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T16:51:59.985Z"
+    },
+    {
+      "slug": "decentralized-police-officers",
+      "name": "Decentralized Police Officers",
+      "description": "Decentralized Police Officers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "police-officers",
+        "decentralized",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "frontier",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T16:51:59.985Z"
     }
   ]
 }
