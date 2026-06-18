@@ -748,6 +748,40 @@
       "universe": "life",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T13:32:53.478Z"
+    },
+    {
+      "slug": "remote-pharmacists",
+      "name": "Remote Pharmacists",
+      "description": "Remote Pharmacists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "pharmacists",
+        "remote",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "life",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T13:39:31.735Z"
+    },
+    {
+      "slug": "field-pharmacists",
+      "name": "Field Pharmacists",
+      "description": "Field Pharmacists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "pharmacists",
+        "field",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "life",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T13:39:31.735Z"
     }
   ]
 }
