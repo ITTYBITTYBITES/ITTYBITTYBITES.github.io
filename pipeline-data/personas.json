@@ -5,1633 +5,194 @@
     {
       "slug": "competitive-fps-gamers",
       "name": "Competitive FPS Gamers",
-      "description": "Esports competitors, twitch-shooter players, and reaction-based gaming athletes",
+      "description": "Elite Web-Native Esports Competitors — navigating sub-second reticle ingestion arrays and overriding attentional blink tracking dropouts.",
       "tags": [
         "esports",
-        "reaction time",
-        "visual tracking",
-        "multiplayer"
+        "fast-reflex",
+        "spatial-tracking",
+        "system-1"
       ],
-      "universe": "creative"
+      "universe": "tech"
     },
     {
       "slug": "android-mobile-developers",
       "name": "Android Mobile Developers",
-      "description": "Software engineers, mobile app developers, and full-stack engineers",
+      "description": "Senior Platform Web & Software Engineers — optimizing hardware Retina WebGL physics loops and managing deep cognitive chunk churn.",
       "tags": [
-        "software engineering",
-        "debugging",
-        "code review",
-        "IDE"
+        "software",
+        "retina-dpr",
+        "agile-execution",
+        "system-2"
       ],
       "universe": "tech"
     },
     {
       "slug": "first-responders",
-      "name": "Tactical First Responders",
-      "description": "EMTs, paramedics, firefighters, and emergency medical personnel",
+      "name": "First Responders",
+      "description": "Tactical Emergency Medical & Law Enforcement Operators — overriding neural executive desync during intense crisis mitigation shifts.",
       "tags": [
-        "emergency response",
-        "field triage",
-        "split-second decisions",
-        "triage"
+        "tactical",
+        "crisis-override",
+        "executive-load",
+        "frontier"
       ],
       "universe": "frontier"
     },
     {
       "slug": "stock-traders",
-      "name": "Day Traders & Stock Traders",
-      "description": "Active traders, financial market operators, and investment analysts",
+      "name": "Stock Traders",
+      "description": "High-Volume Financial Trading Desk Operators — managing split-second algorithmic numerical flash arrays and decision anchor drift.",
       "tags": [
-        "high-frequency decisions",
-        "risk management",
-        "market analysis"
+        "finance",
+        "high-volume",
+        "pattern-recognition",
+        "society"
       ],
       "universe": "society"
     },
     {
       "slug": "air-traffic-controllers",
       "name": "Air Traffic Controllers",
-      "description": "ATC personnel, aviation safety operators, and flight sequencing specialists",
+      "description": "Federal Aviation Flight Radar Controllers — maintaining 360-degree spatial target tracking and continuous peripheral saccadic capture.",
       "tags": [
-        "multi-source monitoring",
-        "rapid sequencing",
-        "safety-critical decisions"
+        "aviation",
+        "spatial-radar",
+        "saccadic-pacing",
+        "frontier"
       ],
       "universe": "frontier"
     },
     {
       "slug": "surgeons",
-      "name": "Surgeons & Medical Operators",
-      "description": "Surgical physicians, procedural specialists, and medical operators",
+      "name": "Surgeons",
+      "description": "Operating Theater Neuro-Vascular & Cardiac Surgeons — maintaining flawless fine-motor input continuity and eliminating perceptual fatigue.",
       "tags": [
-        "surgical decision making",
-        "cognitive load management",
-        "stress resilience"
+        "medical",
+        "fine-motor",
+        "input-continuity",
+        "life"
       ],
       "universe": "life"
     },
     {
       "slug": "military-pilots",
-      "name": "Military Pilots",
-      "description": "Combat aviators, military flight crews, and tactical air operators",
+      "name": "Military Defense Pilots",
+      "description": "Supersonic Tactical Interceptor Pilots — navigating high-speed shifting threat barriers and executing instant reaction overrides.",
       "tags": [
-        "cockpit cognition",
-        "spatial awareness",
-        "G-force attention management"
+        "defense",
+        "supersonic",
+        "threat-evasion",
+        "frontier"
       ],
       "universe": "frontier"
     },
     {
       "slug": "cybersecurity-analysts",
-      "name": "Cybersecurity Analysts",
-      "description": "SOC analysts, penetration testers, and threat intelligence operators",
+      "name": "Cybersecurity Target Analysts",
+      "description": "Special Operations Data Command Hub Operators — processing highly encrypted matrix grids and disarming underlying structural logic traps.",
       "tags": [
-        "threat detection",
-        "pattern recognition",
-        "incident response"
+        "cybersecurity",
+        "matrix-grid",
+        "logic-traps",
+        "tech"
       ],
       "universe": "tech"
     },
     {
       "slug": "athletes",
-      "name": "Elite Athletes",
-      "description": "Professional competitors, sports athletes, and performance performers",
+      "name": "Extreme Enduro Athletes",
+      "description": "High-Pressure Kinematic Performance Competitors — maintaining unwavering flow state immersion under extreme sensory distraction.",
       "tags": [
-        "in-game decision speed",
-        "pressure management",
-        "attention control"
+        "kinematic",
+        "flow-state",
+        "sensory-focus",
+        "life"
       ],
       "universe": "life"
     },
     {
       "slug": "students",
-      "name": "Students & Exam Takers",
-      "description": "Academic students, professional exam candidates, and certification testers",
+      "name": "Advanced Research Students",
+      "description": "Academic & Scientific Data Ingestors — optimizing cognitive load memory chunk retention and resolving aggressive complex study pipelines.",
       "tags": [
-        "test performance",
-        "working memory",
-        "time pressure management"
+        "academic",
+        "memory-chunk",
+        "study-pipelines",
+        "science"
       ],
-      "universe": "life"
+      "universe": "science"
     },
     {
       "slug": "lawyers",
-      "name": "Trial Lawyers",
-      "description": "Litigators, trial attorneys, and courtroom advocates",
+      "name": "Corporate Trial Lawyers",
+      "description": "High-Stakes Legal Litigation Curation Authorities — disarming complex logical fallacies and resolving multi-layered textual conflict arguments.",
       "tags": [
-        "rapid case analysis",
-        "argument construction",
-        "pressure arguments"
+        "legal",
+        "logical-fallacies",
+        "textual-conflict",
+        "society"
       ],
       "universe": "society"
     },
     {
       "slug": "radiologists",
-      "name": "Radiologists",
-      "description": "Medical imaging specialists, diagnostic radiologists, and imaging analysts",
+      "name": "Diagnostic Radiologists",
+      "description": "Medical Imaging Pattern Recognition Authorities — identifying sub-threshold visual targets buried deep inside complex visual coordinate noise.",
       "tags": [
-        "image pattern recognition",
-        "diagnosis speed",
-        "false positive reduction"
+        "imaging",
+        "visual-noise",
+        "signal-detection",
+        "life"
       ],
-      "universe": "science"
+      "universe": "life"
     },
     {
       "slug": "remote-software-engineers",
-      "name": "Remote Software Engineers",
-      "description": "Remote Software Engineers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "name": "Agile Software Engineers",
+      "description": "Full-Stack System Architecture Specialists — decoupling asynchronous parent messaging bridges and optimizing distributed telemetry packets.",
       "tags": [
-        "software-engineers",
-        "remote",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
+        "architecture",
+        "asynchronous",
+        "system-load",
+        "tech"
       ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-15T19:21:09.115Z"
-    },
-    {
-      "slug": "field-software-engineers",
-      "name": "Field Software Engineers",
-      "description": "Field Software Engineers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "software-engineers",
-        "field",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-15T19:21:09.115Z"
-    },
-    {
-      "slug": "senior-software-engineers",
-      "name": "Senior Software Engineers",
-      "description": "Senior Software Engineers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "software-engineers",
-        "senior",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-15T19:21:43.714Z"
-    },
-    {
-      "slug": "junior-software-engineers",
-      "name": "Junior Software Engineers",
-      "description": "Junior Software Engineers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "software-engineers",
-        "junior",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-15T19:21:43.714Z"
-    },
-    {
-      "slug": "supervisory-software-engineers",
-      "name": "Supervisory Software Engineers",
-      "description": "Supervisory Software Engineers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "software-engineers",
-        "supervisory",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-17T21:35:09.317Z"
-    },
-    {
-      "slug": "sleep-deprived-software-engineers",
-      "name": "Sleep-Deprived Software Engineers",
-      "description": "Sleep-Deprived Software Engineers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "software-engineers",
-        "sleep-deprived",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-17T21:35:09.317Z"
-    },
-    {
-      "slug": "high-stress-software-engineers",
-      "name": "High-Stress Software Engineers",
-      "description": "High-Stress Software Engineers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "software-engineers",
-        "high-stress",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-17T21:37:15.230Z"
-    },
-    {
-      "slug": "multi-project-software-engineers",
-      "name": "Multi-Project Software Engineers",
-      "description": "Multi-Project Software Engineers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "software-engineers",
-        "multi-project",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-17T21:37:15.230Z"
-    },
-    {
-      "slug": "cross-functional-software-engineers",
-      "name": "Cross-Functional Software Engineers",
-      "description": "Cross-Functional Software Engineers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "software-engineers",
-        "cross-functional",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-17T21:38:16.526Z"
-    },
-    {
-      "slug": "high-volume-software-engineers",
-      "name": "High-Volume Software Engineers",
-      "description": "High-Volume Software Engineers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "software-engineers",
-        "high-volume",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-17T21:38:16.526Z"
-    },
-    {
-      "slug": "time-critical-software-engineers",
-      "name": "Time-Critical Software Engineers",
-      "description": "Time-Critical Software Engineers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "software-engineers",
-        "time-critical",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T11:01:17.938Z"
-    },
-    {
-      "slug": "decentralized-software-engineers",
-      "name": "Decentralized Software Engineers",
-      "description": "Decentralized Software Engineers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "software-engineers",
-        "decentralized",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T11:01:17.938Z"
-    },
-    {
-      "slug": "remote-data-scientists",
-      "name": "Remote Data Scientists",
-      "description": "Remote Data Scientists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "data-scientists",
-        "remote",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T11:40:33.335Z"
-    },
-    {
-      "slug": "field-data-scientists",
-      "name": "Field Data Scientists",
-      "description": "Field Data Scientists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "data-scientists",
-        "field",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T11:40:33.335Z"
-    },
-    {
-      "slug": "senior-data-scientists",
-      "name": "Senior Data Scientists",
-      "description": "Senior Data Scientists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "data-scientists",
-        "senior",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T11:44:40.522Z"
-    },
-    {
-      "slug": "junior-data-scientists",
-      "name": "Junior Data Scientists",
-      "description": "Junior Data Scientists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "data-scientists",
-        "junior",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T11:44:40.522Z"
-    },
-    {
-      "slug": "supervisory-data-scientists",
-      "name": "Supervisory Data Scientists",
-      "description": "Supervisory Data Scientists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "data-scientists",
-        "supervisory",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T11:45:45.029Z"
-    },
-    {
-      "slug": "sleep-deprived-data-scientists",
-      "name": "Sleep-Deprived Data Scientists",
-      "description": "Sleep-Deprived Data Scientists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "data-scientists",
-        "sleep-deprived",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T11:45:45.029Z"
-    },
-    {
-      "slug": "high-stress-data-scientists",
-      "name": "High-Stress Data Scientists",
-      "description": "High-Stress Data Scientists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "data-scientists",
-        "high-stress",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T11:53:22.840Z"
-    },
-    {
-      "slug": "multi-project-data-scientists",
-      "name": "Multi-Project Data Scientists",
-      "description": "Multi-Project Data Scientists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "data-scientists",
-        "multi-project",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T11:53:22.840Z"
-    },
-    {
-      "slug": "cross-functional-data-scientists",
-      "name": "Cross-Functional Data Scientists",
-      "description": "Cross-Functional Data Scientists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "data-scientists",
-        "cross-functional",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T12:14:50.624Z"
-    },
-    {
-      "slug": "high-volume-data-scientists",
-      "name": "High-Volume Data Scientists",
-      "description": "High-Volume Data Scientists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "data-scientists",
-        "high-volume",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T12:14:50.624Z"
-    },
-    {
-      "slug": "time-critical-data-scientists",
-      "name": "Time-Critical Data Scientists",
-      "description": "Time-Critical Data Scientists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "data-scientists",
-        "time-critical",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T12:15:54.490Z"
-    },
-    {
-      "slug": "decentralized-data-scientists",
-      "name": "Decentralized Data Scientists",
-      "description": "Decentralized Data Scientists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "data-scientists",
-        "decentralized",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "tech",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T12:15:54.490Z"
-    },
-    {
-      "slug": "remote-nurses",
-      "name": "Remote Nurses",
-      "description": "Remote Nurses — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "nurses",
-        "remote",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T12:37:08.895Z"
+      "universe": "tech"
     },
     {
       "slug": "field-nurses",
-      "name": "Field Nurses",
-      "description": "Field Nurses — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "name": "Intensive Care Nurses",
+      "description": "Critical Care Medical Monitoring Specialists — executing instant diagnostic triages and maintaining sub-second mental target capture.",
       "tags": [
-        "nurses",
-        "field",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
+        "critical-care",
+        "triage-pacing",
+        "diagnostic-load",
+        "life"
       ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T12:37:08.895Z"
-    },
-    {
-      "slug": "senior-nurses",
-      "name": "Senior Nurses",
-      "description": "Senior Nurses — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "nurses",
-        "senior",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T13:04:26.143Z"
-    },
-    {
-      "slug": "junior-nurses",
-      "name": "Junior Nurses",
-      "description": "Junior Nurses — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "nurses",
-        "junior",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T13:04:26.143Z"
-    },
-    {
-      "slug": "supervisory-nurses",
-      "name": "Supervisory Nurses",
-      "description": "Supervisory Nurses — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "nurses",
-        "supervisory",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T13:05:25.968Z"
-    },
-    {
-      "slug": "sleep-deprived-nurses",
-      "name": "Sleep-Deprived Nurses",
-      "description": "Sleep-Deprived Nurses — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "nurses",
-        "sleep-deprived",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T13:05:25.968Z"
-    },
-    {
-      "slug": "high-stress-nurses",
-      "name": "High-Stress Nurses",
-      "description": "High-Stress Nurses — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "nurses",
-        "high-stress",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T13:09:25.788Z"
-    },
-    {
-      "slug": "multi-project-nurses",
-      "name": "Multi-Project Nurses",
-      "description": "Multi-Project Nurses — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "nurses",
-        "multi-project",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T13:09:25.788Z"
-    },
-    {
-      "slug": "cross-functional-nurses",
-      "name": "Cross-Functional Nurses",
-      "description": "Cross-Functional Nurses — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "nurses",
-        "cross-functional",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T13:27:30.150Z"
-    },
-    {
-      "slug": "high-volume-nurses",
-      "name": "High-Volume Nurses",
-      "description": "High-Volume Nurses — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "nurses",
-        "high-volume",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T13:27:30.150Z"
-    },
-    {
-      "slug": "time-critical-nurses",
-      "name": "Time-Critical Nurses",
-      "description": "Time-Critical Nurses — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "nurses",
-        "time-critical",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T13:32:53.478Z"
-    },
-    {
-      "slug": "decentralized-nurses",
-      "name": "Decentralized Nurses",
-      "description": "Decentralized Nurses — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "nurses",
-        "decentralized",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T13:32:53.478Z"
-    },
-    {
-      "slug": "remote-pharmacists",
-      "name": "Remote Pharmacists",
-      "description": "Remote Pharmacists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pharmacists",
-        "remote",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T13:39:31.735Z"
-    },
-    {
-      "slug": "field-pharmacists",
-      "name": "Field Pharmacists",
-      "description": "Field Pharmacists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pharmacists",
-        "field",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T13:39:31.735Z"
-    },
-    {
-      "slug": "senior-pharmacists",
-      "name": "Senior Pharmacists",
-      "description": "Senior Pharmacists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pharmacists",
-        "senior",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T13:45:06.031Z"
-    },
-    {
-      "slug": "junior-pharmacists",
-      "name": "Junior Pharmacists",
-      "description": "Junior Pharmacists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pharmacists",
-        "junior",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T13:45:06.031Z"
-    },
-    {
-      "slug": "supervisory-pharmacists",
-      "name": "Supervisory Pharmacists",
-      "description": "Supervisory Pharmacists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pharmacists",
-        "supervisory",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T14:02:01.116Z"
-    },
-    {
-      "slug": "sleep-deprived-pharmacists",
-      "name": "Sleep-Deprived Pharmacists",
-      "description": "Sleep-Deprived Pharmacists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pharmacists",
-        "sleep-deprived",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T14:02:01.116Z"
-    },
-    {
-      "slug": "high-stress-pharmacists",
-      "name": "High-Stress Pharmacists",
-      "description": "High-Stress Pharmacists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pharmacists",
-        "high-stress",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T14:16:47.811Z"
-    },
-    {
-      "slug": "multi-project-pharmacists",
-      "name": "Multi-Project Pharmacists",
-      "description": "Multi-Project Pharmacists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pharmacists",
-        "multi-project",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T14:16:47.811Z"
-    },
-    {
-      "slug": "cross-functional-pharmacists",
-      "name": "Cross-Functional Pharmacists",
-      "description": "Cross-Functional Pharmacists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pharmacists",
-        "cross-functional",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T14:25:10.999Z"
-    },
-    {
-      "slug": "high-volume-pharmacists",
-      "name": "High-Volume Pharmacists",
-      "description": "High-Volume Pharmacists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pharmacists",
-        "high-volume",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T14:25:10.999Z"
-    },
-    {
-      "slug": "time-critical-pharmacists",
-      "name": "Time-Critical Pharmacists",
-      "description": "Time-Critical Pharmacists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pharmacists",
-        "time-critical",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T14:26:04.173Z"
-    },
-    {
-      "slug": "decentralized-pharmacists",
-      "name": "Decentralized Pharmacists",
-      "description": "Decentralized Pharmacists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pharmacists",
-        "decentralized",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "life",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T14:26:04.173Z"
-    },
-    {
-      "slug": "remote-pilots",
-      "name": "Remote Pilots",
-      "description": "Remote Pilots — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pilots",
-        "remote",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T14:54:09.620Z"
-    },
-    {
-      "slug": "field-pilots",
-      "name": "Field Pilots",
-      "description": "Field Pilots — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pilots",
-        "field",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T14:54:09.620Z"
-    },
-    {
-      "slug": "senior-pilots",
-      "name": "Senior Pilots",
-      "description": "Senior Pilots — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pilots",
-        "senior",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T14:55:09.189Z"
-    },
-    {
-      "slug": "junior-pilots",
-      "name": "Junior Pilots",
-      "description": "Junior Pilots — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pilots",
-        "junior",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T14:55:09.189Z"
-    },
-    {
-      "slug": "supervisory-pilots",
-      "name": "Supervisory Pilots",
-      "description": "Supervisory Pilots — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pilots",
-        "supervisory",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T15:04:10.224Z"
-    },
-    {
-      "slug": "sleep-deprived-pilots",
-      "name": "Sleep-Deprived Pilots",
-      "description": "Sleep-Deprived Pilots — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pilots",
-        "sleep-deprived",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T15:04:10.224Z"
-    },
-    {
-      "slug": "high-stress-pilots",
-      "name": "High-Stress Pilots",
-      "description": "High-Stress Pilots — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pilots",
-        "high-stress",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T15:09:37.417Z"
-    },
-    {
-      "slug": "multi-project-pilots",
-      "name": "Multi-Project Pilots",
-      "description": "Multi-Project Pilots — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pilots",
-        "multi-project",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T15:09:37.417Z"
-    },
-    {
-      "slug": "cross-functional-pilots",
-      "name": "Cross-Functional Pilots",
-      "description": "Cross-Functional Pilots — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pilots",
-        "cross-functional",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T15:15:17.176Z"
-    },
-    {
-      "slug": "high-volume-pilots",
-      "name": "High-Volume Pilots",
-      "description": "High-Volume Pilots — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pilots",
-        "high-volume",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T15:15:17.176Z"
-    },
-    {
-      "slug": "time-critical-pilots",
-      "name": "Time-Critical Pilots",
-      "description": "Time-Critical Pilots — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pilots",
-        "time-critical",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T15:23:42.000Z"
-    },
-    {
-      "slug": "decentralized-pilots",
-      "name": "Decentralized Pilots",
-      "description": "Decentralized Pilots — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "pilots",
-        "decentralized",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T15:23:42.000Z"
-    },
-    {
-      "slug": "remote-police-officers",
-      "name": "Remote Police Officers",
-      "description": "Remote Police Officers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "police-officers",
-        "remote",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T15:32:14.592Z"
-    },
-    {
-      "slug": "field-police-officers",
-      "name": "Field Police Officers",
-      "description": "Field Police Officers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "police-officers",
-        "field",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T15:32:14.592Z"
-    },
-    {
-      "slug": "senior-police-officers",
-      "name": "Senior Police Officers",
-      "description": "Senior Police Officers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "police-officers",
-        "senior",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T15:36:35.212Z"
-    },
-    {
-      "slug": "junior-police-officers",
-      "name": "Junior Police Officers",
-      "description": "Junior Police Officers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "police-officers",
-        "junior",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T15:36:35.212Z"
-    },
-    {
-      "slug": "supervisory-police-officers",
-      "name": "Supervisory Police Officers",
-      "description": "Supervisory Police Officers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "police-officers",
-        "supervisory",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T16:22:06.848Z"
-    },
-    {
-      "slug": "sleep-deprived-police-officers",
-      "name": "Sleep-Deprived Police Officers",
-      "description": "Sleep-Deprived Police Officers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "police-officers",
-        "sleep-deprived",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T16:22:06.848Z"
+      "universe": "life"
     },
     {
       "slug": "high-stress-police-officers",
-      "name": "High-Stress Police Officers",
-      "description": "High-Stress Police Officers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "name": "Tactical Target Detectives",
+      "description": "Special Operations Interrogation & Field Detectives — unmasking subtle behavioral cues and disarming advanced social engineering loops.",
       "tags": [
-        "police-officers",
-        "high-stress",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
+        "interrogation",
+        "behavioral-cues",
+        "social-defense",
+        "frontier"
       ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T16:25:37.481Z"
+      "universe": "frontier"
     },
     {
-      "slug": "multi-project-police-officers",
-      "name": "Multi-Project Police Officers",
-      "description": "Multi-Project Police Officers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "slug": "time-critical-data-scientists",
+      "name": "Structural AI Researchers",
+      "description": "Machine Learning Automation Programmers — evaluating neural network retention limits and standardizing declarative SSG compilation matrices.",
       "tags": [
-        "police-officers",
-        "multi-project",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
+        "automation",
+        "neural-limits",
+        "compilation-matrix",
+        "science"
       ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T16:25:37.481Z"
-    },
-    {
-      "slug": "cross-functional-police-officers",
-      "name": "Cross-Functional Police Officers",
-      "description": "Cross-Functional Police Officers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "police-officers",
-        "cross-functional",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T16:46:14.047Z"
-    },
-    {
-      "slug": "high-volume-police-officers",
-      "name": "High-Volume Police Officers",
-      "description": "High-Volume Police Officers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "police-officers",
-        "high-volume",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T16:46:14.047Z"
-    },
-    {
-      "slug": "time-critical-police-officers",
-      "name": "Time-Critical Police Officers",
-      "description": "Time-Critical Police Officers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "police-officers",
-        "time-critical",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T16:51:59.985Z"
-    },
-    {
-      "slug": "decentralized-police-officers",
-      "name": "Decentralized Police Officers",
-      "description": "Decentralized Police Officers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "police-officers",
-        "decentralized",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "frontier",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T16:51:59.985Z"
-    },
-    {
-      "slug": "remote-teachers",
-      "name": "Remote Teachers",
-      "description": "Remote Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "teachers",
-        "remote",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "society",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T19:12:16.913Z"
-    },
-    {
-      "slug": "field-teachers",
-      "name": "Field Teachers",
-      "description": "Field Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "teachers",
-        "field",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "society",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T19:12:16.913Z"
-    },
-    {
-      "slug": "senior-teachers",
-      "name": "Senior Teachers",
-      "description": "Senior Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "teachers",
-        "senior",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "society",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T19:44:25.101Z"
-    },
-    {
-      "slug": "junior-teachers",
-      "name": "Junior Teachers",
-      "description": "Junior Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "teachers",
-        "junior",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "society",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T19:44:25.101Z"
-    },
-    {
-      "slug": "supervisory-teachers",
-      "name": "Supervisory Teachers",
-      "description": "Supervisory Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "teachers",
-        "supervisory",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "society",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T19:54:49.328Z"
-    },
-    {
-      "slug": "sleep-deprived-teachers",
-      "name": "Sleep-Deprived Teachers",
-      "description": "Sleep-Deprived Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "teachers",
-        "sleep-deprived",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "society",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T19:54:49.328Z"
-    },
-    {
-      "slug": "high-stress-teachers",
-      "name": "High-Stress Teachers",
-      "description": "High-Stress Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "teachers",
-        "high-stress",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "society",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T21:08:11.633Z"
-    },
-    {
-      "slug": "multi-project-teachers",
-      "name": "Multi-Project Teachers",
-      "description": "Multi-Project Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "teachers",
-        "multi-project",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "society",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T21:08:11.633Z"
-    },
-    {
-      "slug": "cross-functional-teachers",
-      "name": "Cross-Functional Teachers",
-      "description": "Cross-Functional Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "teachers",
-        "cross-functional",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "society",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T21:09:13.099Z"
-    },
-    {
-      "slug": "high-volume-teachers",
-      "name": "High-Volume Teachers",
-      "description": "High-Volume Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "teachers",
-        "high-volume",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "society",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T21:09:13.099Z"
-    },
-    {
-      "slug": "time-critical-teachers",
-      "name": "Time-Critical Teachers",
-      "description": "Time-Critical Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "teachers",
-        "time-critical",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "society",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T22:20:55.684Z"
-    },
-    {
-      "slug": "decentralized-teachers",
-      "name": "Decentralized Teachers",
-      "description": "Decentralized Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "teachers",
-        "decentralized",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "society",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T22:20:55.684Z"
-    },
-    {
-      "slug": "remote-financial-advisors",
-      "name": "Remote Financial Advisors",
-      "description": "Remote Financial Advisors — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "financial-advisors",
-        "remote",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "society",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T22:40:30.329Z"
-    },
-    {
-      "slug": "field-financial-advisors",
-      "name": "Field Financial Advisors",
-      "description": "Field Financial Advisors — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "financial-advisors",
-        "field",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "society",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T22:40:30.329Z"
-    },
-    {
-      "slug": "senior-financial-advisors",
-      "name": "Senior Financial Advisors",
-      "description": "Senior Financial Advisors — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "financial-advisors",
-        "senior",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "society",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T22:49:59.252Z"
-    },
-    {
-      "slug": "junior-financial-advisors",
-      "name": "Junior Financial Advisors",
-      "description": "Junior Financial Advisors — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "financial-advisors",
-        "junior",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "society",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T22:49:59.252Z"
+      "universe": "science"
     }
   ]
 }

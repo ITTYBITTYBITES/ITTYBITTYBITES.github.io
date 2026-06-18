@@ -47,21 +47,6 @@
         .btn-deploy { display: inline-block; background: linear-gradient(90deg, #facc15, #ca8a04); color: #020617; font-weight: 900; font-family: 'Orbitron', sans-serif; padding: 14px 28px; border-radius: 8px; text-transform: uppercase; letter-spacing: 2px; margin-top: 14px; box-shadow: 0 0 25px rgba(250,204,21,0.4); }
         .btn-deploy:hover { background: #fef08a; transform: translateY(-2px); color: #020617; }
     </style>
-    <!-- Absolute Browser Cache Invalidation Guard -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <script>
-        (function() {
-            const v = localStorage.getItem('master_deployment_version');
-            const target = 'v=202606182304';
-            if (v !== target) {
-                localStorage.setItem('master_deployment_version', target);
-                if (window.caches) { caches.keys().then(n => n.forEach(c => caches.delete(c))); }
-                window.location.reload(true);
-            }
-        })();
-    </script>
 </head>
 <body class="min-h-screen flex flex-col selection:bg-cyan-500 selection:text-slate-900 antialiased bg-slate-950">
 
