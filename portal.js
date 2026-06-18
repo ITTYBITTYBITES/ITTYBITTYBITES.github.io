@@ -174,15 +174,18 @@ class ArcadePortalEngine {
         }
 
         if (this.gameTheater) this.gameTheater.classList.add('hidden');
+        if (this.categorySidebar) this.categorySidebar.closest('aside').classList.remove('hidden');
         if (this.gridTheater) this.gridTheater.classList.remove('hidden');
 
         this.renderBrowseGrid();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     mountSecureGameTheater(game) {
         this.activeGame = game;
 
         if (this.gridTheater) this.gridTheater.classList.add('hidden');
+        if (this.categorySidebar) this.categorySidebar.closest('aside').classList.add('hidden');
         if (this.gameTheater) this.gameTheater.classList.remove('hidden');
 
         if (this.gameTitleEl) this.gameTitleEl.textContent = game.title;
@@ -202,7 +205,9 @@ class ArcadePortalEngine {
             this.gameIframe.src = game.directory_path;
         }
 
-        window.scrollTo({ top: 0, behavior: 'smooth' });
+        if (this.gameTheater) {
+            this.gameTheater.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
         this.notifyPlayerStatus(`Mounted Secure Sandbox: ${game.id}`);
     }
 

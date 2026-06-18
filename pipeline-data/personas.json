@@ -476,6 +476,40 @@
       "universe": "tech",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T11:53:22.840Z"
+    },
+    {
+      "slug": "cross-functional-data-scientists",
+      "name": "Cross-Functional Data Scientists",
+      "description": "Cross-Functional Data Scientists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "data-scientists",
+        "cross-functional",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "tech",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T12:14:50.624Z"
+    },
+    {
+      "slug": "high-volume-data-scientists",
+      "name": "High-Volume Data Scientists",
+      "description": "High-Volume Data Scientists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "data-scientists",
+        "high-volume",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "tech",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T12:14:50.624Z"
     }
   ]
 }
