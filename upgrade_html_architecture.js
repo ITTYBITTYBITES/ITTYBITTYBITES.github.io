@@ -171,20 +171,29 @@ FILES_TO_UPGRADE.forEach(filename => {
   const descMatch = content.match(/<meta\s+name=["']description["']\s+content=["']([\s\S]*?)["']/i);
   const desc = descMatch ? descMatch[1].trim() : "Classified cognitive research and dual-process decision training protocols.";
 
-  let innerBody = '';
-  const bodyMatch = content.match(/<div class=["']tactical-panel["'][^>]*>([\s\S]*?)<\/div>\s*<!-- Dynamic/i) || content.match(/<div class=["']tactical-panel["'][^>]*>([\s\S]*?)<\/div>/i) || content.match(/<body[^>]*>([\s\S]*?)<\/body>/i);
-  
-  if (bodyMatch) {
-    innerBody = bodyMatch[1];
-    innerBody = innerBody.replace(/<div class=["']nav-top["']>[\s\S]*?<\/div>/i, '');
-    innerBody = innerBody.replace(/<div class=["']container["']>([\s\S]*?)<\/div>\s*<\/body>/i, '$1');
-    innerBody = innerBody.replace(/<!-- GLOBAL UNIFIED[^>]*>[\s\S]*?<\/nav>/i, '');
-    innerBody = innerBody.replace(/<!-- UNIFIED LEGAL[^>]*>[\s\S]*?<\/footer>/i, '');
-    innerBody = innerBody.replace(/<footer[^>]*>[\s\S]*?<\/footer>/i, '');
-    innerBody = innerBody.replace(/<nav[^>]*>[\s\S]*?<\/nav>/i, '');
-  } else {
-    innerBody = "<p>Operational briefing asset currently securely isolated.</p>";
+  let h1Idx = content.indexOf('<h1');
+  if (h1Idx === -1) h1Idx = content.indexOf('<div class="container">');
+  if (h1Idx === -1) {
+    const startMarker = '<div class="tactical-panel flex-1 w-full font-mono space-y-6">';
+    h1Idx = content.indexOf(startMarker) + startMarker.length;
   }
+
+  let endIdx = content.indexOf('<!-- Automated Catalog Navigation Hook -->', h1Idx);
+  if (endIdx === -1) endIdx = content.indexOf('<!-- Automated Topic Matrix Navigation Hook -->', h1Idx);
+  if (endIdx === -1) endIdx = content.indexOf('<!-- Dynamic Automated', h1Idx);
+  if (endIdx === -1) endIdx = content.indexOf('</main>', h1Idx);
+
+  let innerBody = '';
+  if (h1Idx !== -1 && endIdx !== -1) {
+    innerBody = content.slice(h1Idx, endIdx).trim();
+  } else {
+    innerBody = "<h1>Operational Briefing</h1><p>Document currently securely isolated.</p>";
+  }
+
+  // Strip any stray closing divs or old containers
+  innerBody = innerBody.replace(/<div class=["']container["']>([\s\S]*?)<\/div>\s*$/i, '$1');
+  innerBody = innerBody.replace(/<\/main>\s*$/i, '');
+  innerBody = innerBody.replace(/<\/div>\s*$/i, '');
 
   innerBody = innerBody.replace(/https:\/\/www\.amazon\.com\/dp\/([a-zA-Z0-9]+)\/[^"'\s]*/gi, 'https://www.amazon.com/dp/$1/?tag=ittybittybite-20');
 

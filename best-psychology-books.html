@@ -17,6 +17,8 @@
     </script>
     <!-- Google AdSense Universal Publisher Tag -->
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1566091161594729" crossorigin="anonymous"></script>
+
+    <!-- Accelerated Core Styling -->
     <style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap');
         :root { --bg: #020617; --cyan: #22d3ee; --emerald: #34d399; --gold: #facc15; --rose: #f43f5e; --border: rgba(34,211,238,0.15); }
@@ -28,13 +30,15 @@
         .nav-node { font-size: 13px; font-family: 'Orbitron', sans-serif; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 18px; border: 1px solid #1e293b; border-radius: 8px; color: #94a3b8; transition: all 0.2s ease; text-decoration: none; display: inline-block; background: #0b0f19; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
         .nav-node:hover { color: #22d3ee; border-color: #22d3ee; background: rgba(34,211,238,0.1); transform: translateY(-1px); }
         .nav-node.active { color: #22d3ee; border-color: #22d3ee; font-weight: 900; background: rgba(34,211,238,0.15); box-shadow: 0 0 20px rgba(34,211,238,0.4); }
-        .tactical-panel { background: #0b0f19; border: 1px solid var(--border); border-radius: 16px; padding: 36px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
+        .article-grid { display: grid; grid-template-columns: 1fr; gap: 24px; }
+        @media (min-width: 1024px) { .article-grid { grid-template-columns: 1fr 320px; } }
+        .tactical-panel { background: #0b0f19; border: 1px solid var(--border); border-radius: 16px; padding: 32px; box-shadow: 0 10px 40px rgba(0,0,0,0.6); }
         h1, h2, h3, h4 { font-family: 'Orbitron', sans-serif; font-weight: 900; letter-spacing: 1px; color: #white; }
         h1 { color: var(--cyan); font-size: 2.4rem; text-transform: uppercase; text-shadow: 0 0 25px rgba(34,211,238,0.4); margin-bottom: 18px; }
         h2 { color: var(--cyan); font-size: 1.6rem; margin-top: 40px; margin-bottom: 18px; border-left: 4px solid var(--cyan); padding-left: 16px; }
         h3 { color: var(--gold); font-size: 1.25rem; margin-top: 30px; margin-bottom: 14px; }
         p { color: #cbd5e1; margin-bottom: 18px; font-size: 1rem; }
-        ul, ol { color: #cbd5e1; margin-left: 24px; margin-bottom: 24px; list-style-type: disc; }
+        ul, ol { color: #cbd5e1; margin-left: 24px; margin-bottom: 24px; space-y: 8px; }
         li { margin-bottom: 8px; }
         a { color: var(--cyan); text-decoration: none; font-weight: bold; transition: color 0.2s; }
         a:hover { color: var(--gold); }
@@ -44,18 +48,18 @@
         .btn-deploy:hover { background: #fef08a; transform: translateY(-2px); color: #020617; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col selection:bg-cyan-500 selection:text-slate-900 antialiased bg-slate-950 font-mono">
+<body class="min-h-screen flex flex-col selection:bg-cyan-500 selection:text-slate-900 antialiased bg-slate-950">
 
     <!-- GLOBAL UNIFIED TACTICAL NAVIGATION -->
-    <nav class="bg-slate-950 border-b border-cyan-400/20 py-3 sticky top-0 z-50 backdrop-blur-md shadow-2xl select-none font-mono">
-      <div class="max-w-[1200px] mx-auto px-4 flex justify-center gap-2 sm:gap-4 flex-wrap items-center font-bold">
-        <a href="index.html" class="nav-node ">HQ</a>
-        <a href="arcade.html" class="nav-node ">TACTICAL ARCADE</a>
-        <a href="intel/index.html" class="nav-node">INTEL MATRIX</a>
-        <a href="feed.html" class="nav-node ">INTEL FEED</a>
-        <a href="library.html" class="nav-node ">GEAR LOCKER</a>
-      </div>
-    </nav>
+<nav class="bg-slate-950 border-b border-cyan-400/20 py-3 sticky top-0 z-50 backdrop-blur-md shadow-2xl select-none font-mono">
+  <div class="max-w-[1200px] mx-auto px-4 flex justify-center gap-2 sm:gap-4 flex-wrap items-center">
+    <a href="index.html" class="nav-node ">HQ</a>
+    <a href="arcade.html" class="nav-node ">TACTICAL ARCADE</a>
+    <a href="intel/index.html" class="nav-node ">INTEL MATRIX</a>
+    <a href="feed.html" class="nav-node ">INTEL FEED</a>
+    <a href="library.html" class="nav-node ">GEAR LOCKER</a>
+  </div>
+</nav>
 
     <!-- MASTER THEATER BRIEFING CONTAINER -->
     <main class="max-w-[1200px] w-full mx-auto px-5 py-12 flex-1 flex flex-col justify-center">
@@ -95,10 +99,9 @@
         </div>
 
     </main>
-        
         </div>
 
-        <!-- Automated Catalog Navigation Hook -->
+        <!-- Automated Topic Matrix Navigation Hook -->
         <div class="mt-12 pt-8 border-t border-slate-900 grid grid-cols-1 sm:grid-cols-2 gap-6 font-mono">
             <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
                 <div>
@@ -113,9 +116,9 @@
 
             <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
                 <div>
-                    <span class="text-[10px] tracking-widest font-black text-emerald-400 uppercase block">INTERACTIVE ENTERTAINMENT THEATER</span>
-                    <h4 class="text-base font-bold text-white mt-2">Commercial Gaming Arcade</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Experience Cosmic Tunnel 3D, Grid Delver, and our high-speed reflex interceptors live.</p>
+                    <span class="text-[10px] tracking-widest font-black text-emerald-400 uppercase block">INTERACTIVE EVALUATION TERMINAL</span>
+                    <h4 class="text-base font-bold text-white mt-2">Cognitive Diagnostic Arcade</h4>
+                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Test your reaction buffers, working memory churn, and signal detection filters live in secure sandboxes.</p>
                 </div>
                 <a href="arcade.html" class="mt-6 px-5 py-3 bg-emerald-500 hover:bg-emerald-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
                     Enter Tactical Arcade &rarr;
@@ -124,6 +127,7 @@
         </div>
 
     </main>
+
 
     <!-- UNIFIED LEGAL & MISSION FOOTER -->
     <footer class="border-t border-slate-900 bg-slate-950 py-16 px-6 mt-auto text-slate-500 font-mono text-xs leading-relaxed select-none">
@@ -174,7 +178,7 @@
                         <span>⚡ WEB SIMULATION</span> <span>&rarr;</span>
                     </a>
                     <p class="text-[11px] text-slate-500 leading-relaxed pt-3">
-                        All interactive gaming mechanics are exactly formatted for high-performance execution and secure ad mediation. Earning qualifying referral commissions via vetted field gear recommendations.
+                        All interactive sandbox mechanics across our portal ingest 100% anonymized behavioral coordinate mapping exactly compliant with GDPR and EU AI Act open-source research parameters.
                     </p>
                 </div>
             </div>
@@ -190,5 +194,6 @@
             </div>
         </div>
     </footer>
+
 </body>
 </html>
