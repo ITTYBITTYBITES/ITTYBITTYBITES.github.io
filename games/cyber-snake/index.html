@@ -73,7 +73,20 @@
             ctx.fillStyle = '#34d399'; ctx.font = 'bold 16px monospace';
             ctx.fillText(`CYBER SNAKE XP: ${score}`, 15, 25);
         }
-        setInterval(loop, 110);
+        // Extremely robust Phase 4 requestAnimationFrame loop with delta time (dt) physics correction
+        let lastTimestamp = performance.now();
+        let moveChronoBuffer = 0;
+        function executionRafLoop(currTime) {
+            requestAnimationFrame(executionRafLoop);
+            const dt = currTime - lastTimestamp;
+            lastTimestamp = currTime;
+            moveChronoBuffer += dt;
+            if (moveChronoBuffer >= 110) {
+                moveChronoBuffer -= 110;
+                loop();
+            }
+        }
+        requestAnimationFrame(executionRafLoop);
     </script>
 
 </body>

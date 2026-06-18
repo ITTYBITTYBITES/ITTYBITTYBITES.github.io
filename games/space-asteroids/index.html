@@ -32,6 +32,13 @@
         document.getElementById('game-sandbox-area').appendChild(canvas);
 
         const ctx = canvas.getContext('2d');
+        // DevicePixelRatio Retina Scaling Correction
+        const dpr = window.devicePixelRatio || 1;
+        canvas.style.width = `${canvas.width}px`;
+        canvas.style.height = `${canvas.height}px`;
+        canvas.width *= dpr;
+        canvas.height *= dpr;
+        ctx.scale(dpr, dpr);
         let rocks = [], bullets = [];
         let ship = { x: 400, y: 250, a: 0 };
         let score = 0;

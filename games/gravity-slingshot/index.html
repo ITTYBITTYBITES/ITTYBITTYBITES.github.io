@@ -32,6 +32,13 @@
         document.getElementById('game-sandbox-area').appendChild(canvas);
 
         const ctx = canvas.getContext('2d');
+        // DevicePixelRatio Retina Scaling Correction
+        const dpr = window.devicePixelRatio || 1;
+        canvas.style.width = `${canvas.width}px`;
+        canvas.style.height = `${canvas.height}px`;
+        canvas.width *= dpr;
+        canvas.height *= dpr;
+        ctx.scale(dpr, dpr);
         const holes = [{x:300, y:250, mass:4000}, {x:550, y:180, mass:3000}];
         const target = {x:720, y:400, radius:24};
         const probe = {x:80, y:80, vx:0, vy:0, radius:10};
