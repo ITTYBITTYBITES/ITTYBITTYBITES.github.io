@@ -27,19 +27,20 @@
 
     <script>
         const canvas = document.createElement('canvas');
-        canvas.width = 800; canvas.height = 500;
-        canvas.className = 'w-full h-full block bg-slate-950 cursor-crosshair';
+        const logicalWidth = 800; const logicalHeight = 500;
+        canvas.width = logicalWidth; canvas.height = logicalHeight;
+        canvas.className = 'w-full block bg-slate-950 cursor-crosshair';
+        canvas.style.aspectRatio = '16 / 10';
+        canvas.style.objectFit = 'cover';
         document.getElementById('game-sandbox-area').appendChild(canvas);
 
         const ctx = canvas.getContext('2d');
         // DevicePixelRatio Retina Scaling Correction
         const dpr = window.devicePixelRatio || 1;
-        canvas.style.width = `${canvas.width}px`;
-        canvas.style.height = `${canvas.height}px`;
-        canvas.width *= dpr;
-        canvas.height *= dpr;
+        canvas.width = logicalWidth * dpr;
+        canvas.height = logicalHeight * dpr;
         ctx.scale(dpr, dpr);
-        const sun = { x: canvas.width/2, y: canvas.height/2, mass: 3500, radius: 28 };
+        const sun = { x: logicalWidth/2, y: logicalHeight/2, mass: 3500, radius: 28 };
         let planets = [];
         let launchStartX = 0, launchStartY = 0, isDragging = false;
         let xp = 0;
@@ -49,17 +50,19 @@
             try { e.target.setPointerCapture(e.pointerId); } catch(err){}
             e.preventDefault();
             const rect = canvas.getBoundingClientRect();
-            launchStartX = (e.clientX - rect.left)*(canvas.width/rect.width);
-            launchStartY = (e.clientY - rect.top)*(canvas.height/rect.height);
-            isDragging = true;
+            if(rect.width > 0) {
+                launchStartX = (e.clientX - rect.left)*(logicalWidth/rect.width);
+                launchStartY = (e.clientY - rect.top)*(logicalHeight/rect.height);
+                isDragging = true;
+            }
         });
 
         canvas.addEventListener('pointerup', (e) => {
             e.preventDefault();
             if(!isDragging) return;
             const rect = canvas.getBoundingClientRect();
-            const endX = (e.clientX - rect.left)*(canvas.width/rect.width);
-            const endY = (e.clientY - rect.top)*(canvas.height/rect.height);
+            const endX = (e.clientX - rect.left)*(logicalWidth/rect.width);
+            const endY = (e.clientY - rect.top)*(logicalHeight/rect.height);
             isDragging = false;
 
             const vx = (endX - launchStartX)*0.12;
@@ -70,7 +73,7 @@
         });
 
         function loop() {
-            ctx.fillStyle = 'rgba(2,6,23,0.3)'; ctx.fillRect(0,0, canvas.width, canvas.height);
+            ctx.fillStyle = 'rgba(2,6,23,0.3)'; ctx.fillRect(0,0, logicalWidth, logicalHeight);
 
             // Draw Sun
             ctx.fillStyle = '#facc15'; ctx.beginPath(); ctx.arc(sun.x, sun.y, sun.radius, 0, Math.PI*2); ctx.fill();
@@ -105,7 +108,7 @@
             // HUD
             ctx.fillStyle = '#22d3ee'; ctx.font = 'bold 15px monospace';
             ctx.fillText(`ACTIVE PROBES: ${planets.length} // ORBITAL XP: ${xp}`, 20, 30);
-            ctx.fillText(`◈ DRAG ANYWHERE TO SLING Exploration PROBE AROUND SUN ◈`, 20, canvas.height - 20);
+            ctx.fillText(`◈ DRAG ANYWHERE TO SLING Exploration PROBE AROUND SUN ◈`, 20, logicalHeight - 20);
 
             requestAnimationFrame(loop);
         }
