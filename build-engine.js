@@ -902,11 +902,12 @@ body::before { content: ''; position: fixed; inset: 0; background: linear-gradie
   </div>
 </nav>
 <section class="py-16 text-center bg-zinc-950">
-  <div class="max-w-[1100px] mx-auto px-5">
-    <span class="text-[10px] tracking-[4px] text-emerald-400 uppercase font-bold mb-4 block">COGNITIVE PROTOCOL MATRIX</span>
-    <h1 class="font-display text-3xl md:text-4xl text-cyan-400 tracking-[4px] font-black uppercase mb-3">INTEL OPERATIONS</h1>
-    <p class="text-slate-400 text-sm">${topics.length} topics × ${personas.length} personas = ${intelPages.length} programmatic protocol pages</p>
-    <p class="text-slate-600 text-xs mt-2">Auto-generated ${CONFIG.buildTimestamp}</p>
+  <div class="max-w-[1100px] mx-auto px-5 font-mono">
+    <span class="text-[10px] tracking-widest text-emerald-400 uppercase font-bold mb-4 block">◈ ELITE COGNITIVE PROTOCOL THEATER ◈</span>
+    <h1 class="font-display text-3xl md:text-5xl text-cyan-400 tracking-wider font-black uppercase mb-4 font-['Orbitron']">OPERATIONAL BRIEFINGS</h1>
+    <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed font-mono">
+        A systematic, highly structured database of tactical cognitive override protocols vetted for real-world high-pressure environments. Select your designated operational sector below to access specific neural defenses.
+    </p>
   </div>
 </section>
 <section class="py-12 max-w-[1200px] mx-auto px-5">
@@ -1055,15 +1056,15 @@ function updateDynamicShowcases(intelPages) {
 <section id="autonomous-protocol-showcase" class="py-24 md:py-32 relative bg-slate-950 section-pattern-grid font-mono select-none border-t border-slate-900">
   <div class="max-w-[1400px] mx-auto px-5 relative z-10">
     <div class="flex items-center gap-3 mb-12">
-      <span class="text-[10px] tracking-widest text-slate-950 bg-cyan-400 px-3 py-1 uppercase font-bold">PROGRAMMATIC AI MATRIX</span>
-      <h2 class="font-display text-xl text-cyan-400 tracking-wider font-bold">LATEST DEPLOYED OPERATIONAL PROTOCOLS</h2>
+      <span class="text-[10px] tracking-widest text-slate-950 bg-cyan-400 px-3 py-1 uppercase font-bold">OPERATIONAL PROTOCOLS</span>
+      <h2 class="font-display text-xl sm:text-2xl text-cyan-400 tracking-wider font-black uppercase font-['Orbitron']">RECENT TACTICAL RELEASES</h2>
       <span class="flex-1 h-px bg-gradient-to-r from-cyan-400/20 to-transparent"></span>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       ${showcaseCards}
     </div>
-    <div class="mt-12 text-center">
-      <a href="intel/index.html" class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-black tracking-widest text-xs uppercase rounded-xl transition-all shadow-xl active:scale-95 inline-block">Explore All ${intelPages.length} Programmatic Intelligence Protocols &rarr;</a>
+    <div class="mt-12 text-center font-mono">
+      <a href="intel/index.html" class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-black tracking-widest text-xs uppercase rounded-xl transition-all shadow-xl active:scale-95 inline-block">Explore Entire Intelligence Briefing Database &rarr;</a>
     </div>
   </div>
 </section>`;

@@ -227,8 +227,8 @@ ${GLOBAL_STYLES}
             <div class="bg-slate-900/60 p-8 rounded-2xl border border-slate-800 flex flex-col justify-between shadow-xl">
                 <div>
                     <span class="text-[10px] tracking-widest font-black text-gold uppercase block">TACTICAL OPERATIONAL PROTOCOLS</span>
-                    <h4 class="text-base font-bold text-white mt-2">Explore 672 Programmatic AI Briefings</h4>
-                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Systematic neural override protocols customized for 32 real-world elite operator roles.</p>
+                    <h4 class="text-base font-bold text-white mt-2">Explore Classified Mission Briefings</h4>
+                    <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">Systematic neural override training and decision interference deflection operational protocols.</p>
                 </div>
                 <a href="intel/index.html" class="mt-6 px-5 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 rounded-xl font-black text-xs uppercase tracking-widest transition-all self-start shadow-md active:scale-95">
                     Launch Protocol Matrix &rarr;
