@@ -1054,6 +1054,40 @@
       "universe": "frontier",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T15:04:10.224Z"
+    },
+    {
+      "slug": "high-stress-pilots",
+      "name": "High-Stress Pilots",
+      "description": "High-Stress Pilots — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "pilots",
+        "high-stress",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "frontier",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T15:09:37.417Z"
+    },
+    {
+      "slug": "multi-project-pilots",
+      "name": "Multi-Project Pilots",
+      "description": "Multi-Project Pilots — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "pilots",
+        "multi-project",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "frontier",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T15:09:37.417Z"
     }
   ]
 }
