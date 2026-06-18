@@ -918,6 +918,73 @@ ${cards}
   console.log(`✓ library.html updated with ${generated.length} links`);
 }
 
+// ─── Step 8b: Update Automated Dynamic Showcases on HQ and Feeds ─────────────────
+
+function updateDynamicShowcases(intelPages) {
+  console.log('\n⚡ Integrating newest dynamic protocol pages into HQ and Feeds showcases...');
+  
+  const freshest = intelPages.slice(0, 12);
+  
+  const showcaseCards = freshest.map(p => `
+      <a href="intel/${p.slug}.html" class="bg-slate-900/60 border border-slate-800 rounded-xl p-6 hover:border-cyan-400 hover:bg-slate-900/90 transition-all flex flex-col justify-between group shadow-xl hover:shadow-cyan-400/5 font-mono select-none">
+        <div>
+          <div class="flex items-center justify-between mb-3 font-mono">
+            <span class="text-[10px] tracking-widest px-2.5 py-1 rounded bg-cyan-400/10 text-cyan-400 border border-cyan-400/20 font-bold uppercase truncate max-w-[180px]">◈ ${p.topic}</span>
+            <span class="text-xs text-slate-500 font-mono font-bold">2-SEC</span>
+          </div>
+          <h3 class="font-display font-bold text-sm text-slate-100 group-hover:text-cyan-400 transition-colors leading-relaxed mt-2">${p.title}</h3>
+          <p class="text-slate-400 text-xs mt-2.5 line-clamp-2 leading-relaxed">Neural override training and decision interference deflection operational protocol.</p>
+        </div>
+        <div class="mt-6 pt-3 border-t border-slate-800/80 flex items-center justify-between text-xs font-mono">
+          <span class="text-slate-500 group-hover:text-gold transition-colors font-bold tracking-wider">CLASSIFIED</span>
+          <span class="text-cyan-400 font-bold tracking-widest group-hover:translate-x-1 transition-transform">ACCESS &rarr;</span>
+        </div>
+      </a>`).join('\n');
+
+  const showcaseHtml = `<!-- AUTONOMOUS PROTOCOL SHOWCASE BLOCK -->
+<section id="autonomous-protocol-showcase" class="py-24 md:py-32 relative bg-slate-950 section-pattern-grid font-mono select-none border-t border-slate-900">
+  <div class="max-w-[1400px] mx-auto px-5 relative z-10">
+    <div class="flex items-center gap-3 mb-12">
+      <span class="text-[10px] tracking-widest text-slate-950 bg-cyan-400 px-3 py-1 uppercase font-bold">PROGRAMMATIC AI MATRIX</span>
+      <h2 class="font-display text-xl text-cyan-400 tracking-wider font-bold">LATEST DEPLOYED OPERATIONAL PROTOCOLS</h2>
+      <span class="flex-1 h-px bg-gradient-to-r from-cyan-400/20 to-transparent"></span>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+      ${showcaseCards}
+    </div>
+    <div class="mt-12 text-center">
+      <a href="intel/index.html" class="px-8 py-4 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-black tracking-widest text-xs uppercase rounded-xl transition-all shadow-xl active:scale-95 inline-block">Explore All ${intelPages.length} Programmatic Intelligence Protocols &rarr;</a>
+    </div>
+  </div>
+</section>`;
+
+  // Update index.html
+  const indexPath = path.join(ROOT, 'index.html');
+  if (fs.existsSync(indexPath)) {
+    let indexHtml = fs.readFileSync(indexPath, 'utf-8');
+    if (indexHtml.includes('id="autonomous-protocol-showcase"')) {
+      indexHtml = indexHtml.replace(/<!-- AUTONOMOUS PROTOCOL SHOWCASE BLOCK -->[\s\S]*?<\/section>/i, showcaseHtml);
+    } else {
+      indexHtml = indexHtml.replace(/<!-- UNIFIED LEGAL & MISSION FOOTER -->/i, `${showcaseHtml}\n\n<!-- UNIFIED LEGAL & MISSION FOOTER -->`);
+    }
+    fs.writeFileSync(indexPath, indexHtml, 'utf-8');
+    console.log('✓ index.html updated with dynamic automated protocol showcase');
+  }
+
+  // Update feed.html
+  const feedPath = path.join(ROOT, 'feed.html');
+  if (fs.existsSync(feedPath)) {
+    let feedHtml = fs.readFileSync(feedPath, 'utf-8');
+    if (feedHtml.includes('id="autonomous-protocol-showcase"')) {
+      feedHtml = feedHtml.replace(/<!-- AUTONOMOUS PROTOCOL SHOWCASE BLOCK -->[\s\S]*?<\/section>/i, showcaseHtml);
+    } else {
+      feedHtml = feedHtml.replace(/<!-- UNIFIED LEGAL & MISSION FOOTER -->/i, `${showcaseHtml}\n\n<!-- UNIFIED LEGAL & MISSION FOOTER -->`);
+    }
+    fs.writeFileSync(feedPath, feedHtml, 'utf-8');
+    console.log('✓ feed.html updated with dynamic automated protocol showcase');
+  }
+}
+
 // ─── Step 9: Build Dynamic sitemap.xml ────────────────────────────────────────
 
 function updateSitemap(libraryPages, intelPages) {
@@ -1021,6 +1088,7 @@ async function main() {
 
     // ── Update catalog + sitemap ──
     updateLibraryHub(libraryPages);
+    updateDynamicShowcases(intelPages);
     updateSitemap(libraryPages, intelPages);
 
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
