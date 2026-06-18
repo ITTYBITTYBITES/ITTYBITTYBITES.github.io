@@ -18,6 +18,12 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
 
+body, html {
+    overscroll-behavior: none;
+    touch-action: none;
+    -webkit-touch-callout: none;
+}
+
 body {
     font-family: 'JetBrains+Mono', monospace;
     background-color: var(--bg-core);
