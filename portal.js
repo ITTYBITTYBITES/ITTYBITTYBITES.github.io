@@ -14,7 +14,7 @@ class ArcadePortalEngine {
         this.activeGame = null;
 
         // Commercial Adsterra Mediation States
-        this.globalAdCooldownMs = 180000; // 3 Minutes strict Global Ad Cooldown
+        this.globalAdCooldownMs = 3000; // 3 Seconds while launch testing
         this.lastAdExecutedTime = 0;
         
         // Master Adsterra Smartlink Gateway with Anti-Adblock Encrypted Proxy
@@ -56,16 +56,13 @@ class ArcadePortalEngine {
             this.theaterToggleBtn.addEventListener('click', () => this.toggleTheaterScaling());
         }
 
-        // Telemetry Consent Guard Toggle
-        if (this.consentCheckbox) {
-            this.consentCheckbox.addEventListener('change', (e) => {
-                this.telemetryConsent = e.target.checked;
-                localStorage.setItem('arcade_telemetry_consent', e.target.checked);
-                this.notifyPlayerStatus(this.telemetryConsent ? "◈ AI Telemetry Online — Tracking Ads Blocked" : "◈ AI Telemetry Halted");
-            });
+        // Test ad trigger button
+        const testAdBtn = document.getElementById('test-ad-sponsorship-btn');
+        if (testAdBtn) {
+            testAdBtn.addEventListener('click', () => this.executeAdsterraMonetizationLoop(null, 'manual_test'));
         }
 
-        // Phase 2 & Phase 3 Parent PostMessage Orchestrator
+        // Phase 2 PostMessage Orchestrator
         window.addEventListener('message', (e) => this.interceptFrameTelecommunications(e));
     }
 

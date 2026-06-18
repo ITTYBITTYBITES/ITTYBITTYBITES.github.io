@@ -106,20 +106,20 @@
                         <h2 id="active-game-title" class="text-base font-bold text-white font-['Orbitron'] truncate tracking-wider">---</h2>
                         <p id="active-game-desc" class="text-[11px] text-slate-400 truncate mt-0.5 font-mono">---</p>
                     </div>
-                    <div class="shrink-0 flex items-center gap-3">
-                        <button id="theater-mode-toggle" class="px-3 py-2 bg-cyan-500/10 hover:bg-cyan-500 hover:text-slate-950 border border-cyan-500/30 text-cyan-400 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 uppercase tracking-wider">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                            <span class="hidden md:inline">Aspect</span>
+                    <div class="shrink-0 flex items-center gap-2 sm:gap-3">
+                        <button id="test-ad-sponsorship-btn" class="px-3 sm:px-4 py-2 bg-gold/20 hover:bg-gold hover:text-slate-950 border border-gold/40 text-gold rounded-xl text-xs font-black transition-all flex items-center gap-1.5 tracking-widest uppercase shadow-md active:scale-95 cursor-pointer">
+                            <span>⚡ TEST AD</span>
                         </button>
-                        <a id="monetize-link" href="#" target="_blank" rel="noopener" class="px-4 py-2 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 text-slate-950 font-black text-xs uppercase tracking-wider rounded-xl shadow-md flex items-center gap-1 font-mono">
-                            <span>⚡ GET GEAR</span>
-                        </a>
+                        <button id="theater-mode-toggle" class="px-3 py-2 bg-cyan-500/10 hover:bg-cyan-500 hover:text-slate-950 border border-cyan-500/30 text-cyan-400 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 uppercase tracking-wider hidden sm:flex">
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
+                            <span>Aspect</span>
+                        </button>
                     </div>
                 </div>
 
-                <!-- Aspect-Ratio Locked CSS Canvas Scaling Container -->
+                <!-- Web-Native Adaptive Full-Workspace Execution Container (No Mobile Squeeze) -->
                 <div class="flex-1 w-full h-full flex items-center justify-center p-0 sm:p-4 bg-black relative overflow-hidden" style="overscroll-behavior-y: contain;">
-                    <div id="iframe-aspect-container" style="max-width: 100%; max-height: 100%; aspect-ratio: 16 / 10; overscroll-behavior-y: contain;" class="w-full h-full bg-slate-950 border-0 sm:border-2 sm:border-slate-800 rounded-none sm:rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center relative max-w-[1200px]">
+                    <div id="iframe-aspect-container" style="max-width: 100%; max-height: 100%; overscroll-behavior-y: contain;" class="w-full h-full md:aspect-[16/10] bg-slate-950 border-0 sm:border-2 sm:border-slate-800 rounded-none sm:rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center relative max-w-[1400px]">
                         <iframe 
                             id="secure-game-frame" 
                             src="" 
