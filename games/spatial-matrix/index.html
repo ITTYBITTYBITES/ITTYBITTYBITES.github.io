@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SPATIAL MATRIX EXPANSION — The 2-Second Witness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6P6NPFW4FZ');
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap');
+        body { font-family: 'JetBrains+Mono', monospace; background-color: #090d16; color: #f8fafc; margin: 0; padding: 24px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+    </style>
+</head>
+<body class="selection:bg-cyan-500 selection:text-slate-900 antialiased">
+    <div id="game-sandbox-area" class="w-full max-w-4xl mx-auto flex-1 flex flex-col justify-center">
+    </div>
+    <script>
+        
+        const container = document.getElementById('game-sandbox-area');
+        container.innerHTML = `
+            <div class="flex flex-col items-center justify-center w-full font-mono">
+                <div id="spatial-hud" class="mb-6 tracking-widest text-xs font-bold uppercase px-4 py-2 bg-slate-900 border border-slate-800 rounded-xl text-amber-400 shadow-sm">
+                    OBSERVE VECTOR FLASH PATHWAY
+                </div>
+                <div id="grid-container" class="grid grid-cols-3 gap-3 bg-slate-900/60 p-6 border-2 border-slate-800 rounded-2xl shadow-2xl aspect-[1/1] w-full max-w-[360px] mx-auto perspective-1000"></div>
+                <div id="spatial-score" class="mt-6 font-mono font-extrabold text-sm text-cyan-400 tracking-widest uppercase">LEVEL 2 // XP: 0</div>
+            </div>
+        `;
+
+        const board = document.getElementById('grid-container');
+        const hud = document.getElementById('spatial-hud');
+        const scoreEl = document.getElementById('spatial-score');
+        
+        let seq = [];
+        let userSeq = [];
+        let lvl = 2;
+        let xp = 0;
+        let mode = 'WATCH';
+        let tiles = [];
+
+        for(let i=0; i<9; i++) {
+            const t = document.createElement('div');
+            t.className = "bg-slate-950 border-2 border-slate-800/80 hover:border-slate-700 rounded-xl aspect-[1/1] flex items-center justify-center text-xl font-bold cursor-pointer transition-all shadow-inner active:scale-95";
+            t.addEventListener('click', () => handleTap(i));
+            board.appendChild(t);
+            tiles.push(t);
+        }
+
+        function playSeq() {
+            mode = 'WATCH';
+            hud.textContent = `OBSERVE VECTOR PATH (LVL ${lvl})`;
+            hud.className = "mb-6 tracking-widest text-xs font-bold uppercase px-4 py-2 bg-amber-500/10 border border-amber-500/30 rounded-xl text-amber-400 shadow-sm";
+            userSeq = [];
+            seq = [];
+            for(let i=0; i<lvl; i++) seq.push(Math.floor(Math.random() * 9));
+
+            let step = 0;
+            function flash() {
+                if (step < seq.length) {
+                    const tidx = seq[step];
+                    tiles[tidx].classList.add('bg-cyan-400', 'border-cyan-300', 'shadow-lg', 'shadow-cyan-400/50', 'scale-105');
+                    setTimeout(() => {
+                        tiles[tidx].classList.remove('bg-cyan-400', 'border-cyan-300', 'shadow-lg', 'shadow-cyan-400/50', 'scale-105');
+                        step++;
+                        setTimeout(flash, 300);
+                    }, 400);
+                } else {
+                    mode = 'INPUT';
+                    hud.textContent = "DUPLICATE SPATIAL TRACE ROUTE";
+                    hud.className = "mb-6 tracking-widest text-xs font-bold uppercase px-4 py-2 bg-emerald-500/10 border border-emerald-500/30 rounded-xl text-emerald-400 shadow-sm animate-pulse";
+                }
+            }
+            setTimeout(flash, 800);
+        }
+
+        function handleTap(idx) {
+            if(mode === 'FAULT') { reboot(); return; }
+            if(mode !== 'INPUT') return;
+
+            tiles[idx].classList.add('bg-emerald-400', 'border-emerald-300', 'scale-105');
+            setTimeout(() => tiles[idx].classList.remove('bg-emerald-400', 'border-emerald-300', 'scale-105'), 150);
+
+            if(seq[userSeq.length] === idx) {
+                userSeq.push(idx);
+                if(userSeq.length === seq.length) {
+                    xp += lvl * 50;
+                    lvl++;
+                    scoreEl.textContent = `LEVEL ${lvl} // XP: ${xp}`;
+                    if(window.parent && lvl % 3 === 0) window.parent.postMessage({ type: "ARCADE_TRIGGER_AD", adType: "interstitial" }, "*");
+                    setTimeout(playSeq, 1000);
+                }
+            } else {
+                mode = 'FAULT';
+                hud.textContent = "EXECUTION FAULT. TAP TO REBOOT.";
+                hud.className = "mb-6 tracking-widest text-xs font-bold uppercase px-4 py-2 bg-rose-500/10 border border-rose-500/30 rounded-xl text-rose-500 shadow-sm animate-bounce cursor-pointer";
+            }
+        }
+
+        function reboot() {
+            lvl = 2; xp = 0;
+            scoreEl.textContent = `LEVEL 2 // XP: 0`;
+            playSeq();
+        }
+
+        playSeq();
+        
+    </script>
+</body>
+</html>

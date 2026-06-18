@@ -340,6 +340,74 @@
       "universe": "tech",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T11:01:17.938Z"
+    },
+    {
+      "slug": "remote-data-scientists",
+      "name": "Remote Data Scientists",
+      "description": "Remote Data Scientists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "data-scientists",
+        "remote",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "tech",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T11:40:33.335Z"
+    },
+    {
+      "slug": "field-data-scientists",
+      "name": "Field Data Scientists",
+      "description": "Field Data Scientists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "data-scientists",
+        "field",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "tech",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T11:40:33.335Z"
+    },
+    {
+      "slug": "senior-data-scientists",
+      "name": "Senior Data Scientists",
+      "description": "Senior Data Scientists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "data-scientists",
+        "senior",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "tech",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T11:44:40.522Z"
+    },
+    {
+      "slug": "junior-data-scientists",
+      "name": "Junior Data Scientists",
+      "description": "Junior Data Scientists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "data-scientists",
+        "junior",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "tech",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T11:44:40.522Z"
     }
   ]
 }

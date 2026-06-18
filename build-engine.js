@@ -719,6 +719,13 @@ body::before { content: ''; position: fixed; inset: 0; background: linear-gradie
   "mainEntityOfPage": { "@type": "WebPage", "@id": "{{CANONICAL_URL}}" }
 }
 </script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6P6NPFW4FZ');
+</script>
 </head>
 <body class="bg-slate-950 text-slate-50 font-mono leading-relaxed overflow-x-hidden relative antialiased">
 <nav class="bg-slate-950/95 border-b border-cyan-400/10 py-3 sticky top-0 z-50 backdrop-blur-md">
@@ -809,6 +816,13 @@ function generateIntelHub(topics, personas, intelPages) {
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-6P6NPFW4FZ');
+</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Intel Matrix | The 2-Second Witness</title>
 <meta name="description" content="Programmatic cognitive training protocol matrix — ${intelPages.length} pages across ${topics.length} topics and ${personas.length} personas. Auto-generated ${CONFIG.buildTimestamp}.">

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHIFTING ATTENTIONAL ATTRIBUTE SELECTOR — The 2-Second Witness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6P6NPFW4FZ');
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap');
+        body { font-family: 'JetBrains+Mono', monospace; background-color: #090d16; color: #f8fafc; margin: 0; padding: 24px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+    </style>
+</head>
+<body class="selection:bg-cyan-500 selection:text-slate-900 antialiased">
+    <div id="game-sandbox-area" class="w-full max-w-4xl mx-auto flex-1 flex flex-col justify-center">
+    </div>
+    <script>
+        
+        const container = document.getElementById('game-sandbox-area');
+        container.innerHTML = `
+            <div class="text-center w-full max-w-sm mx-auto font-mono">
+                <div class="mb-6 bg-slate-900 border-2 border-slate-800 p-4 rounded-xl flex justify-between items-center px-5 shadow-lg">
+                    <span class="text-xs uppercase font-bold tracking-wider text-slate-400">ACTIVE RULE:</span>
+                    <span id="shift-rule" class="text-sm font-black text-amber-400 tracking-widest uppercase bg-amber-500/10 px-3 py-1 rounded border border-amber-500/20">COLOR PATTERN</span>
+                </div>
+                <div class="bg-slate-950 border-2 border-slate-800 rounded-2xl p-6 mb-8 flex flex-col items-center justify-center shadow-xl">
+                    <span class="text-[10px] text-slate-500 block uppercase font-mono tracking-widest mb-3 font-bold">Master Operative Target</span>
+                    <div id="shift-target" class="w-20 h-20 rounded-xl flex items-center justify-center font-black text-5xl shadow-2xl border border-slate-700"></div>
+                </div>
+                <div class="grid grid-cols-2 gap-5 mb-8">
+                    <button id="shift-opt-0" class="p-8 bg-slate-900 hover:bg-slate-800 border-2 border-slate-800 hover:border-cyan-400 rounded-2xl flex flex-col items-center justify-center transition-all active:scale-95 shadow-xl font-black text-5xl"></button>
+                    <button id="shift-opt-1" class="p-8 bg-slate-900 hover:bg-slate-800 border-2 border-slate-800 hover:border-cyan-400 rounded-2xl flex flex-col items-center justify-center transition-all active:scale-95 shadow-xl font-black text-5xl"></button>
+                </div>
+                <div id="shift-score" class="text-xs font-bold tracking-widest text-emerald-400 uppercase">SELECTOR XP: 0</div>
+            </div>
+        `;
+
+        const ruleEl = document.getElementById('shift-rule');
+        const targetBox = document.getElementById('shift-target');
+        const opt0 = document.getElementById('shift-opt-0');
+        const opt1 = document.getElementById('shift-opt-1');
+        const scoreEl = document.getElementById('shift-score');
+        
+        const rules = ["COLOR", "SHAPE"];
+        let actRule = "COLOR";
+        const shapes = ["▲", "■", "●", "◆"];
+        const colors = [
+            { name: "RED", bg: "#ef4444", text: "text-red-500" },
+            { name: "BLUE", bg: "#3b82f6", text: "text-blue-500" },
+            { name: "GREEN", bg: "#10b981", text: "text-emerald-500" }
+        ];
+
+        let state = {};
+        let xp = 0;
+
+        function build() {
+            if (Math.random() < 0.38) {
+                actRule = rules[Math.floor(Math.random()*rules.length)];
+                ruleEl.textContent = actRule === "COLOR" ? "COLOR PATTERN" : "SHAPE VECTOR";
+                ruleEl.className = actRule === "COLOR"
+                    ? "text-sm font-black text-amber-400 tracking-widest uppercase bg-amber-500/10 px-3 py-1 rounded border border-amber-500/20"
+                    : "text-sm font-black text-cyan-400 tracking-widest uppercase bg-cyan-500/10 px-3 py-1 rounded border border-cyan-500/20";
+            }
+
+            const tShape = shapes[Math.floor(Math.random()*shapes.length)];
+            const tCol = colors[Math.floor(Math.random()*colors.length)];
+
+            targetBox.textContent = tShape;
+            targetBox.className = `w-20 h-20 rounded-xl flex items-center justify-center font-black text-5xl shadow-2xl border border-slate-700 bg-slate-900 ${tCol.text}`;
+
+            const mIdx = Math.random() < 0.5 ? 0 : 1;
+            const o0 = { shape: shapes[Math.floor(Math.random()*shapes.length)], color: colors[Math.floor(Math.random()*colors.length)] };
+            const o1 = { shape: shapes[Math.floor(Math.random()*shapes.length)], color: colors[Math.floor(Math.random()*colors.length)] };
+
+            if(actRule === "COLOR") {
+                if(mIdx===0) o0.color = tCol; else o1.color = tCol;
+            } else {
+                if(mIdx===0) o0.shape = tShape; else o1.shape = tShape;
+            }
+
+            opt0.textContent = o0.shape; opt0.className = `p-8 bg-slate-900 hover:bg-slate-800 border-2 border-slate-800 hover:border-cyan-400 rounded-2xl flex items-center justify-center transition-all active:scale-95 shadow-xl font-black text-5xl ${o0.color.text}`;
+            opt1.textContent = o1.shape; opt1.className = `p-8 bg-slate-900 hover:bg-slate-800 border-2 border-slate-800 hover:border-cyan-400 rounded-2xl flex items-center justify-center transition-all active:scale-95 shadow-xl font-black text-5xl ${o1.color.text}`;
+            state = { match: mIdx };
+        }
+
+        function verify(idx) {
+            if(idx === state.match) {
+                xp += 50;
+                if(window.parent && xp % 400 === 0) window.parent.postMessage({ type: "ARCADE_TRIGGER_AD", adType: "interstitial" }, "*");
+            } else {
+                xp = Math.max(0, xp - 20);
+            }
+            scoreEl.textContent = `SELECTOR XP: ${xp}`;
+            build();
+        }
+
+        opt0.addEventListener('click', () => verify(0));
+        opt1.addEventListener('click', () => verify(1));
+        build();
+        
+    </script>
+</body>
+</html>

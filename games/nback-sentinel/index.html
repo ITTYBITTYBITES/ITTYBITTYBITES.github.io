@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>N-BACK SENTINEL LOG — The 2-Second Witness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6P6NPFW4FZ');
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap');
+        body { font-family: 'JetBrains+Mono', monospace; background-color: #090d16; color: #f8fafc; margin: 0; padding: 24px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+    </style>
+</head>
+<body class="selection:bg-cyan-500 selection:text-slate-900 antialiased">
+    <div id="game-sandbox-area" class="w-full max-w-4xl mx-auto flex-1 flex flex-col justify-center">
+    </div>
+    <script>
+        
+        const container = document.getElementById('game-sandbox-area');
+        container.innerHTML = `
+            <div class="text-center w-full max-w-md mx-auto font-mono">
+                <div class="p-4 bg-slate-900/60 border border-slate-800 rounded-xl mb-8 space-y-1">
+                    <span class="text-[10px] uppercase font-bold text-cyan-400 tracking-widest block">Continuous Sensory Buffer Loop</span>
+                    <p class="text-xs text-slate-400">Press **MATCH** or **Spacebar** when active card perfectly duplicates state **exactly 2 turns prior**.</p>
+                </div>
+                <div class="grid grid-cols-3 gap-4 mb-8">
+                    <div id="nb-0" class="h-24 bg-slate-950 border-2 border-slate-800 rounded-xl flex items-center justify-center text-3xl font-black text-slate-700 shadow-inner transition-all">A</div>
+                    <div id="nb-1" class="h-24 bg-slate-950 border-2 border-slate-800 rounded-xl flex items-center justify-center text-3xl font-black text-slate-700 shadow-inner transition-all">B</div>
+                    <div id="nb-2" class="h-24 bg-slate-950 border-2 border-slate-800 rounded-xl flex items-center justify-center text-3xl font-black text-slate-700 shadow-inner transition-all">C</div>
+                </div>
+                <button id="nb-match" class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black py-5 px-6 rounded-xl text-sm uppercase tracking-widest active:scale-98 transition-all shadow-xl shadow-cyan-500/10 cursor-pointer">
+                    ◈ SECURE MATCH (SPACEBAR) ◈
+                </button>
+                <div id="nb-score" class="mt-6 text-xs font-bold tracking-widest text-emerald-400 uppercase">OPERATIVE XP: 0</div>
+            </div>
+        `;
+
+        const nodes = [document.getElementById('nb-0'), document.getElementById('nb-1'), document.getElementById('nb-2')];
+        const matchBtn = document.getElementById('nb-match');
+        const scoreEl = document.getElementById('nb-score');
+        const history = [];
+        let activeIdx = -1;
+        let handled = false;
+        let score = 0;
+
+        function step() {
+            nodes.forEach(n => {
+                n.className = "h-24 bg-slate-950 border-2 border-slate-800 rounded-xl flex items-center justify-center text-3xl font-black text-slate-700 shadow-inner transition-all";
+                n.textContent = "—";
+            });
+
+            if (!handled && history.length >= 3) {
+                if (history[history.length-3] === history[history.length-1]) {
+                    score = Math.max(0, score - 50);
+                    scoreEl.textContent = `OPERATIVE XP: ${score}`;
+                }
+            }
+            handled = false;
+
+            let nidx = Math.floor(Math.random() * 3);
+            if (history.length >= 2 && Math.random() < 0.38) {
+                nidx = history[history.length - 2]; // Force match chance
+            }
+            history.push(nidx);
+            activeIdx = nidx;
+
+            const glyphs = ["🜔", "🜋", "🜞"];
+            nodes[nidx].textContent = glyphs[nidx];
+            nodes[nidx].className = "h-24 bg-cyan-500/15 border-2 border-cyan-400 text-cyan-400 rounded-xl flex items-center justify-center text-5xl font-black shadow-lg shadow-cyan-500/20 scale-105 transition-all";
+        }
+
+        function verify() {
+            if (handled) return;
+            handled = true;
+
+            if (history.length < 3) {
+                score = Math.max(0, score - 20);
+            } else {
+                if (history[history.length-1] === history[history.length-3]) {
+                    score += 100;
+                    nodes[activeIdx].className = "h-24 bg-emerald-500/20 border-2 border-emerald-500 text-emerald-400 rounded-xl flex items-center justify-center text-5xl font-black shadow-lg scale-105 transition-all";
+                    if(window.parent && score > 0 && score % 400 === 0) window.parent.postMessage({ type: "ARCADE_TRIGGER_AD", adType: "rewarded" }, "*");
+                } else {
+                    score = Math.max(0, score - 50);
+                    nodes[activeIdx].className = "h-24 bg-rose-500/20 border-2 border-rose-500 text-rose-500 rounded-xl flex items-center justify-center text-5xl font-black shadow-lg scale-105 transition-all";
+                }
+            }
+            scoreEl.textContent = `OPERATIVE XP: ${score}`;
+        }
+
+        matchBtn.addEventListener('click', verify);
+        window.addEventListener('keydown', (e) => { if(e.code === 'Space') { e.preventDefault(); verify(); } });
+
+        step();
+        setInterval(step, 2400);
+        
+    </script>
+</body>
+</html>

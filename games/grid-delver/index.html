@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grid Delver — The 1-Minute Micro-Rogue</title>
+    <meta name="description" content="Phase 5 compliant HTML5 Roguelike sandbox game. Discover stairs, fight shadow monsters, and collect gold before the clock expires.">
+    <link rel="stylesheet" href="style.css">
+    <!-- Inline fallback Tailwind for secure sandboxing -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6P6NPFW4FZ');
+    </script>
+</head>
+<body>
+
+    <div class="delver-container">
+        
+        <!-- STATUS HUD -->
+        <div class="status-hud">
+            <div class="hud-group">
+                <div class="stat-box">
+                    <span class="stat-label">System HP</span>
+                    <span id="stat-hp" class="stat-value hp">100/100</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Classified Gold</span>
+                    <span id="stat-gold" class="stat-value gold">0</span>
+                </div>
+            </div>
+            <div class="hud-group">
+                <div class="stat-box">
+                    <span class="stat-label">Depth Level</span>
+                    <span id="stat-lvl" class="stat-value lvl">1</span>
+                </div>
+                <div class="stat-box">
+                    <span class="stat-label">Tactical XP</span>
+                    <span id="stat-xp" class="stat-value xp">0</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- TICKING CHRONO BAR -->
+        <div class="time-bar-wrapper">
+            <div id="time-fill-bar" class="time-bar-fill" style="width: 100%;"></div>
+        </div>
+
+        <!-- MAIN LEVEL THEATER -->
+        <div class="theater-split">
+            
+            <!-- 5x5 Play Board Canvas / DOM -->
+            <div id="delver-grid-board" class="grid-board">
+                <!-- Dynamically initialized via game.js -->
+            </div>
+
+            <!-- TACTICAL LOG SIDEBAR -->
+            <div class="tactical-sidebar font-mono">
+                <div class="sidebar-header">◈ Tactical Mission Log</div>
+                <div id="tactical-log-box" class="log-scroller custom-scrollbar">
+                    <!-- Dynamic appended events -->
+                </div>
+                <div class="mt-4 pt-4 border-t border-slate-800 text-[10px] text-slate-500 tracking-wider">
+                    Click ortho available cards. Clear stairs to trigger Phase 2 network bridge.
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- WebAssembly / Game Logic Wrapper -->
+    <script src="game.js"></script>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>METRONOMIC RHYTHM ANCHOR — The 2-Second Witness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6P6NPFW4FZ');
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap');
+        body { font-family: 'JetBrains+Mono', monospace; background-color: #090d16; color: #f8fafc; margin: 0; padding: 24px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+    </style>
+</head>
+<body class="selection:bg-cyan-500 selection:text-slate-900 antialiased">
+    <div id="game-sandbox-area" class="w-full max-w-4xl mx-auto flex-1 flex flex-col justify-center">
+    </div>
+    <script>
+        
+        const container = document.getElementById('game-sandbox-area');
+        const canvas = document.createElement('canvas');
+        canvas.width = 600; canvas.height = 360;
+        canvas.className = "border-2 border-slate-800 rounded-2xl bg-slate-950 w-full max-w-2xl mx-auto cursor-pointer shadow-2xl block";
+        container.appendChild(canvas);
+
+        const scoreEl = document.createElement('div');
+        scoreEl.className = "mt-6 text-center font-mono font-bold text-sm tracking-widest text-cyan-400 uppercase";
+        scoreEl.textContent = "METRONOME XP: 0";
+        container.appendChild(scoreEl);
+
+        const ctx = canvas.getContext('2d');
+        const period = 1000;
+        let lastPulse = Date.now();
+        let msg = "INITIALIZE CADENCE";
+        let color = "#64748b";
+        let xp = 0;
+
+        function loop() {
+            ctx.clearRect(0,0, canvas.width, canvas.height);
+            const now = Date.now();
+            const elapsed = now - lastPulse;
+
+            if(elapsed >= period) lastPulse = now - (elapsed % period);
+
+            const flash = elapsed < 160 ? 1 - (elapsed/160) : 0;
+            ctx.fillStyle = `rgba(34,211,238,${flash * 0.15})`;
+            ctx.fillRect(0,0, canvas.width, canvas.height);
+
+            // Radar Ring
+            ctx.strokeStyle = elapsed < 160 ? "#22d3ee" : "#1e293b";
+            ctx.lineWidth = 5;
+            ctx.beginPath(); ctx.arc(canvas.width/2, canvas.height/2 - 20, 48, 0, Math.PI*2); ctx.stroke();
+
+            // Status Message
+            ctx.fillStyle = color; ctx.font = "bold 20px monospace"; ctx.textAlign = "center";
+            ctx.fillText(msg, canvas.width/2, canvas.height/2 + 65);
+
+            ctx.fillStyle = "#475569"; ctx.font = "11px monospace";
+            ctx.fillText("◈ TAP TERMINAL EXACTLY AT THE PULSE WAVE MOMENTUM ◈", canvas.width/2, canvas.height - 20);
+            ctx.textAlign = "left";
+
+            requestAnimationFrame(loop);
+        }
+
+        canvas.addEventListener('mousedown', () => {
+            const now = Date.now();
+            const diff = Math.abs((now - lastPulse) % period);
+            const offset = Math.min(diff, period - diff);
+
+            if(offset <= 60) {
+                msg = `FLAWLESS LOCK [Offset: ${offset}ms]`; color = "#34d399"; xp += 80;
+                if(window.parent && xp % 400 === 0) window.parent.postMessage({ type: "ARCADE_TRIGGER_AD", adType: "rewarded" }, "*");
+            } else if(offset <= 140) {
+                msg = `ACCEPTABLE [Offset: ${offset}ms]`; color = "#facc15"; xp += 25;
+            } else {
+                msg = `DESYNC FAULT [Offset: ${offset}ms]`; color = "#f43f5e"; xp = Math.max(0, xp - 40);
+            }
+            scoreEl.textContent = `METRONOME XP: ${xp}`;
+        });
+
+        loop();
+        
+    </script>
+</body>
+</html>

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TACHISTOSCOPE RECOGNITION MATRIX — The 2-Second Witness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6P6NPFW4FZ');
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap');
+        body { font-family: 'JetBrains+Mono', monospace; background-color: #090d16; color: #f8fafc; margin: 0; padding: 24px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+    </style>
+</head>
+<body class="selection:bg-cyan-500 selection:text-slate-900 antialiased">
+    <div id="game-sandbox-area" class="w-full max-w-4xl mx-auto flex-1 flex flex-col justify-center">
+    </div>
+    <script>
+        
+        const container = document.getElementById('game-sandbox-area');
+        container.innerHTML = `
+            <div class="text-center w-full max-w-xs mx-auto font-mono">
+                <div id="t-display" class="bg-slate-900 border-2 border-slate-800 rounded-2xl p-6 text-4xl font-black tracking-widest text-white h-24 flex items-center justify-center font-mono mb-8 shadow-inner select-none">READY</div>
+                <button id="t-flash" class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black py-4 px-6 rounded-xl text-xs uppercase tracking-widest transition-all mb-6 shadow-xl active:scale-95">Trigger Optical Flash (30ms)</button>
+                <div id="t-input-block" class="hidden space-y-4">
+                    <input type="text" id="t-user-input" class="bg-slate-950 border-2 border-slate-700 text-center rounded-xl p-3.5 text-white text-xl w-full uppercase tracking-widest font-mono focus:outline-none focus:border-cyan-400 shadow-inner" placeholder="ENTER STRING">
+                    <button id="t-verify" class="w-full bg-emerald-500 hover:bg-emerald-400 text-slate-950 font-black p-3.5 text-xs uppercase tracking-widest rounded-xl transition-all shadow-lg active:scale-95">Verify Iconic Buffer</button>
+                </div>
+                <div id="t-score" class="mt-8 text-xs font-bold tracking-widest text-cyan-400 uppercase">BUFFER XP: 0</div>
+            </div>
+        `;
+
+        const disp = document.getElementById('t-display');
+        const flashBtn = document.getElementById('t-flash');
+        const inputBlock = document.getElementById('t-input-block');
+        const inputEl = document.getElementById('t-user-input');
+        const verifyBtn = document.getElementById('t-verify');
+        const scoreEl = document.getElementById('t-score');
+        
+        let stringVal = "";
+        let xp = 0;
+
+        flashBtn.addEventListener('click', () => {
+            inputBlock.classList.add('hidden');
+            inputEl.value = '';
+
+            const glyphs = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+            stringVal = "";
+            for(let i=0; i<5; i++) stringVal += glyphs[Math.floor(Math.random()*glyphs.length)];
+
+            disp.textContent = stringVal;
+            disp.className = "bg-slate-900 border-2 border-cyan-400/50 rounded-2xl p-6 text-4xl font-black tracking-widest text-cyan-400 h-24 flex items-center justify-center font-mono mb-8 shadow-lg shadow-cyan-500/10";
+
+            setTimeout(() => {
+                disp.textContent = "#####";
+                disp.className = "bg-slate-900 border-2 border-slate-800 rounded-2xl p-6 text-4xl font-black tracking-widest text-slate-600 h-24 flex items-center justify-center font-mono mb-8 shadow-inner select-none";
+                inputBlock.classList.remove('hidden');
+                inputEl.focus();
+            }, 30);
+        });
+
+        verifyBtn.addEventListener('click', () => {
+            const guess = inputEl.value.trim().toUpperCase();
+            if (guess === stringVal) {
+                xp += 150;
+                disp.textContent = "VALIDATED";
+                disp.className = "bg-slate-900 border-2 border-emerald-500/50 rounded-2xl p-6 text-3xl font-black tracking-widest text-emerald-400 h-24 flex items-center justify-center font-mono mb-8 shadow-lg";
+                if(window.parent && xp % 450 === 0) window.parent.postMessage({ type: "ARCADE_TRIGGER_AD", adType: "rewarded" }, "*");
+            } else {
+                disp.textContent = `ERR: ${stringVal}`;
+                disp.className = "bg-slate-900 border-2 border-rose-500/50 rounded-2xl p-6 text-2xl font-black tracking-widest text-rose-500 h-24 flex items-center justify-center font-mono mb-8 shadow-lg";
+            }
+            scoreEl.textContent = `BUFFER XP: ${xp}`;
+            inputBlock.classList.add('hidden');
+        });
+
+        inputEl.addEventListener('keydown', (e) => { if(e.key === 'Enter') verifyBtn.click(); });
+        
+    </script>
+</body>
+</html>

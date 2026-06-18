@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STROOP INTERFERENCE CALIBRATOR — The 2-Second Witness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6P6NPFW4FZ');
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap');
+        body { font-family: 'JetBrains+Mono', monospace; background-color: #090d16; color: #f8fafc; margin: 0; padding: 24px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+    </style>
+</head>
+<body class="selection:bg-cyan-500 selection:text-slate-900 antialiased">
+    <div id="game-sandbox-area" class="w-full max-w-4xl mx-auto flex-1 flex flex-col justify-center">
+    </div>
+    <script>
+        
+        const container = document.getElementById('game-sandbox-area');
+        container.innerHTML = `
+            <div class="text-center w-full max-w-md mx-auto font-mono">
+                <div class="relative w-full h-3 bg-slate-900 border border-slate-800 rounded-full overflow-hidden mb-8 shadow-inner">
+                    <div id="stroop-progress" class="absolute top-0 left-0 h-full bg-gradient-to-r from-cyan-400 via-gold to-rose-500 w-full transition-all duration-100 linear"></div>
+                </div>
+                <div id="stroop-word" class="text-6xl font-black tracking-wider mb-10 h-20 flex items-center justify-center select-none cursor-pointer bg-slate-900/40 border border-slate-800/80 rounded-2xl p-4 shadow-xl">READY</div>
+                <div class="grid grid-cols-2 gap-4" id="stroop-buttons"></div>
+                <div id="score-counter" class="mt-8 text-sm font-bold tracking-widest text-emerald-400 uppercase">SCORE: 0</div>
+            </div>
+        `;
+
+        const wordEl = document.getElementById('stroop-word');
+        const progEl = document.getElementById('stroop-progress');
+        const btnContainer = document.getElementById('stroop-buttons');
+        const scoreEl = document.getElementById('score-counter');
+        
+        const options = [
+            { name: "RED", color: "text-red-500", hex: "#ef4444" },
+            { name: "GREEN", color: "text-emerald-500", hex: "#10b981" },
+            { name: "BLUE", color: "text-blue-500", hex: "#3b82f6" },
+            { name: "YELLOW", color: "text-amber-400", hex: "#fbbf24" }
+        ];
+
+        let correct = null;
+        let timer = null;
+        let width = 100;
+        let score = 0;
+
+        function nextStroop() {
+            clearInterval(timer);
+            width = 100;
+            progEl.style.width = `100%`;
+            
+            const textIdx = Math.floor(Math.random() * options.length);
+            const colorIdx = Math.floor(Math.random() * options.length);
+            
+            correct = options[colorIdx];
+            wordEl.textContent = options[textIdx].name;
+            wordEl.className = `text-6xl font-black tracking-wider mb-10 h-20 flex items-center justify-center select-none bg-slate-900/60 border border-slate-800 rounded-2xl p-4 shadow-xl ${options[colorIdx].color}`;
+            
+            timer = setInterval(() => {
+                width -= 6.66;
+                if(width <= 0) {
+                    clearInterval(timer);
+                    terminateGame();
+                } else {
+                    progEl.style.width = `${width}%`;
+                }
+            }, 100);
+        }
+
+        function evaluate(chosenHex) {
+            if (chosenHex === correct.hex) {
+                score += 25;
+                scoreEl.textContent = `SCORE: ${score}`;
+                nextStroop();
+            } else {
+                clearInterval(timer);
+                terminateGame();
+            }
+        }
+
+        function terminateGame() {
+            wordEl.textContent = "TERMINATED";
+            wordEl.className = "text-4xl font-black tracking-wider mb-10 h-20 flex items-center justify-center select-none bg-rose-500/10 border-2 border-rose-500 text-rose-500 rounded-2xl p-4 shadow-xl";
+            btnContainer.innerHTML = `<button id='reset-btn' class='col-span-2 py-4 px-6 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black text-xs uppercase tracking-widest rounded-xl transition-all shadow-lg active:scale-95'>Mount New Pipeline</button>`;
+            document.getElementById('reset-btn').addEventListener('click', () => {
+                score = 0; scoreEl.textContent = `SCORE: 0`;
+                initView(); nextStroop();
+            });
+            if(window.parent && score >= 100) window.parent.postMessage({ type: "ARCADE_TRIGGER_AD", adType: "interstitial" }, "*");
+        }
+
+        function initView() {
+            btnContainer.innerHTML = '';
+            options.forEach(opt => {
+                const b = document.createElement('button');
+                b.className = "py-5 px-6 bg-slate-900 hover:bg-slate-800 border-2 border-slate-800 hover:border-cyan-400/60 rounded-xl text-base font-black tracking-widest text-white transition-all active:scale-95 shadow-lg uppercase font-mono";
+                b.textContent = opt.name;
+                b.addEventListener('click', () => evaluate(opt.hex));
+                btnContainer.appendChild(b);
+            });
+        }
+
+        initView();
+        wordEl.textContent = "ENGAGE CALIBRATION";
+        wordEl.className = "text-3xl font-black tracking-wider mb-10 h-20 flex items-center justify-center select-none bg-cyan-500/10 border-2 border-cyan-500 text-cyan-400 rounded-2xl p-4 cursor-pointer shadow-lg active:scale-98 transition-all animate-pulse";
+        wordEl.addEventListener('click', function startH() {
+            wordEl.removeEventListener('click', startH);
+            nextStroop();
+        });
+        
+    </script>
+</body>
+</html>

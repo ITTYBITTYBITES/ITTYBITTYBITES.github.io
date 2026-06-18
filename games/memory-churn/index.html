@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WORKING MEMORY CALIBRATION CHURN — The 2-Second Witness</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6P6NPFW4FZ');
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap');
+        body { font-family: 'JetBrains+Mono', monospace; background-color: #090d16; color: #f8fafc; margin: 0; padding: 24px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; }
+    </style>
+</head>
+<body class="selection:bg-cyan-500 selection:text-slate-900 antialiased">
+    <div id="game-sandbox-area" class="w-full max-w-4xl mx-auto flex-1 flex flex-col justify-center">
+    </div>
+    <script>
+        
+        const container = document.getElementById('game-sandbox-area');
+        container.innerHTML = `
+            <div class="w-full max-w-lg flex gap-6 items-center justify-center relative font-mono mx-auto">
+                <div id="noise-left" class="text-xs text-slate-700 font-mono select-none pointer-events-none uppercase hidden sm:block tracking-widest leading-loose text-left">
+                    X92-FD9<br>K74-PLQ<br>M11-ZXC<br>P02-VBN
+                </div>
+                <div class="flex-1 text-center bg-slate-950 p-8 rounded-2xl border-2 border-slate-800 shadow-2xl z-10 max-w-xs mx-auto">
+                    <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest block mb-4">Working Memory Equation</span>
+                    <div id="churn-eq" class="text-4xl font-black text-cyan-400 mb-8 tracking-tight h-12 flex items-center justify-center font-mono">---</div>
+                    <input type="number" id="churn-ans" class="bg-slate-900 border-2 border-slate-700 rounded-xl p-4 text-center text-2xl text-white font-bold w-full font-mono focus:outline-none focus:border-cyan-400 mb-6 shadow-inner" placeholder="?">
+                    <button id="churn-submit" class="w-full bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black p-4 rounded-xl text-xs uppercase tracking-widest transition-all shadow-xl active:scale-95 cursor-pointer">Submit Solution</button>
+                    <div id="churn-score" class="mt-6 text-xs font-bold text-emerald-400 tracking-widest uppercase">CHURN XP: 0</div>
+                </div>
+                <div id="noise-right" class="text-xs text-slate-700 font-mono select-none pointer-events-none uppercase hidden sm:block text-right tracking-widest leading-loose">
+                    010101<br>110010<br>001101<br>111100
+                </div>
+            </div>
+        `;
+
+        const eqBox = document.getElementById('churn-eq');
+        const ansInput = document.getElementById('churn-ans');
+        const submitBtn = document.getElementById('churn-submit');
+        const scoreEl = document.getElementById('churn-score');
+        const noiseL = document.getElementById('noise-left');
+        const noiseR = document.getElementById('noise-right');
+        
+        let ans = 0;
+        let xp = 0;
+
+        function makeEq() {
+            const v1 = 10 + Math.floor(Math.random() * 89);
+            const v2 = 10 + Math.floor(Math.random() * 89);
+            const ops = ['+', '-', '*'];
+            const op = ops[Math.floor(Math.random()*2)];
+
+            ans = op === '+' ? v1+v2 : v1-v2;
+            eqBox.textContent = `${v1} ${op} ${v2}`;
+            ansInput.value = ''; ansInput.focus();
+
+            // Refresh structural scatter noise
+            const noiseSet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&*";
+            let nl = ""; let nr = "";
+            for(let i=0; i<4; i++) {
+                nl += `${noiseSet[Math.floor(Math.random()*noiseSet.length)]}${noiseSet[Math.floor(Math.random()*noiseSet.length)]}${noiseSet[Math.floor(Math.random()*noiseSet.length)]}-${noiseSet[Math.floor(Math.random()*noiseSet.length)]}${noiseSet[Math.floor(Math.random()*noiseSet.length)]}<br>`;
+                nr += `${Math.random().toString(2).substring(2,8)}<br>`;
+            }
+            noiseL.innerHTML = nl; noiseR.innerHTML = nr;
+        }
+
+        submitBtn.addEventListener('click', () => {
+            const val = parseInt(ansInput.value, 10);
+            if (val === ans) {
+                xp += 60;
+                if(window.parent && xp % 300 === 0) window.parent.postMessage({ type: "ARCADE_TRIGGER_AD", adType: "interstitial" }, "*");
+            } else {
+                xp = Math.max(0, xp - 30);
+            }
+            scoreEl.textContent = `CHURN XP: ${xp}`;
+            makeEq();
+        });
+
+        ansInput.addEventListener('keydown', (e) => { if(e.key === 'Enter') submitBtn.click(); });
+        makeEq();
+        
+    </script>
+</body>
+</html>
