@@ -98,10 +98,10 @@ class ArcadePortalEngine {
 
         categories.forEach(cat => {
             const btn = document.createElement('button');
-            btn.className = `w-full text-left px-4 py-3.5 rounded-xl text-xs font-mono font-bold uppercase transition-all flex items-center justify-between border ${
+            btn.className = `px-4 py-2 sm:py-3.5 rounded-xl text-xs font-mono font-bold uppercase transition-all flex items-center gap-2 md:justify-between shrink-0 border ${
                 cat === this.activeCategory
                 ? 'bg-cyan-500/15 text-cyan-400 border-cyan-500/40 shadow-lg shadow-cyan-500/10'
-                : 'text-slate-400 border-transparent hover:bg-slate-900 hover:text-slate-200'
+                : 'text-slate-400 border-slate-800/80 md:border-transparent hover:bg-slate-900 hover:text-slate-200'
             }`;
             btn.innerHTML = `<span>◈ ${cat}</span><span class="text-[10px] text-slate-500 font-mono tracking-widest">[${
                 cat === 'ALL' ? this.gamesRegistry.length : this.gamesRegistry.filter(g => g.category === cat).length
@@ -127,7 +127,7 @@ class ArcadePortalEngine {
 
         filtered.forEach(game => {
             const card = document.createElement('div');
-            card.className = "bg-slate-950/80 border-2 border-slate-800/80 rounded-2xl overflow-hidden hover:border-cyan-400 transition-all group flex flex-col justify-between cursor-pointer shadow-2xl hover:shadow-cyan-400/10";
+            card.className = "bg-slate-950/80 border-2 border-slate-800/80 rounded-2xl overflow-hidden hover:border-cyan-400 transition-all group flex flex-col justify-between cursor-pointer shadow-2xl hover:shadow-cyan-400/10 font-mono";
             
             // Inline SVG fallback thumbnail generator
             const svgPlaceholder = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='375' viewBox='0 0 600 375'><rect width='600' height='375' fill='%230f172a'/><circle cx='300' cy='187' r='80' fill='%2322d3ee' opacity='0.15'/><path d='M300 137l50 86h-100z' fill='%2322d3ee' opacity='0.4'/><text x='300' y='295' font-family='monospace' font-size='16' font-weight='bold' fill='%2364748b' text-anchor='middle'>◈ ${game.id.toUpperCase()} ◈</text></svg>`;
@@ -141,17 +141,17 @@ class ArcadePortalEngine {
                             alt="${game.title}" 
                             class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 block">
                         <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
-                        <span class="absolute bottom-3 left-3.5 text-[10px] font-mono tracking-widest font-black px-2.5 py-1 rounded-md bg-cyan-400/15 text-cyan-400 border border-cyan-400/30 uppercase">◈ ${game.category}</span>
+                        <span class="absolute bottom-2 left-2 sm:bottom-3 sm:left-3.5 text-[9px] sm:text-[10px] font-mono tracking-widest font-black px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md bg-cyan-400/15 text-cyan-400 border border-cyan-400/30 uppercase truncate max-w-[130px] sm:max-w-none">◈ ${game.category}</span>
                     </div>
-                    <div class="p-6">
-                        <span class="text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest block">${game.id}</span>
-                        <h3 class="font-display font-black text-lg text-white mt-1.5 tracking-tight group-hover:text-cyan-400 transition-colors">${game.title}</h3>
-                        <p class="font-mono text-xs text-slate-400 mt-2.5 line-clamp-3 leading-relaxed">${game.description}</p>
+                    <div class="p-3 sm:p-6 font-mono">
+                        <span class="text-[9px] sm:text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest block">${game.id}</span>
+                        <h3 class="font-display font-black text-xs sm:text-lg text-white mt-1 sm:mt-1.5 tracking-tight group-hover:text-cyan-400 transition-colors line-clamp-1 sm:line-clamp-none">${game.title}</h3>
+                        <p class="font-mono text-xs text-slate-400 mt-2.5 line-clamp-3 leading-relaxed hidden sm:block">${game.description}</p>
                     </div>
                 </div>
-                <div class="px-6 pb-6 pt-2 flex items-center justify-between border-t border-slate-900/80 mt-2 font-mono">
-                    <span class="text-[10px] text-emerald-400 font-bold uppercase tracking-wider flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> Sandbox Secure</span>
-                    <span class="text-xs font-black text-cyan-400 group-hover:translate-x-1.5 transition-transform tracking-widest uppercase font-mono">ENGAGE &rarr;</span>
+                <div class="px-3 sm:px-6 pb-3 sm:pb-6 pt-2 flex items-center justify-between border-t border-slate-900/80 mt-1 sm:mt-2 font-mono text-[10px] sm:text-xs">
+                    <span class="text-emerald-400 font-bold uppercase tracking-wider flex items-center gap-1.5"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400 animate-pulse"></span> <span class="hidden sm:inline">Sandbox Secure</span><span class="sm:hidden">SECURE</span></span>
+                    <span class="font-black text-cyan-400 group-hover:translate-x-1 sm:group-hover:translate-x-1.5 transition-transform tracking-widest uppercase font-mono">PLAY &rarr;</span>
                 </div>
             `;
 
