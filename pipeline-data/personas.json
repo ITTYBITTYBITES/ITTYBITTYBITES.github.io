@@ -1496,6 +1496,40 @@
       "universe": "society",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T21:08:11.633Z"
+    },
+    {
+      "slug": "cross-functional-teachers",
+      "name": "Cross-Functional Teachers",
+      "description": "Cross-Functional Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "teachers",
+        "cross-functional",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "society",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T21:09:13.099Z"
+    },
+    {
+      "slug": "high-volume-teachers",
+      "name": "High-Volume Teachers",
+      "description": "High-Volume Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "teachers",
+        "high-volume",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "society",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T21:09:13.099Z"
     }
   ]
 }
