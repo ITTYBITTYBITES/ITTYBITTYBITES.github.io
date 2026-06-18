@@ -408,6 +408,40 @@
       "universe": "tech",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T11:44:40.522Z"
+    },
+    {
+      "slug": "supervisory-data-scientists",
+      "name": "Supervisory Data Scientists",
+      "description": "Supervisory Data Scientists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "data-scientists",
+        "supervisory",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "tech",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T11:45:45.029Z"
+    },
+    {
+      "slug": "sleep-deprived-data-scientists",
+      "name": "Sleep-Deprived Data Scientists",
+      "description": "Sleep-Deprived Data Scientists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "data-scientists",
+        "sleep-deprived",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "tech",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T11:45:45.029Z"
     }
   ]
 }
