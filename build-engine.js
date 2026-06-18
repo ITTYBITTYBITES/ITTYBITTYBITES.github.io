@@ -40,8 +40,8 @@ const CONFIG = {
   feedTimeoutMs: 8000,
   maxLiveProducts: 4,
   asinValidationTimeout: 5000,
-  maxNewTopicsPerRun: 3,      // Cap new topics discovered per run
-  maxNewPersonasPerRun: 2,    // Cap new personas discovered per run
+  maxNewTopicsPerRun: 0,      // Fully capped to prevent redundant Soft Duplicates
+  maxNewPersonasPerRun: 0,    // Fully capped to prevent redundant Soft Duplicates
   buildTimestamp: new Date().toISOString(),
 };
 

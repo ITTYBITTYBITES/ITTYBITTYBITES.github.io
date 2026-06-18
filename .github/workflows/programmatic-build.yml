@@ -4,15 +4,6 @@ on:
   schedule:
     - cron: '37 4 * * *'
   workflow_dispatch:
-  push:
-    branches:
-      - main
-    paths:
-      - 'core-data/**'
-      - 'pipeline-data/**'
-      - 'templates/**'
-      - 'build-engine.js'
-      - 'package.json'
 
 permissions:
   contents: write

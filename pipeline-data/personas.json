@@ -1632,40 +1632,6 @@
       "universe": "society",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T22:49:59.252Z"
-    },
-    {
-      "slug": "supervisory-financial-advisors",
-      "name": "Supervisory Financial Advisors",
-      "description": "Supervisory Financial Advisors — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "financial-advisors",
-        "supervisory",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "society",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T22:56:25.160Z"
-    },
-    {
-      "slug": "sleep-deprived-financial-advisors",
-      "name": "Sleep-Deprived Financial Advisors",
-      "description": "Sleep-Deprived Financial Advisors — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
-      "tags": [
-        "financial-advisors",
-        "sleep-deprived",
-        "high-pressure",
-        "cognitive-load",
-        "split-second decisions",
-        "attention management",
-        "decision accuracy"
-      ],
-      "universe": "society",
-      "source": "auto-generated",
-      "discoveredAt": "2026-06-18T22:56:25.160Z"
     }
   ]
 }
