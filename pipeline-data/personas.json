@@ -442,6 +442,40 @@
       "universe": "tech",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T11:45:45.029Z"
+    },
+    {
+      "slug": "high-stress-data-scientists",
+      "name": "High-Stress Data Scientists",
+      "description": "High-Stress Data Scientists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "data-scientists",
+        "high-stress",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "tech",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T11:53:22.840Z"
+    },
+    {
+      "slug": "multi-project-data-scientists",
+      "name": "Multi-Project Data Scientists",
+      "description": "Multi-Project Data Scientists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "data-scientists",
+        "multi-project",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "tech",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T11:53:22.840Z"
     }
   ]
 }
