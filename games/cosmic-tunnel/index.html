@@ -207,10 +207,13 @@
                     touchZone.style.touchAction = 'none';
                     this.canvas.style.touchAction = 'none';
                     this.isPointerSteering = false;
+                    this.touchSteerDir = 0;
                     
                     touchZone.addEventListener('pointerdown', (e) => {
-            try { e.target.setPointerCapture(e.pointerId); } catch(err){}
+                        try { e.target.setPointerCapture(e.pointerId); } catch(err){}
                         e.preventDefault();
+                        if (e.target.id === 'touch-left') this.touchSteerDir = -1;
+                        if (e.target.id === 'touch-right') this.touchSteerDir = 1;
                         this.lastTouchX = e.clientX;
                         this.isPointerSteering = true;
                     });
@@ -219,11 +222,17 @@
                         e.preventDefault();
                         const currentX = e.clientX;
                         const deltaX = currentX - this.lastTouchX;
-                        this.targetPlayerAngle += deltaX * 0.008;
+                        if (Math.abs(deltaX) > 2) {
+                            this.targetPlayerAngle += deltaX * 0.008;
+                        }
                         this.lastTouchX = currentX;
                     });
-                    touchZone.addEventListener('pointerup', (e) => { this.isPointerSteering = false; });
-                    touchZone.addEventListener('pointercancel', (e) => { this.isPointerSteering = false; });
+                    const stopTouch = () => {
+                        this.isPointerSteering = false;
+                        this.touchSteerDir = 0;
+                    };
+                    touchZone.addEventListener('pointerup', stopTouch);
+                    touchZone.addEventListener('pointercancel', stopTouch);
                 }
             }
 
@@ -306,9 +315,9 @@
             }
 
             updateWormholePhysics() {
-                // Handle continuous keyboard rotation
-                if (this.keys.left) this.targetPlayerAngle -= 0.06;
-                if (this.keys.right) this.targetPlayerAngle += 0.06;
+                // Handle continuous keyboard and touch panel rotation
+                if (this.keys.left || this.touchSteerDir === -1) this.targetPlayerAngle -= 0.06;
+                if (this.keys.right || this.touchSteerDir === 1) this.targetPlayerAngle += 0.06;
 
                 // Smooth execution angle interpolation
                 this.playerAngle += (this.targetPlayerAngle - this.playerAngle) * 0.2;
@@ -403,6 +412,9 @@
                 const cx = this.canvas.width / 2;
                 const cy = this.canvas.height / 2;
 
+                // Enforce immersive camera roll so the player craft remains anchored at the bottom
+                const cameraRoll = -this.playerAngle + Math.PI / 2;
+
                 // 1. Render 3D Tunnel Wireframe and Cyber Wall Polygons
                 for (let i = 0; i < this.rings.length - 1; i++) {
                     const r1 = this.rings[i];
@@ -417,7 +429,7 @@
                     // Compute ring circle nodes
                     const p1 = []; const p2 = [];
                     for (let s = 0; s < this.segments; s++) {
-                        const ang = s * (Math.PI * 2 / this.segments);
+                        const ang = s * (Math.PI * 2 / this.segments) + cameraRoll;
                         p1.push({
                             x: cx + (bend1.x + Math.cos(ang) * this.tunnelRadius) * scale1,
                             y: cy + (bend1.y + Math.sin(ang) * this.tunnelRadius) * scale1
@@ -457,10 +469,11 @@
                     const scale = this.fov / Math.max(1, ob.z);
                     const alpha = Math.max(0.1, 1 - (ob.z / this.maxZ));
 
-                    const px1 = cx + (bend.x + Math.cos(ob.angle - ob.sliceSpan/2) * this.tunnelRadius) * scale;
-                    const py1 = cy + (bend.y + Math.sin(ob.angle - ob.sliceSpan/2) * this.tunnelRadius) * scale;
-                    const px2 = cx + (bend.x + Math.cos(ob.angle + ob.sliceSpan/2) * this.tunnelRadius) * scale;
-                    const py2 = cy + (bend.y + Math.sin(ob.angle + ob.sliceSpan/2) * this.tunnelRadius) * scale;
+                    const ang = ob.angle + cameraRoll;
+                    const px1 = cx + (bend.x + Math.cos(ang - ob.sliceSpan/2) * this.tunnelRadius) * scale;
+                    const py1 = cy + (bend.y + Math.sin(ang - ob.sliceSpan/2) * this.tunnelRadius) * scale;
+                    const px2 = cx + (bend.x + Math.cos(ang + ob.sliceSpan/2) * this.tunnelRadius) * scale;
+                    const py2 = cy + (bend.y + Math.sin(ang + ob.sliceSpan/2) * this.tunnelRadius) * scale;
 
                     // Draw crimson laser barrier
                     this.ctx.fillStyle = `rgba(244, 63, 94, ${alpha})`;
@@ -483,8 +496,9 @@
                     const scale = this.fov / Math.max(1, t.z);
                     const alpha = Math.max(0.2, 1 - (t.z / this.maxZ));
 
-                    const px = cx + (bend.x + Math.cos(t.angle) * (this.tunnelRadius * 0.8)) * scale;
-                    const py = cy + (bend.y + Math.sin(t.angle) * (this.tunnelRadius * 0.8)) * scale;
+                    const ang = t.angle + cameraRoll;
+                    const px = cx + (bend.x + Math.cos(ang) * (this.tunnelRadius * 0.8)) * scale;
+                    const py = cy + (bend.y + Math.sin(ang) * (this.tunnelRadius * 0.8)) * scale;
 
                     this.ctx.fillStyle = `rgba(250, 204, 21, ${alpha})`;
                     this.ctx.beginPath();
@@ -497,15 +511,14 @@
                 });
 
                 // 4. Render Player Spaceship Craft
-                const pBend = this.getWormholeBendOffset(50);
-                const pScale = this.fov / 50;
-                const pScreenX = cx + (pBend.x + Math.cos(this.playerAngle) * this.playerRadiusEl) * pScale;
-                const pScreenY = cy + (pBend.y + Math.sin(this.playerAngle) * this.playerRadiusEl) * pScale;
+                // Anchored perfectly at the bottom of the tunnel view
+                const pScreenX = cx;
+                const pScreenY = cy + Math.min(cy * 0.55, 220);
 
                 // Draw premium special ops cyber delta craft
                 this.ctx.save();
                 this.ctx.translate(pScreenX, pScreenY);
-                this.ctx.rotate(this.playerAngle + Math.PI / 2);
+                this.ctx.rotate(Math.PI);
 
                 // Delta Wings
                 this.ctx.fillStyle = '#22d3ee';
@@ -558,7 +571,7 @@
             executeVesselFatalCrash() {
                 this.isGameOver = true;
                 this.playSynthesizedTone('crash');
-                this.createExplosionParticles(this.playerAngle, '#f43f5e');
+                this.createExplosionParticles(Math.PI / 2, '#f43f5e');
                 this.render3DWormholeTheater();
 
                 if (this.animFrameId) cancelAnimationFrame(this.animFrameId);
