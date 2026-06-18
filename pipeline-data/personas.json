@@ -544,6 +544,40 @@
       "universe": "tech",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T12:15:54.490Z"
+    },
+    {
+      "slug": "remote-nurses",
+      "name": "Remote Nurses",
+      "description": "Remote Nurses — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "nurses",
+        "remote",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "life",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T12:37:08.895Z"
+    },
+    {
+      "slug": "field-nurses",
+      "name": "Field Nurses",
+      "description": "Field Nurses — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "nurses",
+        "field",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "life",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T12:37:08.895Z"
     }
   ]
 }
