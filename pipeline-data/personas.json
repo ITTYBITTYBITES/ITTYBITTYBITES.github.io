@@ -1088,6 +1088,40 @@
       "universe": "frontier",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T15:09:37.417Z"
+    },
+    {
+      "slug": "cross-functional-pilots",
+      "name": "Cross-Functional Pilots",
+      "description": "Cross-Functional Pilots — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "pilots",
+        "cross-functional",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "frontier",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T15:15:17.176Z"
+    },
+    {
+      "slug": "high-volume-pilots",
+      "name": "High-Volume Pilots",
+      "description": "High-Volume Pilots — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "pilots",
+        "high-volume",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "frontier",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T15:15:17.176Z"
     }
   ]
 }
