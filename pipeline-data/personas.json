@@ -918,6 +918,40 @@
       "universe": "life",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T14:25:10.999Z"
+    },
+    {
+      "slug": "time-critical-pharmacists",
+      "name": "Time-Critical Pharmacists",
+      "description": "Time-Critical Pharmacists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "pharmacists",
+        "time-critical",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "life",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T14:26:04.173Z"
+    },
+    {
+      "slug": "decentralized-pharmacists",
+      "name": "Decentralized Pharmacists",
+      "description": "Decentralized Pharmacists — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "pharmacists",
+        "decentralized",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "life",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T14:26:04.173Z"
     }
   ]
 }
