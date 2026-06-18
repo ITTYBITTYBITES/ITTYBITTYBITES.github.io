@@ -239,141 +239,64 @@ class ArcadePortalEngine {
         }
     }
 
-    // ─── Asynchronous Cascading Ad Mediation Orchestrator ────────────────────────
+    // ─── Universal Adsterra Commercial Monetization Engine ───────────────────────
     interceptFrameTelecommunications(e) {
         if (!e.data || typeof e.data !== 'object') return;
 
         switch (e.data.type) {
             case "ARCADE_TRIGGER_AD":
-                this.executeCascadingAdWaterfall(e.source, e.data.adType);
-                break;
-            
-            case "ARCADE_TELEMETRY_STREAM":
-                this.ingestTelemetryStream(e.data.payload);
+                this.executeAdsterraMonetizationLoop(e.source, e.data.adType);
                 break;
         }
     }
 
-    executeCascadingAdWaterfall(targetFrameWindow, adType) {
+    executeAdsterraMonetizationLoop(targetFrameWindow, adType) {
         const now = Date.now();
 
         // 1. Strict Global Ad Cooldown Timer (3 Minutes / 180000ms)
         if (now - this.lastAdExecutedTime < this.globalAdCooldownMs) {
-            console.log(`⚡ [AD MEDIATION] Global Ad Cooldown active (${((this.globalAdCooldownMs - (now - this.lastAdExecutedTime)) / 1000).toFixed(1)}s remaining). Skipping ad Waterfall and firing instant complete validation...`);
-            if (targetFrameWindow) {
-                targetFrameWindow.postMessage({ type: "ARCADE_AD_COMPLETE" }, "*");
-            }
+            console.log(`⚡ [Adsterra Engine] Global Ad Cooldown active (${((this.globalAdCooldownMs - (now - this.lastAdExecutedTime)) / 1000).toFixed(1)}s remaining). Skipping Adsterra monetization routine and firing instant clearance handshake...`);
+            if (targetFrameWindow) targetFrameWindow.postMessage({ type: "ARCADE_AD_COMPLETE" }, "*");
             return;
         }
 
-        console.log(`🚀 [AD MEDIATION] Triggering Cascading Waterfall sequence for ad type: ${adType}`);
+        console.log(`🚀 [Adsterra Engine] Triggering commercial monetization routine for ad break: ${adType}`);
         
-        // 2. Execute Official Google H5 Web-Gaming Ad Placement API adBreak()
-        const adConfigObj = {
-            type: adType === 'rewarded' ? 'reward' : 'next',
-            name: adType === 'rewarded' ? 'operative_perk' : 'level_clear',
-            beforeAd: () => {
-                console.log("⚡ [Google H5 Ads] Suspending game audio & execution tickers...");
-            },
-            afterAd: () => {
-                console.log("⚡ [Google H5 Ads] Ad execution complete. Resuming sandbox...");
-                this.lastAdExecutedTime = Date.now();
-                if (targetFrameWindow) targetFrameWindow.postMessage({ type: "ARCADE_AD_COMPLETE" }, "*");
-            },
-            adBreakDone: (placementInfo) => {
-                console.log("◈ [Google H5 Ads] Break routine concluded:", placementInfo);
-                // If ad Break failed or didn't show an ad, instantly cascade to Backup Proxies
-                if (!placementInfo || placementInfo.breakStatus !== 'viewed') {
-                    console.warn("⚠ [Google H5 Ads] Live ad not viewed or Getting Ready. Cascading to Backup Mediation Proxies...");
-                    this.cascadeToBackupProxies(targetFrameWindow, adType);
-                }
-            }
-        };
+        // Master Adsterra Configuration Placeholder
+        const adsterraDirectLinkUrl = "https://www.highperformancecpmgate.com/example"; // Replace with your exact Adsterra Direct Link
 
-        // Fire Google adBreak or fallback directly if SDK still initializing
-        if (typeof window.adBreak === 'function') {
-            try {
-                window.adBreak(adConfigObj);
-            } catch(e) {
-                console.warn("⚠ window.adBreak execution fault. Cascading to Backup Mediation...");
-                this.cascadeToBackupProxies(targetFrameWindow, adType);
+        // 2. Deploy Sleek Immersive 5-Second Adsterra Interstitial Buffer Proxy Modal
+        if (this.adModal && this.adCountdownEl && this.adNetLabel) {
+            this.adNetLabel.textContent = adType === 'rewarded' ? "ADSTERRA COMMERCIAL REWARD // OPERATIVE PERK" : "ADSTERRA COMMERCIAL SPONSORSHIP // INTERSTITIAL";
+            this.adModal.classList.remove('hidden');
+            
+            // Link the exact Adsterra button
+            const directBtn = document.getElementById('adsterra-direct-launch-btn');
+            if (directBtn) {
+                directBtn.href = adsterraDirectLinkUrl;
             }
-        } else {
-            console.warn("⚠ Google H5 adBreak SDK missing or Getting Ready. Executing Backup Waterfall...");
-            this.cascadeToBackupProxies(targetFrameWindow, adType);
-        }
-    }
 
-    cascadeToBackupProxies(targetFrameWindow, adType) {
-        this.tryPrimaryAdNetwork(targetFrameWindow, adType, (primarySuccess) => {
-            if (primarySuccess) {
-                this.lastAdExecutedTime = Date.now();
-                return;
-            }
-            this.tryBackupAdNetwork(targetFrameWindow, adType, (backupSuccess) => {
-                if (backupSuccess) {
+            let counter = 5;
+            this.adCountdownEl.textContent = `${counter}s`;
+
+            const ticker = setInterval(() => {
+                counter--;
+                if (counter <= 0) {
+                    clearInterval(ticker);
+                    this.adModal.classList.add('hidden');
                     this.lastAdExecutedTime = Date.now();
-                    return;
+                    
+                    // Transmit absolute clearance handshake back to game sandbox
+                    if (targetFrameWindow) targetFrameWindow.postMessage({ type: "ARCADE_AD_COMPLETE" }, "*");
+                    this.notifyPlayerStatus("◈ Adsterra Commercial Sponsorship Validated");
+                } else {
+                    this.adCountdownEl.textContent = `${counter}s`;
                 }
-                if (targetFrameWindow) targetFrameWindow.postMessage({ type: "ARCADE_AD_COMPLETE" }, "*");
-            });
-        });
-    }
-
-    tryPrimaryAdNetwork(targetWindow, adType, callback) {
-        if (!this.adModal || !this.adCountdownEl || !this.adNetLabel) {
-            callback(false);
-            return;
+            }, 1000);
+        } else {
+            this.lastAdExecutedTime = Date.now();
+            if (targetFrameWindow) targetFrameWindow.postMessage({ type: "ARCADE_AD_COMPLETE" }, "*");
         }
-
-        // Simulate 90% Primary Fill Rate
-        if (Math.random() < 0.1) {
-            setTimeout(() => callback(false), 200); // 200ms fail latency
-            return;
-        }
-
-        this.adNetLabel.textContent = "PRIMARY NETWORK // ADINPLAY TACTICAL PROXY";
-        this.adModal.classList.remove('hidden');
-        let counter = 5;
-        this.adCountdownEl.textContent = `${counter}s`;
-
-        const ticker = setInterval(() => {
-            counter--;
-            if (counter <= 0) {
-                clearInterval(ticker);
-                this.adModal.classList.add('hidden');
-                if (targetWindow) targetWindow.postMessage({ type: "ARCADE_AD_COMPLETE" }, "*");
-                this.notifyPlayerStatus("◈ Primary Sponsorship Handshake Confirmed");
-                callback(true);
-            } else {
-                this.adCountdownEl.textContent = `${counter}s`;
-            }
-        }, 1000);
-    }
-
-    tryBackupAdNetwork(targetWindow, adType, callback) {
-        if (!this.adModal || !this.adCountdownEl || !this.adNetLabel) {
-            callback(false);
-            return;
-        }
-
-        this.adNetLabel.textContent = "BACKUP NETWORK // APPLIXIR VIDEO FALLBACK";
-        this.adModal.classList.remove('hidden');
-        let counter = 4;
-        this.adCountdownEl.textContent = `${counter}s`;
-
-        const ticker = setInterval(() => {
-            counter--;
-            if (counter <= 0) {
-                clearInterval(ticker);
-                this.adModal.classList.add('hidden');
-                if (targetWindow) targetWindow.postMessage({ type: "ARCADE_AD_COMPLETE" }, "*");
-                this.notifyPlayerStatus("◈ Backup Network Handshake Confirmed");
-                callback(true);
-            } else {
-                this.adCountdownEl.textContent = `${counter}s`;
-            }
-        }, 1000);
     }
 
     // ─── Secure Consenting AI Telemetry Dispatcher ──────────────────────────────
