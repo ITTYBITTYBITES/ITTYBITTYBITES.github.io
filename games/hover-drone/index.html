@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Cyber Flappy Hover-Drone — Elite Commercial Web Asset</title>
+    <meta name="description" content="Ultra-addictive vertical obstacle corridor navigation loop. Maintain optimal drone operational altitude to clear highly complex cyber barrier gates.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6P6NPFW4FZ');
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap');
+        body { font-family: 'JetBrains+Mono', monospace; background-color: #090d16; color: #f8fafc; margin: 0; padding: 16px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; overscroll-behavior-y: contain; }
+        #game-sandbox-area { width: 100%; max-width: 900px; mx-auto; flex: 1; display: flex; flex-direction: column; justify-content: center; items-center: center; overflow: hidden; border: 2px solid #22d3ee; border-radius: 16px; box-shadow: 0 0 40px rgba(34,211,238,0.15); }
+    </style>
+</head>
+<body class="selection:bg-cyan-500 selection:text-slate-900 antialiased">
+    
+    <div id="game-sandbox-area">
+    </div>
+
+    <script>
+        const canvas = document.createElement('canvas');
+        canvas.width = 800; canvas.height = 500;
+        canvas.className = 'w-full h-full block bg-black cursor-pointer';
+        document.getElementById('game-sandbox-area').appendChild(canvas);
+
+        const ctx = canvas.getContext('2d');
+        let drone = { y: 250, vy: 0 };
+        let pipes = [{ x: 800, top: 150, bot: 300 }];
+        let score = 0;
+
+        canvas.addEventListener('click', () => { drone.vy = -7; });
+
+        function loop() {
+            ctx.fillStyle = '#030712'; ctx.fillRect(0,0, canvas.width, canvas.height);
+
+            drone.y += drone.vy; drone.vy += 0.4;
+
+            pipes.forEach((p, i) => {
+                p.x -= 4;
+                if(p.x === 400) { pipes.push({ x: 800, top: 100+Math.random()*150, bot: 300+Math.random()*100 }); score += 10; }
+                if(p.x < -80) pipes.splice(i,1);
+
+                ctx.fillStyle = '#f43f5e';
+                ctx.fillRect(p.x, 0, 60, p.top);
+                ctx.fillRect(p.x, p.bot, 60, canvas.height - p.bot);
+
+                if(drone.y<=p.top || drone.y>=p.bot) {
+                    if(400>=p.x && 400<=p.x+60) { drone.y=250; drone.vy=0; score=0; pipes=[{x:800, top:150, bot:300}]; }
+                }
+            });
+
+            ctx.fillStyle = '#34d399'; ctx.beginPath(); ctx.arc(400, drone.y, 14, 0, Math.PI*2); ctx.fill();
+
+            ctx.fillStyle = '#facc15'; ctx.font = 'bold 20px monospace'; ctx.fillText(`ALTITUDE XP: ${score} // TAP TO FLAP`, 20, 35);
+            requestAnimationFrame(loop);
+        } loop();
+    </script>
+
+</body>
+</html>

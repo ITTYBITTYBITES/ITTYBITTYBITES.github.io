@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Cyber Sweeper Sentinel — Elite Commercial Web Asset</title>
+    <meta name="description" content="Highly strategic retro grid mine disarmer configured for tactical operators. Discover structural threats and flag critical detonation nodes.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6P6NPFW4FZ');
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap');
+        body { font-family: 'JetBrains+Mono', monospace; background-color: #090d16; color: #f8fafc; margin: 0; padding: 16px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; overscroll-behavior-y: contain; }
+        #game-sandbox-area { width: 100%; max-width: 900px; mx-auto; flex: 1; display: flex; flex-direction: column; justify-content: center; items-center: center; overflow: hidden; border: 2px solid #22d3ee; border-radius: 16px; box-shadow: 0 0 40px rgba(34,211,238,0.15); }
+    </style>
+</head>
+<body class="selection:bg-cyan-500 selection:text-slate-900 antialiased">
+    
+    <div id="game-sandbox-area">
+    </div>
+
+    <script>
+        const container = document.getElementById('game-sandbox-area');
+        container.innerHTML = `
+            <div class="font-mono text-center max-w-md mx-auto">
+                <div class="flex justify-between items-center bg-slate-900 p-4 rounded-xl mb-6">
+                    <span id="mine-score" class="text-gold font-black text-lg">FLAGGED: 0</span>
+                    <button id="reset-mines" class="px-4 py-2 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold rounded-lg text-xs uppercase">Reboot Secure Grid</button>
+                </div>
+                <div id="mine-grid" class="grid grid-cols-6 gap-2 bg-slate-900/60 p-4 rounded-2xl border border-slate-800 shadow-xl mx-auto w-fit"></div>
+            </div>
+        `;
+
+        const mGrid = document.getElementById('mine-grid');
+        const mScore = document.getElementById('mine-score');
+        let flags = 0;
+
+        function initM() {
+            mGrid.innerHTML = ''; flags = 0; mScore.textContent = `FLAGGED: 0`;
+            for(let i=0; i<36; i++) {
+                const b = document.createElement('button');
+                b.className = "w-12 h-12 bg-slate-950 border border-slate-800 rounded-lg text-xl font-black text-cyan-400 flex items-center justify-center hover:bg-slate-800";
+                b.textContent = "?";
+                b.addEventListener('click', () => {
+                    if(Math.random()<0.2) { b.textContent="💥"; b.className="w-12 h-12 bg-rose-500 text-black rounded-lg text-xl font-black"; }
+                    else { b.textContent="◈"; b.className="w-12 h-12 bg-emerald-500/20 text-emerald-400 border border-emerald-500 rounded-lg text-xl font-black"; flags+=10; mScore.textContent=`FLAGGED: ${flags}`; }
+                });
+                mGrid.appendChild(b);
+            }
+        } initM();
+        document.getElementById('reset-mines').addEventListener('click', initM);
+    </script>
+
+</body>
+</html>

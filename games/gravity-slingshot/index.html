@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Relivistic Space Slingshot — Elite Commercial Web Asset</title>
+    <meta name="description" content="A deep-space tactical trajectory challenge. Slingshot your exploration capsule off intense gravitational black hole wells to reach designated operational clearance targets.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6P6NPFW4FZ');
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap');
+        body { font-family: 'JetBrains+Mono', monospace; background-color: #090d16; color: #f8fafc; margin: 0; padding: 16px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; overscroll-behavior-y: contain; }
+        #game-sandbox-area { width: 100%; max-width: 900px; mx-auto; flex: 1; display: flex; flex-direction: column; justify-content: center; items-center: center; overflow: hidden; border: 2px solid #22d3ee; border-radius: 16px; box-shadow: 0 0 40px rgba(34,211,238,0.15); }
+    </style>
+</head>
+<body class="selection:bg-cyan-500 selection:text-slate-900 antialiased">
+    
+    <div id="game-sandbox-area">
+    </div>
+
+    <script>
+        const canvas = document.createElement('canvas');
+        canvas.width = 800; canvas.height = 500;
+        canvas.className = 'w-full h-full block bg-black cursor-pointer';
+        document.getElementById('game-sandbox-area').appendChild(canvas);
+
+        const ctx = canvas.getContext('2d');
+        const holes = [{x:300, y:250, mass:4000}, {x:550, y:180, mass:3000}];
+        const target = {x:720, y:400, radius:24};
+        const probe = {x:80, y:80, vx:0, vy:0, radius:10};
+        let isL = false, xp = 0;
+
+        canvas.addEventListener('click', (e) => {
+            if(isL) return;
+            const rect = canvas.getBoundingClientRect();
+            const tx = (e.clientX - rect.left)*(canvas.width/rect.width);
+            const ty = (e.clientY - rect.top)*(canvas.height/rect.height);
+            probe.vx = (tx - probe.x)*0.08; probe.vy = (ty - probe.y)*0.08;
+            isL = true;
+        });
+
+        function resetP() { probe.x=80; probe.y=80; probe.vx=0; probe.vy=0; isL=false; }
+
+        function loop() {
+            ctx.fillStyle = 'rgba(2,6,23,0.3)'; ctx.fillRect(0,0, canvas.width, canvas.height);
+
+            // Holes
+            holes.forEach(h => {
+                ctx.fillStyle = '#f43f5e'; ctx.beginPath(); ctx.arc(h.x, h.y, 25, 0, Math.PI*2); ctx.fill();
+                ctx.strokeStyle = '#fecdd3'; ctx.stroke();
+            });
+
+            // Target
+            ctx.fillStyle = '#34d399'; ctx.beginPath(); ctx.arc(target.x, target.y, target.radius, 0, Math.PI*2); ctx.fill();
+
+            if(isL) {
+                holes.forEach(h => {
+                    const dx = h.x - probe.x, dy = h.y - probe.y;
+                    const dist = Math.hypot(dx,dy);
+                    if(dist<30) { resetP(); xp=Math.max(0,xp-25); }
+                    const f = h.mass / (dist*dist);
+                    probe.vx += (dx/dist)*f; probe.vy += (dy/dist)*f;
+                });
+                probe.x += probe.vx; probe.y += probe.vy;
+                ctx.fillStyle = '#22d3ee'; ctx.beginPath(); ctx.arc(probe.x, probe.y, probe.radius, 0, Math.PI*2); ctx.fill();
+
+                if(Math.hypot(probe.x-target.x, probe.y-target.y) <= target.radius) {
+                    resetP(); xp += 150; target.x = 200+Math.random()*500; target.y = 100+Math.random()*300;
+                    if(xp%300===0 && window.parent) window.parent.postMessage({ type: "ARCADE_TRIGGER_AD", adType: "interstitial" }, "*");
+                }
+                if(probe.x<0||probe.x>canvas.width||probe.y<0||probe.y>canvas.height) resetP();
+            } else {
+                ctx.fillStyle = '#facc15'; ctx.beginPath(); ctx.arc(probe.x, probe.y, probe.radius, 0, Math.PI*2); ctx.fill();
+            }
+
+            // HUD
+            ctx.fillStyle = '#22d3ee'; ctx.font = 'bold 16px monospace';
+            ctx.fillText(`OPERATIONAL SLINGSHOTS // XP SCORE: ${xp}`, 20, 30);
+            ctx.fillText(`◈ TAP ANYWHERE TO SLINGSHOT EXPLORATION CAPSULE ◈`, 20, canvas.height - 20);
+
+            requestAnimationFrame(loop);
+        }
+        loop();
+    </script>
+
+</body>
+</html>

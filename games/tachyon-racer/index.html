@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Tachyon Hyper-Speed Interceptor — Elite Commercial Web Asset</title>
+    <meta name="description" content="Pure speed reflex override loop. Pilot a supersonic craft along a highly volatile, split-second shifting obstacle path.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6P6NPFW4FZ');
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap');
+        body { font-family: 'JetBrains+Mono', monospace; background-color: #090d16; color: #f8fafc; margin: 0; padding: 16px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; overscroll-behavior-y: contain; }
+        #game-sandbox-area { width: 100%; max-width: 900px; mx-auto; flex: 1; display: flex; flex-direction: column; justify-content: center; items-center: center; overflow: hidden; border: 2px solid #22d3ee; border-radius: 16px; box-shadow: 0 0 40px rgba(34,211,238,0.15); }
+    </style>
+</head>
+<body class="selection:bg-cyan-500 selection:text-slate-900 antialiased">
+    
+    <div id="game-sandbox-area">
+    </div>
+
+    <script>
+        const canvas = document.createElement('canvas');
+        canvas.width = 800; canvas.height = 500;
+        canvas.className = 'w-full h-full block bg-slate-950 cursor-none';
+        document.getElementById('game-sandbox-area').appendChild(canvas);
+
+        const ctx = canvas.getContext('2d');
+        let px = 400, score = 0, speed = 8;
+        let obstacles = [];
+
+        window.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            px = (e.clientX - rect.left)*(canvas.width/rect.width);
+        });
+
+        function makeO() {
+            obstacles = [];
+            for(let i=0; i<8; i++) obstacles.push({ y: -i*180, x: Math.random()*(canvas.width-120), width: 120 });
+        }
+        makeO();
+
+        function loop() {
+            ctx.fillStyle = '#020617'; ctx.fillRect(0,0, canvas.width, canvas.height);
+
+            // Process obstacles
+            for(let i=obstacles.length-1; i>=0; i--) {
+                const ob = obstacles[i];
+                ob.y += speed;
+
+                if(ob.y >= canvas.height - 50 && ob.y <= canvas.height - 20) {
+                    if(px >= ob.x && px <= ob.x+ob.width) {
+                        score = Math.max(0, score - 50); makeO();
+                        if(window.parent) window.parent.postMessage({ type: "ARCADE_TRIGGER_AD", adType: "interstitial" }, "*");
+                        break;
+                    }
+                }
+
+                if(ob.y > canvas.height) { ob.y = -200; ob.x = Math.random()*(canvas.width-120); score += 10; }
+
+                ctx.fillStyle = '#f43f5e'; ctx.fillRect(ob.x, ob.y, ob.width, 24);
+                ctx.strokeStyle = '#fecdd3'; ctx.strokeRect(ob.x, ob.y, ob.width, 24);
+            }
+
+            // Draw player
+            ctx.fillStyle = '#22d3ee'; ctx.beginPath(); ctx.arc(px, canvas.height - 35, 18, 0, Math.PI*2); ctx.fill();
+
+            // HUD
+            ctx.fillStyle = '#facc15'; ctx.font = 'bold 16px monospace';
+            ctx.fillText(`HYPER-SPEED DISTANCE: ${score} // VELOCITY: ${speed}x`, 20, 30);
+            ctx.fillText(`◈ SLIDE MOUSE TO DODGE TACHYON CORRIDOR BARRIERS ◈`, 20, canvas.height - 20);
+
+            requestAnimationFrame(loop);
+        }
+        loop();
+    </script>
+
+</body>
+</html>

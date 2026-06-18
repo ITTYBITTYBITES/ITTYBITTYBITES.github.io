@@ -89,10 +89,35 @@
         <!-- MAIN VIEWPORT Theater -->
         <main class="flex-1 bg-slate-900/20 p-3 sm:p-6 lg:p-8 flex flex-col overflow-y-auto custom-scrollbar relative min-h-[600px]">
             
-            <!-- VIEW 1: Netflix-style Browse Grid (Pushed Above Fold, 2-Column Mobile) -->
-            <div id="browse-grid-theater" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 font-mono">
-                <!-- Dynamic populated via portal.js -->
+            <!-- VIEW 1: Commercial Multi-Grid Browse Hub -->
+            <div id="browse-hub-container" class="space-y-12 font-mono">
+                
+                <!-- THEATER A: Complex 3D & Tactical Strategy Releases -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3 border-b border-slate-800 pb-3">
+                        <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
+                        <h2 class="font-bold text-base sm:text-xl text-white tracking-wider font-['Orbitron'] uppercase">Recent Complex 3D & Tactical Strategy</h2>
+                        <span class="text-xs text-cyan-400 font-bold ml-auto tracking-widest hidden sm:inline">[ Elite Tier ]</span>
+                    </div>
+                    <div id="complex-games-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 font-mono">
+                        <!-- Dynamic populated via portal.js -->
+                    </div>
+                </div>
+
+                <!-- THEATER B: Classics & Mainstream Retro Hits -->
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3 border-b border-slate-800 pb-3">
+                        <span class="w-2.5 h-2.5 rounded-full bg-gold animate-bounce"></span>
+                        <h2 class="font-bold text-base sm:text-xl text-white tracking-wider font-['Orbitron'] uppercase">Classics & Mainstream Retro Arcade</h2>
+                        <span class="text-xs text-gold font-bold ml-auto tracking-widest hidden sm:inline">[ Addictive Hits ]</span>
+                    </div>
+                    <div id="retro-classics-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 font-mono">
+                        <!-- Dynamic populated via portal.js -->
+                    </div>
+                </div>
+
             </div>
+            <div id="browse-grid-theater" class="hidden"></div>
 
             <!-- VIEW 2: Secure Game Execution Theater (Initially Hidden) -->
             <div id="game-theater" style="height: 100dvh; width: 100vw; overscroll-behavior-y: contain;" class="hidden fixed inset-0 z-50 bg-black flex flex-col justify-between overflow-hidden p-0 font-mono">

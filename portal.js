@@ -27,7 +27,10 @@ class ArcadePortalEngine {
     }
 
     initDOMAnchors() {
-        this.gridTheater = document.getElementById('browse-grid-theater');
+        this.browseHub = document.getElementById('browse-hub-container');
+        this.complexGrid = document.getElementById('complex-games-grid');
+        this.retroGrid = document.getElementById('retro-classics-grid');
+        this.gridTheater = document.getElementById('browse-grid-theater'); // Fallback
         this.gameTheater = document.getElementById('game-theater');
         this.gameIframe = document.getElementById('secure-game-frame');
         this.gameTitleEl = document.getElementById('active-game-title');
@@ -40,12 +43,6 @@ class ArcadePortalEngine {
         this.adModal = document.getElementById('ad-simulation-modal');
         this.adNetLabel = document.getElementById('ad-network-identifier');
         this.adCountdownEl = document.getElementById('ad-countdown-ticker');
-
-        // Consent UI Anchors
-        this.consentCheckbox = document.getElementById('telemetry-consent-checkbox');
-        if (this.consentCheckbox) {
-            this.consentCheckbox.checked = this.telemetryConsent;
-        }
     }
 
     bindEvents() {
@@ -119,9 +116,45 @@ class ArcadePortalEngine {
         });
     }
 
+    createGameCardDOM(game) {
+        const card = document.createElement('div');
+        card.className = "bg-slate-950/80 border-2 border-slate-800/80 rounded-2xl overflow-hidden hover:border-cyan-400 transition-all group flex flex-col justify-between cursor-pointer shadow-2xl hover:shadow-cyan-400/10 font-mono";
+        
+        const svgPlaceholder = `data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='600' height='375' viewBox='0 0 600 375'><rect width='600' height='375' fill='%230f172a'/><circle cx='300' cy='187' r='80' fill='%2322d3ee' opacity='0.15'/><path d='M300 137l50 86h-100z' fill='%2322d3ee' opacity='0.4'/><text x='300' y='295' font-family='monospace' font-size='16' font-weight='bold' fill='%2364748b' text-anchor='middle'>◈ ${game.id.toUpperCase()} ◈</text></svg>`;
+
+        card.innerHTML = `
+            <div>
+                <div class="relative aspect-[16/10] bg-slate-900 overflow-hidden border-b border-slate-800">
+                    <img 
+                        src="${game.thumbnail_url || svgPlaceholder}" 
+                        onerror="this.onerror=null; this.src='${svgPlaceholder}';" 
+                        alt="${game.title}" 
+                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 block">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+                    <span class="absolute bottom-2 left-2 sm:bottom-3 sm:left-3.5 text-[9px] sm:text-[10px] font-mono tracking-widest font-black px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-md bg-cyan-400/15 text-cyan-400 border border-cyan-400/30 uppercase truncate max-w-[130px] sm:max-w-none">◈ ${game.category}</span>
+                </div>
+                <div class="p-3 sm:p-6 font-mono">
+                    <span class="text-[9px] sm:text-[10px] font-mono font-bold text-slate-500 uppercase tracking-widest block">${game.id}</span>
+                    <h3 class="font-display font-black text-xs sm:text-lg text-white mt-1 sm:mt-1.5 tracking-tight group-hover:text-cyan-400 transition-colors line-clamp-1 sm:line-clamp-none">${game.title}</h3>
+                    <p class="font-mono text-xs text-slate-400 mt-2.5 line-clamp-3 leading-relaxed hidden sm:block">${game.description}</p>
+                </div>
+            </div>
+            <div class="px-3 sm:px-6 pb-3 sm:pb-6 pt-2 flex items-center justify-between border-t border-slate-900/80 mt-1 sm:mt-2 font-mono text-[10px] sm:text-xs">
+                <span class="text-emerald-400 font-bold uppercase tracking-wider flex items-center gap-1.5"><span class="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-emerald-400 animate-pulse"></span> <span class="hidden sm:inline">Sandbox Secure</span><span class="sm:hidden">SECURE</span></span>
+                <span class="font-black text-cyan-400 group-hover:translate-x-1 sm:group-hover:translate-x-1.5 transition-transform tracking-widest uppercase font-mono">PLAY &rarr;</span>
+            </div>
+        `;
+
+        card.addEventListener('click', () => {
+            window.location.hash = `/play/${game.id}`;
+        });
+        return card;
+    }
+
     renderBrowseGrid() {
-        if (!this.gridTheater) return;
-        this.gridTheater.innerHTML = '';
+        if (this.gridTheater) this.gridTheater.innerHTML = '';
+        if (this.complexGrid) this.complexGrid.innerHTML = '';
+        if (this.retroGrid) this.retroGrid.innerHTML = '';
 
         const filtered = this.activeCategory === 'ALL' 
             ? this.gamesRegistry 
@@ -161,8 +194,23 @@ class ArcadePortalEngine {
                 window.location.hash = `/play/${game.id}`;
             });
 
-            this.gridTheater.appendChild(card);
+            if (game.category === 'Classics & Mainstream Retro' && this.retroGrid) {
+                this.retroGrid.appendChild(card);
+            } else if (this.complexGrid) {
+                this.complexGrid.appendChild(card);
+            } else if (this.gridTheater) {
+                this.gridTheater.appendChild(card);
+            }
         });
+
+        if (this.complexGrid) {
+            const sec = this.complexGrid.closest('.space-y-4');
+            if (sec) sec.style.display = this.complexGrid.children.length === 0 ? 'none' : '';
+        }
+        if (this.retroGrid) {
+            const sec = this.retroGrid.closest('.space-y-4');
+            if (sec) sec.style.display = this.retroGrid.children.length === 0 ? 'none' : '';
+        }
     }
 
     handleRoutingState() {
@@ -192,6 +240,7 @@ class ArcadePortalEngine {
         if (this.gameTheater) this.gameTheater.classList.add('hidden');
         const aside = document.querySelector('aside');
         if (aside) aside.classList.remove('hidden');
+        if (this.browseHub) this.browseHub.classList.remove('hidden');
         if (this.gridTheater) this.gridTheater.classList.remove('hidden');
 
         this.renderBrowseGrid();
@@ -202,6 +251,7 @@ class ArcadePortalEngine {
         document.body.style.overflow = 'hidden'; // Kill double scrollbars and lock parent scroll
         this.activeGame = game;
 
+        if (this.browseHub) this.browseHub.classList.add('hidden');
         if (this.gridTheater) this.gridTheater.classList.add('hidden');
         const aside = document.querySelector('aside');
         if (aside) aside.classList.add('hidden'); // Isolate platform viewport completely

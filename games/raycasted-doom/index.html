@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Raycasted 3D Doom Labyrinth — Elite Commercial Web Asset</title>
+    <meta name="description" content="A 3D pseudo-perspective tactical labyrinth game. Enforces classic raycasting distance vector formulas to render an ultra-smooth, high-frame-rate immersive 3D execution environment.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6P6NPFW4FZ');
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap');
+        body { font-family: 'JetBrains+Mono', monospace; background-color: #090d16; color: #f8fafc; margin: 0; padding: 16px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; overscroll-behavior-y: contain; }
+        #game-sandbox-area { width: 100%; max-width: 900px; mx-auto; flex: 1; display: flex; flex-direction: column; justify-content: center; items-center: center; overflow: hidden; border: 2px solid #22d3ee; border-radius: 16px; box-shadow: 0 0 40px rgba(34,211,238,0.15); }
+    </style>
+</head>
+<body class="selection:bg-cyan-500 selection:text-slate-900 antialiased">
+    
+    <div id="game-sandbox-area">
+    </div>
+
+    <script>
+        const canvas = document.createElement('canvas');
+        canvas.width = 800; canvas.height = 500;
+        canvas.className = 'w-full h-full block bg-black cursor-crosshair';
+        document.getElementById('game-sandbox-area').appendChild(canvas);
+
+        const ctx = canvas.getContext('2d');
+        const map = [
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+            [1,0,0,0,0,0,1,0,0,0,0,0,0,3,1],
+            [1,0,1,1,0,1,1,0,1,1,1,1,0,0,1],
+            [1,0,1,0,0,0,0,0,0,0,0,1,1,0,1],
+            [1,0,1,0,1,1,1,1,1,0,0,0,1,0,1],
+            [1,0,0,0,1,2,0,0,1,0,1,0,0,0,1],
+            [1,0,1,0,1,0,0,0,1,0,1,1,1,0,1],
+            [1,0,1,0,1,1,1,1,1,0,0,0,1,0,1],
+            [1,0,1,0,0,0,0,0,0,0,1,0,1,0,1],
+            [1,0,1,1,1,1,0,1,1,1,1,0,0,0,1],
+            [1,0,0,0,0,0,0,1,0,0,0,0,1,0,1],
+            [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+        ];
+
+        let px = 1.5, py = 1.5, pa = 0;
+        let score = 0, lvl = 1, isOver = false;
+        const keys = { left:false, right:false, up:false, down:false };
+
+        window.addEventListener('keydown', (e) => {
+            if(e.key==='ArrowLeft'||e.key==='a') keys.left = true;
+            if(e.key==='ArrowRight'||e.key==='d') keys.right = true;
+            if(e.key==='ArrowUp'||e.key==='w') keys.up = true;
+            if(e.key==='ArrowDown'||e.key==='s') keys.down = true;
+        });
+        window.addEventListener('keyup', (e) => {
+            if(e.key==='ArrowLeft'||e.key==='a') keys.left = false;
+            if(e.key==='ArrowRight'||e.key==='d') keys.right = false;
+            if(e.key==='ArrowUp'||e.key==='w') keys.up = false;
+            if(e.key==='ArrowDown'||e.key==='s') keys.down = false;
+        });
+
+        function loop() {
+            if(isOver) return;
+            
+            // Physics
+            if(keys.left) pa -= 0.06;
+            if(keys.right) pa += 0.06;
+            const moveStep = 0.05;
+            let nx = px, ny = py;
+            if(keys.up) { nx += Math.cos(pa)*moveStep; ny += Math.sin(pa)*moveStep; }
+            if(keys.down) { nx -= Math.cos(pa)*moveStep; ny -= Math.sin(pa)*moveStep; }
+
+            if(map[Math.floor(py)][Math.floor(nx)] === 0 || map[Math.floor(py)][Math.floor(nx)] > 1) px = nx;
+            if(map[Math.floor(ny)][Math.floor(px)] === 0 || map[Math.floor(ny)][Math.floor(px)] > 1) py = ny;
+
+            // Resolve items
+            const currTile = map[Math.floor(py)][Math.floor(px)];
+            if(currTile === 2) {
+                score += 250; map[Math.floor(py)][Math.floor(px)] = 0;
+            } else if(currTile === 3) {
+                lvl++; px = 1.5; py = 1.5; score += 500;
+                if(window.parent) window.parent.postMessage({ type: "ARCADE_TRIGGER_AD", adType: "interstitial" }, "*");
+            }
+
+            // Raycasting Render
+            ctx.fillStyle = '#090d16'; ctx.fillRect(0,0, canvas.width, canvas.height/2);
+            ctx.fillStyle = '#020617'; ctx.fillRect(0,canvas.height/2, canvas.width, canvas.height/2);
+
+            const fov = Math.PI/3;
+            const numRays = canvas.width;
+            for(let i=0; i<numRays; i++) {
+                const rayAng = pa - fov/2 + (i/numRays)*fov;
+                let dist = 0, hitTile = 0;
+                let rx = px, ry = py;
+                const rCos = Math.cos(rayAng), rSin = Math.sin(rayAng);
+
+                while(dist < 16) {
+                    dist += 0.05; rx = px + rCos*dist; ry = py + rSin*dist;
+                    if(rx<0||rx>=map[0].length||ry<0||ry>=map.length) { hitTile=1; break; }
+                    if(map[Math.floor(ry)][Math.floor(rx)] === 1) { hitTile=1; break; }
+                    if(map[Math.floor(ry)][Math.floor(rx)] === 3) { hitTile=3; break; }
+                }
+
+                const correctedDist = dist * Math.cos(rayAng - pa);
+                const wallH = Math.min(canvas.height, (canvas.height / correctedDist));
+                const wallY = (canvas.height - wallH)/2;
+
+                const cFactor = Math.max(0.1, 1 - dist/12);
+                if(hitTile===3) ctx.fillStyle = `rgba(34,211,238,${cFactor})`;
+                else ctx.fillStyle = `rgba(30,41,59,${cFactor})`;
+
+                ctx.fillRect(i, wallY, 1, wallH);
+            }
+
+            // HUD
+            ctx.fillStyle = '#facc15'; ctx.font = 'bold 16px monospace';
+            ctx.fillText(`LABYRINTH DEPTH: ${lvl} // TACTICAL SCORE: ${score}`, 20, 30);
+            ctx.fillText(`◈ HOLD [W]/[S] TO ADVANCE // [A]/[D] TO ROTATE ◈`, 20, canvas.height - 20);
+
+            requestAnimationFrame(loop);
+        }
+        loop();
+    </script>
+
+</body>
+</html>

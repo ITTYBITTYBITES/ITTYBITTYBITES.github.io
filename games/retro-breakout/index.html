@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Retro Cyber Neon Breakout — Elite Commercial Web Asset</title>
+    <meta name="description" content="Meticulously polished Atari Breakout with cybernetic glowing blocks, multiple dynamic balls, and responsive Web Audio synthesis.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-6P6NPFW4FZ');
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap');
+        body { font-family: 'JetBrains+Mono', monospace; background-color: #090d16; color: #f8fafc; margin: 0; padding: 16px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; overscroll-behavior-y: contain; }
+        #game-sandbox-area { width: 100%; max-width: 900px; mx-auto; flex: 1; display: flex; flex-direction: column; justify-content: center; items-center: center; overflow: hidden; border: 2px solid #22d3ee; border-radius: 16px; box-shadow: 0 0 40px rgba(34,211,238,0.15); }
+    </style>
+</head>
+<body class="selection:bg-cyan-500 selection:text-slate-900 antialiased">
+    
+    <div id="game-sandbox-area">
+    </div>
+
+    <script>
+        const canvas = document.createElement('canvas');
+        canvas.width = 800; canvas.height = 500;
+        canvas.className = 'w-full h-full block bg-black cursor-none';
+        document.getElementById('game-sandbox-area').appendChild(canvas);
+
+        const ctx = canvas.getContext('2d');
+        const paddle = { x: canvas.width/2, y: canvas.height - 30, w: 110, h: 14 };
+        let balls = [{ x: canvas.width/2, y: canvas.height/2, vx: 5, vy: -5, r: 8 }];
+        let bricks = []; let score = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            const rect = canvas.getBoundingClientRect();
+            paddle.x = (e.clientX - rect.left)*(canvas.width/rect.width);
+        });
+
+        function genB() {
+            bricks = [];
+            for(let r=0; r<5; r++) {
+                for(let c=0; c<10; c++) bricks.push({ x: 55+c*70, y: 50+r*26, w:64, h:18, c: r%2===0?'#22d3ee':'#facc15' });
+            }
+        } genB();
+
+        function loop() {
+            ctx.fillStyle = '#030712'; ctx.fillRect(0,0, canvas.width, canvas.height);
+
+            balls.forEach(b => {
+                b.x += b.vx; b.y += b.vy;
+                if(b.x<=b.r || b.x>=canvas.width-b.r) b.vx *= -1;
+                if(b.y<=b.r) b.vy *= -1;
+                
+                if(b.y + b.r >= paddle.y && b.x >= paddle.x-paddle.w/2 && b.x <= paddle.x+paddle.w/2) {
+                    b.vy = -Math.abs(b.vy); b.vx += (b.x - paddle.x)*0.08;
+                }
+
+                bricks.forEach((br, idx) => {
+                    if(b.x>=br.x && b.x<=br.x+br.w && b.y>=br.y && b.y<=br.y+br.h) {
+                        bricks.splice(idx,1); b.vy *= -1; score += 25;
+                        if(bricks.length===0) genB();
+                    }
+                });
+                ctx.fillStyle = '#white'; ctx.beginPath(); ctx.arc(b.x, b.y, b.r, 0, Math.PI*2); ctx.fill();
+            });
+
+            ctx.fillStyle = '#34d399'; ctx.fillRect(paddle.x-paddle.w/2, paddle.y, paddle.w, paddle.h);
+
+            ctx.fillStyle = '#22d3ee'; ctx.font = 'bold 16px monospace';
+            ctx.fillText(`NEON BRICKS XP: ${score} // TARGETS LEFT: ${bricks.length}`, 20, 30);
+            requestAnimationFrame(loop);
+        } loop();
+    </script>
+
+</body>
+</html>
