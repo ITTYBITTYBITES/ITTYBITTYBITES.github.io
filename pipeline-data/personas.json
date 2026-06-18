@@ -1224,6 +1224,40 @@
       "universe": "frontier",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T15:36:35.212Z"
+    },
+    {
+      "slug": "supervisory-police-officers",
+      "name": "Supervisory Police Officers",
+      "description": "Supervisory Police Officers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "police-officers",
+        "supervisory",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "frontier",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T16:22:06.848Z"
+    },
+    {
+      "slug": "sleep-deprived-police-officers",
+      "name": "Sleep-Deprived Police Officers",
+      "description": "Sleep-Deprived Police Officers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "police-officers",
+        "sleep-deprived",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "frontier",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T16:22:06.848Z"
     }
   ]
 }
