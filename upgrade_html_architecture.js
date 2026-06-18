@@ -20,10 +20,10 @@ const FILES_TO_UPGRADE = [
 
 const MASTER_NAV_CONFIG = [
   { id: 'index', label: 'HQ', matchFiles: ['index.html'] },
-  { id: 'arcade', label: 'ARCADE', matchFiles: ['arcade.html'] },
-  { id: 'matrix', label: 'MATRIX', matchFiles: [] }, // Links to intel/index.html
-  { id: 'feed', label: 'FEEDS', matchFiles: ['feed.html'] },
-  { id: 'library', label: 'LOCKER', matchFiles: ['library.html'] }
+  { id: 'arcade', label: 'TACTICAL ARCADE', matchFiles: ['arcade.html'] },
+  { id: 'matrix', label: 'INTEL MATRIX', matchFiles: [] }, // Links to intel/index.html
+  { id: 'feed', label: 'INTEL FEED', matchFiles: ['feed.html'] },
+  { id: 'library', label: 'GEAR LOCKER', matchFiles: ['library.html'] }
 ];
 
 function buildGlobalNav(activeFilename, prefix = '') {

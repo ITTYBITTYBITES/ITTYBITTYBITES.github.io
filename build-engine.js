@@ -731,10 +731,10 @@ body::before { content: ''; position: fixed; inset: 0; background: linear-gradie
 <nav class="bg-slate-950 border-b border-cyan-400/20 py-3 sticky top-0 z-50 backdrop-blur-md shadow-2xl select-none font-mono">
   <div class="max-w-[1200px] mx-auto px-4 flex justify-center gap-2 sm:gap-4 flex-wrap items-center font-bold">
     <a href="../index.html" class="nav-node">HQ</a>
-    <a href="../arcade.html" class="nav-node">ARCADE</a>
-    <a href="./" class="nav-node" style="color:var(--cyan);border-color:var(--cyan)">MATRIX</a>
-    <a href="../feed.html" class="nav-node">FEEDS</a>
-    <a href="../library.html" class="nav-node">LOCKER</a>
+    <a href="../arcade.html" class="nav-node">TACTICAL ARCADE</a>
+    <a href="./" class="nav-node" style="color:var(--cyan);border-color:var(--cyan)">INTEL MATRIX</a>
+    <a href="../feed.html" class="nav-node">INTEL FEED</a>
+    <a href="../library.html" class="nav-node">GEAR LOCKER</a>
   </div>
 </nav>
 <section class="relative min-h-[35vh] flex flex-col justify-center items-center py-16 bg-zinc-950">
@@ -881,23 +881,24 @@ function generateIntelHub(topics, personas, intelPages) {
 <title>Intel Matrix | The 2-Second Witness</title>
 <meta name="description" content="Programmatic cognitive training protocol matrix — ${intelPages.length} pages across ${topics.length} topics and ${personas.length} personas. Auto-generated ${CONFIG.buildTimestamp}.">
 <link rel="canonical" href="${BASE_URL}/intel/">
-<link href="https://cdn.tailwindcss.com">
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
 <style>
-:root { --bg: #020617; --cyan: #22d3ee; --emerald: #34d399; --gold: #facc15; --border: rgba(34,211,238,0.12); }
+:root { --bg: #020617; --cyan: #22d3ee; --emerald: #34d399; --gold: #facc15; --border: rgba(34,211,238,0.15); }
 body::before { content: ''; position: fixed; inset: 0; background: linear-gradient(rgba(34,211,238,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: -1; }
-.nav-node { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 12px; border: 1px solid var(--border); color: #94a3b8; transition: all 0.2s ease; }
-.nav-node:hover { color: var(--cyan); border-color: var(--cyan); }
+.nav-node { font-size: 13px; font-family: 'Orbitron', sans-serif; font-weight: 900; letter-spacing: 1.5px; text-transform: uppercase; padding: 8px 18px; border: 1px solid #1e293b; border-radius: 8px; color: #94a3b8; transition: all 0.2s ease; text-decoration: none; display: inline-block; background: #0b0f19; box-shadow: 0 4px 10px rgba(0,0,0,0.3); }
+.nav-node:hover { color: #22d3ee; border-color: #22d3ee; background: rgba(34,211,238,0.1); transform: translateY(-1px); }
+.nav-node.active { color: #22d3ee; border-color: #22d3ee; font-weight: 900; background: rgba(34,211,238,0.15); box-shadow: 0 0 20px rgba(34,211,238,0.4); }
 </style>
 </head>
 <body class="bg-slate-950 text-slate-50 font-mono antialiased">
 <nav class="bg-slate-950 border-b border-cyan-400/20 py-3 sticky top-0 z-50 backdrop-blur-md shadow-2xl select-none font-mono">
   <div class="max-w-[1200px] mx-auto px-4 flex justify-center gap-2 sm:gap-4 flex-wrap items-center font-bold">
     <a href="../index.html" class="nav-node">HQ</a>
-    <a href="../arcade.html" class="nav-node">ARCADE</a>
-    <a href="./" class="nav-node active" style="color:var(--cyan);border-color:var(--cyan)">MATRIX</a>
-    <a href="../feed.html" class="nav-node">FEEDS</a>
-    <a href="../library.html" class="nav-node">LOCKER</a>
+    <a href="../arcade.html" class="nav-node">TACTICAL ARCADE</a>
+    <a href="./" class="nav-node active" style="color:var(--cyan);border-color:var(--cyan)">INTEL MATRIX</a>
+    <a href="../feed.html" class="nav-node">INTEL FEED</a>
+    <a href="../library.html" class="nav-node">GEAR LOCKER</a>
   </div>
 </nav>
 <section class="py-16 text-center bg-zinc-950">
