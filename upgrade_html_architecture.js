@@ -15,7 +15,8 @@ const FILES_TO_UPGRADE = [
   'food-safety.html', 'how-doctors-think.html', 'index.html', 'library.html',
   'logical-fallacies.html', 'pattern-recognition.html', 'priming-effect.html',
   'privacy_policy.html', 'rapid-thinking.html', 'social-engineering.html',
-  'stroop-effect.html', 'survival-skills.html'
+  'stroop-effect.html', 'survival-skills.html', 'terms_of_service.html',
+  'about.html', 'contact.html'
 ];
 
 const MASTER_NAV_CONFIG = [
@@ -138,9 +139,11 @@ const GLOBAL_FOOTER = `
 
         <div class="max-w-[1400px] mx-auto text-center text-xs text-slate-500 tracking-widest uppercase flex flex-col sm:flex-row items-center justify-between gap-6 font-mono font-bold">
             <div class="text-slate-400">© 2026 ITTY BITTY BITES // CLASSIFIED COGNITIVE TRAINING DIVISION</div>
-            <div class="flex flex-wrap justify-center gap-6 text-slate-400">
+            <div class="flex flex-wrap justify-center gap-6 text-slate-400 font-mono">
                 <a href="privacy_policy.html" class="hover:text-cyan-400 transition-colors">Privacy Policy</a>
                 <a href="terms_of_service.html" class="hover:text-cyan-400 transition-colors">Terms of Service</a>
+                <a href="about.html" class="hover:text-cyan-400 transition-colors">About Us</a>
+                <a href="contact.html" class="hover:text-cyan-400 transition-colors">Contact Us</a>
                 <a href="sitemap.xml" class="hover:text-cyan-400 transition-colors">Sitemap XML</a>
                 <a href="feed.html" class="hover:text-cyan-400 transition-colors">RSS Database</a>
             </div>
@@ -153,7 +156,7 @@ FILES_TO_UPGRADE.forEach(filename => {
 
   let content = fs.readFileSync(filePath, 'utf-8');
 
-  if (['arcade.html', 'index.html', 'feed.html', 'library.html'].includes(filename)) {
+  if (['arcade.html', 'index.html', 'feed.html', 'library.html', 'about.html', 'contact.html', 'terms_of_service.html'].includes(filename)) {
     const freshNav = buildGlobalNav(filename, '');
     content = content.replace(/<!-- GLOBAL UNIFIED TACTICAL NAVIGATION -->[\s\S]*?<\/nav>/i, freshNav);
     content = content.replace(/<nav class="bg-slate-950[^>]*>[\s\S]*?<\/nav>/i, freshNav);
