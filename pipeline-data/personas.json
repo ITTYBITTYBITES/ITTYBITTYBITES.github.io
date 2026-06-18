@@ -1122,6 +1122,40 @@
       "universe": "frontier",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T15:15:17.176Z"
+    },
+    {
+      "slug": "time-critical-pilots",
+      "name": "Time-Critical Pilots",
+      "description": "Time-Critical Pilots — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "pilots",
+        "time-critical",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "frontier",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T15:23:42.000Z"
+    },
+    {
+      "slug": "decentralized-pilots",
+      "name": "Decentralized Pilots",
+      "description": "Decentralized Pilots — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "pilots",
+        "decentralized",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "frontier",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T15:23:42.000Z"
     }
   ]
 }
