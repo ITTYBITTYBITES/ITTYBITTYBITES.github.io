@@ -1190,6 +1190,40 @@
       "universe": "frontier",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T15:32:14.592Z"
+    },
+    {
+      "slug": "senior-police-officers",
+      "name": "Senior Police Officers",
+      "description": "Senior Police Officers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "police-officers",
+        "senior",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "frontier",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T15:36:35.212Z"
+    },
+    {
+      "slug": "junior-police-officers",
+      "name": "Junior Police Officers",
+      "description": "Junior Police Officers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "police-officers",
+        "junior",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "frontier",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T15:36:35.212Z"
     }
   ]
 }
