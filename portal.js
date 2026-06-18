@@ -222,10 +222,36 @@ class ArcadePortalEngine {
             this.gameIframe.src = game.directory_path;
         }
 
+        // Execute Automated Background Adsterra Prefetching Engine
+        this.executeBackgroundAdPrefetch();
+
         if (this.gameTheater) {
             this.gameTheater.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
         this.notifyPlayerStatus(`Mounted Secure Operative Sandbox: ${game.id}`);
+    }
+
+    executeBackgroundAdPrefetch() {
+        const adsterraDirectLinkUrl = "https://www.highperformancecpmgate.com/example"; // Replace with your exact Adsterra Direct Link
+        console.log("⚡ [Adsterra Engine] Initiating automated background prefetching engine to warm Adsterra Direct Link endpoints...");
+        
+        // 1. Inject DOM prefetch link
+        let existingPrefetch = document.getElementById('adsterra-prefetch-node');
+        if (!existingPrefetch) {
+            existingPrefetch = document.createElement('link');
+            existingPrefetch.id = 'adsterra-prefetch-node';
+            existingPrefetch.rel = 'prefetch';
+            existingPrefetch.href = adsterraDirectLinkUrl;
+            document.head.appendChild(existingPrefetch);
+        } else {
+            existingPrefetch.href = adsterraDirectLinkUrl;
+        }
+
+        // 2. Perform non-blocking background connection pre-warm ping
+        fetch(adsterraDirectLinkUrl, {
+            mode: 'no-cors',
+            cache: 'force-cache'
+        }).catch(() => {});
     }
 
     toggleTheaterScaling() {
