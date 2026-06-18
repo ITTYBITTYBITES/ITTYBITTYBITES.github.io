@@ -17,8 +17,8 @@ class ArcadePortalEngine {
         this.globalAdCooldownMs = 180000; // 3 Minutes strict Global Ad Cooldown
         this.lastAdExecutedTime = 0;
         
-        // Master Adsterra Smartlink Gateway with User ID 29686619
-        this.adsterraSmartlinkUrl = "https://www.profitablecpmrate.com/29686619"; // Formatted for Adsterra Smartlink_1 (ID 29686619)
+        // Master Adsterra Smartlink Gateway with Anti-Adblock Encrypted Proxy
+        this.adsterraSmartlinkUrl = "https://undergocutlery.com/q9gfrv2v8?key=2cd3374e4c6ba143d74108a029fb0dd5"; // Formatted for Popunder Smartlink_1 (ID 3317235)
 
         this.initDOMAnchors();
         this.bindEvents();
