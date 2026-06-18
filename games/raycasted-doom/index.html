@@ -17,7 +17,7 @@
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap');
         body, html { overscroll-behavior: none; touch-action: none; -webkit-touch-callout: none; }
         body { font-family: 'JetBrains+Mono', monospace; background-color: #090d16; color: #f8fafc; margin: 0; padding: 16px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; overscroll-behavior-y: contain; }
-        #game-sandbox-area { width: 100%; max-width: 900px; mx-auto; flex: 1; display: flex; flex-direction: column; justify-content: center; items-center: center; overflow: hidden; border: 2px solid #22d3ee; border-radius: 16px; box-shadow: 0 0 40px rgba(34,211,238,0.15); }
+        #game-sandbox-area { position: relative; width: 100%; max-width: 900px; mx-auto; flex: 1; display: flex; flex-direction: column; justify-content: center; items-center: center; overflow: hidden; border: 2px solid #22d3ee; border-radius: 16px; box-shadow: 0 0 40px rgba(34,211,238,0.15); }
     </style>
 </head>
 <body class="selection:bg-cyan-500 selection:text-slate-900 antialiased">
@@ -27,17 +27,18 @@
 
     <script>
         const canvas = document.createElement('canvas');
-        canvas.width = 800; canvas.height = 500;
-        canvas.className = 'w-full h-full block bg-black cursor-crosshair';
+        const logicalWidth = 800; const logicalHeight = 500;
+        canvas.width = logicalWidth; canvas.height = logicalHeight;
+        canvas.className = 'w-full block bg-black cursor-crosshair';
+        canvas.style.aspectRatio = '16 / 10';
+        canvas.style.objectFit = 'cover';
         document.getElementById('game-sandbox-area').appendChild(canvas);
 
         const ctx = canvas.getContext('2d');
         // DevicePixelRatio Retina Scaling Correction
         const dpr = window.devicePixelRatio || 1;
-        canvas.style.width = `${canvas.width}px`;
-        canvas.style.height = `${canvas.height}px`;
-        canvas.width *= dpr;
-        canvas.height *= dpr;
+        canvas.width = logicalWidth * dpr;
+        canvas.height = logicalHeight * dpr;
         ctx.scale(dpr, dpr);
         const map = [
             [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
@@ -61,14 +62,21 @@
         // Mobile On-Screen Controls Overlay
         const dpad = document.createElement('div');
         dpad.className = 'absolute bottom-4 left-4 right-4 flex justify-between select-none z-50 font-mono';
-        dpad.innerHTML = `<div class='flex gap-2'><button id='btn-up' class='px-6 py-4 bg-slate-900/80 border-2 border-cyan-400 text-cyan-400 font-black rounded-xl text-lg active:bg-cyan-400 active:text-black'>▲ ADVANCE</button></div><div class='flex gap-2'><button id='btn-l' class='px-5 py-4 bg-slate-900/80 border-2 border-gold text-gold font-black rounded-xl text-lg active:bg-gold active:text-black'>◀ ROTATE</button><button id='btn-r' class='px-5 py-4 bg-slate-900/80 border-2 border-gold text-gold font-black rounded-xl text-lg active:bg-gold active:text-black'>ROTATE ▶</button></div>`;
+        dpad.innerHTML = `<div class='flex gap-1 sm:gap-2'><button id='btn-up' class='px-3 py-3 sm:px-6 sm:py-4 bg-slate-900/85 border-2 border-cyan-400 text-cyan-400 font-black rounded-xl text-xs sm:text-lg active:bg-cyan-400 active:text-black'>▲ ADV</button><button id='btn-down' class='px-3 py-3 sm:px-6 sm:py-4 bg-slate-900/85 border-2 border-cyan-400 text-cyan-400 font-black rounded-xl text-xs sm:text-lg active:bg-cyan-400 active:text-black'>▼ RET</button></div><div class='flex gap-1 sm:gap-2'><button id='btn-l' class='px-3 py-3 sm:px-5 sm:py-4 bg-slate-900/85 border-2 border-gold text-gold font-black rounded-xl text-xs sm:text-lg active:bg-gold active:text-black'>◀ ROT</button><button id='btn-r' class='px-3 py-3 sm:px-5 sm:py-4 bg-slate-900/85 border-2 border-gold text-gold font-black rounded-xl text-xs sm:text-lg active:bg-gold active:text-black'>ROT ▶</button></div>`;
         document.getElementById('game-sandbox-area').appendChild(dpad);
-        document.getElementById('btn-up').addEventListener('pointerdown', (e)=>{ try { e.target.setPointerCapture(e.pointerId); } catch(err){} e.preventDefault(); keys.up=true; });
-        document.getElementById('btn-up').addEventListener('pointerup', (e)=>{ keys.up=false; });
-        document.getElementById('btn-l').addEventListener('pointerdown', (e)=>{ try { e.target.setPointerCapture(e.pointerId); } catch(err){} e.preventDefault(); keys.left=true; });
-        document.getElementById('btn-l').addEventListener('pointerup', (e)=>{ keys.left=false; });
-        document.getElementById('btn-r').addEventListener('pointerdown', (e)=>{ try { e.target.setPointerCapture(e.pointerId); } catch(err){} e.preventDefault(); keys.right=true; });
-        document.getElementById('btn-r').addEventListener('pointerup', (e)=>{ keys.right=false; });
+        
+        const bindBtn = (id, k) => {
+            const el = document.getElementById(id);
+            if(!el) return;
+            el.addEventListener('pointerdown', (e)=>{ try { e.target.setPointerCapture(e.pointerId); } catch(err){} e.preventDefault(); keys[k]=true; });
+            const stop = (e)=>{ keys[k]=false; };
+            el.addEventListener('pointerup', stop);
+            el.addEventListener('pointercancel', stop);
+        };
+        bindBtn('btn-up', 'up');
+        bindBtn('btn-down', 'down');
+        bindBtn('btn-l', 'left');
+        bindBtn('btn-r', 'right');
 
 
         window.addEventListener('keydown', (e) => {
@@ -108,11 +116,11 @@
             }
 
             // Raycasting Render
-            ctx.fillStyle = '#090d16'; ctx.fillRect(0,0, canvas.width, canvas.height/2);
-            ctx.fillStyle = '#020617'; ctx.fillRect(0,canvas.height/2, canvas.width, canvas.height/2);
+            ctx.fillStyle = '#090d16'; ctx.fillRect(0,0, logicalWidth, logicalHeight/2);
+            ctx.fillStyle = '#020617'; ctx.fillRect(0,logicalHeight/2, logicalWidth, logicalHeight/2);
 
             const fov = Math.PI/3;
-            const numRays = canvas.width;
+            const numRays = logicalWidth;
             for(let i=0; i<numRays; i++) {
                 const rayAng = pa - fov/2 + (i/numRays)*fov;
                 let dist = 0, hitTile = 0;
@@ -127,8 +135,8 @@
                 }
 
                 const correctedDist = dist * Math.cos(rayAng - pa);
-                const wallH = Math.min(canvas.height, (canvas.height / correctedDist));
-                const wallY = (canvas.height - wallH)/2;
+                const wallH = Math.min(logicalHeight, (logicalHeight / correctedDist));
+                const wallY = (logicalHeight - wallH)/2;
 
                 const cFactor = Math.max(0.1, 1 - dist/12);
                 if(hitTile===3) ctx.fillStyle = `rgba(34,211,238,${cFactor})`;
@@ -140,7 +148,7 @@
             // HUD
             ctx.fillStyle = '#facc15'; ctx.font = 'bold 16px monospace';
             ctx.fillText(`LABYRINTH DEPTH: ${lvl} // TACTICAL SCORE: ${score}`, 20, 30);
-            ctx.fillText(`◈ HOLD [W]/[S] TO ADVANCE // [A]/[D] TO ROTATE ◈`, 20, canvas.height - 20);
+            ctx.fillText(`◈ HOLD [W]/[S] TO ADVANCE // [A]/[D] TO ROTATE ◈`, 20, logicalHeight - 20);
 
             requestAnimationFrame(loop);
         }
