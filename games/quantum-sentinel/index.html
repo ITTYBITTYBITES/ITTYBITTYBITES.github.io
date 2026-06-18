@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Quantum Sentinel — Fast Spatial Reflex</title>
     <meta name="description" content="Elite high-speed Phase 5 compliant spatial reflex defense game. Intercept sub-second reticles across complex visual coordinate fields.">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=202606182304">
     <script src="https://cdn.tailwindcss.com"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
     <script>
@@ -26,6 +26,21 @@
                 localStorage.setItem('arcade_client_deployment_ver', liveVer);
                 if (window.caches) { caches.keys().then(n => n.forEach(c => caches.delete(c))); }
                 if (clientVer) { window.location.reload(true); }
+            }
+        })();
+    </script>
+    <!-- Absolute Browser Cache Invalidation Guard -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script>
+        (function() {
+            const v = localStorage.getItem('master_deployment_version');
+            const target = 'v=202606182304';
+            if (v !== target) {
+                localStorage.setItem('master_deployment_version', target);
+                if (window.caches) { caches.keys().then(n => n.forEach(c => caches.delete(c))); }
+                window.location.reload(true);
             }
         })();
     </script>

@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     <title>Grid Delver — The 1-Minute Micro-Rogue</title>
     <meta name="description" content="Phase 5 compliant HTML5 Roguelike sandbox game. Discover stairs, fight shadow monsters, and collect gold before the clock expires.">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=202606182304">
     <!-- Inline fallback Tailwind for secure sandboxing -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
@@ -27,6 +27,21 @@
                 localStorage.setItem('arcade_client_deployment_ver', liveVer);
                 if (window.caches) { caches.keys().then(n => n.forEach(c => caches.delete(c))); }
                 if (clientVer) { window.location.reload(true); }
+            }
+        })();
+    </script>
+    <!-- Absolute Browser Cache Invalidation Guard -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script>
+        (function() {
+            const v = localStorage.getItem('master_deployment_version');
+            const target = 'v=202606182304';
+            if (v !== target) {
+                localStorage.setItem('master_deployment_version', target);
+                if (window.caches) { caches.keys().then(n => n.forEach(c => caches.delete(c))); }
+                window.location.reload(true);
             }
         })();
     </script>

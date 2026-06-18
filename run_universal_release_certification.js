@@ -167,7 +167,7 @@ async function certifyEntireRepository() {
             const rawJs = fs.readFileSync(jsPath, 'utf8');
             rawHtml = rawHtml.replace('<script src="game.js"></script>', `<script>${rawJs}</script>`);
         }
-        const cssPath = path.join(targetDir, 'style.css');
+        const cssPath = path.join(targetDir, 'style.css?v=202606182304");
         if (fs.existsSync(cssPath)) {
             const rawCss = fs.readFileSync(cssPath, 'utf8');
             rawHtml += `<style>${rawCss}</style>`;

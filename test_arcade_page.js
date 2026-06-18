@@ -9,7 +9,7 @@ virtualConsole.on('error', (msg) => console.error('ERR:', msg));
 virtualConsole.on('jsdomError', (err) => console.error('JSDOM ERR:', err.message));
 
 let rawHtml = fs.readFileSync(path.join(__dirname, 'arcade.html'), 'utf8');
-const rawJs = fs.readFileSync(path.join(__dirname, 'portal.js'), 'utf8');
+const rawJs = fs.readFileSync(path.join(__dirname, 'portal.js?v=202606182304"), 'utf8');
 
 rawHtml = rawHtml.replace(/<script src="portal\.js.*?"><\/script>/, `<script>${rawJs}</script>`);
 
@@ -19,7 +19,18 @@ const dom = new JSDOM(rawHtml, {
     contentType: "text/html",
     runScripts: "dangerously",
     virtualConsole,
-    resources: "usable"
+    resources: "usable",
+    beforeParse(window) {
+        window.fetch = async function(url) {
+            if (url.includes('games.json')) {
+                return {
+                    ok: true,
+                    json: async () => JSON.parse(fs.readFileSync(path.join(__dirname, 'games.json'), 'utf8'))
+                };
+            }
+            return { ok: false };
+        };
+    }
 });
 
 setTimeout(() => {

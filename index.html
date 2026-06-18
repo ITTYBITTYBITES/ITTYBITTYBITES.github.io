@@ -450,6 +450,21 @@ body::after {
             }
         })();
     </script>
+    <!-- Absolute Browser Cache Invalidation Guard -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script>
+        (function() {
+            const v = localStorage.getItem('master_deployment_version');
+            const target = 'v=202606182304';
+            if (v !== target) {
+                localStorage.setItem('master_deployment_version', target);
+                if (window.caches) { caches.keys().then(n => n.forEach(c => caches.delete(c))); }
+                window.location.reload(true);
+            }
+        })();
+    </script>
 </head>
 <body class="bg-slate-950 text-slate-50 font-mono leading-relaxed overflow-x-hidden relative antialiased">
 
