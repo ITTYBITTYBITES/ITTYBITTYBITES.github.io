@@ -1428,6 +1428,40 @@
       "universe": "society",
       "source": "auto-generated",
       "discoveredAt": "2026-06-18T19:44:25.101Z"
+    },
+    {
+      "slug": "supervisory-teachers",
+      "name": "Supervisory Teachers",
+      "description": "Supervisory Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "teachers",
+        "supervisory",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "society",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T19:54:49.328Z"
+    },
+    {
+      "slug": "sleep-deprived-teachers",
+      "name": "Sleep-Deprived Teachers",
+      "description": "Sleep-Deprived Teachers — high-pressure operational environment requiring cognitive optimization under stress, time pressure, and information overload.",
+      "tags": [
+        "teachers",
+        "sleep-deprived",
+        "high-pressure",
+        "cognitive-load",
+        "split-second decisions",
+        "attention management",
+        "decision accuracy"
+      ],
+      "universe": "society",
+      "source": "auto-generated",
+      "discoveredAt": "2026-06-18T19:54:49.328Z"
     }
   ]
 }
