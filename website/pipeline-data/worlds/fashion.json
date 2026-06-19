@@ -1,0 +1,232 @@
+{
+  "id": "fashion",
+  "name": "STYLE FILE",
+  "universe": "creative",
+  "icon": ">>",
+  "color": "#E040FB",
+  "tags": [
+    "fashion",
+    "clothing",
+    "textiles"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "SILK",
+      "prompt": "Luxurious fabric produced by silkworm cocoons.",
+      "question": "Identify:",
+      "correct": "Silk",
+      "wrong": [
+        "Satin",
+        "Polyester",
+        "Rayon"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "DENIM",
+      "prompt": "Durable cotton twill fabric originally from Nimes, France.",
+      "question": "Identify:",
+      "correct": "Denim",
+      "wrong": [
+        "Canvas",
+        "Chambray",
+        "Twill"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "HAUTE",
+      "prompt": "Exclusive custom-fitted clothing made for individual clients.",
+      "question": "Identify:",
+      "correct": "Haute Couture",
+      "wrong": [
+        "Ready-to-Wear",
+        "Fast Fashion",
+        "Bespoke"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "PATTERN",
+      "prompt": "Paper template used as a guide for cutting fabric.",
+      "question": "Identify:",
+      "correct": "Sewing Pattern",
+      "wrong": [
+        "Stencil",
+        "Template",
+        "Blueprint"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "WEAVE",
+      "prompt": "Interlacing vertical and horizontal threads on a loom.",
+      "question": "Identify:",
+      "correct": "Weaving",
+      "wrong": [
+        "Knitting",
+        "Crocheting",
+        "Felting"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "DRAPE",
+      "prompt": "How fabric falls and hangs on the body.",
+      "question": "Identify:",
+      "correct": "Drape",
+      "wrong": [
+        "Fit",
+        "Silhouette",
+        "Structure"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "BIAS",
+      "prompt": "Cutting fabric diagonally across the grain for stretch.",
+      "question": "Identify:",
+      "correct": "Bias Cut",
+      "wrong": [
+        "Cross Grain",
+        "Selvage Cut",
+        "Straight Cut"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "SUSTAINABLE",
+      "prompt": "Clothing made from recycled ocean plastic bottles.",
+      "question": "Identify:",
+      "correct": "Sustainable Fashion",
+      "wrong": [
+        "Fast Fashion",
+        "Eco Fashion",
+        "Upcycling"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SILHOUETTE",
+      "prompt": "Overall outline shape of a garment on the body.",
+      "question": "Identify:",
+      "correct": "Silhouette",
+      "wrong": [
+        "Profile",
+        "Contour",
+        "Form"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "PLEAT",
+      "prompt": "Fold of fabric pressed or stitched to create fullness.",
+      "question": "Identify:",
+      "correct": "Pleat",
+      "wrong": [
+        "Dart",
+        "Tuck",
+        "Gather"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CAPSULE",
+      "prompt": "Small versatile wardrobe where every piece works together.",
+      "question": "Identify:",
+      "correct": "Capsule Wardrobe",
+      "wrong": [
+        "Collection",
+        "Lookbook",
+        "Ensemble"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "FIBER",
+      "prompt": "Natural material from cotton plants used in most clothing.",
+      "question": "Identify:",
+      "correct": "Cotton Fiber",
+      "wrong": [
+        "Linen",
+        "Hemp",
+        "Wool"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "VINTAGE",
+      "prompt": "Clothing from a previous era valued for its style and quality.",
+      "question": "Identify:",
+      "correct": "Vintage Fashion",
+      "wrong": [
+        "Retro",
+        "Antique",
+        "Thrift"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "DART",
+      "prompt": "Triangular fold sewn into fabric to create shape at bust or waist.",
+      "question": "Identify:",
+      "correct": "Dart",
+      "wrong": [
+        "Pleat",
+        "Tuck",
+        "Seam"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "WARP",
+      "prompt": "Vertical threads on a loom that create the fabric's structure.",
+      "question": "Identify:",
+      "correct": "Warp Threads",
+      "wrong": [
+        "Weft Threads",
+        "Selvage",
+        "Grain Line"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "COUTURE",
+      "prompt": "Hand-sewn garment taking hundreds of hours to complete.",
+      "question": "Identify:",
+      "correct": "Couture Construction",
+      "wrong": [
+        "Machine Made",
+        "Mass Produced",
+        "Ready to Wear"
+      ],
+      "difficulty": 2,
+      "stroop": 2
+    }
+  ]
+}

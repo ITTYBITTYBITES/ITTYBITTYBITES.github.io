@@ -1,0 +1,222 @@
+{
+  "id": "ocean",
+  "name": "ABYSS",
+  "icon": "o",
+  "color": "#2980B9",
+  "tags": [
+    "ocean",
+    "marine",
+    "deep_sea"
+  ],
+  "scenarios": [
+    {
+      "flash": "PRESSURE",
+      "prompt": "Submarine hull groaning at extreme depth.",
+      "question": "Identify:",
+      "correct": "Structural Stress",
+      "wrong": [
+        "Engine Failure",
+        "Leak",
+        "Navigation Error"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CURRENT",
+      "prompt": "Ship drifting off course despite engines at full power.",
+      "question": "Identify:",
+      "correct": "Ocean Current",
+      "wrong": [
+        "GPS Failure",
+        "Rudder Damage",
+        "Wind Shear"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "DEPTH",
+      "prompt": "Sunlight completely absent, bioluminescent creatures visible.",
+      "question": "Identify:",
+      "correct": "Abyssal Zone",
+      "wrong": [
+        "Twilight Zone",
+        "Coral Reef",
+        "Continental Shelf"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CREATURE",
+      "prompt": "Massive tentacles visible on sonar, moving toward vessel.",
+      "question": "Identify:",
+      "correct": "Giant Squid",
+      "wrong": [
+        "Whale",
+        "Submarine",
+        "Debris"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "OXYGEN",
+      "prompt": "Air supply depleting faster than calculated.",
+      "question": "Identify:",
+      "correct": "CO2 Scrubber Failure",
+      "wrong": [
+        "Leak",
+        "Crew Panic",
+        "Altitude"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "VOLCANIC",
+      "prompt": "Superheated water venting from seafloor cracks.",
+      "question": "Identify:",
+      "correct": "Hydrothermal Vent",
+      "wrong": [
+        "Volcanic Eruption",
+        "Oil Leak",
+        "Chemical Spill"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "CORAL",
+      "prompt": "Reef turning white across entire region.",
+      "question": "Identify:",
+      "correct": "Coral Bleaching",
+      "wrong": [
+        "Pollution",
+        "Disease",
+        "Natural Cycle"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "TRENCH",
+      "prompt": "Deepest point measured on Earth, nearly 11km down.",
+      "question": "Identify:",
+      "correct": "Mariana Trench",
+      "wrong": [
+        "Puerto Rico Trench",
+        "Java Trench",
+        "Tonga Trench"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "DEPTH",
+      "prompt": "Zone of ocean where no sunlight can reach.",
+      "question": "Identify:",
+      "correct": "Aphotic Zone",
+      "wrong": [
+        "Twilight Zone",
+        "Abyssal Plain",
+        "Hadal Zone"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "CURRENT",
+      "prompt": "Massive underwater river moving warm water across the Atlantic.",
+      "question": "Identify:",
+      "correct": "Gulf Stream",
+      "wrong": [
+        "Jet Stream",
+        "Trade Winds",
+        "Tidal Current"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "BIOLUMINESCENCE",
+      "prompt": "Deep sea creatures producing their own light.",
+      "question": "Identify:",
+      "correct": "Bioluminescence",
+      "wrong": [
+        "Reflection",
+        "Phosphorescence",
+        "Fluorescence"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "TRENCH",
+      "prompt": "Deepest known point in the world's oceans.",
+      "question": "Identify:",
+      "correct": "Mariana Trench",
+      "wrong": [
+        "Puerto Rico Trench",
+        "Java Trench",
+        "Tonga Trench"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "WHALE",
+      "prompt": "Massive marine mammal singing complex songs across ocean.",
+      "question": "Identify:",
+      "correct": "Humpback Whale Communication",
+      "wrong": [
+        "Sonar",
+        "Echo Location",
+        "Mating Display"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "REEF",
+      "prompt": "Tiny animals building massive underwater limestone structures.",
+      "question": "Identify:",
+      "correct": "Coral Polyps",
+      "wrong": [
+        "Algae",
+        "Sponges",
+        "Barnacles"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "KELP",
+      "prompt": "Underwater forest growing up to two feet per day.",
+      "question": "Identify:",
+      "correct": "Giant Kelp",
+      "wrong": [
+        "Seaweed",
+        "Sea Grass",
+        "Algae Bloom"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "VENT",
+      "prompt": "Superheated water erupting from cracks in the ocean floor.",
+      "question": "Identify:",
+      "correct": "Hydrothermal Vent",
+      "wrong": [
+        "Underwater Volcano",
+        "Geyser",
+        "Hot Spring"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    }
+  ],
+  "universe": "frontier"
+}

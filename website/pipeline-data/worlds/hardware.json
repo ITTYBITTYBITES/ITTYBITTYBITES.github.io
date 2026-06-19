@@ -1,0 +1,232 @@
+{
+  "id": "hardware",
+  "name": "CIRCUIT LAB",
+  "universe": "tech",
+  "icon": ">>",
+  "color": "#95A5A6",
+  "tags": [
+    "hardware",
+    "circuits",
+    "electronics"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "RESISTOR",
+      "prompt": "Component limiting the flow of electrical current.",
+      "question": "Identify:",
+      "correct": "Resistor",
+      "wrong": [
+        "Capacitor",
+        "Inductor",
+        "Transistor"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CAPACITOR",
+      "prompt": "Component storing electrical charge and releasing it quickly.",
+      "question": "Identify:",
+      "correct": "Capacitor",
+      "wrong": [
+        "Battery",
+        "Resistor",
+        "Diode"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SHORT",
+      "prompt": "Wire connecting two terminals that shouldn't be connected.",
+      "question": "Identify:",
+      "correct": "Short Circuit",
+      "wrong": [
+        "Open Circuit",
+        "Ground Fault",
+        "Overload"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "LED",
+      "prompt": "Component that emits light when current flows through it.",
+      "question": "Identify:",
+      "correct": "Light Emitting Diode",
+      "wrong": [
+        "Photodiode",
+        "Laser Diode",
+        "Zener Diode"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "TRANSISTOR",
+      "prompt": "Tiny switch that amplifies or gates electronic signals.",
+      "question": "Identify:",
+      "correct": "Transistor",
+      "wrong": [
+        "Relay",
+        "Capacitor",
+        "Inductor"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "GROUND",
+      "prompt": "Connection providing a safe return path for electrical current.",
+      "question": "Identify:",
+      "correct": "Ground Connection",
+      "wrong": [
+        "Neutral Wire",
+        "Hot Wire",
+        "Phase"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SOLDER",
+      "prompt": "Melting metal alloy to permanently join electronic components.",
+      "question": "Identify:",
+      "correct": "Soldering",
+      "wrong": [
+        "Welding",
+        "Crimping",
+        "Gluing"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "PCB",
+      "prompt": "Green board with copper traces connecting electronic components.",
+      "question": "Identify:",
+      "correct": "Printed Circuit Board",
+      "wrong": [
+        "Breadboard",
+        "Perfboard",
+        "Motherboard"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CLOCK",
+      "prompt": "Crystal oscillator providing timing pulses to a processor.",
+      "question": "Identify:",
+      "correct": "Clock Signal",
+      "wrong": [
+        "Power Supply",
+        "Data Bus",
+        "Interrupt"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "BUS",
+      "prompt": "Parallel wires carrying data between CPU and memory.",
+      "question": "Identify:",
+      "correct": "Data Bus",
+      "wrong": [
+        "Address Bus",
+        "Control Bus",
+        "Power Rail"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "VOLTAGE",
+      "prompt": "Multimeter reading 5 volts across a USB port.",
+      "question": "Identify:",
+      "correct": "DC Voltage",
+      "wrong": [
+        "AC Voltage",
+        "Current",
+        "Resistance"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "MICROCONTROLLER",
+      "prompt": "Small computer on a single chip running embedded code.",
+      "question": "Identify:",
+      "correct": "Microcontroller",
+      "wrong": [
+        "Microprocessor",
+        "FPGA",
+        "ASIC"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "FUSE",
+      "prompt": "Component that melts to break a circuit during overload.",
+      "question": "Identify:",
+      "correct": "Fuse",
+      "wrong": [
+        "Circuit Breaker",
+        "Relay",
+        "Switch"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "OSCILLOSCOPE",
+      "prompt": "Instrument displaying voltage changes over time as a waveform.",
+      "question": "Identify:",
+      "correct": "Oscilloscope",
+      "wrong": [
+        "Multimeter",
+        "Logic Analyzer",
+        "Spectrum Analyzer"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "MOSFET",
+      "prompt": "Transistor controlled by voltage rather than current.",
+      "question": "Identify:",
+      "correct": "MOSFET",
+      "wrong": [
+        "BJT",
+        "JFET",
+        "IGBT"
+      ],
+      "difficulty": 3,
+      "stroop": 0
+    },
+    {
+      "flash": "PWM",
+      "prompt": "Rapidly switching power on and off to control LED brightness.",
+      "question": "Identify:",
+      "correct": "Pulse Width Modulation",
+      "wrong": [
+        "Analog Dimming",
+        "Voltage Division",
+        "Current Limiting"
+      ],
+      "difficulty": 2,
+      "stroop": 2
+    }
+  ]
+}

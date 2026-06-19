@@ -1,0 +1,232 @@
+{
+  "id": "writing",
+  "name": "INK WELL",
+  "universe": "creative",
+  "icon": ">>",
+  "color": "#795548",
+  "tags": [
+    "writing",
+    "grammar",
+    "storytelling"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "METAPHOR",
+      "prompt": "Life is a journey with many unexpected turns.",
+      "question": "Identify:",
+      "correct": "Metaphor",
+      "wrong": [
+        "Simile",
+        "Analogy",
+        "Personification"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SIMILE",
+      "prompt": "Her smile was like sunshine breaking through clouds.",
+      "question": "Identify:",
+      "correct": "Simile",
+      "wrong": [
+        "Metaphor",
+        "Hyperbole",
+        "Analogy"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "IRONY",
+      "prompt": "Fire station burning down while firefighters are away.",
+      "question": "Identify:",
+      "correct": "Situational Irony",
+      "wrong": [
+        "Dramatic Irony",
+        "Verbal Irony",
+        "Coincidence"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "FORESHADOW",
+      "prompt": "Author mentioning a storm approaching before a tragedy.",
+      "question": "Identify:",
+      "correct": "Foreshadowing",
+      "wrong": [
+        "Flashback",
+        "Symbolism",
+        "Motif"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "PROTAGONIST",
+      "prompt": "Main character driving the story's action forward.",
+      "question": "Identify:",
+      "correct": "Protagonist",
+      "wrong": [
+        "Antagonist",
+        "Anti-hero",
+        "Narrator"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "ALLITERATION",
+      "prompt": "Peter Piper picked a peck of pickled peppers.",
+      "question": "Identify:",
+      "correct": "Alliteration",
+      "wrong": [
+        "Assonance",
+        "Consonance",
+        "Onomatopoeia"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CLIFFHANGER",
+      "prompt": "Chapter ending with the hero falling off a bridge.",
+      "question": "Identify:",
+      "correct": "Cliffhanger",
+      "wrong": [
+        "Plot Twist",
+        "Climax",
+        "Denouement"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "VOICE",
+      "prompt": "Story told from an all-knowing perspective seeing every character's thoughts.",
+      "question": "Identify:",
+      "correct": "Omniscient Narrator",
+      "wrong": [
+        "First Person",
+        "Limited Third",
+        "Second Person"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "CONFLICT",
+      "prompt": "Character struggling against their own fears and doubts.",
+      "question": "Identify:",
+      "correct": "Internal Conflict",
+      "wrong": [
+        "External Conflict",
+        "Man vs Nature",
+        "Man vs Society"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "DIALOGUE",
+      "prompt": "Words spoken between characters in quotation marks.",
+      "question": "Identify:",
+      "correct": "Dialogue",
+      "wrong": [
+        "Monologue",
+        "Narration",
+        "Exposition"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "HYPERBOLE",
+      "prompt": "I've told you a million times to clean your room.",
+      "question": "Identify:",
+      "correct": "Hyperbole",
+      "wrong": [
+        "Exaggeration",
+        "Litotes",
+        "Understatement"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "THEME",
+      "prompt": "Underlying message about life that a story conveys.",
+      "question": "Identify:",
+      "correct": "Theme",
+      "wrong": [
+        "Plot",
+        "Moral",
+        "Motif"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "SEMICOLON",
+      "prompt": "Punctuation joining two related independent clauses.",
+      "question": "Identify:",
+      "correct": "Semicolon",
+      "wrong": [
+        "Colon",
+        "Comma",
+        "Em Dash"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "PASSIVE",
+      "prompt": "The ball was thrown by the boy instead of the boy threw the ball.",
+      "question": "Identify:",
+      "correct": "Passive Voice",
+      "wrong": [
+        "Active Voice",
+        "Past Tense",
+        "Subjunctive"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "RED HERRING",
+      "prompt": "Clue in a mystery designed to mislead the reader.",
+      "question": "Identify:",
+      "correct": "Red Herring",
+      "wrong": [
+        "Plot Twist",
+        "MacGuffin",
+        "Chekhov's Gun"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "ONOMATOPOEIA",
+      "prompt": "Words like buzz, hiss, and splash imitating sounds.",
+      "question": "Identify:",
+      "correct": "Onomatopoeia",
+      "wrong": [
+        "Alliteration",
+        "Assonance",
+        "Phonetics"
+      ],
+      "difficulty": 1,
+      "stroop": 2
+    }
+  ]
+}

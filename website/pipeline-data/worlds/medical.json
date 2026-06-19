@@ -1,0 +1,232 @@
+{
+  "id": "medical",
+  "name": "MED ALERT",
+  "icon": "+",
+  "color": "#FF4444",
+  "tags": [
+    "medical",
+    "symptoms",
+    "diagnosis"
+  ],
+  "corridor": {
+    "fog_density": 0.02,
+    "glow": 0.6,
+    "wall_density": 0.7,
+    "fov": 70,
+    "speed": 7,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "HEART",
+      "prompt": "Patient clutching chest, radiating pain to left arm, sweating.",
+      "question": "Identify:",
+      "correct": "Myocardial Infarction",
+      "wrong": [
+        "Panic Attack",
+        "Acid Reflux",
+        "Muscle Strain"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SUGAR",
+      "prompt": "Patient confused, trembling, rapid heartbeat, pale skin.",
+      "question": "Identify:",
+      "correct": "Hypoglycemia",
+      "wrong": [
+        "Stroke",
+        "Dehydration",
+        "Anxiety"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "BRAIN",
+      "prompt": "Sudden face drooping, arm weakness, slurred speech.",
+      "question": "Identify:",
+      "correct": "Stroke",
+      "wrong": [
+        "Migraine",
+        "Bell's Palsy",
+        "Seizure"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "ALLERGY",
+      "prompt": "Throat swelling, hives, difficulty breathing after eating peanuts.",
+      "question": "Identify:",
+      "correct": "Anaphylaxis",
+      "wrong": [
+        "Asthma Attack",
+        "Food Poisoning",
+        "Panic Attack"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "AIRWAY",
+      "prompt": "Child suddenly silent, hands at throat, turning blue.",
+      "question": "Identify:",
+      "correct": "Choking",
+      "wrong": [
+        "Asthma",
+        "Croup",
+        "Seizure"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "BONE",
+      "prompt": "Limb at unnatural angle after fall, severe swelling.",
+      "question": "Identify:",
+      "correct": "Fracture",
+      "wrong": [
+        "Dislocation",
+        "Sprain",
+        "Bruise"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "EMERGENCY",
+      "prompt": "Unresponsive, no breathing, no pulse detected.",
+      "question": "Action:",
+      "correct": "Begin CPR",
+      "wrong": [
+        "Recovery Position",
+        "Elevate Legs",
+        "Give Water"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "TEMPERATURE",
+      "prompt": "Hot dry skin, confusion, body temp over 104F, stopped sweating.",
+      "question": "Identify:",
+      "correct": "Heat Stroke",
+      "wrong": [
+        "Fever",
+        "Dehydration",
+        "Sunburn"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "CARDIAC",
+      "prompt": "Patient hyperventilating, tingling fingers, no chest pain.",
+      "question": "Identify:",
+      "correct": "Panic Attack",
+      "wrong": [
+        "Heart Attack",
+        "Asthma",
+        "Stroke"
+      ],
+      "difficulty": 3,
+      "stroop": 2
+    },
+    {
+      "flash": "POISON",
+      "prompt": "Rash spreading from tick bite over days, bullseye pattern.",
+      "question": "Identify:",
+      "correct": "Lyme Disease",
+      "wrong": [
+        "Poison Ivy",
+        "Cellulitis",
+        "Ringworm"
+      ],
+      "difficulty": 3,
+      "stroop": 2
+    },
+    {
+      "flash": "POISON",
+      "prompt": "Person vomiting after eating wild mushrooms.",
+      "question": "Identify:",
+      "correct": "Mushroom Poisoning",
+      "wrong": [
+        "Food Allergy",
+        "Stomach Flu",
+        "Acid Reflux"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "RASH",
+      "prompt": "Spreading red rash with bull's-eye pattern after a tick bite.",
+      "question": "Identify:",
+      "correct": "Lyme Disease",
+      "wrong": [
+        "Ringworm",
+        "Eczema",
+        "Cellulitis"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "BREATH",
+      "prompt": "Person breathing rapidly with tingling in hands and feet.",
+      "question": "Identify:",
+      "correct": "Hyperventilation",
+      "wrong": [
+        "Asthma",
+        "Heart Attack",
+        "Pneumonia"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "JOINT",
+      "prompt": "Sudden severe joint pain, redness, and swelling in big toe.",
+      "question": "Identify:",
+      "correct": "Gout",
+      "wrong": [
+        "Arthritis",
+        "Fracture",
+        "Sprain"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "SKIN",
+      "prompt": "Yellow discoloration of skin and whites of eyes.",
+      "question": "Identify:",
+      "correct": "Jaundice",
+      "wrong": [
+        "Hepatitis",
+        "Anemia",
+        "Dehydration"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "PULSE",
+      "prompt": "Irregular heartbeat with dizziness and shortness of breath.",
+      "question": "Identify:",
+      "correct": "Arrhythmia",
+      "wrong": [
+        "Heart Attack",
+        "Panic Attack",
+        "Anemia"
+      ],
+      "difficulty": 3,
+      "stroop": 2
+    }
+  ],
+  "universe": "life"
+}

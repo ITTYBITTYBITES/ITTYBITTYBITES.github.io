@@ -1,0 +1,232 @@
+{
+  "id": "firstaid",
+  "name": "FIRST RESPONSE",
+  "universe": "life",
+  "icon": ">>",
+  "color": "#FF5722",
+  "tags": [
+    "firstaid",
+    "emergency",
+    "treatment"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "BURN",
+      "prompt": "Red painful skin after touching a hot stove.",
+      "question": "Identify:",
+      "correct": "First Degree Burn",
+      "wrong": [
+        "Second Degree",
+        "Third Degree",
+        "Chemical Burn"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "BLEED",
+      "prompt": "Applying firm pressure with a clean cloth to a wound.",
+      "question": "Identify:",
+      "correct": "Direct Pressure",
+      "wrong": [
+        "Tourniquet",
+        "Elevation",
+        "Ice Pack"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CHOKE",
+      "prompt": "Performing abdominal thrusts on a choking adult.",
+      "question": "Identify:",
+      "correct": "Heimlich Maneuver",
+      "wrong": [
+        "Back Blows",
+        "CPR",
+        "Finger Sweep"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SPLINT",
+      "prompt": "Immobilizing a broken arm against the body with a sling.",
+      "question": "Identify:",
+      "correct": "Splinting",
+      "wrong": [
+        "Traction",
+        "Reduction",
+        "Casting"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SHOCK",
+      "prompt": "Laying person down and elevating their legs 12 inches.",
+      "question": "Identify:",
+      "correct": "Shock Position",
+      "wrong": [
+        "Recovery Position",
+        "CPR Position",
+        "Trendelenburg"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "EPI",
+      "prompt": "Injecting epinephrine into outer thigh during severe allergic reaction.",
+      "question": "Identify:",
+      "correct": "EpiPen Administration",
+      "wrong": [
+        "IV Drip",
+        "Oral Medication",
+        "Inhaler"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "AED",
+      "prompt": "Device analyzing heart rhythm and delivering electric shock.",
+      "question": "Identify:",
+      "correct": "Automated External Defibrillator",
+      "wrong": [
+        "Heart Monitor",
+        "Pacemaker",
+        "Oxygen Mask"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "RECOVERY",
+      "prompt": "Unconscious breathing person placed on their side.",
+      "question": "Identify:",
+      "correct": "Recovery Position",
+      "wrong": [
+        "Supine Position",
+        "Prone Position",
+        "Shock Position"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "HEAT",
+      "prompt": "Person with hot red skin who has stopped sweating.",
+      "question": "Identify:",
+      "correct": "Heat Stroke",
+      "wrong": [
+        "Heat Exhaustion",
+        "Sunburn",
+        "Dehydration"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "SPRAIN",
+      "prompt": "Ankle swelling after twisting it on uneven ground.",
+      "question": "Identify:",
+      "correct": "Apply RICE Protocol",
+      "wrong": [
+        "Walk It Off",
+        "Heat Pack",
+        "Massage"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "NOSEBLEED",
+      "prompt": "Pinching the soft part of the nose and leaning forward.",
+      "question": "Identify:",
+      "correct": "Proper Nosebleed Care",
+      "wrong": [
+        "Tilt Head Back",
+        "Stuff with Cotton",
+        "Apply Ice to Forehead"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "POISON",
+      "prompt": "Calling poison control before attempting any treatment.",
+      "question": "Identify:",
+      "correct": "Correct First Step",
+      "wrong": [
+        "Induce Vomiting",
+        "Give Milk",
+        "Activated Charcoal"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "CONCUSSION",
+      "prompt": "Confusion and dizziness after hitting head in a fall.",
+      "question": "Identify:",
+      "correct": "Possible Concussion",
+      "wrong": [
+        "Minor Bump",
+        "Neck Strain",
+        "Inner Ear Issue"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "FROSTBITE",
+      "prompt": "White waxy skin on fingertips after cold exposure.",
+      "question": "Identify:",
+      "correct": "Frostbite",
+      "wrong": [
+        "Frostnip",
+        "Raynaud's",
+        "Chilblains"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "TOURNIQUET",
+      "prompt": "Last resort to stop life-threatening limb bleeding.",
+      "question": "Identify:",
+      "correct": "Tourniquet Application",
+      "wrong": [
+        "Pressure Bandage",
+        "Elevation",
+        "Direct Pressure"
+      ],
+      "difficulty": 3,
+      "stroop": 1
+    },
+    {
+      "flash": "ALLERGIC",
+      "prompt": "Hives spreading across body after insect sting.",
+      "question": "Identify:",
+      "correct": "Allergic Reaction",
+      "wrong": [
+        "Normal Reaction",
+        "Infection",
+        "Rash"
+      ],
+      "difficulty": 1,
+      "stroop": 2
+    }
+  ]
+}

@@ -1,0 +1,232 @@
+{
+  "id": "nutrition",
+  "name": "FUEL LAB",
+  "universe": "life",
+  "icon": ">>",
+  "color": "#F39C12",
+  "tags": [
+    "nutrition",
+    "diet",
+    "vitamins"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "VITAMIN",
+      "prompt": "Citrus fruits preventing a disease causing bleeding gums.",
+      "question": "Identify:",
+      "correct": "Vitamin C (Scurvy Prevention)",
+      "wrong": [
+        "Vitamin D",
+        "Vitamin A",
+        "Vitamin B12"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "FIBER",
+      "prompt": "Whole grains helping food move through the digestive system.",
+      "question": "Identify:",
+      "correct": "Dietary Fiber",
+      "wrong": [
+        "Protein",
+        "Fat",
+        "Carbohydrates"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CALORIE",
+      "prompt": "Unit measuring the energy content of food.",
+      "question": "Identify:",
+      "correct": "Calorie",
+      "wrong": [
+        "Joule",
+        "Watt",
+        "Gram"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "IRON",
+      "prompt": "Fatigue and pale skin from not eating enough red meat or leafy greens.",
+      "question": "Identify:",
+      "correct": "Iron Deficiency Anemia",
+      "wrong": [
+        "Vitamin D Deficiency",
+        "Dehydration",
+        "Low Blood Sugar"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "OMEGA",
+      "prompt": "Fatty acids found in salmon beneficial for heart health.",
+      "question": "Identify:",
+      "correct": "Omega-3 Fatty Acids",
+      "wrong": [
+        "Omega-6",
+        "Trans Fat",
+        "Saturated Fat"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SUGAR",
+      "prompt": "Blood sugar spiking quickly after eating white bread.",
+      "question": "Identify:",
+      "correct": "High Glycemic Index",
+      "wrong": [
+        "Low Glycemic",
+        "Complex Carb",
+        "Fiber Effect"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "HYDRATE",
+      "prompt": "Needing approximately 8 cups of water per day.",
+      "question": "Identify:",
+      "correct": "Daily Hydration",
+      "wrong": [
+        "Overhydration",
+        "Minimum Intake",
+        "Athletic Need"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "PROTEIN",
+      "prompt": "Essential amino acids that the body cannot produce itself.",
+      "question": "Identify:",
+      "correct": "Essential Amino Acids",
+      "wrong": [
+        "Non-essential",
+        "Conditional",
+        "Branched Chain"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "TRANS",
+      "prompt": "Artificially hydrogenated fat linked to heart disease.",
+      "question": "Identify:",
+      "correct": "Trans Fat",
+      "wrong": [
+        "Saturated Fat",
+        "Monounsaturated",
+        "Polyunsaturated"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CALCIUM",
+      "prompt": "Mineral essential for strong bones found in dairy products.",
+      "question": "Identify:",
+      "correct": "Calcium",
+      "wrong": [
+        "Magnesium",
+        "Phosphorus",
+        "Potassium"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "ANTIOXIDANT",
+      "prompt": "Compounds in berries that protect cells from damage.",
+      "question": "Identify:",
+      "correct": "Antioxidants",
+      "wrong": [
+        "Preservatives",
+        "Enzymes",
+        "Probiotics"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "METABOLISM",
+      "prompt": "Rate at which your body burns calories at rest.",
+      "question": "Identify:",
+      "correct": "Basal Metabolic Rate",
+      "wrong": [
+        "Active Metabolism",
+        "Thermic Effect",
+        "Exercise Rate"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "GLUTEN",
+      "prompt": "Protein in wheat that causes problems for celiac patients.",
+      "question": "Identify:",
+      "correct": "Gluten",
+      "wrong": [
+        "Casein",
+        "Lactose",
+        "Lectin"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "PROBIOTIC",
+      "prompt": "Live beneficial bacteria found in yogurt and kimchi.",
+      "question": "Identify:",
+      "correct": "Probiotics",
+      "wrong": [
+        "Prebiotics",
+        "Antibiotics",
+        "Enzymes"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "DEFICIT",
+      "prompt": "Consuming fewer calories than your body burns daily.",
+      "question": "Identify:",
+      "correct": "Caloric Deficit",
+      "wrong": [
+        "Malnutrition",
+        "Starvation Mode",
+        "Fasting"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "SODIUM",
+      "prompt": "Eating too much salt leading to high blood pressure.",
+      "question": "Identify:",
+      "correct": "Excess Sodium Intake",
+      "wrong": [
+        "Potassium Deficiency",
+        "Dehydration",
+        "Kidney Issue"
+      ],
+      "difficulty": 1,
+      "stroop": 2
+    }
+  ]
+}

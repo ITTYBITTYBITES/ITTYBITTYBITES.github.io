@@ -1,0 +1,232 @@
+{
+  "id": "design",
+  "name": "DESIGN STUDIO",
+  "universe": "creative",
+  "icon": ">>",
+  "color": "#00BCD4",
+  "tags": [
+    "design",
+    "color",
+    "typography"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "COMPLEMENT",
+      "prompt": "Orange and blue placed next to each other for maximum contrast.",
+      "question": "Identify:",
+      "correct": "Complementary Colors",
+      "wrong": [
+        "Analogous",
+        "Triadic",
+        "Split-Complementary"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SERIF",
+      "prompt": "Small decorative strokes at the ends of letter forms.",
+      "question": "Identify:",
+      "correct": "Serif Font",
+      "wrong": [
+        "Sans-Serif",
+        "Script",
+        "Display"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "GRID",
+      "prompt": "Invisible framework organizing content into aligned columns.",
+      "question": "Identify:",
+      "correct": "Grid System",
+      "wrong": [
+        "Layout",
+        "Template",
+        "Framework"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "WHITESPACE",
+      "prompt": "Empty areas around content that improve readability.",
+      "question": "Identify:",
+      "correct": "Negative Space",
+      "wrong": [
+        "Margin",
+        "Padding",
+        "Gutter"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "HIERARCHY",
+      "prompt": "Making the most important information visually dominant.",
+      "question": "Identify:",
+      "correct": "Visual Hierarchy",
+      "wrong": [
+        "Information Architecture",
+        "Layout",
+        "Composition"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "RGB",
+      "prompt": "Color model using red, green, and blue light for screens.",
+      "question": "Identify:",
+      "correct": "RGB Color Model",
+      "wrong": [
+        "CMYK",
+        "HSL",
+        "Pantone"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "KERNING",
+      "prompt": "Adjusting the space between two specific letter pairs.",
+      "question": "Identify:",
+      "correct": "Kerning",
+      "wrong": [
+        "Tracking",
+        "Leading",
+        "Baseline Shift"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "VECTOR",
+      "prompt": "Image that stays sharp at any size because it uses math, not pixels.",
+      "question": "Identify:",
+      "correct": "Vector Graphics",
+      "wrong": [
+        "Raster Graphics",
+        "Bitmap",
+        "Pixel Art"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CMYK",
+      "prompt": "Color model using cyan, magenta, yellow, and black for printing.",
+      "question": "Identify:",
+      "correct": "CMYK",
+      "wrong": [
+        "RGB",
+        "HSB",
+        "Pantone"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "LEADING",
+      "prompt": "Vertical space between lines of text.",
+      "question": "Identify:",
+      "correct": "Leading",
+      "wrong": [
+        "Kerning",
+        "Tracking",
+        "Baseline"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "BRAND",
+      "prompt": "Consistent visual identity across all touchpoints.",
+      "question": "Identify:",
+      "correct": "Brand Identity",
+      "wrong": [
+        "Logo",
+        "Marketing",
+        "Advertising"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "GOLDEN",
+      "prompt": "Dividing a design into sections based on the ratio 1:1.618.",
+      "question": "Identify:",
+      "correct": "Golden Ratio",
+      "wrong": [
+        "Rule of Thirds",
+        "Fibonacci Grid",
+        "Symmetry"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "PROTOTYPE",
+      "prompt": "Interactive mockup testing user flow before building.",
+      "question": "Identify:",
+      "correct": "Prototype",
+      "wrong": [
+        "Wireframe",
+        "Mockup",
+        "Sketch"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "CONTRAST",
+      "prompt": "Using size, color, or weight to make elements stand out.",
+      "question": "Identify:",
+      "correct": "Visual Contrast",
+      "wrong": [
+        "Balance",
+        "Rhythm",
+        "Unity"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "RESPONSIVE",
+      "prompt": "Design adapting to different screen sizes automatically.",
+      "question": "Identify:",
+      "correct": "Responsive Design",
+      "wrong": [
+        "Adaptive Design",
+        "Fluid Design",
+        "Fixed Design"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "ACCESSIBILITY",
+      "prompt": "Designing so people with disabilities can use the product.",
+      "question": "Identify:",
+      "correct": "Accessible Design",
+      "wrong": [
+        "Universal Design",
+        "Inclusive Design",
+        "Usability"
+      ],
+      "difficulty": 2,
+      "stroop": 2
+    }
+  ]
+}

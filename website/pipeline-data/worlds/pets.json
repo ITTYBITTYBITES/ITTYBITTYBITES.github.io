@@ -1,0 +1,232 @@
+{
+  "id": "pets",
+  "name": "PET CLINIC",
+  "universe": "life",
+  "icon": ">>",
+  "color": "#E91E63",
+  "tags": [
+    "pets",
+    "animals",
+    "care"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "TAIL",
+      "prompt": "Dog tucking tail between legs and avoiding eye contact.",
+      "question": "Identify:",
+      "correct": "Fear or Anxiety",
+      "wrong": [
+        "Submission",
+        "Illness",
+        "Cold"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "PURR",
+      "prompt": "Cat kneading with paws and purring loudly.",
+      "question": "Identify:",
+      "correct": "Contentment",
+      "wrong": [
+        "Hunger",
+        "Pain",
+        "Attention Seeking"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SCRATCH",
+      "prompt": "Cat scratching furniture despite having a scratching post.",
+      "question": "Identify:",
+      "correct": "Territory Marking",
+      "wrong": [
+        "Boredom",
+        "Anxiety",
+        "Nail Trimming Need"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "APPETITE",
+      "prompt": "Dog refusing food for more than 24 hours.",
+      "question": "Identify:",
+      "correct": "Possible Illness",
+      "wrong": [
+        "Picky Eating",
+        "New Food Adjustment",
+        "Normal Behavior"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "VACCINE",
+      "prompt": "Puppy needing a series of shots in first year of life.",
+      "question": "Identify:",
+      "correct": "Core Vaccinations",
+      "wrong": [
+        "Optional Boosters",
+        "Deworming",
+        "Flea Treatment"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "BREED",
+      "prompt": "Dog bred specifically for herding sheep and cattle.",
+      "question": "Identify:",
+      "correct": "Herding Breed",
+      "wrong": [
+        "Sporting Breed",
+        "Working Breed",
+        "Terrier"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "TEETH",
+      "prompt": "Kitten losing baby teeth around four months old.",
+      "question": "Identify:",
+      "correct": "Teething",
+      "wrong": [
+        "Dental Disease",
+        "Injury",
+        "Malnutrition"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "PANT",
+      "prompt": "Dog panting heavily after light exercise on a hot day.",
+      "question": "Identify:",
+      "correct": "Heat Regulation",
+      "wrong": [
+        "Dehydration",
+        "Heart Problem",
+        "Excitement"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "TOXIC",
+      "prompt": "Cat vomiting after chewing on a lily plant.",
+      "question": "Identify:",
+      "correct": "Plant Poisoning",
+      "wrong": [
+        "Hairball",
+        "Food Allergy",
+        "Stomach Bug"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "MICROCHIP",
+      "prompt": "Tiny device implanted under skin for permanent identification.",
+      "question": "Identify:",
+      "correct": "Pet Microchip",
+      "wrong": [
+        "GPS Tracker",
+        "Health Monitor",
+        "Vaccine Record"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "ZOOMIES",
+      "prompt": "Dog suddenly running in circles at high speed.",
+      "question": "Identify:",
+      "correct": "Frenetic Random Activity",
+      "wrong": [
+        "Anxiety",
+        "Pain Response",
+        "Seizure"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "GROOM",
+      "prompt": "Dog scooting its bottom across the floor.",
+      "question": "Identify:",
+      "correct": "Anal Gland Issue",
+      "wrong": [
+        "Worms",
+        "Skin Irritation",
+        "Behavioral"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "LITTER",
+      "prompt": "Cat refusing to use the litter box suddenly.",
+      "question": "Identify:",
+      "correct": "Stress or Medical Issue",
+      "wrong": [
+        "Dirty Litter",
+        "Wrong Location",
+        "New Brand"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "CRATE",
+      "prompt": "Puppy crying in a crate at bedtime for the first week.",
+      "question": "Identify:",
+      "correct": "Normal Adjustment",
+      "wrong": [
+        "Separation Anxiety",
+        "Illness",
+        "Injury"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SENIOR",
+      "prompt": "Older dog drinking much more water than usual.",
+      "question": "Identify:",
+      "correct": "Possible Kidney Issue",
+      "wrong": [
+        "Diabetes",
+        "Hot Weather",
+        "Exercise Recovery"
+      ],
+      "difficulty": 3,
+      "stroop": 2
+    },
+    {
+      "flash": "SOCIALIZE",
+      "prompt": "Exposing puppy to various people and environments before 16 weeks.",
+      "question": "Identify:",
+      "correct": "Socialization Window",
+      "wrong": [
+        "Training Period",
+        "Bonding Phase",
+        "Weaning Period"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    }
+  ]
+}

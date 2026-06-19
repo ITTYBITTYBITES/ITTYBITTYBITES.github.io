@@ -1,0 +1,232 @@
+{
+  "id": "webdev",
+  "name": "WEB FORGE",
+  "universe": "tech",
+  "icon": ">>",
+  "color": "#1ABC9C",
+  "tags": [
+    "web",
+    "development",
+    "programming"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "HTML",
+      "prompt": "Markup language defining the structure of a web page.",
+      "question": "Identify:",
+      "correct": "HTML",
+      "wrong": [
+        "CSS",
+        "JavaScript",
+        "PHP"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CSS",
+      "prompt": "Code controlling colors, fonts, and layout of a website.",
+      "question": "Identify:",
+      "correct": "CSS",
+      "wrong": [
+        "HTML",
+        "JavaScript",
+        "SASS"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "API",
+      "prompt": "Server endpoint returning data in JSON format to a mobile app.",
+      "question": "Identify:",
+      "correct": "REST API",
+      "wrong": [
+        "GraphQL",
+        "WebSocket",
+        "RPC"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "RESPONSIVE",
+      "prompt": "Website layout adjusting automatically for phone screens.",
+      "question": "Identify:",
+      "correct": "Responsive Design",
+      "wrong": [
+        "Adaptive Design",
+        "Mobile Site",
+        "App Wrapper"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "COOKIE",
+      "prompt": "Small file stored in browser to remember user preferences.",
+      "question": "Identify:",
+      "correct": "Browser Cookie",
+      "wrong": [
+        "Cache",
+        "Session",
+        "Token"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "XSS",
+      "prompt": "Malicious script injected into a trusted website's content.",
+      "question": "Identify:",
+      "correct": "Cross-Site Scripting",
+      "wrong": [
+        "SQL Injection",
+        "CSRF",
+        "Clickjacking"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "CACHE",
+      "prompt": "Browser storing a copy of a page to load faster next time.",
+      "question": "Identify:",
+      "correct": "Browser Caching",
+      "wrong": [
+        "CDN",
+        "Preloading",
+        "Lazy Loading"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "DATABASE",
+      "prompt": "SQL query returning all users who signed up this month.",
+      "question": "Identify:",
+      "correct": "Database Query",
+      "wrong": [
+        "API Call",
+        "File Read",
+        "Cache Lookup"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SSL",
+      "prompt": "Padlock icon in browser address bar indicating secure connection.",
+      "question": "Identify:",
+      "correct": "SSL/TLS Certificate",
+      "wrong": [
+        "VPN",
+        "Firewall",
+        "Proxy"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "DEPLOY",
+      "prompt": "Pushing code changes from development to the live server.",
+      "question": "Identify:",
+      "correct": "Deployment",
+      "wrong": [
+        "Staging",
+        "Testing",
+        "Compiling"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "CORS",
+      "prompt": "Browser blocking a request from one domain to another.",
+      "question": "Identify:",
+      "correct": "Cross-Origin Block",
+      "wrong": [
+        "Firewall",
+        "Rate Limit",
+        "Authentication"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "FRAMEWORK",
+      "prompt": "Pre-built structure providing routing, templates, and database tools.",
+      "question": "Identify:",
+      "correct": "Web Framework",
+      "wrong": [
+        "Library",
+        "SDK",
+        "IDE"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "OAUTH",
+      "prompt": "Logging into a website using your Google account.",
+      "question": "Identify:",
+      "correct": "OAuth Authentication",
+      "wrong": [
+        "SSO",
+        "LDAP",
+        "SAML"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "CDN",
+      "prompt": "Serving website files from the nearest geographic server.",
+      "question": "Identify:",
+      "correct": "Content Delivery Network",
+      "wrong": [
+        "Load Balancer",
+        "Proxy",
+        "Mirror"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "SPA",
+      "prompt": "Web app loading once and updating content without page refreshes.",
+      "question": "Identify:",
+      "correct": "Single Page Application",
+      "wrong": [
+        "Static Site",
+        "Server Rendered",
+        "Progressive Web App"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "WEBSOCKET",
+      "prompt": "Real-time two-way communication between browser and server.",
+      "question": "Identify:",
+      "correct": "WebSocket",
+      "wrong": [
+        "HTTP Polling",
+        "Server-Sent Events",
+        "Long Polling"
+      ],
+      "difficulty": 3,
+      "stroop": 2
+    }
+  ]
+}

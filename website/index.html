@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The 2-Second Witness | Cognitive Training Game & Stroop Effect Speed Puzzle</title>
+<meta name="description" content="Train your brain with The 2-Second Witness — a free cognitive training game based on the Stroop Effect. 60 worlds, 960 scenarios, 6 universes. Play online or download on Google Play.">
+<meta name="keywords" content="cognitive training game, Stroop effect online, speed perception puzzle, brain training game, decision making training, rapid thinking, pattern recognition, System 1 vs System 2, cognitive bias">
+<meta name="author" content="ITTY BITTY BITES">
+<link rel="canonical" href="https://ittybittybites.github.io/">
+
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ittybittybites.github.io/">
+<meta property="og:title" content="The 2-Second Witness | Cognitive Training Game & Stroop Effect Speed Puzzle">
+<meta property="og:description" content="Train your brain with a free Stroop Effect speed puzzle. 60 worlds, 960 scenarios, 6 universes. Play online or download on Google Play.">
+<meta property="og:image" content="https://ittybittybites.github.io/og-cover.png">
+<meta property="og:site_name" content="The 2-Second Witness">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:url" content="https://ittybittybites.github.io/">
+<meta name="twitter:title" content="The 2-Second Witness | Cognitive Training Game & Stroop Effect Speed Puzzle">
+<meta name="twitter:description" content="Train your brain with a free Stroop Effect speed puzzle. 60 worlds, 960 scenarios, 6 universes.">
+<meta name="twitter:image" content="https://ittybittybites.github.io/og-cover.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@400;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        gold: { 400: '#facc15', 500: '#eab308', 950: '#422006' },
+        amber: { 400: '#fbbf24', 500: '#f59e0b' },
+        slate: { 950: '#020617', 900: '#0f172a', 800: '#1e293b' },
+        zinc: { 950: '#09090b', 900: '#18181b' },
+        emerald: { 400: '#34d399', 500: '#10b981', 950: '#022c22' },
+        cyan: { 400: '#22d3ee', 500: '#06b6d4', 950: '#083344' }
+      },
+      fontFamily: {
+        mono: ['JetBrains Mono', 'monospace'],
+        display: ['Orbitron', 'sans-serif'],
+        body: ['Inter', 'sans-serif']
+      },
+      animation: {
+        'grid-scroll': 'gridScroll 24s linear infinite',
+        'pulse-dot': 'pulseDot 2s ease-in-out infinite'
+      },
+      keyframes: {
+        gridScroll: {
+          '0%': { transform: 'translateY(0)' },
+          '100%': { transform: 'translateY(60px)' }
+        },
+        pulseDot: {
+          '0%, 100%': { opacity: '1', boxShadow: '0 0 8px rgba(52,211,153,0.6)' },
+          '50%': { opacity: '0.4', boxShadow: '0 0 2px rgba(52,211,153,0.2)' }
+        }
+      }
+    }
+  }
+}
+</script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "The 2-Second Witness",
+  "description": "A free cognitive training game based on the Stroop Effect with 60 worlds, 960 scenarios, and 6 universes.",
+  "applicationCategory": "GameApplication",
+  "operatingSystem": "ANDROID",
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "url": "https://ittybittybites.github.io/",
+  "sameAs": [
+    "https://play.google.com/store/apps/details?id=com.ittybittybites.the2secondwitness",
+    "https://ittybittybites.itch.io/2-second-witness"
+  ]
+}
+</script>
+
+<style>
+:root {
+  --bg: #020617;
+  --bg-alt: #09090b;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --cyan: #22d3ee;
+  --emerald: #34d399;
+  --gold: #facc15;
+  --amber: #fbbf24;
+  --red: #f43f5e;
+  --orange: #fb923c;
+  --purple: #c084fc;
+  --border: rgba(34,211,238,0.12);
+  --border-strong: rgba(34,211,238,0.25);
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(rgba(34,211,238,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.03) 1px, transparent 1px);
+  background-size: 60px 60px;
+  pointer-events: none;
+  z-index: -1;
+  animation: gridScroll 24s linear infinite;
+}
+@keyframes gridScroll {
+  from { transform: translateY(0); }
+  to { transform: translateY(60px); }
+}
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.04) 2px, rgba(0,0,0,0.04) 4px);
+  pointer-events: none;
+  z-index: 999;
+}
+
+/* Terminal Navigation Nodes */
+.nav-node {
+  position: relative;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 6px 12px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  transition: all 0.2s ease;
+  background: rgba(15,23,42,0.6);
+}
+.nav-node:hover {
+  color: var(--cyan);
+  border-color: var(--cyan);
+  box-shadow: 0 4px 14px rgba(34,211,238,0.18), inset 0 -1px 0 rgba(34,211,238,0.3);
+  transform: translateY(-1px);
+}
+.nav-node.active {
+  color: var(--emerald);
+  border-color: var(--emerald);
+  background: rgba(52,211,153,0.08);
+  box-shadow: 0 0 16px rgba(52,211,153,0.2), inset 0 -1px 0 rgba(52,211,153,0.4);
+}
+
+/* Oversized Tactical Alert Badge */
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid var(--emerald);
+  color: var(--emerald);
+  padding: 10px 20px;
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  box-shadow: 0 0 24px rgba(52,211,153,0.2), inset 0 0 12px rgba(52,211,153,0.05);
+  background: rgba(52,211,153,0.04);
+}
+.hero-badge::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: var(--emerald);
+  border-radius: 50%;
+  animation: pulseDot 2s ease-in-out infinite;
+}
+
+/* Tactical Buttons */
+.btn-tactical {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 32px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 1px;
+  border: 2px solid;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+.btn-primary-solid {
+  background: var(--cyan);
+  border-color: var(--cyan);
+  color: var(--bg);
+  box-shadow: 0 0 28px rgba(34,211,238,0.3);
+}
+.btn-primary-solid:hover {
+  background: transparent;
+  color: var(--cyan);
+  box-shadow: 0 0 40px rgba(34,211,238,0.45);
+}
+.btn-outline-gold {
+  border-color: var(--gold);
+  color: var(--gold);
+  background: transparent;
+}
+.btn-outline-gold:hover {
+  background: var(--gold);
+  color: var(--bg);
+  box-shadow: 0 0 30px rgba(250,204,21,0.35);
+}
+.btn-small {
+  padding: 10px 18px;
+  font-size: 10px;
+}
+
+/* Massive Stat Blocks */
+.stat-block {
+  background: rgba(15,23,42,0.85);
+  border: 1px solid var(--border);
+  padding: 48px 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 260px;
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+.stat-block:hover {
+  border-color: var(--cyan);
+  box-shadow: 0 0 36px rgba(34,211,238,0.15);
+  transform: translateY(-4px);
+}
+.stat-num {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 72px;
+  font-weight: 900;
+  color: var(--cyan);
+  line-height: 1;
+  text-shadow: 0 0 40px rgba(34,211,238,0.4);
+}
+.stat-label {
+  font-size: 12px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 16px;
+  font-weight: 700;
+}
+.stat-micro {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 10px;
+  text-align: center;
+  max-width: 200px;
+  line-height: 1.5;
+}
+
+/* Folder Cards */
+.folder-card {
+  background: rgba(15,23,42,0.85);
+  border: 1px solid var(--border);
+  position: relative;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+.folder-card:hover {
+  border-color: var(--border-strong);
+  box-shadow: 0 0 30px rgba(34,211,238,0.1);
+}
+.folder-tab {
+  position: absolute;
+  top: -14px;
+  left: 20px;
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  font-weight: 700;
+}
+
+/* Step Protocol */
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  padding: 16px;
+  border: 1px solid var(--border);
+  background: rgba(34,211,238,0.03);
+  transition: border-color 0.2s, background 0.2s;
+}
+.step-item:hover {
+  border-color: var(--cyan);
+  background: rgba(34,211,238,0.06);
+}
+.step-num {
+  flex-shrink: 0;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 1px solid var(--cyan);
+  color: var(--cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  box-shadow: 0 0 12px rgba(34,211,238,0.25);
+  font-family: 'Orbitron', sans-serif;
+}
+
+/* Universe Matrix */
+.universe-card {
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  background: rgba(15,23,42,0.85);
+  border: 1px solid var(--border);
+}
+.universe-card:hover, .universe-card:focus {
+  transform: translateY(-6px) scale(1.015);
+  border-color: var(--emerald);
+  box-shadow: 0 0 32px rgba(52,211,153,0.22);
+  outline: none;
+}
+
+/* Expansive Dossier Cards */
+.dossier-lg {
+  background: rgba(15,23,42,0.85);
+  border: 1px solid var(--border);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+.dossier-lg:hover {
+  border-color: var(--emerald);
+  box-shadow: 0 0 36px rgba(52,211,153,0.14);
+  transform: translateY(-3px);
+}
+.terminal-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--cyan);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: color 0.2s, gap 0.2s;
+}
+.terminal-link::before {
+  content: '>';
+  color: var(--emerald);
+  font-weight: 700;
+}
+.terminal-link:hover {
+  color: var(--emerald);
+  gap: 10px;
+}
+
+/* Gear Locker */
+.gear-card {
+  background: rgba(15,23,42,0.85);
+  border: 1px solid var(--border);
+  transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+}
+.gear-card:hover {
+  border-color: var(--gold);
+  box-shadow: 0 0 28px rgba(250,204,21,0.12);
+  transform: translateY(-3px);
+}
+.gear-img {
+  aspect-ratio: 4 / 3;
+  width: 100%;
+  border: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(34,211,238,0.06) 0%, rgba(52,211,153,0.04) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.gear-img svg { width: 44px; height: 44px; color: var(--muted); }
+
+/* Intel */
+.intel-card {
+  background: rgba(15,23,42,0.85);
+  border: 1px solid var(--border);
+  transition: border-color 0.3s, transform 0.3s;
+}
+.intel-card:hover { border-color: var(--cyan); transform: translateY(-3px); }
+
+/* Download Terminal */
+.terminal-section {
+  background: rgba(15,23,42,0.9);
+  border: 2px solid var(--cyan);
+  box-shadow: 0 0 48px rgba(34,211,238,0.14);
+}
+
+/* Section Background Patterns */
+.section-pattern-dots::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(34,211,238,0.10) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.6;
+}
+.section-pattern-grid::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(rgba(34,211,238,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(34,211,238,0.05) 1px, transparent 1px);
+  background-size: 48px 48px;
+  pointer-events: none;
+  z-index: 0;
+  opacity: 0.5;
+}
+.section-radial::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, rgba(34,211,238,0.06) 0%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .nav-inner { gap: 6px; }
+  .nav-node { font-size: 9px; padding: 5px 8px; letter-spacing: 1px; }
+  .hero h1 { font-size: 40px; letter-spacing: 3px; }
+  .hero-badge { font-size: 9px; padding: 8px 14px; letter-spacing: 2px; }
+  .btn-tactical { padding: 14px 20px; font-size: 12px; width: 100%; }
+  .stat-num { font-size: 56px; }
+  .stat-block { min-height: 200px; padding: 36px 16px; }
+  .dossier-lg { padding: 28px; }
+}
+</style>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-6P6NPFW4FZ');</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1566091161594729" crossorigin="anonymous"></script>
+    <!-- Universal Automated Cache-Busting & Auto-Refresh Guard -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script>
+        (function() {
+            const clientVer = localStorage.getItem('arcade_client_deployment_ver');
+            const liveVer = 'v=1781821243';
+            if (clientVer !== liveVer) {
+                localStorage.setItem('arcade_client_deployment_ver', liveVer);
+                if (window.caches) { caches.keys().then(n => n.forEach(c => caches.delete(c))); }
+                if (clientVer) { window.location.reload(true); }
+            }
+        })();
+    </script>
+    <!-- Absolute Browser Cache Invalidation Guard -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <script>
+        (function() {
+            const v = localStorage.getItem('master_deployment_version');
+            const target = 'v=202606182304';
+            if (v !== target) {
+                localStorage.setItem('master_deployment_version', target);
+                if (window.caches) { caches.keys().then(n => n.forEach(c => caches.delete(c))); }
+                window.location.reload(true);
+            }
+        })();
+    </script>
+</head>
+<body class="bg-slate-950 text-slate-50 font-mono leading-relaxed overflow-x-hidden relative antialiased">
+
+<!-- NAV: Terminal Utility Bar -->
+<!-- GLOBAL UNIFIED TACTICAL NAVIGATION -->
+<!-- GLOBAL UNIFIED TACTICAL NAVIGATION -->
+<nav class="bg-slate-950 border-b border-cyan-400/20 py-3 sticky top-0 z-50 backdrop-blur-md shadow-2xl select-none font-mono">
+  <div class="max-w-[1200px] mx-auto px-4 flex justify-center gap-2 sm:gap-4 flex-wrap items-center">
+    <a href="index.html" class="nav-node active">HQ</a>
+    <a href="arcade.html" class="nav-node ">TACTICAL ARCADE</a>
+    <a href="intel/index.html" class="nav-node ">INTEL MATRIX</a>
+    <a href="feed.html" class="nav-node ">INTEL FEED</a>
+    <a href="library.html" class="nav-node ">GEAR LOCKER</a>
+  </div>
+</nav>
+
+<!-- HERO: Expansive Tactical Launchpad -->
+<section class="hero relative min-h-[70vh] flex flex-col justify-center items-center py-24 md:py-32 bg-zinc-950 section-radial">
+  <div class="max-w-[1100px] mx-auto px-5 text-center relative z-10">
+    <div class="hero-badge mb-8">CLASSIFIED // COGNITIVE TRAINING DIVISION</div>
+    <h1 class="font-display text-5xl md:text-6xl lg:text-7xl text-cyan-400 tracking-[6px] md:tracking-[8px] lg:tracking-[10px] font-black uppercase mb-6 drop-shadow-[0_0_50px_rgba(34,211,238,0.4)]">THE 2-SECOND WITNESS</h1>
+    <p class="text-slate-300 text-lg md:text-xl max-w-2xl mx-auto mb-10 font-body leading-relaxed">Train your neural response systems. Override cognitive interference. Identify truth under pressure. <span class="text-emerald-400 font-bold">Your brain has 2 seconds.</span></p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-lg mx-auto">
+      <a href="https://play.google.com/store/apps/details?id=com.ittybittybites.the2secondwitness" class="btn-tactical btn-primary-solid w-full sm:w-auto" aria-label="Download The 2-Second Witness on Google Play">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M18 17V9"/><path d="M13 17V5"/><path d="M8 17v-7"/></svg>
+        DEPLOY ON ANDROID
+      </a>
+      <a href="https://ittybittybites.itch.io/2-second-witness" class="btn-tactical btn-outline-gold w-full sm:w-auto" aria-label="Open the web demo simulation">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg>
+        WEB SIMULATION
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- STATS: Massive Standalone Data Blocks -->
+<section class="py-24 md:py-32 relative bg-slate-950 section-pattern-dots">
+  <div class="max-w-[1100px] mx-auto px-5 relative z-10">
+    <div class="flex items-center gap-3 mb-10">
+      <span class="text-[10px] tracking-[2px] text-slate-950 bg-cyan-400 px-3 py-1 uppercase font-bold">LIVE DATA</span>
+      <h2 class="font-display text-lg md:text-xl text-cyan-400 tracking-[2px]">OPERATIONAL METRICS</h2>
+      <span class="flex-1 h-px bg-gradient-to-r from-cyan-400/20 to-transparent"></span>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="stat-block">
+        <div class="stat-num">60</div>
+        <div class="stat-label">Active Worlds</div>
+        <div class="stat-micro">Training theaters across every division</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">960</div>
+        <div class="stat-label">Scenarios</div>
+        <div class="stat-micro">Rapid-fire decision challenges</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">6</div>
+        <div class="stat-label">Universes</div>
+        <div class="stat-micro">Knowledge domains under simulation</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-num">4</div>
+        <div class="stat-label">Clearance Levels</div>
+        <div class="stat-micro">RECRUIT to GHOST escalation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISSION BRIEF: Split Folder Dossiers -->
+<section class="py-24 md:py-32 relative bg-zinc-950">
+  <div class="max-w-[1100px] mx-auto px-5 relative z-10">
+    <div class="flex items-center gap-3 mb-10">
+      <span class="text-[10px] tracking-[2px] text-slate-950 bg-emerald-400 px-3 py-1 uppercase font-bold">MISSION BRIEF</span>
+      <h2 class="font-display text-lg md:text-xl text-cyan-400 tracking-[2px]">OPERATION OVERVIEW</h2>
+      <span class="flex-1 h-px bg-gradient-to-r from-cyan-400/20 to-transparent"></span>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      <article class="folder-card p-8 md:p-10">
+        <span class="folder-tab bg-emerald-400 text-slate-950">OBJECTIVE</span>
+        <p class="text-slate-300 text-base md:text-lg leading-relaxed mt-2 font-body">A rapid-fire <strong>cognitive training game</strong> built on the <strong>Stroop Effect</strong> — the psychological phenomenon where your brain fights itself when information conflicts. Each round: a flash word primes your brain, a scenario appears for <strong>2 seconds</strong>, then you identify the truth from four options. Your instincts will betray you. Your assumptions will mislead you. The training teaches you to override <strong>System 1</strong> and see clearly under pressure.</p>
+      </article>
+
+      <article class="folder-card p-8 md:p-10">
+        <span class="folder-tab bg-cyan-400 text-slate-950">PROTOCOL</span>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+          <div class="step-item">
+            <div class="step-num">01</div>
+            <div class="text-xs"><strong class="text-cyan-400 block text-[10px] tracking-[1px] uppercase mb-0.5">BRIEFING</strong><span class="text-slate-400">Context for the scenario</span></div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">02</div>
+            <div class="text-xs"><strong class="text-cyan-400 block text-[10px] tracking-[1px] uppercase mb-0.5">FLASH</strong><span class="text-slate-400">Priming word influences perception</span></div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">03</div>
+            <div class="text-xs"><strong class="text-cyan-400 block text-[10px] tracking-[1px] uppercase mb-0.5">WITNESS</strong><span class="text-slate-400">Critical info for 2 seconds</span></div>
+          </div>
+          <div class="step-item">
+            <div class="step-num">04</div>
+            <div class="text-xs"><strong class="text-cyan-400 block text-[10px] tracking-[1px] uppercase mb-0.5">IDENTIFY</strong><span class="text-slate-400">Select correct answer fast</span></div>
+          </div>
+        </div>
+        <p class="text-slate-300 text-base leading-relaxed mt-6 font-body">Difficulty scales across 4 clearance levels: <strong>RECRUIT</strong> (7s), <strong>AGENT</strong> (5s), <strong>OPERATIVE</strong> (3.5s), <strong>GHOST</strong> (2.5s). Higher clearance = more XP but greater cognitive interference.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 6 UNIVERSES MATRIX -->
+<section class="py-24 md:py-32 relative bg-slate-950 section-pattern-grid">
+  <div class="max-w-[1100px] mx-auto px-5 relative z-10">
+    <div class="flex items-center gap-3 mb-10">
+      <span class="text-[10px] tracking-[2px] text-slate-950 bg-emerald-400 px-3 py-1 uppercase font-bold">DIVISION MAP</span>
+      <h2 class="font-display text-lg md:text-xl text-cyan-400 tracking-[2px]">6 UNIVERSES</h2>
+      <span class="flex-1 h-px bg-gradient-to-r from-cyan-400/20 to-transparent"></span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div class="universe-card p-6 cursor-pointer" tabindex="0" role="button" aria-label="Explore Digital Warfare Division">
+        <div class="flex items-center gap-3 mb-4">
+          <svg class="w-12 h-12 text-cyan-400" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3"/></svg>
+          <span class="text-[10px] tracking-[2px] text-cyan-400 uppercase font-bold">TECH OPS</span>
+        </div>
+        <h3 class="font-display text-base text-cyan-400 tracking-[1px] mb-3">Digital Warfare Division</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Cyber attacks, AI systems, blockchain, robotics, IoT, game engines, hardware, telecommunications, web security, automotive diagnostics.</p>
+        <div class="text-[10px] mt-4 pt-3 border-t border-cyan-400/10 text-slate-500 uppercase tracking-[1px]">10 Active Worlds // 160 Scenarios</div>
+      </div>
+
+      <div class="universe-card p-6 cursor-pointer" tabindex="0" role="button" aria-label="Explore Research Division">
+        <div class="flex items-center gap-3 mb-4">
+          <svg class="w-12 h-12 text-emerald-400" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(0 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(60 12 12)"/><ellipse cx="12" cy="12" rx="9" ry="4" transform="rotate(120 12 12)"/></svg>
+          <span class="text-[10px] tracking-[2px] text-emerald-400 uppercase font-bold">SCIENCE LAB</span>
+        </div>
+        <h3 class="font-display text-base text-emerald-400 tracking-[1px] mb-3">Research Division</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Chemistry, genetics, quantum mechanics, astronomy, ecology, geology, microbiology, weather systems, engineering, general science.</p>
+        <div class="text-[10px] mt-4 pt-3 border-t border-cyan-400/10 text-slate-500 uppercase tracking-[1px]">10 Active Worlds // 160 Scenarios</div>
+      </div>
+
+      <div class="universe-card p-6 cursor-pointer" tabindex="0" role="button" aria-label="Explore Field Operations">
+        <div class="flex items-center gap-3 mb-4">
+          <svg class="w-12 h-12 text-[#2ecc71]" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="6" y="3" width="12" height="18" rx="2"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>
+          <span class="text-[10px] tracking-[2px] text-[#2ecc71] uppercase font-bold">LIFE SCIENCES</span>
+        </div>
+        <h3 class="font-display text-base text-[#2ecc71] tracking-[1px] mb-3">Field Operations</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Medical emergencies, nature, food safety, gardening, pet care, fitness, first aid, nutrition, home repair, family development.</p>
+        <div class="text-[10px] mt-4 pt-3 border-t border-cyan-400/10 text-slate-500 uppercase tracking-[1px]">10 Active Worlds // 160 Scenarios</div>
+      </div>
+
+      <div class="universe-card p-6 cursor-pointer" tabindex="0" role="button" aria-label="Explore Intelligence Analysis">
+        <div class="flex items-center gap-3 mb-4">
+          <svg class="w-12 h-12 text-gold-400" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="M4.93 4.93l2.83 2.83"/><path d="M16.24 16.24l2.83 2.83"/><path d="M2 12h4"/><path d="M18 12h4"/><path d="M4.93 19.07l2.83-2.83"/><path d="M16.24 7.76l2.83-2.83"/></svg>
+          <span class="text-[10px] tracking-[2px] text-gold-400 uppercase font-bold">SOCIETY & MIND</span>
+        </div>
+        <h3 class="font-display text-base text-gold-400 tracking-[1px] mb-3">Intelligence Analysis</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Law, financial markets, psychology, forensics, social influence, history, political systems, philosophy, sociology, economics.</p>
+        <div class="text-[10px] mt-4 pt-3 border-t border-cyan-400/10 text-slate-500 uppercase tracking-[1px]">10 Active Worlds // 160 Scenarios</div>
+      </div>
+
+      <div class="universe-card p-6 cursor-pointer" tabindex="0" role="button" aria-label="Explore Extreme Operations">
+        <div class="flex items-center gap-3 mb-4">
+          <svg class="w-12 h-12 text-orange-400" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h16L12 4 4 20z"/><path d="M12 4v16"/></svg>
+          <span class="text-[10px] tracking-[2px] text-orange-400 uppercase font-bold">FRONTIER</span>
+        </div>
+        <h3 class="font-display text-base text-orange-400 tracking-[1px] mb-3">Extreme Operations</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Space exploration, wilderness survival, deep ocean, aviation, tactical operations, arctic, volcanoes, disaster response, military.</p>
+        <div class="text-[10px] mt-4 pt-3 border-t border-cyan-400/10 text-slate-500 uppercase tracking-[1px]">10 Active Worlds // 160 Scenarios</div>
+      </div>
+
+      <div class="universe-card p-6 cursor-pointer" tabindex="0" role="button" aria-label="Explore Cultural Intelligence">
+        <div class="flex items-center gap-3 mb-4">
+          <svg class="w-12 h-12 text-purple-400" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="M4.93 4.93l1.41 1.41"/><path d="M17.66 17.66l1.41 1.41"/><path d="M4.93 19.07l1.41-1.41"/><path d="M17.66 6.34l1.41-1.41"/></svg>
+          <span class="text-[10px] tracking-[2px] text-purple-400 uppercase font-bold">CREATIVE ARTS</span>
+        </div>
+        <h3 class="font-display text-base text-purple-400 tracking-[1px] mb-3">Cultural Intelligence</h3>
+        <p class="text-slate-400 text-sm leading-relaxed">Music theory, art history, filmmaking, architecture, design principles, photography, creative writing, world geography, cuisine, fashion.</p>
+        <div class="text-[10px] mt-4 pt-3 border-t border-cyan-400/10 text-slate-500 uppercase tracking-[1px]">10 Active Worlds // 160 Scenarios</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SCIENCE DOSSIER: Expansive Full-Width Dossiers -->
+<section class="py-24 md:py-32 relative bg-zinc-950 section-pattern-dots">
+  <div class="max-w-[1100px] mx-auto px-5 relative z-10">
+    <div class="flex items-center gap-3 mb-10">
+      <span class="text-[10px] tracking-[2px] text-slate-950 bg-rose-500 px-3 py-1 uppercase font-bold">INTEL BRIEFING</span>
+      <h2 class="font-display text-lg md:text-xl text-cyan-400 tracking-[2px]">THE SCIENCE</h2>
+      <span class="flex-1 h-px bg-gradient-to-r from-cyan-400/20 to-transparent"></span>
+    </div>
+
+    <div class="space-y-6">
+      <article class="dossier-lg border-l-2 border-emerald-500/50 p-8 md:p-12 relative">
+        <span class="absolute top-4 right-4 text-[9px] tracking-[2px] text-rose-500 uppercase border border-rose-500 px-2 py-0.5">CLASSIFIED</span>
+        <h3 class="text-gold-400 text-base md:text-lg font-bold tracking-[1px] mb-4">THE STROOP EFFECT</h3>
+        <p class="text-slate-300 text-base md:text-lg leading-relaxed max-w-4xl font-body">Named after <strong>John Ridley Stroop (1935)</strong>. Your brain processes <strong>word meaning faster than color</strong>, creating a measurable conflict when the two disagree. This interference reveals the fundamental tension between <strong>automatic processing</strong> (System 1) and <strong>controlled processing</strong> (System 2). The 2-Second Witness weaponizes this conflict in every round.</p>
+        <a href="./articles/stroop-effect.html" class="terminal-link mt-4 inline-flex">Full briefing</a>
+      </article>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <article class="dossier-lg border-l-2 border-emerald-500/50 p-8 md:p-10 relative">
+          <span class="absolute top-4 right-4 text-[9px] tracking-[2px] text-rose-500 uppercase border border-rose-500 px-2 py-0.5">CLASSIFIED</span>
+          <h3 class="text-gold-400 text-base md:text-lg font-bold tracking-[1px] mb-4">SYSTEM 1 vs SYSTEM 2</h3>
+          <p class="text-slate-300 text-base leading-relaxed font-body">Nobel laureate <strong>Daniel Kahneman</strong> identified two decision systems. <strong>System 1 is fast, automatic, and often wrong.</strong> <strong>System 2 is slow, deliberate, and accurate.</strong> Most errors occur when System 1 handles situations requiring System 2. Training under time pressure builds faster System 2 activation.</p>
+          <a href="./articles/decision-making.html" class="terminal-link mt-4 inline-flex">Decision training</a>
+        </article>
+
+        <article class="dossier-lg border-l-2 border-emerald-500/50 p-8 md:p-10 relative">
+          <span class="absolute top-4 right-4 text-[9px] tracking-[2px] text-rose-500 uppercase border border-rose-500 px-2 py-0.5">CLASSIFIED</span>
+          <h3 class="text-gold-400 text-base md:text-lg font-bold tracking-[1px] mb-4">COGNITIVE PRIMING</h3>
+          <p class="text-slate-300 text-base leading-relaxed font-body">Exposure to a stimulus <strong>unconsciously influences</strong> your response to the next stimulus. The flash word in each round is a deliberate <strong>cognitive prime</strong>. At RECRUIT level, it helps. At GHOST level, it actively misleads. Training yourself to recognize and override misleading primes is the core skill that transfers to real-world decision making.</p>
+          <a href="./articles/priming-effect.html" class="terminal-link mt-4 inline-flex">Priming analysis</a>
+        </article>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTEL FEED -->
+<section class="py-24 md:py-32 relative bg-slate-950">
+  <div class="max-w-[1100px] mx-auto px-5 relative z-10">
+    <div class="flex items-center gap-3 mb-10">
+      <span class="text-[10px] tracking-[2px] text-slate-950 bg-cyan-400 px-3 py-1 uppercase font-bold">INTEL FEED</span>
+      <h2 class="font-display text-lg md:text-xl text-cyan-400 tracking-[2px]">RESEARCH DATABASE</h2>
+      <span class="flex-1 h-px bg-gradient-to-r from-cyan-400/20 to-transparent"></span>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <a href="./articles/cognitive-biases.html" class="intel-card p-6 block">
+        <span class="text-[10px] tracking-[2px] text-cyan-400 uppercase mb-2 block">PSYCHOLOGY</span>
+        <h4 class="text-slate-50 text-base font-bold mb-2 leading-snug">25 Cognitive Biases That Trick Your Brain Every Day</h4>
+        <p class="text-slate-400 text-sm leading-relaxed">Confirmation bias, anchoring, Dunning-Kruger, and 22 more with real-world examples.</p>
+      </a>
+      <a href="./articles/social-engineering.html" class="intel-card p-6 block">
+        <span class="text-[10px] tracking-[2px] text-cyan-400 uppercase mb-2 block">CYBERSECURITY</span>
+        <h4 class="text-slate-50 text-base font-bold mb-2 leading-snug">10 Social Engineering Techniques Hackers Use</h4>
+        <p class="text-slate-400 text-sm leading-relaxed">Phishing, pretexting, baiting, deepfakes, and how to defend against each one.</p>
+      </a>
+      <a href="./articles/flow-state.html" class="intel-card p-6 block">
+        <span class="text-[10px] tracking-[2px] text-cyan-400 uppercase mb-2 block">PERFORMANCE</span>
+        <h4 class="text-slate-50 text-base font-bold mb-2 leading-snug">Flow State: How to Enter The Zone on Demand</h4>
+        <p class="text-slate-400 text-sm leading-relaxed">Csikszentmihalyi's research translated into practical triggers anyone can use.</p>
+      </a>
+      <a href="./articles/pattern-recognition.html" class="intel-card p-6 block">
+        <span class="text-[10px] tracking-[2px] text-cyan-400 uppercase mb-2 block">EXPERTISE</span>
+        <h4 class="text-slate-50 text-base font-bold mb-2 leading-snug">How Experts See What You Miss</h4>
+        <p class="text-slate-400 text-sm leading-relaxed">The neuroscience of pattern recognition in chess, medicine, and emergency response.</p>
+      </a>
+      <a href="./articles/false-memory.html" class="intel-card p-6 block">
+        <span class="text-[10px] tracking-[2px] text-cyan-400 uppercase mb-2 block">NEUROSCIENCE</span>
+        <h4 class="text-slate-50 text-base font-bold mb-2 leading-snug">Why Your Memory is Unreliable</h4>
+        <p class="text-slate-400 text-sm leading-relaxed">False memories, eyewitness failure, and the reconstruction problem.</p>
+      </a>
+      <a href="./articles/rapid-thinking.html" class="intel-card p-6 block">
+        <span class="text-[10px] tracking-[2px] text-cyan-400 uppercase mb-2 block">TACTICAL</span>
+        <h4 class="text-slate-50 text-base font-bold mb-2 leading-snug">Think Faster Under Pressure</h4>
+        <p class="text-slate-400 text-sm leading-relaxed">8 techniques from pilots, surgeons, and special forces operators.</p>
+      </a>
+      <a href="./articles/logical-fallacies.html" class="intel-card p-6 block">
+        <span class="text-[10px] tracking-[2px] text-cyan-400 uppercase mb-2 block">CRITICAL THINKING</span>
+        <h4 class="text-slate-50 text-base font-bold mb-2 leading-snug">15 Logical Fallacies You Commit Daily</h4>
+        <p class="text-slate-400 text-sm leading-relaxed">Ad hominem, straw man, false dilemma -- spot bad arguments instantly.</p>
+      </a>
+      <a href="./articles/behavioral-economics.html" class="intel-card p-6 block">
+        <span class="text-[10px] tracking-[2px] text-cyan-400 uppercase mb-2 block">FINANCE</span>
+        <h4 class="text-slate-50 text-base font-bold mb-2 leading-snug">Why Smart People Make Dumb Financial Decisions</h4>
+        <p class="text-slate-400 text-sm leading-relaxed">Loss aversion, sunk cost, anchoring -- the biases that cost you money.</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- GEAR LOCKER -->
+<section class="py-24 md:py-32 relative bg-zinc-950">
+  <div class="max-w-[1100px] mx-auto px-5 relative z-10">
+    <div class="flex items-center gap-3 mb-10">
+      <span class="text-[10px] tracking-[2px] text-slate-950 bg-gold-400 px-3 py-1 uppercase font-bold">GEAR LOCKER</span>
+      <h2 class="font-display text-lg md:text-xl text-cyan-400 tracking-[2px]">COGNITIVE TOOLKIT</h2>
+      <span class="flex-1 h-px bg-gradient-to-r from-cyan-400/20 to-transparent"></span>
+    </div>
+
+    <div class="bg-slate-900/60 border border-cyan-400/10 p-4 mb-8 text-center">
+      <p class="text-[10px] tracking-[1px] text-slate-400 uppercase">As an Amazon Associate I earn from qualifying purchases. All equipment personally vetted for agent development.</p>
+    </div>
+
+    <h3 class="text-gold-400 text-xs tracking-[2px] uppercase mb-5">Required Reading</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+      <div class="gear-card p-5">
+        <div class="gear-img"><svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <span class="text-[9px] tracking-[2px] text-rose-500 uppercase border border-rose-500 px-2 py-0.5 inline-block mb-2">ESSENTIAL</span>
+        <h4 class="text-gold-400 text-sm font-bold mb-1">Thinking, Fast and Slow</h4>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">Daniel Kahneman. The foundation of dual-process theory. Nobel Prize winner explains System 1 and System 2.</p>
+        <a href="https://www.amazon.com/dp/0374533555?tag=ittybittybite-20" class="btn-tactical btn-small btn-outline-gold w-full" aria-label="Buy Thinking, Fast and Slow on Amazon">DEPLOY VIA AMAZON >></a>
+      </div>
+      <div class="gear-card p-5">
+        <div class="gear-img"><svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <span class="text-[9px] tracking-[2px] text-rose-500 uppercase border border-rose-500 px-2 py-0.5 inline-block mb-2">ESSENTIAL</span>
+        <h4 class="text-gold-400 text-sm font-bold mb-1">Blink</h4>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">Malcolm Gladwell. The power and danger of rapid cognition. The 2-second decision window explained.</p>
+        <a href="https://www.amazon.com/dp/0316010669?tag=ittybittybite-20" class="btn-tactical btn-small btn-outline-gold w-full" aria-label="Buy Blink on Amazon">DEPLOY VIA AMAZON >></a>
+      </div>
+      <div class="gear-card p-5">
+        <div class="gear-img"><svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <span class="text-[9px] tracking-[2px] text-orange-400 uppercase border border-orange-400 px-2 py-0.5 inline-block mb-2">RECOMMENDED</span>
+        <h4 class="text-gold-400 text-sm font-bold mb-1">Influence</h4>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">Robert Cialdini. The 6 principles of persuasion. How social engineers exploit reciprocity, authority, scarcity.</p>
+        <a href="https://www.amazon.com/dp/006124189X?tag=ittybittybite-20" class="btn-tactical btn-small btn-outline-gold w-full" aria-label="Buy Influence on Amazon">DEPLOY VIA AMAZON >></a>
+      </div>
+      <div class="gear-card p-5">
+        <div class="gear-img"><svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <span class="text-[9px] tracking-[2px] text-orange-400 uppercase border border-orange-400 px-2 py-0.5 inline-block mb-2">RECOMMENDED</span>
+        <h4 class="text-gold-400 text-sm font-bold mb-1">Predictably Irrational</h4>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">Dan Ariely. Why we make the decisions we do. The hidden forces behind irrational behavior revealed.</p>
+        <a href="https://www.amazon.com/dp/0061353248?tag=ittybittybite-20" class="btn-tactical btn-small btn-outline-gold w-full" aria-label="Buy Predictably Irrational on Amazon">DEPLOY VIA AMAZON >></a>
+      </div>
+    </div>
+
+    <h3 class="text-gold-400 text-xs tracking-[2px] uppercase mb-5">Supplementary Materials</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
+      <div class="gear-card p-5">
+        <div class="gear-img"><svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <span class="text-[9px] tracking-[2px] text-cyan-400 uppercase border border-cyan-400 px-2 py-0.5 inline-block mb-2">NEUROSCIENCE</span>
+        <h4 class="text-gold-400 text-sm font-bold mb-1">Brain Rules</h4>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">John Medina. 12 principles for how the brain works. Backed by peer-reviewed science, written for field agents.</p>
+        <a href="https://www.amazon.com/dp/0983263612?tag=ittybittybite-20" class="btn-tactical btn-small btn-outline-gold w-full" aria-label="Buy Brain Rules on Amazon">DEPLOY VIA AMAZON >></a>
+      </div>
+      <div class="gear-card p-5">
+        <div class="gear-img"><svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <span class="text-[9px] tracking-[2px] text-cyan-400 uppercase border border-cyan-400 px-2 py-0.5 inline-block mb-2">PERFORMANCE</span>
+        <h4 class="text-gold-400 text-sm font-bold mb-1">Flow</h4>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">Mihaly Csikszentmihalyi. The science of optimal experience. How to enter the zone where performance peaks.</p>
+        <a href="https://www.amazon.com/dp/0061339202?tag=ittybittybite-20" class="btn-tactical btn-small btn-outline-gold w-full" aria-label="Buy Flow on Amazon">DEPLOY VIA AMAZON >></a>
+      </div>
+      <div class="gear-card p-5">
+        <div class="gear-img"><svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <span class="text-[9px] tracking-[2px] text-cyan-400 uppercase border border-cyan-400 px-2 py-0.5 inline-block mb-2">HABITS</span>
+        <h4 class="text-gold-400 text-sm font-bold mb-1">Atomic Habits</h4>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">James Clear. Building training discipline through tiny improvements. 10M+ copies. The system works.</p>
+        <a href="https://www.amazon.com/dp/0735211299?tag=ittybittybite-20" class="btn-tactical btn-small btn-outline-gold w-full" aria-label="Buy Atomic Habits on Amazon">DEPLOY VIA AMAZON >></a>
+      </div>
+      <div class="gear-card p-5">
+        <div class="gear-img"><svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
+        <span class="text-[9px] tracking-[2px] text-cyan-400 uppercase border border-cyan-400 px-2 py-0.5 inline-block mb-2">RECOVERY</span>
+        <h4 class="text-gold-400 text-sm font-bold mb-1">Why We Sleep</h4>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">Matthew Walker. Sleep is when neural training consolidates. Without it, your cognitive gains disappear.</p>
+        <a href="https://www.amazon.com/dp/1501144324?tag=ittybittybite-20" class="btn-tactical btn-small btn-outline-gold w-full" aria-label="Buy Why We Sleep on Amazon">DEPLOY VIA AMAZON >></a>
+      </div>
+    </div>
+
+    <h3 class="text-gold-400 text-xs tracking-[2px] uppercase mb-5">Field Equipment</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 mb-8">
+      <div class="gear-card p-5">
+        <div class="gear-img"><svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
+        <span class="text-[9px] tracking-[2px] text-emerald-400 uppercase border border-emerald-400 px-2 py-0.5 inline-block mb-2">GEAR</span>
+        <h4 class="text-gold-400 text-sm font-bold mb-1">Noise Cancelling Headphones</h4>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">Sony WH-1000XM5. Eliminate distractions during training sessions. Essential for achieving flow state.</p>
+        <a href="https://www.amazon.com/dp/B0BX2L8PGH?tag=ittybittybite-20" class="btn-tactical btn-small btn-outline-gold w-full" aria-label="Buy Noise Cancelling Headphones on Amazon">DEPLOY VIA AMAZON >></a>
+      </div>
+      <div class="gear-card p-5">
+        <div class="gear-img"><svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
+        <span class="text-[9px] tracking-[2px] text-emerald-400 uppercase border border-emerald-400 px-2 py-0.5 inline-block mb-2">GEAR</span>
+        <h4 class="text-gold-400 text-sm font-bold mb-1">Speed Cube</h4>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">Physical spatial reasoning trainer. Improves pattern recognition speed. The analog complement to digital training.</p>
+        <a href="https://www.amazon.com/dp/B09FHKRXWZ?tag=ittybittybite-20" class="btn-tactical btn-small btn-outline-gold w-full" aria-label="Buy Speed Cube on Amazon">DEPLOY VIA AMAZON >></a>
+      </div>
+      <div class="gear-card p-5">
+        <div class="gear-img"><svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
+        <span class="text-[9px] tracking-[2px] text-emerald-400 uppercase border border-emerald-400 px-2 py-0.5 inline-block mb-2">GEAR</span>
+        <h4 class="text-gold-400 text-sm font-bold mb-1">Field Journal</h4>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">Moleskine. Track training progress, record insights, log decision patterns. Writing by hand improves retention.</p>
+        <a href="https://www.amazon.com/dp/8883701127?tag=ittybittybite-20" class="btn-tactical btn-small btn-outline-gold w-full" aria-label="Buy Field Journal on Amazon">DEPLOY VIA AMAZON >></a>
+      </div>
+      <div class="gear-card p-5">
+        <div class="gear-img"><svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg></div>
+        <span class="text-[9px] tracking-[2px] text-emerald-400 uppercase border border-emerald-400 px-2 py-0.5 inline-block mb-2">GEAR</span>
+        <h4 class="text-gold-400 text-sm font-bold mb-1">Focus Timer</h4>
+        <p class="text-slate-400 text-xs leading-relaxed mb-4">Pomodoro cube. Physical timer for structured training blocks. No phone distractions. Flip and focus.</p>
+        <a href="https://www.amazon.com/dp/B09WRGS68M?tag=ittybittybite-20" class="btn-tactical btn-small btn-outline-gold w-full" aria-label="Buy Focus Timer on Amazon">DEPLOY VIA AMAZON >></a>
+      </div>
+    </div>
+
+    <div class="text-center mt-8">
+      <a href="library.html" class="btn-tactical btn-outline-gold">ACCESS FULL LOCKER >></a>
+    </div>
+  </div>
+</section>
+
+<!-- DOWNLOAD TERMINAL -->
+<section class="py-24 md:py-32 relative bg-slate-950 section-radial">
+  <div class="max-w-[1100px] mx-auto px-5 relative z-10">
+    <div class="terminal-section p-10 md:p-14 text-center relative">
+      <span class="absolute -top-3 left-1/2 -translate-x-1/2 bg-slate-950 px-4 text-[10px] tracking-[3px] text-cyan-400 uppercase">Secure Channel</span>
+      <h2 class="font-display text-2xl md:text-3xl text-cyan-400 tracking-[2px] mb-4">DEPLOY THE 2-SECOND WITNESS</h2>
+      <p class="text-slate-300 text-base md:text-lg mb-8 max-w-xl mx-auto">60 worlds. 960 scenarios. 6 universes. 4 clearance levels.<br>Free. Offline. No account required.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center max-w-lg mx-auto">
+        <a href="https://play.google.com/store/apps/details?id=com.ittybittybites.the2secondwitness" class="btn-tactical btn-primary-solid w-full sm:w-auto">GOOGLE PLAY</a>
+        <a href="https://ittybittybites.itch.io/2-second-witness" class="btn-tactical btn-outline-gold w-full sm:w-auto">WEB DEMO</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="border-t border-cyan-400/10 py-10 text-center text-[10px] text-slate-500 bg-slate-950">
+  <div class="max-w-[1100px] mx-auto px-5">
+    <p>THE 2-SECOND WITNESS // COGNITIVE TRAINING DIVISION // ITTY BITTY BITES</p>
+    <p class="mt-2"><a href="privacy_policy.html" class="text-slate-500 hover:text-cyan-400 transition-colors">Privacy Policy</a> | <a href="./articles/best-brain-games.html" class="text-slate-500 hover:text-cyan-400 transition-colors">Training Programs</a> | <a href="./articles/best-psychology-books.html" class="text-slate-500 hover:text-cyan-400 transition-colors">Library</a></p>
+    <p class="mt-2">As an Amazon Associate I earn from qualifying purchases.</p>
+    <p class="mt-1">#The2SecondWitness</p>
+  </div>
+</footer>
+
+<script>
+  // Universe tile interaction logging
+  document.querySelectorAll('.universe-card').forEach(card => {
+    const handler = () => {
+      const title = card.querySelector('h3')?.textContent?.trim() || 'Unknown Universe';
+      console.log('[2SW TRACK] Universe selected:', title);
+      if (typeof gtag === 'function') {
+        gtag('event', 'select_universe', { event_category: 'engagement', event_label: title });
+      }
+    };
+    card.addEventListener('click', handler);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); handler(); }
+    });
+  });
+
+  // 50% scroll depth marker
+  let halfScrollFired = false;
+  window.addEventListener('scroll', () => {
+    const scrolled = window.scrollY + window.innerHeight;
+    const half = document.body.scrollHeight * 0.5;
+    if (!halfScrollFired && scrolled >= half) {
+      halfScrollFired = true;
+      console.log('[2SW TRACK] 50% scroll depth reached');
+      if (typeof gtag === 'function') gtag('event', 'scroll_50_percent', { event_category: 'engagement' });
+    }
+  }, { passive: true });
+
+  // Outbound Amazon click tracking
+  document.querySelectorAll('a[href*="amazon.com"]').forEach(link => {
+    link.addEventListener('click', () => {
+      const product = link.closest('.gear-card')?.querySelector('h4')?.textContent?.trim() || 'Amazon product';
+      const href = link.getAttribute('href');
+      console.log('[2SW TRACK] Amazon outbound click:', product, href);
+      if (typeof gtag === 'function') {
+        gtag('event', 'amazon_click', { event_category: 'outbound', event_label: product });
+      }
+    });
+  });
+</script>
+
+</body>
+</html>

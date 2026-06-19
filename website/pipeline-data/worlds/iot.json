@@ -1,0 +1,232 @@
+{
+  "id": "iot",
+  "name": "IOT GRID",
+  "universe": "tech",
+  "icon": ">>",
+  "color": "#16A085",
+  "tags": [
+    "iot",
+    "smart_devices",
+    "connected"
+  ],
+  "corridor": {
+    "fog_density": 0.015,
+    "glow": 0.8,
+    "wall_density": 1.0,
+    "fov": 75,
+    "speed": 8,
+    "ceiling": true,
+    "floor_grid": true,
+    "data_streams": false
+  },
+  "scenarios": [
+    {
+      "flash": "CONNECT",
+      "prompt": "Thermostat adjusting temperature based on your phone's location.",
+      "question": "Identify:",
+      "correct": "Geofencing",
+      "wrong": [
+        "Scheduling",
+        "Manual Control",
+        "Motion Sensor"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "MESH",
+      "prompt": "Smart devices passing data through each other to reach the hub.",
+      "question": "Identify:",
+      "correct": "Mesh Network",
+      "wrong": [
+        "Wi-Fi Direct",
+        "Bluetooth",
+        "Zigbee"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "SMART",
+      "prompt": "Fridge detecting expired milk and adding it to shopping list.",
+      "question": "Identify:",
+      "correct": "Smart Inventory",
+      "wrong": [
+        "Barcode Scan",
+        "Camera Check",
+        "Weight Sensor"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "EDGE",
+      "prompt": "Processing sensor data locally instead of sending to the cloud.",
+      "question": "Identify:",
+      "correct": "Edge Computing",
+      "wrong": [
+        "Cloud Computing",
+        "Fog Computing",
+        "Batch Processing"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "PROTOCOL",
+      "prompt": "Low-power devices communicating on the 868 MHz frequency.",
+      "question": "Identify:",
+      "correct": "LoRaWAN",
+      "wrong": [
+        "Wi-Fi",
+        "Bluetooth",
+        "5G"
+      ],
+      "difficulty": 3,
+      "stroop": 1
+    },
+    {
+      "flash": "FIRMWARE",
+      "prompt": "Updating the software on a smart light bulb remotely.",
+      "question": "Identify:",
+      "correct": "Over-the-Air Update",
+      "wrong": [
+        "Factory Reset",
+        "Manual Flash",
+        "Hardware Swap"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "SENSOR",
+      "prompt": "Soil moisture sensor triggering automatic garden sprinklers.",
+      "question": "Identify:",
+      "correct": "Automated Irrigation",
+      "wrong": [
+        "Timer System",
+        "Manual Watering",
+        "Rain Sensor"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "GATEWAY",
+      "prompt": "Central device translating between Zigbee and Wi-Fi protocols.",
+      "question": "Identify:",
+      "correct": "IoT Gateway",
+      "wrong": [
+        "Router",
+        "Repeater",
+        "Bridge"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "LATENCY",
+      "prompt": "Self-driving car needing instant response from nearby cell tower.",
+      "question": "Identify:",
+      "correct": "Ultra-Low Latency",
+      "wrong": [
+        "High Bandwidth",
+        "Edge Computing",
+        "5G Slicing"
+      ],
+      "difficulty": 3,
+      "stroop": 1
+    },
+    {
+      "flash": "PRIVACY",
+      "prompt": "Smart speaker recording conversations without permission.",
+      "question": "Identify:",
+      "correct": "Privacy Violation",
+      "wrong": [
+        "Data Collection",
+        "Feature",
+        "Bug"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "TWIN",
+      "prompt": "Digital replica of a factory floor updated in real-time.",
+      "question": "Identify:",
+      "correct": "Digital Twin",
+      "wrong": [
+        "Simulation",
+        "3D Model",
+        "Virtual Reality"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "WEARABLE",
+      "prompt": "Watch detecting irregular heartbeat and alerting the user.",
+      "question": "Identify:",
+      "correct": "Health Monitoring",
+      "wrong": [
+        "Fitness Tracking",
+        "Sleep Analysis",
+        "GPS Tracking"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "ZIGBEE",
+      "prompt": "Low-power protocol designed for short-range device communication.",
+      "question": "Identify:",
+      "correct": "Zigbee",
+      "wrong": [
+        "Bluetooth",
+        "Wi-Fi",
+        "NFC"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "HACK",
+      "prompt": "Baby monitor accessed by unauthorized users remotely.",
+      "question": "Identify:",
+      "correct": "IoT Security Breach",
+      "wrong": [
+        "Software Bug",
+        "Signal Interference",
+        "Power Failure"
+      ],
+      "difficulty": 2,
+      "stroop": 2
+    },
+    {
+      "flash": "BEACON",
+      "prompt": "Small Bluetooth device tracking assets inside a warehouse.",
+      "question": "Identify:",
+      "correct": "BLE Beacon",
+      "wrong": [
+        "RFID Tag",
+        "GPS Tracker",
+        "NFC Tag"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "POWER",
+      "prompt": "Sensor harvesting energy from vibrations to power itself.",
+      "question": "Identify:",
+      "correct": "Energy Harvesting",
+      "wrong": [
+        "Battery Power",
+        "Solar Power",
+        "Wired Power"
+      ],
+      "difficulty": 3,
+      "stroop": 1
+    }
+  ]
+}

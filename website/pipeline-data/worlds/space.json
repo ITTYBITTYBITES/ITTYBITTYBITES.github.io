@@ -1,0 +1,220 @@
+{
+  "id": "space",
+  "name": "DEEP SIGNAL",
+  "icon": "o",
+  "color": "#7F8C8D",
+  "tags": [
+    "space"
+  ],
+  "scenarios": [
+    {
+      "flash": "STAR",
+      "prompt": "Massive star collapses, gravity so strong light cannot escape.",
+      "question": "Identify:",
+      "correct": "Black Hole",
+      "wrong": [
+        "Neutron Star",
+        "White Dwarf",
+        "Supernova"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "ORBIT",
+      "prompt": "Spacecraft uses planet gravity to change direction and speed.",
+      "question": "Identify:",
+      "correct": "Gravity Assist",
+      "wrong": [
+        "Orbital Insertion",
+        "Aerobraking",
+        "Thrust Vectoring"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "EXPLOSION",
+      "prompt": "Star suddenly brightens to outshine entire galaxy, then fades.",
+      "question": "Identify:",
+      "correct": "Supernova",
+      "wrong": [
+        "Solar Flare",
+        "Gamma Ray Burst",
+        "Nova"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "PLANET",
+      "prompt": "Rocky world in habitable zone with liquid water on surface.",
+      "question": "Classify:",
+      "correct": "Potentially Habitable",
+      "wrong": [
+        "Gas Giant",
+        "Ice World",
+        "Tidally Locked"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "TIME",
+      "prompt": "Clock on satellite runs slightly faster than identical clock on Earth.",
+      "question": "Identify:",
+      "correct": "Time Dilation",
+      "wrong": [
+        "Clock Malfunction",
+        "Signal Delay",
+        "Leap Second"
+      ],
+      "difficulty": 3,
+      "stroop": 1
+    },
+    {
+      "flash": "SIGNAL",
+      "prompt": "Repeating radio burst from deep space, origin unknown.",
+      "question": "Identify:",
+      "correct": "Fast Radio Burst",
+      "wrong": [
+        "Pulsar",
+        "Quasar",
+        "Satellite Noise"
+      ],
+      "difficulty": 2,
+      "stroop": 1
+    },
+    {
+      "flash": "MARS",
+      "prompt": "Rover detecting methane spikes in Martian atmosphere.",
+      "question": "Identify:",
+      "correct": "Possible Biological Activity",
+      "wrong": [
+        "Volcanic Venting",
+        "Instrument Error",
+        "Solar Wind"
+      ],
+      "difficulty": 3,
+      "stroop": 1
+    },
+    {
+      "flash": "DEBRIS",
+      "prompt": "Abandoned satellite fragments threatening space station.",
+      "question": "Identify:",
+      "correct": "Space Debris",
+      "wrong": [
+        "Meteor Shower",
+        "Solar Flare",
+        "Asteroid"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "LANDING",
+      "prompt": "Spacecraft using atmosphere to slow down for landing.",
+      "question": "Identify:",
+      "correct": "Aerobraking",
+      "wrong": [
+        "Retro Thrust",
+        "Gravity Capture",
+        "Parachute Deploy"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "NEBULA",
+      "prompt": "Massive cloud of gas and dust where new stars are forming.",
+      "question": "Identify:",
+      "correct": "Stellar Nursery",
+      "wrong": [
+        "Planetary Nebula",
+        "Supernova Remnant",
+        "Dark Matter"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "COMET",
+      "prompt": "Bright tail always pointing away from the sun.",
+      "question": "Identify:",
+      "correct": "Solar Wind Effect",
+      "wrong": [
+        "Gravity Pull",
+        "Orbital Drag",
+        "Magnetic Field"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "GRAVITY",
+      "prompt": "Light bending around a massive galaxy cluster.",
+      "question": "Identify:",
+      "correct": "Gravitational Lensing",
+      "wrong": [
+        "Refraction",
+        "Diffraction",
+        "Redshift"
+      ],
+      "difficulty": 3,
+      "stroop": 1
+    },
+    {
+      "flash": "ROTATION",
+      "prompt": "Day on Venus being longer than its year.",
+      "question": "Identify:",
+      "correct": "Retrograde Rotation",
+      "wrong": [
+        "Tidal Locking",
+        "Orbital Resonance",
+        "Precession"
+      ],
+      "difficulty": 3,
+      "stroop": 0
+    },
+    {
+      "flash": "RED",
+      "prompt": "Galaxy moving away from us at increasing speed.",
+      "question": "Identify:",
+      "correct": "Redshift",
+      "wrong": [
+        "Blueshift",
+        "Doppler Effect",
+        "Parallax"
+      ],
+      "difficulty": 2,
+      "stroop": 0
+    },
+    {
+      "flash": "FUSION",
+      "prompt": "Process powering the sun by combining hydrogen atoms.",
+      "question": "Identify:",
+      "correct": "Nuclear Fusion",
+      "wrong": [
+        "Nuclear Fission",
+        "Radioactive Decay",
+        "Solar Wind"
+      ],
+      "difficulty": 1,
+      "stroop": 0
+    },
+    {
+      "flash": "ECLIPSE",
+      "prompt": "Moon passing directly between Earth and the Sun.",
+      "question": "Identify:",
+      "correct": "Solar Eclipse",
+      "wrong": [
+        "Lunar Eclipse",
+        "Transit",
+        "Occultation"
+      ],
+      "difficulty": 1,
+      "stroop": 2
+    }
+  ],
+  "universe": "frontier"
+}
