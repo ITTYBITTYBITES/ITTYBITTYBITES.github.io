@@ -15,6 +15,7 @@
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-6P6NPFW4FZ');</script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1566091161594729" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="assets/brand-system.css">
+  <script type="module" src="assets/kernel-home.js"></script>
 </head>
 <body class="ibb-brand">
   <nav class="ibb-nav" aria-label="Primary navigation">
@@ -65,6 +66,36 @@
             </div>
           </div>
         </div>
+      </div>
+    </section>
+
+
+
+    <section class="ibb-section kernel-living-section" id="living-kernel">
+      <div class="ibb-container">
+        <div class="ibb-feature" style="align-items:end;">
+          <div>
+            <p class="ibb-kicker">Living kernel</p>
+            <h2 class="ibb-title" style="font-size:clamp(34px,5vw,64px);">The homepage now has a heartbeat.</h2>
+            <p class="ibb-lede">The Kernel event bus is active on this page. Click an action to emit events, update persistent state, and spawn reactive UI artifacts without leaving the site.</p>
+          </div>
+          <div class="ibb-card kernel-state-card">
+            <h3>Live state</h3>
+            <div class="kernel-state-grid">
+              <span>Level <strong data-kernel-bind="player.level">1</strong></span>
+              <span>Events <strong data-kernel-bind="system.eventCount">0</strong></span>
+              <span>Bytes <strong data-kernel-bind="player.resources.bytes">0</strong></span>
+              <span>Gold <strong data-kernel-bind="player.resources.gold">0</strong></span>
+            </div>
+          </div>
+        </div>
+        <div class="ibb-actions kernel-action-row">
+          <button class="ibb-button ibb-button--primary" type="button" data-kernel-event="milestone.level_up">Level up site</button>
+          <button class="ibb-button ibb-button--secondary" type="button" data-kernel-event="economic.resource_gained" data-kernel-payload='{"resource":"bytes","amount":25}'>Spawn bytes</button>
+          <button class="ibb-button ibb-button--gold" type="button" data-kernel-event="economic.resource_spent" data-kernel-payload='{"resource":"gold","amount":60}'>Trigger reward</button>
+          <button class="ibb-button ibb-button--secondary" type="button" onclick="window.IttyBittyKernel && window.IttyBittyKernel.clear()">Reset kernel</button>
+        </div>
+        <div id="spawn-zone" class="kernel-spawn-zone" aria-live="polite"></div>
       </div>
     </section>
 

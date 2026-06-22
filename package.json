@@ -9,7 +9,10 @@
     "build:intel": "node website/build-engine.js --section=intel",
     "build:feeds": "node website/build-engine.js --section=feeds",
     "lint": "echo 'No linter configured'",
-    "test": "node website/build-engine.js --dry-run"
+    "test": "node website/build-engine.js --dry-run",
+    "build:home-kernel": "vite build",
+    "typecheck:home-kernel": "tsc --noEmit",
+    "test:home-kernel": "npm run typecheck:home-kernel && npm run build:home-kernel"
   },
   "keywords": [
     "ssg",
@@ -28,5 +31,9 @@
   },
   "engines": {
     "node": ">=18.0.0"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16",
+    "typescript": "^6.0.3"
   }
 }

@@ -1,0 +1,10 @@
+{
+  "gameId": "resource-collector",
+  "name": "Resource Collector",
+  "version": "1.0.0",
+  "source": "resource-collector",
+  "supportedEvents": [
+    "economic.resource_gained",
+    "economic.resource_spent"
+  ]
+}
