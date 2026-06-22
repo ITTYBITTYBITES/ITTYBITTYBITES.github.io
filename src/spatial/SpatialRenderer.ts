@@ -65,6 +65,7 @@ export class SpatialRenderer {
   private links: LiquidLink[] = [];
   private gears: GearAssembly[] = [];
   private gauges: Gauge[] = [];
+  private focusDial?: THREE.Group;
   private resizeObserver?: ResizeObserver;
   private rafId = 0;
   private focusIndex = -1;
@@ -115,6 +116,7 @@ export class SpatialRenderer {
     this.createStarfield();
     this.createBlueprintGearRig();
     this.createGauges();
+    this.createEngageDial();
     this.applyResponsiveProfile(this.profile, true);
     this.responsive.subscribe((profile) => this.applyResponsiveProfile(profile));
     this.bindPointer();
@@ -273,6 +275,12 @@ export class SpatialRenderer {
     const hit = gearHits.find((item) => item.object.userData.gearId);
     const gearId = hit?.object.userData.gearId as GearId | undefined;
     return gearId ? this.gears.find((item) => item.id === gearId) : undefined;
+  }
+
+  private pickDial(): boolean {
+    if (!this.focusDial) return false;
+    this.raycaster.setFromCamera(this.pointer, this.camera);
+    return this.raycaster.intersectObjects(this.focusDial.children, true).some((item) => item.object.userData.engageDial);
   }
 
 
@@ -454,6 +462,25 @@ export class SpatialRenderer {
     this.gears.push({ id, group, hit: face, anchor: position.clone(), eventType: GEAR_EVENT_TYPES[id], unlockedLevel, active: false, label: labelSprite });
   }
 
+  private createEngageDial(): void {
+    const group = new THREE.Group();
+    group.position.set(0, -2.78, 0.58);
+    group.userData = { engageDial: true };
+    const mat = this.createOxidizedMetalMaterial(0x2f2318, 0x0b0603, 0.015);
+    const base = new THREE.Mesh(new THREE.CylinderGeometry(0.62, 0.72, 0.16, 48), mat);
+    base.rotation.x = Math.PI / 2;
+    base.userData = { engageDial: true };
+    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.54, 0.04, 10, 48), this.createOxidizedMetalMaterial(0x8c693d, 0x1e1207, 0.02));
+    ring.position.z = 0.11;
+    ring.userData = { engageDial: true };
+    const label = this.createTextSprite('ENGAGE DIAL', '#2e2114', 'rgba(154,113,62,0.68)', 0.78);
+    label.position.set(0, 0, 0.24);
+    label.scale.set(1.2, 0.24, 1);
+    group.add(base, ring, label);
+    this.gearGroup.add(group);
+    this.focusDial = group;
+  }
+
   private createGauges(): void {
     const specs = [
       ['depth', 'DEPTH 1', -3.4, 1.75],
@@ -582,6 +609,8 @@ export class SpatialRenderer {
 
   private archiveOldMemories(): void {
     const archiveStart = Math.max(0, this.nodes.length - 16);
+    if (this.focusDial) this.focusDial.rotation.z -= 0.004;
+
     this.nodes.forEach((node, index) => {
       if (index < archiveStart) {
         const depth = archiveStart - index;
@@ -608,6 +637,11 @@ export class SpatialRenderer {
     this.renderer.domElement.addEventListener('pointermove', update, { passive: true });
     this.renderer.domElement.addEventListener('pointerdown', (event) => {
       update(event);
+      const dial = this.pickDial();
+      if (dial) {
+        this.focusNext();
+        return;
+      }
       const gear = this.pickGear();
       if (!gear || gear.group.userData.unlocked === false) return;
       this.dragGear = gear;
@@ -688,6 +722,8 @@ export class SpatialRenderer {
       gear.group.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.08);
     });
 
+    if (this.focusDial) this.focusDial.rotation.z -= 0.004;
+
     this.nodes.forEach((node, index) => {
       const age = Math.min(1, (performance.now() - node.createdAt) / 620);
       const desired = node.target.clone();
@@ -748,7 +784,7 @@ export class SpatialRenderer {
     this.hovered = nodeHits[0]
       ? this.nodes.find((node) => node.mesh === nodeHits[0].object)
       : undefined;
-    this.renderer.domElement.style.cursor = this.hoveredGear || this.hovered ? 'grab' : 'crosshair';
+    this.renderer.domElement.style.cursor = this.pickDial() || this.hoveredGear || this.hovered ? 'grab' : 'crosshair';
   }
 
   private updateHud(event: EventContract, mapping: BiomeMapping): void {
@@ -790,15 +826,18 @@ export class SpatialRenderer {
     const ctx = canvas.getContext('2d')!;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.fillStyle = background;
-    this.roundRect(ctx, 12, 22, 488, 84, 30);
-    ctx.fill();
-    ctx.strokeStyle = 'rgba(110,244,229,0.32)';
-    ctx.lineWidth = 3;
-    this.roundRect(ctx, 12, 22, 488, 84, 30);
-    ctx.stroke();
-    ctx.font = '900 34px Inter, system-ui, sans-serif';
+    ctx.fillRect(12, 24, 488, 80);
+    ctx.strokeStyle = 'rgba(61,42,21,0.58)';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(12.5, 24.5, 487, 79);
+    ctx.strokeStyle = 'rgba(240,211,150,0.20)';
+    ctx.lineWidth = 1;
+    ctx.strokeRect(22.5, 34.5, 467, 59);
+    ctx.font = '900 31px "Courier New", "Courier", monospace';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
+    ctx.fillStyle = 'rgba(255,238,190,0.16)';
+    ctx.fillText(text, 258, 67);
     ctx.fillStyle = color;
     ctx.fillText(text, 256, 65);
     const texture = new THREE.CanvasTexture(canvas);

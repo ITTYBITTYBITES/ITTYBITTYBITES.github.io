@@ -12455,7 +12455,7 @@ var eu = class {
 				e.group.rotation.z += n * (t % 2 ? -1 : 1);
 				let r = e.active ? 1.08 : 1, i = this.hoveredGear === e || this.selectedGear === e ? 1.08 : 1, a = this.profile.gearScale * this.profile.touchTargetScale * r * i;
 				e.group.scale.lerp(new q(a, a, a), .08);
-			}), this.nodes.forEach((t, r) => {
+			}), this.focusDial && (this.focusDial.rotation.z -= .004), this.nodes.forEach((t, r) => {
 				let i = Math.min(1, (performance.now() - t.createdAt) / 620), a = t.target.clone();
 				if (this.hovered && this.hovered !== t) {
 					let e = a.distanceTo(this.hovered.target);
@@ -12488,7 +12488,7 @@ var eu = class {
 		let a = new po(7271653, 1.15, 30, 2.1);
 		a.position.set(-4.6, 1.2, 4.2);
 		let o = new po(3877400, 1.8, 36, 2);
-		o.position.set(0, -4, 7), this.scene.add(r, i, a, o), this.createWorkstationEnvironment(), this.createStarfield(), this.createBlueprintGearRig(), this.createGauges(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
+		o.position.set(0, -4, 7), this.scene.add(r, i, a, o), this.createWorkstationEnvironment(), this.createStarfield(), this.createBlueprintGearRig(), this.createGauges(), this.createEngageDial(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
 	}
 	handle(e) {
 		if (e.type === "system.heartbeat" && this.nodes.length > 0) return;
@@ -12602,6 +12602,9 @@ var eu = class {
 		this.raycaster.setFromCamera(this.pointer, this.camera);
 		let e = this.raycaster.intersectObjects(this.gearGroup.children, !0).find((e) => e.object.userData.gearId)?.object.userData.gearId;
 		return e ? this.gears.find((t) => t.id === e) : void 0;
+	}
+	pickDial() {
+		return this.focusDial ? (this.raycaster.setFromCamera(this.pointer, this.camera), this.raycaster.intersectObjects(this.focusDial.children, !0).some((e) => e.object.userData.engageDial)) : !1;
 	}
 	createWorkstationEnvironment() {
 		let e = new gi(new va(18, 11, 1, 1), new Na({
@@ -12744,6 +12747,16 @@ var eu = class {
 			label: f
 		});
 	}
+	createEngageDial() {
+		let e = new Dn();
+		e.position.set(0, -2.78, .58), e.userData = { engageDial: !0 };
+		let t = this.createOxidizedMetalMaterial(3089176, 722435, .015), n = new gi(new Vi(.62, .72, .16, 48), t);
+		n.rotation.x = Math.PI / 2, n.userData = { engageDial: !0 };
+		let r = new gi(new xa(.54, .04, 10, 48), this.createOxidizedMetalMaterial(9201981, 1970695, .02));
+		r.position.z = .11, r.userData = { engageDial: !0 };
+		let i = this.createTextSprite("ENGAGE DIAL", "#2e2114", "rgba(154,113,62,0.68)", .78);
+		i.position.set(0, 0, .24), i.scale.set(1.2, .24, 1), e.add(n, r, i), this.gearGroup.add(e), this.focusDial = e;
+	}
 	createGauges() {
 		[
 			[
@@ -12862,7 +12875,7 @@ var eu = class {
 	}
 	archiveOldMemories() {
 		let e = Math.max(0, this.nodes.length - 16);
-		this.nodes.forEach((t, n) => {
+		this.focusDial && (this.focusDial.rotation.z -= .004), this.nodes.forEach((t, n) => {
 			if (n < e) {
 				let r = e - n;
 				t.target.z = t.home.z - 6 - r * .34, t.target.y = t.home.y - Math.min(4, r * .11);
@@ -12878,7 +12891,10 @@ var eu = class {
 			}
 		};
 		this.renderer.domElement.addEventListener("pointermove", e, { passive: !0 }), this.renderer.domElement.addEventListener("pointerdown", (t) => {
-			e(t);
+			if (e(t), this.pickDial()) {
+				this.focusNext();
+				return;
+			}
 			let n = this.pickGear();
 			if (!(!n || n.group.userData.unlocked === !1)) if (this.dragGear = n, this.dragStartX = t.clientX, this.didDrag = !1, this.renderer.domElement.setPointerCapture?.(t.pointerId), t.pointerType === "touch") {
 				let e = performance.now(), t = this.lastTouchGear === n.id && e - this.lastTouchAt < 900;
@@ -12915,7 +12931,7 @@ var eu = class {
 		let e = this.raycaster.intersectObjects(this.gearGroup.children, !0).find((e) => e.object.userData.gearId);
 		this.hoveredGear = e ? this.gears.find((t) => t.id === e.object.userData.gearId) : void 0;
 		let t = this.raycaster.intersectObjects(this.nodes.map((e) => e.mesh), !1);
-		this.hovered = t[0] ? this.nodes.find((e) => e.mesh === t[0].object) : void 0, this.renderer.domElement.style.cursor = this.hoveredGear || this.hovered ? "grab" : "crosshair";
+		this.hovered = t[0] ? this.nodes.find((e) => e.mesh === t[0].object) : void 0, this.renderer.domElement.style.cursor = this.pickDial() || this.hoveredGear || this.hovered ? "grab" : "crosshair";
 	}
 	updateHud(e, t) {
 		this.host.dataset.nodes = String(this.nodes.length), this.host.dataset.lastEvent = e.type, this.liveRegion && (this.liveRegion.textContent = `${t.label}: ${e.type}`);
@@ -12938,7 +12954,7 @@ var eu = class {
 		let r = document.createElement("canvas");
 		r.width = 512, r.height = 128;
 		let i = r.getContext("2d");
-		i.clearRect(0, 0, r.width, r.height), i.fillStyle = n, this.roundRect(i, 12, 22, 488, 84, 30), i.fill(), i.strokeStyle = "rgba(110,244,229,0.32)", i.lineWidth = 3, this.roundRect(i, 12, 22, 488, 84, 30), i.stroke(), i.font = "900 34px Inter, system-ui, sans-serif", i.textAlign = "center", i.textBaseline = "middle", i.fillStyle = t, i.fillText(e, 256, 65);
+		i.clearRect(0, 0, r.width, r.height), i.fillStyle = n, i.fillRect(12, 24, 488, 80), i.strokeStyle = "rgba(61,42,21,0.58)", i.lineWidth = 2, i.strokeRect(12.5, 24.5, 487, 79), i.strokeStyle = "rgba(240,211,150,0.20)", i.lineWidth = 1, i.strokeRect(22.5, 34.5, 467, 59), i.font = "900 31px \"Courier New\", \"Courier\", monospace", i.textAlign = "center", i.textBaseline = "middle", i.fillStyle = "rgba(255,238,190,0.16)", i.fillText(e, 258, 67), i.fillStyle = t, i.fillText(e, 256, 65);
 		let a = new Ii(r);
 		return a.needsUpdate = !0, a;
 	}
