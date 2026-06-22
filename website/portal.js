@@ -18,9 +18,9 @@ class ArcadePortalEngine {
         this.lastAdExecutedTime = 0;
         this.activeGameWindow = null;
         
-        // External monetization smartlink disabled by site security review.
-        // Keep the property for legacy arcade compatibility, but do not ship third-party popunder endpoints in source.
-        this.adsterraSmartlinkUrl = "";
+        // Adsterra smartlink used by the legacy iframe arcade wrapper for rewarded/interstitial HTML game breaks.
+        // Triggered only from game-requested ad events or user-visible sponsor controls.
+        this.adsterraSmartlinkUrl = "https://undergocutlery.com/q9gfrv2v8?key=2cd3374e4c6ba143d74108a029fb0dd5";
 
         this.initDOMAnchors();
         this.bindEvents();
@@ -289,8 +289,8 @@ class ArcadePortalEngine {
     }
 
     executeBackgroundAdPrefetch() {
-        if (!this.adsterraSmartlinkUrl) return;
-        console.log("[Arcade Portal] External monetization prefetch enabled by configuration.");
+        // No background pop/preload: ads are launched from the visible sponsor modal only.
+        if (true) return;
         
         // 1. Inject DOM prefetch link
         let existingPrefetch = document.getElementById('adsterra-prefetch-node');
