@@ -12377,6 +12377,14 @@ var tu = class {
 	focusNext() {
 		this.nodes.length && (this.focusIndex = (this.focusIndex + 1) % this.nodes.length);
 	}
+	focusEventType(e) {
+		for (let t = this.nodes.length - 1; t >= 0; t--) if (this.nodes[t].eventType === e) {
+			this.focusIndex = t;
+			let e = this.nodes[t];
+			return this.host.dataset.lastEvent = e.eventType, this.liveRegion && (this.liveRegion.textContent = `${e.mapping.label}: ${e.eventType}`), !0;
+		}
+		return !1;
+	}
 	getNodeCount() {
 		return this.nodes.length;
 	}
@@ -12486,8 +12494,45 @@ var tu = class {
 		let t = e.getContext("2d"), n = t.createRadialGradient(64, 64, 0, 64, 64, 64);
 		return n.addColorStop(0, "rgba(255,255,255,0.95)"), n.addColorStop(.28, "rgba(255,255,255,0.28)"), n.addColorStop(1, "rgba(255,255,255,0)"), t.fillStyle = n, t.fillRect(0, 0, 128, 128), new Ri(e);
 	}
-}, au = "lm_home_kernel", ou = "ibb_home_kernel", su = 0;
-function cu() {
+}, au = "lm_home_kernel", ou = "ibb_home_kernel", su = "lm_blueprint_nav_gear", cu = 0, lu = {
+	games: {
+		eventType: "library.game_opened",
+		payload: {
+			resource: "trace",
+			amount: 25,
+			chamber: "Arcade Genesis"
+		}
+	},
+	archive: {
+		eventType: "library.archive_opened",
+		payload: {
+			resource: "trace",
+			amount: 5,
+			chamber: "Old Memory Vault"
+		}
+	},
+	community: {
+		eventType: "community.vortex",
+		payload: {
+			resource: "pearls",
+			amount: 60,
+			chamber: "Community Vortex"
+		}
+	},
+	blueprint: {
+		eventType: "milestone.level_up",
+		payload: { chamber: "Blueprint Dial" }
+	},
+	memory: {
+		eventType: "economic.resource_gained",
+		payload: {
+			resource: "trace",
+			amount: 10,
+			chamber: "Memory Mycelium"
+		}
+	}
+};
+function uu() {
 	return {
 		...t,
 		timestamp: (/* @__PURE__ */ new Date()).toISOString(),
@@ -12515,10 +12560,10 @@ function cu() {
 		}
 	};
 }
-function lu(e, t = {}, n = "ibb-homepage") {
+function du(e, t = {}, n = "liquid-memory-homepage") {
 	return {
 		eventId: crypto.randomUUID(),
-		sequenceId: ++su,
+		sequenceId: ++cu,
 		timestamp: (/* @__PURE__ */ new Date()).toISOString(),
 		type: e,
 		payload: t,
@@ -12526,54 +12571,85 @@ function lu(e, t = {}, n = "ibb-homepage") {
 		metadata: { version: "1.0.0" }
 	};
 }
-function uu() {
+function fu() {
 	[[`${ou}_state`, `${au}_state`], [`${ou}_event_log`, `${au}_event_log`]].forEach(([e, t]) => {
 		!localStorage.getItem(t) && localStorage.getItem(e) && localStorage.setItem(t, localStorage.getItem(e));
 	});
 }
-function du() {
+function pu() {
 	let t = e.getInstance();
-	t.reset(), uu();
-	let o = new i(`${au}_state`, `${au}_event_log`), c = new r(o.rehydrate() || cu());
+	t.reset(), fu();
+	let o = new i(`${au}_state`, `${au}_event_log`), c = new r(o.rehydrate() || uu());
 	new a().init(t), new s(c).start();
 	let l = document.getElementById("spatial-canvas"), u = document.getElementById("spatial-live-region"), d = l ? new iu(l, u) : null;
+	o.getEventLog().slice(-48).forEach((e) => d?.handle(e));
+	function f(e) {
+		localStorage.setItem(su, e), document.querySelectorAll("[data-kernel-gear]").forEach((t) => {
+			let n = t.dataset.kernelGear === e;
+			t.classList.toggle("is-active", n), t.setAttribute("aria-pressed", n ? "true" : "false");
+		});
+	}
+	function p(e) {
+		let t = e.player.level || 1;
+		document.querySelectorAll("[data-unlock-level]").forEach((e) => {
+			let n = Number(e.dataset.unlockLevel || 1);
+			e.classList.toggle("is-unlocked", t >= n), e.toggleAttribute("disabled", t < n);
+		});
+	}
+	function m(e) {
+		let t = lu[e].eventType;
+		d?.focusEventType(t);
+	}
+	function h(e) {
+		let n = lu[e];
+		f(e);
+		let r = { ...n.payload };
+		if (n.eventType === "milestone.level_up") {
+			let e = c.getCurrentState().player.level || 1;
+			r.newLevel = e + 1, r.xp = e * 150;
+		}
+		t.emit(du(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => m(e), 80);
+	}
 	t.subscribe((e) => {
 		d?.handle(e);
 		let t = c.getCurrentState(), r = n(t, e);
-		r !== t && r.processedEventIds.has(e.eventId) && (o.logEvent(e), o.save(r)), c.onStateUpdated(r), d?.updateFromState(r);
+		r !== t && r.processedEventIds.has(e.eventId) && (o.logEvent(e), o.save(r)), c.onStateUpdated(r), d?.updateFromState(r), p(r);
 	});
-	let f = {
+	let g = {
 		bus: t,
 		bridge: c,
-		emit: (e, n = {}, r) => t.emit(lu(e, n, r)),
+		emit: (e, n = {}, r) => t.emit(du(e, n, r)),
 		getState: () => c.getCurrentState(),
-		levelUp: () => {
-			let e = c.getCurrentState().player.level || 1;
-			return t.emit(lu("milestone.level_up", {
-				newLevel: e + 1,
-				xp: e * 150
-			}));
-		},
-		gain: (e = "bytes", n = 10) => t.emit(lu("economic.resource_gained", {
+		levelUp: () => h("blueprint"),
+		gain: (e = "trace", n = 10) => t.emit(du("economic.resource_gained", {
 			resource: e,
 			amount: n
 		})),
-		spend: (e = "gold", n = 60) => t.emit(lu("economic.resource_spent", {
+		spend: (e = "pearls", n = 60) => t.emit(du("economic.resource_spent", {
 			resource: e,
 			amount: n
 		})),
 		focusSpatial: () => d?.focusNext(),
+		focusGear: m,
+		triggerGear: h,
 		getSpatialNodeCount: () => d?.getNodeCount() || 0,
 		clear: () => {
-			o.clear(), window.location.reload();
+			o.clear(), localStorage.removeItem(su), window.location.reload();
 		}
 	};
-	window.LiquidMemoryKernel = f, window.LiquidMemorySpatial = d, document.querySelectorAll("[data-kernel-event]").forEach((e) => {
+	window.LiquidMemoryKernel = g, window.LiquidMemorySpatial = d, document.querySelectorAll("[data-kernel-event]").forEach((e) => {
 		e.addEventListener("click", () => {
 			let n = e.dataset.kernelEvent || "system.heartbeat", r = e.dataset.kernelPayload ? JSON.parse(e.dataset.kernelPayload) : {};
-			n === "milestone.level_up" ? f.levelUp() : t.emit(lu(n, r));
+			n === "milestone.level_up" ? g.levelUp() : t.emit(du(n, r));
 		});
-	}), t.emit(lu("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(lu("system.heartbeat", { path: location.pathname })), 3e4);
+	}), document.querySelectorAll("[data-kernel-gear]").forEach((e) => {
+		e.addEventListener("click", () => {
+			let t = e.dataset.kernelGear;
+			!t || e.disabled || (e.classList.remove("is-turning"), e.offsetWidth, e.classList.add("is-turning"), h(t));
+		});
+	}), p(c.getCurrentState());
+	let _ = localStorage.getItem(su) || "games";
+	lu[_] && (f(_), window.setTimeout(() => m(_), 120)), t.emit(du("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(du("system.heartbeat", { path: location.pathname })), 3e4);
 }
-document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", du) : du();
+document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", pu) : pu();
 //#endregion

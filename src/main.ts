@@ -5,7 +5,23 @@ import { SpatialRenderer } from './spatial/SpatialRenderer';
 
 const STORAGE_NAMESPACE = 'lm_home_kernel';
 const LEGACY_STORAGE_NAMESPACE = 'ibb_home_kernel';
+const BLUEPRINT_GEAR_KEY = 'lm_blueprint_nav_gear';
 let uiSequence = 0;
+
+type GearId = 'games' | 'archive' | 'community' | 'blueprint' | 'memory';
+
+type GearIntent = {
+  eventType: string;
+  payload: Record<string, any>;
+};
+
+const GEAR_INTENTS: Record<GearId, GearIntent> = {
+  games: { eventType: 'library.game_opened', payload: { resource: 'trace', amount: 25, chamber: 'Arcade Genesis' } },
+  archive: { eventType: 'library.archive_opened', payload: { resource: 'trace', amount: 5, chamber: 'Old Memory Vault' } },
+  community: { eventType: 'community.vortex', payload: { resource: 'pearls', amount: 60, chamber: 'Community Vortex' } },
+  blueprint: { eventType: 'milestone.level_up', payload: { chamber: 'Blueprint Dial' } },
+  memory: { eventType: 'economic.resource_gained', payload: { resource: 'trace', amount: 10, chamber: 'Memory Mycelium' } },
+};
 
 function cloneInitialState(): PlatformState {
   return {
@@ -23,7 +39,7 @@ function cloneInitialState(): PlatformState {
   };
 }
 
-function makeEvent(type: string, payload: Record<string, any> = {}, source = 'ibb-homepage'): EventContract {
+function makeEvent(type: string, payload: Record<string, any> = {}, source = 'liquid-memory-homepage'): EventContract {
   return {
     eventId: crypto.randomUUID(),
     sequenceId: ++uiSequence,
@@ -65,6 +81,46 @@ function initKernel() {
   const spatialLive = document.getElementById('spatial-live-region');
   const spatial = spatialHost ? new SpatialRenderer(spatialHost, spatialLive) : null;
 
+  // Rebuild the visible biome from persisted event memory without replaying reducer side effects.
+  const rememberedEvents = persistor.getEventLog().slice(-48);
+  rememberedEvents.forEach((event) => spatial?.handle(event));
+
+  function setActiveGear(gear: GearId): void {
+    localStorage.setItem(BLUEPRINT_GEAR_KEY, gear);
+    document.querySelectorAll<HTMLElement>('[data-kernel-gear]').forEach((el) => {
+      const active = el.dataset.kernelGear === gear;
+      el.classList.toggle('is-active', active);
+      el.setAttribute('aria-pressed', active ? 'true' : 'false');
+    });
+  }
+
+  function updateGearUnlocks(state: PlatformState): void {
+    const level = state.player.level || 1;
+    document.querySelectorAll<HTMLElement>('[data-unlock-level]').forEach((el) => {
+      const required = Number(el.dataset.unlockLevel || 1);
+      el.classList.toggle('is-unlocked', level >= required);
+      el.toggleAttribute('disabled', level < required);
+    });
+  }
+
+  function focusGear(gear: GearId): void {
+    const eventType = GEAR_INTENTS[gear].eventType;
+    spatial?.focusEventType(eventType);
+  }
+
+  function triggerGear(gear: GearId): void {
+    const intent = GEAR_INTENTS[gear];
+    setActiveGear(gear);
+    const payload = { ...intent.payload };
+    if (intent.eventType === 'milestone.level_up') {
+      const current = bridge.getCurrentState().player.level || 1;
+      payload.newLevel = current + 1;
+      payload.xp = current * 150;
+    }
+    bus.emit(makeEvent(intent.eventType, payload, `blueprint-gear-${gear}`));
+    window.setTimeout(() => focusGear(gear), 80);
+  }
+
   bus.subscribe((event) => {
     spatial?.handle(event);
     const current = bridge.getCurrentState();
@@ -75,6 +131,7 @@ function initKernel() {
     }
     bridge.onStateUpdated(next);
     spatial?.updateFromState(next);
+    updateGearUnlocks(next);
   });
 
   const api = {
@@ -82,15 +139,14 @@ function initKernel() {
     bridge,
     emit: (type: string, payload: Record<string, any> = {}, source?: string) => bus.emit(makeEvent(type, payload, source)),
     getState: () => bridge.getCurrentState(),
-    levelUp: () => {
-      const current = bridge.getCurrentState().player.level || 1;
-      return bus.emit(makeEvent('milestone.level_up', { newLevel: current + 1, xp: current * 150 }));
-    },
-    gain: (resource = 'bytes', amount = 10) => bus.emit(makeEvent('economic.resource_gained', { resource, amount })),
-    spend: (resource = 'gold', amount = 60) => bus.emit(makeEvent('economic.resource_spent', { resource, amount })),
+    levelUp: () => triggerGear('blueprint'),
+    gain: (resource = 'trace', amount = 10) => bus.emit(makeEvent('economic.resource_gained', { resource, amount })),
+    spend: (resource = 'pearls', amount = 60) => bus.emit(makeEvent('economic.resource_spent', { resource, amount })),
     focusSpatial: () => spatial?.focusNext(),
+    focusGear,
+    triggerGear,
     getSpatialNodeCount: () => spatial?.getNodeCount() || 0,
-    clear: () => { persistor.clear(); window.location.reload(); },
+    clear: () => { persistor.clear(); localStorage.removeItem(BLUEPRINT_GEAR_KEY); window.location.reload(); },
   };
 
   (window as any).LiquidMemoryKernel = api;
@@ -104,6 +160,24 @@ function initKernel() {
       else bus.emit(makeEvent(type, payload));
     });
   });
+
+  document.querySelectorAll<HTMLButtonElement>('[data-kernel-gear]').forEach((gearButton) => {
+    gearButton.addEventListener('click', () => {
+      const gear = gearButton.dataset.kernelGear as GearId;
+      if (!gear || gearButton.disabled) return;
+      gearButton.classList.remove('is-turning');
+      void gearButton.offsetWidth;
+      gearButton.classList.add('is-turning');
+      triggerGear(gear);
+    });
+  });
+
+  updateGearUnlocks(bridge.getCurrentState());
+  const savedGear = (localStorage.getItem(BLUEPRINT_GEAR_KEY) || 'games') as GearId;
+  if (GEAR_INTENTS[savedGear]) {
+    setActiveGear(savedGear);
+    window.setTimeout(() => focusGear(savedGear), 120);
+  }
 
   bus.emit(makeEvent('lifecycle.start', { page: location.pathname }));
   window.setInterval(() => bus.emit(makeEvent('system.heartbeat', { path: location.pathname })), 30000);

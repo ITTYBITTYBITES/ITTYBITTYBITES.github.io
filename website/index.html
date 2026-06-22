@@ -89,17 +89,19 @@
             </div>
           </div>
         </div>
-        <div class="ibb-actions kernel-action-row">
-          <button class="ibb-button ibb-button--primary" type="button" data-kernel-event="milestone.level_up">Grow chamber</button>
-          <button class="ibb-button ibb-button--secondary" type="button" data-kernel-event="library.game_opened" data-kernel-payload='{"resource":"trace","amount":25,"chamber":"Arcade Genesis"}'>Open arcade genesis</button>
-          <button class="ibb-button ibb-button--gold" type="button" data-kernel-event="community.vortex" data-kernel-payload='{"resource":"pearls","amount":60,"chamber":"Community Vortex"}'>Open community vortex</button>
-        </div>
-        <div class="kernel-canvas kernel-spatial-shell" aria-label="Liquid Memory Digital Nautiloid ecosystem">
+        <div class="kernel-canvas kernel-spatial-shell" aria-label="Liquid Memory Blueprint Nav Digital Nautiloid ecosystem">
           <div class="kernel-spatial-hud">
-            <span>Blueprint nav</span>
+            <span>Blueprint // Nav</span>
             <strong id="spatial-live-region">Digital nautiloid standing by</strong>
           </div>
           <div id="spatial-canvas" class="kernel-spatial-canvas" data-nodes="0" data-last-event="idle"></div>
+          <div class="blueprint-gear-rig" aria-label="Blueprint navigation gears">
+            <button class="blueprint-gear blueprint-gear--archive" type="button" data-kernel-gear="archive" data-unlock-level="1" aria-pressed="false"><span>Archive</span></button>
+            <button class="blueprint-gear blueprint-gear--games" type="button" data-kernel-gear="games" data-unlock-level="1" aria-pressed="false"><span>Games</span></button>
+            <button class="blueprint-gear blueprint-gear--community" type="button" data-kernel-gear="community" data-unlock-level="2" aria-pressed="false"><span>Community</span></button>
+            <button class="blueprint-gear blueprint-gear--blueprint" type="button" data-kernel-gear="blueprint" data-unlock-level="1" aria-pressed="false"><span>Blueprint</span></button>
+            <button class="blueprint-gear blueprint-gear--memory" type="button" data-kernel-gear="memory" data-unlock-level="3" aria-pressed="false"><span>Memory</span></button>
+          </div>
           <button class="kernel-focus-dial" type="button" onclick="window.LiquidMemoryKernel && window.LiquidMemoryKernel.focusSpatial()" aria-label="Focus next spatial node">Engage dial</button>
         </div>
         <details class="kernel-dev-view">

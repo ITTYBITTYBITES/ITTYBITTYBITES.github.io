@@ -113,6 +113,19 @@ export class SpatialRenderer {
     this.focusIndex = (this.focusIndex + 1) % this.nodes.length;
   }
 
+  focusEventType(eventType: string): boolean {
+    for (let i = this.nodes.length - 1; i >= 0; i--) {
+      if (this.nodes[i].eventType === eventType) {
+        this.focusIndex = i;
+        const node = this.nodes[i];
+        this.host.dataset.lastEvent = node.eventType;
+        if (this.liveRegion) this.liveRegion.textContent = `${node.mapping.label}: ${node.eventType}`;
+        return true;
+      }
+    }
+    return false;
+  }
+
   getNodeCount(): number {
     return this.nodes.length;
   }
