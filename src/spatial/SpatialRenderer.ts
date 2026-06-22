@@ -56,6 +56,7 @@ export class SpatialRenderer {
   private scene = new THREE.Scene();
   private camera = new THREE.PerspectiveCamera(48, 1, 0.1, 1000);
   private renderer: THREE.WebGLRenderer;
+  private workstationGroup = new THREE.Group();
   private biomeGroup = new THREE.Group();
   private linkGroup = new THREE.Group();
   private gearGroup = new THREE.Group();
@@ -94,21 +95,23 @@ export class SpatialRenderer {
     this.renderer.domElement.setAttribute('aria-label', 'Liquid Memory generative spatial ecosystem');
     this.host.appendChild(this.renderer.domElement);
 
+    this.scene.add(this.workstationGroup);
     this.scene.add(this.linkGroup);
     this.scene.add(this.biomeGroup);
     this.scene.add(this.gearGroup);
     this.scene.add(this.gaugeGroup);
     this.applyCameraProfile(this.profile, true);
 
-    const ambient = new THREE.AmbientLight(0xd7c2a1, 1.06);
-    const key = new THREE.PointLight(0x6ef4e5, 2.8, 44);
-    key.position.set(6, 8, 8);
-    const lantern = new THREE.PointLight(0xd7b36a, 2.15, 36);
-    lantern.position.set(-5, 4, 7);
-    const rim = new THREE.PointLight(0x95e0bc, 1.15, 46);
-    rim.position.set(2, -4, 9);
-    this.scene.add(ambient, key, lantern, rim);
+    const ambient = new THREE.AmbientLight(0x8f7756, 0.62);
+    const lamp = new THREE.PointLight(0xffc46b, 5.4, 44, 1.85);
+    lamp.position.set(4.8, 3.8, 5.7);
+    const cyanEdge = new THREE.PointLight(0x6ef4e5, 1.15, 30, 2.1);
+    cyanEdge.position.set(-4.6, 1.2, 4.2);
+    const lowFill = new THREE.PointLight(0x3b2a18, 1.8, 36, 2.0);
+    lowFill.position.set(0, -4, 7);
+    this.scene.add(ambient, lamp, cyanEdge, lowFill);
 
+    this.createWorkstationEnvironment();
     this.createStarfield();
     this.createBlueprintGearRig();
     this.createGauges();
@@ -135,7 +138,7 @@ export class SpatialRenderer {
       map: this.haloTexture,
       color: mapping.color,
       transparent: true,
-      opacity: 0.22,
+      opacity: 0.14,
       depthWrite: false,
       blending: THREE.AdditiveBlending,
     }));
@@ -272,6 +275,137 @@ export class SpatialRenderer {
     return gearId ? this.gears.find((item) => item.id === gearId) : undefined;
   }
 
+
+  private createWorkstationEnvironment(): void {
+    const desk = new THREE.Mesh(
+      new THREE.PlaneGeometry(18, 11, 1, 1),
+      new THREE.MeshStandardMaterial({
+        color: 0x1b1209,
+        map: this.createWoodTexture(),
+        roughness: 0.82,
+        metalness: 0.05,
+      })
+    );
+    desk.position.set(0, 0, -2.65);
+    this.workstationGroup.add(desk);
+
+    const paper = new THREE.Mesh(
+      new THREE.PlaneGeometry(10.6, 6.2, 1, 1),
+      new THREE.MeshStandardMaterial({
+        color: 0xb79258,
+        map: this.createBlueprintPaperTexture(),
+        roughness: 0.94,
+        metalness: 0.0,
+      })
+    );
+    paper.position.set(0, -0.2, -1.92);
+    this.workstationGroup.add(paper);
+
+    const frameMat = this.createOxidizedMetalMaterial(0x3c2a17, 0x0d0703, 0.01);
+    const topRail = new THREE.Mesh(new THREE.BoxGeometry(11.4, 0.16, 0.2), frameMat);
+    topRail.position.set(0, 3.05, -1.72);
+    const bottomRail = topRail.clone(); bottomRail.position.y = -3.45;
+    const leftRail = new THREE.Mesh(new THREE.BoxGeometry(0.16, 6.55, 0.2), frameMat);
+    leftRail.position.set(-5.78, -0.2, -1.72);
+    const rightRail = leftRail.clone(); rightRail.position.x = 5.78;
+    this.workstationGroup.add(topRail, bottomRail, leftRail, rightRail);
+
+    const scrollMat = new THREE.MeshStandardMaterial({ color: 0x9d8056, map: this.createPaperRollTexture(), roughness: 0.88, metalness: 0.0 });
+    const scrollGeo = new THREE.CylinderGeometry(0.16, 0.16, 2.3, 24);
+    const scrollA = new THREE.Mesh(scrollGeo, scrollMat);
+    scrollA.rotation.z = Math.PI / 2;
+    scrollA.position.set(-5.95, 2.45, -1.25);
+    const scrollB = scrollA.clone(); scrollB.position.set(5.95, 2.1, -1.25);
+    const scrollC = scrollA.clone(); scrollC.position.set(5.75, -2.55, -1.22);
+    this.workstationGroup.add(scrollA, scrollB, scrollC);
+
+    const lampBase = new THREE.Mesh(new THREE.CylinderGeometry(0.42, 0.55, 0.18, 32), this.createOxidizedMetalMaterial(0x2d2117, 0x120905, 0.0));
+    lampBase.rotation.x = Math.PI / 2;
+    lampBase.position.set(4.65, 2.75, -1.0);
+    const lampOrb = new THREE.Mesh(new THREE.SphereGeometry(0.22, 24, 14), new THREE.MeshStandardMaterial({ color: 0xffc46b, emissive: 0xffad4a, emissiveIntensity: 1.8, roughness: 0.28 }));
+    lampOrb.position.set(4.65, 2.75, -0.52);
+    const lampShade = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.28, 0.28, 32, 1, true), this.createOxidizedMetalMaterial(0x47331e, 0x1b1007, 0.0));
+    lampShade.rotation.x = Math.PI / 2;
+    lampShade.position.set(4.65, 2.75, -0.62);
+    this.workstationGroup.add(lampBase, lampOrb, lampShade);
+
+    const title = this.createTextSprite('LIQUID MEMORY // BLUEPRINT NAV', '#2e2114', 'rgba(173,134,78,0.62)', 1.18);
+    title.position.set(-3.5, 2.72, -1.18);
+    title.scale.set(3.0, 0.42, 1);
+    this.workstationGroup.add(title);
+  }
+
+  private createOxidizedMetalMaterial(color: number, emissive: number, cyanCatch = 0.04): THREE.MeshStandardMaterial {
+    const texture = this.createPatinaTexture(cyanCatch);
+    texture.wrapS = texture.wrapT = THREE.RepeatWrapping;
+    texture.repeat.set(2, 2);
+    return new THREE.MeshStandardMaterial({
+      color,
+      emissive,
+      emissiveIntensity: 0.18 + cyanCatch,
+      map: texture,
+      bumpMap: texture,
+      bumpScale: 0.035,
+      metalness: 0.88,
+      roughness: 0.46,
+    });
+  }
+
+  private createWoodTexture(): THREE.CanvasTexture {
+    const canvas = document.createElement('canvas');
+    canvas.width = 512; canvas.height = 512;
+    const ctx = canvas.getContext('2d')!;
+    ctx.fillStyle = '#1b1209'; ctx.fillRect(0,0,512,512);
+    for (let y=0;y<512;y++) {
+      const n = Math.sin(y * 0.045) * 12 + Math.sin(y * 0.013) * 18;
+      ctx.fillStyle = `rgba(${55+n},${34+n*0.35},${15},0.28)`;
+      ctx.fillRect(0,y,512,1);
+    }
+    for (let i=0;i<1500;i++) {
+      ctx.fillStyle = `rgba(0,0,0,${Math.random()*0.18})`;
+      ctx.fillRect(Math.random()*512, Math.random()*512, Math.random()*2+0.5, Math.random()*2+0.5);
+    }
+    const texture = new THREE.CanvasTexture(canvas); texture.wrapS = texture.wrapT = THREE.RepeatWrapping; texture.repeat.set(2.2,1.4); return texture;
+  }
+
+  private createBlueprintPaperTexture(): THREE.CanvasTexture {
+    const canvas = document.createElement('canvas');
+    canvas.width = 1024; canvas.height = 640;
+    const ctx = canvas.getContext('2d')!;
+    ctx.fillStyle = '#b89155'; ctx.fillRect(0,0,1024,640);
+    ctx.fillStyle = 'rgba(70,45,20,.12)';
+    for (let i=0;i<6000;i++) ctx.fillRect(Math.random()*1024, Math.random()*640, 1, 1);
+    ctx.strokeStyle = 'rgba(49,70,69,.34)'; ctx.lineWidth = 1;
+    for (let x=40;x<1024;x+=80) { ctx.beginPath(); ctx.moveTo(x,40); ctx.lineTo(x,600); ctx.stroke(); }
+    for (let y=40;y<640;y+=80) { ctx.beginPath(); ctx.moveTo(40,y); ctx.lineTo(984,y); ctx.stroke(); }
+    ctx.strokeStyle = 'rgba(38,49,47,.52)';
+    for (let i=0;i<9;i++) {
+      const cx = 130 + i*95, cy = 110 + (i%3)*130;
+      ctx.strokeRect(cx, cy, 58, 38);
+      ctx.beginPath(); ctx.arc(cx+28, cy+72, 26, 0, Math.PI*2); ctx.stroke();
+    }
+    ctx.font = '700 28px Courier New, monospace'; ctx.fillStyle = 'rgba(45,31,18,.56)'; ctx.fillText('SCHEMATIC v0.9', 410, 560);
+    const texture = new THREE.CanvasTexture(canvas); texture.anisotropy = 4; return texture;
+  }
+
+  private createPaperRollTexture(): THREE.CanvasTexture {
+    const canvas = document.createElement('canvas'); canvas.width = 128; canvas.height = 256;
+    const ctx = canvas.getContext('2d')!; ctx.fillStyle = '#98784e'; ctx.fillRect(0,0,128,256);
+    for(let y=0;y<256;y+=6){ ctx.fillStyle = `rgba(255,240,190,${0.04+Math.random()*0.05})`; ctx.fillRect(0,y,128,1); }
+    return new THREE.CanvasTexture(canvas);
+  }
+
+  private createPatinaTexture(cyanCatch: number): THREE.CanvasTexture {
+    const canvas = document.createElement('canvas'); canvas.width = 256; canvas.height = 256;
+    const ctx = canvas.getContext('2d')!; ctx.fillStyle = '#5b3c22'; ctx.fillRect(0,0,256,256);
+    for(let i=0;i<3200;i++) {
+      const cyan = Math.random() < cyanCatch;
+      ctx.fillStyle = cyan ? `rgba(110,244,229,${Math.random()*0.16})` : `rgba(${60+Math.random()*90},${38+Math.random()*50},${18+Math.random()*22},${Math.random()*0.24})`;
+      ctx.fillRect(Math.random()*256, Math.random()*256, Math.random()*3+0.5, Math.random()*3+0.5);
+    }
+    return new THREE.CanvasTexture(canvas);
+  }
+
   private createBlueprintGearRig(): void {
     this.gearGroup.position.set(0, 0, 0.65);
     this.createGear('archive', 'ARCHIVE', new THREE.Vector3(-2.45, -0.05, 0), 0.72, 1);
@@ -286,21 +420,21 @@ export class SpatialRenderer {
     group.position.copy(position);
     group.userData = { gearId: id, active: false, unlockedLevel };
 
-    const bodyMat = new THREE.MeshStandardMaterial({ color: 0x5a3c21, emissive: 0x1a0e08, metalness: 0.86, roughness: 0.22 });
+    const bodyMat = this.createOxidizedMetalMaterial(0x4d321d, 0x120905, 0.06);
     const face = new THREE.Mesh(new THREE.CylinderGeometry(radius, radius, 0.18, 64), bodyMat);
     face.rotation.x = Math.PI / 2;
     face.userData = { gearId: id };
     group.add(face);
 
-    const inner = new THREE.Mesh(new THREE.TorusGeometry(radius * 0.48, 0.035, 10, 48), new THREE.MeshStandardMaterial({ color: 0xd7b36a, emissive: 0x2e2110, metalness: 0.76, roughness: 0.18 }));
+    const inner = new THREE.Mesh(new THREE.TorusGeometry(radius * 0.48, 0.035, 10, 48), this.createOxidizedMetalMaterial(0x9d7640, 0x221407, 0.04));
     inner.position.z = 0.105;
     group.add(inner);
 
-    const outer = new THREE.Mesh(new THREE.TorusGeometry(radius * 0.86, 0.045, 10, 64), new THREE.MeshStandardMaterial({ color: 0x6ef4e5, emissive: 0x0d4540, emissiveIntensity: 0.45, metalness: 0.68, roughness: 0.16 }));
+    const outer = new THREE.Mesh(new THREE.TorusGeometry(radius * 0.86, 0.045, 10, 64), this.createOxidizedMetalMaterial(0x315a51, 0x0b2825, 0.18));
     outer.position.z = 0.115;
     group.add(outer);
 
-    const toothMat = new THREE.MeshStandardMaterial({ color: 0x8a633a, emissive: 0x20140a, metalness: 0.82, roughness: 0.2 });
+    const toothMat = this.createOxidizedMetalMaterial(0x6b4828, 0x160b05, 0.03);
     const toothCount = Math.max(14, Math.round(radius * 24));
     for (let i = 0; i < toothCount; i++) {
       const a = (i / toothCount) * Math.PI * 2;
@@ -328,7 +462,7 @@ export class SpatialRenderer {
       ['pearls', 'PEARLS 0', 3.12, -2.0],
     ] as const;
     specs.forEach(([key, text, x, y]) => {
-      const sprite = this.createTextSprite(text, '#6ef4e5', 'rgba(18,15,11,0.62)', 1.0);
+      const sprite = this.createTextSprite(text, '#2f2517', 'rgba(181,144,88,0.78)', 1.0);
       sprite.position.set(x, y, 0.7);
       sprite.scale.set(1.65, 0.42, 1);
       this.gaugeGroup.add(sprite);
@@ -341,7 +475,7 @@ export class SpatialRenderer {
     if (!gauge || gauge.lastValue === value) return;
     gauge.lastValue = value;
     const old = gauge.sprite.material.map;
-    gauge.sprite.material.map = this.createTextTexture(value, '#6ef4e5', 'rgba(18,15,11,0.62)');
+    gauge.sprite.material.map = this.createTextTexture(value, '#2f2517', 'rgba(181,144,88,0.78)');
     gauge.sprite.material.needsUpdate = true;
     old?.dispose();
   }
@@ -375,9 +509,9 @@ export class SpatialRenderer {
     return new THREE.MeshStandardMaterial({
       color: mapping.color,
       emissive: mapping.emissive,
-      emissiveIntensity: 0.86,
-      metalness: 0.72,
-      roughness: 0.18,
+      emissiveIntensity: 0.34,
+      metalness: 0.64,
+      roughness: 0.32,
       transparent: true,
       opacity: 0.94,
     });
@@ -515,7 +649,7 @@ export class SpatialRenderer {
       verts.push((Math.random() - 0.5) * 44, (Math.random() - 0.5) * 24, (Math.random() - 0.5) * 44);
     }
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(verts, 3));
-    const material = new THREE.PointsMaterial({ color: 0xbfa777, size: 0.035, transparent: true, opacity: 0.58 });
+    const material = new THREE.PointsMaterial({ color: 0x8f7a58, size: 0.025, transparent: true, opacity: 0.34 });
     this.scene.add(new THREE.Points(geometry, material));
   }
 

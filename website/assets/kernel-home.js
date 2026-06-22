@@ -12446,7 +12446,7 @@ var eu = class {
 	memory: "economic.resource_gained"
 }, au = Object.fromEntries(Object.entries(iu).map(([e, t]) => [t, e])), ou = class {
 	constructor(e, t, n) {
-		this.host = e, this.liveRegion = t, this.onGearSelected = n, this.scene = new Fn(), this.camera = new uo(48, 1, .1, 1e3), this.biomeGroup = new Dn(), this.linkGroup = new Dn(), this.gearGroup = new Dn(), this.gaugeGroup = new Dn(), this.nodes = [], this.links = [], this.gears = [], this.gauges = [], this.rafId = 0, this.focusIndex = -1, this.pointer = new K(99, 99), this.raycaster = new No(), this.clock = new Io(), this.haloTexture = this.createHaloTexture(), this.responsive = new ru(), this.profile = this.responsive.getProfile(), this.lastTouchAt = 0, this.dragStartX = 0, this.didDrag = !1, this.animate = () => {
+		this.host = e, this.liveRegion = t, this.onGearSelected = n, this.scene = new Fn(), this.camera = new uo(48, 1, .1, 1e3), this.workstationGroup = new Dn(), this.biomeGroup = new Dn(), this.linkGroup = new Dn(), this.gearGroup = new Dn(), this.gaugeGroup = new Dn(), this.nodes = [], this.links = [], this.gears = [], this.gauges = [], this.rafId = 0, this.focusIndex = -1, this.pointer = new K(99, 99), this.raycaster = new No(), this.clock = new Io(), this.haloTexture = this.createHaloTexture(), this.responsive = new ru(), this.profile = this.responsive.getProfile(), this.lastTouchAt = 0, this.dragStartX = 0, this.didDrag = !1, this.animate = () => {
 			let e = this.clock.getElapsedTime();
 			this.updateHoverState(), this.biomeGroup.rotation.y += .0017, this.biomeGroup.rotation.x = Math.sin(e * .17) * .06, this.linkGroup.rotation.copy(this.biomeGroup.rotation);
 			let t = this.nodes[this.focusIndex], n = t?.target.z || 0;
@@ -12482,13 +12482,13 @@ var eu = class {
 			antialias: !0,
 			alpha: !0,
 			powerPreference: "high-performance"
-		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(0, 0), this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.applyCameraProfile(this.profile, !0);
-		let r = new ho(14140065, 1.06), i = new po(7271653, 2.8, 44);
-		i.position.set(6, 8, 8);
-		let a = new po(14136170, 2.15, 36);
-		a.position.set(-5, 4, 7);
-		let o = new po(9822396, 1.15, 46);
-		o.position.set(2, -4, 9), this.scene.add(r, i, a, o), this.createStarfield(), this.createBlueprintGearRig(), this.createGauges(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
+		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(0, 0), this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.scene.add(this.workstationGroup), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.applyCameraProfile(this.profile, !0);
+		let r = new ho(9402198, .62), i = new po(16761963, 5.4, 44, 1.85);
+		i.position.set(4.8, 3.8, 5.7);
+		let a = new po(7271653, 1.15, 30, 2.1);
+		a.position.set(-4.6, 1.2, 4.2);
+		let o = new po(3877400, 1.8, 36, 2);
+		o.position.set(0, -4, 7), this.scene.add(r, i, a, o), this.createWorkstationEnvironment(), this.createStarfield(), this.createBlueprintGearRig(), this.createGauges(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
 	}
 	handle(e) {
 		if (e.type === "system.heartbeat" && this.nodes.length > 0) return;
@@ -12501,7 +12501,7 @@ var eu = class {
 			map: this.haloTexture,
 			color: t.color,
 			transparent: !0,
-			opacity: .22,
+			opacity: .14,
 			depthWrite: !1,
 			blending: 2
 		}));
@@ -12603,6 +12603,114 @@ var eu = class {
 		let e = this.raycaster.intersectObjects(this.gearGroup.children, !0).find((e) => e.object.userData.gearId)?.object.userData.gearId;
 		return e ? this.gears.find((t) => t.id === e) : void 0;
 	}
+	createWorkstationEnvironment() {
+		let e = new gi(new va(18, 11, 1, 1), new Na({
+			color: 1774089,
+			map: this.createWoodTexture(),
+			roughness: .82,
+			metalness: .05
+		}));
+		e.position.set(0, 0, -2.65), this.workstationGroup.add(e);
+		let t = new gi(new va(10.6, 6.2, 1, 1), new Na({
+			color: 12030552,
+			map: this.createBlueprintPaperTexture(),
+			roughness: .94,
+			metalness: 0
+		}));
+		t.position.set(0, -.2, -1.92), this.workstationGroup.add(t);
+		let n = this.createOxidizedMetalMaterial(3942935, 853763, .01), r = new gi(new Bi(11.4, .16, .2), n);
+		r.position.set(0, 3.05, -1.72);
+		let i = r.clone();
+		i.position.y = -3.45;
+		let a = new gi(new Bi(.16, 6.55, .2), n);
+		a.position.set(-5.78, -.2, -1.72);
+		let o = a.clone();
+		o.position.x = 5.78, this.workstationGroup.add(r, i, a, o);
+		let s = new Na({
+			color: 10322006,
+			map: this.createPaperRollTexture(),
+			roughness: .88,
+			metalness: 0
+		}), c = new gi(new Vi(.16, .16, 2.3, 24), s);
+		c.rotation.z = Math.PI / 2, c.position.set(-5.95, 2.45, -1.25);
+		let l = c.clone();
+		l.position.set(5.95, 2.1, -1.25);
+		let u = c.clone();
+		u.position.set(5.75, -2.55, -1.22), this.workstationGroup.add(c, l, u);
+		let d = new gi(new Vi(.42, .55, .18, 32), this.createOxidizedMetalMaterial(2957591, 1181957, 0));
+		d.rotation.x = Math.PI / 2, d.position.set(4.65, 2.75, -1);
+		let f = new gi(new ya(.22, 24, 14), new Na({
+			color: 16761963,
+			emissive: 16756042,
+			emissiveIntensity: 1.8,
+			roughness: .28
+		}));
+		f.position.set(4.65, 2.75, -.52);
+		let p = new gi(new Vi(.5, .28, .28, 32, 1, !0), this.createOxidizedMetalMaterial(4666142, 1773575, 0));
+		p.rotation.x = Math.PI / 2, p.position.set(4.65, 2.75, -.62), this.workstationGroup.add(d, f, p);
+		let m = this.createTextSprite("LIQUID MEMORY // BLUEPRINT NAV", "#2e2114", "rgba(173,134,78,0.62)", 1.18);
+		m.position.set(-3.5, 2.72, -1.18), m.scale.set(3, .42, 1), this.workstationGroup.add(m);
+	}
+	createOxidizedMetalMaterial(e, t, n = .04) {
+		let r = this.createPatinaTexture(n);
+		return r.wrapS = r.wrapT = o, r.repeat.set(2, 2), new Na({
+			color: e,
+			emissive: t,
+			emissiveIntensity: .18 + n,
+			map: r,
+			bumpMap: r,
+			bumpScale: .035,
+			metalness: .88,
+			roughness: .46
+		});
+	}
+	createWoodTexture() {
+		let e = document.createElement("canvas");
+		e.width = 512, e.height = 512;
+		let t = e.getContext("2d");
+		t.fillStyle = "#1b1209", t.fillRect(0, 0, 512, 512);
+		for (let e = 0; e < 512; e++) {
+			let n = Math.sin(e * .045) * 12 + Math.sin(e * .013) * 18;
+			t.fillStyle = `rgba(${55 + n},${34 + n * .35},15,0.28)`, t.fillRect(0, e, 512, 1);
+		}
+		for (let e = 0; e < 1500; e++) t.fillStyle = `rgba(0,0,0,${Math.random() * .18})`, t.fillRect(Math.random() * 512, Math.random() * 512, Math.random() * 2 + .5, Math.random() * 2 + .5);
+		let n = new Ii(e);
+		return n.wrapS = n.wrapT = o, n.repeat.set(2.2, 1.4), n;
+	}
+	createBlueprintPaperTexture() {
+		let e = document.createElement("canvas");
+		e.width = 1024, e.height = 640;
+		let t = e.getContext("2d");
+		t.fillStyle = "#b89155", t.fillRect(0, 0, 1024, 640), t.fillStyle = "rgba(70,45,20,.12)";
+		for (let e = 0; e < 6e3; e++) t.fillRect(Math.random() * 1024, Math.random() * 640, 1, 1);
+		t.strokeStyle = "rgba(49,70,69,.34)", t.lineWidth = 1;
+		for (let e = 40; e < 1024; e += 80) t.beginPath(), t.moveTo(e, 40), t.lineTo(e, 600), t.stroke();
+		for (let e = 40; e < 640; e += 80) t.beginPath(), t.moveTo(40, e), t.lineTo(984, e), t.stroke();
+		t.strokeStyle = "rgba(38,49,47,.52)";
+		for (let e = 0; e < 9; e++) {
+			let n = 130 + e * 95, r = 110 + e % 3 * 130;
+			t.strokeRect(n, r, 58, 38), t.beginPath(), t.arc(n + 28, r + 72, 26, 0, Math.PI * 2), t.stroke();
+		}
+		t.font = "700 28px Courier New, monospace", t.fillStyle = "rgba(45,31,18,.56)", t.fillText("SCHEMATIC v0.9", 410, 560);
+		let n = new Ii(e);
+		return n.anisotropy = 4, n;
+	}
+	createPaperRollTexture() {
+		let e = document.createElement("canvas");
+		e.width = 128, e.height = 256;
+		let t = e.getContext("2d");
+		t.fillStyle = "#98784e", t.fillRect(0, 0, 128, 256);
+		for (let e = 0; e < 256; e += 6) t.fillStyle = `rgba(255,240,190,${.04 + Math.random() * .05})`, t.fillRect(0, e, 128, 1);
+		return new Ii(e);
+	}
+	createPatinaTexture(e) {
+		let t = document.createElement("canvas");
+		t.width = 256, t.height = 256;
+		let n = t.getContext("2d");
+		n.fillStyle = "#5b3c22", n.fillRect(0, 0, 256, 256);
+		for (let t = 0; t < 3200; t++) n.fillStyle = Math.random() < e ? `rgba(110,244,229,${Math.random() * .16})` : `rgba(${60 + Math.random() * 90},${38 + Math.random() * 50},${18 + Math.random() * 22},${Math.random() * .24})`, n.fillRect(Math.random() * 256, Math.random() * 256, Math.random() * 3 + .5, Math.random() * 3 + .5);
+		return new Ii(t);
+	}
 	createBlueprintGearRig() {
 		this.gearGroup.position.set(0, 0, .65), this.createGear("archive", "ARCHIVE", new q(-2.45, -.05, 0), .72, 1), this.createGear("games", "GAMES", new q(0, .52, .02), 1.02, 1), this.createGear("community", "COMMUNITY", new q(2.28, -.05, 0), .76, 2), this.createGear("blueprint", "BLUEPRINT", new q(0, -1.28, .04), .86, 1), this.createGear("memory", "MEMORY", new q(-1.55, -1.12, .08), .62, 3);
 	}
@@ -12613,34 +12721,13 @@ var eu = class {
 			active: !1,
 			unlockedLevel: i
 		};
-		let o = new Na({
-			color: 5913633,
-			emissive: 1707528,
-			metalness: .86,
-			roughness: .22
-		}), s = new gi(new Vi(r, r, .18, 64), o);
+		let o = this.createOxidizedMetalMaterial(5059101, 1181957, .06), s = new gi(new Vi(r, r, .18, 64), o);
 		s.rotation.x = Math.PI / 2, s.userData = { gearId: e }, a.add(s);
-		let c = new gi(new xa(r * .48, .035, 10, 48), new Na({
-			color: 14136170,
-			emissive: 3023120,
-			metalness: .76,
-			roughness: .18
-		}));
+		let c = new gi(new xa(r * .48, .035, 10, 48), this.createOxidizedMetalMaterial(10319424, 2233351, .04));
 		c.position.z = .105, a.add(c);
-		let l = new gi(new xa(r * .86, .045, 10, 64), new Na({
-			color: 7271653,
-			emissive: 869696,
-			emissiveIntensity: .45,
-			metalness: .68,
-			roughness: .16
-		}));
+		let l = new gi(new xa(r * .86, .045, 10, 64), this.createOxidizedMetalMaterial(3234385, 731173, .18));
 		l.position.z = .115, a.add(l);
-		let u = new Na({
-			color: 9069370,
-			emissive: 2102282,
-			metalness: .82,
-			roughness: .2
-		}), d = Math.max(14, Math.round(r * 24));
+		let u = this.createOxidizedMetalMaterial(7030824, 1444613, .03), d = Math.max(14, Math.round(r * 24));
 		for (let t = 0; t < d; t++) {
 			let n = t / d * Math.PI * 2, i = new gi(new Bi(r * .12, r * .24, .16), u);
 			i.position.set(Math.cos(n) * r * 1.02, Math.sin(n) * r * 1.02, 0), i.rotation.z = n, i.userData = { gearId: e }, a.add(i);
@@ -12684,7 +12771,7 @@ var eu = class {
 				-2
 			]
 		].forEach(([e, t, n, r]) => {
-			let i = this.createTextSprite(t, "#6ef4e5", "rgba(18,15,11,0.62)", 1);
+			let i = this.createTextSprite(t, "#2f2517", "rgba(181,144,88,0.78)", 1);
 			i.position.set(n, r, .7), i.scale.set(1.65, .42, 1), this.gaugeGroup.add(i), this.gauges.push({
 				key: e,
 				sprite: i,
@@ -12697,7 +12784,7 @@ var eu = class {
 		if (!n || n.lastValue === t) return;
 		n.lastValue = t;
 		let r = n.sprite.material.map;
-		n.sprite.material.map = this.createTextTexture(t, "#6ef4e5", "rgba(18,15,11,0.62)"), n.sprite.material.needsUpdate = !0, r?.dispose();
+		n.sprite.material.map = this.createTextTexture(t, "#2f2517", "rgba(181,144,88,0.78)"), n.sprite.material.needsUpdate = !0, r?.dispose();
 	}
 	updateGearUnlocks(e) {
 		this.gears.forEach((t) => {
@@ -12721,9 +12808,9 @@ var eu = class {
 		return new Na({
 			color: e.color,
 			emissive: e.emissive,
-			emissiveIntensity: .86,
-			metalness: .72,
-			roughness: .18,
+			emissiveIntensity: .34,
+			metalness: .64,
+			roughness: .32,
 			transparent: !0,
 			opacity: .94
 		});
@@ -12808,10 +12895,10 @@ var eu = class {
 		for (let e = 0; e < this.profile.starCount; e++) t.push((Math.random() - .5) * 44, (Math.random() - .5) * 24, (Math.random() - .5) * 44);
 		e.setAttribute("position", new Z(t, 3));
 		let n = new Oi({
-			color: 12560247,
-			size: .035,
+			color: 9402968,
+			size: .025,
 			transparent: !0,
-			opacity: .58
+			opacity: .34
 		});
 		this.scene.add(new Ni(e, n));
 	}
