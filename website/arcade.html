@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Experimental Arcade | Itty Bitty Bites Browser Games</title>
-  <meta name="description" content="Play the Itty Bitty Bites Experimental Arcade: browser games, WebGL prototypes, cognitive mini-games, classics, and archived studio experiments.">
+  <meta name="description" content="Play the Itty Bitty Bites Experimental Arcade: browser games, WebGL prototypes, cognitive mini-games, classics, archived studio experiments, and in-game sponsor reward loops.">
   <meta name="author" content="ITTY BITTY BITES">
   <link rel="canonical" href="https://ittybittybites.github.io/website/arcade.html">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
@@ -29,7 +29,7 @@
     <section class="ibb-hero">
       <div class="ibb-container ibb-hero-grid">
         <div><p class="ibb-kicker">Experimental arcade</p><h1 class="ibb-title">Playable prototypes, <span>professionally archived.</span></h1><p class="ibb-lede">A dedicated home for current HTML games, browser projects, prototype experiences, and archived experiments from the Itty Bitty Bites studio.</p><div class="ibb-actions"><a class="ibb-button ibb-button--primary" href="#browse">Browse games</a><a class="ibb-button ibb-button--secondary" href="2-second-witness.html">Flagship title</a></div></div>
-        <div class="ibb-showpiece"><div class="ibb-screen"><div class="ibb-screen__top"><span class="ibb-dot"></span></div><div class="ibb-screen__body"><p class="ibb-kicker">Arcade index</p><div class="ibb-metric-grid"><div class="ibb-metric"><strong id="game-count">18</strong><span>Games loaded</span></div><div class="ibb-metric"><strong>AdSense</strong><span>Site ads active</span></div><div class="ibb-metric"><strong>Adsterra</strong><span>Reward breaks wired</span></div><div class="ibb-metric"><strong>Live</strong><span>Iframe play loop</span></div></div></div></div></div>
+        <div class="ibb-showpiece"><div class="ibb-screen"><div class="ibb-screen__top"><span class="ibb-dot"></span></div><div class="ibb-screen__body"><p class="ibb-kicker">Arcade index</p><div class="ibb-metric-grid"><div class="ibb-metric"><strong id="game-count">26</strong><span>Games loaded</span></div><div class="ibb-metric"><strong>AdSense</strong><span>Site ads active</span></div><div class="ibb-metric"><strong>Modal</strong><span>In-game reward breaks</span></div><div class="ibb-metric"><strong>Live</strong><span>Iframe play loop</span></div></div></div></div></div>
       </div>
     </section>
 
@@ -42,7 +42,7 @@
 
     <section class="ibb-section" id="browse">
       <div class="ibb-container">
-        <div class="ibb-feature" style="align-items:end;"><div><p class="ibb-kicker">Browse</p><h2 class="ibb-title" style="font-size:clamp(34px,5vw,64px);">Studio Arcade</h2><p class="ibb-lede">Game cards are generated from the existing games registry. Use the Play button to launch games inside the arcade shell with Adsterra reward/interstitial handling.</p></div><div class="ibb-card"><label for="category-filter" class="ibb-kicker" style="display:block;">Filter games</label><select id="category-filter" style="width:100%;min-height:48px;border-radius:14px;background:#0e1124;color:#f7fbff;border:1px solid var(--ibb-line);padding:0 14px;font-weight:800;"><option value="ALL">All categories</option></select></div></div>
+        <div class="ibb-feature" style="align-items:end;"><div><p class="ibb-kicker">Browse</p><h2 class="ibb-title" style="font-size:clamp(34px,5vw,64px);">Studio Arcade</h2><p class="ibb-lede">Game cards are generated from the existing games registry. Use the Play button to launch games inside the arcade shell with in-game sponsor reward/interstitial handling.</p></div><div class="ibb-card"><label for="category-filter" class="ibb-kicker" style="display:block;">Filter games</label><select id="category-filter" style="width:100%;min-height:48px;border-radius:14px;background:#0e1124;color:#f7fbff;border:1px solid var(--ibb-line);padding:0 14px;font-weight:800;"><option value="ALL">All categories</option></select></div></div>
         <div id="games-grid" class="ibb-grid-3" style="margin-top:32px;" aria-live="polite"></div>
         <noscript><p class="ibb-card">JavaScript is required to build the arcade index from games.json. Direct game pages remain available in the /games/ directory.</p></noscript>
       </div>
@@ -50,7 +50,7 @@
 
     <section class="ibb-section">
       <div class="ibb-container ibb-grid-2">
-        <article class="ibb-card"><h3>Ad-supported play loop</h3><p>Existing HTML games send arcade ad events to the parent shell. The shell now catches those events, presents a transparent sponsor break, opens the Adsterra sponsor destination from a user click, and sends the completion signal back to the game so rewards can unlock.</p></article>
+        <article class="ibb-card"><h3>Ad-supported play loop</h3><p>Existing HTML games send arcade ad events to the parent shell. The shell now catches those events, presents a transparent sponsor break, opens the in-game sponsor window, and sends the completion signal back to the game so rewards can unlock.</p></article>
         <article class="ibb-card"><h3>Preserved playable content</h3><p>Each game remains available at its original direct URL, while the arcade theater provides the monetized/rewarded wrapper needed for the full loop.</p></article>
       </div>
     </section>
@@ -60,18 +60,17 @@
     <div class="ad-modal__card">
       <p class="ibb-kicker" id="ad-label">Sponsor break</p>
       <h2 id="ad-title" class="ibb-title" style="font-size:clamp(30px,5vw,48px);">Support the arcade</h2>
-      <p id="ad-desc" class="ibb-lede" style="font-size:17px;margin-left:auto;margin-right:auto;">Open the sponsor message, then return here to claim your in-game reward or continue your run.</p>
+      <p id="ad-desc" class="ibb-lede" style="font-size:17px;margin-left:auto;margin-right:auto;">Stay in this in-game sponsor window, then continue to claim your in-game reward or resume your run.</p>
       <div class="ad-count" id="ad-count" aria-live="polite">5</div>
-      <div class="ibb-actions" style="justify-content:center;"><button class="ibb-button ibb-button--primary" id="open-sponsor" type="button">Open sponsor</button><button class="ibb-button ibb-button--gold" id="claim-reward" type="button" disabled>Claim reward</button><button class="ibb-button ibb-button--secondary" id="skip-ad" type="button">Skip</button></div>
-      <p class="ibb-small">Sponsor links open in a new tab. Rewards are completed in the browser game after this panel closes.</p>
+      <div class="ibb-actions" style="justify-content:center;"><button class="ibb-button ibb-button--gold" id="claim-reward" type="button" disabled>Continue / claim reward</button><button class="ibb-button ibb-button--secondary" id="skip-ad" type="button">Skip</button></div>
+      <p class="ibb-small">No new website opens. Rewards are completed in the browser game after this panel closes.</p>
     </div>
   </div>
 
-  <footer class="ibb-footer"><div class="ibb-footer__inner"><div><strong>Experimental Arcade</strong><br><span class="ibb-small">Browser games, prototypes, AdSense site ads, and Adsterra-powered rewarded sponsor breaks.</span></div><div class="ibb-footer__links"><a href="index.html">Home</a><a href="2-second-witness.html">2 Second Witness</a><a href="library.html">Library</a><a href="privacy_policy.html">Privacy</a><a href="terms_of_service.html">Terms</a></div></div></footer>
+  <footer class="ibb-footer"><div class="ibb-footer__inner"><div><strong>Experimental Arcade</strong><br><span class="ibb-small">Browser games, prototypes, AdSense site ads and in-game rewarded sponsor breaks.</span></div><div class="ibb-footer__links"><a href="index.html">Home</a><a href="2-second-witness.html">2 Second Witness</a><a href="library.html">Library</a><a href="privacy_policy.html">Privacy</a><a href="terms_of_service.html">Terms</a></div></div></footer>
 <script>
 (function(){
   'use strict';
-  const ADSTERRA_SMARTLINK = 'https://undergocutlery.com/q9gfrv2v8?key=2cd3374e4c6ba143d74108a029fb0dd5';
   const grid = document.getElementById('games-grid');
   const filter = document.getElementById('category-filter');
   const count = document.getElementById('game-count');
@@ -84,7 +83,6 @@
   const adModal = document.getElementById('ad-modal');
   const adLabel = document.getElementById('ad-label');
   const adCount = document.getElementById('ad-count');
-  const openSponsor = document.getElementById('open-sponsor');
   const claimReward = document.getElementById('claim-reward');
   const skipAd = document.getElementById('skip-ad');
   let games = [];
@@ -112,16 +110,15 @@
   function showAdBreak(source, adType){
     pendingAdSource = source || (frame && frame.contentWindow);
     pendingAdType = adType || 'interstitial';
-    adLabel.textContent = pendingAdType === 'rewarded' ? 'Rewarded Adsterra break' : 'Adsterra interstitial break';
+    adLabel.textContent = pendingAdType === 'rewarded' ? 'Rewarded sponsor break' : 'Interstitial sponsor break';
     adCount.textContent = '5';
     claimReward.disabled = true;
     adModal.classList.add('is-open');
-    openSponsor.focus();
+    startSponsorCountdown();
   }
 
   function startSponsorCountdown(){
-    window.open(ADSTERRA_SMARTLINK, '_blank', 'noopener,noreferrer');
-    let n = 5;
+    let n = 6;
     adCount.textContent = String(n);
     clearInterval(countdownTimer);
     countdownTimer = setInterval(() => {
@@ -168,7 +165,6 @@
     if (data.type === 'ARCADE_TRIGGER_AD') showAdBreak(event.source, data.adType);
   });
 
-  openSponsor.addEventListener('click', startSponsorCountdown);
   claimReward.addEventListener('click', sendAdComplete);
   skipAd.addEventListener('click', sendAdComplete);
   closeTheater.addEventListener('click', () => { frame.src = 'about:blank'; theater.classList.remove('is-open'); history.replaceState(null, '', '#browse'); });

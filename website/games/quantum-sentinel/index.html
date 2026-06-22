@@ -1,24 +1,25 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Quantum Sentinel — Fast Spatial Reflex</title>
-    <meta name="description" content="Elite high-speed Phase 5 compliant spatial reflex defense game. Intercept sub-second reticles across complex visual coordinate fields.">
-    <link rel="stylesheet" href="style.css?v=202606182304">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Quantum Sentinel — Fast Spatial Reflex</title>
+<meta content="Elite high-speed Phase 5 compliant spatial reflex defense game. Intercept sub-second reticles across complex visual coordinate fields." name="description"/>
+<link href="style.css?v=202606182304" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
+<script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-6P6NPFW4FZ');
     </script>
-    <!-- Universal Automated Cache-Busting & Auto-Refresh Guard -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <script>
+<!-- Universal Automated Cache-Busting & Auto-Refresh Guard -->
+<meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control"/>
+<meta content="no-cache" http-equiv="Pragma"/>
+<meta content="0" http-equiv="Expires"/>
+<script>
         (function() {
             const clientVer = localStorage.getItem('arcade_client_deployment_ver');
             const liveVer = 'v=1781821243';
@@ -29,11 +30,11 @@
             }
         })();
     </script>
-    <!-- Absolute Browser Cache Invalidation Guard -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <script>
+<!-- Absolute Browser Cache Invalidation Guard -->
+<meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control"/>
+<meta content="no-cache" http-equiv="Pragma"/>
+<meta content="0" http-equiv="Expires"/>
+<script>
         (function() {
             const v = localStorage.getItem('master_deployment_version');
             const target = 'v=202606182304';
@@ -44,59 +45,51 @@
             }
         })();
     </script>
-</head>
+<script defer="True" src="../../assets/arcade-monetization.js"></script></head>
 <body>
-
-    <div class="sentinel-container font-mono">
-        
-        <!-- STATUS HUD -->
-        <div class="status-hud">
-            <div class="hud-group">
-                <div class="stat-box">
-                    <span class="stat-label">Tactical Score</span>
-                    <span id="stat-score" class="stat-value score">0</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-label">Core Shields</span>
-                    <span id="stat-shields" class="stat-value shields">100%</span>
-                </div>
-            </div>
-            <div class="hud-group">
-                <div class="stat-box">
-                    <span class="stat-label">Quantum Wave</span>
-                    <span id="stat-wave" class="stat-value wave">1</span>
-                </div>
-                <div class="stat-box">
-                    <span class="stat-label">Sponsorship Bridge</span>
-                    <span class="text-xs font-bold text-emerald-400 uppercase tracking-widest mt-1">Phase 2 Verified</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- MAIN LEVEL THEATER -->
-        <div class="theater-split">
-            
-            <!-- Highly Optimized 60FPS Play Canvas -->
-            <div id="quantum-canvas-wrapper" class="canvas-wrapper">
-                <!-- Dynamically initialized via game.js -->
-            </div>
-
-            <!-- TACTICAL LOG SIDEBAR -->
-            <div class="tactical-sidebar">
-                <div class="sidebar-header">◈ Quantum Ingestion Log</div>
-                <div id="tactical-log-box" class="log-scroller custom-scrollbar">
-                    <!-- Dynamic appended events -->
-                </div>
-                <div class="mt-4 pt-4 border-t border-slate-800 text-[10px] text-slate-500 tracking-wider">
+<div class="sentinel-container font-mono">
+<!-- STATUS HUD -->
+<div class="status-hud">
+<div class="hud-group">
+<div class="stat-box">
+<span class="stat-label">Tactical Score</span>
+<span class="stat-value score" id="stat-score">0</span>
+</div>
+<div class="stat-box">
+<span class="stat-label">Core Shields</span>
+<span class="stat-value shields" id="stat-shields">100%</span>
+</div>
+</div>
+<div class="hud-group">
+<div class="stat-box">
+<span class="stat-label">Quantum Wave</span>
+<span class="stat-value wave" id="stat-wave">1</span>
+</div>
+<div class="stat-box">
+<span class="stat-label">Sponsorship Bridge</span>
+<span class="text-xs font-bold text-emerald-400 uppercase tracking-widest mt-1">Phase 2 Verified</span>
+</div>
+</div>
+</div>
+<!-- MAIN LEVEL THEATER -->
+<div class="theater-split">
+<!-- Highly Optimized 60FPS Play Canvas -->
+<div class="canvas-wrapper" id="quantum-canvas-wrapper">
+<!-- Dynamically initialized via game.js -->
+</div>
+<!-- TACTICAL LOG SIDEBAR -->
+<div class="tactical-sidebar">
+<div class="sidebar-header">◈ Quantum Ingestion Log</div>
+<div class="log-scroller custom-scrollbar" id="tactical-log-box">
+<!-- Dynamic appended events -->
+</div>
+<div class="mt-4 pt-4 border-t border-slate-800 text-[10px] text-slate-500 tracking-wider">
                     Click reticles exactly. Clear 20 nodes to initiate Phase 2 waterfall handshake.
                 </div>
-            </div>
-
-        </div>
-
-    </div>
-
-    <!-- WebAssembly / JS Game Logic Wrapper -->
-    <script src="game.js"></script>
+</div>
+</div>
+</div>
+<!-- WebAssembly / JS Game Logic Wrapper -->
+<script src="game.js"></script>
 </body>
 </html>

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Cosmic Tunnel 3D — Elite Web-Native Space Runner</title>
-    <meta name="description" content="Complex hardware-accelerated 3D cosmic wormhole runner game. Rotate matrices to dodge red obstacles and rack up high scores.">
-    <!-- Clean Single-File Ad-Hardened Asset -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Cosmic Tunnel 3D — Elite Web-Native Space Runner</title>
+<meta content="Complex hardware-accelerated 3D cosmic wormhole runner game. Rotate matrices to dodge red obstacles and rack up high scores." name="description"/>
+<!-- Clean Single-File Ad-Hardened Asset -->
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap');
         :root { --bg-core: #020617; --panel-bg: #090d16; --cyan: #22d3ee; --gold: #facc15; --rose: #f43f5e; --emerald: #34d399; }
         * { margin: 0; padding: 0; box-sizing: border-box; user-select: none; }
@@ -45,11 +46,11 @@
         /* Ticker instructions */
         .bottom-chatter { position: absolute; bottom: 16px; left: 0; right: 0; text-align: center; font-size: 11px; font-weight: bold; letter-spacing: 2px; color: #64748b; z-index: 15; pointer-events: none; uppercase; }
     </style>
-    <!-- Universal Automated Cache-Busting & Auto-Refresh Guard -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <script>
+<!-- Universal Automated Cache-Busting & Auto-Refresh Guard -->
+<meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control"/>
+<meta content="no-cache" http-equiv="Pragma"/>
+<meta content="0" http-equiv="Expires"/>
+<script>
         (function() {
             const clientVer = localStorage.getItem('arcade_client_deployment_ver');
             const liveVer = 'v=1781821243';
@@ -60,11 +61,11 @@
             }
         })();
     </script>
-    <!-- Absolute Browser Cache Invalidation Guard -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <script>
+<!-- Absolute Browser Cache Invalidation Guard -->
+<meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control"/>
+<meta content="no-cache" http-equiv="Pragma"/>
+<meta content="0" http-equiv="Expires"/>
+<script>
         (function() {
             const v = localStorage.getItem('master_deployment_version');
             const target = 'v=202606182304';
@@ -75,59 +76,51 @@
             }
         })();
     </script>
-</head>
+<script defer="True" src="../../assets/arcade-monetization.js"></script></head>
 <body>
-
-    <div class="game-theater-wrapper">
-        
-        <!-- Premium 3D Navigation Status HUD -->
-        <div class="top-hud">
-            <div class="hud-stat">
-                <span class="hud-label">Cosmic Score</span>
-                <span id="hud-score" class="hud-val score">0</span>
-            </div>
-            <div class="hud-stat">
-                <span class="hud-label">Warp Velocity</span>
-                <span id="hud-speed" class="hud-val speed">3.5x</span>
-            </div>
-        </div>
-
-        <!-- 3D Projection Canvas -->
-        <canvas id="cosmic-canvas"></canvas>
-
-        <!-- Native Mobile Touch & Swipe Panels -->
-        <div class="touch-zone-container" id="touch-orchestrator">
-            <div class="touch-panel" id="touch-left"></div>
-            <div class="touch-panel" id="touch-right"></div>
-        </div>
-
-        <!-- Operational Ticker Bar -->
-        <div class="bottom-chatter font-mono">
+<div class="game-theater-wrapper">
+<!-- Premium 3D Navigation Status HUD -->
+<div class="top-hud">
+<div class="hud-stat">
+<span class="hud-label">Cosmic Score</span>
+<span class="hud-val score" id="hud-score">0</span>
+</div>
+<div class="hud-stat">
+<span class="hud-label">Warp Velocity</span>
+<span class="hud-val speed" id="hud-speed">3.5x</span>
+</div>
+</div>
+<!-- 3D Projection Canvas -->
+<canvas id="cosmic-canvas"></canvas>
+<!-- Native Mobile Touch & Swipe Panels -->
+<div class="touch-zone-container" id="touch-orchestrator">
+<div class="touch-panel" id="touch-left"></div>
+<div class="touch-panel" id="touch-right"></div>
+</div>
+<!-- Operational Ticker Bar -->
+<div class="bottom-chatter font-mono">
             ◈ SWIPE LEFT/RIGHT OR HOLD [A]/[D] OR [←]/[→] TO ROTATE WORMHOLE ◈
         </div>
-
-        <!-- Strict Phase 2 Interstitial Ad Clearance Guard Modal -->
-        <div class="modal-overlay" id="ad-clearance-modal">
-            <div class="modal-card font-mono">
-                <span class="text-rose-500 text-6xl mb-6 block">💥</span>
-                <h2 class="modal-title defeat font-['Orbitron']">VESSEL CRASHED</h2>
-                <p class="text-xs text-slate-300 leading-relaxed mb-6 font-mono">
-                    Cosmic rotation matrix collided with geometric obstacle.<br>Operational video ad mediation sequence initiated...
+<!-- Strict Phase 2 Interstitial Ad Clearance Guard Modal -->
+<div class="modal-overlay" id="ad-clearance-modal">
+<div class="modal-card font-mono">
+<span class="text-rose-500 text-6xl mb-6 block">💥</span>
+<h2 class="modal-title defeat font-['Orbitron']">VESSEL CRASHED</h2>
+<p class="text-xs text-slate-300 leading-relaxed mb-6 font-mono">
+                    Cosmic rotation matrix collided with geometric obstacle.<br/>Operational video ad mediation sequence initiated...
                 </p>
-                <div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 mb-8 flex justify-around text-slate-300 font-mono text-xs">
-                    <div><span>FINAL SCORE</span><br><span id="final-score-val" class="text-gold font-bold text-xl mt-1 block">◈ 0</span></div>
-                    <div><span>WARP REACHED</span><br><span id="final-speed-val" class="text-cyan font-bold text-xl mt-1 block" style="color:#22d3ee;">3.5x</span></div>
-                </div>
-                <button id="resume-clearance-btn" class="btn-action cursor-pointer font-extrabold uppercase disabled:opacity-50" disabled>
+<div class="bg-slate-950 p-5 rounded-2xl border border-slate-800 mb-8 flex justify-around text-slate-300 font-mono text-xs">
+<div><span>FINAL SCORE</span><br/><span class="text-gold font-bold text-xl mt-1 block" id="final-score-val">◈ 0</span></div>
+<div><span>WARP REACHED</span><br/><span class="text-cyan font-bold text-xl mt-1 block" id="final-speed-val" style="color:#22d3ee;">3.5x</span></div>
+</div>
+<button class="btn-action cursor-pointer font-extrabold uppercase disabled:opacity-50" disabled="" id="resume-clearance-btn">
                     ⚡ AWAITING PARENT AD CLEARANCE ⚡
                 </button>
-            </div>
-        </div>
-
-    </div>
-
-    <!-- Highly Complex Custom 3D Tunnel Graphics Pipeline -->
-    <script>
+</div>
+</div>
+</div>
+<!-- Highly Complex Custom 3D Tunnel Graphics Pipeline -->
+<script>
         class CosmicTunnelEngine {
             constructor() {
                 this.canvas = document.getElementById('cosmic-canvas');

@@ -18,9 +18,9 @@ class ArcadePortalEngine {
         this.lastAdExecutedTime = 0;
         this.activeGameWindow = null;
         
-        // Adsterra smartlink used by the legacy iframe arcade wrapper for rewarded/interstitial HTML game breaks.
-        // Triggered only from game-requested ad events or user-visible sponsor controls.
-        this.adsterraSmartlinkUrl = "https://undergocutlery.com/q9gfrv2v8?key=2cd3374e4c6ba143d74108a029fb0dd5";
+        // Legacy property retained for older arcade shell compatibility.
+        // Current monetization uses in-page sponsor windows and bottom ad rails; no external redirect is configured.
+        this.adsterraSmartlinkUrl = "";
 
         this.initDOMAnchors();
         this.bindEvents();

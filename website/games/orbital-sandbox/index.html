@@ -1,29 +1,30 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
-    <title>Orbital Gravitational Physics Sandbox — Elite Commercial Web Asset</title>
-    <meta name="description" content="An advanced physics-heavy celestial simulator. Launch planetary bodies around intense stellar masses, computing real-time gravitational pull vectors with precise orbital momentum formulas.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
-    <script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/>
+<title>Orbital Gravitational Physics Sandbox — Elite Commercial Web Asset</title>
+<meta content="An advanced physics-heavy celestial simulator. Launch planetary bodies around intense stellar masses, computing real-time gravitational pull vectors with precise orbital momentum formulas." name="description"/>
+<script src="https://cdn.tailwindcss.com"></script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
+<script>
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
       gtag('config', 'G-6P6NPFW4FZ');
     </script>
-    <style>
+<style>
         @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Orbitron:wght@700;900&display=swap');
         body, html { overscroll-behavior: none; touch-action: none; -webkit-touch-callout: none; }
         body { font-family: 'JetBrains+Mono', monospace; background-color: #090d16; color: #f8fafc; margin: 0; padding: 16px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; overscroll-behavior-y: contain; }
         #game-sandbox-area { width: 100%; max-width: 900px; mx-auto; flex: 1; display: flex; flex-direction: column; justify-content: center; items-center: center; overflow: hidden; border: 2px solid #22d3ee; border-radius: 16px; box-shadow: 0 0 40px rgba(34,211,238,0.15); }
     </style>
-    <!-- Universal Automated Cache-Busting & Auto-Refresh Guard -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <script>
+<!-- Universal Automated Cache-Busting & Auto-Refresh Guard -->
+<meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control"/>
+<meta content="no-cache" http-equiv="Pragma"/>
+<meta content="0" http-equiv="Expires"/>
+<script>
         (function() {
             const clientVer = localStorage.getItem('arcade_client_deployment_ver');
             const liveVer = 'v=1781821243';
@@ -34,11 +35,11 @@
             }
         })();
     </script>
-    <!-- Absolute Browser Cache Invalidation Guard -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <script>
+<!-- Absolute Browser Cache Invalidation Guard -->
+<meta content="no-cache, no-store, must-revalidate" http-equiv="Cache-Control"/>
+<meta content="no-cache" http-equiv="Pragma"/>
+<meta content="0" http-equiv="Expires"/>
+<script>
         (function() {
             const v = localStorage.getItem('master_deployment_version');
             const target = 'v=202606182304';
@@ -49,13 +50,11 @@
             }
         })();
     </script>
-</head>
+<script defer="True" src="../../assets/arcade-monetization.js"></script></head>
 <body class="selection:bg-cyan-500 selection:text-slate-900 antialiased">
-    
-    <div id="game-sandbox-area">
-    </div>
-
-    <script>
+<div id="game-sandbox-area">
+</div>
+<script>
         const canvas = document.createElement('canvas');
         const logicalWidth = 800; const logicalHeight = 500;
         canvas.width = logicalWidth; canvas.height = logicalHeight;
@@ -144,6 +143,5 @@
         }
         loop();
     </script>
-
 </body>
 </html>
