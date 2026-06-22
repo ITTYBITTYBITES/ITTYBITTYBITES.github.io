@@ -29,7 +29,7 @@ jobs:
         run: npm ci
 
       - name: Execute Programmatic Site Compilation Engine
-        run: node build-engine.js
+        run: node website/build-engine.js
         env:
           NODE_ENV: production
 

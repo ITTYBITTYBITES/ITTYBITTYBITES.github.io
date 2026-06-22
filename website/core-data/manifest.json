@@ -900,6 +900,22 @@
       ],
       "summary": "Deep dive analysis of Ergonomic Office Chair by Herman Miller as a field equipment resource for cognitive speed and bias override training.",
       "deepDiveBriefing": "Ergonomic Office Chair by Herman Miller operates as a critical resource within the Field Equipment training pipeline. The work deconstructs the mental machinery that governs rapid judgment, attention allocation, and error correction under compressed time windows. For operators training with The 2-Second Witness, this material provides the conceptual scaffolding that transforms isolated trial performance into a reproducible cognitive strategy.\n\nThe central conflict explored across these pages is the friction between automatic processing and deliberate verification. When a priming stimulus enters the decision loop, the untrained brain defaults to the fastest associative match rather than the most accurate one. This is the exact Stroop effect analysis and cognitive interference breakdown that our two-second scenarios weaponize, and the protocols in Ergonomic Office Chair teach readers how to interrupt that default before an error is locked in.\n\nApplied inside the training loop, the principles from Ergonomic Office Chair become a field manual for human factor decision error reduction. Whether the scenario involves speed reading, pattern matching, or conflicting verbal cues, the reader learns to recognize the signature of an incoming System 1 trap and deploy a System 2 override. That pause, even if it lasts only a fraction of a second, is the decisive gap that separates correct identification from a committed mistake."
+    },
+    {
+      "asin": "014311526X",
+      "slug": "nudge",
+      "category": "Decision Architecture",
+      "title": "Nudge",
+      "author": "Richard H. Thaler and Cass R. Sunstein",
+      "targetKeywords": [
+        "choice architecture",
+        "status quo bias",
+        "behavioral economics",
+        "decision design"
+      ],
+      "summary": "Deep dive analysis of Nudge by Richard H. Thaler and Cass R. Sunstein as a decision architecture resource for status quo bias and choice design training.",
+      "deepDiveBriefing": "Nudge by Richard H. Thaler and Cass R. Sunstein operates as a decision architecture resource within the cognitive training pipeline. The work examines how default options, context, framing, and environmental cues shape human choices before deliberate reasoning begins. For operators training with The 2-Second Witness, this material supports recognition of status quo commitment, default-option inertia, and the ways small presentation changes can alter rapid judgment.\n\nThe practical value is its focus on designing choice environments rather than relying on willpower alone. When time pressure compresses attention, defaults become powerful. Studying those defaults helps players identify when automatic acceptance is occurring and when a deliberate override is required.",
+      "amazonUrl": "https://www.amazon.com/dp/014311526X?tag=ittybittybite-20"
     }
   ]
 }

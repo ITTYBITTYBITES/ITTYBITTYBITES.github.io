@@ -1,252 +1,67 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cognitive Arcade — Dynamic Master Gaming Hub</title>
-    <meta name="description" content="Autonomous HTML5 Cognitive Game Arcade. Play Grid Delver, Stroop puzzles, and dual-process System 1 vs System 2 tactical training simulations.">
-    <link rel="canonical" href="https://ittybittybites.github.io/arcade.html">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-6P6NPFW4FZ');
-    </script>
-    <!-- Google H5 Web Web-Gaming Ad Placement API SDK -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1566091161594729" crossorigin="anonymous"></script>
-    <script>
-      window.adsbygoogle = window.adsbygoogle || [];
-      window.adConfig = window.adConfig || function(o) { adsbygoogle.push(o); };
-    </script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Orbitron:wght@400;700;900&display=swap');
-        body { font-family: 'JetBrains+Mono', monospace; background-color: #020617; color: #f8fafc; }
-        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-        .custom-scrollbar::-webkit-scrollbar-track { background: #0f172a; }
-        .custom-scrollbar::-webkit-scrollbar-thumb { background: #334155; border-radius: 3px; }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #475569; }
-        .nav-node { font-size: 10px; letter-spacing: 1.5px; text-transform: uppercase; padding: 6px 12px; border: 1px solid rgba(34,211,238,0.15); color: #94a3b8; transition: all 0.2s ease; text-decoration: none; display: inline-block; }
-        .nav-node:hover { color: #22d3ee; border-color: #22d3ee; }
-        .nav-node.active { color: #22d3ee; border-color: #22d3ee; font-weight: bold; background: rgba(34,211,238,0.08); }
-        .bg-radial { background: radial-gradient(circle at 50% 0%, rgba(34, 211, 238, 0.08) 0%, rgba(2, 6, 23, 1) 70%); }
-    </style>
-    <!-- Universal Automated Cache-Busting & Auto-Refresh Guard -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <script>
-        (function() {
-            const clientVer = localStorage.getItem('arcade_client_deployment_ver');
-            const liveVer = 'v=1781821243';
-            if (clientVer !== liveVer) {
-                localStorage.setItem('arcade_client_deployment_ver', liveVer);
-                if (window.caches) { caches.keys().then(n => n.forEach(c => caches.delete(c))); }
-                if (clientVer) { window.location.reload(true); }
-            }
-        })();
-    </script>
-    <!-- Absolute Browser Cache Invalidation Guard -->
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <script>
-        (function() {
-            const v = localStorage.getItem('master_deployment_version');
-            const target = 'v=202606182304';
-            if (v !== target) {
-                localStorage.setItem('master_deployment_version', target);
-                if (window.caches) { caches.keys().then(n => n.forEach(c => caches.delete(c))); }
-                window.location.reload(true);
-            }
-        })();
-    </script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Experimental Arcade | Itty Bitty Bites Browser Games</title>
+  <meta name="description" content="Play the Itty Bitty Bites Experimental Arcade: browser games, WebGL prototypes, cognitive mini-games, classics, and archived studio experiments.">
+  <meta name="author" content="ITTY BITTY BITES">
+  <link rel="canonical" href="https://ittybittybites.github.io/website/arcade.html">
+  <link rel="stylesheet" href="assets/brand-system.css">
 </head>
-<body class="min-h-screen flex flex-col selection:bg-cyan-500 selection:text-slate-900 bg-radial antialiased">
+<body class="ibb-brand">
+  <nav class="ibb-nav" aria-label="Primary navigation"><div class="ibb-nav__inner"><a class="ibb-logo" href="index.html"><span class="ibb-logo__mark">IB</span><span>Itty Bitty Bites<span class="ibb-logo__sub">games + entertainment</span></span></a><div class="ibb-nav__links"><a href="index.html">Home</a><a href="2-second-witness.html">2 Second Witness</a><a href="arcade.html" aria-current="page">Arcade</a><a href="library.html">Library</a><a href="feed.html">Updates</a><a href="about.html">About</a></div></div></nav>
+  <main class="ibb-main">
+    <section class="ibb-hero">
+      <div class="ibb-container ibb-hero-grid">
+        <div><p class="ibb-kicker">Experimental arcade</p><h1 class="ibb-title">Playable prototypes, <span>professionally archived.</span></h1><p class="ibb-lede">A dedicated home for current HTML games, browser projects, prototype experiences, and archived experiments from the Itty Bitty Bites studio.</p><div class="ibb-actions"><a class="ibb-button ibb-button--primary" href="#browse">Browse games</a><a class="ibb-button ibb-button--secondary" href="2-second-witness.html">Flagship title</a></div></div>
+        <div class="ibb-showpiece"><div class="ibb-screen"><div class="ibb-screen__top"><span class="ibb-dot"></span></div><div class="ibb-screen__body"><p class="ibb-kicker">Arcade index</p><div class="ibb-metric-grid"><div class="ibb-metric"><strong id="game-count">18</strong><span>Games loaded</span></div><div class="ibb-metric"><strong>Web</strong><span>No install</span></div><div class="ibb-metric"><strong>Live</strong><span>Playable pages</span></div><div class="ibb-metric"><strong>Safe</strong><span>Local browser play</span></div></div></div></div></div>
+      </div>
+    </section>
 
-    <!-- GLOBAL UNIFIED NAVIGATION BAR -->
-    <!-- GLOBAL UNIFIED TACTICAL NAVIGATION -->
-<!-- GLOBAL UNIFIED TACTICAL NAVIGATION -->
-<nav class="bg-slate-950 border-b border-cyan-400/20 py-3 sticky top-0 z-50 backdrop-blur-md shadow-2xl select-none font-mono">
-  <div class="max-w-[1200px] mx-auto px-4 flex justify-center gap-2 sm:gap-4 flex-wrap items-center">
-    <a href="index.html" class="nav-node ">HQ</a>
-    <a href="arcade.html" class="nav-node active">TACTICAL ARCADE</a>
-    <a href="intel/index.html" class="nav-node ">INTEL MATRIX</a>
-    <a href="feed.html" class="nav-node ">INTEL FEED</a>
-    <a href="library.html" class="nav-node ">GEAR LOCKER</a>
-  </div>
-</nav>
+    <section class="ibb-section" id="browse">
+      <div class="ibb-container">
+        <div class="ibb-feature" style="align-items:end;"><div><p class="ibb-kicker">Browse</p><h2 class="ibb-title" style="font-size:clamp(34px,5vw,64px);">Studio Arcade</h2><p class="ibb-lede">Game cards are generated from the existing games registry so the playable content remains intact while the presentation evolves.</p></div><div class="ibb-card"><label for="category-filter" class="ibb-kicker" style="display:block;">Filter games</label><select id="category-filter" style="width:100%;min-height:48px;border-radius:14px;background:#0e1124;color:#f7fbff;border:1px solid var(--ibb-line);padding:0 14px;font-weight:800;"><option value="ALL">All categories</option></select></div></div>
+        <div id="games-grid" class="ibb-grid-3" style="margin-top:32px;" aria-live="polite"></div>
+        <noscript><p class="ibb-card">JavaScript is required to build the arcade index from games.json. Direct game pages remain available in the /games/ directory.</p></noscript>
+      </div>
+    </section>
 
-    <!-- ARCADE TACTICAL BANNER -->
-    <header class="border-b border-slate-900 bg-slate-950/80 px-6 py-4 flex flex-wrap justify-between items-center gap-4 z-10 font-mono">
-        <div class="flex items-center space-x-3">
-            <div class="w-3 h-3 rounded-full bg-cyan-400 animate-pulse"></div>
-            <div>
-                <span class="text-[10px] text-slate-500 block font-mono tracking-widest">HTML5 GAME PORTAL // PHASE 1-5 ENGINE</span>
-                <h1 class="text-xl font-bold tracking-wider text-white font-['Orbitron']">COGNITIVE.ARCADE</h1>
-            </div>
-        </div>
-        <div class="flex items-center gap-3">
-            <span id="terminal-notification-bar" class="text-xs text-slate-400 font-mono tracking-widest hidden sm:block">◈ Autonomous Routing Online</span>
-            <a href="#/" class="px-3 py-1.5 bg-slate-900 border border-cyan-400/20 text-cyan-400 rounded text-xs hover:bg-cyan-400 hover:text-slate-950 transition-all font-bold tracking-wider uppercase">
-                Browse Grid
-            </a>
-        </div>
-    </header>
-
-    <!-- MAIN PLATFORM THEATER -->
-    <div class="flex-1 flex flex-col md:flex-row overflow-hidden max-w-[1600px] w-full mx-auto font-mono">
-        
-        <!-- SIDEBAR / HORIZONTAL FILTER BAR (MOBILE OPTIMIZED HYBRID) -->
-        <aside class="w-full md:w-72 bg-slate-950/90 md:bg-slate-950/60 border-b md:border-b-0 md:border-r border-slate-900 flex flex-col shrink-0 p-2.5 sm:p-4 gap-2 sm:gap-4 select-none z-10 font-mono">
-            <div class="p-4 border border-slate-800 bg-slate-900/30 rounded-xl hidden md:block font-mono">
-                <span class="text-[10px] uppercase font-bold tracking-widest text-cyan-400">Classification Core</span>
-                <p class="text-xs text-slate-400 mt-1 leading-relaxed">Filter evaluation sandboxes by neural stress mechanics.</p>
-            </div>
-            
-            <!-- Highly sleek horizontally scrollable row on mobile, vertical list on desktop -->
-            <div class="flex flex-row md:flex-col overflow-x-auto md:overflow-x-visible whitespace-nowrap md:whitespace-normal space-x-2 md:space-x-0 md:space-y-1.5 py-1 md:py-0 scrollbar-none flex-1" id="category-sidebar">
-                <!-- Dynamic loaded via portal.js -->
-            </div>
-            
-            <div class="p-4 bg-slate-900/40 border border-slate-800/80 rounded-xl text-center space-y-2 hidden md:block font-mono">
-                <span class="text-[10px] tracking-widest text-gold uppercase font-bold block">Secure Execution Loop</span>
-                <p class="text-[11px] text-slate-400 leading-relaxed">All web games enforced with mandatory video clearance handshakes.</p>
-            </div>
-        </aside>
-
-        <!-- MAIN VIEWPORT Theater -->
-        <main class="flex-1 bg-slate-900/20 p-3 sm:p-6 lg:p-8 flex flex-col overflow-y-auto custom-scrollbar relative min-h-[600px]">
-            
-            <!-- VIEW 1: Commercial Multi-Grid Browse Hub -->
-            <div id="browse-hub-container" class="space-y-12 font-mono">
-                
-                <!-- THEATER A: Complex 3D & Tactical Strategy Releases -->
-                <div class="space-y-4">
-                    <div class="flex items-center gap-3 border-b border-slate-800 pb-3">
-                        <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 animate-pulse"></span>
-                        <h2 class="font-bold text-base sm:text-xl text-white tracking-wider font-['Orbitron'] uppercase">Recent Complex 3D & Tactical Strategy</h2>
-                        <span class="text-xs text-cyan-400 font-bold ml-auto tracking-widest hidden sm:inline">[ Elite Tier ]</span>
-                    </div>
-                    <div id="complex-games-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 font-mono">
-                        <!-- Dynamic populated via portal.js -->
-                    </div>
-                </div>
-
-                <!-- THEATER B: Classics & Mainstream Retro Hits -->
-                <div class="space-y-4">
-                    <div class="flex items-center gap-3 border-b border-slate-800 pb-3">
-                        <span class="w-2.5 h-2.5 rounded-full bg-gold animate-bounce"></span>
-                        <h2 class="font-bold text-base sm:text-xl text-white tracking-wider font-['Orbitron'] uppercase">Classics & Mainstream Retro Arcade</h2>
-                        <span class="text-xs text-gold font-bold ml-auto tracking-widest hidden sm:inline">[ Addictive Hits ]</span>
-                    </div>
-                    <div id="retro-classics-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-3 sm:gap-6 font-mono">
-                        <!-- Dynamic populated via portal.js -->
-                    </div>
-                </div>
-
-            </div>
-            <div id="browse-grid-theater" class="hidden"></div>
-
-            <!-- VIEW 2: Secure Game Execution Theater (Initially Hidden) -->
-            <div id="game-theater" style="height: 100dvh; width: 100vw; overscroll-behavior-y: contain;" class="hidden fixed inset-0 z-50 bg-black flex flex-col justify-between overflow-hidden p-0 font-mono">
-                
-                <!-- Immersive Top Bar -->
-                <div class="flex items-center justify-between p-3 sm:p-4 bg-slate-950 border-b border-slate-800 shadow-xl shrink-0 z-10">
-                    <a href="#/" id="exit-sandbox-btn" class="px-4 py-2 sm:px-5 sm:py-2.5 bg-rose-500/10 hover:bg-rose-500 hover:text-slate-950 border-2 border-rose-500 text-rose-400 rounded-xl text-xs font-black transition-all flex items-center gap-2 tracking-widest uppercase shadow-md active:scale-95 cursor-pointer">
-                        <span class="text-base">&larr;</span> <span>EXIT SANDBOX</span>
-                    </a>
-                    <div class="text-center px-4 truncate flex-1 hidden sm:block font-mono">
-                        <h2 id="active-game-title" class="text-base font-bold text-white font-['Orbitron'] truncate tracking-wider">---</h2>
-                        <p id="active-game-desc" class="text-[11px] text-slate-400 truncate mt-0.5 font-mono">---</p>
-                    </div>
-                    <div class="shrink-0 flex items-center gap-2 sm:gap-3">
-                        <button id="theater-mode-toggle" class="px-3 py-2 bg-cyan-500/10 hover:bg-cyan-500 hover:text-slate-950 border border-cyan-500/30 text-cyan-400 rounded-xl text-xs font-bold transition-all flex items-center gap-1.5 uppercase tracking-wider hidden sm:flex cursor-pointer">
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/></svg>
-                            <span>Aspect</span>
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Web-Native Adaptive Full-Workspace Execution Container (No Mobile Squeeze) -->
-                <div class="flex-1 w-full h-full flex items-center justify-center p-0 sm:p-4 bg-black relative overflow-hidden" style="overscroll-behavior-y: contain;">
-                    <div id="iframe-aspect-container" style="max-width: 100%; max-height: 100%; overscroll-behavior-y: contain;" class="w-full h-full md:aspect-[16/10] bg-slate-950 border-0 sm:border-2 sm:border-slate-800 rounded-none sm:rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center relative max-w-[1400px]">
-                        <iframe 
-                            id="secure-game-frame" 
-                            src="" 
-                            sandbox="allow-scripts allow-same-origin" 
-                            allow="autoplay; fullscreen" 
-                            style="width: 100%; height: 100%; border: none; overscroll-behavior-y: contain;"
-                            class="absolute inset-0 block w-full h-full">
-                        </iframe>
-                    </div>
-                </div>
-
-            </div>
-
-        </main>
-    </div>
-
-    <!-- Commercial Sponsorship Break Showcase Modal Overlay -->
-    <div id="ad-simulation-modal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-lg flex items-center justify-center hidden font-mono p-4">
-        <div class="max-w-md w-full bg-slate-900 border-2 border-cyan-400 p-8 rounded-2xl text-center space-y-6 shadow-2xl relative overflow-hidden">
-            <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-cyan-400 via-gold to-emerald-400 animate-pulse"></div>
-            <div>
-                <span id="ad-network-identifier" class="text-[10px] uppercase font-bold tracking-widest text-gold px-2.5 py-1 rounded bg-gold/10 border border-gold/20">
-                    ADSTERRA COMMERCIAL SPONSORSHIP // SECURE
-                </span>
-                <h3 class="text-xl font-bold text-white tracking-wide mt-4 font-['Orbitron']">
-                    OPERATIONAL SPONSORSHIP BREAK (<span id="ad-countdown-ticker" class="text-cyan-400 font-mono">5s</span>)
-                </h3>
-            </div>
-            <p class="text-xs text-slate-300 leading-relaxed font-mono">
-                Executing secure ad break routine. Web Audio contexts and game loops have been cleanly suspended.
-            </p>
-            
-            <!-- Prime Personally Vetted Field Resource Showcase Box -->
-            <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-left space-y-2">
-                <span class="text-[10px] font-bold text-cyan-400 uppercase block tracking-wider font-mono">◈ FEATURED FIELD MANUAL</span>
-                <h4 class="text-sm font-bold text-white font-mono">Thinking, Fast and Slow by Daniel Kahneman</h4>
-                <p class="text-[11px] text-slate-400 line-clamp-2 font-mono">The definitive foundation of dual-process System 1 vs System 2 decision speed.</p>
-                <a href="https://www.amazon.com/dp/0374533555/?tag=ittybittybite-20" target="_blank" rel="noopener" class="text-xs text-gold font-bold inline-block hover:underline pt-1 font-mono">
-                    Deploy via Amazon >>
-                </a>
-            </div>
-
-            <div class="space-y-3 pt-2 font-mono">
-                <a id="adsterra-direct-launch-btn" href="https://undergocutlery.com/q9gfrv2v8?key=2cd3374e4c6ba143d74108a029fb0dd5" target="_blank" rel="noopener" class="px-6 py-4 bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-slate-950 font-extrabold text-xs uppercase tracking-widest rounded-xl transition-all shadow-xl block cursor-pointer">
-                    ⚡ ENGAGE SPONSORSHIP PERK (ADSTERRA) ⚡
-                </a>
-                <button id="instant-ad-skip-btn" class="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-cyan-400 border border-slate-700 rounded-xl font-bold text-xs uppercase tracking-widest transition-all shadow-md active:scale-95 cursor-pointer w-full">
-                    Resume Gameplay &rarr;
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Phase 4: Legal & Liability Disclaimers Footer -->
-    <footer class="border-t border-slate-900 bg-slate-950 py-8 px-6 mt-auto text-slate-500 font-mono text-xs leading-relaxed">
-        <div class="max-w-[1200px] mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div>
-                <h4 class="text-slate-300 font-bold uppercase tracking-wider text-[11px] mb-2 font-['Orbitron']">Local Sandbox Privacy Notice</h4>
-                <p class="text-[11px]">
-                    All interactive gameplay operates entirely locally within your device browser. Zero personally identifiable identifiers (PII), behavioral tracking datasets, or background AI telemetry are collected.
-                </p>
-            </div>
-            <div>
-                <h4 class="text-slate-300 font-bold uppercase tracking-wider text-[11px] mb-2 font-['Orbitron']">Limitation of Liability Shield</h4>
-                <p class="text-[11px]">
-                    This platform executes within client-side WebAssembly and HTML5 sandboxes. The site operator is completely indemnified and held harmless against any local browser memory corruption, state loss during network desynchronization, or third-party iframe script faults.
-                </p>
-            </div>
-        </div>
-        <div class="max-w-[1200px] mx-auto text-center border-t border-slate-900 mt-8 pt-6 text-[10px] tracking-widest uppercase">
-            © 2026 ITTY BITTY BITES // Classified Cognitive Training Division // All Rights Reserved.
-        </div>
-    </footer>
-
-    <!-- Client Engine Script -->
-    <script src="portal.js?v=202606182304"></script>
+    <section class="ibb-section">
+      <div class="ibb-container ibb-grid-2">
+        <article class="ibb-card"><h3>How this section supports the brand</h3><p>The Experimental Arcade gives prototypes and current HTML games a clear, fun destination without competing with 2 Second Witness as the flagship title.</p></article>
+        <article class="ibb-card"><h3>Preserved playable content</h3><p>Each card links directly to its existing game page. Descriptions and directory paths come from the current site registry.</p></article>
+      </div>
+    </section>
+  </main>
+  <footer class="ibb-footer"><div class="ibb-footer__inner"><div><strong>Experimental Arcade</strong><br><span class="ibb-small">Browser games, prototypes, and archived studio experiments.</span></div><div class="ibb-footer__links"><a href="index.html">Home</a><a href="2-second-witness.html">2 Second Witness</a><a href="library.html">Library</a><a href="privacy_policy.html">Privacy</a><a href="terms_of_service.html">Terms</a></div></div></footer>
+<script>
+(function(){
+  const grid = document.getElementById('games-grid');
+  const filter = document.getElementById('category-filter');
+  const count = document.getElementById('game-count');
+  const placeholder = (label) => `data:image/svg+xml;utf8,${encodeURIComponent(`<svg xmlns='http://www.w3.org/2000/svg' width='600' height='375' viewBox='0 0 600 375'><defs><linearGradient id='g' x1='0' x2='1'><stop stop-color='#5fe8ff'/><stop offset='.55' stop-color='#ffe27a'/><stop offset='1' stop-color='#ff5ee7'/></linearGradient></defs><rect width='600' height='375' fill='#080b18'/><circle cx='300' cy='180' r='110' fill='none' stroke='url(#g)' stroke-width='10' opacity='.55'/><path d='M300 105l75 130H225z' fill='url(#g)' opacity='.72'/><text x='300' y='310' font-family='system-ui' font-size='20' font-weight='900' fill='#f7fbff' text-anchor='middle'>${label}</text></svg>`)}`;
+  let games = [];
+  function card(game){
+    const article = document.createElement('article');
+    article.className = 'ibb-card ibb-game-card';
+    const img = game.thumbnail_url || game.thumbnail_svg || placeholder(game.title || 'PLAY');
+    article.innerHTML = `<div class='ibb-thumb' style='border-radius:24px 24px 0 0;border-left:0;border-right:0;border-top:0;'><img loading='lazy' src='${img}' alt='${(game.title||'Game').replace(/'/g,"&#39;")}' onerror="this.src='${placeholder('PLAY')}'"></div><div class='ibb-card__body'><span class='ibb-tag'>${game.category || 'Arcade'}</span><h3>${game.title || game.id}</h3><p>${game.description || ''}</p><div class='ibb-actions'><a class='ibb-button ibb-button--primary' href='${game.directory_path || ('games/' + game.id + '/index.html')}'>Play</a></div></div>`;
+    return article;
+  }
+  function render(){
+    const active = filter.value;
+    grid.innerHTML = '';
+    games.filter(g => active === 'ALL' || g.category === active).forEach(g => grid.appendChild(card(g)));
+  }
+  fetch('games.json').then(r=>r.json()).then(data=>{
+    games = Array.isArray(data) ? data : (data.games || []);
+    count.textContent = games.length;
+    [...new Set(games.map(g=>g.category).filter(Boolean))].sort().forEach(cat=>{const o=document.createElement('option');o.value=cat;o.textContent=cat;filter.appendChild(o);});
+    render();
+  }).catch(()=>{grid.innerHTML = '<article class="ibb-card"><h3>Arcade registry unavailable</h3><p>Reload the page or browse the games directory directly.</p></article>';});
+  filter.addEventListener('change', render);
+})();
+</script>
 </body>
 </html>
