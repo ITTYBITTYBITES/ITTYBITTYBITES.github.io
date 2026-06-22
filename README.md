@@ -1,25 +1,56 @@
-# 🌐 ITTYBITTYBITES.github.io // Cognitive Training Web Matrix
+# Itty Bitty Bites Website
 
-Welcome to the central public repository for **The 2-Second Witness** web division. This repository powers our free marketing portal, interactive training arcade, research briefing database, and affiliate revenue funnels at $0/month forever via GitHub Pages.
+Public GitHub Pages website for **Itty Bitty Bites** — a gaming and entertainment hub featuring browser arcade experiments, studio content, and the flagship **2 Second Witness** experience.
 
----
+Live site:
 
-## 🗺️ Master Backend Architecture
-To keep our repository intuitive and pristine from a DevOps perspective, all source code, operational pages, and developer compilation tools are isolated into distinct structural hubs.
+- https://ittybittybites.github.io/
+- https://ittybittybites.github.io/website/
 
-> 📄 **See our full architectural map & routing guide:**  
-> **[`BACKEND_FILE_STRUCTURE.md`](./BACKEND_FILE_STRUCTURE.md)**
+## Public repository policy
 
----
+This repository is treated as a public/static publication repository. Anything committed here should be safe to expose publicly and safe to serve through GitHub Pages.
 
-## 🔒 Looking for our Native Android App?
-Our full native Godot 4.3 mobile application codebase has been successfully isolated into an independent, securely locked-down repository to protect our intellectual property:
-* **Private Mobile App Repository**: [https://github.com/ITTYBITTYBITES/2-second-witness-mobile](https://github.com/ITTYBITTYBITES/2-second-witness-mobile) *(Private access required)*
+Keep in this repo:
 
----
+- Static website pages and assets
+- Browser-playable games
+- Public content data used to generate pages
+- Public build scripts required by GitHub Actions
+- Public sitemap, robots, ads/app-ads files
 
-## 🛠️ Automated Operations & Maintenance
-If you are an AI Agent or Developer collaborating on this repository, please respect our strict structural boundaries:
-1. **Developer Maintenance Scripts**: All Node.js/Python overhaul and generation automation tools must remain inside **`/dev-tools`**.
-2. **Research Articles**: All human-facing cognitive science blogs must remain inside **`/articles`**. Root SEO meta-redirect stubs must not be deleted.
-3. **Commit Messages**: Format all branch updates with clear operational emoji prefixes (`🌐`, `🚀`, `🛠️`, `📚`).
+Do not commit here:
+
+- Private credentials, tokens, keys, or account secrets
+- Private backend notes, internal deployment reports, or unpublished strategy docs
+- Local-only scripts that are not required by the public site or GitHub Actions build
+- Raw private source files that should not be visible to visitors or crawlers
+
+## Build
+
+The automated GitHub Actions workflow runs:
+
+```bash
+npm ci
+node website/build-engine.js
+```
+
+Local validation:
+
+```bash
+npm test
+npm run build
+```
+
+## Public structure
+
+```text
+/                       Root redirect, robots, app-ads, package files
+.github/workflows/      Public GitHub Actions build workflow
+website/                Public website, games, assets, generated pages, build data
+website/games/          Browser-playable games
+website/assets/         Shared brand system and browser assets
+website/articles/       Public articles
+website/library/        Generated public resource pages
+website/intel/          Generated public intel pages
+```

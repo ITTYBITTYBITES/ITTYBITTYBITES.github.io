@@ -21,3 +21,20 @@ npm-debug.log*
 test-output/
 dist/
 build-temp/
+
+# Local/private operator files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+private/
+.local/
+
+# Internal audit exports / local reports
+release_certification_report.json
+*_audit_private.*
+*_local_report.*
