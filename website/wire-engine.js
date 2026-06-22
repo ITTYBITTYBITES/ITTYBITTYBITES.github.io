@@ -17,7 +17,7 @@
       encodeURIComponent('https://www.youtube.com/feeds/videos.xml?channel_id=UCsooa4yRKGN_zEE8iknghZA'),
     maxScienceItems: 5,
     maxVideoItems: 3,
-    fallbackTag: 'ittybittybite-20',
+    fallbackTag: 'liquidmemory-20',
   };
 
   /**

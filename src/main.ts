@@ -3,7 +3,8 @@ import type { EventContract, PlatformState } from './kernel';
 import { KernelObserver } from './dom/KernelObserver';
 import { SpatialRenderer } from './spatial/SpatialRenderer';
 
-const STORAGE_NAMESPACE = 'ibb_home_kernel';
+const STORAGE_NAMESPACE = 'lm_home_kernel';
+const LEGACY_STORAGE_NAMESPACE = 'ibb_home_kernel';
 let uiSequence = 0;
 
 function cloneInitialState(): PlatformState {
@@ -12,7 +13,7 @@ function cloneInitialState(): PlatformState {
     timestamp: new Date().toISOString(),
     processedEventIds: new Set<string>(),
     lastSequenceIds: {},
-    player: { ...INITIAL_PLATFORM_STATE.player, resources: { gold: 0, bytes: 0, sparks: 0 } },
+    player: { ...INITIAL_PLATFORM_STATE.player, resources: { pearls: 0, trace: 0, sparks: 0 } },
     world: {
       ...INITIAL_PLATFORM_STATE.world,
       entities: {},
@@ -34,9 +35,22 @@ function makeEvent(type: string, payload: Record<string, any> = {}, source = 'ib
   };
 }
 
+function migrateLegacyMemoryState(): void {
+  const pairs = [
+    [`${LEGACY_STORAGE_NAMESPACE}_state`, `${STORAGE_NAMESPACE}_state`],
+    [`${LEGACY_STORAGE_NAMESPACE}_event_log`, `${STORAGE_NAMESPACE}_event_log`],
+  ];
+  pairs.forEach(([legacyKey, newKey]) => {
+    if (!localStorage.getItem(newKey) && localStorage.getItem(legacyKey)) {
+      localStorage.setItem(newKey, localStorage.getItem(legacyKey)!);
+    }
+  });
+}
+
 function initKernel() {
   const bus = GlobalEventBus.getInstance();
   bus.reset();
+  migrateLegacyMemoryState();
 
   const persistor = new PlatformPersistor(`${STORAGE_NAMESPACE}_state`, `${STORAGE_NAMESPACE}_event_log`);
   const rehydrated = persistor.rehydrate();
@@ -79,8 +93,8 @@ function initKernel() {
     clear: () => { persistor.clear(); window.location.reload(); },
   };
 
-  (window as any).IttyBittyKernel = api;
-  (window as any).IttyBittySpatial = spatial;
+  (window as any).LiquidMemoryKernel = api;
+  (window as any).LiquidMemorySpatial = spatial;
 
   document.querySelectorAll<HTMLElement>('[data-kernel-event]').forEach((el) => {
     el.addEventListener('click', () => {

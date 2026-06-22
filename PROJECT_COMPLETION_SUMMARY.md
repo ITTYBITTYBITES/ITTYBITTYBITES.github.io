@@ -1,4 +1,4 @@
-# Itty Bitty Bites Website + Kernel Platform Completion Summary
+# Liquid Memory Website + Kernel Platform Completion Summary
 
 **Release:** v1.0.0 Production Release  
 **Primary site:** https://ittybittybites.github.io/  
@@ -9,7 +9,7 @@
 
 ## Completion declaration
 
-The Itty Bitty Bites public website and Kernel Platform integration have reached a stable completion state.
+The Liquid Memory public website and Kernel Platform integration have reached a stable completion state.
 
 The site now functions as a public gaming and entertainment hub while preserving existing content, articles, arcade games, generated pages, and 2 Second Witness information. The imported Kernel Platform package is built, deployed, linked, documented, and included in the automated CI/CD workflow.
 
@@ -19,7 +19,7 @@ The site now functions as a public gaming and entertainment hub while preserving
 
 ### Public website
 
-- Modern Itty Bitty Bites homepage.
+- Modern Liquid Memory homepage.
 - Dedicated 2 Second Witness flagship page.
 - Experimental Arcade with all detected browser games listed.
 - Existing articles, intel pages, library pages, games, and content preserved.
@@ -107,4 +107,4 @@ Future work should treat it as a foundation and extend it through documented con
 
 **Status:** Complete and stable.
 
-The website, arcade, and Kernel Platform are deployed and ready to be treated as production foundations for future Itty Bitty Bites development.
+The website, arcade, and Kernel Platform are deployed and ready to be treated as production foundations for future Liquid Memory development.

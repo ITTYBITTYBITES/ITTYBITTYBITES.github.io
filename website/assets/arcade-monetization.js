@@ -1,4 +1,4 @@
-/* Itty Bitty Bites Arcade Monetization + Reward Bridge
+/* Liquid Memory Arcade Monetization + Reward Bridge
    Public, static, no account data. Provides a visible in-game sponsor rail and a modal reward loop.
    Games trigger: window.parent.postMessage({type:'ARCADE_TRIGGER_AD', adType:'rewarded'|'interstitial'}, '*')
    Completion sent: {type:'ARCADE_AD_COMPLETE'}
@@ -60,7 +60,7 @@
     rail.id = 'ibb-ad-rail';
     rail.className = 'ibb-ad-rail';
     rail.setAttribute('aria-label', 'Advertisement and sponsor message');
-    rail.innerHTML = '<strong>Ad</strong><span>Thanks for supporting free Itty Bitty Bites browser games.</span><button type="button" id="ibb-ad-rail-hide">Hide</button>';
+    rail.innerHTML = '<strong>Ad</strong><span>Thanks for supporting free Liquid Memory browser games.</span><button type="button" id="ibb-ad-rail-hide">Hide</button>';
     document.body.appendChild(rail);
     const spacer = document.createElement('div');
     spacer.className = 'ibb-ad-spacer';
@@ -144,7 +144,7 @@
       const data = event.data || {};
       if (data.type === 'ARCADE_TRIGGER_AD') showBreak(data.adType || 'interstitial');
     });
-    window.IttyBittyArcadeAds = { showBreak, completeBreak };
+    window.LiquidMemoryArcadeAds = { showBreak, completeBreak };
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);

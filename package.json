@@ -1,7 +1,7 @@
 {
-  "name": "ittybittybites-ssg-engine",
+  "name": "liquidmemory-ssg-engine",
   "version": "1.0.0",
-  "description": "Automated static site engine for Itty Bitty Bites",
+  "description": "Automated static site engine for Liquid Memory",
   "main": "website/build-engine.js",
   "scripts": {
     "build": "node website/build-engine.js",
@@ -21,7 +21,7 @@
     "github-actions",
     "cognitive-training"
   ],
-  "author": "ITTY BITTY BITES",
+  "author": "LIQUID MEMORY",
   "license": "MIT",
   "dependencies": {
     "axios": "^1.6.8",

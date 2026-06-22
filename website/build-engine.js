@@ -35,7 +35,7 @@ const BASE_URL      = 'https://ittybittybites.github.io/website';
 
 // ─── Configuration ─────────────────────────────────────────────────────────────
 const CONFIG = {
-  affiliateTag: 'ittybittybite-20',
+  affiliateTag: 'liquidmemory-20',
   feedThrottleMs: 1200,
   feedTimeoutMs: 8000,
   maxLiveProducts: 4,
@@ -55,7 +55,7 @@ function fetchUrl(url, timeoutMs = CONFIG.feedTimeoutMs) {
   return new Promise((resolve, reject) => {
     const protocol = url.startsWith('https') ? https : http;
     const req = protocol.get(url, {
-      headers: { 'User-Agent': 'ITTYBITTYBITES-SSG/1.0 (+https://ittybittybites.github.io)' }
+      headers: { 'User-Agent': 'LIQUIDMEMORY-SSG/1.0 (+https://ittybittybites.github.io)' }
     }, res => {
       if (res.statusCode >= 300 && res.statusCode < 400 && res.headers.location) {
         return fetchUrl(res.headers.location, timeoutMs).then(resolve).catch(reject);
@@ -766,8 +766,8 @@ body::before { content: ''; position: fixed; inset: 0; background: linear-gradie
   "@type": "Article",
   "headline": "{{PAGE_TITLE}}",
   "description": "Cognitive training protocol for {{TARGET_PERSONA}}",
-  "author": { "@type": "Organization", "name": "ITTY BITTY BITES" },
-  "publisher": { "@type": "Organization", "name": "ITTY BITTY BITES" },
+  "author": { "@type": "Organization", "name": "LIQUID MEMORY" },
+  "publisher": { "@type": "Organization", "name": "LIQUID MEMORY" },
   "mainEntityOfPage": { "@type": "WebPage", "@id": "{{CANONICAL_URL}}" }
 }
 </script>
@@ -820,7 +820,7 @@ body::before { content: ''; position: fixed; inset: 0; background: linear-gradie
           <p class="text-slate-500 text-xs uppercase tracking-[1px]">[ Interactive Training Simulator — Itch.io Embed ]</p>
         </div>
       </div>
-      <a href="https://ittybittybites.itch.io/" target="_blank" rel="noopener noreferrer" class="cta-btn">Deploy Training Module >></a>
+      <a href="https://ittybittybites.itch.io/2-second-witness" target="_blank" rel="noopener noreferrer" class="cta-btn">Deploy Training Module >></a>
     </div>
     {{SCIENCE_CARDS}}
     <div class="mt-8 pt-8 border-t border-cyan-400/10">
@@ -969,7 +969,7 @@ ${topicCards}
         </div>
 
         <div class="max-w-[1400px] mx-auto text-center text-xs text-slate-500 tracking-widest uppercase flex flex-col sm:flex-row items-center justify-between gap-6 font-mono font-bold">
-            <div class="text-slate-400">© 2026 ITTY BITTY BITES // CLASSIFIED COGNITIVE TRAINING DIVISION</div>
+            <div class="text-slate-400">© 2026 LIQUID MEMORY // CLASSIFIED COGNITIVE TRAINING DIVISION</div>
             <div class="flex flex-wrap justify-center gap-6 text-slate-400">
                 <a href="../privacy_policy.html" class="hover:text-cyan-400 transition-colors">Privacy Policy</a>
                 <a href="../terms_of_service.html" class="hover:text-cyan-400 transition-colors">Terms of Service</a>
@@ -1115,7 +1115,7 @@ function generateHtmlSitemap(libraryPages, intelPages) {
 
   // 1. Core Standalone Articles & Portals
   const coreLinks = [
-    { loc: 'index.html', title: 'Itty Bitty Bites Studio Home' },
+    { loc: 'index.html', title: 'Liquid Memory Studio Home' },
     { loc: '2-second-witness.html', title: '2 Second Witness // Flagship Game Page' },
     { loc: 'arcade.html', title: 'Experimental Arcade // 26 Browser Games' },
     { loc: 'platform/index.html', title: 'Kernel Platform // Event-Driven Live Demo' },
@@ -1443,7 +1443,7 @@ function makeGlobalFooter(prefix = '') {
         </div>
 
         <div class="max-w-[1400px] mx-auto text-center text-xs text-slate-500 tracking-widest uppercase flex flex-col sm:flex-row items-center justify-between gap-6 font-mono font-bold">
-            <div class="text-slate-400">© 2026 ITTY BITTY BITES // CLASSIFIED COGNITIVE TRAINING DIVISION</div>
+            <div class="text-slate-400">© 2026 LIQUID MEMORY // CLASSIFIED COGNITIVE TRAINING DIVISION</div>
             <div class="flex flex-wrap justify-center gap-6 text-slate-400 font-mono">
                 <a href="{{PREFIX}}privacy_policy.html" class="hover:text-cyan-400 transition-colors">Privacy Policy</a>
                 <a href="{{PREFIX}}terms_of_service.html" class="hover:text-cyan-400 transition-colors">Terms of Service</a>

@@ -270,7 +270,7 @@ class ArcadePortalEngine {
             this.prodTitleEl.textContent = game.prodTitle;
         }
         if (this.prodLinkEl && game.asid) {
-            const assocTag = localStorage.getItem('amazon_associate_tag') || 'ittybittybite-20';
+            const assocTag = localStorage.getItem('amazon_associate_tag') || 'liquidmemory-20';
             this.prodLinkEl.href = `https://www.amazon.com/dp/${game.asid}/?tag=${assocTag}`;
         }
 

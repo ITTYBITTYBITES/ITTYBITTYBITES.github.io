@@ -1,10 +1,10 @@
-# Itty Bitty Bites Kernel Platform
+# Liquid Memory Kernel Platform
 
 **Version:** v1.0.0 Production Release  
 **Status:** Stable dependency  
 **Live demo:** https://ittybittybites.github.io/website/platform/
 
-The Kernel Platform is a deterministic, event-driven foundation for building persistent, monetizable, and visually reactive interactive experiences for Itty Bitty Bites.
+The Kernel Platform is a deterministic, event-driven foundation for building persistent, monetizable, and visually reactive interactive experiences for Liquid Memory.
 
 It is intentionally **not** a traditional game engine. It is the shared platform layer beneath games, reward loops, visual projections, and persistent player state.
 
@@ -57,7 +57,7 @@ The production release is considered green only when all checks pass:
 1. **Asset path integrity**
    - `/website/platform/index.html` loads.
    - Relative Vite assets load from `/website/platform/assets/`.
-   - Links back to the main Itty Bitty Bites site resolve.
+   - Links back to the main Liquid Memory site resolve.
 
 2. **State persistence audit**
    - Click `Level Up → 5`.
@@ -139,4 +139,4 @@ Do not bypass the event bus for gameplay state, rewards, or persistent player pr
 
 The Kernel Platform v1.0.0 release is complete when the live production verification passes and the release tag is present.
 
-At that point, the platform moves from **work in progress** to **production foundation** for future Itty Bitty Bites interactive experiences.
+At that point, the platform moves from **work in progress** to **production foundation** for future Liquid Memory interactive experiences.

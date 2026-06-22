@@ -1,5 +1,5 @@
 {
-  "name": "itty-bitty-bites-kernel-platform",
+  "name": "liquid-memory-kernel-platform",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
@@ -13,7 +13,7 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "Event-driven interactive platform demo for Itty Bitty Bites",
+  "description": "Event-driven interactive platform demo for Liquid Memory",
   "devDependencies": {
     "@types/node": "^26.0.0",
     "ts-node": "^10.9.2",

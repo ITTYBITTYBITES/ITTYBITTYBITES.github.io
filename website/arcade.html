@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Experimental Arcade | Itty Bitty Bites Browser Games</title>
-  <meta name="description" content="Play the Itty Bitty Bites Experimental Arcade: browser games, WebGL prototypes, cognitive mini-games, classics, archived studio experiments, and in-game sponsor reward loops.">
-  <meta name="author" content="ITTY BITTY BITES">
+  <title>Experimental Arcade | Liquid Memory Browser Games</title>
+  <meta name="description" content="Play the Liquid Memory Experimental Arcade: browser games, WebGL prototypes, cognitive mini-games, classics, archived studio experiments, and in-game sponsor reward loops.">
+  <meta name="author" content="LIQUID MEMORY">
   <link rel="canonical" href="https://ittybittybites.github.io/website/arcade.html">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-6P6NPFW4FZ');</script>
@@ -24,11 +24,11 @@
   </style>
 </head>
 <body class="ibb-brand">
-  <nav class="ibb-nav" aria-label="Primary navigation"><div class="ibb-nav__inner"><a class="ibb-logo" href="index.html"><span class="ibb-logo__mark">IB</span><span>Itty Bitty Bites<span class="ibb-logo__sub">games + entertainment</span></span></a><div class="ibb-nav__links"><a href="index.html">Home</a><a href="2-second-witness.html">2 Second Witness</a><a href="arcade.html" aria-current="page">Arcade</a><a href="library.html">Library</a><a href="feed.html">Updates</a><a href="about.html">About</a></div></div></nav>
+  <nav class="ibb-nav" aria-label="Primary navigation"><div class="ibb-nav__inner"><a class="ibb-logo" href="index.html"><span class="ibb-logo__mark">LM</span><span>Liquid Memory<span class="ibb-logo__sub">games + entertainment</span></span></a><div class="ibb-nav__links"><a href="index.html">Home</a><a href="2-second-witness.html">2 Second Witness</a><a href="arcade.html" aria-current="page">Arcade</a><a href="library.html">Library</a><a href="feed.html">Updates</a><a href="about.html">About</a></div></div></nav>
   <main class="ibb-main">
     <section class="ibb-hero">
       <div class="ibb-container ibb-hero-grid">
-        <div><p class="ibb-kicker">Experimental arcade</p><h1 class="ibb-title">Playable prototypes, <span>professionally archived.</span></h1><p class="ibb-lede">A dedicated home for current HTML games, browser projects, prototype experiences, and archived experiments from the Itty Bitty Bites studio.</p><div class="ibb-actions"><a class="ibb-button ibb-button--primary" href="#browse">Browse games</a><a class="ibb-button ibb-button--secondary" href="2-second-witness.html">Flagship title</a></div></div>
+        <div><p class="ibb-kicker">Experimental arcade</p><h1 class="ibb-title">Playable prototypes, <span>professionally archived.</span></h1><p class="ibb-lede">A dedicated home for current HTML games, browser projects, prototype experiences, and archived experiments from the Liquid Memory studio.</p><div class="ibb-actions"><a class="ibb-button ibb-button--primary" href="#browse">Browse games</a><a class="ibb-button ibb-button--secondary" href="2-second-witness.html">Flagship title</a></div></div>
         <div class="ibb-showpiece"><div class="ibb-screen"><div class="ibb-screen__top"><span class="ibb-dot"></span></div><div class="ibb-screen__body"><p class="ibb-kicker">Arcade index</p><div class="ibb-metric-grid"><div class="ibb-metric"><strong id="game-count">26</strong><span>Games loaded</span></div><div class="ibb-metric"><strong>AdSense</strong><span>Site ads active</span></div><div class="ibb-metric"><strong>Modal</strong><span>In-game reward breaks</span></div><div class="ibb-metric"><strong>Live</strong><span>Iframe play loop</span></div></div></div></div></div>
       </div>
     </section>
@@ -36,7 +36,7 @@
     <section class="ibb-section arcade-theater" id="play-theater" aria-live="polite">
       <div class="ibb-container">
         <div class="ibb-feature" style="align-items:end;margin-bottom:22px;"><div><p class="ibb-kicker">Now playing</p><h2 class="ibb-title" id="active-game-title" style="font-size:clamp(34px,5vw,60px);">Arcade Theater</h2><p class="ibb-lede" id="active-game-desc">Games run inside the arcade shell so reward and interstitial ad messages can be completed correctly.</p></div><div class="ibb-actions" style="justify-content:flex-end;"><a class="ibb-button ibb-button--secondary" id="open-direct-link" href="#" target="_blank" rel="noopener">Open direct</a><button class="ibb-button ibb-button--secondary" id="close-theater" type="button">Close theater</button></div></div>
-        <div class="game-frame-wrap"><iframe class="game-frame" id="game-frame" title="Itty Bitty Bites arcade game" allow="fullscreen; autoplay; gamepad" loading="lazy"></iframe></div>
+        <div class="game-frame-wrap"><iframe class="game-frame" id="game-frame" title="Liquid Memory arcade game" allow="fullscreen; autoplay; gamepad" loading="lazy"></iframe></div>
       </div>
     </section>
 
@@ -136,7 +136,7 @@
     activeGame = game;
     const url = gameUrl(game);
     activeTitle.textContent = game.title || game.id;
-    activeDesc.textContent = game.description || 'Itty Bitty Bites arcade game.';
+    activeDesc.textContent = game.description || 'Liquid Memory arcade game.';
     openDirect.href = url;
     frame.src = url;
     theater.classList.add('is-open');

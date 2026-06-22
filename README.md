@@ -1,6 +1,6 @@
-# Itty Bitty Bites Website
+# Liquid Memory Website
 
-Public GitHub Pages website for **Itty Bitty Bites** — a gaming and entertainment hub featuring browser arcade experiments, studio content, and the flagship **2 Second Witness** experience.
+Public GitHub Pages website for **Liquid Memory** — a gaming and entertainment hub featuring browser arcade experiments, studio content, and the flagship **2 Second Witness** experience.
 
 Live site:
 

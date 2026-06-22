@@ -60,6 +60,26 @@ export function reduce(
     };
   }
 
+
+
+  if (event.type === 'library.game_opened') {
+    const resource = event.payload.resource || 'trace';
+    const amount = event.payload.amount ?? 25;
+    newState.player.resources = {
+      ...state.player.resources,
+      [resource]: (state.player.resources[resource] || 0) + amount,
+    };
+  }
+
+  if (event.type === 'community.vortex') {
+    const resource = event.payload.resource || 'pearls';
+    const amount = event.payload.amount ?? 60;
+    newState.player.resources = {
+      ...state.player.resources,
+      [resource]: (state.player.resources[resource] || 0) + amount,
+    };
+  }
+
   if (event.type === 'economic.reward_claimed') {
     const rewardAmount = event.payload.amount ?? 25;
     newState.player.resources = {

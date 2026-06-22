@@ -22,6 +22,10 @@ export class MonetizationLayer {
       }
     }
 
+    if (event.type === 'community.vortex') {
+      this.offerReward('spending', event.payload.amount || event.payload.value || 60);
+    }
+
     if (event.type === 'economic.resource_spent') {
       this.resourcesSpent += event.payload.amount || 0;
 
