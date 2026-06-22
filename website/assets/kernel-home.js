@@ -12334,23 +12334,127 @@ var eu = class {
 	emissive: 744823,
 	scale: .86,
 	pull: .9
-}, ru = {
+}, ru = class {
+	constructor() {
+		this.listeners = /* @__PURE__ */ new Set(), this.handleResize = () => {
+			let e = this.measure(), t = JSON.stringify(e) !== JSON.stringify(this.profile);
+			this.profile = e, t && this.listeners.forEach((e) => e(this.profile));
+		}, this.profile = this.measure(), window.addEventListener("resize", this.handleResize, { passive: !0 }), window.addEventListener("orientationchange", this.handleResize, { passive: !0 });
+	}
+	getProfile() {
+		return this.profile;
+	}
+	subscribe(e) {
+		return this.listeners.add(e), e(this.profile), () => this.listeners.delete(e);
+	}
+	dispose() {
+		window.removeEventListener("resize", this.handleResize), window.removeEventListener("orientationchange", this.handleResize), this.listeners.clear();
+	}
+	measure() {
+		let e = window.innerWidth || 1024, t = window.innerHeight || 768, n = Math.min(e, t), r = Math.max(e, t), i = t >= e ? "portrait" : "landscape", a = window.matchMedia?.("(pointer: coarse)").matches ?? !1, o = "desktop";
+		return a && n < 700 ? o = "mobile" : (a || r < 1180) && (o = "tablet"), o === "mobile" && i === "portrait" ? {
+			kind: o,
+			orientation: i,
+			gearScale: .86,
+			gearPosition: {
+				x: 0,
+				y: -2.25,
+				z: .7
+			},
+			gaugeMode: "topbar",
+			camera: {
+				x: 0,
+				y: 4.9,
+				z: 15.8,
+				fov: 54
+			},
+			starCount: 92,
+			linkSegments: 12,
+			linkRadialSegments: 5,
+			geometryDetail: 0,
+			touchTargetScale: 1.38
+		} : o === "mobile" ? {
+			kind: o,
+			orientation: i,
+			gearScale: .72,
+			gearPosition: {
+				x: 0,
+				y: -1.15,
+				z: .7
+			},
+			gaugeMode: "compact-corners",
+			camera: {
+				x: 0,
+				y: 4.2,
+				z: 14.4,
+				fov: 52
+			},
+			starCount: 110,
+			linkSegments: 14,
+			linkRadialSegments: 5,
+			geometryDetail: 0,
+			touchTargetScale: 1.32
+		} : o === "tablet" ? {
+			kind: o,
+			orientation: i,
+			gearScale: i === "portrait" ? .9 : .86,
+			gearPosition: {
+				x: 0,
+				y: i === "portrait" ? -1.05 : -.55,
+				z: .68
+			},
+			gaugeMode: i === "portrait" ? "topbar" : "compact-corners",
+			camera: {
+				x: 0,
+				y: 4.65,
+				z: 14.3,
+				fov: 50
+			},
+			starCount: 155,
+			linkSegments: 20,
+			linkRadialSegments: 7,
+			geometryDetail: 1,
+			touchTargetScale: 1.18
+		} : {
+			kind: o,
+			orientation: i,
+			gearScale: 1,
+			gearPosition: {
+				x: 0,
+				y: 0,
+				z: .65
+			},
+			gaugeMode: "side-panels",
+			camera: {
+				x: 0,
+				y: 4.7,
+				z: 13.5,
+				fov: 48
+			},
+			starCount: 260,
+			linkSegments: 30,
+			linkRadialSegments: 9,
+			geometryDetail: 2,
+			touchTargetScale: 1
+		};
+	}
+}, iu = {
 	games: "library.game_opened",
 	archive: "library.archive_opened",
 	community: "community.vortex",
 	blueprint: "milestone.level_up",
 	memory: "economic.resource_gained"
-}, iu = Object.fromEntries(Object.entries(ru).map(([e, t]) => [t, e])), au = class {
+}, au = Object.fromEntries(Object.entries(iu).map(([e, t]) => [t, e])), ou = class {
 	constructor(e, t, n) {
-		this.host = e, this.liveRegion = t, this.onGearSelected = n, this.scene = new Fn(), this.camera = new uo(48, 1, .1, 1e3), this.biomeGroup = new Dn(), this.linkGroup = new Dn(), this.gearGroup = new Dn(), this.gaugeGroup = new Dn(), this.nodes = [], this.links = [], this.gears = [], this.gauges = [], this.rafId = 0, this.focusIndex = -1, this.pointer = new K(99, 99), this.raycaster = new No(), this.clock = new Io(), this.haloTexture = this.createHaloTexture(), this.animate = () => {
+		this.host = e, this.liveRegion = t, this.onGearSelected = n, this.scene = new Fn(), this.camera = new uo(48, 1, .1, 1e3), this.biomeGroup = new Dn(), this.linkGroup = new Dn(), this.gearGroup = new Dn(), this.gaugeGroup = new Dn(), this.nodes = [], this.links = [], this.gears = [], this.gauges = [], this.rafId = 0, this.focusIndex = -1, this.pointer = new K(99, 99), this.raycaster = new No(), this.clock = new Io(), this.haloTexture = this.createHaloTexture(), this.responsive = new ru(), this.profile = this.responsive.getProfile(), this.lastTouchAt = 0, this.dragStartX = 0, this.didDrag = !1, this.animate = () => {
 			let e = this.clock.getElapsedTime();
 			this.updateHoverState(), this.biomeGroup.rotation.y += .0017, this.biomeGroup.rotation.x = Math.sin(e * .17) * .06, this.linkGroup.rotation.copy(this.biomeGroup.rotation);
 			let t = this.nodes[this.focusIndex], n = t?.target.z || 0;
 			if (this.gears.forEach((e, t) => {
 				let n = e.active ? .018 : .006;
 				e.group.rotation.z += n * (t % 2 ? -1 : 1);
-				let r = e.active ? 1.08 : 1, i = this.hoveredGear === e ? 1.08 : 1;
-				e.group.scale.lerp(new q(r * i, r * i, r * i), .08);
+				let r = e.active ? 1.08 : 1, i = this.hoveredGear === e || this.selectedGear === e ? 1.08 : 1, a = this.profile.gearScale * this.profile.touchTargetScale * r * i;
+				e.group.scale.lerp(new q(a, a, a), .08);
 			}), this.nodes.forEach((t, r) => {
 				let i = Math.min(1, (performance.now() - t.createdAt) / 620), a = t.target.clone();
 				if (this.hovered && this.hovered !== t) {
@@ -12370,7 +12474,7 @@ var eu = class {
 				let r = (Math.sin(e * 2.8 + n * .65) + 1) / 2;
 				t.material.opacity = .18 + r * .34, t.material.emissiveIntensity = .7 + r * .95, t.mesh.scale.setScalar(1 + r * .045);
 			}), t) {
-				let e = t.target.clone().multiplyScalar(.2).add(new q(0, 3.9, 12.2));
+				let e = t.target.clone().multiplyScalar(.2).add(new q(this.profile.camera.x, this.profile.camera.y - .8, this.profile.camera.z - 1.3));
 				this.camera.position.lerp(e, .018), this.camera.lookAt(t.target.clone().multiplyScalar(.18));
 			} else this.camera.lookAt(0, 0, 0);
 			this.renderer.render(this.scene, this.camera), this.rafId = requestAnimationFrame(this.animate);
@@ -12378,17 +12482,17 @@ var eu = class {
 			antialias: !0,
 			alpha: !0,
 			powerPreference: "high-performance"
-		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(0, 0), this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.camera.position.set(0, 4.7, 13.5), this.camera.lookAt(0, 0, 0);
+		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(0, 0), this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.applyCameraProfile(this.profile, !0);
 		let r = new ho(14140065, 1.06), i = new po(7271653, 2.8, 44);
 		i.position.set(6, 8, 8);
 		let a = new po(14136170, 2.15, 36);
 		a.position.set(-5, 4, 7);
 		let o = new po(9822396, 1.15, 46);
-		o.position.set(2, -4, 9), this.scene.add(r, i, a, o), this.createStarfield(), this.createBlueprintGearRig(), this.createGauges(), this.bindPointer(), this.bindResize(), this.animate();
+		o.position.set(2, -4, 9), this.scene.add(r, i, a, o), this.createStarfield(), this.createBlueprintGearRig(), this.createGauges(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
 	}
 	handle(e) {
 		if (e.type === "system.heartbeat" && this.nodes.length > 0) return;
-		let t = tu[e.type] || nu, n = iu[e.type], r = this.nodes.length, i = this.computePosition(r, t.pull, n), a = new gi(this.createGeometry(t), this.createMaterial(t)), o = n ? this.getGearAnchor(n) : new q(0, 0, 0);
+		let t = tu[e.type] || nu, n = au[e.type], r = this.nodes.length, i = this.computePosition(r, t.pull, n), a = new gi(this.createGeometry(t), this.createMaterial(t)), o = n ? this.getGearAnchor(n) : new q(0, 0, 0);
 		a.position.copy(o), a.scale.setScalar(.001), a.userData = {
 			eventType: e.type,
 			label: t.label
@@ -12426,7 +12530,7 @@ var eu = class {
 		this.nodes.length && (this.focusIndex = (this.focusIndex + 1) % this.nodes.length);
 	}
 	focusGear(e) {
-		return this.focusEventType(ru[e]);
+		return this.focusEventType(iu[e]);
 	}
 	focusEventType(e) {
 		for (let t = this.nodes.length - 1; t >= 0; t--) if (this.nodes[t].eventType === e) {
@@ -12450,8 +12554,54 @@ var eu = class {
 	getGaugeCount() {
 		return this.gauges.length;
 	}
+	getResponsiveMode() {
+		return `${this.profile.kind}-${this.profile.orientation}`;
+	}
 	dispose() {
-		cancelAnimationFrame(this.rafId), this.resizeObserver?.disconnect(), this.renderer.dispose(), this.host.innerHTML = "";
+		cancelAnimationFrame(this.rafId), this.resizeObserver?.disconnect(), this.responsive.dispose(), this.renderer.dispose(), this.host.innerHTML = "";
+	}
+	applyResponsiveProfile(e, t = !1) {
+		this.profile = e, this.host.dataset.device = `${e.kind}-${e.orientation}`, this.applyCameraProfile(e, t);
+		let n = new q(e.gearPosition.x, e.gearPosition.y, e.gearPosition.z);
+		t ? this.gearGroup.position.copy(n) : this.gearGroup.position.lerp(n, .35), this.layoutGauges(e.gaugeMode);
+	}
+	applyCameraProfile(e, t = !1) {
+		this.camera.fov = e.camera.fov, this.camera.updateProjectionMatrix();
+		let n = new q(e.camera.x, e.camera.y, e.camera.z);
+		t ? this.camera.position.copy(n) : this.camera.position.lerp(n, .2), this.camera.lookAt(0, 0, 0);
+	}
+	layoutGauges(e) {
+		let t = {
+			topbar: [
+				[-2.85, 3.25],
+				[-.95, 3.25],
+				[.95, 3.25],
+				[2.85, 3.25]
+			],
+			"side-panels": [
+				[-3.4, 1.75],
+				[3.35, 1.55],
+				[-3.15, -2.05],
+				[3.12, -2]
+			],
+			"compact-corners": [
+				[-2.9, 2.2],
+				[2.9, 2],
+				[-2.9, -2.15],
+				[2.9, -2.15]
+			]
+		}[e];
+		this.gauges.forEach((n, r) => {
+			let i = t[r] || [0, 0];
+			n.sprite.position.set(i[0], i[1], .7);
+			let a = e === "topbar" ? .82 : 1;
+			n.sprite.scale.set(1.65 * a, .42 * a, 1);
+		});
+	}
+	pickGear() {
+		this.raycaster.setFromCamera(this.pointer, this.camera);
+		let e = this.raycaster.intersectObjects(this.gearGroup.children, !0).find((e) => e.object.userData.gearId)?.object.userData.gearId;
+		return e ? this.gears.find((t) => t.id === e) : void 0;
 	}
 	createBlueprintGearRig() {
 		this.gearGroup.position.set(0, 0, .65), this.createGear("archive", "ARCHIVE", new q(-2.45, -.05, 0), .72, 1), this.createGear("games", "GAMES", new q(0, .52, .02), 1.02, 1), this.createGear("community", "COMMUNITY", new q(2.28, -.05, 0), .76, 2), this.createGear("blueprint", "BLUEPRINT", new q(0, -1.28, .04), .86, 1), this.createGear("memory", "MEMORY", new q(-1.55, -1.12, .08), .62, 3);
@@ -12501,7 +12651,7 @@ var eu = class {
 			group: a,
 			hit: s,
 			anchor: n.clone(),
-			eventType: ru[e],
+			eventType: iu[e],
 			unlockedLevel: i,
 			active: !1,
 			label: f
@@ -12560,10 +12710,10 @@ var eu = class {
 	}
 	createGeometry(e) {
 		switch (e.geometry) {
-			case "growth-node": return new ga(.74, 2);
+			case "growth-node": return new ga(.74, this.profile.geometryDetail);
 			case "resource-crystal": return new _a(.66, 0);
-			case "reward-orb": return new ya(.58, 32, 20);
-			case "heartbeat-ring": return new xa(.58, .055, 14, 64);
+			case "reward-orb": return new ya(.58, this.profile.geometryDetail > 0 ? 32 : 18, this.profile.geometryDetail > 0 ? 20 : 12);
+			case "heartbeat-ring": return new xa(.58, .055, this.profile.geometryDetail > 0 ? 14 : 8, this.profile.geometryDetail > 0 ? 64 : 28);
 			default: return new ba(.72, 0);
 		}
 	}
@@ -12605,7 +12755,7 @@ var eu = class {
 			e,
 			i,
 			t
-		]), 28, r, 8, !1), o = new Na({
+		]), this.profile.linkSegments, r, this.profile.linkRadialSegments, !1), o = new Na({
 			color: n.color,
 			emissive: n.emissive,
 			emissiveIntensity: 1.15,
@@ -12635,19 +12785,27 @@ var eu = class {
 	bindPointer() {
 		let e = (e) => {
 			let t = this.renderer.domElement.getBoundingClientRect();
-			this.pointer.x = (e.clientX - t.left) / t.width * 2 - 1, this.pointer.y = -((e.clientY - t.top) / t.height) * 2 + 1;
+			if (this.pointer.x = (e.clientX - t.left) / t.width * 2 - 1, this.pointer.y = -((e.clientY - t.top) / t.height) * 2 + 1, this.dragGear) {
+				let t = e.clientX - this.dragStartX;
+				Math.abs(t) > 10 && (this.didDrag = !0), this.dragGear.group.rotation.z += t * .0018, this.dragStartX = e.clientX;
+			}
 		};
 		this.renderer.domElement.addEventListener("pointermove", e, { passive: !0 }), this.renderer.domElement.addEventListener("pointerdown", (t) => {
-			e(t), this.raycaster.setFromCamera(this.pointer, this.camera);
-			let n = this.raycaster.intersectObjects(this.gearGroup.children, !0).find((e) => e.object.userData.gearId)?.object.userData.gearId, r = n ? this.gears.find((e) => e.id === n) : void 0;
-			r && r.group.userData.unlocked !== !1 && (this.setActiveGear(r.id), this.onGearSelected?.(r.id));
+			e(t);
+			let n = this.pickGear();
+			if (!(!n || n.group.userData.unlocked === !1)) if (this.dragGear = n, this.dragStartX = t.clientX, this.didDrag = !1, this.renderer.domElement.setPointerCapture?.(t.pointerId), t.pointerType === "touch") {
+				let e = performance.now(), t = this.lastTouchGear === n.id && e - this.lastTouchAt < 900;
+				this.lastTouchGear = n.id, this.lastTouchAt = e, this.selectedGear = n, this.setActiveGear(n.id), t && this.onGearSelected?.(n.id);
+			} else this.selectedGear = n, this.setActiveGear(n.id), this.onGearSelected?.(n.id);
+		}), this.renderer.domElement.addEventListener("pointerup", (e) => {
+			this.dragGear && this.didDrag && this.onGearSelected?.(this.dragGear.id), this.dragGear = void 0, this.didDrag = !1, this.renderer.domElement.releasePointerCapture?.(e.pointerId);
 		}), this.renderer.domElement.addEventListener("pointerleave", () => {
 			this.pointer.set(99, 99), this.hovered = void 0, this.hoveredGear = void 0;
 		});
 	}
 	createStarfield() {
 		let e = new Or(), t = [];
-		for (let e = 0; e < 240; e++) t.push((Math.random() - .5) * 44, (Math.random() - .5) * 24, (Math.random() - .5) * 44);
+		for (let e = 0; e < this.profile.starCount; e++) t.push((Math.random() - .5) * 44, (Math.random() - .5) * 24, (Math.random() - .5) * 44);
 		e.setAttribute("position", new Z(t, 3));
 		let n = new Oi({
 			color: 12560247,
@@ -12700,7 +12858,7 @@ var eu = class {
 	roundRect(e, t, n, r, i, a) {
 		e.beginPath(), e.moveTo(t + a, n), e.arcTo(t + r, n, t + r, n + i, a), e.arcTo(t + r, n + i, t, n + i, a), e.arcTo(t, n + i, t, n, a), e.arcTo(t, n, t + r, n, a), e.closePath();
 	}
-}, ou = "lm_home_kernel", su = "ibb_home_kernel", cu = "lm_blueprint_nav_gear", lu = 0, uu = {
+}, su = "lm_home_kernel", cu = "ibb_home_kernel", lu = "lm_blueprint_nav_gear", uu = 0, du = {
 	games: {
 		eventType: "library.game_opened",
 		payload: {
@@ -12738,7 +12896,7 @@ var eu = class {
 		}
 	}
 };
-function du() {
+function fu() {
 	return {
 		...t,
 		timestamp: (/* @__PURE__ */ new Date()).toISOString(),
@@ -12766,10 +12924,10 @@ function du() {
 		}
 	};
 }
-function fu(e, t = {}, n = "liquid-memory-homepage") {
+function pu(e, t = {}, n = "liquid-memory-homepage") {
 	return {
 		eventId: crypto.randomUUID(),
-		sequenceId: ++lu,
+		sequenceId: ++uu,
 		timestamp: (/* @__PURE__ */ new Date()).toISOString(),
 		type: e,
 		payload: t,
@@ -12777,43 +12935,43 @@ function fu(e, t = {}, n = "liquid-memory-homepage") {
 		metadata: { version: "1.0.0" }
 	};
 }
-function pu() {
-	[[`${su}_state`, `${ou}_state`], [`${su}_event_log`, `${ou}_event_log`]].forEach(([e, t]) => {
+function mu() {
+	[[`${cu}_state`, `${su}_state`], [`${cu}_event_log`, `${su}_event_log`]].forEach(([e, t]) => {
 		!localStorage.getItem(t) && localStorage.getItem(e) && localStorage.setItem(t, localStorage.getItem(e));
 	});
 }
-function mu() {
+function hu() {
 	let t = e.getInstance();
-	t.reset(), pu();
-	let o = new i(`${ou}_state`, `${ou}_event_log`), s = new r(o.rehydrate() || du());
+	t.reset(), mu();
+	let o = new i(`${su}_state`, `${su}_event_log`), s = new r(o.rehydrate() || fu());
 	new a().init(t);
 	let c = document.getElementById("spatial-canvas"), l = document.getElementById("spatial-live-region"), u = null;
 	function d(e) {
-		u?.focusGear(e), u?.setActiveGear(e), localStorage.setItem(cu, e);
+		u?.focusGear(e), u?.setActiveGear(e), localStorage.setItem(lu, e);
 	}
 	function f(e) {
-		let n = uu[e], r = { ...n.payload };
+		let n = du[e], r = { ...n.payload };
 		if (n.eventType === "milestone.level_up") {
 			let e = s.getCurrentState().player.level || 1;
 			r.newLevel = e + 1, r.xp = e * 150;
 		}
-		localStorage.setItem(cu, e), t.emit(fu(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => d(e), 90);
+		localStorage.setItem(lu, e), t.emit(pu(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => d(e), 90);
 	}
-	u = c ? new au(c, l, f) : null, o.getEventLog().slice(-48).forEach((e) => u?.handle(e)), t.subscribe((e) => {
+	u = c ? new ou(c, l, f) : null, o.getEventLog().slice(-48).forEach((e) => u?.handle(e)), t.subscribe((e) => {
 		u?.handle(e);
 		let t = s.getCurrentState(), r = n(t, e);
 		r !== t && r.processedEventIds.has(e.eventId) && (o.logEvent(e), o.save(r)), s.onStateUpdated(r), u?.updateFromState(r);
 	}), window.LiquidMemoryKernel = {
 		bus: t,
 		bridge: s,
-		emit: (e, n = {}, r) => t.emit(fu(e, n, r)),
+		emit: (e, n = {}, r) => t.emit(pu(e, n, r)),
 		getState: () => s.getCurrentState(),
 		levelUp: () => f("blueprint"),
-		gain: (e = "trace", n = 10) => t.emit(fu("economic.resource_gained", {
+		gain: (e = "trace", n = 10) => t.emit(pu("economic.resource_gained", {
 			resource: e,
 			amount: n
 		})),
-		spend: (e = "pearls", n = 60) => t.emit(fu("economic.resource_spent", {
+		spend: (e = "pearls", n = 60) => t.emit(pu("economic.resource_spent", {
 			resource: e,
 			amount: n
 		})),
@@ -12823,12 +12981,13 @@ function mu() {
 		getSpatialNodeCount: () => u?.getNodeCount() || 0,
 		getSpatialGearCount: () => u?.getGearCount() || 0,
 		getSpatialGaugeCount: () => u?.getGaugeCount() || 0,
+		getResponsiveMode: () => u?.getResponsiveMode?.() || "unknown",
 		clear: () => {
-			o.clear(), localStorage.removeItem(cu), window.location.reload();
+			o.clear(), localStorage.removeItem(lu), window.location.reload();
 		}
 	}, window.LiquidMemorySpatial = u;
-	let p = localStorage.getItem(cu) || "games";
-	uu[p] && window.setTimeout(() => d(p), 160), t.emit(fu("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(fu("system.heartbeat", { path: location.pathname })), 3e4);
+	let p = localStorage.getItem(lu) || "games";
+	du[p] && window.setTimeout(() => d(p), 160), t.emit(pu("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(pu("system.heartbeat", { path: location.pathname })), 3e4);
 }
-document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", mu) : mu();
+document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", hu) : hu();
 //#endregion

@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import type { EventContract, PlatformState } from '../kernel';
 import { BIOME_EVENT_MAP, DEFAULT_BIOME_MAPPING, type BiomeMapping } from './biome.config';
+import { ResponsiveEngine, type ResponsiveProfile } from '../responsive/ResponsiveEngine';
 
 export type GearId = 'games' | 'archive' | 'community' | 'blueprint' | 'memory';
 
@@ -72,6 +73,14 @@ export class SpatialRenderer {
   private raycaster = new THREE.Raycaster();
   private readonly clock = new THREE.Clock();
   private readonly haloTexture = this.createHaloTexture();
+  private readonly responsive = new ResponsiveEngine();
+  private profile: ResponsiveProfile = this.responsive.getProfile();
+  private selectedGear?: GearAssembly;
+  private lastTouchGear?: GearId;
+  private lastTouchAt = 0;
+  private dragGear?: GearAssembly;
+  private dragStartX = 0;
+  private didDrag = false;
 
   constructor(
     private host: HTMLElement,
@@ -89,8 +98,7 @@ export class SpatialRenderer {
     this.scene.add(this.biomeGroup);
     this.scene.add(this.gearGroup);
     this.scene.add(this.gaugeGroup);
-    this.camera.position.set(0, 4.7, 13.5);
-    this.camera.lookAt(0, 0, 0);
+    this.applyCameraProfile(this.profile, true);
 
     const ambient = new THREE.AmbientLight(0xd7c2a1, 1.06);
     const key = new THREE.PointLight(0x6ef4e5, 2.8, 44);
@@ -104,6 +112,8 @@ export class SpatialRenderer {
     this.createStarfield();
     this.createBlueprintGearRig();
     this.createGauges();
+    this.applyResponsiveProfile(this.profile, true);
+    this.responsive.subscribe((profile) => this.applyResponsiveProfile(profile));
     this.bindPointer();
     this.bindResize();
     this.animate();
@@ -207,11 +217,59 @@ export class SpatialRenderer {
     return this.gauges.length;
   }
 
+  getResponsiveMode(): string {
+    return `${this.profile.kind}-${this.profile.orientation}`;
+  }
+
   dispose(): void {
     cancelAnimationFrame(this.rafId);
     this.resizeObserver?.disconnect();
+    this.responsive.dispose();
     this.renderer.dispose();
     this.host.innerHTML = '';
+  }
+
+
+  private applyResponsiveProfile(profile: ResponsiveProfile, instant = false): void {
+    this.profile = profile;
+    this.host.dataset.device = `${profile.kind}-${profile.orientation}`;
+    this.applyCameraProfile(profile, instant);
+    const gearTarget = new THREE.Vector3(profile.gearPosition.x, profile.gearPosition.y, profile.gearPosition.z);
+    if (instant) this.gearGroup.position.copy(gearTarget);
+    else this.gearGroup.position.lerp(gearTarget, 0.35);
+    this.layoutGauges(profile.gaugeMode);
+  }
+
+  private applyCameraProfile(profile: ResponsiveProfile, instant = false): void {
+    this.camera.fov = profile.camera.fov;
+    this.camera.updateProjectionMatrix();
+    const target = new THREE.Vector3(profile.camera.x, profile.camera.y, profile.camera.z);
+    if (instant) this.camera.position.copy(target);
+    else this.camera.position.lerp(target, 0.2);
+    this.camera.lookAt(0, 0, 0);
+  }
+
+  private layoutGauges(mode: ResponsiveProfile['gaugeMode']): void {
+    const layouts: Record<ResponsiveProfile['gaugeMode'], [number, number][]> = {
+      'topbar': [[-2.85, 3.25], [-0.95, 3.25], [0.95, 3.25], [2.85, 3.25]],
+      'side-panels': [[-3.4, 1.75], [3.35, 1.55], [-3.15, -2.05], [3.12, -2.0]],
+      'compact-corners': [[-2.9, 2.2], [2.9, 2.0], [-2.9, -2.15], [2.9, -2.15]],
+    };
+    const points = layouts[mode];
+    this.gauges.forEach((gauge, index) => {
+      const point = points[index] || [0, 0];
+      gauge.sprite.position.set(point[0], point[1], 0.7);
+      const compact = mode === 'topbar' ? 0.82 : 1;
+      gauge.sprite.scale.set(1.65 * compact, 0.42 * compact, 1);
+    });
+  }
+
+  private pickGear(): GearAssembly | undefined {
+    this.raycaster.setFromCamera(this.pointer, this.camera);
+    const gearHits = this.raycaster.intersectObjects(this.gearGroup.children, true);
+    const hit = gearHits.find((item) => item.object.userData.gearId);
+    const gearId = hit?.object.userData.gearId as GearId | undefined;
+    return gearId ? this.gears.find((item) => item.id === gearId) : undefined;
   }
 
   private createBlueprintGearRig(): void {
@@ -305,10 +363,10 @@ export class SpatialRenderer {
 
   private createGeometry(mapping: BiomeMapping): THREE.BufferGeometry {
     switch (mapping.geometry) {
-      case 'growth-node': return new THREE.IcosahedronGeometry(0.74, 2);
+      case 'growth-node': return new THREE.IcosahedronGeometry(0.74, this.profile.geometryDetail);
       case 'resource-crystal': return new THREE.OctahedronGeometry(0.66, 0);
-      case 'reward-orb': return new THREE.SphereGeometry(0.58, 32, 20);
-      case 'heartbeat-ring': return new THREE.TorusGeometry(0.58, 0.055, 14, 64);
+      case 'reward-orb': return new THREE.SphereGeometry(0.58, this.profile.geometryDetail > 0 ? 32 : 18, this.profile.geometryDetail > 0 ? 20 : 12);
+      case 'heartbeat-ring': return new THREE.TorusGeometry(0.58, 0.055, this.profile.geometryDetail > 0 ? 14 : 8, this.profile.geometryDetail > 0 ? 64 : 28);
       default: return new THREE.TetrahedronGeometry(0.72, 0);
     }
   }
@@ -365,7 +423,7 @@ export class SpatialRenderer {
     mid.z += 0.55;
     mid.y += 0.28 * Math.sin(this.nodes.length * 1.7);
     const curve = new THREE.CatmullRomCurve3([from, mid, to]);
-    const geometry = new THREE.TubeGeometry(curve, 28, radius, 8, false);
+    const geometry = new THREE.TubeGeometry(curve, this.profile.linkSegments, radius, this.profile.linkRadialSegments, false);
     const material = new THREE.MeshStandardMaterial({
       color: mapping.color,
       emissive: mapping.emissive,
@@ -406,19 +464,42 @@ export class SpatialRenderer {
       const rect = this.renderer.domElement.getBoundingClientRect();
       this.pointer.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
       this.pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
+      if (this.dragGear) {
+        const dx = event.clientX - this.dragStartX;
+        if (Math.abs(dx) > 10) this.didDrag = true;
+        this.dragGear.group.rotation.z += dx * 0.0018;
+        this.dragStartX = event.clientX;
+      }
     };
     this.renderer.domElement.addEventListener('pointermove', update, { passive: true });
     this.renderer.domElement.addEventListener('pointerdown', (event) => {
       update(event);
-      this.raycaster.setFromCamera(this.pointer, this.camera);
-      const gearHits = this.raycaster.intersectObjects(this.gearGroup.children, true);
-      const hit = gearHits.find((item) => item.object.userData.gearId);
-      const gearId = hit?.object.userData.gearId as GearId | undefined;
-      const gear = gearId ? this.gears.find((item) => item.id === gearId) : undefined;
-      if (gear && gear.group.userData.unlocked !== false) {
+      const gear = this.pickGear();
+      if (!gear || gear.group.userData.unlocked === false) return;
+      this.dragGear = gear;
+      this.dragStartX = event.clientX;
+      this.didDrag = false;
+      this.renderer.domElement.setPointerCapture?.(event.pointerId);
+
+      if (event.pointerType === 'touch') {
+        const now = performance.now();
+        const secondTap = this.lastTouchGear === gear.id && now - this.lastTouchAt < 900;
+        this.lastTouchGear = gear.id;
+        this.lastTouchAt = now;
+        this.selectedGear = gear;
+        this.setActiveGear(gear.id);
+        if (secondTap) this.onGearSelected?.(gear.id);
+      } else {
+        this.selectedGear = gear;
         this.setActiveGear(gear.id);
         this.onGearSelected?.(gear.id);
       }
+    });
+    this.renderer.domElement.addEventListener('pointerup', (event) => {
+      if (this.dragGear && this.didDrag) this.onGearSelected?.(this.dragGear.id);
+      this.dragGear = undefined;
+      this.didDrag = false;
+      this.renderer.domElement.releasePointerCapture?.(event.pointerId);
     });
     this.renderer.domElement.addEventListener('pointerleave', () => {
       this.pointer.set(99, 99);
@@ -430,7 +511,7 @@ export class SpatialRenderer {
   private createStarfield(): void {
     const geometry = new THREE.BufferGeometry();
     const verts: number[] = [];
-    for (let i = 0; i < 240; i++) {
+    for (let i = 0; i < this.profile.starCount; i++) {
       verts.push((Math.random() - 0.5) * 44, (Math.random() - 0.5) * 24, (Math.random() - 0.5) * 44);
     }
     geometry.setAttribute('position', new THREE.Float32BufferAttribute(verts, 3));
@@ -468,8 +549,9 @@ export class SpatialRenderer {
       const target = gear.active ? 0.018 : 0.006;
       gear.group.rotation.z += target * (index % 2 ? -1 : 1);
       const activeScale = gear.active ? 1.08 : 1;
-      const hoverScale = this.hoveredGear === gear ? 1.08 : 1;
-      gear.group.scale.lerp(new THREE.Vector3(activeScale * hoverScale, activeScale * hoverScale, activeScale * hoverScale), 0.08);
+      const hoverScale = this.hoveredGear === gear || this.selectedGear === gear ? 1.08 : 1;
+      const targetScale = this.profile.gearScale * this.profile.touchTargetScale * activeScale * hoverScale;
+      gear.group.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.08);
     });
 
     this.nodes.forEach((node, index) => {
@@ -511,7 +593,7 @@ export class SpatialRenderer {
     });
 
     if (focus) {
-      const desired = focus.target.clone().multiplyScalar(0.2).add(new THREE.Vector3(0, 3.9, 12.2));
+      const desired = focus.target.clone().multiplyScalar(0.2).add(new THREE.Vector3(this.profile.camera.x, this.profile.camera.y - 0.8, this.profile.camera.z - 1.3));
       this.camera.position.lerp(desired, 0.018);
       this.camera.lookAt(focus.target.clone().multiplyScalar(0.18));
     } else {

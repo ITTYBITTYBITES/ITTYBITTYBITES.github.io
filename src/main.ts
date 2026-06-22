@@ -126,6 +126,7 @@ function initKernel() {
     getSpatialNodeCount: () => spatial?.getNodeCount() || 0,
     getSpatialGearCount: () => spatial?.getGearCount() || 0,
     getSpatialGaugeCount: () => spatial?.getGaugeCount() || 0,
+    getResponsiveMode: () => spatial?.getResponsiveMode?.() || 'unknown',
     clear: () => { persistor.clear(); localStorage.removeItem(BLUEPRINT_GEAR_KEY); window.location.reload(); },
   };
 
