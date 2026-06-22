@@ -248,6 +248,8 @@ export class SpatialRenderer {
     };
     this.resizeObserver = new ResizeObserver(resize);
     this.resizeObserver.observe(this.host);
+    window.addEventListener('resize', resize, { passive: true });
+    window.addEventListener('orientationchange', resize, { passive: true });
     resize();
   }
 

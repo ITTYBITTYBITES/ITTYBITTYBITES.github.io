@@ -273,3 +273,37 @@ img { max-width: 100%; height: auto; }
 .kernel-dev-view summary { cursor:pointer; width:max-content; color:var(--ibb-muted); font-weight:850; text-transform:uppercase; letter-spacing:.08em; }
 .kernel-dev-view code { color:var(--ibb-cyan); }
 @media (max-width: 620px) { .kernel-state-grid { grid-template-columns: 1fr; } .kernel-canvas, .kernel-spatial-canvas { min-height:360px; } .kernel-spatial-hud { align-items:flex-start; flex-direction:column; } .kernel-focus-dial { width:82px; height:82px; font-size:9px; } }
+
+/* Liquid Memory Fullscreen System */
+html, body.liquid-fullscreen { width:100%; min-height:100%; overflow:hidden; }
+body.liquid-fullscreen { background:#0d0a07; }
+body.liquid-fullscreen::before { z-index:-4; }
+body.liquid-fullscreen::after { z-index:20; opacity:.28; }
+.liquid-memory-system { position:fixed; inset:0; width:100vw; height:100dvh; overflow:hidden; isolation:isolate; }
+.liquid-spatial-viewport { position:fixed !important; inset:0 !important; width:100vw !important; height:100dvh !important; min-height:100dvh !important; z-index:-1; background: radial-gradient(circle at 50% 45%, rgba(110,244,229,.07), transparent 38%), linear-gradient(135deg, #0d0a07, #21170e 55%, #080604); }
+.liquid-spatial-viewport canvas, .liquid-spatial-viewport .kernel-spatial-webgl { width:100vw !important; height:100dvh !important; display:block; }
+.liquid-overlay { position:fixed; z-index:30; }
+.liquid-overlay--brand { top: max(18px, env(safe-area-inset-top)); left: max(18px, env(safe-area-inset-left)); right: max(18px, env(safe-area-inset-right)); display:flex; align-items:flex-start; justify-content:space-between; gap:16px; pointer-events:none; }
+.liquid-brand-mark { pointer-events:auto; display:inline-flex; align-items:center; gap:12px; text-decoration:none; color:var(--ibb-text); border:1px solid rgba(215,179,106,.34); border-radius:20px; background:rgba(18,15,11,.58); backdrop-filter: blur(18px); padding:10px 14px; box-shadow:0 18px 42px rgba(0,0,0,.34); }
+.liquid-brand-mark__sigil { width:42px; height:42px; display:grid; place-items:center; border-radius:14px; color:#120f0b; background:linear-gradient(135deg, var(--ibb-cyan), var(--ibb-gold)); font-weight:1000; letter-spacing:-.08em; }
+.liquid-brand-mark strong { display:block; font-size:14px; line-height:1; text-transform:uppercase; letter-spacing:.12em; }
+.liquid-brand-mark em { display:block; margin-top:4px; color:var(--ibb-muted); font-style:normal; font-size:10px; text-transform:uppercase; letter-spacing:.18em; }
+.liquid-status-pill { pointer-events:none; max-width:min(52vw,560px); min-height:42px; display:inline-flex; align-items:center; justify-content:flex-end; text-align:right; border:1px solid rgba(110,244,229,.26); border-radius:999px; background:rgba(18,15,11,.48); backdrop-filter:blur(18px); color:var(--ibb-muted); padding:9px 14px; font-size:11px; text-transform:uppercase; letter-spacing:.12em; box-shadow:0 18px 42px rgba(0,0,0,.28); }
+.liquid-overlay--state { left:max(18px, env(safe-area-inset-left)); bottom:max(18px, env(safe-area-inset-bottom)); display:grid; grid-template-columns:repeat(4, minmax(74px, 1fr)); gap:10px; width:min(560px, calc(100vw - 36px)); pointer-events:none; }
+.liquid-state-card { border:1px solid rgba(196,168,122,.22); border-radius:18px; background:rgba(18,15,11,.54); backdrop-filter:blur(16px); padding:10px 12px; box-shadow:0 14px 34px rgba(0,0,0,.28); }
+.liquid-state-card span { display:block; color:var(--ibb-soft); font-size:10px; font-weight:900; text-transform:uppercase; letter-spacing:.13em; }
+.liquid-state-card strong { display:block; color:var(--ibb-text); font-size:25px; line-height:1.05; margin-top:4px; }
+.liquid-fullscreen .blueprint-gear-rig { position:fixed; z-index:35; top:50%; left:50%; right:auto; bottom:auto; width:560px; height:330px; transform:translate(-50%, -50%); pointer-events:none; }
+.liquid-fullscreen .kernel-focus-dial { z-index:36; right:max(22px, env(safe-area-inset-right)); bottom:max(22px, env(safe-area-inset-bottom)); }
+.liquid-fullscreen .kernel-dev-view { z-index:42; right:max(22px, env(safe-area-inset-right)); top:82px; max-width:360px; border:1px solid rgba(196,168,122,.22); border-radius:18px; padding:10px 12px; background:rgba(18,15,11,.52); backdrop-filter:blur(14px); }
+@media (max-width: 760px) {
+  .liquid-overlay--brand { align-items:flex-start; }
+  .liquid-status-pill { display:none; }
+  .liquid-fullscreen .blueprint-gear-rig { transform:translate(-50%, -50%) scale(.74); }
+  .liquid-overlay--state { grid-template-columns:repeat(2, minmax(0,1fr)); width:min(330px, calc(100vw - 36px)); }
+}
+@media (max-width: 520px) {
+  .liquid-brand-mark strong { font-size:12px; }
+  .liquid-fullscreen .blueprint-gear-rig { transform:translate(-50%, -50%) scale(.58); }
+  .liquid-fullscreen .kernel-focus-dial { width:78px; height:78px; font-size:8px; }
+}

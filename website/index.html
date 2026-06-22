@@ -2,14 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Liquid Memory | Games, Arcade Experiments & 2 Second Witness</title>
-  <meta name="description" content="Liquid Memory is a gaming and entertainment hub for browser games, arcade experiments, creative prototypes, and the flagship 2 Second Witness cognitive training game.">
-  <meta name="author" content="LIQUID MEMORY">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Liquid Memory | Blueprint // Nav</title>
+  <meta name="description" content="Liquid Memory is a fullscreen WebGL memory engine: a tactile Blueprint Nav gear interface operating a persistent 3D spatial ecosystem.">
+  <meta name="author" content="Liquid Memory">
   <link rel="canonical" href="https://ittybittybites.github.io/website/index.html">
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Liquid Memory | Games, Arcade Experiments & 2 Second Witness">
-  <meta property="og:description" content="Explore playable browser experiences, arcade prototypes, studio updates, articles, and the flagship 2 Second Witness game.">
+  <meta property="og:title" content="Liquid Memory | Blueprint // Nav">
+  <meta property="og:description" content="Operate a fullscreen generative memory ecosystem through tactile Blueprint Nav gears.">
   <meta property="og:site_name" content="Liquid Memory">
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-6P6NPFW4FZ');</script>
@@ -17,199 +17,52 @@
   <link rel="stylesheet" href="assets/brand-system.css">
   <script type="module" src="assets/kernel-home.js"></script>
 </head>
-<body class="ibb-brand">
-  <nav class="ibb-nav" aria-label="Primary navigation">
-    <div class="ibb-nav__inner">
-      <a class="ibb-logo" href="index.html" aria-label="Liquid Memory home"><span class="ibb-logo__mark">LM</span><span>Liquid Memory<span class="ibb-logo__sub">games + entertainment</span></span></a>
-      <div class="ibb-nav__links">
-        <a href="index.html" aria-current="page">Home</a>
-        <a href="2-second-witness.html">2 Second Witness</a>
-        <a href="arcade.html">Arcade</a>
-        <a href="library.html">Library</a>
-        <a href="feed.html">Updates</a>
-        <a href="about.html">About</a>
-      </div>
-    </div>
-  </nav>
+<body class="ibb-brand liquid-fullscreen">
+  <main id="living-kernel" class="liquid-memory-system" aria-label="Liquid Memory fullscreen Blueprint Nav engine">
+    <div id="spatial-canvas" class="kernel-spatial-canvas liquid-spatial-viewport" data-nodes="0" data-last-event="idle" aria-label="Fullscreen Liquid Memory WebGL biome"></div>
 
-  <main class="ibb-main">
-    <section class="ibb-hero">
-      <div class="ibb-container ibb-hero-grid">
-        <div>
-          <p class="ibb-kicker">Liquid-state memory engine online</p>
-          <h1 class="ibb-title">Liquid memory. <span>Playable worlds.</span></h1>
-          <p class="ibb-lede">Liquid Memory is a tactile navigation environment for browser games, cognitive artifacts, experimental chambers, and a generative 3D memory ecosystem.</p>
-          <div class="ibb-actions">
-            <a class="ibb-button ibb-button--primary" href="arcade.html">Play now</a>
-            <a class="ibb-button ibb-button--secondary" href="2-second-witness.html">Explore flagship</a>
-          </div>
-          <div class="ibb-metric-grid" aria-label="Site highlights">
-            <div class="ibb-metric"><strong>26</strong><span>browser memory chambers</span></div>
-            <div class="ibb-metric"><strong>60</strong><span>2 Second Witness worlds</span></div>
-            <div class="ibb-metric"><strong>960</strong><span>rapid-fire scenarios</span></div>
-            <div class="ibb-metric"><strong>Active</strong><span>studio content pipeline</span></div>
-          </div>
-        </div>
-        <div class="ibb-showpiece" aria-label="Liquid Memory digital nautiloid display">
-          <div class="ibb-screen">
-            <div class="ibb-screen__top"><span class="ibb-dot"></span></div>
-            <div class="ibb-screen__body">
-              <p class="ibb-kicker">Now featuring</p>
-              <h2 style="font-size:clamp(32px,5vw,58px);line-height:.95;margin:0 0 18px;font-weight:1000;letter-spacing:-.05em;">2 Second Witness + Experimental Arcade</h2>
-              <p class="ibb-small">A polished home for flagship gameplay, web experiments, cognitive challenges, science-driven articles, and future studio projects.</p>
-              <div class="ibb-tag-row">
-                <span class="ibb-tag">Memory chambers</span><span class="ibb-tag">Liquid nav</span><span class="ibb-tag">Brain training</span><span class="ibb-tag">Spatial archive</span>
-              </div>
-              <div class="ibb-thumb" style="margin-top:20px;min-height:140px;background:radial-gradient(circle at 50% 45%,rgba(95,232,255,.24),transparent 32%),linear-gradient(135deg,rgba(255,94,231,.16),rgba(88,255,189,.10));">
-                <svg width="100%" height="180" viewBox="0 0 620 220" role="img" aria-label="Neon arcade illustration"><defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#5fe8ff"/><stop offset=".52" stop-color="#ffe27a"/><stop offset="1" stop-color="#ff5ee7"/></linearGradient></defs><rect width="620" height="220" fill="transparent"/><path d="M44 170 C120 40, 210 52, 282 142 S446 228, 578 58" fill="none" stroke="url(#g)" stroke-width="12" stroke-linecap="round" opacity=".86"/><circle cx="134" cy="88" r="34" fill="#5fe8ff" opacity=".16"/><rect x="405" y="54" width="112" height="112" rx="28" fill="#ff5ee7" opacity=".16"/><path d="M308 48l54 94H254z" fill="#ffe27a" opacity=".20"/><text x="310" y="128" fill="#f7fbff" font-size="34" font-family="system-ui" font-weight="900" text-anchor="middle">PLAY</text></svg>
-              </div>
-            </div>
-          </div>
-        </div>
+    <section class="liquid-overlay liquid-overlay--brand" aria-label="Liquid Memory identity">
+      <a class="liquid-brand-mark" href="index.html" aria-label="Liquid Memory home">
+        <span class="liquid-brand-mark__sigil">LM</span>
+        <span><strong>Liquid Memory</strong><em>Blueprint // Nav</em></span>
+      </a>
+      <strong id="spatial-live-region" class="liquid-status-pill">Digital nautiloid standing by</strong>
+    </section>
+
+    <section class="liquid-overlay liquid-overlay--state" aria-label="Kernel state telemetry">
+      <div class="liquid-state-card">
+        <span>Depth</span>
+        <strong data-kernel-bind="player.level">1</strong>
+      </div>
+      <div class="liquid-state-card">
+        <span>Signals</span>
+        <strong data-kernel-bind="system.eventCount">0</strong>
+      </div>
+      <div class="liquid-state-card">
+        <span>Trace</span>
+        <strong data-kernel-bind="player.resources.trace">0</strong>
+      </div>
+      <div class="liquid-state-card">
+        <span>Pearls</span>
+        <strong data-kernel-bind="player.resources.pearls">0</strong>
       </div>
     </section>
 
-
-
-    <section class="ibb-section kernel-living-section" id="living-kernel">
-      <div class="ibb-container">
-        <div class="ibb-feature" style="align-items:end;">
-          <div>
-            <p class="ibb-kicker">Digital Nautiloid</p>
-            <h2 class="ibb-title" style="font-size:clamp(34px,5vw,64px);">A liquid-state navigation organism.</h2>
-            <p class="ibb-lede">The Kernel now builds a spatial memory field on the homepage. Actions become chambers, mycelium links, reward pearls, and abyssal old-memory nodes.</p>
-          </div>
-          <div class="ibb-card kernel-state-card">
-            <h3>Memory pulse</h3>
-            <div class="kernel-state-grid">
-              <span>Depth tier <strong data-kernel-bind="player.level">1</strong></span>
-              <span>Signals <strong data-kernel-bind="system.eventCount">0</strong></span>
-              <span>Trace <strong data-kernel-bind="player.resources.trace">0</strong></span>
-              <span>Pearls <strong data-kernel-bind="player.resources.pearls">0</strong></span>
-            </div>
-          </div>
-        </div>
-        <div class="kernel-canvas kernel-spatial-shell" aria-label="Liquid Memory Blueprint Nav Digital Nautiloid ecosystem">
-          <div class="kernel-spatial-hud">
-            <span>Blueprint // Nav</span>
-            <strong id="spatial-live-region">Digital nautiloid standing by</strong>
-          </div>
-          <div id="spatial-canvas" class="kernel-spatial-canvas" data-nodes="0" data-last-event="idle"></div>
-          <div class="blueprint-gear-rig" aria-label="Blueprint navigation gears">
-            <button class="blueprint-gear blueprint-gear--archive" type="button" data-kernel-gear="archive" data-unlock-level="1" aria-pressed="false"><span>Archive</span></button>
-            <button class="blueprint-gear blueprint-gear--games" type="button" data-kernel-gear="games" data-unlock-level="1" aria-pressed="false"><span>Games</span></button>
-            <button class="blueprint-gear blueprint-gear--community" type="button" data-kernel-gear="community" data-unlock-level="2" aria-pressed="false"><span>Community</span></button>
-            <button class="blueprint-gear blueprint-gear--blueprint" type="button" data-kernel-gear="blueprint" data-unlock-level="1" aria-pressed="false"><span>Blueprint</span></button>
-            <button class="blueprint-gear blueprint-gear--memory" type="button" data-kernel-gear="memory" data-unlock-level="3" aria-pressed="false"><span>Memory</span></button>
-          </div>
-          <button class="kernel-focus-dial" type="button" onclick="window.LiquidMemoryKernel && window.LiquidMemoryKernel.focusSpatial()" aria-label="Focus next spatial node">Engage dial</button>
-        </div>
-        <details class="kernel-dev-view">
-          <summary>Developer view</summary>
-          <p>The homepage Kernel is available at <code>window.LiquidMemoryKernel</code>. State persists locally and can be reset for testing.</p>
-          <button class="ibb-button ibb-button--secondary" type="button" onclick="window.LiquidMemoryKernel && window.LiquidMemoryKernel.clear()">Reset local Kernel state</button>
-        </details>
-      </div>
+    <section class="blueprint-gear-rig liquid-overlay" aria-label="Blueprint navigation gears">
+      <button class="blueprint-gear blueprint-gear--archive" type="button" data-kernel-gear="archive" data-unlock-level="1" aria-pressed="false"><span>Archive</span></button>
+      <button class="blueprint-gear blueprint-gear--games" type="button" data-kernel-gear="games" data-unlock-level="1" aria-pressed="false"><span>Games</span></button>
+      <button class="blueprint-gear blueprint-gear--community" type="button" data-kernel-gear="community" data-unlock-level="2" aria-pressed="false"><span>Community</span></button>
+      <button class="blueprint-gear blueprint-gear--blueprint" type="button" data-kernel-gear="blueprint" data-unlock-level="1" aria-pressed="false"><span>Blueprint</span></button>
+      <button class="blueprint-gear blueprint-gear--memory" type="button" data-kernel-gear="memory" data-unlock-level="3" aria-pressed="false"><span>Memory</span></button>
     </section>
 
-    <section class="ibb-section" id="featured">
-      <div class="ibb-container ibb-feature">
-        <div class="ibb-showpiece">
-          <div class="ibb-screen" style="min-height:300px;">
-            <div class="ibb-screen__top"><span class="ibb-dot"></span></div>
-            <div class="ibb-screen__body">
-              <p class="ibb-kicker">Flagship title</p>
-              <h2 style="font-size:clamp(34px,5vw,64px);line-height:.95;margin:0;font-weight:1000;letter-spacing:-.05em;">The 2-Second Witness</h2>
-              <p class="ibb-lede" style="font-size:18px;">Train your neural response systems. Override cognitive interference. Identify truth under pressure. Your brain has 2 seconds.</p>
-            </div>
-          </div>
-        </div>
-        <div>
-          <p class="ibb-kicker">Featured experience</p>
-          <h2 class="ibb-title" style="font-size:clamp(34px,5vw,64px);">The flagship, not the whole universe.</h2>
-          <p class="ibb-lede">2 Second Witness remains the anchor release for Liquid Memory, now presented as one premium experience inside a larger studio ecosystem.</p>
-          <p class="ibb-small">A rapid-fire cognitive training game built on the Stroop Effect — the psychological phenomenon where your brain fights itself when information conflicts.</p>
-          <div class="ibb-actions">
-            <a class="ibb-button ibb-button--primary" href="2-second-witness.html">View game page</a>
-            <a class="ibb-button ibb-button--secondary" href="https://ittybittybites.itch.io/2-second-witness" target="_blank" rel="noopener">Play web simulation</a>
-          </div>
-        </div>
-      </div>
-    </section>
+    <button class="kernel-focus-dial liquid-overlay" type="button" onclick="window.LiquidMemoryKernel && window.LiquidMemoryKernel.focusSpatial()" aria-label="Focus next spatial node">Engage dial</button>
 
-    <section class="ibb-section" id="play-now">
-      <div class="ibb-container">
-        <p class="ibb-kicker">Play now</p>
-        <h2 class="ibb-title" style="font-size:clamp(34px,5vw,64px);">Jump into the browser arcade.</h2>
-        <p class="ibb-lede">No install needed. Explore fast arcade loops, tactical micro-games, 3D WebGL experiments, classics, and cognitive challenge prototypes.</p>
-        <div class="ibb-grid-3" style="margin-top:28px;">
-          <article class="ibb-card"><h3>3D WebGL Space Simulators</h3><p>Fast, visual, hardware-accelerated experiments with neon motion and arcade reflex loops.</p><div class="ibb-actions"><a class="ibb-button ibb-button--secondary" href="arcade.html#browse">Browse</a></div></article>
-          <article class="ibb-card"><h3>Reaction & Speed</h3><p>Compact games built around timing, target switching, pattern recognition, and split-second input.</p><div class="ibb-actions"><a class="ibb-button ibb-button--secondary" href="arcade.html#browse">Browse</a></div></article>
-          <article class="ibb-card"><h3>Classics & Retro</h3><p>Accessible browser versions of familiar arcade formats, preserved as a professional studio archive.</p><div class="ibb-actions"><a class="ibb-button ibb-button--secondary" href="arcade.html#browse">Browse</a></div></article>
-        </div>
-      </div>
-    </section>
-
-    <section class="ibb-section" id="arcade">
-      <div class="ibb-container">
-        <p class="ibb-kicker">Experimental arcade</p>
-        <h2 class="ibb-title" style="font-size:clamp(34px,5vw,64px);">Prototype energy, polished presentation.</h2>
-        <div class="ibb-grid-4" style="margin-top:28px;">
-          <article class="ibb-card"><h3>Cosmic Tunnel 3D</h3><p>A high-speed WebGL hardware-accelerated 3D cosmic runner.</p></article>
-          <article class="ibb-card"><h3>Grid Delver</h3><p>A crisp 5x5 grid strategic dungeon crawler.</p></article>
-          <article class="ibb-card"><h3>Quantum Breakout</h3><p>Classic arcade deflection upgraded with a neon studio wrapper.</p></article>
-          <article class="ibb-card"><h3>Neon Pong</h3><p>A fast browser classic for immediate play sessions.</p></article>
-        </div>
-        <div class="ibb-actions"><a class="ibb-button ibb-button--primary" href="arcade.html">Open Experimental Arcade</a></div>
-      </div>
-    </section>
-
-    <section class="ibb-section" id="highlights">
-      <div class="ibb-container ibb-grid-2">
-        <div>
-          <p class="ibb-kicker">Studio highlights</p>
-          <h2 class="ibb-title" style="font-size:clamp(34px,5vw,60px);">Games, articles, tools, and entertainment worlds.</h2>
-        </div>
-        <div class="ibb-card">
-          <h3>What lives here</h3>
-          <p>Browser games, flagship game information, development content, science-backed cognitive articles, resource library pages, live update feeds, and archived experiments all remain available with clearer navigation and stronger hierarchy.</p>
-          <div class="ibb-tag-row"><span class="ibb-tag">Games</span><span class="ibb-tag">Articles</span><span class="ibb-tag">Library</span><span class="ibb-tag">Updates</span></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="ibb-section" id="updates">
-      <div class="ibb-container">
-        <p class="ibb-kicker">News & updates</p>
-        <h2 class="ibb-title" style="font-size:clamp(34px,5vw,60px);">The site is alive.</h2>
-        <div class="ibb-news-list" style="margin-top:28px;">
-          <a class="ibb-news-item" href="platform/index.html"><strong>Kernel Platform</strong><span>New event-driven platform demo imported from the intended update package: persistent state, resource loops, visual projections, and reward events.</span><span>Launch →</span></a>
-          <a class="ibb-news-item" href="feed.html"><strong>Live wire</strong><span>Fresh cognitive science and video briefing content are available through the studio update feed.</span><span>Open →</span></a>
-          <a class="ibb-news-item" href="library.html"><strong>Library</strong><span>The cognitive equipment and reading catalog remains available as a deeper resource layer.</span><span>Browse →</span></a>
-          <a class="ibb-news-item" href="articles/flow-state.html"><strong>Recent reads</strong><span>Articles and guides preserve the existing educational content while supporting the entertainment brand.</span><span>Read →</span></a>
-        </div>
-      </div>
-    </section>
-
-    <section class="ibb-section" id="about">
-      <div class="ibb-container ibb-feature">
-        <div>
-          <p class="ibb-kicker">About Liquid Memory</p>
-          <h2 class="ibb-title" style="font-size:clamp(34px,5vw,60px);">A growing indie game studio and play lab.</h2>
-        </div>
-        <div class="ibb-card">
-          <p>Liquid Memory creates compact, energetic interactive experiences: arcade games, cognitive challenges, browser prototypes, and entertainment-driven experiments. The site is designed to make those experiences easier to discover, play, and follow as the brand grows.</p>
-          <div class="ibb-actions"><a class="ibb-button ibb-button--secondary" href="about.html">Learn more</a><a class="ibb-button ibb-button--secondary" href="contact.html">Contact</a></div>
-        </div>
-      </div>
-    </section>
+    <details class="kernel-dev-view liquid-overlay">
+      <summary>Developer view</summary>
+      <p><code>window.LiquidMemoryKernel</code> is active. State, gear focus, and spatial memory persist across refresh.</p>
+      <button class="ibb-button ibb-button--secondary" type="button" onclick="window.LiquidMemoryKernel && window.LiquidMemoryKernel.clear()">Reset local Kernel state</button>
+    </details>
   </main>
-
-  <footer class="ibb-footer">
-    <div class="ibb-footer__inner">
-      <div><strong>Liquid Memory</strong><br><span class="ibb-small">Games, browser experiments, and the 2 Second Witness flagship experience.</span></div>
-      <div class="ibb-footer__links"><a href="2-second-witness.html">2 Second Witness</a><a href="arcade.html">Arcade</a><a href="library.html">Library</a><a href="privacy_policy.html">Privacy</a><a href="terms_of_service.html">Terms</a><a href="sitemap.html">Sitemap</a></div>
-    </div>
-  </footer>
 </body>
 </html>

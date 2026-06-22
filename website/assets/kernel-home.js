@@ -12477,7 +12477,7 @@ var tu = class {
 			let e = this.host.getBoundingClientRect(), t = Math.max(320, e.width), n = Math.max(320, e.height || 460);
 			this.camera.aspect = t / n, this.camera.updateProjectionMatrix(), this.renderer.setSize(t, n, !1);
 		};
-		this.resizeObserver = new ResizeObserver(e), this.resizeObserver.observe(this.host), e();
+		this.resizeObserver = new ResizeObserver(e), this.resizeObserver.observe(this.host), window.addEventListener("resize", e, { passive: !0 }), window.addEventListener("orientationchange", e, { passive: !0 }), e();
 	}
 	updateHoverState() {
 		if (this.pointer.x > 2) return;
