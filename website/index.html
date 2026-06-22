@@ -94,14 +94,13 @@
           <button class="ibb-button ibb-button--secondary" type="button" data-kernel-event="economic.resource_gained" data-kernel-payload='{"resource":"bytes","amount":25}'>Collect bytes</button>
           <button class="ibb-button ibb-button--gold" type="button" data-kernel-event="economic.resource_spent" data-kernel-payload='{"resource":"gold","amount":60}'>Open reward drop</button>
         </div>
-        <div class="kernel-canvas" aria-label="Live studio canvas">
-          <div id="spawn-zone" class="kernel-spawn-zone" aria-live="polite">
-            <div class="kernel-canvas-empty">
-              <span aria-hidden="true">✦</span>
-              <strong>Canvas standing by</strong>
-              <p>Use the studio actions above to generate live branded moments.</p>
-            </div>
+        <div class="kernel-canvas kernel-spatial-shell" aria-label="Generative 3D Kernel ecosystem">
+          <div class="kernel-spatial-hud">
+            <span>Spatial engine</span>
+            <strong id="spatial-live-region">Digital nautiloid standing by</strong>
           </div>
+          <div id="spatial-canvas" class="kernel-spatial-canvas" data-nodes="0" data-last-event="idle"></div>
+          <button class="kernel-focus-dial" type="button" onclick="window.IttyBittyKernel && window.IttyBittyKernel.focusSpatial()" aria-label="Focus next spatial node">Engage dial</button>
         </div>
         <details class="kernel-dev-view">
           <summary>Developer view</summary>

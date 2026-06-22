@@ -27,13 +27,15 @@
     "axios": "^1.6.8",
     "jsdom": "^29.1.1",
     "rss-parser": "^3.13.0",
+    "three": "^0.184.0",
     "xmlbuilder2": "^3.1.1"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "devDependencies": {
-    "vite": "^8.0.16",
-    "typescript": "^6.0.3"
+    "@types/three": "^0.184.1",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16"
   }
 }

@@ -1,7 +1,7 @@
 import { GlobalEventBus, INITIAL_PLATFORM_STATE, MonetizationLayer, PlatformPersistor, reduce, VisualBridge } from './kernel';
 import type { EventContract, PlatformState } from './kernel';
 import { KernelObserver } from './dom/KernelObserver';
-import { KernelSpawner } from './dom/KernelSpawner';
+import { SpatialRenderer } from './spatial/SpatialRenderer';
 
 const STORAGE_NAMESPACE = 'ibb_home_kernel';
 let uiSequence = 0;
@@ -47,11 +47,12 @@ function initKernel() {
   const observer = new KernelObserver(bridge);
   observer.start();
 
-  const spawnZone = document.getElementById('spawn-zone');
-  const spawner = spawnZone ? new KernelSpawner(spawnZone) : null;
+  const spatialHost = document.getElementById('spatial-canvas');
+  const spatialLive = document.getElementById('spatial-live-region');
+  const spatial = spatialHost ? new SpatialRenderer(spatialHost, spatialLive) : null;
 
   bus.subscribe((event) => {
-    spawner?.handle(event);
+    spatial?.handle(event);
     const current = bridge.getCurrentState();
     const next = reduce(current, event);
     if (next !== current && next.processedEventIds.has(event.eventId)) {
@@ -59,6 +60,7 @@ function initKernel() {
       persistor.save(next);
     }
     bridge.onStateUpdated(next);
+    spatial?.updateFromState(next);
   });
 
   const api = {
@@ -72,10 +74,13 @@ function initKernel() {
     },
     gain: (resource = 'bytes', amount = 10) => bus.emit(makeEvent('economic.resource_gained', { resource, amount })),
     spend: (resource = 'gold', amount = 60) => bus.emit(makeEvent('economic.resource_spent', { resource, amount })),
+    focusSpatial: () => spatial?.focusNext(),
+    getSpatialNodeCount: () => spatial?.getNodeCount() || 0,
     clear: () => { persistor.clear(); window.location.reload(); },
   };
 
   (window as any).IttyBittyKernel = api;
+  (window as any).IttyBittySpatial = spatial;
 
   document.querySelectorAll<HTMLElement>('[data-kernel-event]').forEach((el) => {
     el.addEventListener('click', () => {
