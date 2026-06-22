@@ -28,6 +28,16 @@ jobs:
       - name: Install Application Dependencies
         run: npm ci
 
+      - name: Build Kernel Platform Demo
+        run: |
+          cd platform-src
+          npm ci
+          npm run build
+          cd ..
+          rm -rf website/platform
+          mkdir -p website/platform
+          cp -R platform-src/dist/. website/platform/
+
       - name: Execute Programmatic Site Compilation Engine
         run: node website/build-engine.js
         env:

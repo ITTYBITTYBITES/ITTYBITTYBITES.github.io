@@ -1117,7 +1117,8 @@ function generateHtmlSitemap(libraryPages, intelPages) {
   const coreLinks = [
     { loc: 'index.html', title: 'Itty Bitty Bites Studio Home' },
     { loc: '2-second-witness.html', title: '2 Second Witness // Flagship Game Page' },
-    { loc: 'arcade.html', title: 'Tactical Game Arcade // 18 WebGL Sandboxes' },
+    { loc: 'arcade.html', title: 'Experimental Arcade // 26 Browser Games' },
+    { loc: 'platform/index.html', title: 'Kernel Platform // Event-Driven Live Demo' },
     { loc: 'intel/index.html', title: 'Definitive Intelligence Matrix Hub' },
     { loc: 'feed.html', title: 'Recent Tactical Releases // True Daily Rotator' },
     { loc: 'library.html', title: 'Gear Locker // Vetted Field Manual Curation' },
@@ -1258,6 +1259,7 @@ function updateSitemap(libraryPages, intelPages) {
     { loc: '/', changefreq: 'weekly', priority: 1.0 },
     { loc: '/2-second-witness.html', changefreq: 'weekly', priority: 0.95 },
     { loc: '/arcade.html', changefreq: 'weekly', priority: 0.9 },
+    { loc: '/platform/', changefreq: 'weekly', priority: 0.75 },
     { loc: '/library.html', changefreq: 'weekly', priority: 0.8 },
     { loc: '/intel/index.html', changefreq: 'daily', priority: 0.9 },
     { loc: '/feed.html', changefreq: 'weekly', priority: 0.7 },
@@ -1370,7 +1372,7 @@ async function main() {
     console.log(`  Intel pages:    ${intelPages.length}`);
     console.log(`  Topics in matrix:  ${topicsData.topics.length}`);
     console.log(`  Personas in matrix: ${personasData.personas.length}`);
-    console.log(`  Sitemap URLs:   ${libraryPages.length + intelPages.length + 18}`);
+    console.log(`  Sitemap URLs:   ${libraryPages.length + intelPages.length + 19}`);
     console.log(`  Elapsed:        ${elapsed}s`);
     console.log(`  Affiliate tag:  ${CONFIG.affiliateTag}`);
     console.log('═'.repeat(60));

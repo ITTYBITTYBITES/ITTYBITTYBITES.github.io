@@ -1,0 +1,24 @@
+{
+  "name": "itty-bitty-bites-kernel-platform",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run typecheck && vite build",
+    "verify:collector": "ts-node verify-resource-collector.ts",
+    "verify:monetization": "ts-node verify-monetization.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Event-driven interactive platform demo for Itty Bitty Bites",
+  "devDependencies": {
+    "@types/node": "^26.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.16"
+  },
+  "private": true
+}

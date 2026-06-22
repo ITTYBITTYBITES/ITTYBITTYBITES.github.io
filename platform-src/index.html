@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Itty Bitty Bites Kernel Platform</title>
+  <style>
+    :root { color-scheme: dark; --bg:#070915; --panel:#111831; --line:rgba(95,232,255,.25); --text:#f7fbff; --muted:#aeb8d6; --cyan:#5fe8ff; --gold:#ffe27a; --green:#58ffbd; --pink:#ff5ee7; }
+    * { box-sizing:border-box; }
+    body { font-family: Inter, system-ui, -apple-system, sans-serif; background: radial-gradient(circle at 15% 10%, rgba(95,232,255,.18), transparent 26rem), radial-gradient(circle at 85% 5%, rgba(255,94,231,.14), transparent 24rem), var(--bg); color: var(--text); margin: 0; min-height:100vh; }
+    #root { width:min(1180px, 100%); margin: 0 auto; padding: clamp(18px, 4vw, 42px); }
+    .hero { border:1px solid var(--line); border-radius:30px; padding:clamp(22px,5vw,48px); background:rgba(17,24,49,.78); box-shadow:0 24px 80px rgba(0,0,0,.38); }
+    .kicker { color:var(--cyan); font-size:12px; font-weight:950; letter-spacing:.18em; text-transform:uppercase; }
+    h1 { font-size:clamp(38px, 7vw, 78px); line-height:.94; letter-spacing:-.055em; margin: 8px 0 16px; }
+    h1 span { background:linear-gradient(90deg,var(--cyan),var(--gold),var(--pink)); -webkit-background-clip:text; background-clip:text; color:transparent; }
+    p { color: var(--muted); line-height:1.6; }
+    .controls { display:flex; gap:12px; flex-wrap:wrap; margin: 24px 0; }
+    button { background: linear-gradient(135deg,var(--cyan),var(--green)); color:#061018; border:0; padding: 12px 18px; border-radius: 14px; font-size: 14px; font-weight: 950; cursor: pointer; text-transform:uppercase; letter-spacing:.06em; }
+    button.secondary { background:rgba(255,255,255,.06); color:var(--text); border:1px solid var(--line); }
+    button.danger { background:#ef4444; color:white; }
+    .visual-container { display:grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; margin: 26px 0; }
+    .template { background: rgba(17,24,49,.72); border: 1px solid var(--line); border-radius: 22px; padding: 20px; min-height: 170px; display:flex; flex-direction:column; justify-content:center; align-items:center; text-align:center; transition: all .3s ease; }
+    .template h3 { margin: 0 0 12px; color: var(--cyan); font-size: 12px; text-transform: uppercase; letter-spacing: .14em; }
+    .panel { background: rgba(17,24,49,.72); border: 1px solid var(--line); border-radius: 22px; padding: 20px; margin-top: 22px; }
+    .resources { display:grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; font-size: 1.1rem; }
+    .status { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; background: rgba(0,0,0,.28); padding: 14px; border-radius: 14px; margin-top: 20px; font-size: 13px; color: var(--green); border:1px solid rgba(88,255,189,.22); }
+    .nav { margin-bottom:18px; display:flex; gap:10px; flex-wrap:wrap; }
+    .nav a { color:var(--muted); text-decoration:none; border:1px solid var(--line); border-radius:999px; padding:8px 12px; font-weight:800; font-size:12px; text-transform:uppercase; }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <nav class="nav"><a href="../index.html">Itty Bitty Bites Home</a><a href="../arcade.html">Arcade</a></nav>
+    <section class="hero">
+      <div class="kicker">Event-driven platform demo</div>
+      <h1>Kernel Platform <span>Live Demo</span></h1>
+      <p>Deterministic events, persistent resources, visual projections, and a reward banner loop. State is persisted in localStorage. Refresh the page to test rehydration.</p>
+      <div class="controls" id="controls">
+        <button id="btn-level-2">Level Up → 2</button>
+        <button id="btn-level-3">Level Up → 3</button>
+        <button id="btn-level-4">Level Up → 4</button>
+        <button id="btn-level-5">Level Up → 5</button>
+        <button id="btn-spend" class="secondary">Spend 60 Gold</button>
+        <button id="btn-clear" class="danger">Clear State</button>
+      </div>
+    </section>
+
+    <div class="visual-container" id="visual-root"></div>
+
+    <section class="panel">
+      <h2>📦 Resources</h2>
+      <div class="resources">
+        <div>🌲 Wood: <strong id="res-wood">0</strong></div>
+        <div>🪨 Stone: <strong id="res-stone">0</strong></div>
+        <div>💰 Gold: <strong id="res-gold">0</strong></div>
+      </div>
+    </section>
+
+    <div class="status" id="status">Status: Ready</div>
+  </div>
+  <script type="module" src="./main.ts"></script>
+</body>
+</html>
