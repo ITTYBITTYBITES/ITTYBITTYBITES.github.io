@@ -224,48 +224,73 @@ var s = class {
 			t.textContent = n == null ? "0" : String(n);
 		});
 	}
-}, c = class {
+};
+//#endregion
+//#region src/dom/KernelSpawner.ts
+function c(e) {
+	return e.replace(/[&<>"]/g, (e) => ({
+		"&": "&amp;",
+		"<": "&lt;",
+		">": "&gt;",
+		"\"": "&quot;"
+	})[e] || e);
+}
+var l = class {
 	constructor(e) {
 		this.zone = e, this.count = 0;
 	}
 	handle(e) {
 		let t = this.mapEvent(e);
-		t && this.spawn(t.title, t.copy, t.tone);
+		t && this.spawn(t);
 	}
-	spawn(e, t, n = "cyan") {
-		this.count += 1;
-		let r = document.createElement("article");
-		for (r.className = `kernel-spawn-card kernel-spawn-card--${n}`, r.innerHTML = `
-      <div class="kernel-spawn-card__meta">Spawn #${this.count}</div>
-      <h3>${e}</h3>
-      <p>${t}</p>
-    `, this.zone.prepend(r); this.zone.children.length > 8;) this.zone.lastElementChild?.remove();
+	spawn(e) {
+		this.count += 1, this.zone.querySelector(".kernel-canvas-empty")?.remove();
+		let t = document.createElement("article");
+		for (t.className = `kernel-spawn-card kernel-spawn-card--${e.tone}`, t.dataset.spawnIndex = String(this.count), t.innerHTML = `
+      <div class="kernel-spawn-card__glow" aria-hidden="true"></div>
+      <div class="kernel-spawn-card__topline">
+        <span class="kernel-spawn-card__icon" aria-hidden="true">${c(e.icon)}</span>
+        <span class="kernel-spawn-card__eyebrow">${c(e.eyebrow)}</span>
+      </div>
+      <h3>${c(e.title)}</h3>
+      <p>${c(e.copy)}</p>
+      ${e.stat ? `<strong class="kernel-spawn-card__stat">${c(e.stat)}</strong>` : ""}
+    `, this.zone.prepend(t); this.zone.children.length > 6;) this.zone.lastElementChild?.remove();
 	}
 	mapEvent(e) {
-		return e.type === "lifecycle.start" ? {
-			title: "Kernel online",
-			copy: "The homepage event bus is active and broadcasting.",
-			tone: "green"
-		} : e.type === "milestone.level_up" ? {
-			title: `Level ${e.payload.newLevel || "?"}`,
-			copy: "A milestone event spawned a new homepage artifact.",
-			tone: "gold"
-		} : e.type === "economic.resource_gained" ? {
-			title: "Resource gained",
-			copy: `${e.payload.amount || 0} ${e.payload.resource || "resource"} added to the living site state.`,
-			tone: "cyan"
-		} : e.type === "system.reward_offered" ? {
-			title: "Reward offered",
-			copy: `Reward type: ${e.payload.rewardType || "bonus"}.`,
-			tone: "pink"
-		} : e.type === "system.heartbeat" ? {
-			title: "Heartbeat",
-			copy: "The site emitted a periodic health signal.",
-			tone: "green"
+		if (e.type === "milestone.level_up") {
+			let t = e.payload.newLevel || "?";
+			return {
+				eyebrow: "Achievement unlocked",
+				title: `Studio Level ${t}`,
+				copy: "The hub powered up and unlocked a brighter signal tier.",
+				icon: "🏆",
+				tone: "gold",
+				stat: `Level ${t}`
+			};
+		}
+		if (e.type === "economic.resource_gained") {
+			let t = e.payload.amount || 0;
+			return {
+				eyebrow: "Resource cache",
+				title: `${t} ${e.payload.resource || "bytes"} collected`,
+				copy: "A fresh cache was added to the living site economy.",
+				icon: "✦",
+				tone: "cyan",
+				stat: `+${t}`
+			};
+		}
+		return e.type === "system.reward_offered" ? {
+			eyebrow: "Reward drop",
+			title: "Bonus ready",
+			copy: "The reward layer detected a qualifying action and staged a studio bonus.",
+			icon: "🎁",
+			tone: "pink",
+			stat: e.payload.rewardType || "Bonus"
 		} : null;
 	}
-}, l = "ibb_home_kernel", u = 0;
-function d() {
+}, u = "ibb_home_kernel", d = 0;
+function f() {
 	return {
 		...t,
 		timestamp: (/* @__PURE__ */ new Date()).toISOString(),
@@ -293,10 +318,10 @@ function d() {
 		}
 	};
 }
-function f(e, t = {}, n = "ibb-homepage") {
+function p(e, t = {}, n = "ibb-homepage") {
 	return {
 		eventId: crypto.randomUUID(),
-		sequenceId: ++u,
+		sequenceId: ++d,
 		timestamp: (/* @__PURE__ */ new Date()).toISOString(),
 		type: e,
 		payload: t,
@@ -304,34 +329,34 @@ function f(e, t = {}, n = "ibb-homepage") {
 		metadata: { version: "1.0.0" }
 	};
 }
-function p() {
+function m() {
 	let t = e.getInstance();
 	t.reset();
-	let o = new i(`${l}_state`, `${l}_event_log`), u = new r(o.rehydrate() || d());
-	new a().init(t), new s(u).start();
-	let p = document.getElementById("spawn-zone"), m = p ? new c(p) : null;
+	let o = new i(`${u}_state`, `${u}_event_log`), c = new r(o.rehydrate() || f());
+	new a().init(t), new s(c).start();
+	let d = document.getElementById("spawn-zone"), m = d ? new l(d) : null;
 	t.subscribe((e) => {
 		m?.handle(e);
-		let t = u.getCurrentState(), r = n(t, e);
-		r !== t && r.processedEventIds.has(e.eventId) && (o.logEvent(e), o.save(r)), u.onStateUpdated(r);
+		let t = c.getCurrentState(), r = n(t, e);
+		r !== t && r.processedEventIds.has(e.eventId) && (o.logEvent(e), o.save(r)), c.onStateUpdated(r);
 	});
 	let h = {
 		bus: t,
-		bridge: u,
-		emit: (e, n = {}, r) => t.emit(f(e, n, r)),
-		getState: () => u.getCurrentState(),
+		bridge: c,
+		emit: (e, n = {}, r) => t.emit(p(e, n, r)),
+		getState: () => c.getCurrentState(),
 		levelUp: () => {
-			let e = u.getCurrentState().player.level || 1;
-			return t.emit(f("milestone.level_up", {
+			let e = c.getCurrentState().player.level || 1;
+			return t.emit(p("milestone.level_up", {
 				newLevel: e + 1,
 				xp: e * 150
 			}));
 		},
-		gain: (e = "bytes", n = 10) => t.emit(f("economic.resource_gained", {
+		gain: (e = "bytes", n = 10) => t.emit(p("economic.resource_gained", {
 			resource: e,
 			amount: n
 		})),
-		spend: (e = "gold", n = 60) => t.emit(f("economic.resource_spent", {
+		spend: (e = "gold", n = 60) => t.emit(p("economic.resource_spent", {
 			resource: e,
 			amount: n
 		})),
@@ -342,9 +367,9 @@ function p() {
 	window.IttyBittyKernel = h, document.querySelectorAll("[data-kernel-event]").forEach((e) => {
 		e.addEventListener("click", () => {
 			let n = e.dataset.kernelEvent || "system.heartbeat", r = e.dataset.kernelPayload ? JSON.parse(e.dataset.kernelPayload) : {};
-			n === "milestone.level_up" ? h.levelUp() : t.emit(f(n, r));
+			n === "milestone.level_up" ? h.levelUp() : t.emit(p(n, r));
 		});
-	}), t.emit(f("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(f("system.heartbeat", { path: location.pathname })), 3e4);
+	}), t.emit(p("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(p("system.heartbeat", { path: location.pathname })), 3e4);
 }
-document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", p) : p();
+document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", m) : m();
 //#endregion

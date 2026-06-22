@@ -75,27 +75,39 @@
       <div class="ibb-container">
         <div class="ibb-feature" style="align-items:end;">
           <div>
-            <p class="ibb-kicker">Living kernel</p>
-            <h2 class="ibb-title" style="font-size:clamp(34px,5vw,64px);">The homepage now has a heartbeat.</h2>
-            <p class="ibb-lede">The Kernel event bus is active on this page. Click an action to emit events, update persistent state, and spawn reactive UI artifacts without leaving the site.</p>
+            <p class="ibb-kicker">Living studio canvas</p>
+            <h2 class="ibb-title" style="font-size:clamp(34px,5vw,64px);">A homepage that reacts like a game.</h2>
+            <p class="ibb-lede">The Kernel now powers a polished live canvas on the homepage. Player-style actions update persistent state and generate branded achievement, resource, and reward moments.</p>
           </div>
           <div class="ibb-card kernel-state-card">
-            <h3>Live state</h3>
+            <h3>Studio pulse</h3>
             <div class="kernel-state-grid">
-              <span>Level <strong data-kernel-bind="player.level">1</strong></span>
-              <span>Events <strong data-kernel-bind="system.eventCount">0</strong></span>
+              <span>Studio level <strong data-kernel-bind="player.level">1</strong></span>
+              <span>Signals <strong data-kernel-bind="system.eventCount">0</strong></span>
               <span>Bytes <strong data-kernel-bind="player.resources.bytes">0</strong></span>
               <span>Gold <strong data-kernel-bind="player.resources.gold">0</strong></span>
             </div>
           </div>
         </div>
         <div class="ibb-actions kernel-action-row">
-          <button class="ibb-button ibb-button--primary" type="button" data-kernel-event="milestone.level_up">Level up site</button>
-          <button class="ibb-button ibb-button--secondary" type="button" data-kernel-event="economic.resource_gained" data-kernel-payload='{"resource":"bytes","amount":25}'>Spawn bytes</button>
-          <button class="ibb-button ibb-button--gold" type="button" data-kernel-event="economic.resource_spent" data-kernel-payload='{"resource":"gold","amount":60}'>Trigger reward</button>
-          <button class="ibb-button ibb-button--secondary" type="button" onclick="window.IttyBittyKernel && window.IttyBittyKernel.clear()">Reset kernel</button>
+          <button class="ibb-button ibb-button--primary" type="button" data-kernel-event="milestone.level_up">Power up studio</button>
+          <button class="ibb-button ibb-button--secondary" type="button" data-kernel-event="economic.resource_gained" data-kernel-payload='{"resource":"bytes","amount":25}'>Collect bytes</button>
+          <button class="ibb-button ibb-button--gold" type="button" data-kernel-event="economic.resource_spent" data-kernel-payload='{"resource":"gold","amount":60}'>Open reward drop</button>
         </div>
-        <div id="spawn-zone" class="kernel-spawn-zone" aria-live="polite"></div>
+        <div class="kernel-canvas" aria-label="Live studio canvas">
+          <div id="spawn-zone" class="kernel-spawn-zone" aria-live="polite">
+            <div class="kernel-canvas-empty">
+              <span aria-hidden="true">✦</span>
+              <strong>Canvas standing by</strong>
+              <p>Use the studio actions above to generate live branded moments.</p>
+            </div>
+          </div>
+        </div>
+        <details class="kernel-dev-view">
+          <summary>Developer view</summary>
+          <p>The homepage Kernel is available at <code>window.IttyBittyKernel</code>. State persists locally and can be reset for testing.</p>
+          <button class="ibb-button ibb-button--secondary" type="button" onclick="window.IttyBittyKernel && window.IttyBittyKernel.clear()">Reset local Kernel state</button>
+        </details>
       </div>
     </section>
 
