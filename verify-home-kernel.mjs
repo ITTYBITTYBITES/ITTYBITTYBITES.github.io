@@ -11,28 +11,41 @@ await page.waitForFunction(() => !!window.LiquidMemoryKernel);
 ok('Liquid Memory Kernel attached to window');
 await page.waitForFunction(() => !!window.LiquidMemorySpatial && document.querySelector('#spatial-canvas canvas'));
 ok('Spatial renderer mounted');
-if (await page.locator('[data-kernel-gear="games"]').count()) ok('Blueprint gear interface mounted'); else fail('Blueprint gear interface mounted');
-await page.click('[data-kernel-gear="blueprint"]');
+let machine=await page.evaluate(()=>({
+  domGears: document.querySelectorAll('[data-kernel-gear]').length,
+  domCards: document.querySelectorAll('[data-kernel-bind]').length,
+  gears: window.LiquidMemoryKernel?.getSpatialGearCount?.(),
+  gauges: window.LiquidMemoryKernel?.getSpatialGaugeCount?.(),
+}));
+if (machine.domGears === 0 && machine.domCards === 0) ok('No DOM gear rig or telemetry cards remain'); else fail('No DOM gear rig or telemetry cards remain', JSON.stringify(machine));
+if (machine.gears >= 5 && machine.gauges >= 4) ok('3D gears and holographic gauges exist in WebGL scene', JSON.stringify(machine)); else fail('3D gears and holographic gauges exist in WebGL scene', JSON.stringify(machine));
+await page.evaluate(()=>window.LiquidMemoryKernel.triggerGear('blueprint'));
 await page.waitForTimeout(650);
-let state=await page.evaluate(()=>({level:document.querySelector('[data-kernel-bind="player.level"]')?.textContent, events:document.querySelector('[data-kernel-bind="system.eventCount"]')?.textContent, nodes:window.LiquidMemoryKernel?.getSpatialNodeCount?.(), hud:document.querySelector('#spatial-live-region')?.textContent, stored:localStorage.getItem('lm_home_kernel_event_log'), active:document.querySelector('[data-kernel-gear="blueprint"]')?.classList.contains('is-active'), savedGear:localStorage.getItem('lm_blueprint_nav_gear')}));
-if (Number(state.level) >= 2) ok('Blueprint gear level-up updates bound DOM', state.level); else fail('Blueprint gear level-up updates bound DOM', JSON.stringify(state));
-if (Number(state.nodes) >= 2 && (state.hud||'').includes('Growth Chamber')) ok('Spatial engine creates growth chamber', `${state.nodes} nodes`); else fail('Spatial engine creates growth chamber', JSON.stringify(state));
+let state=await page.evaluate(()=>({
+  state: window.LiquidMemoryKernel.getState(),
+  nodes: window.LiquidMemoryKernel?.getSpatialNodeCount?.(),
+  hud: document.querySelector('#spatial-live-region')?.textContent,
+  stored: localStorage.getItem('lm_home_kernel_event_log'),
+  savedGear: localStorage.getItem('lm_blueprint_nav_gear')
+}));
+if (Number(state.state.player.level) >= 2) ok('3D Blueprint gear level-up updates Kernel state', String(state.state.player.level)); else fail('3D Blueprint gear level-up updates Kernel state', JSON.stringify(state));
+if (Number(state.nodes) >= 2 && (state.hud||'').includes('Growth Chamber')) ok('Spatial engine creates growth chamber from 3D gear event', `${state.nodes} nodes`); else fail('Spatial engine creates growth chamber from 3D gear event', JSON.stringify(state));
 if ((state.stored||'').includes('milestone.level_up')) ok('Homepage event log persisted'); else fail('Homepage event log persisted');
-if (state.active && state.savedGear === 'blueprint') ok('Blueprint gear active state persisted'); else fail('Blueprint gear active state persisted', JSON.stringify(state));
-await page.click('[data-kernel-gear="games"]');
+if (state.savedGear === 'blueprint') ok('3D gear active state persisted'); else fail('3D gear active state persisted', JSON.stringify(state));
+await page.evaluate(()=>window.LiquidMemoryKernel.triggerGear('games'));
 await page.waitForTimeout(650);
-state=await page.evaluate(()=>({trace:document.querySelector('[data-kernel-bind="player.resources.trace"]')?.textContent, nodes:window.LiquidMemoryKernel?.getSpatialNodeCount?.(), hud:document.querySelector('#spatial-live-region')?.textContent, active:document.querySelector('[data-kernel-gear="games"]')?.classList.contains('is-active')}));
-if (Number(state.trace) >= 25) ok('Game library gear updates bound DOM', state.trace); else fail('Game library gear updates bound DOM', JSON.stringify(state));
+state=await page.evaluate(()=>({state:window.LiquidMemoryKernel.getState(), nodes:window.LiquidMemoryKernel?.getSpatialNodeCount?.(), hud:document.querySelector('#spatial-live-region')?.textContent, savedGear:localStorage.getItem('lm_blueprint_nav_gear')}));
+if (Number(state.state.player.resources.trace) >= 25) ok('Game library gear updates Kernel resource state', String(state.state.player.resources.trace)); else fail('Game library gear updates Kernel resource state', JSON.stringify(state));
 if (Number(state.nodes) >= 3 && (state.hud||'').includes('Arcade Genesis')) ok('Spatial engine creates Arcade Genesis chamber', `${state.nodes} nodes`); else fail('Spatial engine creates Arcade Genesis chamber', JSON.stringify(state));
-await page.click('[data-kernel-gear="community"]');
+await page.evaluate(()=>window.LiquidMemoryKernel.triggerGear('community'));
 await page.waitForTimeout(750);
-state=await page.evaluate(()=>({nodes:window.LiquidMemoryKernel?.getSpatialNodeCount?.(), hud:document.querySelector('#spatial-live-region')?.textContent, stored:localStorage.getItem('lm_home_kernel_event_log'), active:document.querySelector('[data-kernel-gear="community"]')?.classList.contains('is-active')}));
+state=await page.evaluate(()=>({state:window.LiquidMemoryKernel.getState(), nodes:window.LiquidMemoryKernel?.getSpatialNodeCount?.(), hud:document.querySelector('#spatial-live-region')?.textContent, stored:localStorage.getItem('lm_home_kernel_event_log'), savedGear:localStorage.getItem('lm_blueprint_nav_gear')}));
 if ((state.stored||'').includes('system.reward_offered')) ok('Community gear reward observer fires'); else fail('Community gear reward observer fires', state.stored||'');
 if (Number(state.nodes) >= 5) ok('Spatial engine creates vortex/reward ecosystem nodes', `${state.nodes} nodes`); else fail('Spatial engine creates vortex/reward ecosystem nodes', JSON.stringify(state));
 await page.reload({waitUntil:'networkidle'}); await page.waitForFunction(() => !!window.LiquidMemoryKernel);
-state=await page.evaluate(()=>({level:document.querySelector('[data-kernel-bind="player.level"]')?.textContent, trace:document.querySelector('[data-kernel-bind="player.resources.trace"]')?.textContent, active:document.querySelector('[data-kernel-gear="community"]')?.classList.contains('is-active'), nodes:window.LiquidMemoryKernel?.getSpatialNodeCount?.()}));
-if (Number(state.level)>=2 && Number(state.trace)>=25) ok('Liquid Memory ecosystem rehydrates'); else fail('Liquid Memory ecosystem rehydrates', JSON.stringify(state));
-if (state.active && Number(state.nodes) >= 3) ok('Blueprint gear control rehydrates with spatial memory', JSON.stringify(state)); else fail('Blueprint gear control rehydrates with spatial memory', JSON.stringify(state));
+state=await page.evaluate(()=>({state:window.LiquidMemoryKernel.getState(), savedGear:localStorage.getItem('lm_blueprint_nav_gear'), nodes:window.LiquidMemoryKernel?.getSpatialNodeCount?.(), gears:window.LiquidMemoryKernel?.getSpatialGearCount?.(), gauges:window.LiquidMemoryKernel?.getSpatialGaugeCount?.()}));
+if (Number(state.state.player.level)>=2 && Number(state.state.player.resources.trace)>=25) ok('Liquid Memory ecosystem rehydrates'); else fail('Liquid Memory ecosystem rehydrates', JSON.stringify(state));
+if (state.savedGear === 'community' && Number(state.nodes) >= 3 && state.gears >= 5 && state.gauges >= 4) ok('3D gear control rehydrates with spatial memory', JSON.stringify({gear:state.savedGear,nodes:state.nodes,gears:state.gears,gauges:state.gauges})); else fail('3D gear control rehydrates with spatial memory', JSON.stringify(state));
 if (!errors.length) ok('No homepage kernel browser errors'); else fail('No homepage kernel browser errors', errors.join(' | '));
 await browser.close();
 const failed=out.filter(x=>!x[0]); console.log('\nSUMMARY', JSON.stringify({total:out.length, passed:out.length-failed.length, failed:failed.length, failures:failed}, null, 2));

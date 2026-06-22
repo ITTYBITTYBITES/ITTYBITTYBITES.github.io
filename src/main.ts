@@ -1,14 +1,11 @@
 import { GlobalEventBus, INITIAL_PLATFORM_STATE, MonetizationLayer, PlatformPersistor, reduce, VisualBridge } from './kernel';
 import type { EventContract, PlatformState } from './kernel';
-import { KernelObserver } from './dom/KernelObserver';
-import { SpatialRenderer } from './spatial/SpatialRenderer';
+import { SpatialRenderer, type GearId } from './spatial/SpatialRenderer';
 
 const STORAGE_NAMESPACE = 'lm_home_kernel';
 const LEGACY_STORAGE_NAMESPACE = 'ibb_home_kernel';
 const BLUEPRINT_GEAR_KEY = 'lm_blueprint_nav_gear';
 let uiSequence = 0;
-
-type GearId = 'games' | 'archive' | 'community' | 'blueprint' | 'memory';
 
 type GearIntent = {
   eventType: string;
@@ -74,52 +71,34 @@ function initKernel() {
   const monetization = new MonetizationLayer();
   monetization.init(bus);
 
-  const observer = new KernelObserver(bridge);
-  observer.start();
-
   const spatialHost = document.getElementById('spatial-canvas');
   const spatialLive = document.getElementById('spatial-live-region');
-  const spatial = spatialHost ? new SpatialRenderer(spatialHost, spatialLive) : null;
-
-  // Rebuild the visible biome from persisted event memory without replaying reducer side effects.
-  const rememberedEvents = persistor.getEventLog().slice(-48);
-  rememberedEvents.forEach((event) => spatial?.handle(event));
-
-  function setActiveGear(gear: GearId): void {
-    localStorage.setItem(BLUEPRINT_GEAR_KEY, gear);
-    document.querySelectorAll<HTMLElement>('[data-kernel-gear]').forEach((el) => {
-      const active = el.dataset.kernelGear === gear;
-      el.classList.toggle('is-active', active);
-      el.setAttribute('aria-pressed', active ? 'true' : 'false');
-    });
-  }
-
-  function updateGearUnlocks(state: PlatformState): void {
-    const level = state.player.level || 1;
-    document.querySelectorAll<HTMLElement>('[data-unlock-level]').forEach((el) => {
-      const required = Number(el.dataset.unlockLevel || 1);
-      el.classList.toggle('is-unlocked', level >= required);
-      el.toggleAttribute('disabled', level < required);
-    });
-  }
+  let spatial: SpatialRenderer | null = null;
 
   function focusGear(gear: GearId): void {
-    const eventType = GEAR_INTENTS[gear].eventType;
-    spatial?.focusEventType(eventType);
+    spatial?.focusGear(gear);
+    spatial?.setActiveGear(gear);
+    localStorage.setItem(BLUEPRINT_GEAR_KEY, gear);
   }
 
   function triggerGear(gear: GearId): void {
     const intent = GEAR_INTENTS[gear];
-    setActiveGear(gear);
     const payload = { ...intent.payload };
     if (intent.eventType === 'milestone.level_up') {
       const current = bridge.getCurrentState().player.level || 1;
       payload.newLevel = current + 1;
       payload.xp = current * 150;
     }
+    localStorage.setItem(BLUEPRINT_GEAR_KEY, gear);
     bus.emit(makeEvent(intent.eventType, payload, `blueprint-gear-${gear}`));
-    window.setTimeout(() => focusGear(gear), 80);
+    window.setTimeout(() => focusGear(gear), 90);
   }
+
+  spatial = spatialHost ? new SpatialRenderer(spatialHost, spatialLive, triggerGear) : null;
+
+  // Rebuild visible biome from persisted event memory without reducer side effects.
+  const rememberedEvents = persistor.getEventLog().slice(-48);
+  rememberedEvents.forEach((event) => spatial?.handle(event));
 
   bus.subscribe((event) => {
     spatial?.handle(event);
@@ -131,7 +110,6 @@ function initKernel() {
     }
     bridge.onStateUpdated(next);
     spatial?.updateFromState(next);
-    updateGearUnlocks(next);
   });
 
   const api = {
@@ -146,37 +124,17 @@ function initKernel() {
     focusGear,
     triggerGear,
     getSpatialNodeCount: () => spatial?.getNodeCount() || 0,
+    getSpatialGearCount: () => spatial?.getGearCount() || 0,
+    getSpatialGaugeCount: () => spatial?.getGaugeCount() || 0,
     clear: () => { persistor.clear(); localStorage.removeItem(BLUEPRINT_GEAR_KEY); window.location.reload(); },
   };
 
   (window as any).LiquidMemoryKernel = api;
   (window as any).LiquidMemorySpatial = spatial;
 
-  document.querySelectorAll<HTMLElement>('[data-kernel-event]').forEach((el) => {
-    el.addEventListener('click', () => {
-      const type = el.dataset.kernelEvent || 'system.heartbeat';
-      const payload = el.dataset.kernelPayload ? JSON.parse(el.dataset.kernelPayload) : {};
-      if (type === 'milestone.level_up') api.levelUp();
-      else bus.emit(makeEvent(type, payload));
-    });
-  });
-
-  document.querySelectorAll<HTMLButtonElement>('[data-kernel-gear]').forEach((gearButton) => {
-    gearButton.addEventListener('click', () => {
-      const gear = gearButton.dataset.kernelGear as GearId;
-      if (!gear || gearButton.disabled) return;
-      gearButton.classList.remove('is-turning');
-      void gearButton.offsetWidth;
-      gearButton.classList.add('is-turning');
-      triggerGear(gear);
-    });
-  });
-
-  updateGearUnlocks(bridge.getCurrentState());
   const savedGear = (localStorage.getItem(BLUEPRINT_GEAR_KEY) || 'games') as GearId;
   if (GEAR_INTENTS[savedGear]) {
-    setActiveGear(savedGear);
-    window.setTimeout(() => focusGear(savedGear), 120);
+    window.setTimeout(() => focusGear(savedGear), 160);
   }
 
   bus.emit(makeEvent('lifecycle.start', { page: location.pathname }));

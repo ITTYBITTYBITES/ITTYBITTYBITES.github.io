@@ -2,6 +2,8 @@ import * as THREE from 'three';
 import type { EventContract, PlatformState } from '../kernel';
 import { BIOME_EVENT_MAP, DEFAULT_BIOME_MAPPING, type BiomeMapping } from './biome.config';
 
+export type GearId = 'games' | 'archive' | 'community' | 'blueprint' | 'memory';
+
 type SpatialNode = {
   id: string;
   eventType: string;
@@ -11,6 +13,7 @@ type SpatialNode = {
   home: THREE.Vector3;
   createdAt: number;
   mapping: BiomeMapping;
+  gearId?: GearId;
 };
 
 type LiquidLink = {
@@ -19,24 +22,62 @@ type LiquidLink = {
   createdAt: number;
 };
 
+type GearAssembly = {
+  id: GearId;
+  group: THREE.Group;
+  hit: THREE.Mesh;
+  anchor: THREE.Vector3;
+  eventType: string;
+  unlockedLevel: number;
+  active: boolean;
+  label: THREE.Sprite;
+};
+
+type Gauge = {
+  key: string;
+  sprite: THREE.Sprite;
+  lastValue: string;
+};
+
+const GEAR_EVENT_TYPES: Record<GearId, string> = {
+  games: 'library.game_opened',
+  archive: 'library.archive_opened',
+  community: 'community.vortex',
+  blueprint: 'milestone.level_up',
+  memory: 'economic.resource_gained',
+};
+
+const EVENT_TO_GEAR: Record<string, GearId> = Object.fromEntries(
+  Object.entries(GEAR_EVENT_TYPES).map(([gear, event]) => [event, gear])
+) as Record<string, GearId>;
+
 export class SpatialRenderer {
   private scene = new THREE.Scene();
   private camera = new THREE.PerspectiveCamera(48, 1, 0.1, 1000);
   private renderer: THREE.WebGLRenderer;
-  private group = new THREE.Group();
+  private biomeGroup = new THREE.Group();
   private linkGroup = new THREE.Group();
+  private gearGroup = new THREE.Group();
+  private gaugeGroup = new THREE.Group();
   private nodes: SpatialNode[] = [];
   private links: LiquidLink[] = [];
+  private gears: GearAssembly[] = [];
+  private gauges: Gauge[] = [];
   private resizeObserver?: ResizeObserver;
   private rafId = 0;
   private focusIndex = -1;
   private hovered?: SpatialNode;
+  private hoveredGear?: GearAssembly;
   private pointer = new THREE.Vector2(99, 99);
   private raycaster = new THREE.Raycaster();
   private readonly clock = new THREE.Clock();
   private readonly haloTexture = this.createHaloTexture();
 
-  constructor(private host: HTMLElement, private liveRegion?: HTMLElement | null) {
+  constructor(
+    private host: HTMLElement,
+    private liveRegion?: HTMLElement | null,
+    private onGearSelected?: (gear: GearId) => void
+  ) {
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     this.renderer.setClearColor(0x000000, 0);
@@ -44,19 +85,25 @@ export class SpatialRenderer {
     this.renderer.domElement.setAttribute('aria-label', 'Liquid Memory generative spatial ecosystem');
     this.host.appendChild(this.renderer.domElement);
 
-    this.scene.add(this.group);
     this.scene.add(this.linkGroup);
-    this.camera.position.set(0, 4.5, 12);
+    this.scene.add(this.biomeGroup);
+    this.scene.add(this.gearGroup);
+    this.scene.add(this.gaugeGroup);
+    this.camera.position.set(0, 4.7, 13.5);
     this.camera.lookAt(0, 0, 0);
 
-    const ambient = new THREE.AmbientLight(0xd7c2a1, 1.05);
-    const key = new THREE.PointLight(0x6ef4e5, 2.7, 42);
+    const ambient = new THREE.AmbientLight(0xd7c2a1, 1.06);
+    const key = new THREE.PointLight(0x6ef4e5, 2.8, 44);
     key.position.set(6, 8, 8);
-    const rim = new THREE.PointLight(0xd7b36a, 1.75, 46);
-    rim.position.set(-7, -3, 6);
-    this.scene.add(ambient, key, rim);
+    const lantern = new THREE.PointLight(0xd7b36a, 2.15, 36);
+    lantern.position.set(-5, 4, 7);
+    const rim = new THREE.PointLight(0x95e0bc, 1.15, 46);
+    rim.position.set(2, -4, 9);
+    this.scene.add(ambient, key, lantern, rim);
 
     this.createStarfield();
+    this.createBlueprintGearRig();
+    this.createGauges();
     this.bindPointer();
     this.bindResize();
     this.animate();
@@ -65,10 +112,12 @@ export class SpatialRenderer {
   handle(event: EventContract): void {
     if (event.type === 'system.heartbeat' && this.nodes.length > 0) return;
     const mapping = BIOME_EVENT_MAP[event.type] || DEFAULT_BIOME_MAPPING;
+    const gearId = EVENT_TO_GEAR[event.type];
     const index = this.nodes.length;
-    const target = this.computePosition(index, mapping.pull);
+    const target = this.computePosition(index, mapping.pull, gearId);
     const mesh = new THREE.Mesh(this.createGeometry(mapping), this.createMaterial(mapping));
-    mesh.position.copy(target.clone().multiplyScalar(0.15));
+    const origin = gearId ? this.getGearAnchor(gearId) : new THREE.Vector3(0, 0, 0);
+    mesh.position.copy(origin);
     mesh.scale.setScalar(0.001);
     mesh.userData = { eventType: event.type, label: mapping.label };
 
@@ -83,34 +132,45 @@ export class SpatialRenderer {
     halo.position.copy(mesh.position);
     halo.scale.setScalar(2.2 * mapping.scale);
 
-    this.group.add(mesh);
-    this.group.add(halo);
+    this.biomeGroup.add(mesh);
+    this.biomeGroup.add(halo);
 
-    const node: SpatialNode = { id: event.eventId, eventType: event.type, mesh, halo, target: target.clone(), home: target.clone(), createdAt: performance.now(), mapping };
+    const node: SpatialNode = { id: event.eventId, eventType: event.type, mesh, halo, target: target.clone(), home: target.clone(), createdAt: performance.now(), mapping, gearId };
     this.nodes.push(node);
     this.archiveOldMemories();
     this.connectToPrevious(node);
+    this.connectGearToNode(node);
     this.updateHud(event, mapping);
     this.focusIndex = this.nodes.length - 1;
+    if (gearId) this.setActiveGear(gearId);
 
     while (this.nodes.length > 54) {
       const old = this.nodes.shift();
       if (old) {
-        this.group.remove(old.mesh);
-        this.group.remove(old.halo);
+        this.biomeGroup.remove(old.mesh);
+        this.biomeGroup.remove(old.halo);
       }
     }
   }
 
   updateFromState(state: PlatformState): void {
     const level = state.player.level || 1;
-    this.group.rotation.y += Math.min(level, 20) * 0.0003;
-    this.group.scale.setScalar(1 + Math.min(state.system.eventCount, 100) * 0.002);
+    this.biomeGroup.rotation.y += Math.min(level, 20) * 0.00024;
+    this.biomeGroup.scale.setScalar(1 + Math.min(state.system.eventCount, 100) * 0.002);
+    this.updateGaugeText('depth', `DEPTH ${level}`);
+    this.updateGaugeText('signals', `SIGNALS ${state.system.eventCount || 0}`);
+    this.updateGaugeText('trace', `TRACE ${state.player.resources.trace || 0}`);
+    this.updateGaugeText('pearls', `PEARLS ${state.player.resources.pearls || 0}`);
+    this.updateGearUnlocks(level);
   }
 
   focusNext(): void {
     if (!this.nodes.length) return;
     this.focusIndex = (this.focusIndex + 1) % this.nodes.length;
+  }
+
+  focusGear(gear: GearId): boolean {
+    return this.focusEventType(GEAR_EVENT_TYPES[gear]);
   }
 
   focusEventType(eventType: string): boolean {
@@ -120,14 +180,31 @@ export class SpatialRenderer {
         const node = this.nodes[i];
         this.host.dataset.lastEvent = node.eventType;
         if (this.liveRegion) this.liveRegion.textContent = `${node.mapping.label}: ${node.eventType}`;
+        if (node.gearId) this.setActiveGear(node.gearId);
         return true;
       }
     }
     return false;
   }
 
+  setActiveGear(gear: GearId): void {
+    this.gears.forEach((assembly) => {
+      assembly.active = assembly.id === gear;
+      assembly.group.userData.active = assembly.active;
+    });
+    this.host.dataset.activeGear = gear;
+  }
+
   getNodeCount(): number {
     return this.nodes.length;
+  }
+
+  getGearCount(): number {
+    return this.gears.length;
+  }
+
+  getGaugeCount(): number {
+    return this.gauges.length;
   }
 
   dispose(): void {
@@ -135,6 +212,95 @@ export class SpatialRenderer {
     this.resizeObserver?.disconnect();
     this.renderer.dispose();
     this.host.innerHTML = '';
+  }
+
+  private createBlueprintGearRig(): void {
+    this.gearGroup.position.set(0, 0, 0.65);
+    this.createGear('archive', 'ARCHIVE', new THREE.Vector3(-2.45, -0.05, 0), 0.72, 1);
+    this.createGear('games', 'GAMES', new THREE.Vector3(0, 0.52, 0.02), 1.02, 1);
+    this.createGear('community', 'COMMUNITY', new THREE.Vector3(2.28, -0.05, 0), 0.76, 2);
+    this.createGear('blueprint', 'BLUEPRINT', new THREE.Vector3(0, -1.28, 0.04), 0.86, 1);
+    this.createGear('memory', 'MEMORY', new THREE.Vector3(-1.55, -1.12, 0.08), 0.62, 3);
+  }
+
+  private createGear(id: GearId, label: string, position: THREE.Vector3, radius: number, unlockedLevel: number): void {
+    const group = new THREE.Group();
+    group.position.copy(position);
+    group.userData = { gearId: id, active: false, unlockedLevel };
+
+    const bodyMat = new THREE.MeshStandardMaterial({ color: 0x5a3c21, emissive: 0x1a0e08, metalness: 0.86, roughness: 0.22 });
+    const face = new THREE.Mesh(new THREE.CylinderGeometry(radius, radius, 0.18, 64), bodyMat);
+    face.rotation.x = Math.PI / 2;
+    face.userData = { gearId: id };
+    group.add(face);
+
+    const inner = new THREE.Mesh(new THREE.TorusGeometry(radius * 0.48, 0.035, 10, 48), new THREE.MeshStandardMaterial({ color: 0xd7b36a, emissive: 0x2e2110, metalness: 0.76, roughness: 0.18 }));
+    inner.position.z = 0.105;
+    group.add(inner);
+
+    const outer = new THREE.Mesh(new THREE.TorusGeometry(radius * 0.86, 0.045, 10, 64), new THREE.MeshStandardMaterial({ color: 0x6ef4e5, emissive: 0x0d4540, emissiveIntensity: 0.45, metalness: 0.68, roughness: 0.16 }));
+    outer.position.z = 0.115;
+    group.add(outer);
+
+    const toothMat = new THREE.MeshStandardMaterial({ color: 0x8a633a, emissive: 0x20140a, metalness: 0.82, roughness: 0.2 });
+    const toothCount = Math.max(14, Math.round(radius * 24));
+    for (let i = 0; i < toothCount; i++) {
+      const a = (i / toothCount) * Math.PI * 2;
+      const tooth = new THREE.Mesh(new THREE.BoxGeometry(radius * 0.12, radius * 0.24, 0.16), toothMat);
+      tooth.position.set(Math.cos(a) * radius * 1.02, Math.sin(a) * radius * 1.02, 0);
+      tooth.rotation.z = a;
+      tooth.userData = { gearId: id };
+      group.add(tooth);
+    }
+
+    const labelSprite = this.createTextSprite(label, '#fff1cf', 'rgba(20,12,6,0.45)', 1.2);
+    labelSprite.position.set(0, 0, 0.32);
+    labelSprite.scale.set(radius * 1.35, radius * 0.36, 1);
+    group.add(labelSprite);
+
+    this.gearGroup.add(group);
+    this.gears.push({ id, group, hit: face, anchor: position.clone(), eventType: GEAR_EVENT_TYPES[id], unlockedLevel, active: false, label: labelSprite });
+  }
+
+  private createGauges(): void {
+    const specs = [
+      ['depth', 'DEPTH 1', -3.4, 1.75],
+      ['signals', 'SIGNALS 0', 3.35, 1.55],
+      ['trace', 'TRACE 0', -3.15, -2.05],
+      ['pearls', 'PEARLS 0', 3.12, -2.0],
+    ] as const;
+    specs.forEach(([key, text, x, y]) => {
+      const sprite = this.createTextSprite(text, '#6ef4e5', 'rgba(18,15,11,0.62)', 1.0);
+      sprite.position.set(x, y, 0.7);
+      sprite.scale.set(1.65, 0.42, 1);
+      this.gaugeGroup.add(sprite);
+      this.gauges.push({ key, sprite, lastValue: text });
+    });
+  }
+
+  private updateGaugeText(key: string, value: string): void {
+    const gauge = this.gauges.find((item) => item.key === key);
+    if (!gauge || gauge.lastValue === value) return;
+    gauge.lastValue = value;
+    const old = gauge.sprite.material.map;
+    gauge.sprite.material.map = this.createTextTexture(value, '#6ef4e5', 'rgba(18,15,11,0.62)');
+    gauge.sprite.material.needsUpdate = true;
+    old?.dispose();
+  }
+
+  private updateGearUnlocks(level: number): void {
+    this.gears.forEach((gear) => {
+      const unlocked = level >= gear.unlockedLevel;
+      gear.group.userData.unlocked = unlocked;
+      gear.group.traverse((obj) => {
+        const mesh = obj as THREE.Mesh;
+        const material = mesh.material as THREE.MeshStandardMaterial | undefined;
+        if (material?.opacity !== undefined) {
+          material.transparent = true;
+          material.opacity = unlocked ? 1 : 0.34;
+        }
+      });
+    });
   }
 
   private createGeometry(mapping: BiomeMapping): THREE.BufferGeometry {
@@ -159,28 +325,50 @@ export class SpatialRenderer {
     });
   }
 
-  private computePosition(index: number, pull: number): THREE.Vector3 {
-    if (index === 0) return new THREE.Vector3(0, 0, 0);
+  private computePosition(index: number, pull: number, gearId?: GearId): THREE.Vector3 {
+    const anchor = gearId ? this.getGearAnchor(gearId) : new THREE.Vector3(0, 0, 0);
+    if (index === 0) return anchor.clone().add(new THREE.Vector3(0, 0, -0.6));
     const golden = Math.PI * (3 - Math.sqrt(5));
-    const radius = 1.25 + Math.sqrt(index) * 1.08 * pull;
-    const angle = index * golden;
+    const radius = 1.05 + Math.sqrt(index) * 0.82 * pull;
+    const angleBase = gearId ? this.getGearAngle(gearId) : index * golden;
+    const angle = angleBase + index * 0.22;
     const branch = Math.floor(index / 7);
-    const x = Math.cos(angle) * radius;
-    const z = Math.sin(angle) * radius + branch * 0.36;
-    const y = Math.sin(index * 0.72) * 1.25 + branch * 0.22;
+    const x = anchor.x + Math.cos(angle) * radius;
+    const y = anchor.y + Math.sin(angle) * radius * 0.62 + Math.sin(index * 0.72) * 0.45;
+    const z = -1.4 - branch * 0.45 - Math.sin(angle) * 0.55;
     return new THREE.Vector3(x, y, z);
+  }
+
+  private getGearAnchor(gearId: GearId): THREE.Vector3 {
+    return this.gears.find((gear) => gear.id === gearId)?.anchor.clone() || new THREE.Vector3(0, 0, 0);
+  }
+
+  private getGearAngle(gearId: GearId): number {
+    const gear = this.gears.find((item) => item.id === gearId);
+    if (!gear) return 0;
+    return Math.atan2(gear.anchor.y, gear.anchor.x || 0.001);
   }
 
   private connectToPrevious(node: SpatialNode): void {
     const prev = this.nodes.length > 1 ? this.nodes[this.nodes.length - 2] : null;
     if (!prev) return;
-    const mid = prev.target.clone().lerp(node.target, 0.5);
-    mid.y += 0.4 * Math.sin(this.nodes.length * 1.7);
-    const curve = new THREE.CatmullRomCurve3([prev.target, mid, node.target]);
-    const geometry = new THREE.TubeGeometry(curve, 28, 0.025 + node.mapping.pull * 0.006, 8, false);
+    this.createLiquidTube(prev.target, node.target, node.mapping, 0.025 + node.mapping.pull * 0.006);
+  }
+
+  private connectGearToNode(node: SpatialNode): void {
+    if (!node.gearId) return;
+    this.createLiquidTube(this.getGearAnchor(node.gearId), node.target, node.mapping, 0.018 + node.mapping.pull * 0.004);
+  }
+
+  private createLiquidTube(from: THREE.Vector3, to: THREE.Vector3, mapping: BiomeMapping, radius: number): void {
+    const mid = from.clone().lerp(to, 0.5);
+    mid.z += 0.55;
+    mid.y += 0.28 * Math.sin(this.nodes.length * 1.7);
+    const curve = new THREE.CatmullRomCurve3([from, mid, to]);
+    const geometry = new THREE.TubeGeometry(curve, 28, radius, 8, false);
     const material = new THREE.MeshStandardMaterial({
-      color: node.mapping.color,
-      emissive: node.mapping.emissive,
+      color: mapping.color,
+      emissive: mapping.emissive,
       emissiveIntensity: 1.15,
       metalness: 0.55,
       roughness: 0.2,
@@ -190,7 +378,7 @@ export class SpatialRenderer {
     const mesh = new THREE.Mesh(geometry, material);
     this.linkGroup.add(mesh);
     this.links.push({ mesh, material, createdAt: performance.now() });
-    while (this.links.length > 64) {
+    while (this.links.length > 76) {
       const old = this.links.shift();
       if (old) {
         this.linkGroup.remove(old.mesh);
@@ -220,9 +408,22 @@ export class SpatialRenderer {
       this.pointer.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
     };
     this.renderer.domElement.addEventListener('pointermove', update, { passive: true });
+    this.renderer.domElement.addEventListener('pointerdown', (event) => {
+      update(event);
+      this.raycaster.setFromCamera(this.pointer, this.camera);
+      const gearHits = this.raycaster.intersectObjects(this.gearGroup.children, true);
+      const hit = gearHits.find((item) => item.object.userData.gearId);
+      const gearId = hit?.object.userData.gearId as GearId | undefined;
+      const gear = gearId ? this.gears.find((item) => item.id === gearId) : undefined;
+      if (gear && gear.group.userData.unlocked !== false) {
+        this.setActiveGear(gear.id);
+        this.onGearSelected?.(gear.id);
+      }
+    });
     this.renderer.domElement.addEventListener('pointerleave', () => {
       this.pointer.set(99, 99);
       this.hovered = undefined;
+      this.hoveredGear = undefined;
     });
   }
 
@@ -240,8 +441,8 @@ export class SpatialRenderer {
   private bindResize(): void {
     const resize = () => {
       const rect = this.host.getBoundingClientRect();
-      const width = Math.max(320, rect.width);
-      const height = Math.max(320, rect.height || 460);
+      const width = Math.max(320, rect.width || window.innerWidth);
+      const height = Math.max(320, rect.height || window.innerHeight);
       this.camera.aspect = width / height;
       this.camera.updateProjectionMatrix();
       this.renderer.setSize(width, height, false);
@@ -256,12 +457,20 @@ export class SpatialRenderer {
   private animate = () => {
     const elapsed = this.clock.getElapsedTime();
     this.updateHoverState();
-    this.group.rotation.y += 0.0019;
-    this.group.rotation.x = Math.sin(elapsed * 0.17) * 0.075;
-    this.linkGroup.rotation.copy(this.group.rotation);
+    this.biomeGroup.rotation.y += 0.0017;
+    this.biomeGroup.rotation.x = Math.sin(elapsed * 0.17) * 0.06;
+    this.linkGroup.rotation.copy(this.biomeGroup.rotation);
 
     const focus = this.nodes[this.focusIndex];
     const focalZ = focus?.target.z || 0;
+
+    this.gears.forEach((gear, index) => {
+      const target = gear.active ? 0.018 : 0.006;
+      gear.group.rotation.z += target * (index % 2 ? -1 : 1);
+      const activeScale = gear.active ? 1.08 : 1;
+      const hoverScale = this.hoveredGear === gear ? 1.08 : 1;
+      gear.group.scale.lerp(new THREE.Vector3(activeScale * hoverScale, activeScale * hoverScale, activeScale * hoverScale), 0.08);
+    });
 
     this.nodes.forEach((node, index) => {
       const age = Math.min(1, (performance.now() - node.createdAt) / 620);
@@ -302,7 +511,7 @@ export class SpatialRenderer {
     });
 
     if (focus) {
-      const desired = focus.target.clone().multiplyScalar(0.18).add(new THREE.Vector3(0, 4.6, 11.5));
+      const desired = focus.target.clone().multiplyScalar(0.2).add(new THREE.Vector3(0, 3.9, 12.2));
       this.camera.position.lerp(desired, 0.018);
       this.camera.lookAt(focus.target.clone().multiplyScalar(0.18));
     } else {
@@ -316,11 +525,14 @@ export class SpatialRenderer {
   private updateHoverState(): void {
     if (this.pointer.x > 2) return;
     this.raycaster.setFromCamera(this.pointer, this.camera);
-    const intersects = this.raycaster.intersectObjects(this.nodes.map((node) => node.mesh), false);
-    this.hovered = intersects[0]
-      ? this.nodes.find((node) => node.mesh === intersects[0].object)
+    const gearHits = this.raycaster.intersectObjects(this.gearGroup.children, true);
+    const gearHit = gearHits.find((item) => item.object.userData.gearId);
+    this.hoveredGear = gearHit ? this.gears.find((gear) => gear.id === gearHit.object.userData.gearId) : undefined;
+    const nodeHits = this.raycaster.intersectObjects(this.nodes.map((node) => node.mesh), false);
+    this.hovered = nodeHits[0]
+      ? this.nodes.find((node) => node.mesh === nodeHits[0].object)
       : undefined;
-    this.renderer.domElement.style.cursor = this.hovered ? 'grab' : 'crosshair';
+    this.renderer.domElement.style.cursor = this.hoveredGear || this.hovered ? 'grab' : 'crosshair';
   }
 
   private updateHud(event: EventContract, mapping: BiomeMapping): void {
@@ -343,5 +555,48 @@ export class SpatialRenderer {
     ctx.fillStyle = gradient;
     ctx.fillRect(0, 0, 128, 128);
     return new THREE.CanvasTexture(canvas);
+  }
+
+  private createTextSprite(text: string, color: string, background: string, density = 1): THREE.Sprite {
+    const sprite = new THREE.Sprite(new THREE.SpriteMaterial({
+      map: this.createTextTexture(text, color, background),
+      transparent: true,
+      depthWrite: false,
+    }));
+    sprite.scale.set(1.6 * density, 0.42 * density, 1);
+    return sprite;
+  }
+
+  private createTextTexture(text: string, color: string, background: string): THREE.CanvasTexture {
+    const canvas = document.createElement('canvas');
+    canvas.width = 512;
+    canvas.height = 128;
+    const ctx = canvas.getContext('2d')!;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = background;
+    this.roundRect(ctx, 12, 22, 488, 84, 30);
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(110,244,229,0.32)';
+    ctx.lineWidth = 3;
+    this.roundRect(ctx, 12, 22, 488, 84, 30);
+    ctx.stroke();
+    ctx.font = '900 34px Inter, system-ui, sans-serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillStyle = color;
+    ctx.fillText(text, 256, 65);
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.needsUpdate = true;
+    return texture;
+  }
+
+  private roundRect(ctx: CanvasRenderingContext2D, x: number, y: number, w: number, h: number, r: number): void {
+    ctx.beginPath();
+    ctx.moveTo(x + r, y);
+    ctx.arcTo(x + w, y, x + w, y + h, r);
+    ctx.arcTo(x + w, y + h, x, y + h, r);
+    ctx.arcTo(x, y + h, x, y, r);
+    ctx.arcTo(x, y, x + w, y, r);
+    ctx.closePath();
   }
 }
