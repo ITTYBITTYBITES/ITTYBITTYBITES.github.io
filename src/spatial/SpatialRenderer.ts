@@ -2,6 +2,7 @@ import * as THREE from 'three';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import type { EventContract, PlatformState } from '../kernel';
 import { BIOME_EVENT_MAP, DEFAULT_BIOME_MAPPING, type BiomeMapping } from './biome.config';
 import { ResponsiveEngine, type ResponsiveProfile } from '../responsive/ResponsiveEngine';
@@ -28,7 +29,7 @@ type LiquidLink = {
 
 type GearAssembly = {
   id: GearId;
-  group: THREE.Group;
+  group: THREE.Object3D;
   hit: THREE.Mesh;
   anchor: THREE.Vector3;
   eventType: string;
@@ -71,6 +72,10 @@ export class SpatialRenderer {
   private gears: GearAssembly[] = [];
   private gauges: Gauge[] = [];
   private focusDial?: THREE.Group;
+  private modelAnchors = new Map<string, THREE.Object3D>();
+  private gearRaycastObjects: THREE.Object3D[] = [];
+  private workstationModelLoaded = false;
+  private workstationFallbackActive = false;
   private resizeObserver?: ResizeObserver;
   private rafId = 0;
   private focusIndex = -1;
@@ -131,8 +136,7 @@ export class SpatialRenderer {
     this.bloomPass = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.08, 0.55, 0.94);
     this.composer.addPass(this.bloomPass);
 
-    this.createWorkstationEnvironment();
-    this.createBlueprintGearRig();
+    this.loadWorkstationAsset();
     this.createGauges();
     this.createEngageDial();
     this.applyResponsiveProfile(this.profile, true);
@@ -246,6 +250,18 @@ export class SpatialRenderer {
     return `${this.profile.kind}-${this.profile.orientation}`;
   }
 
+  isWorkstationModelLoaded(): boolean {
+    return this.workstationModelLoaded;
+  }
+
+  isProceduralFallbackActive(): boolean {
+    return this.workstationFallbackActive;
+  }
+
+  getAnchorCount(): number {
+    return this.modelAnchors.size;
+  }
+
   dispose(): void {
     cancelAnimationFrame(this.rafId);
     this.resizeObserver?.disconnect();
@@ -299,7 +315,7 @@ export class SpatialRenderer {
 
   private pickGear(): GearAssembly | undefined {
     this.raycaster.setFromCamera(this.pointer, this.camera);
-    const gearHits = this.raycaster.intersectObjects(this.gearGroup.children, true);
+    const gearHits = this.raycaster.intersectObjects(this.gearRaycastObjects, true);
     const hit = gearHits.find((item) => item.object.userData.gearId);
     const gearId = hit?.object.userData.gearId as GearId | undefined;
     return gearId ? this.gears.find((item) => item.id === gearId) : undefined;
@@ -311,6 +327,87 @@ export class SpatialRenderer {
     return this.raycaster.intersectObjects(this.focusDial.children, true).some((item) => item.object.userData.engageDial);
   }
 
+
+
+  private async loadWorkstationAsset(): Promise<void> {
+    const loader = new GLTFLoader();
+    try {
+      const gltf = await loader.loadAsync('assets/models/liquid-memory-workstation.glb');
+      const root = gltf.scene;
+      root.name = 'liquid_memory_workstation_glb_root';
+      this.workstationGroup.add(root);
+      this.modelAnchors.clear();
+      this.gearRaycastObjects = [];
+      this.gears = [];
+
+      root.traverse((obj) => {
+        if (obj.name?.startsWith('anchor_')) {
+          this.modelAnchors.set(obj.name, obj);
+          obj.visible = false;
+        }
+
+        const mesh = obj as THREE.Mesh;
+        if (mesh.isMesh) {
+          mesh.castShadow = true;
+          mesh.receiveShadow = true;
+          const gearId = this.inferGearIdFromName(mesh.name);
+          if (gearId) {
+            mesh.userData.gearId = gearId;
+            this.gearRaycastObjects.push(mesh);
+          }
+        }
+      });
+
+      (['games', 'archive', 'community', 'blueprint', 'memory'] as GearId[]).forEach((id) => {
+        const anchor = this.getModelAnchorPosition(`anchor_${id}`) || this.getFallbackGearAnchor(id);
+        const marker = new THREE.Object3D();
+        marker.position.copy(anchor);
+        marker.userData = { gearId: id, active: false, unlocked: true };
+        const label = this.createTextSprite(id.toUpperCase(), '#2e2114', 'transparent', 0.01);
+        label.visible = false;
+        this.gears.push({ id, group: marker, hit: marker as unknown as THREE.Mesh, anchor, eventType: GEAR_EVENT_TYPES[id], unlockedLevel: id === 'community' ? 2 : id === 'memory' ? 3 : 1, active: false, label });
+      });
+
+      this.workstationModelLoaded = true;
+      this.workstationFallbackActive = false;
+      this.host.dataset.workstationModel = 'loaded';
+    } catch (error) {
+      console.warn('[SpatialRenderer] Workstation GLB failed; using procedural fallback.', error);
+      this.renderProceduralWorkstation();
+    }
+  }
+
+  private renderProceduralWorkstation(): void {
+    this.workstationFallbackActive = true;
+    this.workstationModelLoaded = false;
+    this.host.dataset.workstationModel = 'procedural-fallback';
+    this.createWorkstationEnvironment();
+    this.createBlueprintGearRig();
+  }
+
+  private inferGearIdFromName(name: string): GearId | undefined {
+    const lower = name.toLowerCase();
+    return (['games', 'archive', 'community', 'blueprint', 'memory'] as GearId[]).find((id) => lower.includes(`gear_${id}`) || lower.includes(`anchor_${id}`));
+  }
+
+  private getModelAnchorPosition(name: string): THREE.Vector3 | undefined {
+    const obj = this.modelAnchors.get(name);
+    if (!obj) return undefined;
+    const position = new THREE.Vector3();
+    obj.getWorldPosition(position);
+    return position;
+  }
+
+  private getFallbackGearAnchor(gearId: GearId): THREE.Vector3 {
+    const fallback: Record<GearId, THREE.Vector3> = {
+      games: new THREE.Vector3(0, 0.72, -1.18),
+      archive: new THREE.Vector3(-2.36, 0.05, -1.18),
+      community: new THREE.Vector3(2.34, 0, -1.18),
+      blueprint: new THREE.Vector3(0, -1.42, -1.18),
+      memory: new THREE.Vector3(-1.48, -1.34, -1.18),
+    };
+    return fallback[gearId].clone();
+  }
 
   private createWorkstationEnvironment(): void {
     const desk = new THREE.Mesh(
@@ -586,6 +683,7 @@ export class SpatialRenderer {
     group.add(labelSprite);
 
     group.traverse((obj) => { const mesh = obj as THREE.Mesh; if (mesh.isMesh) { mesh.castShadow = true; mesh.receiveShadow = true; } });
+    this.gearRaycastObjects.push(group);
     this.gearGroup.add(group);
     this.gears.push({ id, group, hit: face, anchor: position.clone(), eventType: GEAR_EVENT_TYPES[id], unlockedLevel, active: false, label: labelSprite });
   }
@@ -692,7 +790,8 @@ export class SpatialRenderer {
   }
 
   private getGearAnchor(gearId: GearId): THREE.Vector3 {
-    const anchor = this.gears.find((gear) => gear.id === gearId)?.anchor.clone() || new THREE.Vector3(0, 0, -1.04);
+    const modelAnchor = this.getModelAnchorPosition(`anchor_${gearId}`);
+    const anchor = modelAnchor || this.gears.find((gear) => gear.id === gearId)?.anchor.clone() || this.getFallbackGearAnchor(gearId);
     anchor.z = -1.04;
     return anchor;
   }
@@ -928,7 +1027,7 @@ export class SpatialRenderer {
   private updateHoverState(): void {
     if (this.pointer.x > 2) return;
     this.raycaster.setFromCamera(this.pointer, this.camera);
-    const gearHits = this.raycaster.intersectObjects(this.gearGroup.children, true);
+    const gearHits = this.raycaster.intersectObjects(this.gearRaycastObjects, true);
     const gearHit = gearHits.find((item) => item.object.userData.gearId);
     this.hoveredGear = gearHit ? this.gears.find((gear) => gear.id === gearHit.object.userData.gearId) : undefined;
     const nodeHits = this.raycaster.intersectObjects(this.nodes.map((node) => node.mesh), false);

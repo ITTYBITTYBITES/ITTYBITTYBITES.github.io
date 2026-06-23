@@ -11,6 +11,9 @@ await page.waitForFunction(() => !!window.LiquidMemoryKernel);
 ok('Liquid Memory Kernel attached to window');
 await page.waitForFunction(() => !!window.LiquidMemorySpatial && document.querySelector('#spatial-canvas canvas'));
 ok('Spatial renderer mounted');
+await page.waitForFunction(() => window.LiquidMemoryKernel.isWorkstationModelLoaded() || window.LiquidMemoryKernel.isProceduralFallbackActive(), null, { timeout: 10000 });
+let modelState = await page.evaluate(() => ({ loaded: window.LiquidMemoryKernel.isWorkstationModelLoaded(), fallback: window.LiquidMemoryKernel.isProceduralFallbackActive(), anchors: window.LiquidMemoryKernel.getWorkstationAnchorCount() }));
+if (modelState.loaded && modelState.anchors >= 5) ok('Proxy GLB loaded and anchors mapped', JSON.stringify(modelState)); else fail('Proxy GLB loaded and anchors mapped', JSON.stringify(modelState));
 let machine=await page.evaluate(()=>({domGears:document.querySelectorAll('[data-kernel-gear]').length,domCards:document.querySelectorAll('[data-kernel-bind]').length,gears:window.LiquidMemoryKernel?.getSpatialGearCount?.(),gauges:window.LiquidMemoryKernel?.getSpatialGaugeCount?.(),mode:window.LiquidMemoryKernel?.getResponsiveMode?.()}));
 if (machine.domGears === 0 && machine.domCards === 0) ok('No DOM gear rig or telemetry cards remain'); else fail('No DOM gear rig or telemetry cards remain', JSON.stringify(machine));
 if (machine.gears >= 5 && machine.gauges >= 4) ok('3D gears and holographic gauges exist in WebGL scene', JSON.stringify(machine)); else fail('3D gears and holographic gauges exist in WebGL scene', JSON.stringify(machine));
@@ -33,9 +36,10 @@ state=await page.evaluate(()=>({state:window.LiquidMemoryKernel.getState(),nodes
 if ((state.stored||'').includes('system.reward_offered')) ok('Community gear reward observer fires'); else fail('Community gear reward observer fires', state.stored||'');
 if (Number(state.nodes) >= 5) ok('Spatial engine creates vortex/reward ecosystem nodes', `${state.nodes} nodes`); else fail('Spatial engine creates vortex/reward ecosystem nodes', JSON.stringify(state));
 await page.reload({waitUntil:'networkidle'}); await page.waitForFunction(() => !!window.LiquidMemoryKernel);
-state=await page.evaluate(()=>({state:window.LiquidMemoryKernel.getState(),savedGear:localStorage.getItem('lm_blueprint_nav_gear'),nodes:window.LiquidMemoryKernel?.getSpatialNodeCount?.(),gears:window.LiquidMemoryKernel?.getSpatialGearCount?.(),gauges:window.LiquidMemoryKernel?.getSpatialGaugeCount?.()}));
+await page.waitForFunction(() => window.LiquidMemoryKernel.isWorkstationModelLoaded() || window.LiquidMemoryKernel.isProceduralFallbackActive(), null, { timeout: 10000 });
+state=await page.evaluate(()=>({state:window.LiquidMemoryKernel.getState(),savedGear:localStorage.getItem('lm_blueprint_nav_gear'),nodes:window.LiquidMemoryKernel?.getSpatialNodeCount?.(),gears:window.LiquidMemoryKernel?.getSpatialGearCount?.(),gauges:window.LiquidMemoryKernel?.getSpatialGaugeCount?.(),loaded:window.LiquidMemoryKernel.isWorkstationModelLoaded(),anchors:window.LiquidMemoryKernel.getWorkstationAnchorCount()}));
 if (Number(state.state.player.level)>=2 && Number(state.state.player.resources.trace)>=25) ok('Liquid Memory ecosystem rehydrates'); else fail('Liquid Memory ecosystem rehydrates', JSON.stringify(state));
-if (state.savedGear === 'community' && Number(state.nodes) >= 3 && state.gears >= 5 && state.gauges >= 4) ok('3D gear control rehydrates with spatial memory', JSON.stringify({gear:state.savedGear,nodes:state.nodes,gears:state.gears,gauges:state.gauges})); else fail('3D gear control rehydrates with spatial memory', JSON.stringify(state));
+if (state.savedGear === 'community' && Number(state.nodes) >= 3 && state.gears >= 5 && state.gauges >= 4 && state.loaded && state.anchors >= 5) ok('GLB-backed 3D gear control rehydrates with spatial memory', JSON.stringify({gear:state.savedGear,nodes:state.nodes,gears:state.gears,gauges:state.gauges,anchors:state.anchors})); else fail('GLB-backed 3D gear control rehydrates with spatial memory', JSON.stringify(state));
 if (!errors.length) ok('No homepage kernel browser errors'); else fail('No homepage kernel browser errors', errors.join(' | '));
 await page.close();
 
@@ -43,8 +47,9 @@ const mobile = await browser.newContext({ viewport: { width: 390, height: 844 },
 const mobilePage = await mobile.newPage();
 await mobilePage.goto(BASE, { waitUntil: 'networkidle' });
 await mobilePage.waitForFunction(() => !!window.LiquidMemoryKernel && !!window.LiquidMemorySpatial);
-const mobileState = await mobilePage.evaluate(() => ({ mode: window.LiquidMemoryKernel.getResponsiveMode(), gears: window.LiquidMemoryKernel.getSpatialGearCount(), gauges: window.LiquidMemoryKernel.getSpatialGaugeCount() }));
-if (mobileState.mode === 'mobile-portrait' && mobileState.gears >= 5 && mobileState.gauges >= 4) ok('Mobile portrait responsive schematic active', JSON.stringify(mobileState)); else fail('Mobile portrait responsive schematic active', JSON.stringify(mobileState));
+await mobilePage.waitForFunction(() => window.LiquidMemoryKernel.isWorkstationModelLoaded() || window.LiquidMemoryKernel.isProceduralFallbackActive(), null, { timeout: 10000 });
+const mobileState = await mobilePage.evaluate(() => ({ mode: window.LiquidMemoryKernel.getResponsiveMode(), gears: window.LiquidMemoryKernel.getSpatialGearCount(), gauges: window.LiquidMemoryKernel.getSpatialGaugeCount(), loaded: window.LiquidMemoryKernel.isWorkstationModelLoaded(), anchors: window.LiquidMemoryKernel.getWorkstationAnchorCount() }));
+if (mobileState.mode === 'mobile-portrait' && mobileState.gears >= 5 && mobileState.gauges >= 4 && mobileState.loaded && mobileState.anchors >= 5) ok('Mobile portrait responsive schematic active with GLB anchors', JSON.stringify(mobileState)); else fail('Mobile portrait responsive schematic active with GLB anchors', JSON.stringify(mobileState));
 await mobile.close();
 await browser.close();
 const failed=out.filter(x=>!x[0]); console.log('\nSUMMARY', JSON.stringify({total:out.length, passed:out.length-failed.length, failed:failed.length, failures:failed}, null, 2));

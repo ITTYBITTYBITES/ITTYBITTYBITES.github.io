@@ -127,6 +127,9 @@ function initKernel() {
     getSpatialGearCount: () => spatial?.getGearCount() || 0,
     getSpatialGaugeCount: () => spatial?.getGaugeCount() || 0,
     getResponsiveMode: () => spatial?.getResponsiveMode?.() || 'unknown',
+    isWorkstationModelLoaded: () => spatial?.isWorkstationModelLoaded?.() || false,
+    isProceduralFallbackActive: () => spatial?.isProceduralFallbackActive?.() || false,
+    getWorkstationAnchorCount: () => spatial?.getAnchorCount?.() || 0,
     clear: () => { persistor.clear(); localStorage.removeItem(BLUEPRINT_GEAR_KEY); window.location.reload(); },
   };
 
