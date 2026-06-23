@@ -73,6 +73,17 @@
         const ai = { x: 756, y: 200, w: 14, h: 90 };
         const ball = { x: logicalWidth/2, y: logicalHeight/2, vx: 7, vy: 5, r: 10 };
         let score1 = 0, scoreAi = 0;
+        let matchAdShownAt = 0;
+        function triggerArcadeAd(type='interstitial') {
+            if (window.parent) window.parent.postMessage({ type: "ARCADE_TRIGGER_AD", adType: type }, "*");
+        }
+        function maybeMatchBreak() {
+            const topScore = Math.max(score1, scoreAi);
+            if (topScore > 0 && topScore % 5 === 0 && topScore !== matchAdShownAt) {
+                matchAdShownAt = topScore;
+                triggerArcadeAd('interstitial');
+            }
+        }
 
         canvas.style.touchAction='none';
         const updatePaddle = (e) => {
@@ -105,8 +116,8 @@
             if(ball.x - ball.r <= p1.x+p1.w && ball.y >= p1.y && ball.y <= p1.y+p1.h) { ball.vx = Math.abs(ball.vx) * 1.05; }
             if(ball.x + ball.r >= ai.x && ball.y >= ai.y && ball.y <= ai.y+ai.h) { ball.vx = -Math.abs(ball.vx); }
 
-            if(ball.x < 0) { scoreAi++; ball.x=logicalWidth/2; ball.y=logicalHeight/2; ball.vx=7; }
-            if(ball.x > logicalWidth) { score1++; ball.x=logicalWidth/2; ball.y=logicalHeight/2; ball.vx=-7; }
+            if(ball.x < 0) { scoreAi++; maybeMatchBreak(); ball.x=logicalWidth/2; ball.y=logicalHeight/2; ball.vx=7; }
+            if(ball.x > logicalWidth) { score1++; maybeMatchBreak(); ball.x=logicalWidth/2; ball.y=logicalHeight/2; ball.vx=-7; }
 
             ctx.fillStyle = '#22d3ee'; ctx.fillRect(p1.x, p1.y, p1.w, p1.h);
             ctx.fillStyle = '#f43f5e'; ctx.fillRect(ai.x, ai.y, ai.w, ai.h);

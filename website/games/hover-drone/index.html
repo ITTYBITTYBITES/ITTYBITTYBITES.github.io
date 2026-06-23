@@ -72,6 +72,14 @@
         let drone = { y: logicalHeight/2, vy: 0 };
         let pipes = [{ x: logicalWidth, top: 150, bot: 300 }];
         let score = 0;
+        let lastAdScore = 0;
+        function triggerArcadeAd(type='interstitial') {
+            if (window.parent) window.parent.postMessage({ type: "ARCADE_TRIGGER_AD", adType: type }, "*");
+        }
+        function resetRun() {
+            if (score >= 30 && score !== lastAdScore) { lastAdScore = score; triggerArcadeAd('interstitial'); }
+            drone.y=logicalHeight/2; drone.vy=0; score=0; pipes=[{x:logicalWidth, top:150, bot:300}];
+        }
 
         canvas.style.touchAction='none';
         canvas.addEventListener('pointerdown', (e) => {
@@ -82,7 +90,7 @@
 
             drone.y += drone.vy; drone.vy += 0.4;
             if(drone.y > logicalHeight || drone.y < 0) {
-                drone.y=logicalHeight/2; drone.vy=0; score=0; pipes=[{x:logicalWidth, top:150, bot:300}];
+                resetRun()
             }
 
             pipes.forEach((p, i) => {
@@ -96,7 +104,7 @@
 
                 if(drone.y<=p.top || drone.y>=p.bot) {
                     if(400>=p.x && 400<=p.x+60) {
-                        drone.y=logicalHeight/2; drone.vy=0; score=0; pipes=[{x:logicalWidth, top:150, bot:300}];
+                        resetRun()
                     }
                 }
             });

@@ -72,6 +72,17 @@
         const paddle = { x: logicalWidth/2, y: logicalHeight - 30, w: 110, h: 14 };
         let balls = [{ x: logicalWidth/2, y: logicalHeight/2, vx: 5, vy: -5, r: 8 }];
         let bricks = []; let score = 0;
+        let lastAdScore = 0;
+        function triggerArcadeAd(type='interstitial') {
+            if (window.parent) window.parent.postMessage({ type: "ARCADE_TRIGGER_AD", adType: type }, "*");
+        }
+        function maybeScoreBreak(type='interstitial') {
+            const milestone = Math.floor(score / 250);
+            if (milestone > 0 && milestone !== lastAdScore) {
+                lastAdScore = milestone;
+                triggerArcadeAd(type);
+            }
+        }
 
         canvas.style.touchAction='none';
         const updatePaddle = (e) => {
@@ -105,6 +116,7 @@
                 if(b.x<=b.r || b.x>=logicalWidth-b.r) b.vx *= -1;
                 if(b.y<=b.r) b.vy *= -1;
                 if(b.y >= logicalHeight) {
+                    maybeScoreBreak('interstitial');
                     b.x = logicalWidth/2; b.y = logicalHeight/2; b.vy = -5;
                 }
                 
@@ -115,7 +127,7 @@
                 bricks.forEach((br, idx) => {
                     if(b.x>=br.x && b.x<=br.x+br.w && b.y>=br.y && b.y<=br.y+br.h) {
                         bricks.splice(idx,1); b.vy *= -1; score += 25;
-                        if(bricks.length===0) genB();
+                        if(bricks.length===0) { triggerArcadeAd('rewarded'); genB(); }
                     }
                 });
                 ctx.fillStyle = '#white'; ctx.beginPath(); ctx.arc(b.x, b.y, b.r, 0, Math.PI*2); ctx.fill();

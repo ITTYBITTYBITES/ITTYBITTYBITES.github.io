@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-23T22:01:53.116Z",
+  "generatedAt": "2026-06-23T22:35:49.595Z",
   "results": [
     {
       "id": "cyber-vector",
@@ -97,14 +97,15 @@
       "path": "games/hover-drone/index.html",
       "exists": true,
       "monetizationBridge": true,
-      "triggerCount": 0,
+      "triggerCount": 1,
       "completionListenerCount": 0,
-      "parentPostMessage": false,
+      "parentPostMessage": true,
       "rewardTypeCount": 0,
       "interstitialTypeCount": 0,
-      "status": "No Reward Hook",
+      "status": "Ready for Manual Reward QA",
       "notes": [
-        "No ARCADE_TRIGGER_AD event found; monetization bridge not exercised by this game yet."
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger."
       ]
     },
     {
@@ -201,14 +202,15 @@
       "path": "games/neon-pong/index.html",
       "exists": true,
       "monetizationBridge": true,
-      "triggerCount": 0,
+      "triggerCount": 1,
       "completionListenerCount": 0,
-      "parentPostMessage": false,
+      "parentPostMessage": true,
       "rewardTypeCount": 0,
       "interstitialTypeCount": 0,
-      "status": "No Reward Hook",
+      "status": "Ready for Manual Reward QA",
       "notes": [
-        "No ARCADE_TRIGGER_AD event found; monetization bridge not exercised by this game yet."
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger."
       ]
     },
     {
@@ -287,14 +289,15 @@
       "path": "games/retro-breakout/index.html",
       "exists": true,
       "monetizationBridge": true,
-      "triggerCount": 0,
+      "triggerCount": 1,
       "completionListenerCount": 0,
-      "parentPostMessage": false,
+      "parentPostMessage": true,
       "rewardTypeCount": 0,
       "interstitialTypeCount": 0,
-      "status": "No Reward Hook",
+      "status": "Ready for Manual Reward QA",
       "notes": [
-        "No ARCADE_TRIGGER_AD event found; monetization bridge not exercised by this game yet."
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger."
       ]
     },
     {
@@ -461,7 +464,6 @@
     }
   ],
   "summary": {
-    "Ready for Manual Reward QA": 23,
-    "No Reward Hook": 3
+    "Ready for Manual Reward QA": 26
   }
 }
