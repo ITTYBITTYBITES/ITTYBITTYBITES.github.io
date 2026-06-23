@@ -14654,9 +14654,13 @@ var wf = {
 			gaugeMode: "topbar",
 			camera: {
 				x: 0,
-				y: 4.9,
-				z: 15.8,
-				fov: 54
+				y: -.35,
+				z: 14.2,
+				fov: 54,
+				targetX: 0,
+				targetY: -1,
+				targetZ: -1.35,
+				zoom: .82
 			},
 			starCount: 92,
 			linkSegments: 12,
@@ -14675,9 +14679,13 @@ var wf = {
 			gaugeMode: "compact-corners",
 			camera: {
 				x: 0,
-				y: 4.2,
-				z: 14.4,
-				fov: 52
+				y: -.5,
+				z: 13.8,
+				fov: 52,
+				targetX: 0,
+				targetY: -.75,
+				targetZ: -1.35,
+				zoom: .7
 			},
 			starCount: 110,
 			linkSegments: 14,
@@ -14696,9 +14704,13 @@ var wf = {
 			gaugeMode: i === "portrait" ? "topbar" : "compact-corners",
 			camera: {
 				x: 0,
-				y: 4.65,
-				z: 14.3,
-				fov: 50
+				y: i === "portrait" ? -.35 : -.42,
+				z: i === "portrait" ? 14.2 : 13.6,
+				fov: 50,
+				targetX: 0,
+				targetY: i === "portrait" ? -.9 : -.45,
+				targetZ: -1.35,
+				zoom: i === "portrait" ? .7 : .92
 			},
 			starCount: 155,
 			linkSegments: 20,
@@ -14717,9 +14729,13 @@ var wf = {
 			gaugeMode: "side-panels",
 			camera: {
 				x: 0,
-				y: 4.7,
-				z: 13.5,
-				fov: 48
+				y: -.42,
+				z: 13.2,
+				fov: 48,
+				targetX: 0,
+				targetY: -.28,
+				targetZ: -1.35,
+				zoom: 1.08
 			},
 			starCount: 260,
 			linkSegments: 30,
@@ -14764,9 +14780,9 @@ var wf = {
 				let r = (Math.sin(e * 2.8 + n * .65) + 1) / 2;
 				t.material.opacity = .18 + r * .34, t.material.emissiveIntensity = .7 + r * .95, t.mesh.scale.setScalar(1 + r * .045);
 			}), t) {
-				let e = new W(0, -.42, this.profile.kind === "mobile" ? 14.8 : 13.2).add(t.target.clone().multiplyScalar(.035));
-				this.camera.position.lerp(e, .016), this.camera.lookAt(t.target.clone().multiplyScalar(.045).add(new W(0, -.22, -1.35)));
-			} else this.camera.lookAt(0, -.28, -1.35);
+				let e = new W(this.profile.camera.x, this.profile.camera.y, this.profile.camera.z), n = new W(this.profile.camera.targetX, this.profile.camera.targetY, this.profile.camera.targetZ).add(t.target.clone().multiplyScalar(.012));
+				this.camera.position.lerp(e, .016), this.camera.lookAt(n);
+			} else this.camera.lookAt(this.profile.camera.targetX, this.profile.camera.targetY, this.profile.camera.targetZ);
 			this.composer.render(), this.rafId = requestAnimationFrame(this.animate);
 		}, this.renderer = new cd({
 			antialias: !0,
@@ -14875,8 +14891,8 @@ var wf = {
 		});
 	}
 	applyCameraProfile(e, t = !1) {
-		let n = e.kind === "mobile" ? new W(0, -.85, 14.8) : new W(0, -.42, 13.2), r = e.kind === "mobile" ? e.orientation === "portrait" ? .66 : .6 : e.kind === "tablet" ? e.orientation === "portrait" ? .62 : .88 : 1.08;
-		this.camera.zoom = r, this.camera.updateProjectionMatrix(), t ? this.camera.position.copy(n) : this.camera.position.lerp(n, .2), this.camera.lookAt(0, -.28, -1.35);
+		let n = new W(e.camera.x, e.camera.y, e.camera.z), r = new W(e.camera.targetX, e.camera.targetY, e.camera.targetZ);
+		this.camera.zoom = e.camera.zoom, this.camera.updateProjectionMatrix(), t ? this.camera.position.copy(n) : this.camera.position.lerp(n, .2), this.camera.lookAt(r);
 	}
 	layoutGauges(e) {
 		let t = {

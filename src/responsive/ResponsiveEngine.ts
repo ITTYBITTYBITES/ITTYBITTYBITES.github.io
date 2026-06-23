@@ -7,7 +7,7 @@ export type ResponsiveProfile = {
   gearScale: number;
   gearPosition: { x: number; y: number; z: number };
   gaugeMode: 'topbar' | 'side-panels' | 'compact-corners';
-  camera: { x: number; y: number; z: number; fov: number };
+  camera: { x: number; y: number; z: number; fov: number; targetX: number; targetY: number; targetZ: number; zoom: number };
   starCount: number;
   linkSegments: number;
   linkRadialSegments: number;
@@ -67,7 +67,7 @@ export class ResponsiveEngine {
         gearScale: 0.24,
         gearPosition: { x: 0, y: -1.55, z: -1.18 },
         gaugeMode: 'topbar',
-        camera: { x: 0, y: 4.9, z: 15.8, fov: 54 },
+        camera: { x: 0, y: -0.35, z: 14.2, fov: 54, targetX: 0, targetY: -1.0, targetZ: -1.35, zoom: 0.82 },
         starCount: 92,
         linkSegments: 12,
         linkRadialSegments: 5,
@@ -83,7 +83,7 @@ export class ResponsiveEngine {
         gearScale: 0.42,
         gearPosition: { x: 0, y: -0.85, z: -1.18 },
         gaugeMode: 'compact-corners',
-        camera: { x: 0, y: 4.2, z: 14.4, fov: 52 },
+        camera: { x: 0, y: -0.5, z: 13.8, fov: 52, targetX: 0, targetY: -0.75, targetZ: -1.35, zoom: 0.70 },
         starCount: 110,
         linkSegments: 14,
         linkRadialSegments: 5,
@@ -99,7 +99,7 @@ export class ResponsiveEngine {
         gearScale: orientation === 'portrait' ? 0.62 : 0.78,
         gearPosition: { x: 0, y: orientation === 'portrait' ? -0.64 : -0.42, z: -1.18 },
         gaugeMode: orientation === 'portrait' ? 'topbar' : 'compact-corners',
-        camera: { x: 0, y: 4.65, z: 14.3, fov: 50 },
+        camera: { x: 0, y: orientation === 'portrait' ? -0.35 : -0.42, z: orientation === 'portrait' ? 14.2 : 13.6, fov: 50, targetX: 0, targetY: orientation === 'portrait' ? -0.9 : -0.45, targetZ: -1.35, zoom: orientation === 'portrait' ? 0.70 : 0.92 },
         starCount: 155,
         linkSegments: 20,
         linkRadialSegments: 7,
@@ -114,7 +114,7 @@ export class ResponsiveEngine {
       gearScale: 1,
       gearPosition: { x: 0, y: 0, z: -1.18 },
       gaugeMode: 'side-panels',
-      camera: { x: 0, y: 4.7, z: 13.5, fov: 48 },
+      camera: { x: 0, y: -0.42, z: 13.2, fov: 48, targetX: 0, targetY: -0.28, targetZ: -1.35, zoom: 1.08 },
       starCount: 260,
       linkSegments: 30,
       linkRadialSegments: 9,

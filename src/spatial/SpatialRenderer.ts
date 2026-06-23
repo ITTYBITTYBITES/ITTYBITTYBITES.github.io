@@ -299,19 +299,13 @@ export class SpatialRenderer {
   }
 
   private applyCameraProfile(profile: ResponsiveProfile, instant = false): void {
-    const target = profile.kind === 'mobile'
-      ? new THREE.Vector3(0, -0.85, 14.8)
-      : new THREE.Vector3(0, -0.42, 13.2);
-    const zoom = profile.kind === 'mobile'
-      ? (profile.orientation === 'portrait' ? 0.66 : 0.60)
-      : profile.kind === 'tablet'
-        ? (profile.orientation === 'portrait' ? 0.62 : 0.88)
-        : 1.08;
-    this.camera.zoom = zoom;
+    const target = new THREE.Vector3(profile.camera.x, profile.camera.y, profile.camera.z);
+    const focal = new THREE.Vector3(profile.camera.targetX, profile.camera.targetY, profile.camera.targetZ);
+    this.camera.zoom = profile.camera.zoom;
     this.camera.updateProjectionMatrix();
     if (instant) this.camera.position.copy(target);
     else this.camera.position.lerp(target, 0.2);
-    this.camera.lookAt(0, -0.28, -1.35);
+    this.camera.lookAt(focal);
   }
 
   private layoutGauges(mode: ResponsiveProfile['gaugeMode']): void {
@@ -1103,11 +1097,13 @@ export class SpatialRenderer {
     });
 
     if (focus) {
-      const desired = new THREE.Vector3(0, -0.42, this.profile.kind === 'mobile' ? 14.8 : 13.2).add(focus.target.clone().multiplyScalar(0.035));
+      const desired = new THREE.Vector3(this.profile.camera.x, this.profile.camera.y, this.profile.camera.z);
+      const focal = new THREE.Vector3(this.profile.camera.targetX, this.profile.camera.targetY, this.profile.camera.targetZ)
+        .add(focus.target.clone().multiplyScalar(0.012));
       this.camera.position.lerp(desired, 0.016);
-      this.camera.lookAt(focus.target.clone().multiplyScalar(0.045).add(new THREE.Vector3(0, -0.22, -1.35)));
+      this.camera.lookAt(focal);
     } else {
-      this.camera.lookAt(0, -0.28, -1.35);
+      this.camera.lookAt(this.profile.camera.targetX, this.profile.camera.targetY, this.profile.camera.targetZ);
     }
 
     this.composer.render();
