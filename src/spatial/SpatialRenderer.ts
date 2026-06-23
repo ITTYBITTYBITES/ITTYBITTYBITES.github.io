@@ -365,7 +365,8 @@ export class SpatialRenderer {
         marker.userData = { gearId: id, active: false, unlocked: true };
         const label = this.createTextSprite(id.toUpperCase(), '#2e2114', 'transparent', 0.01);
         label.visible = false;
-        this.gears.push({ id, group: marker, hit: marker as unknown as THREE.Mesh, anchor, eventType: GEAR_EVENT_TYPES[id], unlockedLevel: id === 'community' ? 2 : id === 'memory' ? 3 : 1, active: false, label });
+        const hit = this.createGearHitProxy(id, anchor, id === 'games' ? 1.2 : 0.92);
+        this.gears.push({ id, group: marker, hit, anchor, eventType: GEAR_EVENT_TYPES[id], unlockedLevel: id === 'community' ? 2 : id === 'memory' ? 3 : 1, active: false, label });
       });
 
       this.workstationModelLoaded = true;
@@ -685,7 +686,8 @@ export class SpatialRenderer {
     group.traverse((obj) => { const mesh = obj as THREE.Mesh; if (mesh.isMesh) { mesh.castShadow = true; mesh.receiveShadow = true; } });
     this.gearRaycastObjects.push(group);
     this.gearGroup.add(group);
-    this.gears.push({ id, group, hit: face, anchor: position.clone(), eventType: GEAR_EVENT_TYPES[id], unlockedLevel, active: false, label: labelSprite });
+    const hit = this.createGearHitProxy(id, position.clone(), radius * 1.12);
+    this.gears.push({ id, group, hit, anchor: position.clone(), eventType: GEAR_EVENT_TYPES[id], unlockedLevel, active: false, label: labelSprite });
   }
 
   private createEngageDial(): void {
@@ -705,6 +707,18 @@ export class SpatialRenderer {
     group.add(base, ring, label);
     this.gearGroup.add(group);
     this.focusDial = group;
+  }
+
+  private createGearHitProxy(id: GearId, anchor: THREE.Vector3, radius = 0.95): THREE.Mesh {
+    const hit = new THREE.Mesh(
+      new THREE.CircleGeometry(radius * this.profile.touchTargetScale, 40),
+      new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.001, depthWrite: false, side: THREE.DoubleSide })
+    );
+    hit.position.copy(anchor).setZ(anchor.z + 0.38);
+    hit.userData = { gearId: id, hitProxy: true };
+    this.gearRaycastObjects.push(hit);
+    this.gearGroup.add(hit);
+    return hit;
   }
 
   private createGauges(): void {

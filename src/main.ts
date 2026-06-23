@@ -135,6 +135,7 @@ function initKernel() {
 
   (window as any).LiquidMemoryKernel = api;
   (window as any).LiquidMemorySpatial = spatial;
+  window.setTimeout(() => document.body.classList.add('liquid-ready'), 250);
 
   const savedGear = (localStorage.getItem(BLUEPRINT_GEAR_KEY) || 'games') as GearId;
   if (GEAR_INTENTS[savedGear]) {

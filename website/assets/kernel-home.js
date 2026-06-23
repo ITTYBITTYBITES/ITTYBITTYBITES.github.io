@@ -14930,10 +14930,12 @@ var wf = {
 					unlocked: !0
 				};
 				let r = this.createTextSprite(e.toUpperCase(), "#2e2114", "transparent", .01);
-				r.visible = !1, this.gears.push({
+				r.visible = !1;
+				let i = this.createGearHitProxy(e, t, e === "games" ? 1.2 : .92);
+				this.gears.push({
 					id: e,
 					group: n,
-					hit: n,
+					hit: i,
 					anchor: t,
 					eventType: Df[e],
 					unlockedLevel: e === "community" ? 2 : e === "memory" ? 3 : 1,
@@ -15203,10 +15205,12 @@ var wf = {
 		f.position.set(0, 0, .32), f.scale.set(r * 1.35, r * .36, 1), a.add(f), a.traverse((e) => {
 			let t = e;
 			t.isMesh && (t.castShadow = !0, t.receiveShadow = !0);
-		}), this.gearRaycastObjects.push(a), this.gearGroup.add(a), this.gears.push({
+		}), this.gearRaycastObjects.push(a), this.gearGroup.add(a);
+		let p = this.createGearHitProxy(e, n.clone(), r * 1.12);
+		this.gears.push({
 			id: e,
 			group: a,
-			hit: s,
+			hit: p,
 			anchor: n.clone(),
 			eventType: Df[e],
 			unlockedLevel: i,
@@ -15223,6 +15227,18 @@ var wf = {
 		r.position.z = .11, r.userData = { engageDial: !0 };
 		let i = this.createTextSprite("ENGAGE DIAL", "#2e2114", "rgba(154,113,62,0.68)", .78);
 		i.position.set(0, 0, .24), i.scale.set(1.2, .24, 1), e.add(n, r, i), this.gearGroup.add(e), this.focusDial = e;
+	}
+	createGearHitProxy(e, t, n = .95) {
+		let r = new X(new Da(n * this.profile.touchTargetScale, 40), new ci({
+			transparent: !0,
+			opacity: .001,
+			depthWrite: !1,
+			side: 2
+		}));
+		return r.position.copy(t).setZ(t.z + .38), r.userData = {
+			gearId: e,
+			hitProxy: !0
+		}, this.gearRaycastObjects.push(r), this.gearGroup.add(r), r;
 	}
 	createGauges() {
 		[
@@ -15569,7 +15585,7 @@ function Rf() {
 		clear: () => {
 			o.clear(), localStorage.removeItem(Mf), window.location.reload();
 		}
-	}, window.LiquidMemorySpatial = u;
+	}, window.LiquidMemorySpatial = u, window.setTimeout(() => document.body.classList.add("liquid-ready"), 250);
 	let p = localStorage.getItem(Mf) || "games";
 	Pf[p] && window.setTimeout(() => d(p), 160), t.emit(If("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(If("system.heartbeat", { path: location.pathname })), 3e4);
 }
