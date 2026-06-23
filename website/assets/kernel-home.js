@@ -14773,12 +14773,12 @@ var wf = {
 			alpha: !1,
 			powerPreference: "high-performance"
 		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(1182469, 1), this.renderer.shadowMap.enabled = !0, this.renderer.shadowMap.type = 2, this.renderer.toneMapping = 4, this.renderer.toneMappingExposure = .92, this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.scene.add(this.workstationGroup), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.applyCameraProfile(this.profile, !0);
-		let r = new vs(9071173, .58), i = new fs(16761975, 11.5, 58, Math.PI / 4.8, .62, 1.18);
+		let r = new vs(8018486, .36), i = new fs(16760938, 13.8, 62, Math.PI / 4.6, .55, 1.08);
 		i.position.set(4.9, 3.45, 5.2), i.target.position.set(.4, -.25, -1.65);
-		let a = new ms(7271653, .22, 12, 2.8);
+		let a = new ms(7271653, .14, 10, 3);
 		a.position.set(-2.8, -.8, 2.2);
 		let o = new ms(2364939, .85, 24, 2);
-		o.position.set(0, -4, 4), i.castShadow = !0, i.shadow.mapSize.set(2048, 2048), i.shadow.bias = -35e-5, this.scene.add(r, i, i.target, a, o), this.scene.environment = this.createEnvironmentTexture(), this.scene.background = this.createWoodTexture(), this.composer = new _d(this.renderer), this.composer.addPass(new vd(this.scene, this.camera)), this.bloomPass = new bd(new U(1, 1), .08, .55, .94), this.composer.addPass(this.bloomPass), this.createWorkstationEnvironment(), this.createBlueprintGearRig(), this.loadWorkstationAsset(), this.createGauges(), this.createEngageDial(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
+		o.position.set(0, -4, 4), i.castShadow = !0, i.shadow.mapSize.set(2048, 2048), i.shadow.bias = -35e-5, this.scene.add(r, i, i.target, a, o), this.scene.environment = this.createEnvironmentTexture(), this.scene.background = this.createWoodTexture(), this.composer = new _d(this.renderer), this.composer.addPass(new vd(this.scene, this.camera)), this.bloomPass = new bd(new U(1, 1), .045, .42, .96), this.composer.addPass(this.bloomPass), this.createWorkstationEnvironment(), this.createBlueprintGearRig(), this.loadWorkstationAsset(), this.createGauges(), this.createEngageDial(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
 	}
 	handle(e) {
 		if (e.type === "system.heartbeat" && this.nodes.length > 0) return;
@@ -14990,7 +14990,7 @@ var wf = {
 		}));
 		e.position.set(0, 0, -2.82), e.receiveShadow = !0, this.workstationGroup.add(e);
 		let t = new X(new no(13.6, 9.4, 1, 1), new vo({
-			color: 12618317,
+			color: 13672545,
 			map: this.createBlueprintPaperTexture(),
 			roughnessMap: this.createBlueprintPaperTexture(),
 			normalMap: this.createPaperNormalTexture(),
@@ -15030,20 +15030,20 @@ var wf = {
 		f.position.set(4.65, 2.75, -.52);
 		let p = new X(new Oa(.5, .28, .28, 32, 1, !0), this.createOxidizedMetalMaterial(4666142, 1773575, 0));
 		p.rotation.x = Math.PI / 2, p.position.set(4.65, 2.75, -.62), this.workstationGroup.add(d, f, p);
-		let m = this.createTextSprite("BLUEPRINT // NAV", "#2e2114", "rgba(173,134,78,0.72)", 1);
+		let m = this.createTextSprite("BLUEPRINT // NAV", "#24170b", "rgba(196,145,78,0.86)", 1);
 		m.position.set(-4.28, 3.62, -1.08), m.scale.set(2.55, .36, 1);
-		let h = this.createTextSprite("SCHEMATIC  v0.9", "#2e2114", "rgba(38,28,18,0.82)", 1.05);
+		let h = this.createTextSprite("SCHEMATIC  v0.9", "#efe0bd", "rgba(45,29,15,0.90)", 1.05);
 		h.position.set(0, -3.92, -1.06), h.scale.set(2.35, .42, 1), this.workstationGroup.add(m, h), this.createEtchedOrnaments(), this.workstationGroup.traverse((e) => {
 			let t = e;
 			t.isMesh && (t.castShadow = !0, t.receiveShadow = !0);
 		});
 	}
 	createEtchedOrnaments() {
-		let e = this.createOxidizedMetalMaterial(3811350, 722178, 0), t = new vo({
-			color: 2891024,
-			emissive: 393986,
-			metalness: .45,
-			roughness: .64
+		let e = this.createOxidizedMetalMaterial(7293482, 1313284, 0), t = new vo({
+			color: 5912860,
+			emissive: 656385,
+			metalness: .55,
+			roughness: .58
 		});
 		[
 			[
@@ -15074,7 +15074,7 @@ var wf = {
 				a.position.set(n + (n < 0 ? .35 : -.35), r - e * .12 * Math.sign(r), -1), a.rotation.z = i + e * .18, this.workstationGroup.add(a);
 			}
 		});
-		let n = this.createOxidizedMetalMaterial(2168075, 328193, 0), r = new Ra([
+		let n = this.createOxidizedMetalMaterial(6043673, 721921, 0), r = new Ra([
 			new W(-5.2, -2.8, -.98),
 			new W(-3.5, -3.05, -.98),
 			new W(-1.3, -2.72, -.98),
@@ -15082,7 +15082,7 @@ var wf = {
 			new W(1.9, -2.84, -.98),
 			new W(4.9, -3, -.98)
 		]);
-		this.workstationGroup.add(new X(new oo(r, 64, .018, 6, !1), n));
+		this.workstationGroup.add(new X(new oo(r, 64, .01, 6, !1), n));
 	}
 	createOxidizedMetalMaterial(e, t, n = .04) {
 		let r = this.createPatinaTexture(n);
@@ -15137,34 +15137,46 @@ var wf = {
 	}
 	createWoodTexture() {
 		let e = document.createElement("canvas");
-		e.width = 512, e.height = 512;
-		let t = e.getContext("2d");
-		t.fillStyle = "#1b1209", t.fillRect(0, 0, 512, 512);
-		for (let e = 0; e < 512; e++) {
-			let n = Math.sin(e * .045) * 12 + Math.sin(e * .013) * 18;
-			t.fillStyle = `rgba(${55 + n},${34 + n * .35},15,0.28)`, t.fillRect(0, e, 512, 1);
+		e.width = 768, e.height = 768;
+		let t = e.getContext("2d"), n = t.createLinearGradient(0, 0, 0, e.height);
+		n.addColorStop(0, "#241207"), n.addColorStop(.45, "#3b210f"), n.addColorStop(1, "#160b04"), t.fillStyle = n, t.fillRect(0, 0, e.width, e.height);
+		for (let n = 0; n < e.height; n++) {
+			let r = Math.sin(n * .034) * 16 + Math.sin(n * .009) * 28;
+			t.fillStyle = `rgba(${62 + r},${34 + r * .34},${14 + r * .08},0.22)`, t.fillRect(0, n, e.width, 1);
 		}
-		for (let e = 0; e < 1500; e++) t.fillStyle = `rgba(0,0,0,${Math.random() * .18})`, t.fillRect(Math.random() * 512, Math.random() * 512, Math.random() * 2 + .5, Math.random() * 2 + .5);
-		let n = new Sa(e);
-		return n.wrapS = n.wrapT = s, n.repeat.set(2.2, 1.4), n;
+		[
+			120,
+			270,
+			430,
+			585,
+			710
+		].forEach((n) => {
+			t.fillStyle = "rgba(5,2,1,.42)", t.fillRect(n - 2, 0, 4, e.height), t.fillStyle = "rgba(105,64,25,.14)", t.fillRect(n + 8, 0, 1, e.height);
+		});
+		for (let n = 0; n < 2800; n++) t.fillStyle = `rgba(0,0,0,${Math.random() * .16})`, t.fillRect(Math.random() * e.width, Math.random() * e.height, Math.random() * 2 + .5, Math.random() * 2 + .5);
+		let r = new Sa(e);
+		return r.wrapS = r.wrapT = s, r.repeat.set(2, 1.28), r;
 	}
 	createBlueprintPaperTexture() {
 		let e = document.createElement("canvas");
-		e.width = 1024, e.height = 640;
-		let t = e.getContext("2d");
-		t.fillStyle = "#b89155", t.fillRect(0, 0, 1024, 640), t.fillStyle = "rgba(70,45,20,.12)";
-		for (let e = 0; e < 6e3; e++) t.fillRect(Math.random() * 1024, Math.random() * 640, 1, 1);
-		t.strokeStyle = "rgba(49,70,69,.34)", t.lineWidth = 1;
-		for (let e = 40; e < 1024; e += 80) t.beginPath(), t.moveTo(e, 40), t.lineTo(e, 600), t.stroke();
-		for (let e = 40; e < 640; e += 80) t.beginPath(), t.moveTo(40, e), t.lineTo(984, e), t.stroke();
-		t.strokeStyle = "rgba(38,49,47,.52)";
-		for (let e = 0; e < 9; e++) {
-			let n = 130 + e * 95, r = 110 + e % 3 * 130;
-			t.strokeRect(n, r, 58, 38), t.beginPath(), t.arc(n + 28, r + 72, 26, 0, Math.PI * 2), t.stroke();
+		e.width = 1400, e.height = 900;
+		let t = e.getContext("2d"), n = t.createRadialGradient(e.width * .5, e.height * .42, 50, e.width * .5, e.height * .42, e.width * .68);
+		n.addColorStop(0, "#d4aa68"), n.addColorStop(.52, "#b87936"), n.addColorStop(1, "#6c3a13"), t.fillStyle = n, t.fillRect(0, 0, e.width, e.height);
+		for (let n = 0; n < 14e3; n++) {
+			let n = Math.floor(80 + Math.random() * 80);
+			t.fillStyle = `rgba(${n},${Math.floor(n * .65)},${Math.floor(n * .28)},${Math.random() * .09})`, t.fillRect(Math.random() * e.width, Math.random() * e.height, 1, 1);
 		}
-		t.font = "700 28px Courier New, monospace", t.fillStyle = "rgba(45,31,18,.56)", t.fillText("SCHEMATIC v0.9", 410, 560);
-		let n = new Sa(e);
-		return n.anisotropy = 4, n;
+		t.strokeStyle = "rgba(50,34,16,.34)", t.lineWidth = 2;
+		for (let n = 70; n < e.width; n += 110) t.beginPath(), t.moveTo(n, 55), t.lineTo(n, e.height - 65), t.stroke();
+		for (let n = 70; n < e.height; n += 105) t.beginPath(), t.moveTo(55, n), t.lineTo(e.width - 55, n), t.stroke();
+		t.strokeStyle = "rgba(34,24,13,.46)", t.lineWidth = 2;
+		for (let e = 0; e < 18; e++) {
+			let n = 110 + e % 6 * 205, r = 110 + Math.floor(e / 6) * 210;
+			t.strokeRect(n, r, 70, 48), t.beginPath(), t.arc(n + 40, r + 96, 36, 0, Math.PI * 2), t.stroke(), t.beginPath(), t.moveTo(n - 18, r + 24), t.lineTo(n + 110, r + 24), t.stroke();
+		}
+		t.fillStyle = "rgba(53,31,11,.20)", t.font = "900 74px Courier New, monospace", t.textAlign = "center", t.fillText("SCHEMATIC v0.9", e.width / 2, e.height - 105);
+		let r = new Sa(e);
+		return r.anisotropy = 4, r;
 	}
 	createPaperRollTexture() {
 		let e = document.createElement("canvas");
@@ -15192,32 +15204,37 @@ var wf = {
 			active: !1,
 			unlockedLevel: i
 		};
-		let o = this.createOxidizedMetalMaterial(10511410, 2757640, .05), s = new X(new Oa(r, r, .18, 64), o);
+		let o = this.createOxidizedMetalMaterial(11563064, 2823688, .035), s = new X(new Oa(r, r, .18, 64), o);
 		s.rotation.x = Math.PI / 2, s.userData = { gearId: e }, a.add(s);
-		let c = new X(new ao(r * .48, .035, 10, 48), this.createOxidizedMetalMaterial(13670997, 3809547, .03));
+		let c = new X(new ao(r * .48, .035, 10, 48), this.createOxidizedMetalMaterial(14723938, 3875597, .018));
 		c.position.z = .105, a.add(c);
-		let l = new X(new ao(r * .86, .045, 10, 64), this.createOxidizedMetalMaterial(11635279, 3350797, .022));
+		let l = new X(new ao(r * .86, .045, 10, 64), this.createOxidizedMetalMaterial(13015641, 3350797, .014));
 		l.position.z = .115, a.add(l);
-		let u = this.createOxidizedMetalMaterial(11168312, 2889224, .035), d = Math.max(14, Math.round(r * 24));
+		let u = this.createOxidizedMetalMaterial(3873549, 525057, 0), d = r > .9 ? 8 : 6;
 		for (let t = 0; t < d; t++) {
-			let n = t / d * Math.PI * 2, i = new X(new Ea(r * .12, r * .24, .16), u);
+			let n = t / d * Math.PI * 2, i = new X(new Ea(r * .62, .045, .055), u);
+			i.position.set(Math.cos(n) * r * .28, Math.sin(n) * r * .28, .145), i.rotation.z = n, i.userData = { gearId: e }, a.add(i);
+		}
+		let f = this.createOxidizedMetalMaterial(12352063, 3020552, .025), p = Math.max(14, Math.round(r * 24));
+		for (let t = 0; t < p; t++) {
+			let n = t / p * Math.PI * 2, i = new X(new Ea(r * .12, r * .24, .16), f);
 			i.position.set(Math.cos(n) * r * 1.02, Math.sin(n) * r * 1.02, 0), i.rotation.z = n, i.userData = { gearId: e }, a.add(i);
 		}
-		let f = this.createTextSprite(t, "#fff4d2", "rgba(38,22,10,0.72)", 1.2);
-		f.position.set(0, 0, .32), f.scale.set(r * 1.35, r * .36, 1), a.add(f), a.traverse((e) => {
+		let m = this.createTextSprite(t, "#fff0c4", "rgba(28,16,8,0.82)", 1.2);
+		m.position.set(0, 0, .32), m.scale.set(r * 1.35, r * .36, 1), a.add(m), a.traverse((e) => {
 			let t = e;
 			t.isMesh && (t.castShadow = !0, t.receiveShadow = !0);
 		}), this.gearRaycastObjects.push(a), this.gearGroup.add(a);
-		let p = this.createGearHitProxy(e, n.clone(), r * 1.12);
+		let h = this.createGearHitProxy(e, n.clone(), r * 1.12);
 		this.gears.push({
 			id: e,
 			group: a,
-			hit: p,
+			hit: h,
 			anchor: n.clone(),
 			eventType: Df[e],
 			unlockedLevel: i,
 			active: !1,
-			label: f
+			label: m
 		});
 	}
 	createEngageDial() {

@@ -118,11 +118,11 @@ export class SpatialRenderer {
     this.scene.add(this.gaugeGroup);
     this.applyCameraProfile(this.profile, true);
 
-    const ambient = new THREE.AmbientLight(0x8a6a45, 0.58);
-    const lamp = new THREE.SpotLight(0xffc477, 11.5, 58, Math.PI / 4.8, 0.62, 1.18);
+    const ambient = new THREE.AmbientLight(0x7a5a36, 0.36);
+    const lamp = new THREE.SpotLight(0xffc06a, 13.8, 62, Math.PI / 4.6, 0.55, 1.08);
     lamp.position.set(4.9, 3.45, 5.2);
     lamp.target.position.set(0.4, -0.25, -1.65);
-    const cyanEdge = new THREE.PointLight(0x6ef4e5, 0.22, 12, 2.8);
+    const cyanEdge = new THREE.PointLight(0x6ef4e5, 0.14, 10, 3.0);
     cyanEdge.position.set(-2.8, -0.8, 2.2);
     const lowFill = new THREE.PointLight(0x24160b, 0.85, 24, 2.0);
     lowFill.position.set(0, -4, 4);
@@ -134,7 +134,7 @@ export class SpatialRenderer {
     this.scene.background = this.createWoodTexture();
     this.composer = new EffectComposer(this.renderer);
     this.composer.addPass(new RenderPass(this.scene, this.camera));
-    this.bloomPass = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.08, 0.55, 0.94);
+    this.bloomPass = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.045, 0.42, 0.96);
     this.composer.addPass(this.bloomPass);
 
     this.createWorkstationEnvironment();
@@ -440,7 +440,7 @@ export class SpatialRenderer {
     const paper = new THREE.Mesh(
       new THREE.PlaneGeometry(13.6, 9.4, 1, 1),
       new THREE.MeshStandardMaterial({
-        color: 0xc08a4d,
+        color: 0xd0a061,
         map: this.createBlueprintPaperTexture(),
         roughnessMap: this.createBlueprintPaperTexture(),
         normalMap: this.createPaperNormalTexture(),
@@ -482,10 +482,10 @@ export class SpatialRenderer {
     lampShade.position.set(4.65, 2.75, -0.62);
     this.workstationGroup.add(lampBase, lampOrb, lampShade);
 
-    const title = this.createTextSprite('BLUEPRINT // NAV', '#2e2114', 'rgba(173,134,78,0.72)', 1.0);
+    const title = this.createTextSprite('BLUEPRINT // NAV', '#24170b', 'rgba(196,145,78,0.86)', 1.0);
     title.position.set(-4.28, 3.62, -1.08);
     title.scale.set(2.55, 0.36, 1);
-    const schematic = this.createTextSprite('SCHEMATIC  v0.9', '#2e2114', 'rgba(38,28,18,0.82)', 1.05);
+    const schematic = this.createTextSprite('SCHEMATIC  v0.9', '#efe0bd', 'rgba(45,29,15,0.90)', 1.05);
     schematic.position.set(0, -3.92, -1.06);
     schematic.scale.set(2.35, 0.42, 1);
     this.workstationGroup.add(title, schematic);
@@ -498,8 +498,8 @@ export class SpatialRenderer {
 
 
   private createEtchedOrnaments(): void {
-    const mat = this.createOxidizedMetalMaterial(0x3a2816, 0x0b0502, 0.0);
-    const lineMat = new THREE.MeshStandardMaterial({ color: 0x2c1d10, emissive: 0x060302, metalness: 0.45, roughness: 0.64 });
+    const mat = this.createOxidizedMetalMaterial(0x6f4a2a, 0x140a04, 0.0);
+    const lineMat = new THREE.MeshStandardMaterial({ color: 0x5a391c, emissive: 0x0a0401, metalness: 0.55, roughness: 0.58 });
     const corners: [number, number, number][] = [[-4.95, 2.38, 0], [4.95, 2.38, Math.PI / 2], [-4.95, -2.78, -Math.PI / 2], [4.95, -2.78, Math.PI]];
     corners.forEach(([x, y, r]) => {
       const torus = new THREE.Mesh(new THREE.TorusGeometry(0.42, 0.018, 8, 38, Math.PI * 1.35), mat);
@@ -513,10 +513,10 @@ export class SpatialRenderer {
         this.workstationGroup.add(strip);
       }
     });
-    const cableMat = this.createOxidizedMetalMaterial(0x21150b, 0x050201, 0.0);
+    const cableMat = this.createOxidizedMetalMaterial(0x5c3819, 0x0b0401, 0.0);
     const points = [new THREE.Vector3(-5.2, -2.8, -0.98), new THREE.Vector3(-3.5, -3.05, -0.98), new THREE.Vector3(-1.3, -2.72, -0.98), new THREE.Vector3(0, -3.05, -0.98), new THREE.Vector3(1.9, -2.84, -0.98), new THREE.Vector3(4.9, -3.0, -0.98)];
     const curve = new THREE.CatmullRomCurve3(points);
-    this.workstationGroup.add(new THREE.Mesh(new THREE.TubeGeometry(curve, 64, 0.018, 6, false), cableMat));
+    this.workstationGroup.add(new THREE.Mesh(new THREE.TubeGeometry(curve, 64, 0.010, 6, false), cableMat));
   }
 
   private createOxidizedMetalMaterial(color: number, emissive: number, cyanCatch = 0.04): THREE.MeshStandardMaterial {
@@ -595,38 +595,56 @@ export class SpatialRenderer {
 
   private createWoodTexture(): THREE.CanvasTexture {
     const canvas = document.createElement('canvas');
-    canvas.width = 512; canvas.height = 512;
+    canvas.width = 768; canvas.height = 768;
     const ctx = canvas.getContext('2d')!;
-    ctx.fillStyle = '#1b1209'; ctx.fillRect(0,0,512,512);
-    for (let y=0;y<512;y++) {
-      const n = Math.sin(y * 0.045) * 12 + Math.sin(y * 0.013) * 18;
-      ctx.fillStyle = `rgba(${55+n},${34+n*0.35},${15},0.28)`;
-      ctx.fillRect(0,y,512,1);
+    const base = ctx.createLinearGradient(0, 0, 0, canvas.height);
+    base.addColorStop(0, '#241207');
+    base.addColorStop(0.45, '#3b210f');
+    base.addColorStop(1, '#160b04');
+    ctx.fillStyle = base;
+    ctx.fillRect(0,0,canvas.width,canvas.height);
+    for (let y=0;y<canvas.height;y++) {
+      const n = Math.sin(y * 0.034) * 16 + Math.sin(y * 0.009) * 28;
+      ctx.fillStyle = `rgba(${62+n},${34+n*0.34},${14+n*0.08},0.22)`;
+      ctx.fillRect(0,y,canvas.width,1);
     }
-    for (let i=0;i<1500;i++) {
-      ctx.fillStyle = `rgba(0,0,0,${Math.random()*0.18})`;
-      ctx.fillRect(Math.random()*512, Math.random()*512, Math.random()*2+0.5, Math.random()*2+0.5);
+    [120, 270, 430, 585, 710].forEach((x) => {
+      ctx.fillStyle = 'rgba(5,2,1,.42)'; ctx.fillRect(x-2,0,4,canvas.height);
+      ctx.fillStyle = 'rgba(105,64,25,.14)'; ctx.fillRect(x+8,0,1,canvas.height);
+    });
+    for (let i=0;i<2800;i++) {
+      ctx.fillStyle = `rgba(0,0,0,${Math.random()*0.16})`;
+      ctx.fillRect(Math.random()*canvas.width, Math.random()*canvas.height, Math.random()*2+0.5, Math.random()*2+0.5);
     }
-    const texture = new THREE.CanvasTexture(canvas); texture.wrapS = texture.wrapT = THREE.RepeatWrapping; texture.repeat.set(2.2,1.4); return texture;
+    const texture = new THREE.CanvasTexture(canvas); texture.wrapS = texture.wrapT = THREE.RepeatWrapping; texture.repeat.set(2.0,1.28); return texture;
   }
 
   private createBlueprintPaperTexture(): THREE.CanvasTexture {
     const canvas = document.createElement('canvas');
-    canvas.width = 1024; canvas.height = 640;
+    canvas.width = 1400; canvas.height = 900;
     const ctx = canvas.getContext('2d')!;
-    ctx.fillStyle = '#b89155'; ctx.fillRect(0,0,1024,640);
-    ctx.fillStyle = 'rgba(70,45,20,.12)';
-    for (let i=0;i<6000;i++) ctx.fillRect(Math.random()*1024, Math.random()*640, 1, 1);
-    ctx.strokeStyle = 'rgba(49,70,69,.34)'; ctx.lineWidth = 1;
-    for (let x=40;x<1024;x+=80) { ctx.beginPath(); ctx.moveTo(x,40); ctx.lineTo(x,600); ctx.stroke(); }
-    for (let y=40;y<640;y+=80) { ctx.beginPath(); ctx.moveTo(40,y); ctx.lineTo(984,y); ctx.stroke(); }
-    ctx.strokeStyle = 'rgba(38,49,47,.52)';
-    for (let i=0;i<9;i++) {
-      const cx = 130 + i*95, cy = 110 + (i%3)*130;
-      ctx.strokeRect(cx, cy, 58, 38);
-      ctx.beginPath(); ctx.arc(cx+28, cy+72, 26, 0, Math.PI*2); ctx.stroke();
+    const g = ctx.createRadialGradient(canvas.width*.50, canvas.height*.42, 50, canvas.width*.50, canvas.height*.42, canvas.width*.68);
+    g.addColorStop(0, '#d4aa68');
+    g.addColorStop(0.52, '#b87936');
+    g.addColorStop(1, '#6c3a13');
+    ctx.fillStyle = g; ctx.fillRect(0,0,canvas.width,canvas.height);
+    for (let i=0;i<14000;i++) {
+      const shade = Math.floor(80 + Math.random()*80);
+      ctx.fillStyle = `rgba(${shade},${Math.floor(shade*.65)},${Math.floor(shade*.28)},${Math.random()*0.09})`;
+      ctx.fillRect(Math.random()*canvas.width, Math.random()*canvas.height, 1, 1);
     }
-    ctx.font = '700 28px Courier New, monospace'; ctx.fillStyle = 'rgba(45,31,18,.56)'; ctx.fillText('SCHEMATIC v0.9', 410, 560);
+    ctx.strokeStyle = 'rgba(50,34,16,.34)'; ctx.lineWidth = 2;
+    for (let x=70;x<canvas.width;x+=110) { ctx.beginPath(); ctx.moveTo(x,55); ctx.lineTo(x,canvas.height-65); ctx.stroke(); }
+    for (let y=70;y<canvas.height;y+=105) { ctx.beginPath(); ctx.moveTo(55,y); ctx.lineTo(canvas.width-55,y); ctx.stroke(); }
+    ctx.strokeStyle = 'rgba(34,24,13,.46)'; ctx.lineWidth = 2;
+    for (let i=0;i<18;i++) {
+      const cx = 110 + (i%6)*205, cy = 110 + Math.floor(i/6)*210;
+      ctx.strokeRect(cx, cy, 70, 48);
+      ctx.beginPath(); ctx.arc(cx+40, cy+96, 36, 0, Math.PI*2); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(cx-18, cy+24); ctx.lineTo(cx+110, cy+24); ctx.stroke();
+    }
+    ctx.fillStyle = 'rgba(53,31,11,.20)';
+    ctx.font = '900 74px Courier New, monospace'; ctx.textAlign = 'center'; ctx.fillText('SCHEMATIC v0.9', canvas.width/2, canvas.height-105);
     const texture = new THREE.CanvasTexture(canvas); texture.anisotropy = 4; return texture;
   }
 
@@ -662,21 +680,32 @@ export class SpatialRenderer {
     group.position.copy(position);
     group.userData = { gearId: id, active: false, unlockedLevel };
 
-    const bodyMat = this.createOxidizedMetalMaterial(0xa06432, 0x2a1408, 0.05);
+    const bodyMat = this.createOxidizedMetalMaterial(0xb07038, 0x2b1608, 0.035);
     const face = new THREE.Mesh(new THREE.CylinderGeometry(radius, radius, 0.18, 64), bodyMat);
     face.rotation.x = Math.PI / 2;
     face.userData = { gearId: id };
     group.add(face);
 
-    const inner = new THREE.Mesh(new THREE.TorusGeometry(radius * 0.48, 0.035, 10, 48), this.createOxidizedMetalMaterial(0xd09a55, 0x3a210b, 0.03));
+    const inner = new THREE.Mesh(new THREE.TorusGeometry(radius * 0.48, 0.035, 10, 48), this.createOxidizedMetalMaterial(0xe0ab62, 0x3b230d, 0.018));
     inner.position.z = 0.105;
     group.add(inner);
 
-    const outer = new THREE.Mesh(new THREE.TorusGeometry(radius * 0.86, 0.045, 10, 64), this.createOxidizedMetalMaterial(0xb18a4f, 0x33210d, 0.022));
+    const outer = new THREE.Mesh(new THREE.TorusGeometry(radius * 0.86, 0.045, 10, 64), this.createOxidizedMetalMaterial(0xc69a59, 0x33210d, 0.014));
     outer.position.z = 0.115;
     group.add(outer);
 
-    const toothMat = this.createOxidizedMetalMaterial(0xaa6a38, 0x2c1608, 0.035);
+    const spokeMat = this.createOxidizedMetalMaterial(0x3b1b0d, 0x080301, 0.0);
+    const spokeCount = radius > 0.9 ? 8 : 6;
+    for (let i = 0; i < spokeCount; i++) {
+      const a = (i / spokeCount) * Math.PI * 2;
+      const spoke = new THREE.Mesh(new THREE.BoxGeometry(radius * 0.62, 0.045, 0.055), spokeMat);
+      spoke.position.set(Math.cos(a) * radius * 0.28, Math.sin(a) * radius * 0.28, 0.145);
+      spoke.rotation.z = a;
+      spoke.userData = { gearId: id };
+      group.add(spoke);
+    }
+
+    const toothMat = this.createOxidizedMetalMaterial(0xbc7a3f, 0x2e1708, 0.025);
     const toothCount = Math.max(14, Math.round(radius * 24));
     for (let i = 0; i < toothCount; i++) {
       const a = (i / toothCount) * Math.PI * 2;
@@ -687,7 +716,7 @@ export class SpatialRenderer {
       group.add(tooth);
     }
 
-    const labelSprite = this.createTextSprite(label, '#fff4d2', 'rgba(38,22,10,0.72)', 1.2);
+    const labelSprite = this.createTextSprite(label, '#fff0c4', 'rgba(28,16,8,0.82)', 1.2);
     labelSprite.position.set(0, 0, 0.32);
     labelSprite.scale.set(radius * 1.35, radius * 0.36, 1);
     group.add(labelSprite);
