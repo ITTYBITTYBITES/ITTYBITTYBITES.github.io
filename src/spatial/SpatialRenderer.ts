@@ -100,13 +100,13 @@ export class SpatialRenderer {
     private liveRegion?: HTMLElement | null,
     private onGearSelected?: (gear: GearId) => void
   ) {
-    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' });
+    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    this.renderer.setClearColor(0x120b05, 1);
+    this.renderer.setClearColor(0x000000, 0);
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
-    this.renderer.toneMappingExposure = 0.92;
+    this.renderer.toneMappingExposure = 1.42;
     this.renderer.domElement.className = 'kernel-spatial-webgl';
     this.renderer.domElement.setAttribute('aria-label', 'Liquid Memory generative spatial ecosystem');
     this.host.appendChild(this.renderer.domElement);
@@ -118,20 +118,20 @@ export class SpatialRenderer {
     this.scene.add(this.gaugeGroup);
     this.applyCameraProfile(this.profile, true);
 
-    const ambient = new THREE.AmbientLight(0x7a5a36, 0.36);
-    const lamp = new THREE.SpotLight(0xffc06a, 13.8, 62, Math.PI / 4.6, 0.55, 1.08);
-    lamp.position.set(4.9, 3.45, 5.2);
+    const ambient = new THREE.AmbientLight(0xb88a58, 0.82);
+    const lamp = new THREE.SpotLight(0xffc06a, 18.5, 68, Math.PI / 4.4, 0.6, 0.95);
+    lamp.position.set(3.9, 2.9, 6.2);
     lamp.target.position.set(0.4, -0.25, -1.65);
     const cyanEdge = new THREE.PointLight(0x6ef4e5, 0.14, 10, 3.0);
     cyanEdge.position.set(-2.8, -0.8, 2.2);
-    const lowFill = new THREE.PointLight(0x24160b, 0.85, 24, 2.0);
+    const lowFill = new THREE.PointLight(0x6a4120, 1.55, 30, 1.8);
     lowFill.position.set(0, -4, 4);
     lamp.castShadow = true;
     lamp.shadow.mapSize.set(2048, 2048);
     lamp.shadow.bias = -0.00035;
     this.scene.add(ambient, lamp, lamp.target, cyanEdge, lowFill);
     this.scene.environment = this.createEnvironmentTexture();
-    this.scene.background = this.createWoodTexture();
+    this.scene.background = null;
     this.composer = new EffectComposer(this.renderer);
     this.composer.addPass(new RenderPass(this.scene, this.camera));
     this.bloomPass = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.045, 0.42, 0.96);
@@ -283,6 +283,19 @@ export class SpatialRenderer {
     if (instant) this.gearGroup.position.copy(gearTarget);
     else this.gearGroup.position.lerp(gearTarget, 0.35);
     this.layoutGauges(profile.gaugeMode);
+    this.updateShadowMode(profile);
+  }
+
+  private updateShadowMode(profile: ResponsiveProfile): void {
+    const mobile = profile.kind === 'mobile';
+    this.gearGroup.traverse((obj) => {
+      const mesh = obj as THREE.Mesh;
+      if (mesh.isMesh) mesh.castShadow = !mobile;
+    });
+    this.biomeGroup.traverse((obj) => {
+      const mesh = obj as THREE.Mesh;
+      if (mesh.isMesh) mesh.castShadow = false;
+    });
   }
 
   private applyCameraProfile(profile: ResponsiveProfile, instant = false): void {
@@ -290,7 +303,7 @@ export class SpatialRenderer {
       ? new THREE.Vector3(0, -0.85, 14.8)
       : new THREE.Vector3(0, -0.42, 13.2);
     const zoom = profile.kind === 'mobile'
-      ? (profile.orientation === 'portrait' ? 0.74 : 0.64)
+      ? (profile.orientation === 'portrait' ? 0.66 : 0.60)
       : profile.kind === 'tablet'
         ? (profile.orientation === 'portrait' ? 0.62 : 0.88)
         : 1.08;
@@ -358,6 +371,7 @@ export class SpatialRenderer {
         if (mesh.isMesh) {
           mesh.castShadow = true;
           mesh.receiveShadow = true;
+          this.tuneImportedMaterial(mesh);
           const gearId = this.inferGearIdFromName(mesh.name);
           if (gearId) {
             mesh.userData.gearId = gearId;
@@ -384,6 +398,30 @@ export class SpatialRenderer {
       console.warn('[SpatialRenderer] Workstation GLB failed; using procedural fallback.', error);
       this.renderProceduralWorkstation();
     }
+  }
+
+  private tuneImportedMaterial(mesh: THREE.Mesh): void {
+    const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+    materials.forEach((material) => {
+      const mat = material as THREE.MeshStandardMaterial;
+      if (!mat) return;
+      const name = `${mat.name || ''} ${mesh.name || ''}`.toLowerCase();
+      if (name.includes('paper') || name.includes('parchment') || name.includes('blueprint')) {
+        mat.color.set(0xffc87a);
+        mat.emissive = new THREE.Color(0x4c2608);
+        mat.emissiveIntensity = 0.10;
+        mat.roughness = 0.92;
+      } else if (name.includes('bronze') || name.includes('brass') || name.includes('gear')) {
+        mat.color.offsetHSL(0, 0.06, 0.10);
+        mat.emissive = new THREE.Color(0x2a1205);
+        mat.emissiveIntensity = 0.08;
+        mat.roughness = Math.min(0.72, Math.max(0.42, mat.roughness ?? 0.55));
+      } else if (name.includes('wood') || name.includes('desk')) {
+        mat.color.offsetHSL(0, 0.02, 0.06);
+        mat.roughness = 0.82;
+      }
+      mat.needsUpdate = true;
+    });
   }
 
   private renderProceduralWorkstation(): void {
@@ -624,9 +662,9 @@ export class SpatialRenderer {
     canvas.width = 1400; canvas.height = 900;
     const ctx = canvas.getContext('2d')!;
     const g = ctx.createRadialGradient(canvas.width*.50, canvas.height*.42, 50, canvas.width*.50, canvas.height*.42, canvas.width*.68);
-    g.addColorStop(0, '#d4aa68');
-    g.addColorStop(0.52, '#b87936');
-    g.addColorStop(1, '#6c3a13');
+    g.addColorStop(0, '#c79455');
+    g.addColorStop(0.54, '#9a642d');
+    g.addColorStop(1, '#4b2a10');
     ctx.fillStyle = g; ctx.fillRect(0,0,canvas.width,canvas.height);
     for (let i=0;i<14000;i++) {
       const shade = Math.floor(80 + Math.random()*80);

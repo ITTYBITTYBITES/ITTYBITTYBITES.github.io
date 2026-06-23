@@ -14770,15 +14770,15 @@ var wf = {
 			this.composer.render(), this.rafId = requestAnimationFrame(this.animate);
 		}, this.renderer = new cd({
 			antialias: !0,
-			alpha: !1,
+			alpha: !0,
 			powerPreference: "high-performance"
-		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(1182469, 1), this.renderer.shadowMap.enabled = !0, this.renderer.shadowMap.type = 2, this.renderer.toneMapping = 4, this.renderer.toneMappingExposure = .92, this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.scene.add(this.workstationGroup), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.applyCameraProfile(this.profile, !0);
-		let r = new vs(8018486, .36), i = new fs(16760938, 13.8, 62, Math.PI / 4.6, .55, 1.08);
-		i.position.set(4.9, 3.45, 5.2), i.target.position.set(.4, -.25, -1.65);
+		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(0, 0), this.renderer.shadowMap.enabled = !0, this.renderer.shadowMap.type = 2, this.renderer.toneMapping = 4, this.renderer.toneMappingExposure = 1.42, this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.scene.add(this.workstationGroup), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.applyCameraProfile(this.profile, !0);
+		let r = new vs(12094040, .82), i = new fs(16760938, 18.5, 68, Math.PI / 4.4, .6, .95);
+		i.position.set(3.9, 2.9, 6.2), i.target.position.set(.4, -.25, -1.65);
 		let a = new ms(7271653, .14, 10, 3);
 		a.position.set(-2.8, -.8, 2.2);
-		let o = new ms(2364939, .85, 24, 2);
-		o.position.set(0, -4, 4), i.castShadow = !0, i.shadow.mapSize.set(2048, 2048), i.shadow.bias = -35e-5, this.scene.add(r, i, i.target, a, o), this.scene.environment = this.createEnvironmentTexture(), this.scene.background = this.createWoodTexture(), this.composer = new _d(this.renderer), this.composer.addPass(new vd(this.scene, this.camera)), this.bloomPass = new bd(new U(1, 1), .045, .42, .96), this.composer.addPass(this.bloomPass), this.createWorkstationEnvironment(), this.createBlueprintGearRig(), this.loadWorkstationAsset(), this.createGauges(), this.createEngageDial(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
+		let o = new ms(6963488, 1.55, 30, 1.8);
+		o.position.set(0, -4, 4), i.castShadow = !0, i.shadow.mapSize.set(2048, 2048), i.shadow.bias = -35e-5, this.scene.add(r, i, i.target, a, o), this.scene.environment = this.createEnvironmentTexture(), this.scene.background = null, this.composer = new _d(this.renderer), this.composer.addPass(new vd(this.scene, this.camera)), this.bloomPass = new bd(new U(1, 1), .045, .42, .96), this.composer.addPass(this.bloomPass), this.createWorkstationEnvironment(), this.createBlueprintGearRig(), this.loadWorkstationAsset(), this.createGauges(), this.createEngageDial(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
 	}
 	handle(e) {
 		if (e.type === "system.heartbeat" && this.nodes.length > 0) return;
@@ -14862,10 +14862,20 @@ var wf = {
 	applyResponsiveProfile(e, t = !1) {
 		this.profile = e, this.host.dataset.device = `${e.kind}-${e.orientation}`, this.applyCameraProfile(e, t);
 		let n = new W(e.gearPosition.x, e.gearPosition.y, e.gearPosition.z);
-		t ? this.gearGroup.position.copy(n) : this.gearGroup.position.lerp(n, .35), this.layoutGauges(e.gaugeMode);
+		t ? this.gearGroup.position.copy(n) : this.gearGroup.position.lerp(n, .35), this.layoutGauges(e.gaugeMode), this.updateShadowMode(e);
+	}
+	updateShadowMode(e) {
+		let t = e.kind === "mobile";
+		this.gearGroup.traverse((e) => {
+			let n = e;
+			n.isMesh && (n.castShadow = !t);
+		}), this.biomeGroup.traverse((e) => {
+			let t = e;
+			t.isMesh && (t.castShadow = !1);
+		});
 	}
 	applyCameraProfile(e, t = !1) {
-		let n = e.kind === "mobile" ? new W(0, -.85, 14.8) : new W(0, -.42, 13.2), r = e.kind === "mobile" ? e.orientation === "portrait" ? .74 : .64 : e.kind === "tablet" ? e.orientation === "portrait" ? .62 : .88 : 1.08;
+		let n = e.kind === "mobile" ? new W(0, -.85, 14.8) : new W(0, -.42, 13.2), r = e.kind === "mobile" ? e.orientation === "portrait" ? .66 : .6 : e.kind === "tablet" ? e.orientation === "portrait" ? .62 : .88 : 1.08;
 		this.camera.zoom = r, this.camera.updateProjectionMatrix(), t ? this.camera.position.copy(n) : this.camera.position.lerp(n, .2), this.camera.lookAt(0, -.28, -1.35);
 	}
 	layoutGauges(e) {
@@ -14912,7 +14922,7 @@ var wf = {
 				e.name?.startsWith("anchor_") && (this.modelAnchors.set(e.name, e), e.visible = !1);
 				let t = e;
 				if (t.isMesh) {
-					t.castShadow = !0, t.receiveShadow = !0;
+					t.castShadow = !0, t.receiveShadow = !0, this.tuneImportedMaterial(t);
 					let e = this.inferGearIdFromName(t.name);
 					e && (t.userData.gearId = e, t.visible = !1);
 				}
@@ -14946,6 +14956,14 @@ var wf = {
 		} catch (e) {
 			console.warn("[SpatialRenderer] Workstation GLB failed; using procedural fallback.", e), this.renderProceduralWorkstation();
 		}
+	}
+	tuneImportedMaterial(e) {
+		(Array.isArray(e.material) ? e.material : [e.material]).forEach((t) => {
+			let n = t;
+			if (!n) return;
+			let r = `${n.name || ""} ${e.name || ""}`.toLowerCase();
+			r.includes("paper") || r.includes("parchment") || r.includes("blueprint") ? (n.color.set(16763002), n.emissive = new J(4990472), n.emissiveIntensity = .1, n.roughness = .92) : r.includes("bronze") || r.includes("brass") || r.includes("gear") ? (n.color.offsetHSL(0, .06, .1), n.emissive = new J(2757125), n.emissiveIntensity = .08, n.roughness = Math.min(.72, Math.max(.42, n.roughness ?? .55))) : (r.includes("wood") || r.includes("desk")) && (n.color.offsetHSL(0, .02, .06), n.roughness = .82), n.needsUpdate = !0;
+		});
 	}
 	renderProceduralWorkstation() {
 		this.workstationFallbackActive = !0, this.workstationModelLoaded = !1, this.host.dataset.workstationModel = "procedural-fallback", this.createWorkstationEnvironment();
@@ -15161,7 +15179,7 @@ var wf = {
 		let e = document.createElement("canvas");
 		e.width = 1400, e.height = 900;
 		let t = e.getContext("2d"), n = t.createRadialGradient(e.width * .5, e.height * .42, 50, e.width * .5, e.height * .42, e.width * .68);
-		n.addColorStop(0, "#d4aa68"), n.addColorStop(.52, "#b87936"), n.addColorStop(1, "#6c3a13"), t.fillStyle = n, t.fillRect(0, 0, e.width, e.height);
+		n.addColorStop(0, "#c79455"), n.addColorStop(.54, "#9a642d"), n.addColorStop(1, "#4b2a10"), t.fillStyle = n, t.fillRect(0, 0, e.width, e.height);
 		for (let n = 0; n < 14e3; n++) {
 			let n = Math.floor(80 + Math.random() * 80);
 			t.fillStyle = `rgba(${n},${Math.floor(n * .65)},${Math.floor(n * .28)},${Math.random() * .09})`, t.fillRect(Math.random() * e.width, Math.random() * e.height, 1, 1);
