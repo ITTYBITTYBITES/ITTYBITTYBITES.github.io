@@ -1,0 +1,467 @@
+{
+  "generatedAt": "2026-06-23T22:01:53.116Z",
+  "results": [
+    {
+      "id": "cyber-vector",
+      "title": "3D Cyber Vector Grid Hover-Racer",
+      "path": "games/cyber-vector/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 1,
+      "completionListenerCount": 0,
+      "parentPostMessage": true,
+      "rewardTypeCount": 0,
+      "interstitialTypeCount": 1,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger.",
+        "1 interstitial trigger(s)"
+      ]
+    },
+    {
+      "id": "neon-polygon",
+      "title": "3D Neon Geometric Defender",
+      "path": "games/neon-polygon/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 2,
+      "completionListenerCount": 0,
+      "parentPostMessage": true,
+      "rewardTypeCount": 1,
+      "interstitialTypeCount": 1,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger.",
+        "1 rewarded trigger(s)",
+        "1 interstitial trigger(s)"
+      ]
+    },
+    {
+      "id": "quantum-breakout",
+      "title": "3D Particle Breakout Engine",
+      "path": "games/quantum-breakout/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 1,
+      "completionListenerCount": 0,
+      "parentPostMessage": true,
+      "rewardTypeCount": 0,
+      "interstitialTypeCount": 1,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger.",
+        "1 interstitial trigger(s)"
+      ]
+    },
+    {
+      "id": "attentional-blink",
+      "title": "Attentional Blink Assessor",
+      "path": "games/attentional-blink/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 1,
+      "completionListenerCount": 0,
+      "parentPostMessage": true,
+      "rewardTypeCount": 1,
+      "interstitialTypeCount": 0,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger.",
+        "1 rewarded trigger(s)"
+      ]
+    },
+    {
+      "id": "cosmic-tunnel",
+      "title": "Cosmic Tunnel 3D",
+      "path": "games/cosmic-tunnel/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 1,
+      "completionListenerCount": 1,
+      "parentPostMessage": true,
+      "rewardTypeCount": 0,
+      "interstitialTypeCount": 1,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present.",
+        "1 interstitial trigger(s)"
+      ]
+    },
+    {
+      "id": "hover-drone",
+      "title": "Cyber Flappy Hover-Drone",
+      "path": "games/hover-drone/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 0,
+      "completionListenerCount": 0,
+      "parentPostMessage": false,
+      "rewardTypeCount": 0,
+      "interstitialTypeCount": 0,
+      "status": "No Reward Hook",
+      "notes": [
+        "No ARCADE_TRIGGER_AD event found; monetization bridge not exercised by this game yet."
+      ]
+    },
+    {
+      "id": "cyber-snake",
+      "title": "Cyber Snake 2026",
+      "path": "games/cyber-snake/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 1,
+      "completionListenerCount": 0,
+      "parentPostMessage": true,
+      "rewardTypeCount": 1,
+      "interstitialTypeCount": 0,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger.",
+        "1 rewarded trigger(s)"
+      ]
+    },
+    {
+      "id": "cyber-mines",
+      "title": "Cyber Sweeper Sentinel",
+      "path": "games/cyber-mines/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 1,
+      "completionListenerCount": 0,
+      "parentPostMessage": true,
+      "rewardTypeCount": 0,
+      "interstitialTypeCount": 1,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger.",
+        "1 interstitial trigger(s)"
+      ]
+    },
+    {
+      "id": "grid-delver",
+      "title": "Grid Delver: 1-Minute Micro-Rogue",
+      "path": "games/grid-delver/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 1,
+      "completionListenerCount": 1,
+      "parentPostMessage": true,
+      "rewardTypeCount": 0,
+      "interstitialTypeCount": 0,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present."
+      ]
+    },
+    {
+      "id": "metronomic-rhythm",
+      "title": "METRONOMIC RHYTHM ANCHOR",
+      "path": "games/metronomic-rhythm/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 1,
+      "completionListenerCount": 0,
+      "parentPostMessage": true,
+      "rewardTypeCount": 1,
+      "interstitialTypeCount": 0,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger.",
+        "1 rewarded trigger(s)"
+      ]
+    },
+    {
+      "id": "nback-sentinel",
+      "title": "N-BACK SENTINEL LOG",
+      "path": "games/nback-sentinel/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 1,
+      "completionListenerCount": 0,
+      "parentPostMessage": true,
+      "rewardTypeCount": 1,
+      "interstitialTypeCount": 0,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger.",
+        "1 rewarded trigger(s)"
+      ]
+    },
+    {
+      "id": "neon-pong",
+      "title": "Neon Cyber Pong 1v1",
+      "path": "games/neon-pong/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 0,
+      "completionListenerCount": 0,
+      "parentPostMessage": false,
+      "rewardTypeCount": 0,
+      "interstitialTypeCount": 0,
+      "status": "No Reward Hook",
+      "notes": [
+        "No ARCADE_TRIGGER_AD event found; monetization bridge not exercised by this game yet."
+      ]
+    },
+    {
+      "id": "orbital-sandbox",
+      "title": "Orbital Gravitational Physics Sandbox",
+      "path": "games/orbital-sandbox/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 1,
+      "completionListenerCount": 0,
+      "parentPostMessage": true,
+      "rewardTypeCount": 0,
+      "interstitialTypeCount": 1,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger.",
+        "1 interstitial trigger(s)"
+      ]
+    },
+    {
+      "id": "quantum-sentinel",
+      "title": "Quantum Sentinel: Fast Spatial Reflex",
+      "path": "games/quantum-sentinel/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 1,
+      "completionListenerCount": 1,
+      "parentPostMessage": true,
+      "rewardTypeCount": 0,
+      "interstitialTypeCount": 0,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present."
+      ]
+    },
+    {
+      "id": "raycasted-doom",
+      "title": "Raycasted 3D Doom Labyrinth",
+      "path": "games/raycasted-doom/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 1,
+      "completionListenerCount": 0,
+      "parentPostMessage": true,
+      "rewardTypeCount": 0,
+      "interstitialTypeCount": 1,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger.",
+        "1 interstitial trigger(s)"
+      ]
+    },
+    {
+      "id": "gravity-slingshot",
+      "title": "Relivistic Space Slingshot",
+      "path": "games/gravity-slingshot/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 1,
+      "completionListenerCount": 0,
+      "parentPostMessage": true,
+      "rewardTypeCount": 0,
+      "interstitialTypeCount": 1,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger.",
+        "1 interstitial trigger(s)"
+      ]
+    },
+    {
+      "id": "retro-breakout",
+      "title": "Retro Cyber Neon Breakout",
+      "path": "games/retro-breakout/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 0,
+      "completionListenerCount": 0,
+      "parentPostMessage": false,
+      "rewardTypeCount": 0,
+      "interstitialTypeCount": 0,
+      "status": "No Reward Hook",
+      "notes": [
+        "No ARCADE_TRIGGER_AD event found; monetization bridge not exercised by this game yet."
+      ]
+    },
+    {
+      "id": "saccadic-target",
+      "title": "SACCADIC TARGET ACQUISITION",
+      "path": "games/saccadic-target/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 1,
+      "completionListenerCount": 0,
+      "parentPostMessage": true,
+      "rewardTypeCount": 0,
+      "interstitialTypeCount": 1,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger.",
+        "1 interstitial trigger(s)"
+      ]
+    },
+    {
+      "id": "shifting-selector",
+      "title": "SHIFTING ATTENTIONAL ATTRIBUTE SELECTOR",
+      "path": "games/shifting-selector/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 1,
+      "completionListenerCount": 0,
+      "parentPostMessage": true,
+      "rewardTypeCount": 0,
+      "interstitialTypeCount": 1,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger.",
+        "1 interstitial trigger(s)"
+      ]
+    },
+    {
+      "id": "signal-detection",
+      "title": "SIGNAL DETECTION FILTER",
+      "path": "games/signal-detection/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 1,
+      "completionListenerCount": 0,
+      "parentPostMessage": true,
+      "rewardTypeCount": 0,
+      "interstitialTypeCount": 1,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger.",
+        "1 interstitial trigger(s)"
+      ]
+    },
+    {
+      "id": "space-asteroids",
+      "title": "Space Asteroids Retro Vector",
+      "path": "games/space-asteroids/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 2,
+      "completionListenerCount": 0,
+      "parentPostMessage": true,
+      "rewardTypeCount": 0,
+      "interstitialTypeCount": 2,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger.",
+        "2 interstitial trigger(s)"
+      ]
+    },
+    {
+      "id": "spatial-matrix",
+      "title": "SPATIAL MATRIX EXPANSION",
+      "path": "games/spatial-matrix/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 1,
+      "completionListenerCount": 0,
+      "parentPostMessage": true,
+      "rewardTypeCount": 0,
+      "interstitialTypeCount": 1,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger.",
+        "1 interstitial trigger(s)"
+      ]
+    },
+    {
+      "id": "stroop-calibrator",
+      "title": "Stroop Interference Calibrator",
+      "path": "games/stroop-calibrator/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 1,
+      "completionListenerCount": 0,
+      "parentPostMessage": true,
+      "rewardTypeCount": 0,
+      "interstitialTypeCount": 1,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger.",
+        "1 interstitial trigger(s)"
+      ]
+    },
+    {
+      "id": "tachistoscope",
+      "title": "TACHISTOSCOPE RECOGNITION MATRIX",
+      "path": "games/tachistoscope/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 1,
+      "completionListenerCount": 0,
+      "parentPostMessage": true,
+      "rewardTypeCount": 1,
+      "interstitialTypeCount": 0,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger.",
+        "1 rewarded trigger(s)"
+      ]
+    },
+    {
+      "id": "tachyon-racer",
+      "title": "Tachyon Hyper-Speed Interceptor",
+      "path": "games/tachyon-racer/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 1,
+      "completionListenerCount": 0,
+      "parentPostMessage": true,
+      "rewardTypeCount": 0,
+      "interstitialTypeCount": 1,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger.",
+        "1 interstitial trigger(s)"
+      ]
+    },
+    {
+      "id": "memory-churn",
+      "title": "WORKING MEMORY CALIBRATION CHURN",
+      "path": "games/memory-churn/index.html",
+      "exists": true,
+      "monetizationBridge": true,
+      "triggerCount": 1,
+      "completionListenerCount": 0,
+      "parentPostMessage": true,
+      "rewardTypeCount": 0,
+      "interstitialTypeCount": 1,
+      "status": "Ready for Manual Reward QA",
+      "notes": [
+        "Trigger hook and direct-page monetization bridge present.",
+        "Game does not explicitly listen for ARCADE_AD_COMPLETE; likely fire-and-forget trigger.",
+        "1 interstitial trigger(s)"
+      ]
+    }
+  ],
+  "summary": {
+    "Ready for Manual Reward QA": 23,
+    "No Reward Hook": 3
+  }
+}
