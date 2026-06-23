@@ -1,0 +1,1601 @@
+{
+  "generatedAt": "2026-06-23T21:04:47.666Z",
+  "base": "http://127.0.0.1:8765/website/",
+  "profiles": [
+    "desktop-1280x800",
+    "mobile-390x844"
+  ],
+  "results": [
+    {
+      "index": 1,
+      "id": "cyber-vector",
+      "title": "3D Cyber Vector Grid Hover-Racer",
+      "path": "games/cyber-vector/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/cyber-vector/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 896,
+                "height": 560,
+                "left": 18,
+                "top": 87,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/cyber-vector/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 354,
+                "height": 221.25,
+                "left": 18,
+                "top": 278.375,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "id": "neon-polygon",
+      "title": "3D Neon Geometric Defender",
+      "path": "games/neon-polygon/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/neon-polygon/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 896,
+                "height": 560,
+                "left": 18,
+                "top": 87,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/neon-polygon/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 354,
+                "height": 221.25,
+                "left": 18,
+                "top": 278.375,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "id": "quantum-breakout",
+      "title": "3D Particle Breakout Engine",
+      "path": "games/quantum-breakout/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/quantum-breakout/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 896,
+                "height": 560,
+                "left": 18,
+                "top": 87,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/quantum-breakout/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 354,
+                "height": 221.25,
+                "left": 18,
+                "top": 278.375,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "id": "attentional-blink",
+      "title": "Attentional Blink Assessor",
+      "path": "games/attentional-blink/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/attentional-blink/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 0,
+            "anyCanvasVisible": false,
+            "canvases": [],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/attentional-blink/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 0,
+            "anyCanvasVisible": false,
+            "canvases": [],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "id": "cosmic-tunnel",
+      "title": "Cosmic Tunnel 3D",
+      "path": "games/cosmic-tunnel/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/cosmic-tunnel/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 1280,
+                "height": 800,
+                "left": 0,
+                "top": 0,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/cosmic-tunnel/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 390,
+                "height": 844,
+                "left": 0,
+                "top": 0,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "id": "hover-drone",
+      "title": "Cyber Flappy Hover-Drone",
+      "path": "games/hover-drone/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/hover-drone/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 896,
+                "height": 560,
+                "left": 18,
+                "top": 87,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/hover-drone/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 354,
+                "height": 221.25,
+                "left": 18,
+                "top": 278.375,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "id": "cyber-snake",
+      "title": "Cyber Snake 2026",
+      "path": "games/cyber-snake/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/cyber-snake/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 512,
+                "height": 512,
+                "left": 210,
+                "top": 111,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/cyber-snake/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 354,
+                "height": 354,
+                "left": 18,
+                "top": 212,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "id": "cyber-mines",
+      "title": "Cyber Sweeper Sentinel",
+      "path": "games/cyber-mines/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/cyber-mines/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 0,
+            "anyCanvasVisible": false,
+            "canvases": [],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/cyber-mines/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 0,
+            "anyCanvasVisible": false,
+            "canvases": [],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "id": "grid-delver",
+      "title": "Grid Delver: 1-Minute Micro-Rogue",
+      "path": "games/grid-delver/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/grid-delver/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 0,
+            "anyCanvasVisible": false,
+            "canvases": [],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/grid-delver/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 0,
+            "anyCanvasVisible": false,
+            "canvases": [],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "id": "metronomic-rhythm",
+      "title": "METRONOMIC RHYTHM ANCHOR",
+      "path": "games/metronomic-rhythm/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/metronomic-rhythm/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 672,
+                "height": 404.796875,
+                "left": 304,
+                "top": 142.59375,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/metronomic-rhythm/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 342,
+                "height": 206.796875,
+                "left": 24,
+                "top": 263.59375,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "id": "nback-sentinel",
+      "title": "N-BACK SENTINEL LOG",
+      "path": "games/nback-sentinel/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/nback-sentinel/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 0,
+            "anyCanvasVisible": false,
+            "canvases": [],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/nback-sentinel/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 0,
+            "anyCanvasVisible": false,
+            "canvases": [],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "id": "neon-pong",
+      "title": "Neon Cyber Pong 1v1",
+      "path": "games/neon-pong/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/neon-pong/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 896,
+                "height": 560,
+                "left": 18,
+                "top": 87,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/neon-pong/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 354,
+                "height": 221.25,
+                "left": 18,
+                "top": 278.375,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "id": "orbital-sandbox",
+      "title": "Orbital Gravitational Physics Sandbox",
+      "path": "games/orbital-sandbox/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/orbital-sandbox/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 896,
+                "height": 560,
+                "left": 18,
+                "top": 87,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/orbital-sandbox/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 354,
+                "height": 221.25,
+                "left": 18,
+                "top": 278.375,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "id": "quantum-sentinel",
+      "title": "Quantum Sentinel: Fast Spatial Reflex",
+      "path": "games/quantum-sentinel/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/quantum-sentinel/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 600,
+                "height": 373.5,
+                "left": 192,
+                "top": 121,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/quantum-sentinel/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 354,
+                "height": 219.75,
+                "left": 18,
+                "top": 188,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "id": "raycasted-doom",
+      "title": "Raycasted 3D Doom Labyrinth",
+      "path": "games/raycasted-doom/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/raycasted-doom/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 896,
+                "height": 560,
+                "left": 18,
+                "top": 87,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/raycasted-doom/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 354,
+                "height": 221.25,
+                "left": 18,
+                "top": 278.375,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "id": "gravity-slingshot",
+      "title": "Relivistic Space Slingshot",
+      "path": "games/gravity-slingshot/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/gravity-slingshot/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 896,
+                "height": 560,
+                "left": 18,
+                "top": 87,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/gravity-slingshot/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 354,
+                "height": 221.25,
+                "left": 18,
+                "top": 278.375,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "id": "retro-breakout",
+      "title": "Retro Cyber Neon Breakout",
+      "path": "games/retro-breakout/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/retro-breakout/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 896,
+                "height": 560,
+                "left": 18,
+                "top": 87,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/retro-breakout/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 354,
+                "height": 221.25,
+                "left": 18,
+                "top": 278.375,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "id": "saccadic-target",
+      "title": "SACCADIC TARGET ACQUISITION",
+      "path": "games/saccadic-target/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/saccadic-target/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 672,
+                "height": 449.328125,
+                "left": 304,
+                "top": 120.328125,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/saccadic-target/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 342,
+                "height": 229.328125,
+                "left": 24,
+                "top": 252.328125,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "id": "shifting-selector",
+      "title": "SHIFTING ATTENTIONAL ATTRIBUTE SELECTOR",
+      "path": "games/shifting-selector/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/shifting-selector/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 0,
+            "anyCanvasVisible": false,
+            "canvases": [],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/shifting-selector/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 0,
+            "anyCanvasVisible": false,
+            "canvases": [],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 20,
+      "id": "signal-detection",
+      "title": "SIGNAL DETECTION FILTER",
+      "path": "games/signal-detection/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/signal-detection/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 672,
+                "height": 449.328125,
+                "left": 304,
+                "top": 120.328125,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/signal-detection/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 342,
+                "height": 229.328125,
+                "left": 24,
+                "top": 252.328125,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "id": "space-asteroids",
+      "title": "Space Asteroids Retro Vector",
+      "path": "games/space-asteroids/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/space-asteroids/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 896,
+                "height": 560,
+                "left": 18,
+                "top": 87,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/space-asteroids/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 354,
+                "height": 221.25,
+                "left": 18,
+                "top": 278.375,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "id": "spatial-matrix",
+      "title": "SPATIAL MATRIX EXPANSION",
+      "path": "games/spatial-matrix/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/spatial-matrix/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 0,
+            "anyCanvasVisible": false,
+            "canvases": [],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/spatial-matrix/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 0,
+            "anyCanvasVisible": false,
+            "canvases": [],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "id": "stroop-calibrator",
+      "title": "Stroop Interference Calibrator",
+      "path": "games/stroop-calibrator/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/stroop-calibrator/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 0,
+            "anyCanvasVisible": false,
+            "canvases": [],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/stroop-calibrator/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 0,
+            "anyCanvasVisible": false,
+            "canvases": [],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 24,
+      "id": "tachistoscope",
+      "title": "TACHISTOSCOPE RECOGNITION MATRIX",
+      "path": "games/tachistoscope/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/tachistoscope/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 0,
+            "anyCanvasVisible": false,
+            "canvases": [],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/tachistoscope/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 0,
+            "anyCanvasVisible": false,
+            "canvases": [],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 25,
+      "id": "tachyon-racer",
+      "title": "Tachyon Hyper-Speed Interceptor",
+      "path": "games/tachyon-racer/index.html",
+      "responsivePass": true,
+      "mobileBootPass": true,
+      "criticalCount": 0,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/tachyon-racer/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 896,
+                "height": 560,
+                "left": 18,
+                "top": 87,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/tachyon-racer/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 390,
+            "innerHeight": 844,
+            "bodyScrollWidth": 390,
+            "bodyScrollHeight": 844,
+            "canvasCount": 1,
+            "anyCanvasVisible": true,
+            "canvases": [
+              {
+                "width": 354,
+                "height": 221.25,
+                "left": 18,
+                "top": 278.375,
+                "visible": true
+              }
+            ],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        }
+      ]
+    },
+    {
+      "index": 26,
+      "id": "memory-churn",
+      "title": "WORKING MEMORY CALIBRATION CHURN",
+      "path": "games/memory-churn/index.html",
+      "responsivePass": false,
+      "mobileBootPass": false,
+      "criticalCount": 1,
+      "profiles": [
+        {
+          "profile": "desktop-1280x800",
+          "url": "http://127.0.0.1:8765/website/games/memory-churn/index.html",
+          "httpStatus": 200,
+          "httpOk": true,
+          "navError": "",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": {
+            "innerWidth": 1280,
+            "innerHeight": 800,
+            "bodyScrollWidth": 1280,
+            "bodyScrollHeight": 800,
+            "canvasCount": 0,
+            "anyCanvasVisible": false,
+            "canvases": [],
+            "hasVisibleContent": true
+          },
+          "layoutIssues": []
+        },
+        {
+          "profile": "mobile-390x844",
+          "url": "http://127.0.0.1:8765/website/games/memory-churn/index.html",
+          "httpStatus": null,
+          "httpOk": false,
+          "navError": "page.goto: Timeout 9000ms exceeded.\nCall log:\n  - navigating to \"http://127.0.0.1:8765/website/games/memory-churn/index.html\", waiting until \"domcontentloaded\"\n",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "layout": null,
+          "layoutIssues": [
+            "no-layout-captured"
+          ]
+        }
+      ]
+    }
+  ]
+}
