@@ -1,4 +1,7 @@
 import * as THREE from 'three';
+import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 import type { EventContract, PlatformState } from '../kernel';
 import { BIOME_EVENT_MAP, DEFAULT_BIOME_MAPPING, type BiomeMapping } from './biome.config';
 import { ResponsiveEngine, type ResponsiveProfile } from '../responsive/ResponsiveEngine';
@@ -54,8 +57,10 @@ const EVENT_TO_GEAR: Record<string, GearId> = Object.fromEntries(
 
 export class SpatialRenderer {
   private scene = new THREE.Scene();
-  private camera = new THREE.PerspectiveCamera(48, 1, 0.1, 1000);
+  private camera = new THREE.OrthographicCamera(-7.2, 7.2, 4.05, -4.05, 0.1, 1000);
   private renderer: THREE.WebGLRenderer;
+  private composer!: EffectComposer;
+  private bloomPass!: UnrealBloomPass;
   private workstationGroup = new THREE.Group();
   private biomeGroup = new THREE.Group();
   private linkGroup = new THREE.Group();
@@ -92,6 +97,10 @@ export class SpatialRenderer {
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
     this.renderer.setClearColor(0x000000, 0);
+    this.renderer.shadowMap.enabled = true;
+    this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    this.renderer.toneMappingExposure = 0.92;
     this.renderer.domElement.className = 'kernel-spatial-webgl';
     this.renderer.domElement.setAttribute('aria-label', 'Liquid Memory generative spatial ecosystem');
     this.host.appendChild(this.renderer.domElement);
@@ -110,10 +119,17 @@ export class SpatialRenderer {
     cyanEdge.position.set(-4.6, 1.2, 4.2);
     const lowFill = new THREE.PointLight(0x3b2a18, 1.8, 36, 2.0);
     lowFill.position.set(0, -4, 7);
+    lamp.castShadow = true;
+    lamp.shadow.mapSize.set(1024, 1024);
+    lamp.shadow.bias = -0.0004;
     this.scene.add(ambient, lamp, cyanEdge, lowFill);
+    this.scene.environment = this.createEnvironmentTexture();
+    this.composer = new EffectComposer(this.renderer);
+    this.composer.addPass(new RenderPass(this.scene, this.camera));
+    this.bloomPass = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.16, 0.78, 0.88);
+    this.composer.addPass(this.bloomPass);
 
     this.createWorkstationEnvironment();
-    this.createStarfield();
     this.createBlueprintGearRig();
     this.createGauges();
     this.createEngageDial();
@@ -135,6 +151,8 @@ export class SpatialRenderer {
     mesh.position.copy(origin);
     mesh.scale.setScalar(0.001);
     mesh.userData = { eventType: event.type, label: mapping.label };
+    mesh.castShadow = true;
+    mesh.receiveShadow = true;
 
     const halo = new THREE.Sprite(new THREE.SpriteMaterial({
       map: this.haloTexture,
@@ -230,6 +248,7 @@ export class SpatialRenderer {
     cancelAnimationFrame(this.rafId);
     this.resizeObserver?.disconnect();
     this.responsive.dispose();
+    this.composer?.dispose();
     this.renderer.dispose();
     this.host.innerHTML = '';
   }
@@ -246,12 +265,14 @@ export class SpatialRenderer {
   }
 
   private applyCameraProfile(profile: ResponsiveProfile, instant = false): void {
-    this.camera.fov = profile.camera.fov;
+    const target = profile.kind === 'mobile'
+      ? new THREE.Vector3(0, -0.85, 14.8)
+      : new THREE.Vector3(0, -0.42, 13.2);
+    this.camera.zoom = profile.kind === 'mobile' ? 0.92 : profile.kind === 'tablet' ? 1.02 : 1.08;
     this.camera.updateProjectionMatrix();
-    const target = new THREE.Vector3(profile.camera.x, profile.camera.y, profile.camera.z);
     if (instant) this.camera.position.copy(target);
     else this.camera.position.lerp(target, 0.2);
-    this.camera.lookAt(0, 0, 0);
+    this.camera.lookAt(0, -0.28, -1.35);
   }
 
   private layoutGauges(mode: ResponsiveProfile['gaugeMode']): void {
@@ -295,6 +316,7 @@ export class SpatialRenderer {
       })
     );
     desk.position.set(0, 0, -2.65);
+    desk.receiveShadow = true;
     this.workstationGroup.add(desk);
 
     const paper = new THREE.Mesh(
@@ -307,6 +329,7 @@ export class SpatialRenderer {
       })
     );
     paper.position.set(0, -0.2, -1.92);
+    paper.receiveShadow = true;
     this.workstationGroup.add(paper);
 
     const frameMat = this.createOxidizedMetalMaterial(0x3c2a17, 0x0d0703, 0.01);
@@ -341,6 +364,10 @@ export class SpatialRenderer {
     title.position.set(-3.5, 2.72, -1.18);
     title.scale.set(3.0, 0.42, 1);
     this.workstationGroup.add(title);
+    this.workstationGroup.traverse((obj) => {
+      const mesh = obj as THREE.Mesh;
+      if (mesh.isMesh) { mesh.castShadow = true; mesh.receiveShadow = true; }
+    });
   }
 
   private createOxidizedMetalMaterial(color: number, emissive: number, cyanCatch = 0.04): THREE.MeshStandardMaterial {
@@ -357,6 +384,24 @@ export class SpatialRenderer {
       metalness: 0.88,
       roughness: 0.46,
     });
+  }
+
+
+  private createEnvironmentTexture(): THREE.CanvasTexture {
+    const canvas = document.createElement('canvas');
+    canvas.width = 512; canvas.height = 256;
+    const ctx = canvas.getContext('2d')!;
+    const gradient = ctx.createLinearGradient(0, 0, 512, 256);
+    gradient.addColorStop(0, '#0b0704');
+    gradient.addColorStop(0.45, '#6c4a25');
+    gradient.addColorStop(0.72, '#d09b4e');
+    gradient.addColorStop(1, '#102824');
+    ctx.fillStyle = gradient;
+    ctx.fillRect(0, 0, 512, 256);
+    const texture = new THREE.CanvasTexture(canvas);
+    texture.mapping = THREE.EquirectangularReflectionMapping;
+    texture.needsUpdate = true;
+    return texture;
   }
 
   private createWoodTexture(): THREE.CanvasTexture {
@@ -458,6 +503,7 @@ export class SpatialRenderer {
     labelSprite.scale.set(radius * 1.35, radius * 0.36, 1);
     group.add(labelSprite);
 
+    group.traverse((obj) => { const mesh = obj as THREE.Mesh; if (mesh.isMesh) { mesh.castShadow = true; mesh.receiveShadow = true; } });
     this.gearGroup.add(group);
     this.gears.push({ id, group, hit: face, anchor: position.clone(), eventType: GEAR_EVENT_TYPES[id], unlockedLevel, active: false, label: labelSprite });
   }
@@ -692,9 +738,16 @@ export class SpatialRenderer {
       const rect = this.host.getBoundingClientRect();
       const width = Math.max(320, rect.width || window.innerWidth);
       const height = Math.max(320, rect.height || window.innerHeight);
-      this.camera.aspect = width / height;
+      const aspect = width / height;
+      const viewHeight = 8.1;
+      this.camera.top = viewHeight / 2;
+      this.camera.bottom = -viewHeight / 2;
+      this.camera.left = -viewHeight * aspect / 2;
+      this.camera.right = viewHeight * aspect / 2;
       this.camera.updateProjectionMatrix();
       this.renderer.setSize(width, height, false);
+      this.composer?.setSize(width, height);
+      this.bloomPass?.setSize(width, height);
     };
     this.resizeObserver = new ResizeObserver(resize);
     this.resizeObserver.observe(this.host);
@@ -763,14 +816,14 @@ export class SpatialRenderer {
     });
 
     if (focus) {
-      const desired = focus.target.clone().multiplyScalar(0.2).add(new THREE.Vector3(this.profile.camera.x, this.profile.camera.y - 0.8, this.profile.camera.z - 1.3));
-      this.camera.position.lerp(desired, 0.018);
-      this.camera.lookAt(focus.target.clone().multiplyScalar(0.18));
+      const desired = new THREE.Vector3(0, -0.42, this.profile.kind === 'mobile' ? 14.8 : 13.2).add(focus.target.clone().multiplyScalar(0.035));
+      this.camera.position.lerp(desired, 0.016);
+      this.camera.lookAt(focus.target.clone().multiplyScalar(0.045).add(new THREE.Vector3(0, -0.22, -1.35)));
     } else {
-      this.camera.lookAt(0, 0, 0);
+      this.camera.lookAt(0, -0.28, -1.35);
     }
 
-    this.renderer.render(this.scene, this.camera);
+    this.composer.render();
     this.rafId = requestAnimationFrame(this.animate);
   };
 
