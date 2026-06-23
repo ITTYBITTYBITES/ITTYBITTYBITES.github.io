@@ -14736,7 +14736,7 @@ var wf = {
 	memory: "economic.resource_gained"
 }, Of = Object.fromEntries(Object.entries(Df).map(([e, t]) => [t, e])), kf = class {
 	constructor(e, t, n) {
-		this.host = e, this.liveRegion = t, this.onGearSelected = n, this.scene = new zn(), this.camera = new hs(-7.2, 7.2, 4.05, -4.05, .1, 1e3), this.workstationGroup = new jn(), this.biomeGroup = new jn(), this.linkGroup = new jn(), this.gearGroup = new jn(), this.gaugeGroup = new jn(), this.nodes = [], this.links = [], this.gears = [], this.gauges = [], this.modelAnchors = /* @__PURE__ */ new Map(), this.gearRaycastObjects = [], this.workstationModelLoaded = !1, this.workstationFallbackActive = !1, this.rafId = 0, this.focusIndex = -1, this.pointer = new U(99, 99), this.raycaster = new Vs(), this.clock = new Ws(), this.haloTexture = this.createHaloTexture(), this.responsive = new Ef(), this.profile = this.responsive.getProfile(), this.lastTouchAt = 0, this.dragStartX = 0, this.didDrag = !1, this.animate = () => {
+		this.host = e, this.liveRegion = t, this.onGearSelected = n, this.scene = new zn(), this.camera = new hs(-7.2, 7.2, 4.05, -4.05, .1, 1e3), this.workstationGroup = new jn(), this.biomeGroup = new jn(), this.linkGroup = new jn(), this.gearGroup = new jn(), this.gaugeGroup = new jn(), this.nodes = [], this.links = [], this.gears = [], this.gauges = [], this.modelAnchors = /* @__PURE__ */ new Map(), this.gearRaycastObjects = [], this.workstationModelLoaded = !1, this.workstationFallbackActive = !1, this.baseEnvironmentCreated = !1, this.rafId = 0, this.focusIndex = -1, this.pointer = new U(99, 99), this.raycaster = new Vs(), this.clock = new Ws(), this.haloTexture = this.createHaloTexture(), this.responsive = new Ef(), this.profile = this.responsive.getProfile(), this.lastTouchAt = 0, this.dragStartX = 0, this.didDrag = !1, this.animate = () => {
 			let e = this.clock.getElapsedTime();
 			this.updateHoverState(), this.biomeGroup.rotation.y += .0017, this.biomeGroup.rotation.x = Math.sin(e * .17) * .06, this.linkGroup.rotation.copy(this.biomeGroup.rotation);
 			let t = this.nodes[this.focusIndex], n = t?.target.z || 0;
@@ -14773,12 +14773,12 @@ var wf = {
 			alpha: !1,
 			powerPreference: "high-performance"
 		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(1182469, 1), this.renderer.shadowMap.enabled = !0, this.renderer.shadowMap.type = 2, this.renderer.toneMapping = 4, this.renderer.toneMappingExposure = .92, this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.scene.add(this.workstationGroup), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.applyCameraProfile(this.profile, !0);
-		let r = new vs(6244914, .22), i = new fs(16760168, 8.8, 48, Math.PI / 5.5, .58, 1.35);
+		let r = new vs(9071173, .58), i = new fs(16761975, 11.5, 58, Math.PI / 4.8, .62, 1.18);
 		i.position.set(4.9, 3.45, 5.2), i.target.position.set(.4, -.25, -1.65);
 		let a = new ms(7271653, .22, 12, 2.8);
 		a.position.set(-2.8, -.8, 2.2);
 		let o = new ms(2364939, .85, 24, 2);
-		o.position.set(0, -4, 4), i.castShadow = !0, i.shadow.mapSize.set(2048, 2048), i.shadow.bias = -35e-5, this.scene.add(r, i, i.target, a, o), this.scene.environment = this.createEnvironmentTexture(), this.scene.background = this.createWoodTexture(), this.composer = new _d(this.renderer), this.composer.addPass(new vd(this.scene, this.camera)), this.bloomPass = new bd(new U(1, 1), .08, .55, .94), this.composer.addPass(this.bloomPass), this.loadWorkstationAsset(), this.createGauges(), this.createEngageDial(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
+		o.position.set(0, -4, 4), i.castShadow = !0, i.shadow.mapSize.set(2048, 2048), i.shadow.bias = -35e-5, this.scene.add(r, i, i.target, a, o), this.scene.environment = this.createEnvironmentTexture(), this.scene.background = this.createWoodTexture(), this.composer = new _d(this.renderer), this.composer.addPass(new vd(this.scene, this.camera)), this.bloomPass = new bd(new U(1, 1), .08, .55, .94), this.composer.addPass(this.bloomPass), this.createWorkstationEnvironment(), this.createBlueprintGearRig(), this.loadWorkstationAsset(), this.createGauges(), this.createEngageDial(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
 	}
 	handle(e) {
 		if (e.type === "system.heartbeat" && this.nodes.length > 0) return;
@@ -14908,13 +14908,13 @@ var wf = {
 		let e = new wd();
 		try {
 			let t = (await e.loadAsync("assets/models/liquid-memory-workstation.glb")).scene;
-			t.name = "liquid_memory_workstation_glb_root", this.workstationGroup.add(t), this.modelAnchors.clear(), this.gearRaycastObjects = [], this.gears = [], t.traverse((e) => {
+			t.name = "liquid_memory_workstation_glb_root", t.position.z = -1.96, this.workstationGroup.add(t), this.modelAnchors.clear(), this.gearRaycastObjects = [], this.gears = [], t.traverse((e) => {
 				e.name?.startsWith("anchor_") && (this.modelAnchors.set(e.name, e), e.visible = !1);
 				let t = e;
 				if (t.isMesh) {
 					t.castShadow = !0, t.receiveShadow = !0;
 					let e = this.inferGearIdFromName(t.name);
-					e && (t.userData.gearId = e, this.gearRaycastObjects.push(t));
+					e && (t.userData.gearId = e, t.visible = !1);
 				}
 			}), [
 				"games",
@@ -14948,7 +14948,7 @@ var wf = {
 		}
 	}
 	renderProceduralWorkstation() {
-		this.workstationFallbackActive = !0, this.workstationModelLoaded = !1, this.host.dataset.workstationModel = "procedural-fallback", this.createWorkstationEnvironment(), this.createBlueprintGearRig();
+		this.workstationFallbackActive = !0, this.workstationModelLoaded = !1, this.host.dataset.workstationModel = "procedural-fallback", this.createWorkstationEnvironment();
 	}
 	inferGearIdFromName(e) {
 		let t = e.toLowerCase();
@@ -14976,8 +14976,10 @@ var wf = {
 		}[e].clone();
 	}
 	createWorkstationEnvironment() {
+		if (this.baseEnvironmentCreated) return;
+		this.baseEnvironmentCreated = !0;
 		let e = new X(new no(36, 24, 1, 1), new vo({
-			color: 1774089,
+			color: 2758667,
 			map: this.createWoodTexture(),
 			roughnessMap: this.createWoodTexture(),
 			normalMap: this.createWoodNormalTexture(),
@@ -14988,7 +14990,7 @@ var wf = {
 		}));
 		e.position.set(0, 0, -2.82), e.receiveShadow = !0, this.workstationGroup.add(e);
 		let t = new X(new no(13.6, 9.4, 1, 1), new vo({
-			color: 12030552,
+			color: 12618317,
 			map: this.createBlueprintPaperTexture(),
 			roughnessMap: this.createBlueprintPaperTexture(),
 			normalMap: this.createPaperNormalTexture(),
@@ -15190,18 +15192,18 @@ var wf = {
 			active: !1,
 			unlockedLevel: i
 		};
-		let o = this.createOxidizedMetalMaterial(5059101, 1181957, .06), s = new X(new Oa(r, r, .18, 64), o);
+		let o = this.createOxidizedMetalMaterial(10511410, 2757640, .05), s = new X(new Oa(r, r, .18, 64), o);
 		s.rotation.x = Math.PI / 2, s.userData = { gearId: e }, a.add(s);
-		let c = new X(new ao(r * .48, .035, 10, 48), this.createOxidizedMetalMaterial(10319424, 2233351, .04));
+		let c = new X(new ao(r * .48, .035, 10, 48), this.createOxidizedMetalMaterial(13670997, 3809547, .03));
 		c.position.z = .105, a.add(c);
-		let l = new X(new ao(r * .86, .045, 10, 64), this.createOxidizedMetalMaterial(7296048, 1773832, .025));
+		let l = new X(new ao(r * .86, .045, 10, 64), this.createOxidizedMetalMaterial(11635279, 3350797, .022));
 		l.position.z = .115, a.add(l);
-		let u = this.createOxidizedMetalMaterial(7030824, 1444613, .03), d = Math.max(14, Math.round(r * 24));
+		let u = this.createOxidizedMetalMaterial(11168312, 2889224, .035), d = Math.max(14, Math.round(r * 24));
 		for (let t = 0; t < d; t++) {
 			let n = t / d * Math.PI * 2, i = new X(new Ea(r * .12, r * .24, .16), u);
 			i.position.set(Math.cos(n) * r * 1.02, Math.sin(n) * r * 1.02, 0), i.rotation.z = n, i.userData = { gearId: e }, a.add(i);
 		}
-		let f = this.createTextSprite(t, "#fff1cf", "rgba(20,12,6,0.45)", 1.2);
+		let f = this.createTextSprite(t, "#fff4d2", "rgba(38,22,10,0.72)", 1.2);
 		f.position.set(0, 0, .32), f.scale.set(r * 1.35, r * .36, 1), a.add(f), a.traverse((e) => {
 			let t = e;
 			t.isMesh && (t.castShadow = !0, t.receiveShadow = !0);

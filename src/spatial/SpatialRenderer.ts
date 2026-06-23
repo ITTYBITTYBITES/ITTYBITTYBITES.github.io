@@ -76,6 +76,7 @@ export class SpatialRenderer {
   private gearRaycastObjects: THREE.Object3D[] = [];
   private workstationModelLoaded = false;
   private workstationFallbackActive = false;
+  private baseEnvironmentCreated = false;
   private resizeObserver?: ResizeObserver;
   private rafId = 0;
   private focusIndex = -1;
@@ -117,8 +118,8 @@ export class SpatialRenderer {
     this.scene.add(this.gaugeGroup);
     this.applyCameraProfile(this.profile, true);
 
-    const ambient = new THREE.AmbientLight(0x5f4a32, 0.22);
-    const lamp = new THREE.SpotLight(0xffbd68, 8.8, 48, Math.PI / 5.5, 0.58, 1.35);
+    const ambient = new THREE.AmbientLight(0x8a6a45, 0.58);
+    const lamp = new THREE.SpotLight(0xffc477, 11.5, 58, Math.PI / 4.8, 0.62, 1.18);
     lamp.position.set(4.9, 3.45, 5.2);
     lamp.target.position.set(0.4, -0.25, -1.65);
     const cyanEdge = new THREE.PointLight(0x6ef4e5, 0.22, 12, 2.8);
@@ -136,6 +137,8 @@ export class SpatialRenderer {
     this.bloomPass = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.08, 0.55, 0.94);
     this.composer.addPass(this.bloomPass);
 
+    this.createWorkstationEnvironment();
+    this.createBlueprintGearRig();
     this.loadWorkstationAsset();
     this.createGauges();
     this.createEngageDial();
@@ -335,6 +338,11 @@ export class SpatialRenderer {
       const gltf = await loader.loadAsync('assets/models/liquid-memory-workstation.glb');
       const root = gltf.scene;
       root.name = 'liquid_memory_workstation_glb_root';
+      // The proxy/high-fidelity GLB is authored with its visible paper near local z=0.
+      // The renderer's ink/gears operate on the workstation surface around z=-1.
+      // Drop the imported asset into the renderer's desk-plane coordinate space so
+      // paper/desk geometry does not occlude the interactive gear mechanism.
+      root.position.z = -1.96;
       this.workstationGroup.add(root);
       this.modelAnchors.clear();
       this.gearRaycastObjects = [];
@@ -353,7 +361,7 @@ export class SpatialRenderer {
           const gearId = this.inferGearIdFromName(mesh.name);
           if (gearId) {
             mesh.userData.gearId = gearId;
-            this.gearRaycastObjects.push(mesh);
+            mesh.visible = false;
           }
         }
       });
@@ -383,7 +391,6 @@ export class SpatialRenderer {
     this.workstationModelLoaded = false;
     this.host.dataset.workstationModel = 'procedural-fallback';
     this.createWorkstationEnvironment();
-    this.createBlueprintGearRig();
   }
 
   private inferGearIdFromName(name: string): GearId | undefined {
@@ -411,10 +418,12 @@ export class SpatialRenderer {
   }
 
   private createWorkstationEnvironment(): void {
+    if (this.baseEnvironmentCreated) return;
+    this.baseEnvironmentCreated = true;
     const desk = new THREE.Mesh(
       new THREE.PlaneGeometry(36, 24, 1, 1),
       new THREE.MeshStandardMaterial({
-        color: 0x1b1209,
+        color: 0x2a180b,
         map: this.createWoodTexture(),
         roughnessMap: this.createWoodTexture(),
         normalMap: this.createWoodNormalTexture(),
@@ -431,7 +440,7 @@ export class SpatialRenderer {
     const paper = new THREE.Mesh(
       new THREE.PlaneGeometry(13.6, 9.4, 1, 1),
       new THREE.MeshStandardMaterial({
-        color: 0xb79258,
+        color: 0xc08a4d,
         map: this.createBlueprintPaperTexture(),
         roughnessMap: this.createBlueprintPaperTexture(),
         normalMap: this.createPaperNormalTexture(),
@@ -653,21 +662,21 @@ export class SpatialRenderer {
     group.position.copy(position);
     group.userData = { gearId: id, active: false, unlockedLevel };
 
-    const bodyMat = this.createOxidizedMetalMaterial(0x4d321d, 0x120905, 0.06);
+    const bodyMat = this.createOxidizedMetalMaterial(0xa06432, 0x2a1408, 0.05);
     const face = new THREE.Mesh(new THREE.CylinderGeometry(radius, radius, 0.18, 64), bodyMat);
     face.rotation.x = Math.PI / 2;
     face.userData = { gearId: id };
     group.add(face);
 
-    const inner = new THREE.Mesh(new THREE.TorusGeometry(radius * 0.48, 0.035, 10, 48), this.createOxidizedMetalMaterial(0x9d7640, 0x221407, 0.04));
+    const inner = new THREE.Mesh(new THREE.TorusGeometry(radius * 0.48, 0.035, 10, 48), this.createOxidizedMetalMaterial(0xd09a55, 0x3a210b, 0.03));
     inner.position.z = 0.105;
     group.add(inner);
 
-    const outer = new THREE.Mesh(new THREE.TorusGeometry(radius * 0.86, 0.045, 10, 64), this.createOxidizedMetalMaterial(0x6f5430, 0x1b1108, 0.025));
+    const outer = new THREE.Mesh(new THREE.TorusGeometry(radius * 0.86, 0.045, 10, 64), this.createOxidizedMetalMaterial(0xb18a4f, 0x33210d, 0.022));
     outer.position.z = 0.115;
     group.add(outer);
 
-    const toothMat = this.createOxidizedMetalMaterial(0x6b4828, 0x160b05, 0.03);
+    const toothMat = this.createOxidizedMetalMaterial(0xaa6a38, 0x2c1608, 0.035);
     const toothCount = Math.max(14, Math.round(radius * 24));
     for (let i = 0; i < toothCount; i++) {
       const a = (i / toothCount) * Math.PI * 2;
@@ -678,7 +687,7 @@ export class SpatialRenderer {
       group.add(tooth);
     }
 
-    const labelSprite = this.createTextSprite(label, '#fff1cf', 'rgba(20,12,6,0.45)', 1.2);
+    const labelSprite = this.createTextSprite(label, '#fff4d2', 'rgba(38,22,10,0.72)', 1.2);
     labelSprite.position.set(0, 0, 0.32);
     labelSprite.scale.set(radius * 1.35, radius * 0.36, 1);
     group.add(labelSprite);
