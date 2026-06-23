@@ -8,6 +8,7 @@
 - `Pass` — works as expected.
 - `Fix Needed` — issue found and needs code changes.
 - `Blocked` — cannot complete test due to missing dependency/account/device.
+- `Pending Manual QA` — automated boot/console audit passed, but controls/mobile/reward testing remains.
 - `N/A` — not applicable for this game.
 
 ---
@@ -43,32 +44,32 @@ https://ittybittybites.github.io/website/
 ## Master QA Table
 | # | Game Title | ID | URL | Loads | Desktop Controls | Mobile Controls | Responsive Canvas | Reward/Ad Loop | Console Errors | Status | Notes |
 |---:|---|---|---|---|---|---|---|---|---|---|---|
-| 1 | 3D Cyber Vector Grid Hover-Racer | `cyber-vector` | [`games/cyber-vector/index.html`](../website/games/cyber-vector/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending | Ad event hook present |
-| 2 | 3D Neon Geometric Defender | `neon-polygon` | [`games/neon-polygon/index.html`](../website/games/neon-polygon/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending | Ad event hook present |
-| 3 | 3D Particle Breakout Engine | `quantum-breakout` | [`games/quantum-breakout/index.html`](../website/games/quantum-breakout/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending | Ad event hook present |
-| 4 | Attentional Blink Assessor | `attentional-blink` | [`games/attentional-blink/index.html`](../website/games/attentional-blink/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending | Ad event hook present |
-| 5 | Cosmic Tunnel 3D | `cosmic-tunnel` | [`games/cosmic-tunnel/index.html`](../website/games/cosmic-tunnel/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending | Ad event hook present; Ad completion listener present |
-| 6 | Cyber Flappy Hover-Drone | `hover-drone` | [`games/hover-drone/index.html`](../website/games/hover-drone/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending |  |
-| 7 | Cyber Snake 2026 | `cyber-snake` | [`games/cyber-snake/index.html`](../website/games/cyber-snake/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending | Ad event hook present |
-| 8 | Cyber Sweeper Sentinel | `cyber-mines` | [`games/cyber-mines/index.html`](../website/games/cyber-mines/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending | Ad event hook present |
-| 9 | Grid Delver: 1-Minute Micro-Rogue | `grid-delver` | [`games/grid-delver/index.html`](../website/games/grid-delver/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending |  |
-| 10 | METRONOMIC RHYTHM ANCHOR | `metronomic-rhythm` | [`games/metronomic-rhythm/index.html`](../website/games/metronomic-rhythm/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending | Ad event hook present |
-| 11 | N-BACK SENTINEL LOG | `nback-sentinel` | [`games/nback-sentinel/index.html`](../website/games/nback-sentinel/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending | Ad event hook present |
-| 12 | Neon Cyber Pong 1v1 | `neon-pong` | [`games/neon-pong/index.html`](../website/games/neon-pong/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending |  |
-| 13 | Orbital Gravitational Physics Sandbox | `orbital-sandbox` | [`games/orbital-sandbox/index.html`](../website/games/orbital-sandbox/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending | Ad event hook present |
-| 14 | Quantum Sentinel: Fast Spatial Reflex | `quantum-sentinel` | [`games/quantum-sentinel/index.html`](../website/games/quantum-sentinel/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending |  |
-| 15 | Raycasted 3D Doom Labyrinth | `raycasted-doom` | [`games/raycasted-doom/index.html`](../website/games/raycasted-doom/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending | Ad event hook present |
-| 16 | Relivistic Space Slingshot | `gravity-slingshot` | [`games/gravity-slingshot/index.html`](../website/games/gravity-slingshot/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending | Ad event hook present |
-| 17 | Retro Cyber Neon Breakout | `retro-breakout` | [`games/retro-breakout/index.html`](../website/games/retro-breakout/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending |  |
-| 18 | SACCADIC TARGET ACQUISITION | `saccadic-target` | [`games/saccadic-target/index.html`](../website/games/saccadic-target/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending | Ad event hook present |
-| 19 | SHIFTING ATTENTIONAL ATTRIBUTE SELECTOR | `shifting-selector` | [`games/shifting-selector/index.html`](../website/games/shifting-selector/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending | Ad event hook present |
-| 20 | SIGNAL DETECTION FILTER | `signal-detection` | [`games/signal-detection/index.html`](../website/games/signal-detection/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending | Ad event hook present |
-| 21 | Space Asteroids Retro Vector | `space-asteroids` | [`games/space-asteroids/index.html`](../website/games/space-asteroids/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending | Ad event hook present |
-| 22 | SPATIAL MATRIX EXPANSION | `spatial-matrix` | [`games/spatial-matrix/index.html`](../website/games/spatial-matrix/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending | Ad event hook present |
-| 23 | Stroop Interference Calibrator | `stroop-calibrator` | [`games/stroop-calibrator/index.html`](../website/games/stroop-calibrator/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending | Ad event hook present |
-| 24 | TACHISTOSCOPE RECOGNITION MATRIX | `tachistoscope` | [`games/tachistoscope/index.html`](../website/games/tachistoscope/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending | Ad event hook present |
-| 25 | Tachyon Hyper-Speed Interceptor | `tachyon-racer` | [`games/tachyon-racer/index.html`](../website/games/tachyon-racer/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending | Ad event hook present |
-| 26 | WORKING MEMORY CALIBRATION CHURN | `memory-churn` | [`games/memory-churn/index.html`](../website/games/memory-churn/index.html) | [ ] | [ ] | [ ] | [ ] | [ ] | [ ] | Pending | Ad event hook present |
+| 1 | 3D Cyber Vector Grid Hover-Racer | `cyber-vector` | [`games/cyber-vector/index.html`](../website/games/cyber-vector/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Ad event hook present; Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 2 | 3D Neon Geometric Defender | `neon-polygon` | [`games/neon-polygon/index.html`](../website/games/neon-polygon/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Ad event hook present; Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 3 | 3D Particle Breakout Engine | `quantum-breakout` | [`games/quantum-breakout/index.html`](../website/games/quantum-breakout/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Ad event hook present; Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 4 | Attentional Blink Assessor | `attentional-blink` | [`games/attentional-blink/index.html`](../website/games/attentional-blink/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Ad event hook present; Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 5 | Cosmic Tunnel 3D | `cosmic-tunnel` | [`games/cosmic-tunnel/index.html`](../website/games/cosmic-tunnel/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Ad event hook present; Ad completion listener present; Boot audit: Yellow (noncritical warning); Warning: The AudioContext was not allowed to start. It must be resumed (or created) after a user gesture on the page. https://developer.chrome.com/blog/autoplay/#web_audio |
+| 6 | Cyber Flappy Hover-Drone | `hover-drone` | [`games/hover-drone/index.html`](../website/games/hover-drone/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 7 | Cyber Snake 2026 | `cyber-snake` | [`games/cyber-snake/index.html`](../website/games/cyber-snake/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Ad event hook present; Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 8 | Cyber Sweeper Sentinel | `cyber-mines` | [`games/cyber-mines/index.html`](../website/games/cyber-mines/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Ad event hook present; Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 9 | Grid Delver: 1-Minute Micro-Rogue | `grid-delver` | [`games/grid-delver/index.html`](../website/games/grid-delver/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 10 | METRONOMIC RHYTHM ANCHOR | `metronomic-rhythm` | [`games/metronomic-rhythm/index.html`](../website/games/metronomic-rhythm/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Ad event hook present; Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 11 | N-BACK SENTINEL LOG | `nback-sentinel` | [`games/nback-sentinel/index.html`](../website/games/nback-sentinel/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Ad event hook present; Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 12 | Neon Cyber Pong 1v1 | `neon-pong` | [`games/neon-pong/index.html`](../website/games/neon-pong/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 13 | Orbital Gravitational Physics Sandbox | `orbital-sandbox` | [`games/orbital-sandbox/index.html`](../website/games/orbital-sandbox/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Ad event hook present; Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 14 | Quantum Sentinel: Fast Spatial Reflex | `quantum-sentinel` | [`games/quantum-sentinel/index.html`](../website/games/quantum-sentinel/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 15 | Raycasted 3D Doom Labyrinth | `raycasted-doom` | [`games/raycasted-doom/index.html`](../website/games/raycasted-doom/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Ad event hook present; Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 16 | Relivistic Space Slingshot | `gravity-slingshot` | [`games/gravity-slingshot/index.html`](../website/games/gravity-slingshot/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Ad event hook present; Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 17 | Retro Cyber Neon Breakout | `retro-breakout` | [`games/retro-breakout/index.html`](../website/games/retro-breakout/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 18 | SACCADIC TARGET ACQUISITION | `saccadic-target` | [`games/saccadic-target/index.html`](../website/games/saccadic-target/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Ad event hook present; Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 19 | SHIFTING ATTENTIONAL ATTRIBUTE SELECTOR | `shifting-selector` | [`games/shifting-selector/index.html`](../website/games/shifting-selector/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Ad event hook present; Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 20 | SIGNAL DETECTION FILTER | `signal-detection` | [`games/signal-detection/index.html`](../website/games/signal-detection/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Ad event hook present; Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 21 | Space Asteroids Retro Vector | `space-asteroids` | [`games/space-asteroids/index.html`](../website/games/space-asteroids/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Ad event hook present; Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 22 | SPATIAL MATRIX EXPANSION | `spatial-matrix` | [`games/spatial-matrix/index.html`](../website/games/spatial-matrix/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Ad event hook present; Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 23 | Stroop Interference Calibrator | `stroop-calibrator` | [`games/stroop-calibrator/index.html`](../website/games/stroop-calibrator/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Ad event hook present; Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 24 | TACHISTOSCOPE RECOGNITION MATRIX | `tachistoscope` | [`games/tachistoscope/index.html`](../website/games/tachistoscope/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Ad event hook present; Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 25 | Tachyon Hyper-Speed Interceptor | `tachyon-racer` | [`games/tachyon-racer/index.html`](../website/games/tachyon-racer/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Ad event hook present; Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
+| 26 | WORKING MEMORY CALIBRATION CHURN | `memory-churn` | [`games/memory-churn/index.html`](../website/games/memory-churn/index.html) | [x] | [ ] | [ ] | [ ] | [ ] | [x] | Pending Manual QA | Ad event hook present; Boot audit: Green (HTTP 200, no critical JS errors); Noncritical warning: Tailwind CDN development warning |
 
 ---
 ## Mobile Device Matrix
@@ -103,7 +104,10 @@ Update these manually as QA progresses.
 | Fully passed | 0 |
 | Fix needed | 0 |
 | Blocked | 0 |
-| Pending | 26 |
+| Pending full manual QA | 26 |
+| Automated boot green | 25 |
+| Automated boot yellow | 1 |
+| Automated boot red | 0 |
 
 ---
 ## Notes for Monetization Readiness
