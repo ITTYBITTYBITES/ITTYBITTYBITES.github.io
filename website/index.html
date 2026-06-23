@@ -36,7 +36,8 @@
   }
   </script>
   <link rel="stylesheet" href="assets/brand-system.css">
-  <script type="module" src="assets/kernel-home.js"></script>
+  <script>window.setTimeout(function(){document.body&&document.body.classList.add("liquid-ready")},900);</script>
+  <script type="module" src="assets/kernel-home.js" id="liquid-ready-timeout"></script>
 </head>
 <body class="ibb-brand liquid-fullscreen liquid-fused-system">
   <main id="living-kernel" class="liquid-memory-system" aria-label="Liquid Memory fused WebGL Blueprint machine">
