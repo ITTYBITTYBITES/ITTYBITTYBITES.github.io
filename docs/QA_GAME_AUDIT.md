@@ -201,6 +201,30 @@ Notes:
 - Manual testing still needs to confirm the reward/interstitial modal appears and returns completion without blocking gameplay.
 - Account-side AdSense/Adsterra configuration is still separate from this code-level hook audit.
 
+
+---
+## Monetization Timing Rule
+
+Liquid Memory arcade monetization now enforces an initial gameplay grace period:
+
+```text
+No visible ad rail, interstitial, rewarded modal, or sponsor break during the first 60 seconds of a game session.
+```
+
+Implementation locations:
+
+- `website/assets/arcade-monetization.js`
+- `website/arcade.html`
+- `website/portal.js` legacy wrapper
+
+Behavior:
+
+- If a game emits `ARCADE_TRIGGER_AD` before the 60-second mark, the bridge silently returns `ARCADE_AD_COMPLETE` so gameplay does not hang.
+- The bottom ad rail is hidden until the 60-second grace period completes.
+- After 60 seconds, the normal cooldown/reward modal rules apply.
+
+Manual QA should confirm that no game displays ads during the first minute of active play.
+
 ---
 ## Notes for Monetization Readiness
 Do not treat a game as monetization-ready until all of the following are checked:

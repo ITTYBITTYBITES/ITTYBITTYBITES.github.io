@@ -10,12 +10,14 @@
     adsenseClient: 'ca-pub-1566091161594729',
     rewardSeconds: 6,
     minSecondsBetweenBreaks: 45,
+    initialGraceMs: 60000,
   };
 
   let initialized = false;
   let modalOpen = false;
   let lastBreakAt = 0;
   let timer = null;
+  const sessionStartedAt = Date.now();
 
   function injectStyles() {
     if (document.getElementById('ibb-arcade-monetization-style')) return;
@@ -61,12 +63,14 @@
     rail.className = 'ibb-ad-rail';
     rail.setAttribute('aria-label', 'Advertisement and sponsor message');
     rail.innerHTML = '<strong>Ad</strong><span>Thanks for supporting free Liquid Memory browser games.</span><button type="button" id="ibb-ad-rail-hide">Hide</button>';
+    rail.hidden = true;
     document.body.appendChild(rail);
     const spacer = document.createElement('div');
     spacer.className = 'ibb-ad-spacer';
     spacer.setAttribute('aria-hidden', 'true');
     document.body.appendChild(spacer);
     document.getElementById('ibb-ad-rail-hide').addEventListener('click', () => { rail.hidden = true; });
+    window.setTimeout(() => { if (document.body.contains(rail)) rail.hidden = false; }, CONFIG.initialGraceMs);
   }
 
   function createModal() {
@@ -105,8 +109,13 @@
     emitComplete();
   }
 
+  function inInitialGracePeriod() {
+    return Date.now() - sessionStartedAt < CONFIG.initialGraceMs;
+  }
+
   function showBreak(adType) {
     const now = Date.now();
+    if (inInitialGracePeriod()) { emitComplete(); return; }
     if (modalOpen) return;
     if (now - lastBreakAt < CONFIG.minSecondsBetweenBreaks * 1000) { emitComplete(); return; }
     lastBreakAt = now;

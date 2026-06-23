@@ -16,6 +16,8 @@ class ArcadePortalEngine {
         // Commercial Adsterra Mediation States
         this.globalAdCooldownMs = 180000; // 3 Minutes strict Commercial Ad Standard
         this.lastAdExecutedTime = 0;
+        this.sessionStartedAt = Date.now();
+        this.initialAdGraceMs = 60000;
         this.activeGameWindow = null;
         
         // Legacy property retained for older arcade shell compatibility.
