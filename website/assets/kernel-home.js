@@ -12606,15 +12606,15 @@ var hu = {
 			this.composer.render(), this.rafId = requestAnimationFrame(this.animate);
 		}, this.renderer = new nu({
 			antialias: !0,
-			alpha: !0,
+			alpha: !1,
 			powerPreference: "high-performance"
-		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(0, 0), this.renderer.shadowMap.enabled = !0, this.renderer.shadowMap.type = 2, this.renderer.toneMapping = 4, this.renderer.toneMappingExposure = .92, this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.scene.add(this.workstationGroup), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.applyCameraProfile(this.profile, !0);
+		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(1182469, 1), this.renderer.shadowMap.enabled = !0, this.renderer.shadowMap.type = 2, this.renderer.toneMapping = 4, this.renderer.toneMappingExposure = .92, this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.scene.add(this.workstationGroup), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.applyCameraProfile(this.profile, !0);
 		let r = new ho(6244914, .22), i = new uo(16760168, 8.8, 48, Math.PI / 5.5, .58, 1.35);
 		i.position.set(4.9, 3.45, 5.2), i.target.position.set(.4, -.25, -1.65);
 		let a = new po(7271653, .22, 12, 2.8);
 		a.position.set(-2.8, -.8, 2.2);
 		let o = new po(2364939, .85, 24, 2);
-		o.position.set(0, -4, 4), i.castShadow = !0, i.shadow.mapSize.set(2048, 2048), i.shadow.bias = -35e-5, this.scene.add(r, i, i.target, a, o), this.scene.environment = this.createEnvironmentTexture(), this.composer = new du(this.renderer), this.composer.addPass(new fu(this.scene, this.camera)), this.bloomPass = new mu(new G(1, 1), .08, .55, .94), this.composer.addPass(this.bloomPass), this.createWorkstationEnvironment(), this.createBlueprintGearRig(), this.createGauges(), this.createEngageDial(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
+		o.position.set(0, -4, 4), i.castShadow = !0, i.shadow.mapSize.set(2048, 2048), i.shadow.bias = -35e-5, this.scene.add(r, i, i.target, a, o), this.scene.environment = this.createEnvironmentTexture(), this.scene.background = this.createWoodTexture(), this.composer = new du(this.renderer), this.composer.addPass(new fu(this.scene, this.camera)), this.bloomPass = new mu(new G(1, 1), .08, .55, .94), this.composer.addPass(this.bloomPass), this.createWorkstationEnvironment(), this.createBlueprintGearRig(), this.createGauges(), this.createEngageDial(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
 	}
 	handle(e) {
 		if (e.type === "system.heartbeat" && this.nodes.length > 0) return;
@@ -12698,22 +12698,22 @@ var hu = {
 	layoutGauges(e) {
 		let t = {
 			topbar: [
-				[-2.85, 3.25],
-				[-.95, 3.25],
-				[.95, 3.25],
-				[2.85, 3.25]
+				[-3, -3.66],
+				[-1, -3.66],
+				[1, -3.66],
+				[3, -3.66]
 			],
 			"side-panels": [
-				[-3.4, 1.75],
-				[3.35, 1.55],
-				[-3.15, -2.05],
-				[3.12, -2]
+				[-3.2, -3.68],
+				[-1.06, -3.68],
+				[1.08, -3.68],
+				[3.22, -3.68]
 			],
 			"compact-corners": [
-				[-2.9, 2.2],
-				[2.9, 2],
-				[-2.9, -2.15],
-				[2.9, -2.15]
+				[-3, -3.66],
+				[-1, -3.66],
+				[1, -3.66],
+				[3, -3.66]
 			]
 		}[e];
 		this.gauges.forEach((n, r) => {
@@ -12732,17 +12732,25 @@ var hu = {
 		return this.focusDial ? (this.raycaster.setFromCamera(this.pointer, this.camera), this.raycaster.intersectObjects(this.focusDial.children, !0).some((e) => e.object.userData.engageDial)) : !1;
 	}
 	createWorkstationEnvironment() {
-		let e = new Z(new ga(22, 15, 1, 1), new ja({
+		let e = new Z(new ga(36, 24, 1, 1), new ja({
 			color: 1774089,
 			map: this.createWoodTexture(),
-			roughness: .82,
+			roughnessMap: this.createWoodTexture(),
+			normalMap: this.createWoodNormalTexture(),
+			bumpMap: this.createWoodTexture(),
+			bumpScale: .02,
+			roughness: .86,
 			metalness: .05
 		}));
-		e.position.set(0, 0, -2.65), e.receiveShadow = !0, this.workstationGroup.add(e);
-		let t = new Z(new ga(12.4, 8.8, 1, 1), new ja({
+		e.position.set(0, 0, -2.82), e.receiveShadow = !0, this.workstationGroup.add(e);
+		let t = new Z(new ga(13.6, 9.4, 1, 1), new ja({
 			color: 12030552,
 			map: this.createBlueprintPaperTexture(),
-			roughness: .94,
+			roughnessMap: this.createBlueprintPaperTexture(),
+			normalMap: this.createPaperNormalTexture(),
+			bumpMap: this.createBlueprintPaperTexture(),
+			bumpScale: .012,
+			roughness: .96,
 			metalness: 0
 		}));
 		t.position.set(0, -.2, -1.92), t.receiveShadow = !0, this.workstationGroup.add(t);
@@ -12837,10 +12845,12 @@ var hu = {
 			emissive: t,
 			emissiveIntensity: .18 + n,
 			map: r,
+			roughnessMap: r,
+			normalMap: this.createNormalNoiseTexture(),
 			bumpMap: r,
 			bumpScale: .035,
 			metalness: .88,
-			roughness: .46
+			roughness: .52
 		});
 	}
 	createEnvironmentTexture() {
@@ -12850,6 +12860,34 @@ var hu = {
 		n.addColorStop(0, "#0b0704"), n.addColorStop(.45, "#6c4a25"), n.addColorStop(.72, "#d09b4e"), n.addColorStop(1, "#102824"), t.fillStyle = n, t.fillRect(0, 0, 512, 256);
 		let r = new Ii(e);
 		return r.mapping = 303, r.needsUpdate = !0, r;
+	}
+	createNormalNoiseTexture() {
+		let e = document.createElement("canvas");
+		e.width = 128, e.height = 128;
+		let t = e.getContext("2d"), n = t.createImageData(128, 128);
+		for (let e = 0; e < n.data.length; e += 4) {
+			let t = 122 + Math.random() * 12;
+			n.data[e] = t, n.data[e + 1] = t, n.data[e + 2] = 255, n.data[e + 3] = 255;
+		}
+		t.putImageData(n, 0, 0);
+		let r = new Ii(e);
+		return r.wrapS = r.wrapT = o, r.repeat.set(3, 3), r;
+	}
+	createPaperNormalTexture() {
+		let e = this.createNormalNoiseTexture();
+		return e.repeat.set(5, 3), e;
+	}
+	createWoodNormalTexture() {
+		let e = document.createElement("canvas");
+		e.width = 256, e.height = 256;
+		let t = e.getContext("2d"), n = t.createImageData(256, 256);
+		for (let e = 0; e < 256; e++) for (let t = 0; t < 256; t++) {
+			let r = (e * 256 + t) * 4, i = Math.sin(e * .12 + t * .015) * 18;
+			n.data[r] = 128 + i, n.data[r + 1] = 126 + i * .3, n.data[r + 2] = 255, n.data[r + 3] = 255;
+		}
+		t.putImageData(n, 0, 0);
+		let r = new Ii(e);
+		return r.wrapS = r.wrapT = o, r.repeat.set(3, 2), r;
 	}
 	createWoodTexture() {
 		let e = document.createElement("canvas");

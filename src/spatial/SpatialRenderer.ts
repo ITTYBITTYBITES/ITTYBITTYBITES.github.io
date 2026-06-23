@@ -94,9 +94,9 @@ export class SpatialRenderer {
     private liveRegion?: HTMLElement | null,
     private onGearSelected?: (gear: GearId) => void
   ) {
-    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: 'high-performance' });
+    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: 'high-performance' });
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    this.renderer.setClearColor(0x000000, 0);
+    this.renderer.setClearColor(0x120b05, 1);
     this.renderer.shadowMap.enabled = true;
     this.renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     this.renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -125,6 +125,7 @@ export class SpatialRenderer {
     lamp.shadow.bias = -0.00035;
     this.scene.add(ambient, lamp, lamp.target, cyanEdge, lowFill);
     this.scene.environment = this.createEnvironmentTexture();
+    this.scene.background = this.createWoodTexture();
     this.composer = new EffectComposer(this.renderer);
     this.composer.addPass(new RenderPass(this.scene, this.camera));
     this.bloomPass = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.08, 0.55, 0.94);
@@ -283,9 +284,9 @@ export class SpatialRenderer {
 
   private layoutGauges(mode: ResponsiveProfile['gaugeMode']): void {
     const layouts: Record<ResponsiveProfile['gaugeMode'], [number, number][]> = {
-      'topbar': [[-2.85, 3.25], [-0.95, 3.25], [0.95, 3.25], [2.85, 3.25]],
-      'side-panels': [[-3.4, 1.75], [3.35, 1.55], [-3.15, -2.05], [3.12, -2.0]],
-      'compact-corners': [[-2.9, 2.2], [2.9, 2.0], [-2.9, -2.15], [2.9, -2.15]],
+      'topbar': [[-3.0, -3.66], [-1.0, -3.66], [1.0, -3.66], [3.0, -3.66]],
+      'side-panels': [[-3.2, -3.68], [-1.06, -3.68], [1.08, -3.68], [3.22, -3.68]],
+      'compact-corners': [[-3.0, -3.66], [-1.0, -3.66], [1.0, -3.66], [3.0, -3.66]],
     };
     const points = layouts[mode];
     this.gauges.forEach((gauge, index) => {
@@ -313,24 +314,32 @@ export class SpatialRenderer {
 
   private createWorkstationEnvironment(): void {
     const desk = new THREE.Mesh(
-      new THREE.PlaneGeometry(22, 15, 1, 1),
+      new THREE.PlaneGeometry(36, 24, 1, 1),
       new THREE.MeshStandardMaterial({
         color: 0x1b1209,
         map: this.createWoodTexture(),
-        roughness: 0.82,
+        roughnessMap: this.createWoodTexture(),
+        normalMap: this.createWoodNormalTexture(),
+        bumpMap: this.createWoodTexture(),
+        bumpScale: 0.02,
+        roughness: 0.86,
         metalness: 0.05,
       })
     );
-    desk.position.set(0, 0, -2.65);
+    desk.position.set(0, 0, -2.82);
     desk.receiveShadow = true;
     this.workstationGroup.add(desk);
 
     const paper = new THREE.Mesh(
-      new THREE.PlaneGeometry(12.4, 8.8, 1, 1),
+      new THREE.PlaneGeometry(13.6, 9.4, 1, 1),
       new THREE.MeshStandardMaterial({
         color: 0xb79258,
         map: this.createBlueprintPaperTexture(),
-        roughness: 0.94,
+        roughnessMap: this.createBlueprintPaperTexture(),
+        normalMap: this.createPaperNormalTexture(),
+        bumpMap: this.createBlueprintPaperTexture(),
+        bumpScale: 0.012,
+        roughness: 0.96,
         metalness: 0.0,
       })
     );
@@ -412,10 +421,12 @@ export class SpatialRenderer {
       emissive,
       emissiveIntensity: 0.18 + cyanCatch,
       map: texture,
+      roughnessMap: texture,
+      normalMap: this.createNormalNoiseTexture(),
       bumpMap: texture,
       bumpScale: 0.035,
       metalness: 0.88,
-      roughness: 0.46,
+      roughness: 0.52,
     });
   }
 
@@ -435,6 +446,44 @@ export class SpatialRenderer {
     texture.mapping = THREE.EquirectangularReflectionMapping;
     texture.needsUpdate = true;
     return texture;
+  }
+
+
+  private createNormalNoiseTexture(): THREE.CanvasTexture {
+    const canvas = document.createElement('canvas');
+    canvas.width = 128; canvas.height = 128;
+    const ctx = canvas.getContext('2d')!;
+    const img = ctx.createImageData(128,128);
+    for (let i=0;i<img.data.length;i+=4) {
+      const n = 122 + Math.random()*12;
+      img.data[i] = n;
+      img.data[i+1] = n;
+      img.data[i+2] = 255;
+      img.data[i+3] = 255;
+    }
+    ctx.putImageData(img,0,0);
+    const tex = new THREE.CanvasTexture(canvas);
+    tex.wrapS = tex.wrapT = THREE.RepeatWrapping;
+    tex.repeat.set(3,3);
+    return tex;
+  }
+
+  private createPaperNormalTexture(): THREE.CanvasTexture {
+    const tex = this.createNormalNoiseTexture();
+    tex.repeat.set(5,3);
+    return tex;
+  }
+
+  private createWoodNormalTexture(): THREE.CanvasTexture {
+    const canvas = document.createElement('canvas'); canvas.width=256; canvas.height=256;
+    const ctx = canvas.getContext('2d')!;
+    const img = ctx.createImageData(256,256);
+    for (let y=0;y<256;y++) for(let x=0;x<256;x++) {
+      const i=(y*256+x)*4; const wave=Math.sin(y*.12+x*.015)*18;
+      img.data[i]=128+wave; img.data[i+1]=126+wave*.3; img.data[i+2]=255; img.data[i+3]=255;
+    }
+    ctx.putImageData(img,0,0);
+    const tex=new THREE.CanvasTexture(canvas); tex.wrapS=tex.wrapT=THREE.RepeatWrapping; tex.repeat.set(3,2); return tex;
   }
 
   private createWoodTexture(): THREE.CanvasTexture {
