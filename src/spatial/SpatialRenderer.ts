@@ -112,17 +112,18 @@ export class SpatialRenderer {
     this.scene.add(this.gaugeGroup);
     this.applyCameraProfile(this.profile, true);
 
-    const ambient = new THREE.AmbientLight(0x6f5a3e, 0.42);
-    const lamp = new THREE.PointLight(0xffbd68, 7.2, 42, 1.72);
-    lamp.position.set(4.9, 3.45, 4.2);
-    const cyanEdge = new THREE.PointLight(0x6ef4e5, 0.42, 18, 2.6);
-    cyanEdge.position.set(-4.6, 1.2, 4.2);
-    const lowFill = new THREE.PointLight(0x3b2a18, 1.8, 36, 2.0);
-    lowFill.position.set(0, -4, 7);
+    const ambient = new THREE.AmbientLight(0x5f4a32, 0.22);
+    const lamp = new THREE.SpotLight(0xffbd68, 8.8, 48, Math.PI / 5.5, 0.58, 1.35);
+    lamp.position.set(4.9, 3.45, 5.2);
+    lamp.target.position.set(0.4, -0.25, -1.65);
+    const cyanEdge = new THREE.PointLight(0x6ef4e5, 0.22, 12, 2.8);
+    cyanEdge.position.set(-2.8, -0.8, 2.2);
+    const lowFill = new THREE.PointLight(0x24160b, 0.85, 24, 2.0);
+    lowFill.position.set(0, -4, 4);
     lamp.castShadow = true;
-    lamp.shadow.mapSize.set(1024, 1024);
-    lamp.shadow.bias = -0.0004;
-    this.scene.add(ambient, lamp, cyanEdge, lowFill);
+    lamp.shadow.mapSize.set(2048, 2048);
+    lamp.shadow.bias = -0.00035;
+    this.scene.add(ambient, lamp, lamp.target, cyanEdge, lowFill);
     this.scene.environment = this.createEnvironmentTexture();
     this.composer = new EffectComposer(this.renderer);
     this.composer.addPass(new RenderPass(this.scene, this.camera));
@@ -147,7 +148,7 @@ export class SpatialRenderer {
     const index = this.nodes.length;
     const target = this.computePosition(index, mapping.pull, gearId);
     const mesh = new THREE.Mesh(this.createGeometry(mapping), this.createMaterial(mapping));
-    const origin = gearId ? this.getGearAnchor(gearId) : new THREE.Vector3(0, 0, 0);
+    const origin = gearId ? this.getGearAnchor(gearId).setZ(-1.04) : new THREE.Vector3(0, 0, -1.04);
     mesh.position.copy(origin);
     mesh.scale.setScalar(0.001);
     mesh.userData = { eventType: event.type, label: mapping.label };
@@ -158,12 +159,12 @@ export class SpatialRenderer {
       map: this.haloTexture,
       color: mapping.color,
       transparent: true,
-      opacity: 0.075,
+      opacity: 0.035,
       depthWrite: false,
       blending: THREE.AdditiveBlending,
     }));
     halo.position.copy(mesh.position);
-    halo.scale.setScalar(1.35 * mapping.scale);
+    halo.scale.setScalar(0.82 * mapping.scale);
 
     this.biomeGroup.add(mesh);
     this.biomeGroup.add(halo);
@@ -601,12 +602,13 @@ export class SpatialRenderer {
   }
 
   private createGeometry(mapping: BiomeMapping): THREE.BufferGeometry {
+    const segments = this.profile.geometryDetail > 0 ? 64 : 28;
     switch (mapping.geometry) {
-      case 'growth-node': return new THREE.IcosahedronGeometry(0.74, this.profile.geometryDetail);
-      case 'resource-crystal': return new THREE.OctahedronGeometry(0.66, 0);
-      case 'reward-orb': return new THREE.SphereGeometry(0.58, this.profile.geometryDetail > 0 ? 32 : 18, this.profile.geometryDetail > 0 ? 20 : 12);
-      case 'heartbeat-ring': return new THREE.TorusGeometry(0.58, 0.055, this.profile.geometryDetail > 0 ? 14 : 8, this.profile.geometryDetail > 0 ? 64 : 28);
-      default: return new THREE.TetrahedronGeometry(0.72, 0);
+      case 'growth-node': return new THREE.RingGeometry(0.28, 0.44, segments);
+      case 'resource-crystal': return new THREE.CircleGeometry(0.26, 6);
+      case 'reward-orb': return new THREE.RingGeometry(0.22, 0.42, segments);
+      case 'heartbeat-ring': return new THREE.RingGeometry(0.34, 0.42, segments);
+      default: return new THREE.CircleGeometry(0.3, 4);
     }
   }
 
@@ -614,30 +616,36 @@ export class SpatialRenderer {
     return new THREE.MeshStandardMaterial({
       color: mapping.color,
       emissive: mapping.emissive,
-      emissiveIntensity: 0.22,
-      metalness: 0.42,
-      roughness: 0.48,
+      emissiveIntensity: 0.16,
+      metalness: 0.0,
+      roughness: 0.92,
       transparent: true,
-      opacity: 0.94,
+      opacity: 0.72,
+      side: THREE.DoubleSide,
+      polygonOffset: true,
+      polygonOffsetFactor: -2,
+      polygonOffsetUnits: -2,
     });
   }
 
   private computePosition(index: number, pull: number, gearId?: GearId): THREE.Vector3 {
-    const anchor = gearId ? this.getGearAnchor(gearId) : new THREE.Vector3(0, 0, 0);
-    if (index === 0) return anchor.clone().add(new THREE.Vector3(0, 0, -0.6));
+    const anchor = gearId ? this.getGearAnchor(gearId) : new THREE.Vector3(0, 0, -1.04);
+    anchor.z = -1.04;
+    if (index === 0) return anchor.clone();
     const golden = Math.PI * (3 - Math.sqrt(5));
-    const radius = 1.05 + Math.sqrt(index) * 0.82 * pull;
+    const radius = 0.58 + Math.sqrt(index) * 0.42 * pull;
     const angleBase = gearId ? this.getGearAngle(gearId) : index * golden;
-    const angle = angleBase + index * 0.22;
-    const branch = Math.floor(index / 7);
-    const x = anchor.x + Math.cos(angle) * radius;
-    const y = anchor.y + Math.sin(angle) * radius * 0.62 + Math.sin(index * 0.72) * 0.45;
-    const z = -1.4 - branch * 0.45 - Math.sin(angle) * 0.55;
-    return new THREE.Vector3(x, y, z);
+    const angle = angleBase + index * 0.24;
+    const branch = Math.floor(index / 9);
+    const x = THREE.MathUtils.clamp(anchor.x + Math.cos(angle) * radius, -5.15, 5.15);
+    const y = THREE.MathUtils.clamp(anchor.y + Math.sin(angle) * radius * 0.62 + Math.sin(index * 0.72) * 0.18 - branch * 0.06, -3.62, 3.35);
+    return new THREE.Vector3(x, y, -1.04);
   }
 
   private getGearAnchor(gearId: GearId): THREE.Vector3 {
-    return this.gears.find((gear) => gear.id === gearId)?.anchor.clone() || new THREE.Vector3(0, 0, 0);
+    const anchor = this.gears.find((gear) => gear.id === gearId)?.anchor.clone() || new THREE.Vector3(0, 0, -1.04);
+    anchor.z = -1.04;
+    return anchor;
   }
 
   private getGearAngle(gearId: GearId): number {
@@ -658,21 +666,29 @@ export class SpatialRenderer {
   }
 
   private createLiquidTube(from: THREE.Vector3, to: THREE.Vector3, mapping: BiomeMapping, radius: number): void {
-    const mid = from.clone().lerp(to, 0.5);
-    mid.z += 0.55;
-    mid.y += 0.28 * Math.sin(this.nodes.length * 1.7);
-    const curve = new THREE.CatmullRomCurve3([from, mid, to]);
-    const geometry = new THREE.TubeGeometry(curve, this.profile.linkSegments, radius, this.profile.linkRadialSegments, false);
+    const a = from.clone();
+    const b = to.clone();
+    a.z = -1.035;
+    b.z = -1.035;
+    const mid = a.clone().lerp(b, 0.5);
+    mid.y += 0.12 * Math.sin(this.nodes.length * 1.7);
+    mid.z = -1.033;
+    const curve = new THREE.CatmullRomCurve3([a, mid, b]);
+    const geometry = new THREE.TubeGeometry(curve, Math.max(8, Math.floor(this.profile.linkSegments * 0.55)), 0.008, 4, false);
     const material = new THREE.MeshStandardMaterial({
       color: mapping.color,
       emissive: mapping.emissive,
-      emissiveIntensity: 1.15,
-      metalness: 0.55,
-      roughness: 0.2,
+      emissiveIntensity: 0.18,
+      metalness: 0.0,
+      roughness: 0.95,
       transparent: true,
-      opacity: 0.30,
+      opacity: 0.26,
+      polygonOffset: true,
+      polygonOffsetFactor: -2,
+      polygonOffsetUnits: -2,
     });
     const mesh = new THREE.Mesh(geometry, material);
+    mesh.receiveShadow = true;
     this.linkGroup.add(mesh);
     this.links.push({ mesh, material, createdAt: performance.now() });
     while (this.links.length > 76) {
@@ -828,13 +844,13 @@ export class SpatialRenderer {
       material.opacity = THREE.MathUtils.lerp(0.18, 0.78, 1 - blurFactor) * archiveFactor;
       material.emissiveIntensity = THREE.MathUtils.lerp(0.08, 0.42, 1 - blurFactor);
       node.halo.material.opacity = THREE.MathUtils.lerp(0.12, 0.025, 1 - blurFactor) * archiveFactor;
-      const bokehScale = THREE.MathUtils.lerp(3.8, 1.8, 1 - blurFactor);
+      const bokehScale = THREE.MathUtils.lerp(1.3, 0.72, 1 - blurFactor);
 
       node.mesh.position.lerp(desired, 0.055);
       node.halo.position.copy(node.mesh.position);
       const pulse = 1 + Math.sin(elapsed * 2.4 + index) * 0.045;
       const hoverBoost = this.hovered === node ? 1.32 : 1;
-      const deviceNodeScale = this.profile.kind === 'mobile' ? (this.profile.orientation === 'portrait' ? 0.18 : 0.34) : this.profile.kind === 'tablet' ? 0.72 : 1;
+      const deviceNodeScale = this.profile.kind === 'mobile' ? (this.profile.orientation === 'portrait' ? 0.16 : 0.28) : this.profile.kind === 'tablet' ? 0.55 : 0.74;
       node.mesh.scale.setScalar(deviceNodeScale * node.mapping.scale * pulse * age * hoverBoost * (1 - blurFactor * 0.18));
       node.halo.scale.setScalar(deviceNodeScale * bokehScale * node.mapping.scale * (this.hovered === node ? 1.25 : 1));
       node.mesh.rotation.x += 0.006 + index * 0.0002;
