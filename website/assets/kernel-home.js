@@ -12669,10 +12669,10 @@ var hu = {
 		return a && n < 700 ? o = "mobile" : (a || r < 1180) && (o = "tablet"), o === "mobile" && i === "portrait" ? {
 			kind: o,
 			orientation: i,
-			gearScale: .86,
+			gearScale: .24,
 			gearPosition: {
 				x: 0,
-				y: -2.25,
+				y: -1.55,
 				z: -1.18
 			},
 			gaugeMode: "topbar",
@@ -12686,14 +12686,14 @@ var hu = {
 			linkSegments: 12,
 			linkRadialSegments: 5,
 			geometryDetail: 0,
-			touchTargetScale: 1.38
+			touchTargetScale: 1.12
 		} : o === "mobile" ? {
 			kind: o,
 			orientation: i,
-			gearScale: .72,
+			gearScale: .42,
 			gearPosition: {
 				x: 0,
-				y: -1.15,
+				y: -.85,
 				z: -1.18
 			},
 			gaugeMode: "compact-corners",
@@ -12707,14 +12707,14 @@ var hu = {
 			linkSegments: 14,
 			linkRadialSegments: 5,
 			geometryDetail: 0,
-			touchTargetScale: 1.32
+			touchTargetScale: 1.16
 		} : o === "tablet" ? {
 			kind: o,
 			orientation: i,
-			gearScale: i === "portrait" ? .9 : .86,
+			gearScale: i === "portrait" ? .62 : .78,
 			gearPosition: {
 				x: 0,
-				y: i === "portrait" ? -1.05 : -.55,
+				y: i === "portrait" ? -.64 : -.42,
 				z: -1.18
 			},
 			gaugeMode: i === "portrait" ? "topbar" : "compact-corners",
@@ -12782,8 +12782,8 @@ var hu = {
 				l.opacity = At.lerp(.18, .78, 1 - s) * c, l.emissiveIntensity = At.lerp(.08, .42, 1 - s), t.halo.material.opacity = At.lerp(.12, .025, 1 - s) * c;
 				let u = At.lerp(3.8, 1.8, 1 - s);
 				t.mesh.position.lerp(a, .055), t.halo.position.copy(t.mesh.position);
-				let d = 1 + Math.sin(e * 2.4 + r) * .045, f = this.hovered === t ? 1.32 : 1;
-				t.mesh.scale.setScalar(t.mapping.scale * d * i * f * (1 - s * .18)), t.halo.scale.setScalar(u * t.mapping.scale * (this.hovered === t ? 1.25 : 1)), t.mesh.rotation.x += .006 + r * 2e-4, t.mesh.rotation.y += .009;
+				let d = 1 + Math.sin(e * 2.4 + r) * .045, f = this.hovered === t ? 1.32 : 1, p = this.profile.kind === "mobile" ? this.profile.orientation === "portrait" ? .18 : .34 : this.profile.kind === "tablet" ? .72 : 1;
+				t.mesh.scale.setScalar(p * t.mapping.scale * d * i * f * (1 - s * .18)), t.halo.scale.setScalar(p * u * t.mapping.scale * (this.hovered === t ? 1.25 : 1)), t.mesh.rotation.x += .006 + r * 2e-4, t.mesh.rotation.y += .009;
 			}), this.links.forEach((t, n) => {
 				let r = (Math.sin(e * 2.8 + n * .65) + 1) / 2;
 				t.material.opacity = .18 + r * .34, t.material.emissiveIntensity = .7 + r * .95, t.mesh.scale.setScalar(1 + r * .045);
@@ -12880,8 +12880,8 @@ var hu = {
 		t ? this.gearGroup.position.copy(n) : this.gearGroup.position.lerp(n, .35), this.layoutGauges(e.gaugeMode);
 	}
 	applyCameraProfile(e, t = !1) {
-		let n = e.kind === "mobile" ? new K(0, -.85, 14.8) : new K(0, -.42, 13.2);
-		this.camera.zoom = e.kind === "mobile" ? .92 : e.kind === "tablet" ? 1.02 : 1.08, this.camera.updateProjectionMatrix(), t ? this.camera.position.copy(n) : this.camera.position.lerp(n, .2), this.camera.lookAt(0, -.28, -1.35);
+		let n = e.kind === "mobile" ? new K(0, -.85, 14.8) : new K(0, -.42, 13.2), r = e.kind === "mobile" ? e.orientation === "portrait" ? .74 : .64 : e.kind === "tablet" ? e.orientation === "portrait" ? .62 : .88 : 1.08;
+		this.camera.zoom = r, this.camera.updateProjectionMatrix(), t ? this.camera.position.copy(n) : this.camera.position.lerp(n, .2), this.camera.lookAt(0, -.28, -1.35);
 	}
 	layoutGauges(e) {
 		let t = {
@@ -12920,28 +12920,28 @@ var hu = {
 		return this.focusDial ? (this.raycaster.setFromCamera(this.pointer, this.camera), this.raycaster.intersectObjects(this.focusDial.children, !0).some((e) => e.object.userData.engageDial)) : !1;
 	}
 	createWorkstationEnvironment() {
-		let e = new Z(new va(18, 11, 1, 1), new Na({
+		let e = new Z(new va(22, 15, 1, 1), new Na({
 			color: 1774089,
 			map: this.createWoodTexture(),
 			roughness: .82,
 			metalness: .05
 		}));
 		e.position.set(0, 0, -2.65), e.receiveShadow = !0, this.workstationGroup.add(e);
-		let t = new Z(new va(10.6, 6.2, 1, 1), new Na({
+		let t = new Z(new va(12.4, 8.8, 1, 1), new Na({
 			color: 12030552,
 			map: this.createBlueprintPaperTexture(),
 			roughness: .94,
 			metalness: 0
 		}));
 		t.position.set(0, -.2, -1.92), t.receiveShadow = !0, this.workstationGroup.add(t);
-		let n = this.createOxidizedMetalMaterial(3942935, 853763, .01), r = new Z(new Bi(11.4, .16, .2), n);
-		r.position.set(0, 3.05, -1.72);
+		let n = this.createOxidizedMetalMaterial(3942935, 853763, .01), r = new Z(new Bi(12.9, .16, .2), n);
+		r.position.set(0, 3.95, -1.72);
 		let i = r.clone();
-		i.position.y = -3.45;
-		let a = new Z(new Bi(.16, 6.55, .2), n);
-		a.position.set(-5.78, -.2, -1.72);
+		i.position.y = -4.35;
+		let a = new Z(new Bi(.16, 8.35, .2), n);
+		a.position.set(-6.48, -.2, -1.72);
 		let o = a.clone();
-		o.position.x = 5.78, this.workstationGroup.add(r, i, a, o);
+		o.position.x = 6.48, this.workstationGroup.add(r, i, a, o);
 		let s = new Na({
 			color: 10322006,
 			map: this.createPaperRollTexture(),
@@ -12965,9 +12965,9 @@ var hu = {
 		let p = new Z(new Vi(.5, .28, .28, 32, 1, !0), this.createOxidizedMetalMaterial(4666142, 1773575, 0));
 		p.rotation.x = Math.PI / 2, p.position.set(4.65, 2.75, -.62), this.workstationGroup.add(d, f, p);
 		let m = this.createTextSprite("BLUEPRINT // NAV", "#2e2114", "rgba(173,134,78,0.72)", 1);
-		m.position.set(-3.78, 2.72, -1.08), m.scale.set(2.55, .36, 1);
+		m.position.set(-4.28, 3.62, -1.08), m.scale.set(2.55, .36, 1);
 		let h = this.createTextSprite("SCHEMATIC  v0.9", "#2e2114", "rgba(38,28,18,0.82)", 1.05);
-		h.position.set(0, -3.12, -1.06), h.scale.set(2.35, .42, 1), this.workstationGroup.add(m, h), this.createEtchedOrnaments(), this.workstationGroup.traverse((e) => {
+		h.position.set(0, -3.92, -1.06), h.scale.set(2.35, .42, 1), this.workstationGroup.add(m, h), this.createEtchedOrnaments(), this.workstationGroup.traverse((e) => {
 			let t = e;
 			t.isMesh && (t.castShadow = !0, t.receiveShadow = !0);
 		});
@@ -13159,7 +13159,7 @@ var hu = {
 				-2
 			]
 		].forEach(([e, t, n, r]) => {
-			let i = this.createTextSprite(t, "#2f2517", "rgba(181,144,88,0.78)", 1);
+			let i = this.createTextSprite(t, "#2b2115", "transparent", 1);
 			i.position.set(n, r, .7), i.scale.set(1.65, .42, 1), this.gaugeGroup.add(i), this.gauges.push({
 				key: e,
 				sprite: i,
@@ -13172,7 +13172,7 @@ var hu = {
 		if (!n || n.lastValue === t) return;
 		n.lastValue = t;
 		let r = n.sprite.material.map;
-		n.sprite.material.map = this.createTextTexture(t, "#2f2517", "rgba(181,144,88,0.78)"), n.sprite.material.needsUpdate = !0, r?.dispose();
+		n.sprite.material.map = this.createTextTexture(t, "#2b2115", "transparent"), n.sprite.material.needsUpdate = !0, r?.dispose();
 	}
 	updateGearUnlocks(e) {
 		this.gears.forEach((t) => {
@@ -13329,7 +13329,7 @@ var hu = {
 		let r = document.createElement("canvas");
 		r.width = 512, r.height = 128;
 		let i = r.getContext("2d");
-		i.clearRect(0, 0, r.width, r.height), i.fillStyle = n, i.fillRect(12, 24, 488, 80), i.strokeStyle = "rgba(61,42,21,0.58)", i.lineWidth = 2, i.strokeRect(12.5, 24.5, 487, 79), i.strokeStyle = "rgba(240,211,150,0.20)", i.lineWidth = 1, i.strokeRect(22.5, 34.5, 467, 59), i.font = "900 31px \"Courier New\", \"Courier\", monospace", i.textAlign = "center", i.textBaseline = "middle", i.fillStyle = "rgba(255,238,190,0.16)", i.fillText(e, 258, 67), i.fillStyle = t, i.fillText(e, 256, 65);
+		i.clearRect(0, 0, r.width, r.height), n !== "transparent" && (i.fillStyle = n, i.fillRect(12, 24, 488, 80), i.strokeStyle = "rgba(61,42,21,0.58)", i.lineWidth = 2, i.strokeRect(12.5, 24.5, 487, 79), i.strokeStyle = "rgba(240,211,150,0.20)", i.lineWidth = 1, i.strokeRect(22.5, 34.5, 467, 59)), i.font = "900 31px \"Courier New\", \"Courier\", monospace", i.textAlign = "center", i.textBaseline = "middle", i.fillStyle = n === "transparent" ? "rgba(255,226,168,0.10)" : "rgba(255,238,190,0.16)", i.fillText(e, 259, 68), i.fillStyle = t, i.fillText(e, 256, 65);
 		let a = new Ii(r);
 		return a.needsUpdate = !0, a;
 	}

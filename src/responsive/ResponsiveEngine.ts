@@ -64,15 +64,15 @@ export class ResponsiveEngine {
       return {
         kind,
         orientation,
-        gearScale: 0.86,
-        gearPosition: { x: 0, y: -2.25, z: -1.18 },
+        gearScale: 0.24,
+        gearPosition: { x: 0, y: -1.55, z: -1.18 },
         gaugeMode: 'topbar',
         camera: { x: 0, y: 4.9, z: 15.8, fov: 54 },
         starCount: 92,
         linkSegments: 12,
         linkRadialSegments: 5,
         geometryDetail: 0,
-        touchTargetScale: 1.38,
+        touchTargetScale: 1.12,
       };
     }
 
@@ -80,15 +80,15 @@ export class ResponsiveEngine {
       return {
         kind,
         orientation,
-        gearScale: 0.72,
-        gearPosition: { x: 0, y: -1.15, z: -1.18 },
+        gearScale: 0.42,
+        gearPosition: { x: 0, y: -0.85, z: -1.18 },
         gaugeMode: 'compact-corners',
         camera: { x: 0, y: 4.2, z: 14.4, fov: 52 },
         starCount: 110,
         linkSegments: 14,
         linkRadialSegments: 5,
         geometryDetail: 0,
-        touchTargetScale: 1.32,
+        touchTargetScale: 1.16,
       };
     }
 
@@ -96,8 +96,8 @@ export class ResponsiveEngine {
       return {
         kind,
         orientation,
-        gearScale: orientation === 'portrait' ? 0.9 : 0.86,
-        gearPosition: { x: 0, y: orientation === 'portrait' ? -1.05 : -0.55, z: -1.18 },
+        gearScale: orientation === 'portrait' ? 0.62 : 0.78,
+        gearPosition: { x: 0, y: orientation === 'portrait' ? -0.64 : -0.42, z: -1.18 },
         gaugeMode: orientation === 'portrait' ? 'topbar' : 'compact-corners',
         camera: { x: 0, y: 4.65, z: 14.3, fov: 50 },
         starCount: 155,

@@ -268,7 +268,12 @@ export class SpatialRenderer {
     const target = profile.kind === 'mobile'
       ? new THREE.Vector3(0, -0.85, 14.8)
       : new THREE.Vector3(0, -0.42, 13.2);
-    this.camera.zoom = profile.kind === 'mobile' ? 0.92 : profile.kind === 'tablet' ? 1.02 : 1.08;
+    const zoom = profile.kind === 'mobile'
+      ? (profile.orientation === 'portrait' ? 0.74 : 0.64)
+      : profile.kind === 'tablet'
+        ? (profile.orientation === 'portrait' ? 0.62 : 0.88)
+        : 1.08;
+    this.camera.zoom = zoom;
     this.camera.updateProjectionMatrix();
     if (instant) this.camera.position.copy(target);
     else this.camera.position.lerp(target, 0.2);
@@ -307,7 +312,7 @@ export class SpatialRenderer {
 
   private createWorkstationEnvironment(): void {
     const desk = new THREE.Mesh(
-      new THREE.PlaneGeometry(18, 11, 1, 1),
+      new THREE.PlaneGeometry(22, 15, 1, 1),
       new THREE.MeshStandardMaterial({
         color: 0x1b1209,
         map: this.createWoodTexture(),
@@ -320,7 +325,7 @@ export class SpatialRenderer {
     this.workstationGroup.add(desk);
 
     const paper = new THREE.Mesh(
-      new THREE.PlaneGeometry(10.6, 6.2, 1, 1),
+      new THREE.PlaneGeometry(12.4, 8.8, 1, 1),
       new THREE.MeshStandardMaterial({
         color: 0xb79258,
         map: this.createBlueprintPaperTexture(),
@@ -333,12 +338,12 @@ export class SpatialRenderer {
     this.workstationGroup.add(paper);
 
     const frameMat = this.createOxidizedMetalMaterial(0x3c2a17, 0x0d0703, 0.01);
-    const topRail = new THREE.Mesh(new THREE.BoxGeometry(11.4, 0.16, 0.2), frameMat);
-    topRail.position.set(0, 3.05, -1.72);
-    const bottomRail = topRail.clone(); bottomRail.position.y = -3.45;
-    const leftRail = new THREE.Mesh(new THREE.BoxGeometry(0.16, 6.55, 0.2), frameMat);
-    leftRail.position.set(-5.78, -0.2, -1.72);
-    const rightRail = leftRail.clone(); rightRail.position.x = 5.78;
+    const topRail = new THREE.Mesh(new THREE.BoxGeometry(12.9, 0.16, 0.2), frameMat);
+    topRail.position.set(0, 3.95, -1.72);
+    const bottomRail = topRail.clone(); bottomRail.position.y = -4.35;
+    const leftRail = new THREE.Mesh(new THREE.BoxGeometry(0.16, 8.35, 0.2), frameMat);
+    leftRail.position.set(-6.48, -0.2, -1.72);
+    const rightRail = leftRail.clone(); rightRail.position.x = 6.48;
     this.workstationGroup.add(topRail, bottomRail, leftRail, rightRail);
 
     const scrollMat = new THREE.MeshStandardMaterial({ color: 0x9d8056, map: this.createPaperRollTexture(), roughness: 0.88, metalness: 0.0 });
@@ -361,10 +366,10 @@ export class SpatialRenderer {
     this.workstationGroup.add(lampBase, lampOrb, lampShade);
 
     const title = this.createTextSprite('BLUEPRINT // NAV', '#2e2114', 'rgba(173,134,78,0.72)', 1.0);
-    title.position.set(-3.78, 2.72, -1.08);
+    title.position.set(-4.28, 3.62, -1.08);
     title.scale.set(2.55, 0.36, 1);
     const schematic = this.createTextSprite('SCHEMATIC  v0.9', '#2e2114', 'rgba(38,28,18,0.82)', 1.05);
-    schematic.position.set(0, -3.12, -1.06);
+    schematic.position.set(0, -3.92, -1.06);
     schematic.scale.set(2.35, 0.42, 1);
     this.workstationGroup.add(title, schematic);
     this.createEtchedOrnaments();
@@ -562,7 +567,7 @@ export class SpatialRenderer {
       ['pearls', 'PEARLS 0', 3.12, -2.0],
     ] as const;
     specs.forEach(([key, text, x, y]) => {
-      const sprite = this.createTextSprite(text, '#2f2517', 'rgba(181,144,88,0.78)', 1.0);
+      const sprite = this.createTextSprite(text, '#2b2115', 'transparent', 1.0);
       sprite.position.set(x, y, 0.7);
       sprite.scale.set(1.65, 0.42, 1);
       this.gaugeGroup.add(sprite);
@@ -575,7 +580,7 @@ export class SpatialRenderer {
     if (!gauge || gauge.lastValue === value) return;
     gauge.lastValue = value;
     const old = gauge.sprite.material.map;
-    gauge.sprite.material.map = this.createTextTexture(value, '#2f2517', 'rgba(181,144,88,0.78)');
+    gauge.sprite.material.map = this.createTextTexture(value, '#2b2115', 'transparent');
     gauge.sprite.material.needsUpdate = true;
     old?.dispose();
   }
@@ -829,8 +834,9 @@ export class SpatialRenderer {
       node.halo.position.copy(node.mesh.position);
       const pulse = 1 + Math.sin(elapsed * 2.4 + index) * 0.045;
       const hoverBoost = this.hovered === node ? 1.32 : 1;
-      node.mesh.scale.setScalar(node.mapping.scale * pulse * age * hoverBoost * (1 - blurFactor * 0.18));
-      node.halo.scale.setScalar(bokehScale * node.mapping.scale * (this.hovered === node ? 1.25 : 1));
+      const deviceNodeScale = this.profile.kind === 'mobile' ? (this.profile.orientation === 'portrait' ? 0.18 : 0.34) : this.profile.kind === 'tablet' ? 0.72 : 1;
+      node.mesh.scale.setScalar(deviceNodeScale * node.mapping.scale * pulse * age * hoverBoost * (1 - blurFactor * 0.18));
+      node.halo.scale.setScalar(deviceNodeScale * bokehScale * node.mapping.scale * (this.hovered === node ? 1.25 : 1));
       node.mesh.rotation.x += 0.006 + index * 0.0002;
       node.mesh.rotation.y += 0.009;
     });
@@ -905,19 +911,21 @@ export class SpatialRenderer {
     canvas.height = 128;
     const ctx = canvas.getContext('2d')!;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = background;
-    ctx.fillRect(12, 24, 488, 80);
-    ctx.strokeStyle = 'rgba(61,42,21,0.58)';
-    ctx.lineWidth = 2;
-    ctx.strokeRect(12.5, 24.5, 487, 79);
-    ctx.strokeStyle = 'rgba(240,211,150,0.20)';
-    ctx.lineWidth = 1;
-    ctx.strokeRect(22.5, 34.5, 467, 59);
+    if (background !== 'transparent') {
+      ctx.fillStyle = background;
+      ctx.fillRect(12, 24, 488, 80);
+      ctx.strokeStyle = 'rgba(61,42,21,0.58)';
+      ctx.lineWidth = 2;
+      ctx.strokeRect(12.5, 24.5, 487, 79);
+      ctx.strokeStyle = 'rgba(240,211,150,0.20)';
+      ctx.lineWidth = 1;
+      ctx.strokeRect(22.5, 34.5, 467, 59);
+    }
     ctx.font = '900 31px "Courier New", "Courier", monospace';
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillStyle = 'rgba(255,238,190,0.16)';
-    ctx.fillText(text, 258, 67);
+    ctx.fillStyle = background === 'transparent' ? 'rgba(255,226,168,0.10)' : 'rgba(255,238,190,0.16)';
+    ctx.fillText(text, 259, 68);
     ctx.fillStyle = color;
     ctx.fillText(text, 256, 65);
     const texture = new THREE.CanvasTexture(canvas);
