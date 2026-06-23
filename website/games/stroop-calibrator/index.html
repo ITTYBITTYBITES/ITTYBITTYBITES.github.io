@@ -107,6 +107,8 @@
         }
 
         function evaluate(chosenHex) {
+            // Ignore early input before the calibration stream has started.
+            if (!correct) return;
             if (chosenHex === correct.hex) {
                 score += 25;
                 scoreEl.textContent = `SCORE: ${score}`;
@@ -148,7 +150,7 @@
         wordEl.addEventListener('pointerdown', function startH(e) {
             try { e.target.setPointerCapture(e.pointerId); } catch(err){}
             e.preventDefault();
-            wordEl.removeEventListener('click', startH);
+            wordEl.removeEventListener('pointerdown', startH);
             nextStroop();
         });
         

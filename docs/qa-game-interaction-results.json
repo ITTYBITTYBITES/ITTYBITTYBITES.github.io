@@ -1,0 +1,1185 @@
+{
+  "generatedAt": "2026-06-23T21:33:40.948Z",
+  "base": "http://127.0.0.1:8765/website/",
+  "results": [
+    {
+      "index": 1,
+      "id": "cyber-vector",
+      "title": "3D Cyber Vector Grid Hover-Racer",
+      "path": "games/cyber-vector/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "AD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "",
+            "canvases": 1
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "AD\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "",
+            "canvases": 1
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "id": "neon-polygon",
+      "title": "3D Neon Geometric Defender",
+      "path": "games/neon-polygon/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "AD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "",
+            "canvases": 1
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "AD\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "",
+            "canvases": 1
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "id": "quantum-breakout",
+      "title": "3D Particle Breakout Engine",
+      "path": "games/quantum-breakout/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "AD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "INTERSTITIAL SPONSOR WINDOW\n\nReward loading\n\nA short in-game sponsor window keeps the arcade free. No new website opens; stay here and continue when the timer completes.\n\n5\nCONTINUE\nSKIP",
+            "canvases": 1
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "AD\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "INTERSTITIAL SPONSOR WINDOW\n\nReward loading\n\nA short in-game sponsor window keeps the arcade free. No new website opens; stay here and continue when the timer completes.\n\n5\nCONTINUE\nSKIP",
+            "canvases": 1
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "id": "attentional-blink",
+      "title": "Attentional Blink Assessor",
+      "path": "games/attentional-blink/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button:has-text(\"Engage\")",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "READY\nENGAGE CAPTURE STREAM\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 0
+          },
+          "after": {
+            "text": "O\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 0
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button:has-text(\"Engage\")",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "READY\nENGAGE CAPTURE STREAM\nAD\nHide",
+            "canvases": 0
+          },
+          "after": {
+            "text": "G\nAD\nHide",
+            "canvases": 0
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "id": "cosmic-tunnel",
+      "title": "Cosmic Tunnel 3D",
+      "path": "games/cosmic-tunnel/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "COSMIC SCORE\n9\nWARP VELOCITY\n3.5x\n\u25c8 SWIPE LEFT/RIGHT OR HOLD [A]/[D] OR [\u2190]/[\u2192] TO ROTATE WORMHOLE \u25c8\n\ud83d\udca5\nVESSEL CRASHED\n\nCosmic rotation matrix collided with geometric obstacle.\nOperational video ad mediation sequence initiated...\n\nFINAL SCORE\n\n\u25c8 0\nWARP REACHED\n\n3.5x\n\u26a1 AWAITING PARENT AD CLEARANCE \u26a1\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "COSMIC SCORE\n43\nWARP VELOCITY\n3.6x\n\u25c8 SWIPE LEFT/RIGHT OR HOLD [A]/[D] OR [\u2190]/[\u2192] TO ROTATE WORMHOLE \u25c8\n\ud83d\udca5\nVESSEL CRASHED\n\nCosmic rotation matrix collided with geometric obstacle.\nOperational video ad mediation sequence initiated...\n\nFINAL SCORE\n\n\u25c8 43\nWARP REACHED\n\n3.6x\n\u26a1 AWAITING PARENT AD CLEARANCE \u26a1\nAD\nThanks for supporting free Liquid Memory browser games.\nHide\n\nINTERSTITIAL SPONSOR WINDOW\n\nReward loading\n\nA short in-game sponsor window keeps the arcade free. No new website opens; stay here an",
+            "canvases": 1
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "COSMIC SCORE\n12\nWARP VELOCITY\n3.5x\n\u25c8 SWIPE LEFT/RIGHT OR HOLD [A]/[D] OR [\u2190]/[\u2192] TO ROTATE WORMHOLE \u25c8\n\ud83d\udca5\nVESSEL CRASHED\n\nCosmic rotation matrix collided with geometric obstacle.\nOperational video ad mediation sequence initiated...\n\nFINAL SCORE\n\n\u25c8 0\nWARP REACHED\n\n3.5x\n\u26a1 AWAITING PARENT AD CLEARANCE \u26a1\nAD\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "COSMIC SCORE\n47\nWARP VELOCITY\n3.6x\n\u25c8 SWIPE LEFT/RIGHT OR HOLD [A]/[D] OR [\u2190]/[\u2192] TO ROTATE WORMHOLE \u25c8\n\ud83d\udca5\nVESSEL CRASHED\n\nCosmic rotation matrix collided with geometric obstacle.\nOperational video ad mediation sequence initiated...\n\nFINAL SCORE\n\n\u25c8 0\nWARP REACHED\n\n3.5x\n\u26a1 AWAITING PARENT AD CLEARANCE \u26a1\nAD\nHide",
+            "canvases": 1
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 6,
+      "id": "hover-drone",
+      "title": "Cyber Flappy Hover-Drone",
+      "path": "games/hover-drone/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "AD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "",
+            "canvases": 1
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "AD\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "",
+            "canvases": 1
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 7,
+      "id": "cyber-snake",
+      "title": "Cyber Snake 2026",
+      "path": "games/cyber-snake/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "AD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "",
+            "canvases": 1
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "AD\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "",
+            "canvases": 1
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 8,
+      "id": "cyber-mines",
+      "title": "Cyber Sweeper Sentinel",
+      "path": "games/cyber-mines/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "FLAGGED: 0\nREBOOT SECURE GRID\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 0
+          },
+          "after": {
+            "text": "FLAGGED: 0\nREBOOT SECURE GRID\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 0
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "FLAGGED: 0\nREBOOT SECURE GRID\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\nAD\nHide",
+            "canvases": 0
+          },
+          "after": {
+            "text": "FLAGGED: 10\nREBOOT SECURE GRID\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n\u25c8\n?\n?\n?\n?\n\ud83d\udca5\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\nAD\nHide\n\nINTERSTITIAL SPONSOR WINDOW\n\nReward loading\n\nA short in-game sponsor window keeps the arcade free. No new website opens; stay here and continue when the timer completes.\n\n5\nCONTINUE\nSKIP",
+            "canvases": 0
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 9,
+      "id": "grid-delver",
+      "title": "Grid Delver: 1-Minute Micro-Rogue",
+      "path": "games/grid-delver/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "SYSTEM HP\n100/100\nCLASSIFIED GOLD\n0\nDEPTH LEVEL\n1\nTACTICAL XP\n0\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n\u00b7\n?\n?\n?\n\u25c8\n+28\n\ud83d\udf0c\nAGENT\n\ud83c\udc19\n-18\n?\n\u25c8 TACTICAL MISSION LOG\n[00:60.0] Entered Classification Depth: 1\nClick ortho available cards. Clear stairs to trigger Phase 2 network bridge.\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 0
+          },
+          "after": {
+            "text": "SYSTEM HP\n100/100\nCLASSIFIED GOLD\n0\nDEPTH LEVEL\n1\nTACTICAL XP\n0\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n\u00b7\n?\n?\n?\n\u25c8\n+28\n\ud83d\udf0c\nAGENT\n\ud83c\udc19\n-18\n?\n\u25c8 TACTICAL MISSION LOG\n[00:60.0] Entered Classification Depth: 1\nClick ortho available cards. Clear stairs to trigger Phase 2 network bridge.",
+            "canvases": 0
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "SYSTEM HP\n100/100\nCLASSIFIED GOLD\n0\nDEPTH LEVEL\n1\nTACTICAL XP\n0\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n\ud83c\udc19\n-28\n?\n?\n?\n\ud83c\udc19\n-32\n\ud83d\udf0c\nAGENT\n\u00b7\n?\n\u25c8 TACTICAL MISSION LOG\n[00:60.0] Entered Classification Depth: 1\nClick ortho available cards. Clear stairs to trigger Phase 2 network bridge.\nAD\nHide",
+            "canvases": 0
+          },
+          "after": {
+            "text": "SYSTEM HP\n51/100\nCLASSIFIED GOLD\n0\nDEPTH LEVEL\n1\nTACTICAL XP\n35\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n?\n\u00b7\n\u2055\n-14\n?\n?\n\u25c8\n+19\n\ud83d\udf0c\nAGENT\n\u00b7\n\ud83c\udc19\n-27\n?\n?\n\ud83c\udc19\n-32\n\ud83d\udf0c\n\u00b7\n?\n\u25c8 TACTICAL MISSION LOG\n[00:60.0] Entered Classification Depth: 1\n[00:59.2] Shadow Beast Ambush! Sustained -28 System Damage\n[00:59.2] Triggered Spike Wire! Sustained -21 Execution Fault\nClick ortho available cards. Clear stairs to trigger Phase 2 network bridge.",
+            "canvases": 0
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 10,
+      "id": "metronomic-rhythm",
+      "title": "METRONOMIC RHYTHM ANCHOR",
+      "path": "games/metronomic-rhythm/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "METRONOME XP: 0\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "METRONOME XP: 0",
+            "canvases": 1
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "METRONOME XP: 0\nAD\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "METRONOME XP: 50",
+            "canvases": 1
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 11,
+      "id": "nback-sentinel",
+      "title": "N-BACK SENTINEL LOG",
+      "path": "games/nback-sentinel/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "CONTINUOUS SENSORY BUFFER LOOP\n\nPress **MATCH** or **Spacebar** when active card perfectly duplicates state **exactly 2 turns prior**.\n\n\u2014\n\u2014\n\ud83d\udf1e\n\u25c8 SECURE MATCH (SPACEBAR) \u25c8\nOPERATIVE XP: 0\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 0
+          },
+          "after": {
+            "text": "CONTINUOUS SENSORY BUFFER LOOP\n\nPress **MATCH** or **Spacebar** when active card perfectly duplicates state **exactly 2 turns prior**.\n\n\u2014\n\u2014\n\ud83d\udf1e\n\u25c8 SECURE MATCH (SPACEBAR) \u25c8\nOPERATIVE XP: 0\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 0
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "CONTINUOUS SENSORY BUFFER LOOP\n\nPress **MATCH** or **Spacebar** when active card perfectly duplicates state **exactly 2 turns prior**.\n\n\u2014\n\u2014\n\ud83d\udf1e\n\u25c8 SECURE MATCH (SPACEBAR) \u25c8\nOPERATIVE XP: 0\nAD\nHide",
+            "canvases": 0
+          },
+          "after": {
+            "text": "CONTINUOUS SENSORY BUFFER LOOP\n\nPress **MATCH** or **Spacebar** when active card perfectly duplicates state **exactly 2 turns prior**.\n\n\u2014\n\u2014\n\ud83d\udf1e\n\u25c8 SECURE MATCH (SPACEBAR) \u25c8\nOPERATIVE XP: 0\nAD\nHide",
+            "canvases": 0
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 12,
+      "id": "neon-pong",
+      "title": "Neon Cyber Pong 1v1",
+      "path": "games/neon-pong/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "AD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "",
+            "canvases": 1
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "AD\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "",
+            "canvases": 1
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 13,
+      "id": "orbital-sandbox",
+      "title": "Orbital Gravitational Physics Sandbox",
+      "path": "games/orbital-sandbox/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "AD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "",
+            "canvases": 1
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "AD\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "",
+            "canvases": 1
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 14,
+      "id": "quantum-sentinel",
+      "title": "Quantum Sentinel: Fast Spatial Reflex",
+      "path": "games/quantum-sentinel/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "TACTICAL SCORE\n0\nCORE SHIELDS\n100%\nQUANTUM WAVE\n1\nSPONSORSHIP BRIDGE\nPHASE 2 VERIFIED\n\u25c8 QUANTUM INGESTION LOG\n\u25c8 Initialized Quantum Sentinel // Wave 1\nClick reticles exactly. Clear 20 nodes to initiate Phase 2 waterfall handshake.\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "TACTICAL SCORE\n0\nCORE SHIELDS\n80%\nQUANTUM WAVE\n1\nSPONSORSHIP BRIDGE\nPHASE 2 VERIFIED\n\u25c8 QUANTUM INGESTION LOG\n\u25c8 Initialized Quantum Sentinel // Wave 1\n\u25c8 Spatial Misfire Fault! Shields -5%\n\u25c8 Target Implosion Fault! Shields -15%\nClick reticles exactly. Clear 20 nodes to initiate Phase 2 waterfall handshake.",
+            "canvases": 1
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "TACTICAL SCORE\n0\nCORE SHIELDS\n100%\nQUANTUM WAVE\n1\nSPONSORSHIP BRIDGE\nPHASE 2 VERIFIED\n\u25c8 QUANTUM INGESTION LOG\n\u25c8 Initialized Quantum Sentinel // Wave 1\nClick reticles exactly. Clear 20 nodes to initiate Phase 2 waterfall handshake.\nAD\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "TACTICAL SCORE\n0\nCORE SHIELDS\n85%\nQUANTUM WAVE\n1\nSPONSORSHIP BRIDGE\nPHASE 2 VERIFIED\n\u25c8 QUANTUM INGESTION LOG\n\u25c8 Initialized Quantum Sentinel // Wave 1\n\u25c8 Target Implosion Fault! Shields -15%\nClick reticles exactly. Clear 20 nodes to initiate Phase 2 waterfall handshake.",
+            "canvases": 1
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 15,
+      "id": "raycasted-doom",
+      "title": "Raycasted 3D Doom Labyrinth",
+      "path": "games/raycasted-doom/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "\u25b2 ADV\n\u25bc RET\n\u25c0 ROT\nROT \u25b6\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "\u25b2 ADV\n\u25bc RET\n\u25c0 ROT\nROT \u25b6\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 1
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "\u25b2 ADV\n\u25bc RET\n\u25c0 ROT\nROT \u25b6\nAD\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "\u25b2 ADV\n\u25bc RET\n\u25c0 ROT\nROT \u25b6\nAD\nHide",
+            "canvases": 1
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 16,
+      "id": "gravity-slingshot",
+      "title": "Relivistic Space Slingshot",
+      "path": "games/gravity-slingshot/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "AD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "",
+            "canvases": 1
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "AD\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "",
+            "canvases": 1
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 17,
+      "id": "retro-breakout",
+      "title": "Retro Cyber Neon Breakout",
+      "path": "games/retro-breakout/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "AD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "",
+            "canvases": 1
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "AD\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "",
+            "canvases": 1
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 18,
+      "id": "saccadic-target",
+      "title": "SACCADIC TARGET ACQUISITION",
+      "path": "games/saccadic-target/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "ACQUISITION XP: 0\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "ACQUISITION XP: 0",
+            "canvases": 1
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "ACQUISITION XP: 0\nAD\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "ACQUISITION XP: 0",
+            "canvases": 1
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 19,
+      "id": "shifting-selector",
+      "title": "SHIFTING ATTENTIONAL ATTRIBUTE SELECTOR",
+      "path": "games/shifting-selector/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "ACTIVE RULE:\nCOLOR PATTERN\nMASTER OPERATIVE TARGET\n\u25c6\n\u25cf\n\u25c6\nSELECTOR XP: 0\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 0
+          },
+          "after": {
+            "text": "ACTIVE RULE:\nCOLOR PATTERN\nMASTER OPERATIVE TARGET\n\u25b2\n\u25a0\n\u25c6\nSELECTOR XP: 50\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 0
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "ACTIVE RULE:\nCOLOR PATTERN\nMASTER OPERATIVE TARGET\n\u25a0\n\u25cf\n\u25c6\nSELECTOR XP: 0\nAD\nHide",
+            "canvases": 0
+          },
+          "after": {
+            "text": "ACTIVE RULE:\nSHAPE VECTOR\nMASTER OPERATIVE TARGET\n\u25a0\n\u25cf\n\u25a0\nSELECTOR XP: 0\nAD\nHide",
+            "canvases": 0
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 20,
+      "id": "signal-detection",
+      "title": "SIGNAL DETECTION FILTER",
+      "path": "games/signal-detection/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "FILTER XP: 0\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "FILTER XP: 0",
+            "canvases": 1
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "FILTER XP: 0\nAD\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "FILTER XP: 0",
+            "canvases": 1
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 21,
+      "id": "space-asteroids",
+      "title": "Space Asteroids Retro Vector",
+      "path": "games/space-asteroids/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "\u25c0 ROT\nROT \u25b6\n\u25b2 THRUST\n\ud83d\ude80 FIRE\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "\u25c0 ROT\nROT \u25b6\n\u25b2 THRUST\n\ud83d\ude80 FIRE\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 1
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "\u25c0 ROT\nROT \u25b6\n\u25b2 THRUST\n\ud83d\ude80 FIRE\nAD\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "\u25c0 ROT\nROT \u25b6\n\u25b2 THRUST\n\ud83d\ude80 FIRE\nAD\nHide",
+            "canvases": 1
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 22,
+      "id": "spatial-matrix",
+      "title": "SPATIAL MATRIX EXPANSION",
+      "path": "games/spatial-matrix/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "OBSERVE VECTOR PATH (LVL 2)\nLEVEL 2 // XP: 0\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 0
+          },
+          "after": {
+            "text": "OBSERVE VECTOR PATH (LVL 2)\nLEVEL 2 // XP: 0",
+            "canvases": 0
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "OBSERVE VECTOR PATH (LVL 2)\nLEVEL 2 // XP: 0\nAD\nHide",
+            "canvases": 0
+          },
+          "after": {
+            "text": "DUPLICATE SPATIAL TRACE ROUTE\nLEVEL 2 // XP: 0",
+            "canvases": 0
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 23,
+      "id": "stroop-calibrator",
+      "title": "Stroop Interference Calibrator",
+      "path": "games/stroop-calibrator/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "ENGAGE CALIBRATION\nRED\nGREEN\nBLUE\nYELLOW\nSCORE: 0\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 0
+          },
+          "after": {
+            "text": "ENGAGE CALIBRATION\nRED\nGREEN\nBLUE\nYELLOW\nSCORE: 0\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 0
+          },
+          "pass": true,
+          "note": "Retested after guard fix: early input before stream start no longer throws."
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "ENGAGE CALIBRATION\nRED\nGREEN\nBLUE\nYELLOW\nSCORE: 0\nAD\nHide",
+            "canvases": 0
+          },
+          "after": {
+            "text": "ENGAGE CALIBRATION\nRED\nGREEN\nBLUE\nYELLOW\nSCORE: 0\nAD\nHide",
+            "canvases": 0
+          },
+          "pass": true,
+          "note": "Retested after guard fix: early input before stream start no longer throws."
+        }
+      ]
+    },
+    {
+      "index": 24,
+      "id": "tachistoscope",
+      "title": "TACHISTOSCOPE RECOGNITION MATRIX",
+      "path": "games/tachistoscope/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "READY\nTRIGGER OPTICAL FLASH (30MS)\nBUFFER XP: 0\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 0
+          },
+          "after": {
+            "text": "#####\nTRIGGER OPTICAL FLASH (30MS)\n VERIFY ICONIC BUFFER\nBUFFER XP: 0\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 0
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "READY\nTRIGGER OPTICAL FLASH (30MS)\nBUFFER XP: 0\nAD\nHide",
+            "canvases": 0
+          },
+          "after": {
+            "text": "#####\nTRIGGER OPTICAL FLASH (30MS)\n VERIFY ICONIC BUFFER\nBUFFER XP: 0\nAD\nHide",
+            "canvases": 0
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 25,
+      "id": "tachyon-racer",
+      "title": "Tachyon Hyper-Speed Interceptor",
+      "path": "games/tachyon-racer/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "AD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "",
+            "canvases": 1
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "AD\nHide",
+            "canvases": 1
+          },
+          "after": {
+            "text": "",
+            "canvases": 1
+          },
+          "pass": true
+        }
+      ]
+    },
+    {
+      "index": 26,
+      "id": "memory-churn",
+      "title": "WORKING MEMORY CALIBRATION CHURN",
+      "path": "games/memory-churn/index.html",
+      "pass": true,
+      "checks": [
+        {
+          "profile": "desktop",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "FAV-HI\nZVL-Q0\nC2*-XJ\nQPM-FQ\n\nWORKING MEMORY EQUATION\n61 + 54\n SUBMIT SOLUTION\nCHURN XP: 0\n000010\n011110\n000101\n101110\n\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 0
+          },
+          "after": {
+            "text": "4AB-ON\nVOC-N5\nY7S-D$\nIP2-73\n\nWORKING MEMORY EQUATION\n42 + 42\n SUBMIT SOLUTION\nCHURN XP: 0\n010001\n101010\n101111\n000001\n\nAD\nThanks for supporting free Liquid Memory browser games.\nHide",
+            "canvases": 0
+          },
+          "pass": true
+        },
+        {
+          "profile": "mobile",
+          "navOk": true,
+          "navError": "",
+          "startedBy": "button",
+          "pageErrors": [],
+          "consoleErrors": [],
+          "criticalErrors": [],
+          "before": {
+            "text": "WORKING MEMORY EQUATION\n81 + 59\n SUBMIT SOLUTION\nCHURN XP: 0\nAD\nHide",
+            "canvases": 0
+          },
+          "after": {
+            "text": "WORKING MEMORY EQUATION\n59 + 92\n SUBMIT SOLUTION\nCHURN XP: 0\nAD\nHide",
+            "canvases": 0
+          },
+          "pass": true
+        }
+      ]
+    }
+  ],
+  "manualCorrections": [
+    {
+      "id": "stroop-calibrator",
+      "timestamp": "2026-06-23",
+      "change": "Guarded evaluate() against pre-start input and corrected pointerdown listener removal; targeted desktop/mobile retest passed."
+    }
+  ]
+}
