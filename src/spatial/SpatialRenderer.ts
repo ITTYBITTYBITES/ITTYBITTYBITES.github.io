@@ -112,10 +112,10 @@ export class SpatialRenderer {
     this.scene.add(this.gaugeGroup);
     this.applyCameraProfile(this.profile, true);
 
-    const ambient = new THREE.AmbientLight(0x8f7756, 0.62);
-    const lamp = new THREE.PointLight(0xffc46b, 5.4, 44, 1.85);
-    lamp.position.set(4.8, 3.8, 5.7);
-    const cyanEdge = new THREE.PointLight(0x6ef4e5, 1.15, 30, 2.1);
+    const ambient = new THREE.AmbientLight(0x6f5a3e, 0.42);
+    const lamp = new THREE.PointLight(0xffbd68, 7.2, 42, 1.72);
+    lamp.position.set(4.9, 3.45, 4.2);
+    const cyanEdge = new THREE.PointLight(0x6ef4e5, 0.42, 18, 2.6);
     cyanEdge.position.set(-4.6, 1.2, 4.2);
     const lowFill = new THREE.PointLight(0x3b2a18, 1.8, 36, 2.0);
     lowFill.position.set(0, -4, 7);
@@ -126,7 +126,7 @@ export class SpatialRenderer {
     this.scene.environment = this.createEnvironmentTexture();
     this.composer = new EffectComposer(this.renderer);
     this.composer.addPass(new RenderPass(this.scene, this.camera));
-    this.bloomPass = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.16, 0.78, 0.88);
+    this.bloomPass = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.08, 0.55, 0.94);
     this.composer.addPass(this.bloomPass);
 
     this.createWorkstationEnvironment();
@@ -158,12 +158,12 @@ export class SpatialRenderer {
       map: this.haloTexture,
       color: mapping.color,
       transparent: true,
-      opacity: 0.14,
+      opacity: 0.075,
       depthWrite: false,
       blending: THREE.AdditiveBlending,
     }));
     halo.position.copy(mesh.position);
-    halo.scale.setScalar(2.2 * mapping.scale);
+    halo.scale.setScalar(1.35 * mapping.scale);
 
     this.biomeGroup.add(mesh);
     this.biomeGroup.add(halo);
@@ -284,7 +284,7 @@ export class SpatialRenderer {
     const points = layouts[mode];
     this.gauges.forEach((gauge, index) => {
       const point = points[index] || [0, 0];
-      gauge.sprite.position.set(point[0], point[1], 0.7);
+      gauge.sprite.position.set(point[0], point[1], -1.03);
       const compact = mode === 'topbar' ? 0.82 : 1;
       gauge.sprite.scale.set(1.65 * compact, 0.42 * compact, 1);
     });
@@ -360,14 +360,41 @@ export class SpatialRenderer {
     lampShade.position.set(4.65, 2.75, -0.62);
     this.workstationGroup.add(lampBase, lampOrb, lampShade);
 
-    const title = this.createTextSprite('LIQUID MEMORY // BLUEPRINT NAV', '#2e2114', 'rgba(173,134,78,0.62)', 1.18);
-    title.position.set(-3.5, 2.72, -1.18);
-    title.scale.set(3.0, 0.42, 1);
-    this.workstationGroup.add(title);
+    const title = this.createTextSprite('BLUEPRINT // NAV', '#2e2114', 'rgba(173,134,78,0.72)', 1.0);
+    title.position.set(-3.78, 2.72, -1.08);
+    title.scale.set(2.55, 0.36, 1);
+    const schematic = this.createTextSprite('SCHEMATIC  v0.9', '#2e2114', 'rgba(38,28,18,0.82)', 1.05);
+    schematic.position.set(0, -3.12, -1.06);
+    schematic.scale.set(2.35, 0.42, 1);
+    this.workstationGroup.add(title, schematic);
+    this.createEtchedOrnaments();
     this.workstationGroup.traverse((obj) => {
       const mesh = obj as THREE.Mesh;
       if (mesh.isMesh) { mesh.castShadow = true; mesh.receiveShadow = true; }
     });
+  }
+
+
+  private createEtchedOrnaments(): void {
+    const mat = this.createOxidizedMetalMaterial(0x3a2816, 0x0b0502, 0.0);
+    const lineMat = new THREE.MeshStandardMaterial({ color: 0x2c1d10, emissive: 0x060302, metalness: 0.45, roughness: 0.64 });
+    const corners: [number, number, number][] = [[-4.95, 2.38, 0], [4.95, 2.38, Math.PI / 2], [-4.95, -2.78, -Math.PI / 2], [4.95, -2.78, Math.PI]];
+    corners.forEach(([x, y, r]) => {
+      const torus = new THREE.Mesh(new THREE.TorusGeometry(0.42, 0.018, 8, 38, Math.PI * 1.35), mat);
+      torus.position.set(x, y, -1.02);
+      torus.rotation.z = r;
+      this.workstationGroup.add(torus);
+      for (let i = 0; i < 3; i++) {
+        const strip = new THREE.Mesh(new THREE.BoxGeometry(0.62 - i * 0.1, 0.018, 0.02), lineMat);
+        strip.position.set(x + (x < 0 ? 0.35 : -0.35), y - i * 0.12 * Math.sign(y), -1.0);
+        strip.rotation.z = r + i * 0.18;
+        this.workstationGroup.add(strip);
+      }
+    });
+    const cableMat = this.createOxidizedMetalMaterial(0x21150b, 0x050201, 0.0);
+    const points = [new THREE.Vector3(-5.2, -2.8, -0.98), new THREE.Vector3(-3.5, -3.05, -0.98), new THREE.Vector3(-1.3, -2.72, -0.98), new THREE.Vector3(0, -3.05, -0.98), new THREE.Vector3(1.9, -2.84, -0.98), new THREE.Vector3(4.9, -3.0, -0.98)];
+    const curve = new THREE.CatmullRomCurve3(points);
+    this.workstationGroup.add(new THREE.Mesh(new THREE.TubeGeometry(curve, 64, 0.018, 6, false), cableMat));
   }
 
   private createOxidizedMetalMaterial(color: number, emissive: number, cyanCatch = 0.04): THREE.MeshStandardMaterial {
@@ -483,7 +510,7 @@ export class SpatialRenderer {
     inner.position.z = 0.105;
     group.add(inner);
 
-    const outer = new THREE.Mesh(new THREE.TorusGeometry(radius * 0.86, 0.045, 10, 64), this.createOxidizedMetalMaterial(0x315a51, 0x0b2825, 0.18));
+    const outer = new THREE.Mesh(new THREE.TorusGeometry(radius * 0.86, 0.045, 10, 64), this.createOxidizedMetalMaterial(0x6f5430, 0x1b1108, 0.025));
     outer.position.z = 0.115;
     group.add(outer);
 
@@ -510,7 +537,7 @@ export class SpatialRenderer {
 
   private createEngageDial(): void {
     const group = new THREE.Group();
-    group.position.set(0, -2.78, 0.58);
+    group.position.set(0, -2.78, -1.03);
     group.userData = { engageDial: true };
     const mat = this.createOxidizedMetalMaterial(0x2f2318, 0x0b0603, 0.015);
     const base = new THREE.Mesh(new THREE.CylinderGeometry(0.62, 0.72, 0.16, 48), mat);
@@ -582,9 +609,9 @@ export class SpatialRenderer {
     return new THREE.MeshStandardMaterial({
       color: mapping.color,
       emissive: mapping.emissive,
-      emissiveIntensity: 0.34,
-      metalness: 0.64,
-      roughness: 0.32,
+      emissiveIntensity: 0.22,
+      metalness: 0.42,
+      roughness: 0.48,
       transparent: true,
       opacity: 0.94,
     });
@@ -638,7 +665,7 @@ export class SpatialRenderer {
       metalness: 0.55,
       roughness: 0.2,
       transparent: true,
-      opacity: 0.42,
+      opacity: 0.30,
     });
     const mesh = new THREE.Mesh(geometry, material);
     this.linkGroup.add(mesh);
@@ -793,9 +820,9 @@ export class SpatialRenderer {
       const blurFactor = Math.min(1, zDistance / 10);
       const archiveFactor = index < Math.max(0, this.nodes.length - 16) ? 0.55 : 1;
       const material = node.mesh.material as THREE.MeshStandardMaterial;
-      material.opacity = THREE.MathUtils.lerp(0.24, 0.96, 1 - blurFactor) * archiveFactor;
-      material.emissiveIntensity = THREE.MathUtils.lerp(0.22, 1.08, 1 - blurFactor);
-      node.halo.material.opacity = THREE.MathUtils.lerp(0.32, 0.08, 1 - blurFactor) * archiveFactor;
+      material.opacity = THREE.MathUtils.lerp(0.18, 0.78, 1 - blurFactor) * archiveFactor;
+      material.emissiveIntensity = THREE.MathUtils.lerp(0.08, 0.42, 1 - blurFactor);
+      node.halo.material.opacity = THREE.MathUtils.lerp(0.12, 0.025, 1 - blurFactor) * archiveFactor;
       const bokehScale = THREE.MathUtils.lerp(3.8, 1.8, 1 - blurFactor);
 
       node.mesh.position.lerp(desired, 0.055);
