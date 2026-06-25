@@ -916,6 +916,21 @@
       "summary": "Deep dive analysis of Nudge by Richard H. Thaler and Cass R. Sunstein as a decision architecture resource for status quo bias and choice design training.",
       "deepDiveBriefing": "Nudge by Richard H. Thaler and Cass R. Sunstein operates as a decision architecture resource within the cognitive training pipeline. The work examines how default options, context, framing, and environmental cues shape human choices before deliberate reasoning begins. For operators training with The 2-Second Witness, this material supports recognition of status quo commitment, default-option inertia, and the ways small presentation changes can alter rapid judgment.\n\nThe practical value is its focus on designing choice environments rather than relying on willpower alone. When time pressure compresses attention, defaults become powerful. Studying those defaults helps players identify when automatic acceptance is occurring and when a deliberate override is required.",
       "amazonUrl": "https://www.amazon.com/dp/014311526X?tag=ittybittybite-20"
+    },
+    {
+      "asin": "958999315X",
+      "slug": "the-personal-mba",
+      "category": "Science",
+      "title": "The personal MBA",
+      "author": "Josh Kaufman",
+      "targetKeywords": [
+        "perceptual-degradation-reversal",
+        "commerce",
+        "management",
+        "study-and-teaching"
+      ],
+      "summary": "Auto-discovered via Open Library — The personal MBA by Josh Kaufman. Related to: Perceptual Degradation Reversal.",
+      "deepDiveBriefing": "This entry was autonomously discovered and validated during a nightly build cycle. The resource \"The personal MBA\" by Josh Kaufman relates directly to the \"Perceptual Degradation Reversal\" cognitive training protocol.\n\nSubject tags: Commerce, Management, Study and teaching, Business, MBA\nSource: Open Library API\nDiscovery date: 2026-06-25T12:38:18.575Z"
     }
   ]
 }
