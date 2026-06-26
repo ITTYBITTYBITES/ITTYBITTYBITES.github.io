@@ -14535,96 +14535,168 @@ function Cf(e, t, n) {
 //#endregion
 //#region src/spatial/biome.config.ts
 var wf = {
-	"lifecycle.start": {
-		label: "Origin Chamber",
-		tone: "green",
-		geometry: "heartbeat-ring",
-		color: 9822396,
-		emissive: 2640696,
-		scale: 1.2,
-		pull: 1
-	},
-	"milestone.level_up": {
-		label: "Growth Chamber",
-		tone: "gold",
-		geometry: "growth-node",
-		color: 14136170,
-		emissive: 6440732,
-		scale: 1.35,
-		pull: 1.65
-	},
-	"economic.resource_gained": {
-		label: "Mycelium Link",
-		tone: "cyan",
-		geometry: "resource-crystal",
-		color: 7271653,
-		emissive: 875092,
-		scale: 1,
-		pull: 1.25
-	},
-	"economic.resource_spent": {
-		label: "Abyssal Exchange",
-		tone: "violet",
-		geometry: "default-shard",
-		color: 10194036,
-		emissive: 3813412,
-		scale: 1.05,
-		pull: 1.45
-	},
-	"system.reward_offered": {
-		label: "Pearl Reward",
-		tone: "pink",
-		geometry: "reward-orb",
-		color: 14133152,
-		emissive: 6503222,
-		scale: 1.22,
-		pull: 1.55
-	},
-	"system.heartbeat": {
-		label: "Memory Pulse",
-		tone: "green",
-		geometry: "heartbeat-ring",
-		color: 9822396,
-		emissive: 1195314,
-		scale: .72,
-		pull: .5
-	},
-	"library.game_opened": {
-		label: "Arcade Genesis",
-		tone: "cyan",
-		geometry: "growth-node",
-		color: 7271653,
-		emissive: 744806,
-		scale: 1.42,
-		pull: 1.9
-	},
-	"library.archive_opened": {
-		label: "Old Memory Vault",
-		tone: "violet",
-		geometry: "default-shard",
-		color: 9404520,
-		emissive: 3155998,
-		scale: .95,
-		pull: .95
-	},
-	"community.vortex": {
-		label: "Community Vortex",
-		tone: "gold",
-		geometry: "heartbeat-ring",
-		color: 14136170,
-		emissive: 5915165,
-		scale: 1.7,
-		pull: 2.25
+	archiveable: !0,
+	pulse: !0,
+	connect: !0
+}, Tf = (e) => ({
+	...e,
+	lifecycle: {
+		...wf,
+		...e.lifecycle || {}
 	}
-}, Tf = {
-	label: "Memory Shard",
-	tone: "cyan",
-	geometry: "default-shard",
-	color: 7271653,
-	emissive: 744823,
-	scale: .86,
-	pull: .9
-}, Ef = class {
+}), Ef = {
+	version: "1.0.0",
+	definitions: {
+		originChamber: Tf({
+			id: "originChamber",
+			label: "Origin Chamber",
+			tone: "green",
+			geometry: "heartbeat-ring",
+			color: 9822396,
+			emissive: 2640696,
+			scale: 1.2,
+			pull: 1
+		}),
+		growthChamber: Tf({
+			id: "growthChamber",
+			label: "Growth Chamber",
+			tone: "gold",
+			geometry: "growth-node",
+			color: 14136170,
+			emissive: 6440732,
+			scale: 1.35,
+			pull: 1.65
+		}),
+		myceliumLink: Tf({
+			id: "myceliumLink",
+			label: "Mycelium Link",
+			tone: "cyan",
+			geometry: "resource-crystal",
+			color: 7271653,
+			emissive: 875092,
+			scale: 1,
+			pull: 1.25
+		}),
+		abyssalExchange: Tf({
+			id: "abyssalExchange",
+			label: "Abyssal Exchange",
+			tone: "violet",
+			geometry: "default-shard",
+			color: 10194036,
+			emissive: 3813412,
+			scale: 1.05,
+			pull: 1.45
+		}),
+		pearlReward: Tf({
+			id: "pearlReward",
+			label: "Pearl Reward",
+			tone: "pink",
+			geometry: "reward-orb",
+			color: 14133152,
+			emissive: 6503222,
+			scale: 1.22,
+			pull: 1.55
+		}),
+		memoryPulse: Tf({
+			id: "memoryPulse",
+			label: "Memory Pulse",
+			tone: "green",
+			geometry: "heartbeat-ring",
+			color: 9822396,
+			emissive: 1195314,
+			scale: .72,
+			pull: .5,
+			lifecycle: {
+				archiveable: !1,
+				connect: !1
+			}
+		}),
+		arcadeGenesis: Tf({
+			id: "arcadeGenesis",
+			label: "Arcade Genesis",
+			tone: "cyan",
+			geometry: "growth-node",
+			color: 7271653,
+			emissive: 744806,
+			scale: 1.42,
+			pull: 1.9
+		}),
+		oldMemoryVault: Tf({
+			id: "oldMemoryVault",
+			label: "Old Memory Vault",
+			tone: "violet",
+			geometry: "default-shard",
+			color: 9404520,
+			emissive: 3155998,
+			scale: .95,
+			pull: .95
+		}),
+		communityVortex: Tf({
+			id: "communityVortex",
+			label: "Community Vortex",
+			tone: "gold",
+			geometry: "heartbeat-ring",
+			color: 14136170,
+			emissive: 5915165,
+			scale: 1.7,
+			pull: 2.25
+		}),
+		memoryShard: Tf({
+			id: "memoryShard",
+			label: "Memory Shard",
+			tone: "cyan",
+			geometry: "default-shard",
+			color: 7271653,
+			emissive: 744823,
+			scale: .86,
+			pull: .9
+		})
+	},
+	events: {
+		"lifecycle.start": "originChamber",
+		"milestone.level_up": "growthChamber",
+		"economic.resource_gained": "myceliumLink",
+		"economic.resource_spent": "abyssalExchange",
+		"system.reward_offered": "pearlReward",
+		"system.heartbeat": "memoryPulse",
+		"library.game_opened": "arcadeGenesis",
+		"library.archive_opened": "oldMemoryVault",
+		"community.vortex": "communityVortex"
+	},
+	defaultDefinition: "memoryShard"
+};
+Object.fromEntries(Object.entries(Ef.events).map(([e, t]) => [e, Ef.definitions[t]])), Ef.definitions[Ef.defaultDefinition];
+//#endregion
+//#region src/spatial/registry/SpatialSpawnRegistry.ts
+function Df(e, t) {
+	let n = e.payload?.[t];
+	return typeof n == "number" && Number.isFinite(n) ? n : 0;
+}
+function Of(e) {
+	return Ef.events[e] || Ef.defaultDefinition;
+}
+var kf = new class {
+	getDefinition(e) {
+		let t = Of(e.type);
+		return Ef.definitions[t] || Ef.definitions[Ef.defaultDefinition];
+	}
+	shouldSpawn(e, t = 0) {
+		return !0;
+	}
+	getSpawnTier(e, t = 0) {
+		let n = Df(e, "amount"), r = Df(e, "value"), i = Df(e, "newLevel"), a = e.payload?.trigger, o = e.payload?.rewardType, s = e.payload?.resource;
+		return e.type === "system.reward_offered" && a === "milestone" && (r >= 10 || o === "premium_currency") || e.type === "milestone.level_up" && i >= 10 ? "critical" : e.type === "system.reward_offered" && a === "milestone" && r >= 5 || e.type === "system.reward_offered" && a === "spending" && r >= 50 || e.type === "community.vortex" && (n >= 60 || r >= 60) || e.type === "economic.resource_spent" && n >= 50 ? "high" : e.type === "library.game_opened" && n >= 25 || e.type === "economic.resource_gained" && s === "trace" && n >= 10 || e.type === "milestone.level_up" && i >= 2 || t >= 25 ? "standard" : "low";
+	}
+}();
+function Af(e) {
+	return kf.getDefinition(e);
+}
+function jf(e, t = 0) {
+	return kf.shouldSpawn(e, t);
+}
+//#endregion
+//#region src/responsive/ResponsiveEngine.ts
+var Mf = class {
 	constructor() {
 		this.listeners = /* @__PURE__ */ new Set(), this.handleResize = () => {
 			let e = this.measure(), t = JSON.stringify(e) !== JSON.stringify(this.profile);
@@ -14744,19 +14816,19 @@ var wf = {
 			touchTargetScale: 1
 		};
 	}
-}, Df = {
+}, Nf = {
 	CYAN: 65535,
 	MAGENTA: 16711935,
 	PURPLE: 9055202
-}, Of = {
+}, Pf = {
 	games: "library.game_opened",
 	archive: "library.archive_opened",
 	community: "community.vortex",
 	blueprint: "milestone.level_up",
 	memory: "economic.resource_gained"
-}, kf = Object.fromEntries(Object.entries(Of).map(([e, t]) => [t, e])), Af = class {
+}, Ff = Object.fromEntries(Object.entries(Pf).map(([e, t]) => [t, e])), If = class {
 	constructor(e, t, n) {
-		this.host = e, this.liveRegion = t, this.onGearSelected = n, this.scene = new zn(), this.camera = new hs(-7.2, 7.2, 4.05, -4.05, .1, 1e3), this.workstationGroup = new jn(), this.biomeGroup = new jn(), this.linkGroup = new jn(), this.gearGroup = new jn(), this.gaugeGroup = new jn(), this.nodes = [], this.links = [], this.gears = [], this.gauges = [], this.modelAnchors = /* @__PURE__ */ new Map(), this.gearRaycastObjects = [], this.workstationModelLoaded = !1, this.workstationFallbackActive = !1, this.baseEnvironmentCreated = !1, this.webglContextLost = !1, this.rafId = 0, this.focusIndex = -1, this.pointer = new U(99, 99), this.raycaster = new Vs(), this.clock = new Ws(), this.haloTexture = this.createHaloTexture(), this.responsive = new Ef(), this.profile = this.responsive.getProfile(), this.lastTouchAt = 0, this.dragStartX = 0, this.didDrag = !1, this.handleWebGLContextLost = (e) => {
+		this.host = e, this.liveRegion = t, this.onGearSelected = n, this.scene = new zn(), this.camera = new hs(-7.2, 7.2, 4.05, -4.05, .1, 1e3), this.workstationGroup = new jn(), this.biomeGroup = new jn(), this.linkGroup = new jn(), this.gearGroup = new jn(), this.gaugeGroup = new jn(), this.nodes = [], this.links = [], this.gears = [], this.gauges = [], this.modelAnchors = /* @__PURE__ */ new Map(), this.gearRaycastObjects = [], this.workstationModelLoaded = !1, this.workstationFallbackActive = !1, this.baseEnvironmentCreated = !1, this.webglContextLost = !1, this.rafId = 0, this.focusIndex = -1, this.pointer = new U(99, 99), this.raycaster = new Vs(), this.clock = new Ws(), this.haloTexture = this.createHaloTexture(), this.responsive = new Mf(), this.profile = this.responsive.getProfile(), this.lastTouchAt = 0, this.dragStartX = 0, this.didDrag = !1, this.handleWebGLContextLost = (e) => {
 			e.preventDefault(), this.webglContextLost = !0, this.host.dataset.webglContext = "lost", this.liveRegion && (this.liveRegion.textContent = "Holographic renderer paused: WebGL context lost");
 		}, this.handleWebGLContextRestored = () => {
 			this.webglContextLost = !1, this.host.dataset.webglContext = "restored", this.ensureCanvasMounted(), window.dispatchEvent(new Event("resize")), this.liveRegion && (this.liveRegion.textContent = "Holographic renderer restored");
@@ -14815,11 +14887,11 @@ var wf = {
 		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(0, 0), this.renderer.shadowMap.enabled = !0, this.renderer.shadowMap.type = 2, this.renderer.toneMapping = 4, this.renderer.toneMappingExposure = 1.42, this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.bindContextMonitoring(), this.startMountGuard(), this.scene.add(this.workstationGroup), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.applyCameraProfile(this.profile, !0), this.composer = new _d(this.renderer), this.composer.addPass(new vd(this.scene, this.camera)), this.bloomPass = new bd(new U(1, 1), .045, .42, .96), this.composer.addPass(this.bloomPass), this.initLighting(), this.createWorkstationEnvironment(), this.createBlueprintGearRig(), this.loadWorkstationAsset(), this.createGauges(), this.createEngageDial(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
 	}
 	initLighting() {
-		this.scene.environment = null, this.scene.background = null, this.renderer.setClearColor(0, 0), this.ambient = new vs(Df.CYAN, .4), this.scene.add(this.ambient), this.lamp = new fs(Df.CYAN, 10, 50, Math.PI / 4), this.lamp.position.set(0, 5, 10), this.scene.add(this.lamp), this.bloomPass.strength = 1.2;
+		this.scene.environment = null, this.scene.background = null, this.renderer.setClearColor(0, 0), this.ambient = new vs(Nf.CYAN, .4), this.scene.add(this.ambient), this.lamp = new fs(Nf.CYAN, 10, 50, Math.PI / 4), this.lamp.position.set(0, 5, 10), this.scene.add(this.lamp), this.bloomPass.strength = 1.2;
 	}
 	handle(e) {
-		if (e.type === "system.heartbeat" && this.nodes.length > 0) return;
-		let t = wf[e.type] || Tf, n = kf[e.type], r = this.nodes.length, i = this.computePosition(r, t.pull, n), a = new X(this.createGeometry(t), this.createMaterial(t)), o = n ? this.getGearAnchor(n).setZ(-1.04) : new W(0, 0, -1.04);
+		if (e.type === "system.heartbeat" && this.nodes.length > 0 || !jf(e)) return;
+		let t = Af(e), n = Ff[e.type], r = this.nodes.length, i = this.computePosition(r, t.pull, n), a = new X(this.createGeometry(t), this.createMaterial(t)), o = n ? this.getGearAnchor(n).setZ(-1.04) : new W(0, 0, -1.04);
 		a.position.copy(o), a.scale.setScalar(.001), a.userData = {
 			eventType: e.type,
 			label: t.label
@@ -14857,7 +14929,7 @@ var wf = {
 		this.nodes.length && (this.focusIndex = (this.focusIndex + 1) % this.nodes.length);
 	}
 	focusGear(e) {
-		return this.focusEventType(Of[e]);
+		return this.focusEventType(Pf[e]);
 	}
 	focusEventType(e) {
 		for (let t = this.nodes.length - 1; t >= 0; t--) if (this.nodes[t].eventType === e) {
@@ -15260,7 +15332,7 @@ var wf = {
 			group: a,
 			hit: s,
 			anchor: n.clone(),
-			eventType: Of[e],
+			eventType: Pf[e],
 			unlockedLevel: i,
 			active: !1,
 			label: o
@@ -15269,7 +15341,7 @@ var wf = {
 	createHolographicPanel(e) {
 		let t = new jn();
 		t.userData.gearId = e;
-		let n = e === "community" ? Df.MAGENTA : e === "memory" ? Df.PURPLE : Df.CYAN, r = new X(new no(1.8, 2.2), new ci({
+		let n = e === "community" ? Nf.MAGENTA : e === "memory" ? Nf.PURPLE : Nf.CYAN, r = new X(new no(1.8, 2.2), new ci({
 			color: n,
 			transparent: !0,
 			opacity: .7,
@@ -15321,7 +15393,7 @@ var wf = {
 		let e = new jn();
 		e.position.set(0, -2.78, -1.03), e.userData = { engageDial: !0 };
 		let t = new ci({
-			color: Df.CYAN,
+			color: Nf.CYAN,
 			transparent: !0,
 			opacity: .72,
 			side: 2,
@@ -15334,7 +15406,7 @@ var wf = {
 			holographicDial: !0
 		};
 		let r = new X(new Da(.2, 40), new ci({
-			color: Df.CYAN,
+			color: Nf.CYAN,
 			transparent: !0,
 			opacity: .28,
 			side: 2,
@@ -15352,7 +15424,7 @@ var wf = {
 			holographicLabel: !0
 		}, this.applyHolographicStyle(i), e.add(n, r, i), this.gearGroup.add(e), this.focusDial = e;
 	}
-	applyHolographicStyle(e, t = Df.CYAN) {
+	applyHolographicStyle(e, t = Nf.CYAN) {
 		e.traverse((e) => {
 			let n = e;
 			n.isMesh && (Array.isArray(n.material) ? n.material : [n.material]).forEach((e) => {
@@ -15609,7 +15681,7 @@ var wf = {
 	roundRect(e, t, n, r, i, a) {
 		e.beginPath(), e.moveTo(t + a, n), e.arcTo(t + r, n, t + r, n + i, a), e.arcTo(t + r, n + i, t, n + i, a), e.arcTo(t, n + i, t, n, a), e.arcTo(t, n, t + r, n, a), e.closePath();
 	}
-}, jf = "lm_home_kernel", Mf = "ibb_home_kernel", Nf = "lm_blueprint_nav_gear", Pf = 0, Ff = {
+}, Lf = "lm_home_kernel", Rf = "ibb_home_kernel", zf = "lm_blueprint_nav_gear", Bf = 0, Vf = {
 	games: {
 		eventType: "library.game_opened",
 		payload: {
@@ -15647,7 +15719,7 @@ var wf = {
 		}
 	}
 };
-function If() {
+function Hf() {
 	return {
 		...t,
 		timestamp: (/* @__PURE__ */ new Date()).toISOString(),
@@ -15675,10 +15747,10 @@ function If() {
 		}
 	};
 }
-function Lf(e, t = {}, n = "liquid-memory-homepage") {
+function Uf(e, t = {}, n = "liquid-memory-homepage") {
 	return {
 		eventId: crypto.randomUUID(),
-		sequenceId: ++Pf,
+		sequenceId: ++Bf,
 		timestamp: (/* @__PURE__ */ new Date()).toISOString(),
 		type: e,
 		payload: t,
@@ -15686,43 +15758,43 @@ function Lf(e, t = {}, n = "liquid-memory-homepage") {
 		metadata: { version: "1.0.0" }
 	};
 }
-function Rf() {
-	[[`${Mf}_state`, `${jf}_state`], [`${Mf}_event_log`, `${jf}_event_log`]].forEach(([e, t]) => {
+function Wf() {
+	[[`${Rf}_state`, `${Lf}_state`], [`${Rf}_event_log`, `${Lf}_event_log`]].forEach(([e, t]) => {
 		!localStorage.getItem(t) && localStorage.getItem(e) && localStorage.setItem(t, localStorage.getItem(e));
 	});
 }
-function zf() {
+function Gf() {
 	let t = e.getInstance();
-	t.reset(), Rf();
-	let o = new i(`${jf}_state`, `${jf}_event_log`), s = new r(o.rehydrate() || If());
+	t.reset(), Wf();
+	let o = new i(`${Lf}_state`, `${Lf}_event_log`), s = new r(o.rehydrate() || Hf());
 	new a().init(t);
 	let c = document.getElementById("spatial-canvas"), l = document.getElementById("spatial-live-region"), u = null;
 	function d(e) {
-		u?.focusGear(e), u?.setActiveGear(e), localStorage.setItem(Nf, e);
+		u?.focusGear(e), u?.setActiveGear(e), localStorage.setItem(zf, e);
 	}
 	function f(e) {
-		let n = Ff[e], r = { ...n.payload };
+		let n = Vf[e], r = { ...n.payload };
 		if (n.eventType === "milestone.level_up") {
 			let e = s.getCurrentState().player.level || 1;
 			r.newLevel = e + 1, r.xp = e * 150;
 		}
-		localStorage.setItem(Nf, e), t.emit(Lf(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => d(e), 90);
+		localStorage.setItem(zf, e), t.emit(Uf(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => d(e), 90);
 	}
-	u = c ? new Af(c, l, f) : null, o.getEventLog().slice(-48).forEach((e) => u?.handle(e)), t.subscribe((e) => {
+	u = c ? new If(c, l, f) : null, o.getEventLog().slice(-48).forEach((e) => u?.handle(e)), t.subscribe((e) => {
 		u?.handle(e);
 		let t = s.getCurrentState(), r = n(t, e);
 		r !== t && r.processedEventIds.has(e.eventId) && (o.logEvent(e), o.save(r)), s.onStateUpdated(r), u?.updateFromState(r);
 	}), window.LiquidMemoryKernel = {
 		bus: t,
 		bridge: s,
-		emit: (e, n = {}, r) => t.emit(Lf(e, n, r)),
+		emit: (e, n = {}, r) => t.emit(Uf(e, n, r)),
 		getState: () => s.getCurrentState(),
 		levelUp: () => f("blueprint"),
-		gain: (e = "trace", n = 10) => t.emit(Lf("economic.resource_gained", {
+		gain: (e = "trace", n = 10) => t.emit(Uf("economic.resource_gained", {
 			resource: e,
 			amount: n
 		})),
-		spend: (e = "pearls", n = 60) => t.emit(Lf("economic.resource_spent", {
+		spend: (e = "pearls", n = 60) => t.emit(Uf("economic.resource_spent", {
 			resource: e,
 			amount: n
 		})),
@@ -15737,11 +15809,11 @@ function zf() {
 		isProceduralFallbackActive: () => u?.isProceduralFallbackActive?.() || !1,
 		getWorkstationAnchorCount: () => u?.getAnchorCount?.() || 0,
 		clear: () => {
-			o.clear(), localStorage.removeItem(Nf), window.location.reload();
+			o.clear(), localStorage.removeItem(zf), window.location.reload();
 		}
 	}, window.LiquidMemorySpatial = u, window.setTimeout(() => document.body.classList.add("liquid-ready"), 250);
-	let p = localStorage.getItem(Nf) || "games";
-	Ff[p] && window.setTimeout(() => d(p), 160), t.emit(Lf("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(Lf("system.heartbeat", { path: location.pathname })), 3e4);
+	let p = localStorage.getItem(zf) || "games";
+	Vf[p] && window.setTimeout(() => d(p), 160), t.emit(Uf("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(Uf("system.heartbeat", { path: location.pathname })), 3e4);
 }
-document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", zf) : zf();
+document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", Gf) : Gf();
 //#endregion

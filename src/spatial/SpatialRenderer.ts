@@ -4,7 +4,7 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import type { EventContract, PlatformState } from '../kernel';
-import { BIOME_EVENT_MAP, DEFAULT_BIOME_MAPPING, type BiomeMapping } from './biome.config';
+import { resolveSpatialSpawn, shouldSpawnSpatialNode, type BiomeMapping } from './registry/SpatialSpawnRegistry';
 import { ResponsiveEngine, type ResponsiveProfile } from '../responsive/ResponsiveEngine';
 
 export type GearId = 'games' | 'archive' | 'community' | 'blueprint' | 'memory';
@@ -172,7 +172,8 @@ export class SpatialRenderer {
 
   handle(event: EventContract): void {
     if (event.type === 'system.heartbeat' && this.nodes.length > 0) return;
-    const mapping = BIOME_EVENT_MAP[event.type] || DEFAULT_BIOME_MAPPING;
+    if (!shouldSpawnSpatialNode(event)) return;
+    const mapping = resolveSpatialSpawn(event);
     const gearId = EVENT_TO_GEAR[event.type];
     const index = this.nodes.length;
     const target = this.computePosition(index, mapping.pull, gearId);
