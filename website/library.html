@@ -84,6 +84,14 @@ tailwind.config = {
   --gold: #facc15;
   --red: #f43f5e;
   --border: rgba(34,211,238,0.12);
+  --lm-holo-cyan: #00ffff;
+  --lm-holo-cyan-soft: rgba(0,255,255,.18);
+  --lm-holo-cyan-line: rgba(0,255,255,.46);
+  --lm-holo-magenta: #ff00ff;
+  --lm-holo-purple: #8a2be2;
+  --lm-holo-void: rgba(0,8,16,.76);
+  --lm-holo-panel: rgba(0,22,34,.64);
+  --lm-holo-text: #bfffff;
 }
 body::before {
   content: '';
@@ -245,6 +253,93 @@ body::after {
 .footer-link { color: var(--muted); transition: color 0.2s; }
 .footer-link:hover { color: var(--cyan); }
 
+
+/* Holographic Archive Shell */
+.lm-holo-archive {
+  background:
+    radial-gradient(circle at 50% 0%, rgba(0,255,255,.07), transparent 34rem),
+    radial-gradient(circle at 82% 28%, rgba(138,43,226,.08), transparent 28rem),
+    #020617;
+}
+.lm-holo-archive .product-card,
+.lm-holo-archive [href^="library/"] {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--lm-holo-cyan-line) !important;
+  background:
+    linear-gradient(135deg, rgba(0,255,255,.09), rgba(0,16,28,.70) 44%, rgba(138,43,226,.08)),
+    var(--lm-holo-panel) !important;
+  backdrop-filter: blur(8px) saturate(1.12);
+  box-shadow:
+    0 0 0 1px rgba(190,255,255,.06) inset,
+    0 0 20px rgba(0,255,255,.08),
+    0 16px 46px rgba(0,0,0,.34);
+}
+.lm-holo-archive .product-card::before,
+.lm-holo-archive [href^="library/"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    repeating-linear-gradient(180deg, rgba(190,255,255,.06) 0 1px, transparent 1px 8px),
+    linear-gradient(90deg, transparent, rgba(0,255,255,.08), transparent);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  opacity: .54;
+}
+.lm-holo-archive .product-card:hover,
+.lm-holo-archive [href^="library/"]:hover {
+  border-color: var(--lm-holo-cyan) !important;
+  box-shadow:
+    0 0 0 1px rgba(190,255,255,.12) inset,
+    0 0 24px var(--lm-holo-cyan-soft),
+    0 20px 58px rgba(0,0,0,.44);
+}
+.lm-holo-archive .product-img {
+  border-color: var(--lm-holo-cyan-line);
+  background:
+    radial-gradient(circle at 50% 50%, rgba(0,255,255,.16), transparent 62%),
+    rgba(0,8,16,.72);
+  box-shadow: 0 0 18px rgba(0,255,255,.10) inset;
+}
+.lm-holo-archive .product-title,
+.lm-holo-archive h2,
+.lm-holo-archive .nav-node.active {
+  color: var(--lm-holo-cyan) !important;
+  text-shadow: 0 0 14px rgba(0,255,255,.48);
+}
+.lm-holo-archive .product-badge,
+.lm-holo-archive .tier-tag {
+  border-color: var(--lm-holo-cyan-line) !important;
+  background: rgba(0,255,255,.14) !important;
+  color: var(--lm-holo-text) !important;
+}
+.lm-holo-archive .locker-btn {
+  color: var(--lm-holo-cyan);
+  border-color: var(--lm-holo-cyan);
+  background: rgba(0,18,28,.32);
+  box-shadow: 0 0 16px rgba(0,255,255,.10);
+}
+.lm-holo-archive .locker-btn:hover {
+  background: var(--lm-holo-cyan);
+  color: #001b1f;
+  box-shadow: 0 0 22px rgba(0,255,255,.34);
+}
+.lm-holo-archive .nav-node {
+  border-color: var(--lm-holo-cyan-line);
+  background: rgba(0,14,24,.60);
+}
+.lm-holo-archive .nav-node:hover {
+  color: var(--lm-holo-cyan);
+  border-color: var(--lm-holo-cyan);
+}
+.lm-holo-archive .hero-badge {
+  border-color: var(--lm-holo-cyan);
+  color: var(--lm-holo-cyan);
+  background: rgba(0,255,255,.08);
+  box-shadow: 0 0 20px rgba(0,255,255,.16);
+}
+
 /* Responsive */
 @media (max-width: 640px) {
   .nav-inner { gap: 6px; }
@@ -290,7 +385,7 @@ body::after {
         })();
     </script>
 <link href="assets/brand-system.css" rel="stylesheet"/></head>
-<body class="bg-slate-950 text-slate-50 font-mono leading-relaxed overflow-x-hidden relative antialiased">
+<body class="bg-slate-950 text-slate-50 font-mono leading-relaxed overflow-x-hidden relative antialiased lm-holo-archive" data-gear-id="archive" data-kernel-event="library.archive_opened">
 <!-- NAV: Terminal Utility Bar -->
 <!-- GLOBAL UNIFIED TACTICAL NAVIGATION -->
 <!-- GLOBAL UNIFIED TACTICAL NAVIGATION -->

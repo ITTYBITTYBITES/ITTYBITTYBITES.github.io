@@ -9,6 +9,12 @@ import { ResponsiveEngine, type ResponsiveProfile } from '../responsive/Responsi
 
 export type GearId = 'games' | 'archive' | 'community' | 'blueprint' | 'memory';
 
+export const HOLO_TONES = {
+  CYAN: 0x00ffff,
+  MAGENTA: 0xff00ff,
+  PURPLE: 0x8a2be2,
+} as const;
+
 type SpatialNode = {
   id: string;
   eventType: string;
@@ -62,6 +68,8 @@ export class SpatialRenderer {
   private renderer: THREE.WebGLRenderer;
   private composer!: EffectComposer;
   private bloomPass!: UnrealBloomPass;
+  private ambient!: THREE.AmbientLight;
+  private lamp!: THREE.SpotLight;
   private workstationGroup = new THREE.Group();
   private biomeGroup = new THREE.Group();
   private linkGroup = new THREE.Group();
@@ -118,24 +126,11 @@ export class SpatialRenderer {
     this.scene.add(this.gaugeGroup);
     this.applyCameraProfile(this.profile, true);
 
-    const ambient = new THREE.AmbientLight(0xb88a58, 0.82);
-    const lamp = new THREE.SpotLight(0xffc06a, 18.5, 68, Math.PI / 4.4, 0.6, 0.95);
-    lamp.position.set(3.9, 2.9, 6.2);
-    lamp.target.position.set(0.4, -0.25, -1.65);
-    const cyanEdge = new THREE.PointLight(0x6ef4e5, 0.14, 10, 3.0);
-    cyanEdge.position.set(-2.8, -0.8, 2.2);
-    const lowFill = new THREE.PointLight(0x6a4120, 1.55, 30, 1.8);
-    lowFill.position.set(0, -4, 4);
-    lamp.castShadow = true;
-    lamp.shadow.mapSize.set(2048, 2048);
-    lamp.shadow.bias = -0.00035;
-    this.scene.add(ambient, lamp, lamp.target, cyanEdge, lowFill);
-    this.scene.environment = this.createEnvironmentTexture();
-    this.scene.background = null;
     this.composer = new EffectComposer(this.renderer);
     this.composer.addPass(new RenderPass(this.scene, this.camera));
     this.bloomPass = new UnrealBloomPass(new THREE.Vector2(1, 1), 0.045, 0.42, 0.96);
     this.composer.addPass(this.bloomPass);
+    this.initLighting();
 
     this.createWorkstationEnvironment();
     this.createBlueprintGearRig();
@@ -147,6 +142,28 @@ export class SpatialRenderer {
     this.bindPointer();
     this.bindResize();
     this.animate();
+  }
+
+
+  private initLighting(): void {
+    // Neutralize the environment for the Data-Hub void.
+    this.scene.environment = null;
+    this.scene.background = null;
+
+    // Set the void background while preserving transparent canvas compositing.
+    this.renderer.setClearColor(0x000000, 0);
+
+    // Cool cyan ambient fill.
+    this.ambient = new THREE.AmbientLight(HOLO_TONES.CYAN, 0.4);
+    this.scene.add(this.ambient);
+
+    // Focus lamp for the holographic panels.
+    this.lamp = new THREE.SpotLight(HOLO_TONES.CYAN, 10.0, 50, Math.PI / 4);
+    this.lamp.position.set(0, 5, 10);
+    this.scene.add(this.lamp);
+
+    // Bump bloom strength for the Data-Hub pop.
+    this.bloomPass.strength = 1.2;
   }
 
   handle(event: EventContract): void {
@@ -310,7 +327,7 @@ export class SpatialRenderer {
 
   private layoutGauges(mode: ResponsiveProfile['gaugeMode']): void {
     const layouts: Record<ResponsiveProfile['gaugeMode'], [number, number][]> = {
-      'topbar': [[-3.0, -3.66], [-1.0, -3.66], [1.0, -3.66], [3.0, -3.66]],
+      'topbar': [[-3.0, 3.46], [-1.0, 3.46], [1.0, 3.46], [3.0, 3.46]],
       'side-panels': [[-3.2, -3.68], [-1.06, -3.68], [1.08, -3.68], [3.22, -3.68]],
       'compact-corners': [[-3.0, -3.66], [-1.0, -3.66], [1.0, -3.66], [3.0, -3.66]],
     };
@@ -352,8 +369,6 @@ export class SpatialRenderer {
       root.position.z = -1.96;
       this.workstationGroup.add(root);
       this.modelAnchors.clear();
-      this.gearRaycastObjects = [];
-      this.gears = [];
 
       root.traverse((obj) => {
         if (obj.name?.startsWith('anchor_')) {
@@ -374,15 +389,11 @@ export class SpatialRenderer {
         }
       });
 
+      this.resetGearControls();
       (['games', 'archive', 'community', 'blueprint', 'memory'] as GearId[]).forEach((id) => {
         const anchor = this.getModelAnchorPosition(`anchor_${id}`) || this.getFallbackGearAnchor(id);
-        const marker = new THREE.Object3D();
-        marker.position.copy(anchor);
-        marker.userData = { gearId: id, active: false, unlocked: true };
-        const label = this.createTextSprite(id.toUpperCase(), '#2e2114', 'transparent', 0.01);
-        label.visible = false;
-        const hit = this.createGearHitProxy(id, anchor, id === 'games' ? 1.2 : 0.92);
-        this.gears.push({ id, group: marker, hit, anchor, eventType: GEAR_EVENT_TYPES[id], unlockedLevel: id === 'community' ? 2 : id === 'memory' ? 3 : 1, active: false, label });
+        const radius = id === 'games' ? 1.02 : id === 'memory' ? 0.62 : id === 'blueprint' ? 0.86 : 0.76;
+        this.createPanelGear(id, id.toUpperCase(), anchor, radius, id === 'community' ? 2 : id === 'memory' ? 3 : 1);
       });
 
       this.workstationModelLoaded = true;
@@ -700,95 +711,189 @@ export class SpatialRenderer {
 
   private createBlueprintGearRig(): void {
     this.gearGroup.position.set(0, 0, 0.65);
-    this.createGear('archive', 'ARCHIVE', new THREE.Vector3(-2.45, -0.05, 0), 0.72, 1);
-    this.createGear('games', 'GAMES', new THREE.Vector3(0, 0.52, 0.02), 1.02, 1);
-    this.createGear('community', 'COMMUNITY', new THREE.Vector3(2.28, -0.05, 0), 0.76, 2);
-    this.createGear('blueprint', 'BLUEPRINT', new THREE.Vector3(0, -1.28, 0.04), 0.86, 1);
-    this.createGear('memory', 'MEMORY', new THREE.Vector3(-1.55, -1.12, 0.08), 0.62, 3);
+    this.createPanelGear('archive', 'ARCHIVE', new THREE.Vector3(-2.45, -0.05, 0), 0.72, 1);
+    this.createPanelGear('games', 'GAMES', new THREE.Vector3(0, 0.52, 0.02), 1.02, 1);
+    this.createPanelGear('community', 'COMMUNITY', new THREE.Vector3(2.28, -0.05, 0), 0.76, 2);
+    this.createPanelGear('blueprint', 'BLUEPRINT', new THREE.Vector3(0, -1.28, 0.04), 0.86, 1);
+    this.createPanelGear('memory', 'MEMORY', new THREE.Vector3(-1.55, -1.12, 0.08), 0.62, 3);
   }
 
-  private createGear(id: GearId, label: string, position: THREE.Vector3, radius: number, unlockedLevel: number): void {
-    const group = new THREE.Group();
+  private resetGearControls(): void {
+    this.gears.forEach((gear) => {
+      this.gearGroup.remove(gear.group);
+      this.gearGroup.remove(gear.hit);
+    });
+    this.gears = [];
+    this.gearRaycastObjects = [];
+    this.hoveredGear = undefined;
+    this.selectedGear = undefined;
+    this.dragGear = undefined;
+  }
+
+  private createPanelGear(id: GearId, label: string, position: THREE.Vector3, radius: number, unlockedLevel: number): void {
+    const group = this.createHolographicPanel(id);
     group.position.copy(position);
-    group.userData = { gearId: id, active: false, unlockedLevel };
+    group.userData = {
+      ...group.userData,
+      gearId: id,
+      active: false,
+      unlocked: true,
+      unlockedLevel,
+      homeY: position.y,
+      homeZ: position.z,
+      panelScale: radius,
+    };
 
-    const bodyMat = this.createOxidizedMetalMaterial(0xb07038, 0x2b1608, 0.035);
-    const face = new THREE.Mesh(new THREE.CylinderGeometry(radius, radius, 0.18, 64), bodyMat);
-    face.rotation.x = Math.PI / 2;
-    face.userData = { gearId: id };
-    group.add(face);
-
-    const inner = new THREE.Mesh(new THREE.TorusGeometry(radius * 0.48, 0.035, 10, 48), this.createOxidizedMetalMaterial(0xe0ab62, 0x3b230d, 0.018));
-    inner.position.z = 0.105;
-    group.add(inner);
-
-    const outer = new THREE.Mesh(new THREE.TorusGeometry(radius * 0.86, 0.045, 10, 64), this.createOxidizedMetalMaterial(0xc69a59, 0x33210d, 0.014));
-    outer.position.z = 0.115;
-    group.add(outer);
-
-    const spokeMat = this.createOxidizedMetalMaterial(0x3b1b0d, 0x080301, 0.0);
-    const spokeCount = radius > 0.9 ? 8 : 6;
-    for (let i = 0; i < spokeCount; i++) {
-      const a = (i / spokeCount) * Math.PI * 2;
-      const spoke = new THREE.Mesh(new THREE.BoxGeometry(radius * 0.62, 0.045, 0.055), spokeMat);
-      spoke.position.set(Math.cos(a) * radius * 0.28, Math.sin(a) * radius * 0.28, 0.145);
-      spoke.rotation.z = a;
-      spoke.userData = { gearId: id };
-      group.add(spoke);
-    }
-
-    const toothMat = this.createOxidizedMetalMaterial(0xbc7a3f, 0x2e1708, 0.025);
-    const toothCount = Math.max(14, Math.round(radius * 24));
-    for (let i = 0; i < toothCount; i++) {
-      const a = (i / toothCount) * Math.PI * 2;
-      const tooth = new THREE.Mesh(new THREE.BoxGeometry(radius * 0.12, radius * 0.24, 0.16), toothMat);
-      tooth.position.set(Math.cos(a) * radius * 1.02, Math.sin(a) * radius * 1.02, 0);
-      tooth.rotation.z = a;
-      tooth.userData = { gearId: id };
-      group.add(tooth);
-    }
-
-    const labelSprite = this.createTextSprite(label, '#fff0c4', 'rgba(28,16,8,0.82)', 1.2);
-    labelSprite.position.set(0, 0, 0.32);
-    labelSprite.scale.set(radius * 1.35, radius * 0.36, 1);
+    const labelSprite = this.createTextSprite(label, '#001b1f', 'rgba(0,255,255,0.42)', 1.0);
+    labelSprite.position.set(0, -0.88, 0.035);
+    labelSprite.scale.set(1.36, 0.34, 1);
     group.add(labelSprite);
 
-    group.traverse((obj) => { const mesh = obj as THREE.Mesh; if (mesh.isMesh) { mesh.castShadow = true; mesh.receiveShadow = true; } });
     this.gearRaycastObjects.push(group);
     this.gearGroup.add(group);
-    const hit = this.createGearHitProxy(id, position.clone(), radius * 1.12);
+    const hit = group.userData.hitProxy as THREE.Mesh;
     this.gears.push({ id, group, hit, anchor: position.clone(), eventType: GEAR_EVENT_TYPES[id], unlockedLevel, active: false, label: labelSprite });
+  }
+
+  private createHolographicPanel(id: GearId): THREE.Group {
+    const group = new THREE.Group();
+    group.userData.gearId = id;
+
+    const tone = id === 'community' ? HOLO_TONES.MAGENTA : id === 'memory' ? HOLO_TONES.PURPLE : HOLO_TONES.CYAN;
+    const geometry = new THREE.PlaneGeometry(1.8, 2.2);
+    const material = new THREE.MeshBasicMaterial({
+      color: tone,
+      transparent: true,
+      opacity: 0.7,
+      side: THREE.DoubleSide,
+      toneMapped: false,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+    });
+
+    const panel = new THREE.Mesh(geometry, material);
+    panel.userData = { gearId: id, holographicPanel: true };
+
+    const border = new THREE.Mesh(
+      new THREE.RingGeometry(0.72, 0.76, 4),
+      new THREE.MeshBasicMaterial({
+        color: tone,
+        transparent: true,
+        opacity: 0.9,
+        side: THREE.DoubleSide,
+        toneMapped: false,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending,
+      })
+    );
+    border.scale.set(1.18, 1.43, 1);
+    border.rotation.z = Math.PI / 4;
+    border.position.z = 0.018;
+    border.userData = { gearId: id, holographicBorder: true };
+
+    const scanLine = new THREE.Mesh(
+      new THREE.PlaneGeometry(1.58, 0.045),
+      new THREE.MeshBasicMaterial({
+        color: 0xffffff,
+        transparent: true,
+        opacity: 0.42,
+        side: THREE.DoubleSide,
+        toneMapped: false,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending,
+      })
+    );
+    scanLine.position.z = 0.028;
+    scanLine.userData = { gearId: id, scanLine: true };
+
+    const hitProxy = new THREE.Mesh(
+      new THREE.PlaneGeometry(2.0, 2.4),
+      new THREE.MeshBasicMaterial({ visible: false, side: THREE.DoubleSide })
+    );
+    hitProxy.position.z = 0.04;
+    hitProxy.userData = { gearId: id, hitProxy: true };
+
+    group.add(panel, border, scanLine, hitProxy);
+    group.userData.panel = panel;
+    group.userData.border = border;
+    group.userData.scanLine = scanLine;
+    group.userData.hitProxy = hitProxy;
+    return group;
   }
 
   private createEngageDial(): void {
     const group = new THREE.Group();
     group.position.set(0, -2.78, -1.03);
     group.userData = { engageDial: true };
-    const mat = this.createOxidizedMetalMaterial(0x2f2318, 0x0b0603, 0.015);
-    const base = new THREE.Mesh(new THREE.CylinderGeometry(0.62, 0.72, 0.16, 48), mat);
-    base.rotation.x = Math.PI / 2;
-    base.userData = { engageDial: true };
-    const ring = new THREE.Mesh(new THREE.TorusGeometry(0.54, 0.04, 10, 48), this.createOxidizedMetalMaterial(0x8c693d, 0x1e1207, 0.02));
-    ring.position.z = 0.11;
-    ring.userData = { engageDial: true };
-    const label = this.createTextSprite('ENGAGE DIAL', '#2e2114', 'rgba(154,113,62,0.68)', 0.78);
-    label.position.set(0, 0, 0.24);
+
+    const ringMaterial = new THREE.MeshBasicMaterial({
+      color: HOLO_TONES.CYAN,
+      transparent: true,
+      opacity: 0.72,
+      side: THREE.DoubleSide,
+      toneMapped: false,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+    });
+    const ring = new THREE.Mesh(new THREE.RingGeometry(0.46, 0.58, 48), ringMaterial);
+    ring.userData = { engageDial: true, holographicDial: true };
+
+    const core = new THREE.Mesh(
+      new THREE.CircleGeometry(0.2, 40),
+      new THREE.MeshBasicMaterial({
+        color: HOLO_TONES.CYAN,
+        transparent: true,
+        opacity: 0.28,
+        side: THREE.DoubleSide,
+        toneMapped: false,
+        depthWrite: false,
+        blending: THREE.AdditiveBlending,
+      })
+    );
+    core.position.z = 0.012;
+    core.userData = { engageDial: true, holographicDialCore: true };
+
+    const label = this.createTextSprite('ENGAGE DIAL', '#bfffff', 'rgba(0,255,255,0.16)', 0.78);
+    label.position.set(0, 0, 0.04);
     label.scale.set(1.2, 0.24, 1);
-    group.add(base, ring, label);
+    label.userData = { engageDial: true, holographicLabel: true };
+    this.applyHolographicStyle(label);
+
+    group.add(ring, core, label);
     this.gearGroup.add(group);
     this.focusDial = group;
   }
 
-  private createGearHitProxy(id: GearId, anchor: THREE.Vector3, radius = 0.95): THREE.Mesh {
-    const hit = new THREE.Mesh(
-      new THREE.CircleGeometry(radius * this.profile.touchTargetScale, 40),
-      new THREE.MeshBasicMaterial({ transparent: true, opacity: 0.001, depthWrite: false, side: THREE.DoubleSide })
-    );
-    hit.position.copy(anchor).setZ(anchor.z + 0.38);
-    hit.userData = { gearId: id, hitProxy: true };
-    this.gearRaycastObjects.push(hit);
-    this.gearGroup.add(hit);
-    return hit;
+  private applyHolographicStyle(object: THREE.Object3D, tone = HOLO_TONES.CYAN): void {
+    object.traverse((child) => {
+      const mesh = child as THREE.Mesh;
+      if (mesh.isMesh) {
+        const materials = Array.isArray(mesh.material) ? mesh.material : [mesh.material];
+        materials.forEach((material) => {
+          const mat = material as THREE.MeshBasicMaterial;
+          if (!mat) return;
+          mat.color?.set(tone);
+          mat.transparent = true;
+          mat.opacity = 0.8;
+          mat.toneMapped = false;
+          mat.depthWrite = false;
+          mat.blending = THREE.AdditiveBlending;
+          mat.needsUpdate = true;
+        });
+      }
+
+      const sprite = child as THREE.Sprite;
+      if (sprite.isSprite) {
+        const mat = sprite.material as THREE.SpriteMaterial;
+        mat.color.set(tone);
+        mat.transparent = true;
+        mat.opacity = 0.92;
+        mat.toneMapped = false;
+        mat.depthWrite = false;
+        mat.blending = THREE.AdditiveBlending;
+        mat.needsUpdate = true;
+      }
+    });
   }
 
   private createGauges(): void {
@@ -799,9 +904,11 @@ export class SpatialRenderer {
       ['pearls', 'PEARLS 0', 3.12, -2.0],
     ] as const;
     specs.forEach(([key, text, x, y]) => {
-      const sprite = this.createTextSprite(text, '#2b2115', 'transparent', 1.0);
+      const sprite = this.createTextSprite(text, '#bfffff', 'rgba(0,255,255,0.14)', 1.0);
       sprite.position.set(x, y, 0.7);
       sprite.scale.set(1.65, 0.42, 1);
+      sprite.userData = { gaugeKey: key, holographicGauge: true };
+      this.applyHolographicStyle(sprite);
       this.gaugeGroup.add(sprite);
       this.gauges.push({ key, sprite, lastValue: text });
     });
@@ -812,7 +919,8 @@ export class SpatialRenderer {
     if (!gauge || gauge.lastValue === value) return;
     gauge.lastValue = value;
     const old = gauge.sprite.material.map;
-    gauge.sprite.material.map = this.createTextTexture(value, '#2b2115', 'transparent');
+    gauge.sprite.material.map = this.createTextTexture(value, '#bfffff', 'rgba(0,255,255,0.14)');
+    this.applyHolographicStyle(gauge.sprite);
     gauge.sprite.material.needsUpdate = true;
     old?.dispose();
   }
@@ -1047,11 +1155,35 @@ export class SpatialRenderer {
     const focalZ = focus?.target.z || 0;
 
     this.gears.forEach((gear, index) => {
-      const target = gear.active ? 0.018 : 0.006;
-      gear.group.rotation.z += target * (index % 2 ? -1 : 1);
+      const phase = elapsed * 1.08 + index * 0.82;
+      const homeY = (gear.group.userData.homeY as number | undefined) ?? gear.anchor.y;
+      const homeZ = (gear.group.userData.homeZ as number | undefined) ?? gear.anchor.z;
+      gear.group.position.y = homeY + Math.sin(phase) * 0.045;
+      gear.group.position.z = homeZ + Math.cos(phase * 0.7) * 0.012;
+
+      const panel = gear.group.userData.panel as THREE.Mesh | undefined;
+      const border = gear.group.userData.border as THREE.Mesh | undefined;
+      const scanLine = gear.group.userData.scanLine as THREE.Mesh | undefined;
+      if (panel) {
+        panel.rotation.x = Math.sin(elapsed * 0.8 + index) * 0.03;
+        panel.rotation.y = Math.cos(elapsed * 0.8 + index) * 0.03;
+        const material = panel.material as THREE.MeshBasicMaterial;
+        material.opacity = gear.group.userData.unlocked === false ? 0.24 : gear.active ? 0.86 : 0.62;
+      }
+      if (border) border.rotation.z = Math.PI / 4 + Math.sin(elapsed * 0.55 + index) * 0.018;
+      if (scanLine) scanLine.position.y = Math.sin(elapsed * 1.6 + index) * 0.72;
+
       const activeScale = gear.active ? 1.08 : 1;
       const hoverScale = this.hoveredGear === gear || this.selectedGear === gear ? 1.08 : 1;
-      const targetScale = this.profile.gearScale * this.profile.touchTargetScale * activeScale * hoverScale;
+      const panelScale = (gear.group.userData.panelScale as number | undefined) ?? 1;
+      const baseScale = this.profile.gearScale * this.profile.touchTargetScale * panelScale;
+      const targetScale = baseScale * activeScale * hoverScale;
+      const hitProxy = gear.group.userData.hitProxy as THREE.Mesh | undefined;
+      if (hitProxy) {
+        const minHitWidth = this.profile.kind === 'mobile' ? (this.profile.orientation === 'portrait' ? 0.78 : 0.72) : 0;
+        const hitScale = minHitWidth > 0 ? Math.max(1, minHitWidth / Math.max(0.001, 2.0 * baseScale)) : 1;
+        hitProxy.scale.set(hitScale, hitScale, 1);
+      }
       gear.group.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.08);
     });
 
@@ -1162,14 +1294,25 @@ export class SpatialRenderer {
     const ctx = canvas.getContext('2d')!;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     if (background !== 'transparent') {
+      const holo = background.includes('255,255') || background.includes('255, 255') || background.includes('0,255,255') || background.includes('0, 255, 255');
       ctx.fillStyle = background;
       ctx.fillRect(12, 24, 488, 80);
-      ctx.strokeStyle = 'rgba(61,42,21,0.58)';
+      ctx.strokeStyle = holo ? 'rgba(0,255,255,0.68)' : 'rgba(61,42,21,0.58)';
       ctx.lineWidth = 2;
       ctx.strokeRect(12.5, 24.5, 487, 79);
-      ctx.strokeStyle = 'rgba(240,211,150,0.20)';
+      ctx.strokeStyle = holo ? 'rgba(190,255,255,0.32)' : 'rgba(240,211,150,0.20)';
       ctx.lineWidth = 1;
       ctx.strokeRect(22.5, 34.5, 467, 59);
+      if (holo) {
+        ctx.strokeStyle = 'rgba(0,255,255,0.22)';
+        ctx.lineWidth = 1;
+        for (let y = 40; y <= 88; y += 12) {
+          ctx.beginPath();
+          ctx.moveTo(28, y + 0.5);
+          ctx.lineTo(484, y + 0.5);
+          ctx.stroke();
+        }
+      }
     }
     ctx.font = '900 31px "Courier New", "Courier", monospace';
     ctx.textAlign = 'center';

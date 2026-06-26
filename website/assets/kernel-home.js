@@ -14645,10 +14645,10 @@ var wf = {
 		return a && n < 700 ? o = "mobile" : (a || r < 1180) && (o = "tablet"), o === "mobile" && i === "portrait" ? {
 			kind: o,
 			orientation: i,
-			gearScale: .24,
+			gearScale: .3,
 			gearPosition: {
 				x: 0,
-				y: -1.55,
+				y: -1.25,
 				z: -1.18
 			},
 			gaugeMode: "topbar",
@@ -14658,7 +14658,7 @@ var wf = {
 				z: 14.2,
 				fov: 54,
 				targetX: 0,
-				targetY: -1,
+				targetY: -.85,
 				targetZ: -1.35,
 				zoom: .82
 			},
@@ -14745,22 +14745,37 @@ var wf = {
 		};
 	}
 }, Df = {
+	CYAN: 65535,
+	MAGENTA: 16711935,
+	PURPLE: 9055202
+}, Of = {
 	games: "library.game_opened",
 	archive: "library.archive_opened",
 	community: "community.vortex",
 	blueprint: "milestone.level_up",
 	memory: "economic.resource_gained"
-}, Of = Object.fromEntries(Object.entries(Df).map(([e, t]) => [t, e])), kf = class {
+}, kf = Object.fromEntries(Object.entries(Of).map(([e, t]) => [t, e])), Af = class {
 	constructor(e, t, n) {
 		this.host = e, this.liveRegion = t, this.onGearSelected = n, this.scene = new zn(), this.camera = new hs(-7.2, 7.2, 4.05, -4.05, .1, 1e3), this.workstationGroup = new jn(), this.biomeGroup = new jn(), this.linkGroup = new jn(), this.gearGroup = new jn(), this.gaugeGroup = new jn(), this.nodes = [], this.links = [], this.gears = [], this.gauges = [], this.modelAnchors = /* @__PURE__ */ new Map(), this.gearRaycastObjects = [], this.workstationModelLoaded = !1, this.workstationFallbackActive = !1, this.baseEnvironmentCreated = !1, this.rafId = 0, this.focusIndex = -1, this.pointer = new U(99, 99), this.raycaster = new Vs(), this.clock = new Ws(), this.haloTexture = this.createHaloTexture(), this.responsive = new Ef(), this.profile = this.responsive.getProfile(), this.lastTouchAt = 0, this.dragStartX = 0, this.didDrag = !1, this.animate = () => {
 			let e = this.clock.getElapsedTime();
 			this.updateHoverState(), this.biomeGroup.rotation.y += .0017, this.biomeGroup.rotation.x = Math.sin(e * .17) * .06, this.linkGroup.rotation.copy(this.biomeGroup.rotation);
 			let t = this.nodes[this.focusIndex], n = t?.target.z || 0;
-			if (this.gears.forEach((e, t) => {
-				let n = e.active ? .018 : .006;
-				e.group.rotation.z += n * (t % 2 ? -1 : 1);
-				let r = e.active ? 1.08 : 1, i = this.hoveredGear === e || this.selectedGear === e ? 1.08 : 1, a = this.profile.gearScale * this.profile.touchTargetScale * r * i;
-				e.group.scale.lerp(new W(a, a, a), .08);
+			if (this.gears.forEach((t, n) => {
+				let r = e * 1.08 + n * .82, i = t.group.userData.homeY ?? t.anchor.y, a = t.group.userData.homeZ ?? t.anchor.z;
+				t.group.position.y = i + Math.sin(r) * .045, t.group.position.z = a + Math.cos(r * .7) * .012;
+				let o = t.group.userData.panel, s = t.group.userData.border, c = t.group.userData.scanLine;
+				if (o) {
+					o.rotation.x = Math.sin(e * .8 + n) * .03, o.rotation.y = Math.cos(e * .8 + n) * .03;
+					let r = o.material;
+					r.opacity = t.group.userData.unlocked === !1 ? .24 : t.active ? .86 : .62;
+				}
+				s && (s.rotation.z = Math.PI / 4 + Math.sin(e * .55 + n) * .018), c && (c.position.y = Math.sin(e * 1.6 + n) * .72);
+				let l = t.active ? 1.08 : 1, u = this.hoveredGear === t || this.selectedGear === t ? 1.08 : 1, d = t.group.userData.panelScale ?? 1, f = this.profile.gearScale * this.profile.touchTargetScale * d, p = f * l * u, m = t.group.userData.hitProxy;
+				if (m) {
+					let e = this.profile.kind === "mobile" ? this.profile.orientation === "portrait" ? .78 : .72 : 0, t = e > 0 ? Math.max(1, e / Math.max(.001, 2 * f)) : 1;
+					m.scale.set(t, t, 1);
+				}
+				t.group.scale.lerp(new W(p, p, p), .08);
 			}), this.focusDial && (this.focusDial.rotation.z -= .004), this.nodes.forEach((t, r) => {
 				let i = Math.min(1, (performance.now() - t.createdAt) / 620), a = t.target.clone();
 				if (this.hovered && this.hovered !== t) {
@@ -14788,17 +14803,14 @@ var wf = {
 			antialias: !0,
 			alpha: !0,
 			powerPreference: "high-performance"
-		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(0, 0), this.renderer.shadowMap.enabled = !0, this.renderer.shadowMap.type = 2, this.renderer.toneMapping = 4, this.renderer.toneMappingExposure = 1.42, this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.scene.add(this.workstationGroup), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.applyCameraProfile(this.profile, !0);
-		let r = new vs(12094040, .82), i = new fs(16760938, 18.5, 68, Math.PI / 4.4, .6, .95);
-		i.position.set(3.9, 2.9, 6.2), i.target.position.set(.4, -.25, -1.65);
-		let a = new ms(7271653, .14, 10, 3);
-		a.position.set(-2.8, -.8, 2.2);
-		let o = new ms(6963488, 1.55, 30, 1.8);
-		o.position.set(0, -4, 4), i.castShadow = !0, i.shadow.mapSize.set(2048, 2048), i.shadow.bias = -35e-5, this.scene.add(r, i, i.target, a, o), this.scene.environment = this.createEnvironmentTexture(), this.scene.background = null, this.composer = new _d(this.renderer), this.composer.addPass(new vd(this.scene, this.camera)), this.bloomPass = new bd(new U(1, 1), .045, .42, .96), this.composer.addPass(this.bloomPass), this.createWorkstationEnvironment(), this.createBlueprintGearRig(), this.loadWorkstationAsset(), this.createGauges(), this.createEngageDial(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
+		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(0, 0), this.renderer.shadowMap.enabled = !0, this.renderer.shadowMap.type = 2, this.renderer.toneMapping = 4, this.renderer.toneMappingExposure = 1.42, this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.scene.add(this.workstationGroup), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.applyCameraProfile(this.profile, !0), this.composer = new _d(this.renderer), this.composer.addPass(new vd(this.scene, this.camera)), this.bloomPass = new bd(new U(1, 1), .045, .42, .96), this.composer.addPass(this.bloomPass), this.initLighting(), this.createWorkstationEnvironment(), this.createBlueprintGearRig(), this.loadWorkstationAsset(), this.createGauges(), this.createEngageDial(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
+	}
+	initLighting() {
+		this.scene.environment = null, this.scene.background = null, this.renderer.setClearColor(0, 0), this.ambient = new vs(Df.CYAN, .4), this.scene.add(this.ambient), this.lamp = new fs(Df.CYAN, 10, 50, Math.PI / 4), this.lamp.position.set(0, 5, 10), this.scene.add(this.lamp), this.bloomPass.strength = 1.2;
 	}
 	handle(e) {
 		if (e.type === "system.heartbeat" && this.nodes.length > 0) return;
-		let t = wf[e.type] || Tf, n = Of[e.type], r = this.nodes.length, i = this.computePosition(r, t.pull, n), a = new X(this.createGeometry(t), this.createMaterial(t)), o = n ? this.getGearAnchor(n).setZ(-1.04) : new W(0, 0, -1.04);
+		let t = wf[e.type] || Tf, n = kf[e.type], r = this.nodes.length, i = this.computePosition(r, t.pull, n), a = new X(this.createGeometry(t), this.createMaterial(t)), o = n ? this.getGearAnchor(n).setZ(-1.04) : new W(0, 0, -1.04);
 		a.position.copy(o), a.scale.setScalar(.001), a.userData = {
 			eventType: e.type,
 			label: t.label
@@ -14836,7 +14848,7 @@ var wf = {
 		this.nodes.length && (this.focusIndex = (this.focusIndex + 1) % this.nodes.length);
 	}
 	focusGear(e) {
-		return this.focusEventType(Df[e]);
+		return this.focusEventType(Of[e]);
 	}
 	focusEventType(e) {
 		for (let t = this.nodes.length - 1; t >= 0; t--) if (this.nodes[t].eventType === e) {
@@ -14897,10 +14909,10 @@ var wf = {
 	layoutGauges(e) {
 		let t = {
 			topbar: [
-				[-3, -3.66],
-				[-1, -3.66],
-				[1, -3.66],
-				[3, -3.66]
+				[-3, 3.46],
+				[-1, 3.46],
+				[1, 3.46],
+				[3, 3.46]
 			],
 			"side-panels": [
 				[-3.2, -3.68],
@@ -14934,7 +14946,7 @@ var wf = {
 		let e = new wd();
 		try {
 			let t = (await e.loadAsync("assets/models/liquid-memory-workstation.glb")).scene;
-			t.name = "liquid_memory_workstation_glb_root", t.position.z = -1.96, this.workstationGroup.add(t), this.modelAnchors.clear(), this.gearRaycastObjects = [], this.gears = [], t.traverse((e) => {
+			t.name = "liquid_memory_workstation_glb_root", t.position.z = -1.96, this.workstationGroup.add(t), this.modelAnchors.clear(), t.traverse((e) => {
 				e.name?.startsWith("anchor_") && (this.modelAnchors.set(e.name, e), e.visible = !1);
 				let t = e;
 				if (t.isMesh) {
@@ -14942,32 +14954,15 @@ var wf = {
 					let e = this.inferGearIdFromName(t.name);
 					e && (t.userData.gearId = e, t.visible = !1);
 				}
-			}), [
+			}), this.resetGearControls(), [
 				"games",
 				"archive",
 				"community",
 				"blueprint",
 				"memory"
 			].forEach((e) => {
-				let t = this.getModelAnchorPosition(`anchor_${e}`) || this.getFallbackGearAnchor(e), n = new An();
-				n.position.copy(t), n.userData = {
-					gearId: e,
-					active: !1,
-					unlocked: !0
-				};
-				let r = this.createTextSprite(e.toUpperCase(), "#2e2114", "transparent", .01);
-				r.visible = !1;
-				let i = this.createGearHitProxy(e, t, e === "games" ? 1.2 : .92);
-				this.gears.push({
-					id: e,
-					group: n,
-					hit: i,
-					anchor: t,
-					eventType: Df[e],
-					unlockedLevel: e === "community" ? 2 : e === "memory" ? 3 : 1,
-					active: !1,
-					label: r
-				});
+				let t = this.getModelAnchorPosition(`anchor_${e}`) || this.getFallbackGearAnchor(e), n = e === "games" ? 1.02 : e === "memory" ? .62 : e === "blueprint" ? .86 : .76;
+				this.createPanelGear(e, e.toUpperCase(), t, n, e === "community" ? 2 : e === "memory" ? 3 : 1);
 			}), this.workstationModelLoaded = !0, this.workstationFallbackActive = !1, this.host.dataset.workstationModel = "loaded";
 		} catch (e) {
 			console.warn("[SpatialRenderer] Workstation GLB failed; using procedural fallback.", e), this.renderProceduralWorkstation();
@@ -15229,69 +15224,138 @@ var wf = {
 		return new Sa(t);
 	}
 	createBlueprintGearRig() {
-		this.gearGroup.position.set(0, 0, .65), this.createGear("archive", "ARCHIVE", new W(-2.45, -.05, 0), .72, 1), this.createGear("games", "GAMES", new W(0, .52, .02), 1.02, 1), this.createGear("community", "COMMUNITY", new W(2.28, -.05, 0), .76, 2), this.createGear("blueprint", "BLUEPRINT", new W(0, -1.28, .04), .86, 1), this.createGear("memory", "MEMORY", new W(-1.55, -1.12, .08), .62, 3);
+		this.gearGroup.position.set(0, 0, .65), this.createPanelGear("archive", "ARCHIVE", new W(-2.45, -.05, 0), .72, 1), this.createPanelGear("games", "GAMES", new W(0, .52, .02), 1.02, 1), this.createPanelGear("community", "COMMUNITY", new W(2.28, -.05, 0), .76, 2), this.createPanelGear("blueprint", "BLUEPRINT", new W(0, -1.28, .04), .86, 1), this.createPanelGear("memory", "MEMORY", new W(-1.55, -1.12, .08), .62, 3);
 	}
-	createGear(e, t, n, r, i) {
-		let a = new jn();
+	resetGearControls() {
+		this.gears.forEach((e) => {
+			this.gearGroup.remove(e.group), this.gearGroup.remove(e.hit);
+		}), this.gears = [], this.gearRaycastObjects = [], this.hoveredGear = void 0, this.selectedGear = void 0, this.dragGear = void 0;
+	}
+	createPanelGear(e, t, n, r, i) {
+		let a = this.createHolographicPanel(e);
 		a.position.copy(n), a.userData = {
+			...a.userData,
 			gearId: e,
 			active: !1,
-			unlockedLevel: i
+			unlocked: !0,
+			unlockedLevel: i,
+			homeY: n.y,
+			homeZ: n.z,
+			panelScale: r
 		};
-		let o = this.createOxidizedMetalMaterial(11563064, 2823688, .035), s = new X(new Oa(r, r, .18, 64), o);
-		s.rotation.x = Math.PI / 2, s.userData = { gearId: e }, a.add(s);
-		let c = new X(new ao(r * .48, .035, 10, 48), this.createOxidizedMetalMaterial(14723938, 3875597, .018));
-		c.position.z = .105, a.add(c);
-		let l = new X(new ao(r * .86, .045, 10, 64), this.createOxidizedMetalMaterial(13015641, 3350797, .014));
-		l.position.z = .115, a.add(l);
-		let u = this.createOxidizedMetalMaterial(3873549, 525057, 0), d = r > .9 ? 8 : 6;
-		for (let t = 0; t < d; t++) {
-			let n = t / d * Math.PI * 2, i = new X(new Ea(r * .62, .045, .055), u);
-			i.position.set(Math.cos(n) * r * .28, Math.sin(n) * r * .28, .145), i.rotation.z = n, i.userData = { gearId: e }, a.add(i);
-		}
-		let f = this.createOxidizedMetalMaterial(12352063, 3020552, .025), p = Math.max(14, Math.round(r * 24));
-		for (let t = 0; t < p; t++) {
-			let n = t / p * Math.PI * 2, i = new X(new Ea(r * .12, r * .24, .16), f);
-			i.position.set(Math.cos(n) * r * 1.02, Math.sin(n) * r * 1.02, 0), i.rotation.z = n, i.userData = { gearId: e }, a.add(i);
-		}
-		let m = this.createTextSprite(t, "#fff0c4", "rgba(28,16,8,0.82)", 1.2);
-		m.position.set(0, 0, .32), m.scale.set(r * 1.35, r * .36, 1), a.add(m), a.traverse((e) => {
-			let t = e;
-			t.isMesh && (t.castShadow = !0, t.receiveShadow = !0);
-		}), this.gearRaycastObjects.push(a), this.gearGroup.add(a);
-		let h = this.createGearHitProxy(e, n.clone(), r * 1.12);
+		let o = this.createTextSprite(t, "#001b1f", "rgba(0,255,255,0.42)", 1);
+		o.position.set(0, -.88, .035), o.scale.set(1.36, .34, 1), a.add(o), this.gearRaycastObjects.push(a), this.gearGroup.add(a);
+		let s = a.userData.hitProxy;
 		this.gears.push({
 			id: e,
 			group: a,
-			hit: h,
+			hit: s,
 			anchor: n.clone(),
-			eventType: Df[e],
+			eventType: Of[e],
 			unlockedLevel: i,
 			active: !1,
-			label: m
+			label: o
 		});
+	}
+	createHolographicPanel(e) {
+		let t = new jn();
+		t.userData.gearId = e;
+		let n = e === "community" ? Df.MAGENTA : e === "memory" ? Df.PURPLE : Df.CYAN, r = new X(new no(1.8, 2.2), new ci({
+			color: n,
+			transparent: !0,
+			opacity: .7,
+			side: 2,
+			toneMapped: !1,
+			depthWrite: !1,
+			blending: 2
+		}));
+		r.userData = {
+			gearId: e,
+			holographicPanel: !0
+		};
+		let i = new X(new ro(.72, .76, 4), new ci({
+			color: n,
+			transparent: !0,
+			opacity: .9,
+			side: 2,
+			toneMapped: !1,
+			depthWrite: !1,
+			blending: 2
+		}));
+		i.scale.set(1.18, 1.43, 1), i.rotation.z = Math.PI / 4, i.position.z = .018, i.userData = {
+			gearId: e,
+			holographicBorder: !0
+		};
+		let a = new X(new no(1.58, .045), new ci({
+			color: 16777215,
+			transparent: !0,
+			opacity: .42,
+			side: 2,
+			toneMapped: !1,
+			depthWrite: !1,
+			blending: 2
+		}));
+		a.position.z = .028, a.userData = {
+			gearId: e,
+			scanLine: !0
+		};
+		let o = new X(new no(2, 2.4), new ci({
+			visible: !1,
+			side: 2
+		}));
+		return o.position.z = .04, o.userData = {
+			gearId: e,
+			hitProxy: !0
+		}, t.add(r, i, a, o), t.userData.panel = r, t.userData.border = i, t.userData.scanLine = a, t.userData.hitProxy = o, t;
 	}
 	createEngageDial() {
 		let e = new jn();
 		e.position.set(0, -2.78, -1.03), e.userData = { engageDial: !0 };
-		let t = this.createOxidizedMetalMaterial(3089176, 722435, .015), n = new X(new Oa(.62, .72, .16, 48), t);
-		n.rotation.x = Math.PI / 2, n.userData = { engageDial: !0 };
-		let r = new X(new ao(.54, .04, 10, 48), this.createOxidizedMetalMaterial(9201981, 1970695, .02));
-		r.position.z = .11, r.userData = { engageDial: !0 };
-		let i = this.createTextSprite("ENGAGE DIAL", "#2e2114", "rgba(154,113,62,0.68)", .78);
-		i.position.set(0, 0, .24), i.scale.set(1.2, .24, 1), e.add(n, r, i), this.gearGroup.add(e), this.focusDial = e;
-	}
-	createGearHitProxy(e, t, n = .95) {
-		let r = new X(new Da(n * this.profile.touchTargetScale, 40), new ci({
+		let t = new ci({
+			color: Df.CYAN,
 			transparent: !0,
-			opacity: .001,
+			opacity: .72,
+			side: 2,
+			toneMapped: !1,
 			depthWrite: !1,
-			side: 2
+			blending: 2
+		}), n = new X(new ro(.46, .58, 48), t);
+		n.userData = {
+			engageDial: !0,
+			holographicDial: !0
+		};
+		let r = new X(new Da(.2, 40), new ci({
+			color: Df.CYAN,
+			transparent: !0,
+			opacity: .28,
+			side: 2,
+			toneMapped: !1,
+			depthWrite: !1,
+			blending: 2
 		}));
-		return r.position.copy(t).setZ(t.z + .38), r.userData = {
-			gearId: e,
-			hitProxy: !0
-		}, this.gearRaycastObjects.push(r), this.gearGroup.add(r), r;
+		r.position.z = .012, r.userData = {
+			engageDial: !0,
+			holographicDialCore: !0
+		};
+		let i = this.createTextSprite("ENGAGE DIAL", "#bfffff", "rgba(0,255,255,0.16)", .78);
+		i.position.set(0, 0, .04), i.scale.set(1.2, .24, 1), i.userData = {
+			engageDial: !0,
+			holographicLabel: !0
+		}, this.applyHolographicStyle(i), e.add(n, r, i), this.gearGroup.add(e), this.focusDial = e;
+	}
+	applyHolographicStyle(e, t = Df.CYAN) {
+		e.traverse((e) => {
+			let n = e;
+			n.isMesh && (Array.isArray(n.material) ? n.material : [n.material]).forEach((e) => {
+				let n = e;
+				n && (n.color?.set(t), n.transparent = !0, n.opacity = .8, n.toneMapped = !1, n.depthWrite = !1, n.blending = 2, n.needsUpdate = !0);
+			});
+			let r = e;
+			if (r.isSprite) {
+				let e = r.material;
+				e.color.set(t), e.transparent = !0, e.opacity = .92, e.toneMapped = !1, e.depthWrite = !1, e.blending = 2, e.needsUpdate = !0;
+			}
+		});
 	}
 	createGauges() {
 		[
@@ -15320,8 +15384,11 @@ var wf = {
 				-2
 			]
 		].forEach(([e, t, n, r]) => {
-			let i = this.createTextSprite(t, "#2b2115", "transparent", 1);
-			i.position.set(n, r, .7), i.scale.set(1.65, .42, 1), this.gaugeGroup.add(i), this.gauges.push({
+			let i = this.createTextSprite(t, "#bfffff", "rgba(0,255,255,0.14)", 1);
+			i.position.set(n, r, .7), i.scale.set(1.65, .42, 1), i.userData = {
+				gaugeKey: e,
+				holographicGauge: !0
+			}, this.applyHolographicStyle(i), this.gaugeGroup.add(i), this.gauges.push({
 				key: e,
 				sprite: i,
 				lastValue: t
@@ -15333,7 +15400,7 @@ var wf = {
 		if (!n || n.lastValue === t) return;
 		n.lastValue = t;
 		let r = n.sprite.material.map;
-		n.sprite.material.map = this.createTextTexture(t, "#2b2115", "transparent"), n.sprite.material.needsUpdate = !0, r?.dispose();
+		n.sprite.material.map = this.createTextTexture(t, "#bfffff", "rgba(0,255,255,0.14)"), this.applyHolographicStyle(n.sprite), n.sprite.material.needsUpdate = !0, r?.dispose();
 	}
 	updateGearUnlocks(e) {
 		this.gears.forEach((t) => {
@@ -15501,14 +15568,21 @@ var wf = {
 		let r = document.createElement("canvas");
 		r.width = 512, r.height = 128;
 		let i = r.getContext("2d");
-		i.clearRect(0, 0, r.width, r.height), n !== "transparent" && (i.fillStyle = n, i.fillRect(12, 24, 488, 80), i.strokeStyle = "rgba(61,42,21,0.58)", i.lineWidth = 2, i.strokeRect(12.5, 24.5, 487, 79), i.strokeStyle = "rgba(240,211,150,0.20)", i.lineWidth = 1, i.strokeRect(22.5, 34.5, 467, 59)), i.font = "900 31px \"Courier New\", \"Courier\", monospace", i.textAlign = "center", i.textBaseline = "middle", i.fillStyle = n === "transparent" ? "rgba(255,226,168,0.10)" : "rgba(255,238,190,0.16)", i.fillText(e, 259, 68), i.fillStyle = t, i.fillText(e, 256, 65);
+		if (i.clearRect(0, 0, r.width, r.height), n !== "transparent") {
+			let e = n.includes("255,255") || n.includes("255, 255") || n.includes("0,255,255") || n.includes("0, 255, 255");
+			if (i.fillStyle = n, i.fillRect(12, 24, 488, 80), i.strokeStyle = e ? "rgba(0,255,255,0.68)" : "rgba(61,42,21,0.58)", i.lineWidth = 2, i.strokeRect(12.5, 24.5, 487, 79), i.strokeStyle = e ? "rgba(190,255,255,0.32)" : "rgba(240,211,150,0.20)", i.lineWidth = 1, i.strokeRect(22.5, 34.5, 467, 59), e) {
+				i.strokeStyle = "rgba(0,255,255,0.22)", i.lineWidth = 1;
+				for (let e = 40; e <= 88; e += 12) i.beginPath(), i.moveTo(28, e + .5), i.lineTo(484, e + .5), i.stroke();
+			}
+		}
+		i.font = "900 31px \"Courier New\", \"Courier\", monospace", i.textAlign = "center", i.textBaseline = "middle", i.fillStyle = n === "transparent" ? "rgba(255,226,168,0.10)" : "rgba(255,238,190,0.16)", i.fillText(e, 259, 68), i.fillStyle = t, i.fillText(e, 256, 65);
 		let a = new Sa(r);
 		return a.needsUpdate = !0, a;
 	}
 	roundRect(e, t, n, r, i, a) {
 		e.beginPath(), e.moveTo(t + a, n), e.arcTo(t + r, n, t + r, n + i, a), e.arcTo(t + r, n + i, t, n + i, a), e.arcTo(t, n + i, t, n, a), e.arcTo(t, n, t + r, n, a), e.closePath();
 	}
-}, Af = "lm_home_kernel", jf = "ibb_home_kernel", Mf = "lm_blueprint_nav_gear", Nf = 0, Pf = {
+}, jf = "lm_home_kernel", Mf = "ibb_home_kernel", Nf = "lm_blueprint_nav_gear", Pf = 0, Ff = {
 	games: {
 		eventType: "library.game_opened",
 		payload: {
@@ -15546,7 +15620,7 @@ var wf = {
 		}
 	}
 };
-function Ff() {
+function If() {
 	return {
 		...t,
 		timestamp: (/* @__PURE__ */ new Date()).toISOString(),
@@ -15574,10 +15648,10 @@ function Ff() {
 		}
 	};
 }
-function If(e, t = {}, n = "liquid-memory-homepage") {
+function Lf(e, t = {}, n = "liquid-memory-homepage") {
 	return {
 		eventId: crypto.randomUUID(),
-		sequenceId: ++Nf,
+		sequenceId: ++Pf,
 		timestamp: (/* @__PURE__ */ new Date()).toISOString(),
 		type: e,
 		payload: t,
@@ -15585,43 +15659,43 @@ function If(e, t = {}, n = "liquid-memory-homepage") {
 		metadata: { version: "1.0.0" }
 	};
 }
-function Lf() {
-	[[`${jf}_state`, `${Af}_state`], [`${jf}_event_log`, `${Af}_event_log`]].forEach(([e, t]) => {
+function Rf() {
+	[[`${Mf}_state`, `${jf}_state`], [`${Mf}_event_log`, `${jf}_event_log`]].forEach(([e, t]) => {
 		!localStorage.getItem(t) && localStorage.getItem(e) && localStorage.setItem(t, localStorage.getItem(e));
 	});
 }
-function Rf() {
+function zf() {
 	let t = e.getInstance();
-	t.reset(), Lf();
-	let o = new i(`${Af}_state`, `${Af}_event_log`), s = new r(o.rehydrate() || Ff());
+	t.reset(), Rf();
+	let o = new i(`${jf}_state`, `${jf}_event_log`), s = new r(o.rehydrate() || If());
 	new a().init(t);
 	let c = document.getElementById("spatial-canvas"), l = document.getElementById("spatial-live-region"), u = null;
 	function d(e) {
-		u?.focusGear(e), u?.setActiveGear(e), localStorage.setItem(Mf, e);
+		u?.focusGear(e), u?.setActiveGear(e), localStorage.setItem(Nf, e);
 	}
 	function f(e) {
-		let n = Pf[e], r = { ...n.payload };
+		let n = Ff[e], r = { ...n.payload };
 		if (n.eventType === "milestone.level_up") {
 			let e = s.getCurrentState().player.level || 1;
 			r.newLevel = e + 1, r.xp = e * 150;
 		}
-		localStorage.setItem(Mf, e), t.emit(If(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => d(e), 90);
+		localStorage.setItem(Nf, e), t.emit(Lf(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => d(e), 90);
 	}
-	u = c ? new kf(c, l, f) : null, o.getEventLog().slice(-48).forEach((e) => u?.handle(e)), t.subscribe((e) => {
+	u = c ? new Af(c, l, f) : null, o.getEventLog().slice(-48).forEach((e) => u?.handle(e)), t.subscribe((e) => {
 		u?.handle(e);
 		let t = s.getCurrentState(), r = n(t, e);
 		r !== t && r.processedEventIds.has(e.eventId) && (o.logEvent(e), o.save(r)), s.onStateUpdated(r), u?.updateFromState(r);
 	}), window.LiquidMemoryKernel = {
 		bus: t,
 		bridge: s,
-		emit: (e, n = {}, r) => t.emit(If(e, n, r)),
+		emit: (e, n = {}, r) => t.emit(Lf(e, n, r)),
 		getState: () => s.getCurrentState(),
 		levelUp: () => f("blueprint"),
-		gain: (e = "trace", n = 10) => t.emit(If("economic.resource_gained", {
+		gain: (e = "trace", n = 10) => t.emit(Lf("economic.resource_gained", {
 			resource: e,
 			amount: n
 		})),
-		spend: (e = "pearls", n = 60) => t.emit(If("economic.resource_spent", {
+		spend: (e = "pearls", n = 60) => t.emit(Lf("economic.resource_spent", {
 			resource: e,
 			amount: n
 		})),
@@ -15636,11 +15710,11 @@ function Rf() {
 		isProceduralFallbackActive: () => u?.isProceduralFallbackActive?.() || !1,
 		getWorkstationAnchorCount: () => u?.getAnchorCount?.() || 0,
 		clear: () => {
-			o.clear(), localStorage.removeItem(Mf), window.location.reload();
+			o.clear(), localStorage.removeItem(Nf), window.location.reload();
 		}
 	}, window.LiquidMemorySpatial = u, window.setTimeout(() => document.body.classList.add("liquid-ready"), 250);
-	let p = localStorage.getItem(Mf) || "games";
-	Pf[p] && window.setTimeout(() => d(p), 160), t.emit(If("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(If("system.heartbeat", { path: location.pathname })), 3e4);
+	let p = localStorage.getItem(Nf) || "games";
+	Ff[p] && window.setTimeout(() => d(p), 160), t.emit(Lf("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(Lf("system.heartbeat", { path: location.pathname })), 3e4);
 }
-document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", Rf) : Rf();
+document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", zf) : zf();
 //#endregion

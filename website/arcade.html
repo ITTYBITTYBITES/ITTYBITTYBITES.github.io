@@ -12,20 +12,116 @@
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1566091161594729" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="assets/brand-system.css">
   <style>
+    :root {
+      --lm-holo-cyan: #00ffff;
+      --lm-holo-cyan-soft: rgba(0,255,255,.18);
+      --lm-holo-cyan-line: rgba(0,255,255,.46);
+      --lm-holo-magenta: #ff00ff;
+      --lm-holo-purple: #8a2be2;
+      --lm-holo-void: rgba(0,8,16,.76);
+      --lm-holo-panel: rgba(0,22,34,.64);
+      --lm-holo-text: #bfffff;
+    }
     .arcade-theater { display:none; }
     .arcade-theater.is-open { display:block; }
     .game-frame-wrap { position:relative; border:1px solid var(--ibb-line-strong); border-radius:28px; overflow:hidden; background:#030612; box-shadow:var(--ibb-shadow); }
-    .game-frame { display:block; width:100%; height:min(78vh, 760px); min-height:520px; border:0; background:#020617; }
+    .game-frame { display:block; width:100%; height:clamp(420px, 74svh, 760px); min-height:min(520px, 72svh); border:0; background:#020617; }
     .ad-modal { position:fixed; inset:0; z-index:9999; display:none; align-items:center; justify-content:center; padding:20px; background:rgba(3,6,18,.78); backdrop-filter:blur(18px); }
     .ad-modal.is-open { display:flex; }
     .ad-modal__card { width:min(92vw,560px); border:1px solid var(--ibb-line-strong); border-radius:28px; padding:28px; background:linear-gradient(135deg,rgba(17,24,49,.96),rgba(22,13,34,.96)); box-shadow:var(--ibb-shadow); text-align:center; }
     .ad-count { font-size:42px; font-weight:1000; color:var(--ibb-gold); line-height:1; }
     .ibb-button[disabled] { opacity:.48; cursor:not-allowed; transform:none; }
+
+    .lm-holo-arcade {
+      color: var(--lm-holo-text);
+      background:
+        radial-gradient(circle at 50% 18%, rgba(0,255,255,.12), transparent 34rem),
+        radial-gradient(circle at 82% 42%, rgba(255,0,255,.08), transparent 28rem),
+        linear-gradient(180deg, rgba(0,0,0,0), rgba(0,10,18,.32));
+    }
+    .lm-holo-arcade .ibb-hero,
+    .lm-holo-arcade .ibb-section {
+      position: relative;
+    }
+    .lm-holo-arcade .ibb-card,
+    .lm-holo-arcade .ibb-showpiece,
+    .lm-holo-arcade .game-frame-wrap,
+    .lm-holo-arcade .ad-modal__card {
+      position: relative;
+      border-color: var(--lm-holo-cyan-line);
+      background:
+        linear-gradient(135deg, rgba(0,255,255,.10), rgba(0,16,28,.68) 42%, rgba(138,43,226,.10)),
+        var(--lm-holo-panel);
+      box-shadow:
+        0 0 0 1px rgba(190,255,255,.08) inset,
+        0 0 26px rgba(0,255,255,.14),
+        0 18px 80px rgba(0,0,0,.48);
+      backdrop-filter: blur(16px) saturate(1.15);
+    }
+    .lm-holo-arcade .ibb-card::after,
+    .lm-holo-arcade .game-frame-wrap::after,
+    .lm-holo-arcade .ad-modal__card::after {
+      content: '';
+      pointer-events: none;
+      position: absolute;
+      inset: 0;
+      border-radius: inherit;
+      background:
+        repeating-linear-gradient(180deg, rgba(190,255,255,.08) 0 1px, transparent 1px 9px),
+        linear-gradient(90deg, transparent, rgba(0,255,255,.08), transparent);
+      mix-blend-mode: screen;
+      opacity: .58;
+    }
+    .lm-holo-arcade .ibb-kicker,
+    .lm-holo-arcade .ibb-tag,
+    .lm-holo-arcade .ibb-title span,
+    .lm-holo-arcade .ad-count {
+      color: var(--lm-holo-cyan);
+      text-shadow: 0 0 14px rgba(0,255,255,.58);
+    }
+    .lm-holo-arcade .ibb-button--primary,
+    .lm-holo-arcade .ibb-button--gold {
+      border-color: rgba(0,255,255,.62);
+      background: linear-gradient(135deg, rgba(0,255,255,.88), rgba(0,120,160,.74));
+      color: #001b1f;
+      box-shadow: 0 0 24px rgba(0,255,255,.24);
+    }
+    .lm-holo-arcade .ibb-button--secondary {
+      border-color: var(--lm-holo-cyan-line);
+      background: rgba(0,18,28,.58);
+      color: var(--lm-holo-text);
+    }
+    .lm-holo-arcade .ibb-thumb {
+      border-color: var(--lm-holo-cyan-line) !important;
+      background: rgba(0,8,16,.78);
+      box-shadow: 0 0 20px rgba(0,255,255,.10) inset;
+    }
+    .lm-holo-arcade .game-frame-wrap {
+      border-radius: 24px;
+      background: var(--lm-holo-void);
+    }
+    .lm-holo-arcade .game-frame {
+      position: relative;
+      z-index: 1;
+    }
+    .lm-holo-arcade #category-filter {
+      border-color: var(--lm-holo-cyan-line) !important;
+      background: rgba(0,12,22,.86) !important;
+      color: var(--lm-holo-text) !important;
+      box-shadow: 0 0 18px rgba(0,255,255,.10) inset;
+    }
+    @media (max-width: 640px) {
+      .game-frame-wrap { border-radius:18px; }
+      .game-frame { height:70svh; min-height:360px; }
+      .lm-holo-arcade .ibb-feature { gap: 18px; }
+      .lm-holo-arcade .ibb-actions { width: 100%; }
+      .lm-holo-arcade .ibb-actions .ibb-button { flex: 1 1 100%; justify-content: center; }
+    }
   </style>
 </head>
 <body class="ibb-brand">
   <nav class="ibb-nav" aria-label="Primary navigation"><div class="ibb-nav__inner"><a class="ibb-logo" href="index.html"><span class="ibb-logo__mark">LM</span><span>Liquid Memory<span class="ibb-logo__sub">games + entertainment</span></span></a><div class="ibb-nav__links"><a href="index.html">Home</a><a href="2-second-witness.html">2 Second Witness</a><a href="arcade.html" aria-current="page">Arcade</a><a href="library.html">Library</a><a href="feed.html">Updates</a><a href="about.html">About</a></div></div></nav>
-  <main class="ibb-main">
+  <main class="ibb-main lm-holo-arcade" data-gear-id="games" data-kernel-event="library.game_opened">
     <section class="ibb-hero">
       <div class="ibb-container ibb-hero-grid">
         <div><p class="ibb-kicker">Experimental arcade</p><h1 class="ibb-title">Playable prototypes, <span>professionally archived.</span></h1><p class="ibb-lede">A dedicated home for current HTML games, browser projects, prototype experiences, and archived experiments from the Liquid Memory studio.</p><div class="ibb-actions"><a class="ibb-button ibb-button--primary" href="#browse">Browse games</a><a class="ibb-button ibb-button--secondary" href="2-second-witness.html">Flagship title</a></div></div>

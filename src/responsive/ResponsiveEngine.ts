@@ -64,10 +64,10 @@ export class ResponsiveEngine {
       return {
         kind,
         orientation,
-        gearScale: 0.24,
-        gearPosition: { x: 0, y: -1.55, z: -1.18 },
+        gearScale: 0.30,
+        gearPosition: { x: 0, y: -1.25, z: -1.18 },
         gaugeMode: 'topbar',
-        camera: { x: 0, y: -0.35, z: 14.2, fov: 54, targetX: 0, targetY: -1.0, targetZ: -1.35, zoom: 0.82 },
+        camera: { x: 0, y: -0.35, z: 14.2, fov: 54, targetX: 0, targetY: -0.85, targetZ: -1.35, zoom: 0.82 },
         starCount: 92,
         linkSegments: 12,
         linkRadialSegments: 5,
