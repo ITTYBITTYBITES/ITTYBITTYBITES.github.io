@@ -15750,10 +15750,10 @@ var Ff = class {
 	}
 	bindResize() {
 		let e = () => {
-			let e = this.host.getBoundingClientRect(), t = Math.max(320, e.width || window.innerWidth), n = Math.max(320, e.height || window.innerHeight), r = t / n, i = 8.1;
-			this.camera.top = i / 2, this.camera.bottom = -8.1 / 2, this.camera.left = -8.1 * r / 2, this.camera.right = i * r / 2, this.camera.updateProjectionMatrix(), this.renderer.setSize(t, n, !1), this.composer?.setSize(t, n), this.bloomPass?.setSize(t, n);
+			let e = window.visualViewport, t = Math.round(e?.width || window.innerWidth || document.documentElement.clientWidth || 320), n = Math.round(e?.height || window.innerHeight || document.documentElement.clientHeight || 320), r = this.host.getBoundingClientRect(), i = Math.max(320, t, Math.round(r.width || 0)), a = Math.max(320, n, Math.round(r.height || 0)), o = i / a, s = 8.1;
+			this.host.style.width = `${t}px`, this.host.style.height = `${n}px`, this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.camera.top = s / 2, this.camera.bottom = -8.1 / 2, this.camera.left = -8.1 * o / 2, this.camera.right = s * o / 2, this.camera.updateProjectionMatrix(), this.renderer.setSize(i, a, !1), this.composer?.setSize(i, a), this.bloomPass?.setSize(i, a);
 		};
-		this.resizeObserver = new ResizeObserver(e), this.resizeObserver.observe(this.host), window.addEventListener("resize", e, { passive: !0 }), window.addEventListener("orientationchange", e, { passive: !0 }), e();
+		this.resizeObserver = new ResizeObserver(e), this.resizeObserver.observe(this.host), window.addEventListener("resize", e, { passive: !0 }), window.addEventListener("orientationchange", e, { passive: !0 }), window.visualViewport?.addEventListener("resize", e, { passive: !0 }), window.visualViewport?.addEventListener("scroll", e, { passive: !0 }), e();
 	}
 	updateHoverState() {
 		if (this.pointer.x > 2) return;

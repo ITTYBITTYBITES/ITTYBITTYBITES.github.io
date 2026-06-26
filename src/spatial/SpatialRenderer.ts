@@ -1241,11 +1241,18 @@ export class SpatialRenderer {
 
   private bindResize(): void {
     const resize = () => {
+      const viewport = window.visualViewport;
+      const viewportWidth = Math.round(viewport?.width || window.innerWidth || document.documentElement.clientWidth || 320);
+      const viewportHeight = Math.round(viewport?.height || window.innerHeight || document.documentElement.clientHeight || 320);
       const rect = this.host.getBoundingClientRect();
-      const width = Math.max(320, rect.width || window.innerWidth);
-      const height = Math.max(320, rect.height || window.innerHeight);
+      const width = Math.max(320, viewportWidth, Math.round(rect.width || 0));
+      const height = Math.max(320, viewportHeight, Math.round(rect.height || 0));
       const aspect = width / height;
       const viewHeight = 8.1;
+
+      this.host.style.width = `${viewportWidth}px`;
+      this.host.style.height = `${viewportHeight}px`;
+      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
       this.camera.top = viewHeight / 2;
       this.camera.bottom = -viewHeight / 2;
       this.camera.left = -viewHeight * aspect / 2;
@@ -1259,6 +1266,8 @@ export class SpatialRenderer {
     this.resizeObserver.observe(this.host);
     window.addEventListener('resize', resize, { passive: true });
     window.addEventListener('orientationchange', resize, { passive: true });
+    window.visualViewport?.addEventListener('resize', resize, { passive: true });
+    window.visualViewport?.addEventListener('scroll', resize, { passive: true });
     resize();
   }
 
