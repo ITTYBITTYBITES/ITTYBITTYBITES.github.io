@@ -1,6 +1,14 @@
 export type BiomeTone = 'cyan' | 'gold' | 'green' | 'pink' | 'violet';
 export type BiomeGeometry = 'growth-node' | 'resource-crystal' | 'reward-orb' | 'heartbeat-ring' | 'default-shard';
 
+export const HOLOGRAPHIC_THEME = {
+  cyan: 0x00ffff,
+  magenta: 0xff00ff,
+  violet: 0x8a2be2,
+  cyanEmissive: 0x003344,
+  violetEmissive: 0x34135c,
+} as const;
+
 export type SpatialNodeLifecycle = {
   /** Whether the node participates in the archive fading rules as the memory field fills. */
   archiveable: boolean;
@@ -46,13 +54,24 @@ const defineNode = (definition: Omit<SpatialNodeDefinition, 'lifecycle'> & { lif
 export const SPATIAL_SPAWN_REGISTRY: SpatialSpawnManifest = {
   version: '1.0.0',
   definitions: {
+    initSpawn: defineNode({
+      id: 'INIT_SPAWN',
+      label: 'Holographic Init Spawn',
+      tone: 'cyan',
+      geometry: 'heartbeat-ring',
+      color: HOLOGRAPHIC_THEME.cyan,
+      emissive: HOLOGRAPHIC_THEME.cyanEmissive,
+      scale: 1.18,
+      pull: 1.0,
+      lifecycle: { archiveable: false, connect: true },
+    }),
     originChamber: defineNode({
       id: 'originChamber',
       label: 'Origin Chamber',
-      tone: 'green',
+      tone: 'cyan',
       geometry: 'heartbeat-ring',
-      color: 0x95e0bc,
-      emissive: 0x284b38,
+      color: HOLOGRAPHIC_THEME.cyan,
+      emissive: HOLOGRAPHIC_THEME.cyanEmissive,
       scale: 1.2,
       pull: 1.0,
     }),
@@ -61,8 +80,8 @@ export const SPATIAL_SPAWN_REGISTRY: SpatialSpawnManifest = {
       label: 'Growth Chamber',
       tone: 'gold',
       geometry: 'growth-node',
-      color: 0xd7b36a,
-      emissive: 0x62471c,
+      color: HOLOGRAPHIC_THEME.magenta,
+      emissive: HOLOGRAPHIC_THEME.violetEmissive,
       scale: 1.35,
       pull: 1.65,
     }),
@@ -142,8 +161,8 @@ export const SPATIAL_SPAWN_REGISTRY: SpatialSpawnManifest = {
       label: 'Community Vortex',
       tone: 'gold',
       geometry: 'heartbeat-ring',
-      color: 0xd7b36a,
-      emissive: 0x5a421d,
+      color: HOLOGRAPHIC_THEME.magenta,
+      emissive: HOLOGRAPHIC_THEME.violetEmissive,
       scale: 1.7,
       pull: 2.25,
     }),
@@ -170,7 +189,7 @@ export const SPATIAL_SPAWN_REGISTRY: SpatialSpawnManifest = {
     }),
   },
   events: {
-    'lifecycle.start': 'originChamber',
+    'lifecycle.start': 'initSpawn',
     'milestone.level_up': 'growthChamber',
     'economic.resource_gained': 'myceliumLink',
     'economic.resource_spent': 'abyssalExchange',

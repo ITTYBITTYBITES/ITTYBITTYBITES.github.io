@@ -13,7 +13,7 @@
   --ibb-blue: #88d7ca;
   --ibb-pink: #d7a7a0;
   --ibb-violet: #9b8c74;
-  --ibb-gold: #d7b36a;
+  --ibb-gold: #00ffff;
   --ibb-green: #95e0bc;
   --ibb-red: #be6d58;
   --ibb-radius: 26px;
@@ -314,18 +314,21 @@ body.liquid-fullscreen::after { z-index:20; opacity:.28; }
 .liquid-fused-system .liquid-memory-system { background: radial-gradient(circle at 50% 50%, rgba(110,244,229,.035), transparent 42%), #0d0a07; }
 
 /* SEO/no-JS/loading fallbacks: centered, diegetic, and non-dashboard. */
-.liquid-loading { position:fixed; inset:0; z-index:80; display:grid; place-items:center; align-content:center; gap:10px; background:radial-gradient(circle at 50% 45%, rgba(120,84,38,.28), transparent 32%), #0d0a07; color:#d7b36a; font-family:"Courier New", Courier, monospace; text-transform:uppercase; letter-spacing:.16em; }
+.liquid-loading { position:fixed; inset:0; z-index:80; display:grid; place-items:center; align-content:center; gap:10px; background:radial-gradient(circle at 50% 45%, rgba(0,255,255,.12), transparent 32%), #0d0a07; color:#00ffff; font-family:"Courier New", Courier, monospace; text-transform:uppercase; letter-spacing:.16em; }
 .liquid-loading span { font-size:clamp(22px, 5vw, 44px); font-weight:900; text-shadow:0 2px 0 rgba(0,0,0,.8); }
 .liquid-loading small { color:#8f8068; font-size:11px; }
 body.liquid-ready .liquid-loading { opacity:0; pointer-events:none; transition:opacity .45s ease; }
 .liquid-noscript { position:fixed; inset:0; z-index:90; display:grid; place-items:center; align-content:center; gap:18px; padding:24px; background:#0d0a07; color:#fff7e8; font-family:"Courier New", Courier, monospace; text-align:center; }
-.liquid-noscript h1 { margin:0; color:#d7b36a; text-transform:uppercase; letter-spacing:.18em; }
+.liquid-noscript h1 { margin:0; color:#00ffff; text-transform:uppercase; letter-spacing:.18em; }
 .liquid-noscript p { max-width:680px; color:#c9bda5; }
 .liquid-noscript nav { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; }
 .liquid-noscript a { color:#6ef4e5; border:1px solid #6d5732; padding:10px 14px; text-decoration:none; text-transform:uppercase; font-size:12px; }
-.liquid-spatial-viewport { background-image: radial-gradient(circle at 50% 45%, rgba(110,244,229,.06), transparent 30%), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 760'%3E%3Crect width='1200' height='760' fill='%23120b05'/%3E%3Crect x='120' y='90' width='960' height='560' fill='%239a642d' opacity='.92'/%3E%3Cg stroke='%23482d12' opacity='.38'%3E%3Cpath d='M120 200h960M120 320h960M120 440h960M120 560h960M260 90v560M430 90v560M600 90v560M770 90v560M940 90v560'/%3E%3Ccircle cx='600' cy='360' r='120' fill='none'/%3E%3C/g%3E%3Ctext x='600' y='615' fill='%23482d12' text-anchor='middle' font-family='monospace' font-size='54' font-weight='900' opacity='.5'%3ESCHEMATIC v0.9%3C/text%3E%3C/svg%3E"); background-size:cover; background-position:center; }
+.liquid-spatial-viewport { background-image: radial-gradient(circle at 50% 45%, rgba(110,244,229,.06), transparent 30%), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 760'%3E%3Crect width='1200' height='760' fill='%23020617'/%3E%3Crect x='120' y='90' width='960' height='560' fill='%23001622' opacity='.92'/%3E%3Cg stroke='%2300ffff' opacity='.38'%3E%3Cpath d='M120 200h960M120 320h960M120 440h960M120 560h960M260 90v560M430 90v560M600 90v560M770 90v560M940 90v560'/%3E%3Ccircle cx='600' cy='360' r='120' fill='none'/%3E%3C/g%3E%3Ctext x='600' y='615' fill='%2300ffff' text-anchor='middle' font-family='monospace' font-size='54' font-weight='900' opacity='.5'%3EDATA-HUB v1.2.9%3C/text%3E%3C/svg%3E"); background-size:cover; background-position:center; }
 
 
 /* Production loading behavior: never obscure the workstation with a black web splash. */
 .liquid-loading { background: transparent !important; opacity: 0 !important; pointer-events: none !important; z-index: 1 !important; }
 body:not(.liquid-ready) .liquid-spatial-viewport { opacity: 1; }
+
+/* Legacy shell purge: hide pre-holographic hydration remnants immediately. */
+div.box-link, div.parchment, .box-link, .parchment { opacity:0 !important; pointer-events:none !important; visibility:hidden !important; }

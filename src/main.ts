@@ -7,6 +7,7 @@ const STORAGE_NAMESPACE = 'lm_home_kernel';
 const LEGACY_STORAGE_NAMESPACE = 'ibb_home_kernel';
 const BLUEPRINT_GEAR_KEY = 'lm_blueprint_nav_gear';
 const HOME_ENGINE_VERSION_KEY = `${STORAGE_NAMESPACE}_engine_version`;
+const LEGACY_SHELL_STYLE_ID = 'lm-legacy-shell-purge';
 let uiSequence = 0;
 
 type GearIntent = {
@@ -50,6 +51,24 @@ function makeEvent(type: string, payload: Record<string, any> = {}, source = 'li
   };
 }
 
+function injectLegacyShellPurgeStyle(): void {
+  if (document.getElementById(LEGACY_SHELL_STYLE_ID)) return;
+  const style = document.createElement('style');
+  style.id = LEGACY_SHELL_STYLE_ID;
+  style.textContent = `
+    div.box-link, div.parchment, .box-link, .parchment {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      visibility: hidden !important;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+function removeLegacyShellNodes(): void {
+  document.querySelectorAll('div.box-link, div.parchment').forEach((node) => node.remove());
+}
+
 function markHomeEngineVersion(): void {
   // Scoped freshness marker only. Do not clear persistence or emit startup
   // version events; the 19/19 Kernel Contract expects stable node counts.
@@ -71,6 +90,7 @@ function migrateLegacyMemoryState(): void {
 }
 
 function initKernel() {
+  injectLegacyShellPurgeStyle();
   const bus = GlobalEventBus.getInstance();
   bus.reset();
   markHomeEngineVersion();
@@ -148,7 +168,12 @@ function initKernel() {
 
   (window as any).LiquidMemoryKernel = api;
   (window as any).LiquidMemorySpatial = spatial;
-  window.setTimeout(() => document.body.classList.add('liquid-ready'), 250);
+  window.setTimeout(() => {
+    document.body.classList.add('liquid-ready');
+    if (spatial?.getGearCount() === 5 && spatial?.getGaugeCount() >= 4 && spatial?.isWorkstationModelLoaded?.()) {
+      removeLegacyShellNodes();
+    }
+  }, 250);
 
   const savedGear = (localStorage.getItem(BLUEPRINT_GEAR_KEY) || 'games') as GearId;
   if (GEAR_INTENTS[savedGear]) {

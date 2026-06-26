@@ -14535,39 +14535,59 @@ function Cf(e, t, n) {
 //#endregion
 //#region src/spatial/biome.config.ts
 var wf = {
+	cyan: 65535,
+	magenta: 16711935,
+	violet: 9055202,
+	cyanEmissive: 13124,
+	violetEmissive: 3412828
+}, Tf = {
 	archiveable: !0,
 	pulse: !0,
 	connect: !0
-}, Tf = (e) => ({
+}, Ef = (e) => ({
 	...e,
 	lifecycle: {
-		...wf,
+		...Tf,
 		...e.lifecycle || {}
 	}
-}), Ef = {
+}), Df = {
 	version: "1.0.0",
 	definitions: {
-		originChamber: Tf({
+		initSpawn: Ef({
+			id: "INIT_SPAWN",
+			label: "Holographic Init Spawn",
+			tone: "cyan",
+			geometry: "heartbeat-ring",
+			color: wf.cyan,
+			emissive: wf.cyanEmissive,
+			scale: 1.18,
+			pull: 1,
+			lifecycle: {
+				archiveable: !1,
+				connect: !0
+			}
+		}),
+		originChamber: Ef({
 			id: "originChamber",
 			label: "Origin Chamber",
-			tone: "green",
+			tone: "cyan",
 			geometry: "heartbeat-ring",
-			color: 9822396,
-			emissive: 2640696,
+			color: wf.cyan,
+			emissive: wf.cyanEmissive,
 			scale: 1.2,
 			pull: 1
 		}),
-		growthChamber: Tf({
+		growthChamber: Ef({
 			id: "growthChamber",
 			label: "Growth Chamber",
 			tone: "gold",
 			geometry: "growth-node",
-			color: 14136170,
-			emissive: 6440732,
+			color: wf.magenta,
+			emissive: wf.violetEmissive,
 			scale: 1.35,
 			pull: 1.65
 		}),
-		myceliumLink: Tf({
+		myceliumLink: Ef({
 			id: "myceliumLink",
 			label: "Mycelium Link",
 			tone: "cyan",
@@ -14577,7 +14597,7 @@ var wf = {
 			scale: 1,
 			pull: 1.25
 		}),
-		abyssalExchange: Tf({
+		abyssalExchange: Ef({
 			id: "abyssalExchange",
 			label: "Abyssal Exchange",
 			tone: "violet",
@@ -14587,7 +14607,7 @@ var wf = {
 			scale: 1.05,
 			pull: 1.45
 		}),
-		pearlReward: Tf({
+		pearlReward: Ef({
 			id: "pearlReward",
 			label: "Pearl Reward",
 			tone: "pink",
@@ -14597,7 +14617,7 @@ var wf = {
 			scale: 1.22,
 			pull: 1.55
 		}),
-		memoryPulse: Tf({
+		memoryPulse: Ef({
 			id: "memoryPulse",
 			label: "Memory Pulse",
 			tone: "green",
@@ -14611,7 +14631,7 @@ var wf = {
 				connect: !1
 			}
 		}),
-		arcadeGenesis: Tf({
+		arcadeGenesis: Ef({
 			id: "arcadeGenesis",
 			label: "Arcade Genesis",
 			tone: "cyan",
@@ -14621,7 +14641,7 @@ var wf = {
 			scale: 1.42,
 			pull: 1.9
 		}),
-		oldMemoryVault: Tf({
+		oldMemoryVault: Ef({
 			id: "oldMemoryVault",
 			label: "Old Memory Vault",
 			tone: "violet",
@@ -14631,7 +14651,7 @@ var wf = {
 			scale: .95,
 			pull: .95
 		}),
-		archiveSignal: Tf({
+		archiveSignal: Ef({
 			id: "archiveSignal",
 			label: "Archive Signal",
 			tone: "violet",
@@ -14641,17 +14661,17 @@ var wf = {
 			scale: 1.02,
 			pull: 1.08
 		}),
-		communityVortex: Tf({
+		communityVortex: Ef({
 			id: "communityVortex",
 			label: "Community Vortex",
 			tone: "gold",
 			geometry: "heartbeat-ring",
-			color: 14136170,
-			emissive: 5915165,
+			color: wf.magenta,
+			emissive: wf.violetEmissive,
 			scale: 1.7,
 			pull: 2.25
 		}),
-		memoryShard: Tf({
+		memoryShard: Ef({
 			id: "memoryShard",
 			label: "Memory Shard",
 			tone: "cyan",
@@ -14661,7 +14681,7 @@ var wf = {
 			scale: .86,
 			pull: .9
 		}),
-		memoryEcho: Tf({
+		memoryEcho: Ef({
 			id: "memoryEcho",
 			label: "Memory Echo",
 			tone: "cyan",
@@ -14677,7 +14697,7 @@ var wf = {
 		})
 	},
 	events: {
-		"lifecycle.start": "originChamber",
+		"lifecycle.start": "initSpawn",
 		"milestone.level_up": "growthChamber",
 		"economic.resource_gained": "myceliumLink",
 		"economic.resource_spent": "abyssalExchange",
@@ -14691,44 +14711,44 @@ var wf = {
 	},
 	defaultDefinition: "memoryShard"
 };
-Object.fromEntries(Object.entries(Ef.events).map(([e, t]) => [e, Ef.definitions[t]])), Ef.definitions[Ef.defaultDefinition];
+Object.fromEntries(Object.entries(Df.events).map(([e, t]) => [e, Df.definitions[t]])), Df.definitions[Df.defaultDefinition];
 //#endregion
 //#region src/spatial/registry/SpatialSpawnRegistry.ts
-var Df = /* @__PURE__ */ function(e) {
+var Of = /* @__PURE__ */ function(e) {
 	return e.LOW = "low", e.STANDARD = "standard", e.HIGH = "high", e.CRITICAL = "critical", e;
 }({});
-function Of(e, t) {
+function kf(e, t) {
 	let n = e.payload?.[t];
 	return typeof n == "number" && Number.isFinite(n) ? n : 0;
 }
-function kf(e) {
-	return Ef.events[e] || Ef.defaultDefinition;
+function Af(e) {
+	return Df.events[e] || Df.defaultDefinition;
 }
-var Af = new class {
+var jf = new class {
 	getDefinition(e) {
-		let t = kf(e.type);
-		return Ef.definitions[t] || Ef.definitions[Ef.defaultDefinition];
+		let t = Af(e.type);
+		return Df.definitions[t] || Df.definitions[Df.defaultDefinition];
 	}
 	shouldSpawn(e, t = 0) {
-		return Object.prototype.hasOwnProperty.call(Ef.events, e.type) || e.type.startsWith("library.archive") || e.type.startsWith("memory.") ? !0 : t >= 0;
+		return Object.prototype.hasOwnProperty.call(Df.events, e.type) || e.type.startsWith("library.archive") || e.type.startsWith("memory.") ? !0 : t >= 0;
 	}
 	getSpawnTier(e, t = 0) {
-		let n = Of(e, "amount"), r = Of(e, "value"), i = Of(e, "newLevel"), a = e.payload?.trigger, o = e.payload?.rewardType, s = e.payload?.resource;
+		let n = kf(e, "amount"), r = kf(e, "value"), i = kf(e, "newLevel"), a = e.payload?.trigger, o = e.payload?.rewardType, s = e.payload?.resource;
 		return e.type === "system.reward_offered" && a === "milestone" && (r >= 10 || o === "premium_currency") || e.type === "milestone.level_up" && i >= 10 ? "critical" : e.type === "system.reward_offered" && a === "milestone" && r >= 5 || e.type === "system.reward_offered" && a === "spending" && r >= 50 || e.type === "community.vortex" && (n >= 60 || r >= 60) || e.type === "economic.resource_spent" && n >= 50 ? "high" : e.type === "library.game_opened" && n >= 25 || e.type === "economic.resource_gained" && s === "trace" && n >= 10 || e.type === "milestone.level_up" && i >= 2 || t >= 25 ? "standard" : "low";
 	}
 }();
-function jf(e) {
-	return Af.getDefinition(e);
-}
-function Mf(e, t = 0) {
-	return Af.shouldSpawn(e, t);
+function Mf(e) {
+	return jf.getDefinition(e);
 }
 function Nf(e, t = 0) {
-	return Af.getSpawnTier(e, t);
+	return jf.shouldSpawn(e, t);
+}
+function Pf(e, t = 0) {
+	return jf.getSpawnTier(e, t);
 }
 //#endregion
 //#region src/responsive/ResponsiveEngine.ts
-var Pf = class {
+var Ff = class {
 	constructor() {
 		this.listeners = /* @__PURE__ */ new Set(), this.handleResize = () => {
 			let e = this.measure(), t = JSON.stringify(e) !== JSON.stringify(this.profile);
@@ -14848,19 +14868,19 @@ var Pf = class {
 			touchTargetScale: 1
 		};
 	}
-}, Ff = {
+}, If = {
 	CYAN: 65535,
 	MAGENTA: 16711935,
 	PURPLE: 9055202
-}, If = {
+}, Lf = {
 	games: "library.game_opened",
 	archive: "library.archive_opened",
 	community: "community.vortex",
 	blueprint: "milestone.level_up",
 	memory: "economic.resource_gained"
-}, Lf = Object.fromEntries(Object.entries(If).map(([e, t]) => [t, e])), Rf = class {
+}, Rf = Object.fromEntries(Object.entries(Lf).map(([e, t]) => [t, e])), zf = class {
 	constructor(e, t, n) {
-		this.host = e, this.liveRegion = t, this.onGearSelected = n, this.scene = new zn(), this.camera = new hs(-7.2, 7.2, 4.05, -4.05, .1, 1e3), this.workstationGroup = new jn(), this.biomeGroup = new jn(), this.linkGroup = new jn(), this.gearGroup = new jn(), this.gaugeGroup = new jn(), this.particleGroup = new jn(), this.nodes = [], this.links = [], this.gears = [], this.gauges = [], this.modelAnchors = /* @__PURE__ */ new Map(), this.gearRaycastObjects = [], this.workstationModelLoaded = !1, this.workstationFallbackActive = !1, this.baseEnvironmentCreated = !1, this.webglContextLost = !1, this.rafId = 0, this.focusIndex = -1, this.pointer = new U(99, 99), this.raycaster = new Vs(), this.clock = new Ws(), this.haloTexture = this.createHaloTexture(), this.responsive = new Pf(), this.profile = this.responsive.getProfile(), this.lastTouchAt = 0, this.dragStartX = 0, this.didDrag = !1, this.handleWebGLContextLost = (e) => {
+		this.host = e, this.liveRegion = t, this.onGearSelected = n, this.scene = new zn(), this.camera = new hs(-7.2, 7.2, 4.05, -4.05, .1, 1e3), this.workstationGroup = new jn(), this.biomeGroup = new jn(), this.linkGroup = new jn(), this.gearGroup = new jn(), this.gaugeGroup = new jn(), this.particleGroup = new jn(), this.nodes = [], this.links = [], this.gears = [], this.gauges = [], this.modelAnchors = /* @__PURE__ */ new Map(), this.gearRaycastObjects = [], this.workstationModelLoaded = !1, this.workstationFallbackActive = !1, this.baseEnvironmentCreated = !1, this.webglContextLost = !1, this.rafId = 0, this.focusIndex = -1, this.pointer = new U(99, 99), this.raycaster = new Vs(), this.clock = new Ws(), this.haloTexture = this.createHaloTexture(), this.responsive = new Ff(), this.profile = this.responsive.getProfile(), this.lastTouchAt = 0, this.dragStartX = 0, this.didDrag = !1, this.handleWebGLContextLost = (e) => {
 			e.preventDefault(), this.webglContextLost = !0, this.host.dataset.webglContext = "lost", this.liveRegion && (this.liveRegion.textContent = "Holographic renderer paused: WebGL context lost");
 		}, this.handleWebGLContextRestored = () => {
 			this.webglContextLost = !1, this.host.dataset.webglContext = "restored", this.ensureCanvasMounted(), window.dispatchEvent(new Event("resize")), this.liveRegion && (this.liveRegion.textContent = "Holographic renderer restored");
@@ -14929,11 +14949,11 @@ var Pf = class {
 		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(0, 0), this.renderer.shadowMap.enabled = !0, this.renderer.shadowMap.type = 2, this.renderer.toneMapping = 4, this.renderer.toneMappingExposure = 1.42, this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.bindContextMonitoring(), this.startMountGuard(), this.scene.add(this.workstationGroup), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.scene.add(this.particleGroup), this.applyCameraProfile(this.profile, !0), this.composer = new _d(this.renderer), this.composer.addPass(new vd(this.scene, this.camera)), this.bloomPass = new bd(new U(1, 1), .045, .42, .96), this.composer.addPass(this.bloomPass), this.initLighting(), this.createWorkstationEnvironment(), this.createBlueprintGearRig(), this.loadWorkstationAsset(), this.createGauges(), this.createEngageDial(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
 	}
 	initLighting() {
-		this.scene.environment = null, this.scene.background = null, this.renderer.setClearColor(0, 0), this.ambient = new vs(Ff.CYAN, .4), this.scene.add(this.ambient), this.lamp = new fs(Ff.CYAN, 10, 50, Math.PI / 4), this.lamp.position.set(0, 5, 10), this.scene.add(this.lamp), this.bloomPass.strength = 1.2;
+		this.scene.environment = null, this.scene.background = null, this.renderer.setClearColor(0, 0), this.ambient = new vs(If.CYAN, .4), this.scene.add(this.ambient), this.lamp = new fs(If.CYAN, 10, 50, Math.PI / 4), this.lamp.position.set(0, 5, 10), this.scene.add(this.lamp), this.bloomPass.strength = 1.2;
 	}
 	handle(e) {
-		if (e.type === "system.heartbeat" && this.nodes.length > 0 || !Mf(e)) return;
-		let t = jf(e), n = Nf(e), r = Lf[e.type], i = this.nodes.length, a = this.computePosition(i, t.pull, r), o = new X(this.createGeometry(t), this.createMaterial(t)), s = r ? this.getGearAnchor(r).setZ(-1.04) : new W(0, 0, -1.04);
+		if (e.type === "system.heartbeat" && this.nodes.length > 0 || !Nf(e)) return;
+		let t = Mf(e), n = Pf(e), r = Rf[e.type], i = this.nodes.length, a = this.computePosition(i, t.pull, r), o = new X(this.createGeometry(t), this.createMaterial(t)), s = r ? this.getGearAnchor(r).setZ(-1.04) : new W(0, 0, -1.04);
 		o.position.copy(s), o.scale.setScalar(.001), o.userData = {
 			eventType: e.type,
 			label: t.label,
@@ -14973,7 +14993,7 @@ var Pf = class {
 		this.nodes.length && (this.focusIndex = (this.focusIndex + 1) % this.nodes.length);
 	}
 	focusGear(e) {
-		return this.focusEventType(If[e]);
+		return this.focusEventType(Lf[e]);
 	}
 	focusEventType(e) {
 		for (let t = this.nodes.length - 1; t >= 0; t--) if (this.nodes[t].eventType === e) {
@@ -15098,7 +15118,7 @@ var Pf = class {
 			let n = t;
 			if (!n) return;
 			let r = `${n.name || ""} ${e.name || ""}`.toLowerCase();
-			r.includes("paper") || r.includes("parchment") || r.includes("blueprint") ? (n.color.set(16763002), n.emissive = new J(4990472), n.emissiveIntensity = .1, n.roughness = .92) : r.includes("bronze") || r.includes("brass") || r.includes("gear") ? (n.color.offsetHSL(0, .06, .1), n.emissive = new J(2757125), n.emissiveIntensity = .08, n.roughness = Math.min(.72, Math.max(.42, n.roughness ?? .55))) : (r.includes("wood") || r.includes("desk")) && (n.color.offsetHSL(0, .02, .06), n.roughness = .82), n.needsUpdate = !0;
+			r.includes("paper") || r.includes("parchment") || r.includes("blueprint") ? (n.map = null, n.roughnessMap = null, n.normalMap = null, n.bumpMap = null, n.color.set(If.CYAN), n.emissive = new J(If.CYAN), n.emissiveIntensity = .16, n.opacity = .18, n.transparent = !0, n.roughness = .48, n.metalness = .08) : r.includes("bronze") || r.includes("brass") || r.includes("gear") ? (n.color.set(If.CYAN), n.emissive = new J(If.CYAN), n.emissiveIntensity = .12, n.roughness = Math.min(.72, Math.max(.42, n.roughness ?? .55))) : (r.includes("wood") || r.includes("desk")) && (n.color.set(5666), n.emissive = new J(13124), n.emissiveIntensity = .06, n.roughness = .82), n.needsUpdate = !0;
 		});
 	}
 	renderProceduralWorkstation() {
@@ -15133,25 +15153,21 @@ var Pf = class {
 		if (this.baseEnvironmentCreated) return;
 		this.baseEnvironmentCreated = !0;
 		let e = new X(new no(36, 24, 1, 1), new vo({
-			color: 2758667,
-			map: this.createWoodTexture(),
-			roughnessMap: this.createWoodTexture(),
-			normalMap: this.createWoodNormalTexture(),
-			bumpMap: this.createWoodTexture(),
-			bumpScale: .02,
-			roughness: .86,
-			metalness: .05
+			color: 2068,
+			emissive: 9779,
+			emissiveIntensity: .1,
+			roughness: .74,
+			metalness: .18
 		}));
 		e.position.set(0, 0, -2.82), e.receiveShadow = !0, this.workstationGroup.add(e);
 		let t = new X(new no(13.6, 9.4, 1, 1), new vo({
-			color: 13672545,
-			map: this.createBlueprintPaperTexture(),
-			roughnessMap: this.createBlueprintPaperTexture(),
-			normalMap: this.createPaperNormalTexture(),
-			bumpMap: this.createBlueprintPaperTexture(),
-			bumpScale: .012,
-			roughness: .96,
-			metalness: 0
+			color: If.CYAN,
+			emissive: If.CYAN,
+			emissiveIntensity: .12,
+			transparent: !0,
+			opacity: .18,
+			roughness: .46,
+			metalness: .08
 		}));
 		t.position.set(0, -.2, -1.92), t.receiveShadow = !0, this.workstationGroup.add(t);
 		let n = this.createOxidizedMetalMaterial(3942935, 853763, .01), r = new X(new Ea(12.9, .16, .2), n);
@@ -15184,9 +15200,9 @@ var Pf = class {
 		f.position.set(4.65, 2.75, -.52);
 		let p = new X(new Oa(.5, .28, .28, 32, 1, !0), this.createOxidizedMetalMaterial(4666142, 1773575, 0));
 		p.rotation.x = Math.PI / 2, p.position.set(4.65, 2.75, -.62), this.workstationGroup.add(d, f, p);
-		let m = this.createTextSprite("BLUEPRINT // NAV", "#24170b", "rgba(196,145,78,0.86)", 1);
+		let m = this.createTextSprite("HOLOGRAPHIC // HUB", "#bfffff", "rgba(0,255,255,0.16)", 1);
 		m.position.set(-4.28, 3.62, -1.08), m.scale.set(2.55, .36, 1);
-		let h = this.createTextSprite("SCHEMATIC  v0.9", "#efe0bd", "rgba(45,29,15,0.90)", 1.05);
+		let h = this.createTextSprite("DATA-HUB  v1.2.9", "#bfffff", "rgba(0,255,255,0.14)", 1.05);
 		h.position.set(0, -3.92, -1.06), h.scale.set(2.35, .42, 1), this.workstationGroup.add(m, h), this.createEtchedOrnaments(), this.workstationGroup.traverse((e) => {
 			let t = e;
 			t.isMesh && (t.castShadow = !0, t.receiveShadow = !0);
@@ -15315,7 +15331,7 @@ var Pf = class {
 		let e = document.createElement("canvas");
 		e.width = 1400, e.height = 900;
 		let t = e.getContext("2d"), n = t.createRadialGradient(e.width * .5, e.height * .42, 50, e.width * .5, e.height * .42, e.width * .68);
-		n.addColorStop(0, "#c79455"), n.addColorStop(.54, "#9a642d"), n.addColorStop(1, "#4b2a10"), t.fillStyle = n, t.fillRect(0, 0, e.width, e.height);
+		n.addColorStop(0, "#c79455"), n.addColorStop(.54, "#001622"), n.addColorStop(1, "#4b2a10"), t.fillStyle = n, t.fillRect(0, 0, e.width, e.height);
 		for (let n = 0; n < 14e3; n++) {
 			let n = Math.floor(80 + Math.random() * 80);
 			t.fillStyle = `rgba(${n},${Math.floor(n * .65)},${Math.floor(n * .28)},${Math.random() * .09})`, t.fillRect(Math.random() * e.width, Math.random() * e.height, 1, 1);
@@ -15328,7 +15344,7 @@ var Pf = class {
 			let n = 110 + e % 6 * 205, r = 110 + Math.floor(e / 6) * 210;
 			t.strokeRect(n, r, 70, 48), t.beginPath(), t.arc(n + 40, r + 96, 36, 0, Math.PI * 2), t.stroke(), t.beginPath(), t.moveTo(n - 18, r + 24), t.lineTo(n + 110, r + 24), t.stroke();
 		}
-		t.fillStyle = "rgba(53,31,11,.20)", t.font = "900 74px Courier New, monospace", t.textAlign = "center", t.fillText("SCHEMATIC v0.9", e.width / 2, e.height - 105);
+		t.fillStyle = "rgba(53,31,11,.20)", t.font = "900 74px Courier New, monospace", t.textAlign = "center", t.fillText("DATA-HUB v1.2.9", e.width / 2, e.height - 105);
 		let r = new Sa(e);
 		return r.anisotropy = 4, r;
 	}
@@ -15341,7 +15357,7 @@ var Pf = class {
 		return new Sa(e);
 	}
 	emitCriticalParticleFeedback(e, t, n) {
-		if (e !== Df.CRITICAL) return;
+		if (e !== Of.CRITICAL) return;
 		let r = this.profile.kind === "mobile" ? 18 : 28, i = new Mr(), a = new Float32Array(r * 3), o = new Float32Array(r * 3);
 		for (let e = 0; e < r; e += 1) {
 			let n = e * 3, i = e / r * Math.PI * 2, s = .04 + Math.random() * .18;
@@ -15366,28 +15382,28 @@ var Pf = class {
 	}
 	getSpawnTierVisuals(e) {
 		switch (e) {
-			case Df.CRITICAL: return {
+			case Of.CRITICAL: return {
 				scale: 1.18,
 				halo: 1.55,
 				opacity: 1.14,
 				emissive: 1.28,
 				pulse: .11
 			};
-			case Df.HIGH: return {
+			case Of.HIGH: return {
 				scale: 1.08,
 				halo: 1.25,
 				opacity: 1.06,
 				emissive: 1.12,
 				pulse: .075
 			};
-			case Df.STANDARD: return {
+			case Of.STANDARD: return {
 				scale: 1,
 				halo: 1,
 				opacity: 1,
 				emissive: 1,
 				pulse: .045
 			};
-			case Df.LOW:
+			case Of.LOW:
 			default: return {
 				scale: .92,
 				halo: .9,
@@ -15433,7 +15449,7 @@ var Pf = class {
 			group: a,
 			hit: s,
 			anchor: n.clone(),
-			eventType: If[e],
+			eventType: Lf[e],
 			unlockedLevel: i,
 			active: !1,
 			label: o
@@ -15442,7 +15458,7 @@ var Pf = class {
 	createHolographicPanel(e) {
 		let t = new jn();
 		t.userData.gearId = e;
-		let n = e === "community" ? Ff.MAGENTA : e === "memory" ? Ff.PURPLE : Ff.CYAN, r = new X(new no(1.8, 2.2), new ci({
+		let n = e === "community" ? If.MAGENTA : e === "memory" ? If.PURPLE : If.CYAN, r = new X(new no(1.8, 2.2), new ci({
 			color: n,
 			transparent: !0,
 			opacity: .7,
@@ -15494,7 +15510,7 @@ var Pf = class {
 		let e = new jn();
 		e.position.set(0, -2.78, -1.03), e.userData = { engageDial: !0 };
 		let t = new ci({
-			color: Ff.CYAN,
+			color: If.CYAN,
 			transparent: !0,
 			opacity: .72,
 			side: 2,
@@ -15507,7 +15523,7 @@ var Pf = class {
 			holographicDial: !0
 		};
 		let r = new X(new Da(.2, 40), new ci({
-			color: Ff.CYAN,
+			color: If.CYAN,
 			transparent: !0,
 			opacity: .28,
 			side: 2,
@@ -15525,7 +15541,7 @@ var Pf = class {
 			holographicLabel: !0
 		}, this.applyHolographicStyle(i), e.add(n, r, i), this.gearGroup.add(e), this.focusDial = e;
 	}
-	applyHolographicStyle(e, t = Ff.CYAN) {
+	applyHolographicStyle(e, t = If.CYAN) {
 		e.traverse((e) => {
 			let n = e;
 			n.isMesh && (Array.isArray(n.material) ? n.material : [n.material]).forEach((e) => {
@@ -15782,7 +15798,7 @@ var Pf = class {
 	roundRect(e, t, n, r, i, a) {
 		e.beginPath(), e.moveTo(t + a, n), e.arcTo(t + r, n, t + r, n + i, a), e.arcTo(t + r, n + i, t, n + i, a), e.arcTo(t, n + i, t, n, a), e.arcTo(t, n, t + r, n, a), e.closePath();
 	}
-}, zf = "1.2.9-expansion", Bf = "lm_home_kernel", Vf = "ibb_home_kernel", Hf = "lm_blueprint_nav_gear", Uf = `${Bf}_engine_version`, Wf = 0, Gf = {
+}, Bf = "1.2.9-expansion", Vf = "lm_home_kernel", Hf = "ibb_home_kernel", Uf = "lm_blueprint_nav_gear", Wf = `${Vf}_engine_version`, Gf = "lm-legacy-shell-purge", Kf = 0, qf = {
 	games: {
 		eventType: "library.game_opened",
 		payload: {
@@ -15820,7 +15836,7 @@ var Pf = class {
 		}
 	}
 };
-function Kf() {
+function Jf() {
 	return {
 		...t,
 		timestamp: (/* @__PURE__ */ new Date()).toISOString(),
@@ -15848,10 +15864,10 @@ function Kf() {
 		}
 	};
 }
-function qf(e, t = {}, n = "liquid-memory-homepage") {
+function Yf(e, t = {}, n = "liquid-memory-homepage") {
 	return {
 		eventId: crypto.randomUUID(),
-		sequenceId: ++Wf,
+		sequenceId: ++Kf,
 		timestamp: (/* @__PURE__ */ new Date()).toISOString(),
 		type: e,
 		payload: t,
@@ -15859,48 +15875,57 @@ function qf(e, t = {}, n = "liquid-memory-homepage") {
 		metadata: { version: "1.0.0" }
 	};
 }
-function Jf() {
-	localStorage.getItem(Uf) !== "1.2.9-expansion" && localStorage.setItem(Uf, zf);
+function Xf() {
+	if (document.getElementById(Gf)) return;
+	let e = document.createElement("style");
+	e.id = Gf, e.textContent = "\n    div.box-link, div.parchment, .box-link, .parchment {\n      opacity: 0 !important;\n      pointer-events: none !important;\n      visibility: hidden !important;\n    }\n  ", document.head.appendChild(e);
 }
-function Yf() {
-	[[`${Vf}_state`, `${Bf}_state`], [`${Vf}_event_log`, `${Bf}_event_log`]].forEach(([e, t]) => {
+function Zf() {
+	document.querySelectorAll("div.box-link, div.parchment").forEach((e) => e.remove());
+}
+function Qf() {
+	localStorage.getItem(Wf) !== "1.2.9-expansion" && localStorage.setItem(Wf, Bf);
+}
+function $f() {
+	[[`${Hf}_state`, `${Vf}_state`], [`${Hf}_event_log`, `${Vf}_event_log`]].forEach(([e, t]) => {
 		!localStorage.getItem(t) && localStorage.getItem(e) && localStorage.setItem(t, localStorage.getItem(e));
 	});
 }
-function Xf() {
+function ep() {
+	Xf();
 	let t = e.getInstance();
-	t.reset(), Jf(), Yf();
-	let o = new i(`${Bf}_state`, `${Bf}_event_log`), s = new r(o.rehydrate() || Kf());
+	t.reset(), Qf(), $f();
+	let o = new i(`${Vf}_state`, `${Vf}_event_log`), s = new r(o.rehydrate() || Jf());
 	new a().init(t);
 	let c = document.getElementById("spatial-canvas"), l = document.getElementById("spatial-live-region"), u = null;
 	function d(e) {
-		u?.focusGear(e), u?.setActiveGear(e), localStorage.setItem(Hf, e);
+		u?.focusGear(e), u?.setActiveGear(e), localStorage.setItem(Uf, e);
 	}
 	function f(e) {
-		let n = Gf[e], r = { ...n.payload };
+		let n = qf[e], r = { ...n.payload };
 		if (n.eventType === "milestone.level_up") {
 			let e = s.getCurrentState().player.level || 1;
 			r.newLevel = e + 1, r.xp = e * 150;
 		}
-		localStorage.setItem(Hf, e), t.emit(qf(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => d(e), 90);
+		localStorage.setItem(Uf, e), t.emit(Yf(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => d(e), 90);
 	}
-	u = c ? new Rf(c, l, f) : null, o.getEventLog().slice(-48).forEach((e) => u?.handle(e)), t.subscribe((e) => {
+	u = c ? new zf(c, l, f) : null, o.getEventLog().slice(-48).forEach((e) => u?.handle(e)), t.subscribe((e) => {
 		u?.handle(e);
 		let t = s.getCurrentState(), r = n(t, e);
 		r !== t && r.processedEventIds.has(e.eventId) && (o.logEvent(e), o.save(r)), s.onStateUpdated(r), u?.updateFromState(r);
 	}), window.LiquidMemoryKernel = {
 		bus: t,
 		bridge: s,
-		version: zf,
-		emit: (e, n = {}, r) => t.emit(qf(e, n, r)),
+		version: Bf,
+		emit: (e, n = {}, r) => t.emit(Yf(e, n, r)),
 		getState: () => s.getCurrentState(),
-		getEngineVersion: () => zf,
+		getEngineVersion: () => Bf,
 		levelUp: () => f("blueprint"),
-		gain: (e = "trace", n = 10) => t.emit(qf("economic.resource_gained", {
+		gain: (e = "trace", n = 10) => t.emit(Yf("economic.resource_gained", {
 			resource: e,
 			amount: n
 		})),
-		spend: (e = "pearls", n = 60) => t.emit(qf("economic.resource_spent", {
+		spend: (e = "pearls", n = 60) => t.emit(Yf("economic.resource_spent", {
 			resource: e,
 			amount: n
 		})),
@@ -15915,11 +15940,13 @@ function Xf() {
 		isProceduralFallbackActive: () => u?.isProceduralFallbackActive?.() || !1,
 		getWorkstationAnchorCount: () => u?.getAnchorCount?.() || 0,
 		clear: () => {
-			o.clear(), localStorage.removeItem(Hf), window.location.reload();
+			o.clear(), localStorage.removeItem(Uf), window.location.reload();
 		}
-	}, window.LiquidMemorySpatial = u, window.setTimeout(() => document.body.classList.add("liquid-ready"), 250);
-	let p = localStorage.getItem(Hf) || "games";
-	Gf[p] && window.setTimeout(() => d(p), 160), t.emit(qf("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(qf("system.heartbeat", { path: location.pathname })), 3e4);
+	}, window.LiquidMemorySpatial = u, window.setTimeout(() => {
+		document.body.classList.add("liquid-ready"), u?.getGearCount() === 5 && u?.getGaugeCount() >= 4 && u?.isWorkstationModelLoaded?.() && Zf();
+	}, 250);
+	let p = localStorage.getItem(Uf) || "games";
+	qf[p] && window.setTimeout(() => d(p), 160), t.emit(Yf("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(Yf("system.heartbeat", { path: location.pathname })), 3e4);
 }
-document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", Xf) : Xf();
+document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", ep) : ep();
 //#endregion

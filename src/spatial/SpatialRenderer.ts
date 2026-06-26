@@ -425,17 +425,26 @@ export class SpatialRenderer {
       if (!mat) return;
       const name = `${mat.name || ''} ${mesh.name || ''}`.toLowerCase();
       if (name.includes('paper') || name.includes('parchment') || name.includes('blueprint')) {
-        mat.color.set(0xffc87a);
-        mat.emissive = new THREE.Color(0x4c2608);
-        mat.emissiveIntensity = 0.10;
-        mat.roughness = 0.92;
+        mat.map = null;
+        mat.roughnessMap = null;
+        mat.normalMap = null;
+        mat.bumpMap = null;
+        mat.color.set(HOLO_TONES.CYAN);
+        mat.emissive = new THREE.Color(HOLO_TONES.CYAN);
+        mat.emissiveIntensity = 0.16;
+        mat.opacity = 0.18;
+        mat.transparent = true;
+        mat.roughness = 0.48;
+        mat.metalness = 0.08;
       } else if (name.includes('bronze') || name.includes('brass') || name.includes('gear')) {
-        mat.color.offsetHSL(0, 0.06, 0.10);
-        mat.emissive = new THREE.Color(0x2a1205);
-        mat.emissiveIntensity = 0.08;
+        mat.color.set(HOLO_TONES.CYAN);
+        mat.emissive = new THREE.Color(HOLO_TONES.CYAN);
+        mat.emissiveIntensity = 0.12;
         mat.roughness = Math.min(0.72, Math.max(0.42, mat.roughness ?? 0.55));
       } else if (name.includes('wood') || name.includes('desk')) {
-        mat.color.offsetHSL(0, 0.02, 0.06);
+        mat.color.set(0x001622);
+        mat.emissive = new THREE.Color(0x003344);
+        mat.emissiveIntensity = 0.06;
         mat.roughness = 0.82;
       }
       mat.needsUpdate = true;
@@ -479,14 +488,11 @@ export class SpatialRenderer {
     const desk = new THREE.Mesh(
       new THREE.PlaneGeometry(36, 24, 1, 1),
       new THREE.MeshStandardMaterial({
-        color: 0x2a180b,
-        map: this.createWoodTexture(),
-        roughnessMap: this.createWoodTexture(),
-        normalMap: this.createWoodNormalTexture(),
-        bumpMap: this.createWoodTexture(),
-        bumpScale: 0.02,
-        roughness: 0.86,
-        metalness: 0.05,
+        color: 0x000814,
+        emissive: 0x002633,
+        emissiveIntensity: 0.10,
+        roughness: 0.74,
+        metalness: 0.18,
       })
     );
     desk.position.set(0, 0, -2.82);
@@ -496,14 +502,13 @@ export class SpatialRenderer {
     const paper = new THREE.Mesh(
       new THREE.PlaneGeometry(13.6, 9.4, 1, 1),
       new THREE.MeshStandardMaterial({
-        color: 0xd0a061,
-        map: this.createBlueprintPaperTexture(),
-        roughnessMap: this.createBlueprintPaperTexture(),
-        normalMap: this.createPaperNormalTexture(),
-        bumpMap: this.createBlueprintPaperTexture(),
-        bumpScale: 0.012,
-        roughness: 0.96,
-        metalness: 0.0,
+        color: HOLO_TONES.CYAN,
+        emissive: HOLO_TONES.CYAN,
+        emissiveIntensity: 0.12,
+        transparent: true,
+        opacity: 0.18,
+        roughness: 0.46,
+        metalness: 0.08,
       })
     );
     paper.position.set(0, -0.2, -1.92);
@@ -538,10 +543,10 @@ export class SpatialRenderer {
     lampShade.position.set(4.65, 2.75, -0.62);
     this.workstationGroup.add(lampBase, lampOrb, lampShade);
 
-    const title = this.createTextSprite('BLUEPRINT // NAV', '#24170b', 'rgba(196,145,78,0.86)', 1.0);
+    const title = this.createTextSprite('HOLOGRAPHIC // HUB', '#bfffff', 'rgba(0,255,255,0.16)', 1.0);
     title.position.set(-4.28, 3.62, -1.08);
     title.scale.set(2.55, 0.36, 1);
-    const schematic = this.createTextSprite('SCHEMATIC  v0.9', '#efe0bd', 'rgba(45,29,15,0.90)', 1.05);
+    const schematic = this.createTextSprite('DATA-HUB  v1.2.9', '#bfffff', 'rgba(0,255,255,0.14)', 1.05);
     schematic.position.set(0, -3.92, -1.06);
     schematic.scale.set(2.35, 0.42, 1);
     this.workstationGroup.add(title, schematic);
@@ -681,7 +686,7 @@ export class SpatialRenderer {
     const ctx = canvas.getContext('2d')!;
     const g = ctx.createRadialGradient(canvas.width*.50, canvas.height*.42, 50, canvas.width*.50, canvas.height*.42, canvas.width*.68);
     g.addColorStop(0, '#c79455');
-    g.addColorStop(0.54, '#9a642d');
+    g.addColorStop(0.54, '#001622');
     g.addColorStop(1, '#4b2a10');
     ctx.fillStyle = g; ctx.fillRect(0,0,canvas.width,canvas.height);
     for (let i=0;i<14000;i++) {
@@ -700,7 +705,7 @@ export class SpatialRenderer {
       ctx.beginPath(); ctx.moveTo(cx-18, cy+24); ctx.lineTo(cx+110, cy+24); ctx.stroke();
     }
     ctx.fillStyle = 'rgba(53,31,11,.20)';
-    ctx.font = '900 74px Courier New, monospace'; ctx.textAlign = 'center'; ctx.fillText('SCHEMATIC v0.9', canvas.width/2, canvas.height-105);
+    ctx.font = '900 74px Courier New, monospace'; ctx.textAlign = 'center'; ctx.fillText('DATA-HUB v1.2.9', canvas.width/2, canvas.height-105);
     const texture = new THREE.CanvasTexture(canvas); texture.anisotropy = 4; return texture;
   }
 
