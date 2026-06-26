@@ -233,7 +233,7 @@ img { max-width: 100%; height: auto; }
 /* Homepage Kernel spatial UI */
 .kernel-living-section { position: relative; }
 .kernel-living-section::before { content:""; position:absolute; inset:8% 0 auto auto; width:min(42vw,520px); height:min(42vw,520px); border-radius:50%; background:radial-gradient(circle, rgba(95,232,255,.12), transparent 68%); pointer-events:none; }
-.kernel-state-card { background: linear-gradient(135deg, rgba(17,24,49,.86), rgba(18,11,34,.74)); }
+.kernel-state-card--legacy-disabled { background: linear-gradient(135deg, rgba(0,255,255,.08), rgba(138,43,226,.08)); }
 .kernel-state-grid { display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; margin-top: 14px; }
 .kernel-state-grid span { border:1px solid var(--ibb-line); border-radius:16px; padding:12px; color:var(--ibb-muted); background:rgba(255,255,255,.04); font-size:12px; text-transform:uppercase; letter-spacing:.08em; font-weight:850; }
 .kernel-state-grid strong { display:block; color:var(--ibb-text); font-size:26px; line-height:1.1; margin-top:4px; }
@@ -332,3 +332,18 @@ body:not(.liquid-ready) .liquid-spatial-viewport { opacity: 1; }
 
 /* Legacy shell purge: hide pre-holographic hydration remnants immediately. */
 div.box-link, div.parchment, .box-link, .parchment { opacity:0 !important; pointer-events:none !important; visibility:hidden !important; }
+
+
+/* Semantic SEO Manifest: crawlable text without visible legacy UI boxes. */
+.seo-manifest {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
