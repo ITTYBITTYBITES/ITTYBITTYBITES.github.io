@@ -1,4 +1,5 @@
 import type { EventContract } from '../kernel';
+import { getSpatialContent, type SpatialContentMetadata } from './registry/SpatialSpawnRegistry';
 
 export type SpatialEventEmitter = (type: string, payload?: Record<string, any>, source?: string) => boolean;
 
@@ -7,8 +8,16 @@ export type SpatialEventBudget = {
   maxNodes: number;
 };
 
+export type ActiveChamberState = {
+  nodeId: string;
+  content?: SpatialContentMetadata;
+  updatedAt: string;
+  trigger: string;
+} | null;
+
 export class SpatialEventBus {
   private teardownCallbacks: Array<() => void> = [];
+  private activeChamberState: ActiveChamberState = null;
 
   constructor(
     private emit: SpatialEventEmitter,
@@ -36,6 +45,21 @@ export class SpatialEventBus {
     });
   }
 
+  triggerInteraction(nodeId: string, trigger = 'spatial-interaction'): ActiveChamberState {
+    const content = getSpatialContent(nodeId);
+    this.activeChamberState = {
+      nodeId,
+      content,
+      updatedAt: new Date().toISOString(),
+      trigger,
+    };
+    return this.activeChamberState;
+  }
+
+  getActiveChamberState(): ActiveChamberState {
+    return this.activeChamberState;
+  }
+
   destroy(): void {
     this.teardownCallbacks.forEach((teardown) => teardown());
     this.teardownCallbacks = [];
@@ -44,6 +68,7 @@ export class SpatialEventBus {
   private bindWindowEvent(domEventType: string, kernelEventType: string): void {
     const listener = (event: Event) => {
       const custom = event as CustomEvent<Record<string, any>>;
+      this.triggerInteraction(kernelEventType, domEventType);
       this.emitIfBudgetAllows(kernelEventType, custom.detail || {});
     };
     window.addEventListener(domEventType, listener as EventListener, { passive: true });
@@ -52,6 +77,7 @@ export class SpatialEventBus {
 
   private emitIfBudgetAllows(type: string, payload: Record<string, any> = {}): boolean {
     if (this.budget.getNodeCount() >= this.budget.maxNodes) return false;
+    this.triggerInteraction(type, payload.signal || 'spatial-event-bus');
     return this.emit(type, payload, 'spatial-event-bus');
   }
 }

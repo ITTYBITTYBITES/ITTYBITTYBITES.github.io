@@ -7,6 +7,8 @@ import {
 
 export { type BiomeMapping, type SpatialNodeDefinition } from '../biome.config';
 
+export type SpatialContentMetadata = NonNullable<SpatialNodeDefinition['contentMetadata']>;
+
 export enum SpawnTier {
   LOW = 'low',
   STANDARD = 'standard',
@@ -24,6 +26,7 @@ export interface SpatialSpawnRegistry {
   getDefinition(event: EventContract): SpatialNodeDefinition;
   shouldSpawn(event: EventContract, userTrace?: number): boolean;
   getSpawnTier(event: EventContract, userTrace?: number): SpawnTier;
+  getContent(nodeId: string): SpatialContentMetadata | undefined;
 }
 
 function payloadNumber(event: EventContract, key: 'amount' | 'value' | 'newLevel'): number {
@@ -42,6 +45,20 @@ export class DefaultSpatialSpawnRegistry implements SpatialSpawnRegistry {
       SPATIAL_SPAWN_REGISTRY.definitions[definitionId] ||
       SPATIAL_SPAWN_REGISTRY.definitions[SPATIAL_SPAWN_REGISTRY.defaultDefinition]
     );
+  }
+
+  getContent(nodeId: string): SpatialContentMetadata | undefined {
+    const direct = SPATIAL_SPAWN_REGISTRY.definitions[nodeId]?.contentMetadata;
+    if (direct) return direct;
+
+    const eventDefinitionId = SPATIAL_SPAWN_REGISTRY.events[nodeId];
+    if (eventDefinitionId) return SPATIAL_SPAWN_REGISTRY.definitions[eventDefinitionId]?.contentMetadata;
+
+    return Object.values(SPATIAL_SPAWN_REGISTRY.definitions).find((definition) => (
+      definition.id === nodeId ||
+      definition.contentMetadata?.interactionEvent === nodeId ||
+      definition.contentMetadata?.chamber === nodeId
+    ))?.contentMetadata;
   }
 
   shouldSpawn(event: EventContract, userTrace = 0): boolean {
@@ -109,4 +126,9 @@ export function shouldSpawnSpatialNode(event: EventContract, userTrace = 0): boo
 
 export function getSpatialSpawnTier(event: EventContract, userTrace = 0): SpawnTier {
   return spatialSpawnRegistry.getSpawnTier(event, userTrace);
+}
+
+
+export function getSpatialContent(nodeId: string): SpatialContentMetadata | undefined {
+  return spatialSpawnRegistry.getContent(nodeId);
 }

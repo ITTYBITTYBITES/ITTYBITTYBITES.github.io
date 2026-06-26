@@ -4,7 +4,7 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import type { EventContract, PlatformState } from '../kernel';
-import { getSpatialSpawnTier, resolveSpatialSpawn, shouldSpawnSpatialNode, SpawnTier, type BiomeMapping } from './registry/SpatialSpawnRegistry';
+import { getSpatialContent, getSpatialSpawnTier, resolveSpatialSpawn, shouldSpawnSpatialNode, SpawnTier, type BiomeMapping, type SpatialContentMetadata } from './registry/SpatialSpawnRegistry';
 import { ResponsiveEngine, type ResponsiveProfile } from '../responsive/ResponsiveEngine';
 
 export type GearId = 'games' | 'archive' | 'community' | 'blueprint' | 'memory';
@@ -19,6 +19,7 @@ type SpatialNode = {
   id: string;
   eventType: string;
   spawnTier: SpawnTier;
+  contentMetadata?: SpatialContentMetadata;
   mesh: THREE.Mesh;
   halo: THREE.Sprite;
   target: THREE.Vector3;
@@ -179,6 +180,7 @@ export class SpatialRenderer {
     if (!shouldSpawnSpatialNode(event)) return;
     const mapping = resolveSpatialSpawn(event);
     const spawnTier = getSpatialSpawnTier(event);
+    const contentMetadata = mapping.contentMetadata || getSpatialContent(event.type);
     const gearId = EVENT_TO_GEAR[event.type];
     const index = this.nodes.length;
     const target = this.computePosition(index, mapping.pull, gearId);
@@ -186,7 +188,7 @@ export class SpatialRenderer {
     const origin = gearId ? this.getGearAnchor(gearId).setZ(-1.04) : new THREE.Vector3(0, 0, -1.04);
     mesh.position.copy(origin);
     mesh.scale.setScalar(0.001);
-    mesh.userData = { eventType: event.type, label: mapping.label, spawnTier };
+    mesh.userData = { eventType: event.type, label: mapping.label, spawnTier, contentMetadata };
     mesh.castShadow = true;
     mesh.receiveShadow = true;
 
@@ -204,7 +206,7 @@ export class SpatialRenderer {
     this.biomeGroup.add(mesh);
     this.biomeGroup.add(halo);
 
-    const node: SpatialNode = { id: event.eventId, eventType: event.type, spawnTier, mesh, halo, target: target.clone(), home: target.clone(), createdAt: performance.now(), mapping, gearId };
+    const node: SpatialNode = { id: event.eventId, eventType: event.type, spawnTier, contentMetadata, mesh, halo, target: target.clone(), home: target.clone(), createdAt: performance.now(), mapping, gearId };
     this.nodes.push(node);
     this.archiveOldMemories();
     this.connectToPrevious(node);

@@ -166,6 +166,8 @@ function initKernel() {
     getSpatialNodeCount: () => spatial?.getNodeCount() || 0,
     emitArchiveSignal: (payload: Record<string, any> = {}) => spatialEvents?.emitArchiveSignal(payload) || false,
     emitMemoryEcho: (payload: Record<string, any> = {}) => spatialEvents?.emitMemoryEcho(payload) || false,
+    triggerSpatialInteraction: (nodeId: string, trigger?: string) => spatialEvents?.triggerInteraction(nodeId, trigger),
+    getActiveChamberState: () => spatialEvents?.getActiveChamberState() || null,
     getSpatialGearCount: () => spatial?.getGearCount() || 0,
     getSpatialGaugeCount: () => spatial?.getGaugeCount() || 0,
     getResponsiveMode: () => spatial?.getResponsiveMode?.() || 'unknown',

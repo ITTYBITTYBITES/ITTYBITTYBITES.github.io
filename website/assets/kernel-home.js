@@ -14763,6 +14763,12 @@ var jf = new class {
 		let t = Af(e.type);
 		return Df.definitions[t] || Df.definitions[Df.defaultDefinition];
 	}
+	getContent(e) {
+		let t = Df.definitions[e]?.contentMetadata;
+		if (t) return t;
+		let n = Df.events[e];
+		return n ? Df.definitions[n]?.contentMetadata : Object.values(Df.definitions).find((t) => t.id === e || t.contentMetadata?.interactionEvent === e || t.contentMetadata?.chamber === e)?.contentMetadata;
+	}
 	shouldSpawn(e, t = 0) {
 		return Object.prototype.hasOwnProperty.call(Df.events, e.type) || e.type.startsWith("library.archive") || e.type.startsWith("memory.") ? !0 : t >= 0;
 	}
@@ -14780,9 +14786,12 @@ function Nf(e, t = 0) {
 function Pf(e, t = 0) {
 	return jf.getSpawnTier(e, t);
 }
+function Ff(e) {
+	return jf.getContent(e);
+}
 //#endregion
 //#region src/responsive/ResponsiveEngine.ts
-var Ff = class {
+var If = class {
 	constructor() {
 		this.listeners = /* @__PURE__ */ new Set(), this.handleResize = () => {
 			let e = this.measure(), t = JSON.stringify(e) !== JSON.stringify(this.profile);
@@ -14902,19 +14911,19 @@ var Ff = class {
 			touchTargetScale: 1
 		};
 	}
-}, If = {
+}, Lf = {
 	CYAN: 65535,
 	MAGENTA: 16711935,
 	PURPLE: 9055202
-}, Lf = {
+}, Rf = {
 	games: "library.game_opened",
 	archive: "library.archive_opened",
 	community: "community.vortex",
 	blueprint: "milestone.level_up",
 	memory: "economic.resource_gained"
-}, Rf = Object.fromEntries(Object.entries(Lf).map(([e, t]) => [t, e])), zf = class {
+}, zf = Object.fromEntries(Object.entries(Rf).map(([e, t]) => [t, e])), Bf = class {
 	constructor(e, t, n) {
-		this.host = e, this.liveRegion = t, this.onGearSelected = n, this.scene = new zn(), this.camera = new hs(-7.2, 7.2, 4.05, -4.05, .1, 1e3), this.workstationGroup = new jn(), this.biomeGroup = new jn(), this.linkGroup = new jn(), this.gearGroup = new jn(), this.gaugeGroup = new jn(), this.particleGroup = new jn(), this.nodes = [], this.links = [], this.gears = [], this.gauges = [], this.modelAnchors = /* @__PURE__ */ new Map(), this.gearRaycastObjects = [], this.workstationModelLoaded = !1, this.workstationFallbackActive = !1, this.baseEnvironmentCreated = !1, this.webglContextLost = !1, this.lastLayoutHealthCheck = 0, this.rafId = 0, this.focusIndex = -1, this.pointer = new U(99, 99), this.raycaster = new Vs(), this.clock = new Ws(), this.haloTexture = this.createHaloTexture(), this.responsive = new Ff(), this.profile = this.responsive.getProfile(), this.lastTouchAt = 0, this.dragStartX = 0, this.didDrag = !1, this.handleWebGLContextLost = (e) => {
+		this.host = e, this.liveRegion = t, this.onGearSelected = n, this.scene = new zn(), this.camera = new hs(-7.2, 7.2, 4.05, -4.05, .1, 1e3), this.workstationGroup = new jn(), this.biomeGroup = new jn(), this.linkGroup = new jn(), this.gearGroup = new jn(), this.gaugeGroup = new jn(), this.particleGroup = new jn(), this.nodes = [], this.links = [], this.gears = [], this.gauges = [], this.modelAnchors = /* @__PURE__ */ new Map(), this.gearRaycastObjects = [], this.workstationModelLoaded = !1, this.workstationFallbackActive = !1, this.baseEnvironmentCreated = !1, this.webglContextLost = !1, this.lastLayoutHealthCheck = 0, this.rafId = 0, this.focusIndex = -1, this.pointer = new U(99, 99), this.raycaster = new Vs(), this.clock = new Ws(), this.haloTexture = this.createHaloTexture(), this.responsive = new If(), this.profile = this.responsive.getProfile(), this.lastTouchAt = 0, this.dragStartX = 0, this.didDrag = !1, this.handleWebGLContextLost = (e) => {
 			e.preventDefault(), this.webglContextLost = !0, this.host.dataset.webglContext = "lost", this.liveRegion && (this.liveRegion.textContent = "Holographic renderer paused: WebGL context lost");
 		}, this.handleWebGLContextRestored = () => {
 			this.webglContextLost = !1, this.host.dataset.webglContext = "restored", this.ensureCanvasMounted(), window.dispatchEvent(new Event("resize")), this.liveRegion && (this.liveRegion.textContent = "Holographic renderer restored");
@@ -14983,17 +14992,18 @@ var Ff = class {
 		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(0, 0), this.renderer.shadowMap.enabled = !0, this.renderer.shadowMap.type = 2, this.renderer.toneMapping = 4, this.renderer.toneMappingExposure = 1.42, this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.bindContextMonitoring(), this.startMountGuard(), this.scene.add(this.workstationGroup), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.scene.add(this.particleGroup), this.applyCameraProfile(this.profile, !0), this.composer = new _d(this.renderer), this.composer.addPass(new vd(this.scene, this.camera)), this.bloomPass = new bd(new U(1, 1), .045, .42, .96), this.composer.addPass(this.bloomPass), this.initLighting(), this.createWorkstationEnvironment(), this.createBlueprintGearRig(), this.loadWorkstationAsset(), this.createGauges(), this.createEngageDial(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
 	}
 	initLighting() {
-		this.scene.environment = null, this.scene.background = null, this.renderer.setClearColor(0, 0), this.ambient = new vs(If.CYAN, .4), this.scene.add(this.ambient), this.lamp = new fs(If.CYAN, 10, 50, Math.PI / 4), this.lamp.position.set(0, 5, 10), this.scene.add(this.lamp), this.bloomPass.strength = 1.2;
+		this.scene.environment = null, this.scene.background = null, this.renderer.setClearColor(0, 0), this.ambient = new vs(Lf.CYAN, .4), this.scene.add(this.ambient), this.lamp = new fs(Lf.CYAN, 10, 50, Math.PI / 4), this.lamp.position.set(0, 5, 10), this.scene.add(this.lamp), this.bloomPass.strength = 1.2;
 	}
 	handle(e) {
 		if (e.type === "system.heartbeat" && this.nodes.length > 0 || !Nf(e)) return;
-		let t = Mf(e), n = Pf(e), r = Rf[e.type], i = this.nodes.length, a = this.computePosition(i, t.pull, r), o = new X(this.createGeometry(t), this.createMaterial(t)), s = r ? this.getGearAnchor(r).setZ(-1.04) : new W(0, 0, -1.04);
-		o.position.copy(s), o.scale.setScalar(.001), o.userData = {
+		let t = Mf(e), n = Pf(e), r = t.contentMetadata || Ff(e.type), i = zf[e.type], a = this.nodes.length, o = this.computePosition(a, t.pull, i), s = new X(this.createGeometry(t), this.createMaterial(t)), c = i ? this.getGearAnchor(i).setZ(-1.04) : new W(0, 0, -1.04);
+		s.position.copy(c), s.scale.setScalar(.001), s.userData = {
 			eventType: e.type,
 			label: t.label,
-			spawnTier: n
-		}, o.castShadow = !0, o.receiveShadow = !0;
-		let c = new Qr(new Rr({
+			spawnTier: n,
+			contentMetadata: r
+		}, s.castShadow = !0, s.receiveShadow = !0;
+		let l = new Qr(new Rr({
 			map: this.haloTexture,
 			color: t.color,
 			transparent: !0,
@@ -15001,20 +15011,21 @@ var Ff = class {
 			depthWrite: !1,
 			blending: 2
 		}));
-		c.position.copy(o.position), c.scale.setScalar(.82 * t.scale), this.biomeGroup.add(o), this.biomeGroup.add(c);
-		let l = {
+		l.position.copy(s.position), l.scale.setScalar(.82 * t.scale), this.biomeGroup.add(s), this.biomeGroup.add(l);
+		let u = {
 			id: e.eventId,
 			eventType: e.type,
 			spawnTier: n,
-			mesh: o,
-			halo: c,
-			target: a.clone(),
-			home: a.clone(),
+			contentMetadata: r,
+			mesh: s,
+			halo: l,
+			target: o.clone(),
+			home: o.clone(),
 			createdAt: performance.now(),
 			mapping: t,
-			gearId: r
+			gearId: i
 		};
-		for (this.nodes.push(l), this.archiveOldMemories(), this.connectToPrevious(l), this.connectGearToNode(l), this.emitCriticalParticleFeedback(n, a, t.color), this.updateHud(e, t), this.focusIndex = this.nodes.length - 1, r && this.setActiveGear(r); this.nodes.length > 54;) {
+		for (this.nodes.push(u), this.archiveOldMemories(), this.connectToPrevious(u), this.connectGearToNode(u), this.emitCriticalParticleFeedback(n, o, t.color), this.updateHud(e, t), this.focusIndex = this.nodes.length - 1, i && this.setActiveGear(i); this.nodes.length > 54;) {
 			let e = this.nodes.shift();
 			e && (this.biomeGroup.remove(e.mesh), this.biomeGroup.remove(e.halo));
 		}
@@ -15027,7 +15038,7 @@ var Ff = class {
 		this.nodes.length && (this.focusIndex = (this.focusIndex + 1) % this.nodes.length);
 	}
 	focusGear(e) {
-		return this.focusEventType(Lf[e]);
+		return this.focusEventType(Rf[e]);
 	}
 	focusEventType(e) {
 		for (let t = this.nodes.length - 1; t >= 0; t--) if (this.nodes[t].eventType === e) {
@@ -15152,7 +15163,7 @@ var Ff = class {
 			let n = t;
 			if (!n) return;
 			let r = `${n.name || ""} ${e.name || ""}`.toLowerCase();
-			r.includes("paper") || r.includes("parchment") || r.includes("blueprint") ? (n.map = null, n.roughnessMap = null, n.normalMap = null, n.bumpMap = null, n.color.set(If.CYAN), n.emissive = new J(If.CYAN), n.emissiveIntensity = .16, n.opacity = .18, n.transparent = !0, n.roughness = .48, n.metalness = .08) : r.includes("bronze") || r.includes("brass") || r.includes("gear") ? (n.color.set(If.CYAN), n.emissive = new J(If.CYAN), n.emissiveIntensity = .12, n.roughness = Math.min(.72, Math.max(.42, n.roughness ?? .55))) : (r.includes("wood") || r.includes("desk")) && (n.color.set(5666), n.emissive = new J(13124), n.emissiveIntensity = .06, n.roughness = .82), n.needsUpdate = !0;
+			r.includes("paper") || r.includes("parchment") || r.includes("blueprint") ? (n.map = null, n.roughnessMap = null, n.normalMap = null, n.bumpMap = null, n.color.set(Lf.CYAN), n.emissive = new J(Lf.CYAN), n.emissiveIntensity = .16, n.opacity = .18, n.transparent = !0, n.roughness = .48, n.metalness = .08) : r.includes("bronze") || r.includes("brass") || r.includes("gear") ? (n.color.set(Lf.CYAN), n.emissive = new J(Lf.CYAN), n.emissiveIntensity = .12, n.roughness = Math.min(.72, Math.max(.42, n.roughness ?? .55))) : (r.includes("wood") || r.includes("desk")) && (n.color.set(5666), n.emissive = new J(13124), n.emissiveIntensity = .06, n.roughness = .82), n.needsUpdate = !0;
 		});
 	}
 	renderProceduralWorkstation() {
@@ -15195,8 +15206,8 @@ var Ff = class {
 		}));
 		e.position.set(0, 0, -2.82), e.receiveShadow = !0, this.workstationGroup.add(e);
 		let t = new X(new no(13.6, 9.4, 1, 1), new vo({
-			color: If.CYAN,
-			emissive: If.CYAN,
+			color: Lf.CYAN,
+			emissive: Lf.CYAN,
 			emissiveIntensity: .12,
 			transparent: !0,
 			opacity: .18,
@@ -15483,7 +15494,7 @@ var Ff = class {
 			group: a,
 			hit: s,
 			anchor: n.clone(),
-			eventType: Lf[e],
+			eventType: Rf[e],
 			unlockedLevel: i,
 			active: !1,
 			label: o
@@ -15492,7 +15503,7 @@ var Ff = class {
 	createHolographicPanel(e) {
 		let t = new jn();
 		t.userData.gearId = e;
-		let n = e === "community" ? If.MAGENTA : e === "memory" ? If.PURPLE : If.CYAN, r = new X(new no(1.8, 2.2), new ci({
+		let n = e === "community" ? Lf.MAGENTA : e === "memory" ? Lf.PURPLE : Lf.CYAN, r = new X(new no(1.8, 2.2), new ci({
 			color: n,
 			transparent: !0,
 			opacity: .7,
@@ -15544,7 +15555,7 @@ var Ff = class {
 		let e = new jn();
 		e.position.set(0, -2.78, -1.03), e.userData = { engageDial: !0 };
 		let t = new ci({
-			color: If.CYAN,
+			color: Lf.CYAN,
 			transparent: !0,
 			opacity: .72,
 			side: 2,
@@ -15557,7 +15568,7 @@ var Ff = class {
 			holographicDial: !0
 		};
 		let r = new X(new Da(.2, 40), new ci({
-			color: If.CYAN,
+			color: Lf.CYAN,
 			transparent: !0,
 			opacity: .28,
 			side: 2,
@@ -15575,7 +15586,7 @@ var Ff = class {
 			holographicLabel: !0
 		}, this.applyHolographicStyle(i), e.add(n, r, i), this.gearGroup.add(e), this.focusDial = e;
 	}
-	applyHolographicStyle(e, t = If.CYAN) {
+	applyHolographicStyle(e, t = Lf.CYAN) {
 		e.traverse((e) => {
 			let n = e;
 			n.isMesh && (Array.isArray(n.material) ? n.material : [n.material]).forEach((e) => {
@@ -15838,9 +15849,9 @@ var Ff = class {
 	roundRect(e, t, n, r, i, a) {
 		e.beginPath(), e.moveTo(t + a, n), e.arcTo(t + r, n, t + r, n + i, a), e.arcTo(t + r, n + i, t, n + i, a), e.arcTo(t, n + i, t, n, a), e.arcTo(t, n, t + r, n, a), e.closePath();
 	}
-}, Bf = class {
+}, Vf = class {
 	constructor(e, t) {
-		this.emit = e, this.budget = t, this.teardownCallbacks = [];
+		this.emit = e, this.budget = t, this.teardownCallbacks = [], this.activeChamberState = null;
 	}
 	init() {
 		this.bindWindowEvent("liquidmemory:archive-signal", "library.archive_signal"), this.bindWindowEvent("liquidmemory:memory-echo", "memory.echo");
@@ -15859,20 +15870,32 @@ var Ff = class {
 			...e
 		});
 	}
+	triggerInteraction(e, t = "spatial-interaction") {
+		let n = Ff(e);
+		return this.activeChamberState = {
+			nodeId: e,
+			content: n,
+			updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
+			trigger: t
+		}, this.activeChamberState;
+	}
+	getActiveChamberState() {
+		return this.activeChamberState;
+	}
 	destroy() {
 		this.teardownCallbacks.forEach((e) => e()), this.teardownCallbacks = [];
 	}
 	bindWindowEvent(e, t) {
-		let n = (e) => {
-			let n = e;
-			this.emitIfBudgetAllows(t, n.detail || {});
+		let n = (n) => {
+			let r = n;
+			this.triggerInteraction(t, e), this.emitIfBudgetAllows(t, r.detail || {});
 		};
 		window.addEventListener(e, n, { passive: !0 }), this.teardownCallbacks.push(() => window.removeEventListener(e, n));
 	}
 	emitIfBudgetAllows(e, t = {}) {
-		return this.budget.getNodeCount() >= this.budget.maxNodes ? !1 : this.emit(e, t, "spatial-event-bus");
+		return this.budget.getNodeCount() >= this.budget.maxNodes ? !1 : (this.triggerInteraction(e, t.signal || "spatial-event-bus"), this.emit(e, t, "spatial-event-bus"));
 	}
-}, Vf = "1.2.9-expansion", Hf = "lm_home_kernel", Uf = "ibb_home_kernel", Wf = "lm_blueprint_nav_gear", Gf = `${Hf}_engine_version`, Kf = "lm-legacy-shell-purge", qf = 0, Jf = {
+}, Hf = "1.2.9-expansion", Uf = "lm_home_kernel", Wf = "ibb_home_kernel", Gf = "lm_blueprint_nav_gear", Kf = `${Uf}_engine_version`, qf = "lm-legacy-shell-purge", Jf = 0, Yf = {
 	games: {
 		eventType: "library.game_opened",
 		payload: {
@@ -15910,7 +15933,7 @@ var Ff = class {
 		}
 	}
 };
-function Yf() {
+function Xf() {
 	return {
 		...t,
 		timestamp: (/* @__PURE__ */ new Date()).toISOString(),
@@ -15938,10 +15961,10 @@ function Yf() {
 		}
 	};
 }
-function Xf(e, t = {}, n = "liquid-memory-homepage") {
+function Zf(e, t = {}, n = "liquid-memory-homepage") {
 	return {
 		eventId: crypto.randomUUID(),
-		sequenceId: ++qf,
+		sequenceId: ++Jf,
 		timestamp: (/* @__PURE__ */ new Date()).toISOString(),
 		type: e,
 		payload: t,
@@ -15949,41 +15972,41 @@ function Xf(e, t = {}, n = "liquid-memory-homepage") {
 		metadata: { version: "1.0.0" }
 	};
 }
-function Zf() {
-	if (document.getElementById(Kf)) return;
-	let e = document.createElement("style");
-	e.id = Kf, e.textContent = "\n    div.box-link, div.parchment, .box-link, .parchment {\n      opacity: 0 !important;\n      pointer-events: none !important;\n      visibility: hidden !important;\n    }\n  ", document.head.appendChild(e);
-}
 function Qf() {
-	document.querySelectorAll("div.box-link, div.parchment").forEach((e) => e.remove());
+	if (document.getElementById(qf)) return;
+	let e = document.createElement("style");
+	e.id = qf, e.textContent = "\n    div.box-link, div.parchment, .box-link, .parchment {\n      opacity: 0 !important;\n      pointer-events: none !important;\n      visibility: hidden !important;\n    }\n  ", document.head.appendChild(e);
 }
 function $f() {
-	localStorage.getItem(Gf) !== "1.2.9-expansion" && localStorage.setItem(Gf, Vf);
+	document.querySelectorAll("div.box-link, div.parchment").forEach((e) => e.remove());
 }
 function ep() {
-	[[`${Uf}_state`, `${Hf}_state`], [`${Uf}_event_log`, `${Hf}_event_log`]].forEach(([e, t]) => {
+	localStorage.getItem(Kf) !== "1.2.9-expansion" && localStorage.setItem(Kf, Hf);
+}
+function tp() {
+	[[`${Wf}_state`, `${Uf}_state`], [`${Wf}_event_log`, `${Uf}_event_log`]].forEach(([e, t]) => {
 		!localStorage.getItem(t) && localStorage.getItem(e) && localStorage.setItem(t, localStorage.getItem(e));
 	});
 }
-function tp() {
-	Zf();
+function np() {
+	Qf();
 	let t = e.getInstance();
-	t.reset(), $f(), ep();
-	let o = new i(`${Hf}_state`, `${Hf}_event_log`), s = new r(o.rehydrate() || Yf());
+	t.reset(), ep(), tp();
+	let o = new i(`${Uf}_state`, `${Uf}_event_log`), s = new r(o.rehydrate() || Xf());
 	new a().init(t);
 	let c = document.getElementById("spatial-canvas"), l = document.getElementById("spatial-live-region"), u = null, d = null;
 	function f(e) {
-		u?.focusGear(e), u?.setActiveGear(e), localStorage.setItem(Wf, e);
+		u?.focusGear(e), u?.setActiveGear(e), localStorage.setItem(Gf, e);
 	}
 	function p(e) {
-		let n = Jf[e], r = { ...n.payload };
+		let n = Yf[e], r = { ...n.payload };
 		if (n.eventType === "milestone.level_up") {
 			let e = s.getCurrentState().player.level || 1;
 			r.newLevel = e + 1, r.xp = e * 150;
 		}
-		localStorage.setItem(Wf, e), t.emit(Xf(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => f(e), 90);
+		localStorage.setItem(Gf, e), t.emit(Zf(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => f(e), 90);
 	}
-	u = c ? new zf(c, l, p) : null, d = new Bf((e, n = {}, r) => t.emit(Xf(e, n, r)), {
+	u = c ? new Bf(c, l, p) : null, d = new Vf((e, n = {}, r) => t.emit(Zf(e, n, r)), {
 		getNodeCount: () => u?.getNodeCount() || 0,
 		maxNodes: 48
 	}), d.init(), o.getEventLog().slice(-48).forEach((e) => u?.handle(e)), t.subscribe((e) => {
@@ -15993,16 +16016,16 @@ function tp() {
 	}), window.LiquidMemoryKernel = {
 		bus: t,
 		bridge: s,
-		version: Vf,
-		emit: (e, n = {}, r) => t.emit(Xf(e, n, r)),
+		version: Hf,
+		emit: (e, n = {}, r) => t.emit(Zf(e, n, r)),
 		getState: () => s.getCurrentState(),
-		getEngineVersion: () => Vf,
+		getEngineVersion: () => Hf,
 		levelUp: () => p("blueprint"),
-		gain: (e = "trace", n = 10) => t.emit(Xf("economic.resource_gained", {
+		gain: (e = "trace", n = 10) => t.emit(Zf("economic.resource_gained", {
 			resource: e,
 			amount: n
 		})),
-		spend: (e = "pearls", n = 60) => t.emit(Xf("economic.resource_spent", {
+		spend: (e = "pearls", n = 60) => t.emit(Zf("economic.resource_spent", {
 			resource: e,
 			amount: n
 		})),
@@ -16012,6 +16035,8 @@ function tp() {
 		getSpatialNodeCount: () => u?.getNodeCount() || 0,
 		emitArchiveSignal: (e = {}) => d?.emitArchiveSignal(e) || !1,
 		emitMemoryEcho: (e = {}) => d?.emitMemoryEcho(e) || !1,
+		triggerSpatialInteraction: (e, t) => d?.triggerInteraction(e, t),
+		getActiveChamberState: () => d?.getActiveChamberState() || null,
 		getSpatialGearCount: () => u?.getGearCount() || 0,
 		getSpatialGaugeCount: () => u?.getGaugeCount() || 0,
 		getResponsiveMode: () => u?.getResponsiveMode?.() || "unknown",
@@ -16019,13 +16044,13 @@ function tp() {
 		isProceduralFallbackActive: () => u?.isProceduralFallbackActive?.() || !1,
 		getWorkstationAnchorCount: () => u?.getAnchorCount?.() || 0,
 		clear: () => {
-			o.clear(), localStorage.removeItem(Wf), window.location.reload();
+			o.clear(), localStorage.removeItem(Gf), window.location.reload();
 		}
 	}, window.LiquidMemorySpatial = u, window.setTimeout(() => {
-		document.body.classList.add("liquid-ready"), u?.getGearCount() === 5 && u?.getGaugeCount() >= 4 && u?.isWorkstationModelLoaded?.() && Qf();
+		document.body.classList.add("liquid-ready"), u?.getGearCount() === 5 && u?.getGaugeCount() >= 4 && u?.isWorkstationModelLoaded?.() && $f();
 	}, 250);
-	let m = localStorage.getItem(Wf) || "games";
-	Jf[m] && window.setTimeout(() => f(m), 160), t.emit(Xf("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(Xf("system.heartbeat", { path: location.pathname })), 3e4);
+	let m = localStorage.getItem(Gf) || "games";
+	Yf[m] && window.setTimeout(() => f(m), 160), t.emit(Zf("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(Zf("system.heartbeat", { path: location.pathname })), 3e4);
 }
-document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", tp) : tp();
+document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", np) : np();
 //#endregion
