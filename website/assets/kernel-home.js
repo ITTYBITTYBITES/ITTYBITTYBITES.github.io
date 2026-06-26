@@ -14631,6 +14631,16 @@ var wf = {
 			scale: .95,
 			pull: .95
 		}),
+		archiveSignal: Tf({
+			id: "archiveSignal",
+			label: "Archive Signal",
+			tone: "violet",
+			geometry: "default-shard",
+			color: 9055202,
+			emissive: 3412828,
+			scale: 1.02,
+			pull: 1.08
+		}),
 		communityVortex: Tf({
 			id: "communityVortex",
 			label: "Community Vortex",
@@ -14650,6 +14660,20 @@ var wf = {
 			emissive: 744823,
 			scale: .86,
 			pull: .9
+		}),
+		memoryEcho: Tf({
+			id: "memoryEcho",
+			label: "Memory Echo",
+			tone: "cyan",
+			geometry: "heartbeat-ring",
+			color: 12582911,
+			emissive: 744823,
+			scale: .78,
+			pull: .82,
+			lifecycle: {
+				archiveable: !0,
+				connect: !0
+			}
 		})
 	},
 	events: {
@@ -14661,6 +14685,8 @@ var wf = {
 		"system.heartbeat": "memoryPulse",
 		"library.game_opened": "arcadeGenesis",
 		"library.archive_opened": "oldMemoryVault",
+		"library.archive_signal": "archiveSignal",
+		"memory.echo": "memoryEcho",
 		"community.vortex": "communityVortex"
 	},
 	defaultDefinition: "memoryShard"
@@ -14668,35 +14694,41 @@ var wf = {
 Object.fromEntries(Object.entries(Ef.events).map(([e, t]) => [e, Ef.definitions[t]])), Ef.definitions[Ef.defaultDefinition];
 //#endregion
 //#region src/spatial/registry/SpatialSpawnRegistry.ts
-function Df(e, t) {
+var Df = /* @__PURE__ */ function(e) {
+	return e.LOW = "low", e.STANDARD = "standard", e.HIGH = "high", e.CRITICAL = "critical", e;
+}({});
+function Of(e, t) {
 	let n = e.payload?.[t];
 	return typeof n == "number" && Number.isFinite(n) ? n : 0;
 }
-function Of(e) {
+function kf(e) {
 	return Ef.events[e] || Ef.defaultDefinition;
 }
-var kf = new class {
+var Af = new class {
 	getDefinition(e) {
-		let t = Of(e.type);
+		let t = kf(e.type);
 		return Ef.definitions[t] || Ef.definitions[Ef.defaultDefinition];
 	}
 	shouldSpawn(e, t = 0) {
-		return !0;
+		return Object.prototype.hasOwnProperty.call(Ef.events, e.type) || e.type.startsWith("library.archive") || e.type.startsWith("memory.") ? !0 : t >= 0;
 	}
 	getSpawnTier(e, t = 0) {
-		let n = Df(e, "amount"), r = Df(e, "value"), i = Df(e, "newLevel"), a = e.payload?.trigger, o = e.payload?.rewardType, s = e.payload?.resource;
+		let n = Of(e, "amount"), r = Of(e, "value"), i = Of(e, "newLevel"), a = e.payload?.trigger, o = e.payload?.rewardType, s = e.payload?.resource;
 		return e.type === "system.reward_offered" && a === "milestone" && (r >= 10 || o === "premium_currency") || e.type === "milestone.level_up" && i >= 10 ? "critical" : e.type === "system.reward_offered" && a === "milestone" && r >= 5 || e.type === "system.reward_offered" && a === "spending" && r >= 50 || e.type === "community.vortex" && (n >= 60 || r >= 60) || e.type === "economic.resource_spent" && n >= 50 ? "high" : e.type === "library.game_opened" && n >= 25 || e.type === "economic.resource_gained" && s === "trace" && n >= 10 || e.type === "milestone.level_up" && i >= 2 || t >= 25 ? "standard" : "low";
 	}
 }();
-function Af(e) {
-	return kf.getDefinition(e);
+function jf(e) {
+	return Af.getDefinition(e);
 }
-function jf(e, t = 0) {
-	return kf.shouldSpawn(e, t);
+function Mf(e, t = 0) {
+	return Af.shouldSpawn(e, t);
+}
+function Nf(e, t = 0) {
+	return Af.getSpawnTier(e, t);
 }
 //#endregion
 //#region src/responsive/ResponsiveEngine.ts
-var Mf = class {
+var Pf = class {
 	constructor() {
 		this.listeners = /* @__PURE__ */ new Set(), this.handleResize = () => {
 			let e = this.measure(), t = JSON.stringify(e) !== JSON.stringify(this.profile);
@@ -14816,19 +14848,19 @@ var Mf = class {
 			touchTargetScale: 1
 		};
 	}
-}, Nf = {
+}, Ff = {
 	CYAN: 65535,
 	MAGENTA: 16711935,
 	PURPLE: 9055202
-}, Pf = {
+}, If = {
 	games: "library.game_opened",
 	archive: "library.archive_opened",
 	community: "community.vortex",
 	blueprint: "milestone.level_up",
 	memory: "economic.resource_gained"
-}, Ff = Object.fromEntries(Object.entries(Pf).map(([e, t]) => [t, e])), If = class {
+}, Lf = Object.fromEntries(Object.entries(If).map(([e, t]) => [t, e])), Rf = class {
 	constructor(e, t, n) {
-		this.host = e, this.liveRegion = t, this.onGearSelected = n, this.scene = new zn(), this.camera = new hs(-7.2, 7.2, 4.05, -4.05, .1, 1e3), this.workstationGroup = new jn(), this.biomeGroup = new jn(), this.linkGroup = new jn(), this.gearGroup = new jn(), this.gaugeGroup = new jn(), this.nodes = [], this.links = [], this.gears = [], this.gauges = [], this.modelAnchors = /* @__PURE__ */ new Map(), this.gearRaycastObjects = [], this.workstationModelLoaded = !1, this.workstationFallbackActive = !1, this.baseEnvironmentCreated = !1, this.webglContextLost = !1, this.rafId = 0, this.focusIndex = -1, this.pointer = new U(99, 99), this.raycaster = new Vs(), this.clock = new Ws(), this.haloTexture = this.createHaloTexture(), this.responsive = new Mf(), this.profile = this.responsive.getProfile(), this.lastTouchAt = 0, this.dragStartX = 0, this.didDrag = !1, this.handleWebGLContextLost = (e) => {
+		this.host = e, this.liveRegion = t, this.onGearSelected = n, this.scene = new zn(), this.camera = new hs(-7.2, 7.2, 4.05, -4.05, .1, 1e3), this.workstationGroup = new jn(), this.biomeGroup = new jn(), this.linkGroup = new jn(), this.gearGroup = new jn(), this.gaugeGroup = new jn(), this.particleGroup = new jn(), this.nodes = [], this.links = [], this.gears = [], this.gauges = [], this.modelAnchors = /* @__PURE__ */ new Map(), this.gearRaycastObjects = [], this.workstationModelLoaded = !1, this.workstationFallbackActive = !1, this.baseEnvironmentCreated = !1, this.webglContextLost = !1, this.rafId = 0, this.focusIndex = -1, this.pointer = new U(99, 99), this.raycaster = new Vs(), this.clock = new Ws(), this.haloTexture = this.createHaloTexture(), this.responsive = new Pf(), this.profile = this.responsive.getProfile(), this.lastTouchAt = 0, this.dragStartX = 0, this.didDrag = !1, this.handleWebGLContextLost = (e) => {
 			e.preventDefault(), this.webglContextLost = !0, this.host.dataset.webglContext = "lost", this.liveRegion && (this.liveRegion.textContent = "Holographic renderer paused: WebGL context lost");
 		}, this.handleWebGLContextRestored = () => {
 			this.webglContextLost = !1, this.host.dataset.webglContext = "restored", this.ensureCanvasMounted(), window.dispatchEvent(new Event("resize")), this.liveRegion && (this.liveRegion.textContent = "Holographic renderer restored");
@@ -14841,7 +14873,7 @@ var Mf = class {
 			let e = this.clock.getElapsedTime();
 			this.updateHoverState(), this.biomeGroup.rotation.y += .0017, this.biomeGroup.rotation.x = Math.sin(e * .17) * .06, this.linkGroup.rotation.copy(this.biomeGroup.rotation);
 			let t = this.nodes[this.focusIndex], n = t?.target.z || 0;
-			if (this.gears.forEach((t, n) => {
+			this.gears.forEach((t, n) => {
 				let r = e * 1.08 + n * .82, i = t.group.userData.homeY ?? t.anchor.y, a = t.group.userData.homeZ ?? t.anchor.z;
 				t.group.position.y = i + Math.sin(r) * .045, t.group.position.z = a + Math.cos(r * .7) * .012;
 				let o = t.group.userData.panel, s = t.group.userData.border, c = t.group.userData.scanLine;
@@ -14866,13 +14898,23 @@ var Mf = class {
 						a.add(t);
 					}
 				}
-				let o = Math.abs(t.target.z - n), s = Math.min(1, o / 10), c = r < Math.max(0, this.nodes.length - 16) ? .55 : 1, l = t.mesh.material;
-				l.opacity = Pt.lerp(.18, .78, 1 - s) * c, l.emissiveIntensity = Pt.lerp(.08, .42, 1 - s), t.halo.material.opacity = Pt.lerp(.12, .025, 1 - s) * c;
-				let u = Pt.lerp(1.3, .72, 1 - s);
+				let o = Math.abs(t.target.z - n), s = Math.min(1, o / 10), c = r < Math.max(0, this.nodes.length - 16) ? .55 : 1, l = t.mesh.material, u = this.getSpawnTierVisuals(t.spawnTier), d = 1 + Math.sin(e * 2.1 + r * .73) * u.pulse;
+				l.opacity = Math.min(.94, Pt.lerp(.18, .78, 1 - s) * c * u.opacity), l.emissiveIntensity = Pt.lerp(.08, .42, 1 - s) * u.emissive * d, t.halo.material.opacity = Math.min(.42, Pt.lerp(.12, .025, 1 - s) * c * u.halo);
+				let f = Pt.lerp(1.3, .72, 1 - s) * u.halo;
 				t.mesh.position.lerp(a, .055), t.halo.position.copy(t.mesh.position);
-				let d = 1 + Math.sin(e * 2.4 + r) * .045, f = this.hovered === t ? 1.32 : 1, p = this.profile.kind === "mobile" ? this.profile.orientation === "portrait" ? .16 : .28 : this.profile.kind === "tablet" ? .55 : .74;
-				t.mesh.scale.setScalar(p * t.mapping.scale * d * i * f * (1 - s * .18)), t.halo.scale.setScalar(p * u * t.mapping.scale * (this.hovered === t ? 1.25 : 1)), t.mesh.rotation.x += .006 + r * 2e-4, t.mesh.rotation.y += .009;
-			}), this.links.forEach((t, n) => {
+				let p = 1 + Math.sin(e * 2.4 + r) * .045, m = this.hovered === t ? 1.32 : 1, h = this.profile.kind === "mobile" ? this.profile.orientation === "portrait" ? .16 : .28 : this.profile.kind === "tablet" ? .55 : .74;
+				t.mesh.scale.setScalar(h * t.mapping.scale * u.scale * p * d * i * m * (1 - s * .18)), t.halo.scale.setScalar(h * f * t.mapping.scale * (this.hovered === t ? 1.25 : 1)), t.mesh.rotation.x += .006 + r * 2e-4, t.mesh.rotation.y += .009;
+			});
+			let r = performance.now();
+			for (let e = this.particleGroup.children.length - 1; e >= 0; --e) {
+				let t = this.particleGroup.children[e], n = t.material, i = t.geometry, a = r - (t.userData.createdAt || r), o = t.userData.ttl || 1200, s = Math.max(0, 1 - a / o), c = i.getAttribute("position"), l = i.getAttribute("velocity");
+				if (c && l) {
+					for (let e = 0; e < c.count; e += 1) c.setX(e, c.getX(e) + l.getX(e)), c.setY(e, c.getY(e) + l.getY(e)), c.setZ(e, c.getZ(e) + l.getZ(e));
+					c.needsUpdate = !0;
+				}
+				n.opacity = .58 * s, t.scale.setScalar(1 + (1 - s) * .35), a >= o && (this.particleGroup.remove(t), i.dispose(), n.dispose());
+			}
+			if (this.links.forEach((t, n) => {
 				let r = (Math.sin(e * 2.8 + n * .65) + 1) / 2;
 				t.material.opacity = .18 + r * .34, t.material.emissiveIntensity = .7 + r * .95, t.mesh.scale.setScalar(1 + r * .045);
 			}), t) {
@@ -14884,19 +14926,20 @@ var Mf = class {
 			antialias: !0,
 			alpha: !0,
 			powerPreference: "high-performance"
-		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(0, 0), this.renderer.shadowMap.enabled = !0, this.renderer.shadowMap.type = 2, this.renderer.toneMapping = 4, this.renderer.toneMappingExposure = 1.42, this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.bindContextMonitoring(), this.startMountGuard(), this.scene.add(this.workstationGroup), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.applyCameraProfile(this.profile, !0), this.composer = new _d(this.renderer), this.composer.addPass(new vd(this.scene, this.camera)), this.bloomPass = new bd(new U(1, 1), .045, .42, .96), this.composer.addPass(this.bloomPass), this.initLighting(), this.createWorkstationEnvironment(), this.createBlueprintGearRig(), this.loadWorkstationAsset(), this.createGauges(), this.createEngageDial(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
+		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(0, 0), this.renderer.shadowMap.enabled = !0, this.renderer.shadowMap.type = 2, this.renderer.toneMapping = 4, this.renderer.toneMappingExposure = 1.42, this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.bindContextMonitoring(), this.startMountGuard(), this.scene.add(this.workstationGroup), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.scene.add(this.particleGroup), this.applyCameraProfile(this.profile, !0), this.composer = new _d(this.renderer), this.composer.addPass(new vd(this.scene, this.camera)), this.bloomPass = new bd(new U(1, 1), .045, .42, .96), this.composer.addPass(this.bloomPass), this.initLighting(), this.createWorkstationEnvironment(), this.createBlueprintGearRig(), this.loadWorkstationAsset(), this.createGauges(), this.createEngageDial(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
 	}
 	initLighting() {
-		this.scene.environment = null, this.scene.background = null, this.renderer.setClearColor(0, 0), this.ambient = new vs(Nf.CYAN, .4), this.scene.add(this.ambient), this.lamp = new fs(Nf.CYAN, 10, 50, Math.PI / 4), this.lamp.position.set(0, 5, 10), this.scene.add(this.lamp), this.bloomPass.strength = 1.2;
+		this.scene.environment = null, this.scene.background = null, this.renderer.setClearColor(0, 0), this.ambient = new vs(Ff.CYAN, .4), this.scene.add(this.ambient), this.lamp = new fs(Ff.CYAN, 10, 50, Math.PI / 4), this.lamp.position.set(0, 5, 10), this.scene.add(this.lamp), this.bloomPass.strength = 1.2;
 	}
 	handle(e) {
-		if (e.type === "system.heartbeat" && this.nodes.length > 0 || !jf(e)) return;
-		let t = Af(e), n = Ff[e.type], r = this.nodes.length, i = this.computePosition(r, t.pull, n), a = new X(this.createGeometry(t), this.createMaterial(t)), o = n ? this.getGearAnchor(n).setZ(-1.04) : new W(0, 0, -1.04);
-		a.position.copy(o), a.scale.setScalar(.001), a.userData = {
+		if (e.type === "system.heartbeat" && this.nodes.length > 0 || !Mf(e)) return;
+		let t = jf(e), n = Nf(e), r = Lf[e.type], i = this.nodes.length, a = this.computePosition(i, t.pull, r), o = new X(this.createGeometry(t), this.createMaterial(t)), s = r ? this.getGearAnchor(r).setZ(-1.04) : new W(0, 0, -1.04);
+		o.position.copy(s), o.scale.setScalar(.001), o.userData = {
 			eventType: e.type,
-			label: t.label
-		}, a.castShadow = !0, a.receiveShadow = !0;
-		let s = new Qr(new Rr({
+			label: t.label,
+			spawnTier: n
+		}, o.castShadow = !0, o.receiveShadow = !0;
+		let c = new Qr(new Rr({
 			map: this.haloTexture,
 			color: t.color,
 			transparent: !0,
@@ -14904,19 +14947,20 @@ var Mf = class {
 			depthWrite: !1,
 			blending: 2
 		}));
-		s.position.copy(a.position), s.scale.setScalar(.82 * t.scale), this.biomeGroup.add(a), this.biomeGroup.add(s);
-		let c = {
+		c.position.copy(o.position), c.scale.setScalar(.82 * t.scale), this.biomeGroup.add(o), this.biomeGroup.add(c);
+		let l = {
 			id: e.eventId,
 			eventType: e.type,
-			mesh: a,
-			halo: s,
-			target: i.clone(),
-			home: i.clone(),
+			spawnTier: n,
+			mesh: o,
+			halo: c,
+			target: a.clone(),
+			home: a.clone(),
 			createdAt: performance.now(),
 			mapping: t,
-			gearId: n
+			gearId: r
 		};
-		for (this.nodes.push(c), this.archiveOldMemories(), this.connectToPrevious(c), this.connectGearToNode(c), this.updateHud(e, t), this.focusIndex = this.nodes.length - 1, n && this.setActiveGear(n); this.nodes.length > 54;) {
+		for (this.nodes.push(l), this.archiveOldMemories(), this.connectToPrevious(l), this.connectGearToNode(l), this.emitCriticalParticleFeedback(n, a, t.color), this.updateHud(e, t), this.focusIndex = this.nodes.length - 1, r && this.setActiveGear(r); this.nodes.length > 54;) {
 			let e = this.nodes.shift();
 			e && (this.biomeGroup.remove(e.mesh), this.biomeGroup.remove(e.halo));
 		}
@@ -14929,7 +14973,7 @@ var Mf = class {
 		this.nodes.length && (this.focusIndex = (this.focusIndex + 1) % this.nodes.length);
 	}
 	focusGear(e) {
-		return this.focusEventType(Pf[e]);
+		return this.focusEventType(If[e]);
 	}
 	focusEventType(e) {
 		for (let t = this.nodes.length - 1; t >= 0; t--) if (this.nodes[t].eventType === e) {
@@ -15296,6 +15340,63 @@ var Mf = class {
 		for (let e = 0; e < 256; e += 6) t.fillStyle = `rgba(255,240,190,${.04 + Math.random() * .05})`, t.fillRect(0, e, 128, 1);
 		return new Sa(e);
 	}
+	emitCriticalParticleFeedback(e, t, n) {
+		if (e !== Df.CRITICAL) return;
+		let r = this.profile.kind === "mobile" ? 18 : 28, i = new Mr(), a = new Float32Array(r * 3), o = new Float32Array(r * 3);
+		for (let e = 0; e < r; e += 1) {
+			let n = e * 3, i = e / r * Math.PI * 2, s = .04 + Math.random() * .18;
+			a[n] = t.x + Math.cos(i) * s, a[n + 1] = t.y + Math.sin(i) * s, a[n + 2] = t.z + .05 + Math.random() * .12, o[n] = Math.cos(i) * (.006 + Math.random() * .018), o[n + 1] = Math.sin(i) * (.006 + Math.random() * .018), o[n + 2] = .004 + Math.random() * .01;
+		}
+		i.setAttribute("position", new vr(a, 3)), i.setAttribute("velocity", new vr(o, 3));
+		let s = new ya(i, new ma({
+			color: n,
+			size: this.profile.kind === "mobile" ? .035 : .045,
+			transparent: !0,
+			opacity: .58,
+			depthWrite: !1,
+			blending: 2,
+			toneMapped: !1
+		}));
+		s.userData = {
+			nonNodeParticleFeedback: !0,
+			spawnTier: e,
+			createdAt: performance.now(),
+			ttl: 1200
+		}, this.particleGroup.add(s);
+	}
+	getSpawnTierVisuals(e) {
+		switch (e) {
+			case Df.CRITICAL: return {
+				scale: 1.18,
+				halo: 1.55,
+				opacity: 1.14,
+				emissive: 1.28,
+				pulse: .11
+			};
+			case Df.HIGH: return {
+				scale: 1.08,
+				halo: 1.25,
+				opacity: 1.06,
+				emissive: 1.12,
+				pulse: .075
+			};
+			case Df.STANDARD: return {
+				scale: 1,
+				halo: 1,
+				opacity: 1,
+				emissive: 1,
+				pulse: .045
+			};
+			case Df.LOW:
+			default: return {
+				scale: .92,
+				halo: .9,
+				opacity: .95,
+				emissive: .95,
+				pulse: .03
+			};
+		}
+	}
 	createPatinaTexture(e) {
 		let t = document.createElement("canvas");
 		t.width = 256, t.height = 256;
@@ -15332,7 +15433,7 @@ var Mf = class {
 			group: a,
 			hit: s,
 			anchor: n.clone(),
-			eventType: Pf[e],
+			eventType: If[e],
 			unlockedLevel: i,
 			active: !1,
 			label: o
@@ -15341,7 +15442,7 @@ var Mf = class {
 	createHolographicPanel(e) {
 		let t = new jn();
 		t.userData.gearId = e;
-		let n = e === "community" ? Nf.MAGENTA : e === "memory" ? Nf.PURPLE : Nf.CYAN, r = new X(new no(1.8, 2.2), new ci({
+		let n = e === "community" ? Ff.MAGENTA : e === "memory" ? Ff.PURPLE : Ff.CYAN, r = new X(new no(1.8, 2.2), new ci({
 			color: n,
 			transparent: !0,
 			opacity: .7,
@@ -15393,7 +15494,7 @@ var Mf = class {
 		let e = new jn();
 		e.position.set(0, -2.78, -1.03), e.userData = { engageDial: !0 };
 		let t = new ci({
-			color: Nf.CYAN,
+			color: Ff.CYAN,
 			transparent: !0,
 			opacity: .72,
 			side: 2,
@@ -15406,7 +15507,7 @@ var Mf = class {
 			holographicDial: !0
 		};
 		let r = new X(new Da(.2, 40), new ci({
-			color: Nf.CYAN,
+			color: Ff.CYAN,
 			transparent: !0,
 			opacity: .28,
 			side: 2,
@@ -15424,7 +15525,7 @@ var Mf = class {
 			holographicLabel: !0
 		}, this.applyHolographicStyle(i), e.add(n, r, i), this.gearGroup.add(e), this.focusDial = e;
 	}
-	applyHolographicStyle(e, t = Nf.CYAN) {
+	applyHolographicStyle(e, t = Ff.CYAN) {
 		e.traverse((e) => {
 			let n = e;
 			n.isMesh && (Array.isArray(n.material) ? n.material : [n.material]).forEach((e) => {
@@ -15681,7 +15782,7 @@ var Mf = class {
 	roundRect(e, t, n, r, i, a) {
 		e.beginPath(), e.moveTo(t + a, n), e.arcTo(t + r, n, t + r, n + i, a), e.arcTo(t + r, n + i, t, n + i, a), e.arcTo(t, n + i, t, n, a), e.arcTo(t, n, t + r, n, a), e.closePath();
 	}
-}, Lf = "lm_home_kernel", Rf = "ibb_home_kernel", zf = "lm_blueprint_nav_gear", Bf = 0, Vf = {
+}, zf = "1.2.9-expansion", Bf = "lm_home_kernel", Vf = "ibb_home_kernel", Hf = "lm_blueprint_nav_gear", Uf = `${Bf}_engine_version`, Wf = 0, Gf = {
 	games: {
 		eventType: "library.game_opened",
 		payload: {
@@ -15719,7 +15820,7 @@ var Mf = class {
 		}
 	}
 };
-function Hf() {
+function Kf() {
 	return {
 		...t,
 		timestamp: (/* @__PURE__ */ new Date()).toISOString(),
@@ -15747,10 +15848,10 @@ function Hf() {
 		}
 	};
 }
-function Uf(e, t = {}, n = "liquid-memory-homepage") {
+function qf(e, t = {}, n = "liquid-memory-homepage") {
 	return {
 		eventId: crypto.randomUUID(),
-		sequenceId: ++Bf,
+		sequenceId: ++Wf,
 		timestamp: (/* @__PURE__ */ new Date()).toISOString(),
 		type: e,
 		payload: t,
@@ -15758,43 +15859,48 @@ function Uf(e, t = {}, n = "liquid-memory-homepage") {
 		metadata: { version: "1.0.0" }
 	};
 }
-function Wf() {
-	[[`${Rf}_state`, `${Lf}_state`], [`${Rf}_event_log`, `${Lf}_event_log`]].forEach(([e, t]) => {
+function Jf() {
+	localStorage.getItem(Uf) !== "1.2.9-expansion" && localStorage.setItem(Uf, zf);
+}
+function Yf() {
+	[[`${Vf}_state`, `${Bf}_state`], [`${Vf}_event_log`, `${Bf}_event_log`]].forEach(([e, t]) => {
 		!localStorage.getItem(t) && localStorage.getItem(e) && localStorage.setItem(t, localStorage.getItem(e));
 	});
 }
-function Gf() {
+function Xf() {
 	let t = e.getInstance();
-	t.reset(), Wf();
-	let o = new i(`${Lf}_state`, `${Lf}_event_log`), s = new r(o.rehydrate() || Hf());
+	t.reset(), Jf(), Yf();
+	let o = new i(`${Bf}_state`, `${Bf}_event_log`), s = new r(o.rehydrate() || Kf());
 	new a().init(t);
 	let c = document.getElementById("spatial-canvas"), l = document.getElementById("spatial-live-region"), u = null;
 	function d(e) {
-		u?.focusGear(e), u?.setActiveGear(e), localStorage.setItem(zf, e);
+		u?.focusGear(e), u?.setActiveGear(e), localStorage.setItem(Hf, e);
 	}
 	function f(e) {
-		let n = Vf[e], r = { ...n.payload };
+		let n = Gf[e], r = { ...n.payload };
 		if (n.eventType === "milestone.level_up") {
 			let e = s.getCurrentState().player.level || 1;
 			r.newLevel = e + 1, r.xp = e * 150;
 		}
-		localStorage.setItem(zf, e), t.emit(Uf(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => d(e), 90);
+		localStorage.setItem(Hf, e), t.emit(qf(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => d(e), 90);
 	}
-	u = c ? new If(c, l, f) : null, o.getEventLog().slice(-48).forEach((e) => u?.handle(e)), t.subscribe((e) => {
+	u = c ? new Rf(c, l, f) : null, o.getEventLog().slice(-48).forEach((e) => u?.handle(e)), t.subscribe((e) => {
 		u?.handle(e);
 		let t = s.getCurrentState(), r = n(t, e);
 		r !== t && r.processedEventIds.has(e.eventId) && (o.logEvent(e), o.save(r)), s.onStateUpdated(r), u?.updateFromState(r);
 	}), window.LiquidMemoryKernel = {
 		bus: t,
 		bridge: s,
-		emit: (e, n = {}, r) => t.emit(Uf(e, n, r)),
+		version: zf,
+		emit: (e, n = {}, r) => t.emit(qf(e, n, r)),
 		getState: () => s.getCurrentState(),
+		getEngineVersion: () => zf,
 		levelUp: () => f("blueprint"),
-		gain: (e = "trace", n = 10) => t.emit(Uf("economic.resource_gained", {
+		gain: (e = "trace", n = 10) => t.emit(qf("economic.resource_gained", {
 			resource: e,
 			amount: n
 		})),
-		spend: (e = "pearls", n = 60) => t.emit(Uf("economic.resource_spent", {
+		spend: (e = "pearls", n = 60) => t.emit(qf("economic.resource_spent", {
 			resource: e,
 			amount: n
 		})),
@@ -15809,11 +15915,11 @@ function Gf() {
 		isProceduralFallbackActive: () => u?.isProceduralFallbackActive?.() || !1,
 		getWorkstationAnchorCount: () => u?.getAnchorCount?.() || 0,
 		clear: () => {
-			o.clear(), localStorage.removeItem(zf), window.location.reload();
+			o.clear(), localStorage.removeItem(Hf), window.location.reload();
 		}
 	}, window.LiquidMemorySpatial = u, window.setTimeout(() => document.body.classList.add("liquid-ready"), 250);
-	let p = localStorage.getItem(zf) || "games";
-	Vf[p] && window.setTimeout(() => d(p), 160), t.emit(Uf("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(Uf("system.heartbeat", { path: location.pathname })), 3e4);
+	let p = localStorage.getItem(Hf) || "games";
+	Gf[p] && window.setTimeout(() => d(p), 160), t.emit(qf("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(qf("system.heartbeat", { path: location.pathname })), 3e4);
 }
-document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", Gf) : Gf();
+document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", Xf) : Xf();
 //#endregion

@@ -4,7 +4,7 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import type { EventContract, PlatformState } from '../kernel';
-import { resolveSpatialSpawn, shouldSpawnSpatialNode, type BiomeMapping } from './registry/SpatialSpawnRegistry';
+import { getSpatialSpawnTier, resolveSpatialSpawn, shouldSpawnSpatialNode, SpawnTier, type BiomeMapping } from './registry/SpatialSpawnRegistry';
 import { ResponsiveEngine, type ResponsiveProfile } from '../responsive/ResponsiveEngine';
 
 export type GearId = 'games' | 'archive' | 'community' | 'blueprint' | 'memory';
@@ -18,6 +18,7 @@ export const HOLO_TONES = {
 type SpatialNode = {
   id: string;
   eventType: string;
+  spawnTier: SpawnTier;
   mesh: THREE.Mesh;
   halo: THREE.Sprite;
   target: THREE.Vector3;
@@ -75,6 +76,7 @@ export class SpatialRenderer {
   private linkGroup = new THREE.Group();
   private gearGroup = new THREE.Group();
   private gaugeGroup = new THREE.Group();
+  private particleGroup = new THREE.Group();
   private nodes: SpatialNode[] = [];
   private links: LiquidLink[] = [];
   private gears: GearAssembly[] = [];
@@ -128,6 +130,7 @@ export class SpatialRenderer {
     this.scene.add(this.biomeGroup);
     this.scene.add(this.gearGroup);
     this.scene.add(this.gaugeGroup);
+    this.scene.add(this.particleGroup);
     this.applyCameraProfile(this.profile, true);
 
     this.composer = new EffectComposer(this.renderer);
@@ -174,6 +177,7 @@ export class SpatialRenderer {
     if (event.type === 'system.heartbeat' && this.nodes.length > 0) return;
     if (!shouldSpawnSpatialNode(event)) return;
     const mapping = resolveSpatialSpawn(event);
+    const spawnTier = getSpatialSpawnTier(event);
     const gearId = EVENT_TO_GEAR[event.type];
     const index = this.nodes.length;
     const target = this.computePosition(index, mapping.pull, gearId);
@@ -181,7 +185,7 @@ export class SpatialRenderer {
     const origin = gearId ? this.getGearAnchor(gearId).setZ(-1.04) : new THREE.Vector3(0, 0, -1.04);
     mesh.position.copy(origin);
     mesh.scale.setScalar(0.001);
-    mesh.userData = { eventType: event.type, label: mapping.label };
+    mesh.userData = { eventType: event.type, label: mapping.label, spawnTier };
     mesh.castShadow = true;
     mesh.receiveShadow = true;
 
@@ -199,11 +203,12 @@ export class SpatialRenderer {
     this.biomeGroup.add(mesh);
     this.biomeGroup.add(halo);
 
-    const node: SpatialNode = { id: event.eventId, eventType: event.type, mesh, halo, target: target.clone(), home: target.clone(), createdAt: performance.now(), mapping, gearId };
+    const node: SpatialNode = { id: event.eventId, eventType: event.type, spawnTier, mesh, halo, target: target.clone(), home: target.clone(), createdAt: performance.now(), mapping, gearId };
     this.nodes.push(node);
     this.archiveOldMemories();
     this.connectToPrevious(node);
     this.connectGearToNode(node);
+    this.emitCriticalParticleFeedback(spawnTier, target, mapping.color);
     this.updateHud(event, mapping);
     this.focusIndex = this.nodes.length - 1;
     if (gearId) this.setActiveGear(gearId);
@@ -704,6 +709,63 @@ export class SpatialRenderer {
     const ctx = canvas.getContext('2d')!; ctx.fillStyle = '#98784e'; ctx.fillRect(0,0,128,256);
     for(let y=0;y<256;y+=6){ ctx.fillStyle = `rgba(255,240,190,${0.04+Math.random()*0.05})`; ctx.fillRect(0,y,128,1); }
     return new THREE.CanvasTexture(canvas);
+  }
+
+  private emitCriticalParticleFeedback(tier: SpawnTier, origin: THREE.Vector3, color: number): void {
+    if (tier !== SpawnTier.CRITICAL) return;
+
+    const particleCount = this.profile.kind === 'mobile' ? 18 : 28;
+    const geometry = new THREE.BufferGeometry();
+    const positions = new Float32Array(particleCount * 3);
+    const velocities = new Float32Array(particleCount * 3);
+
+    for (let i = 0; i < particleCount; i += 1) {
+      const offset = i * 3;
+      const angle = (i / particleCount) * Math.PI * 2;
+      const radius = 0.04 + Math.random() * 0.18;
+      positions[offset] = origin.x + Math.cos(angle) * radius;
+      positions[offset + 1] = origin.y + Math.sin(angle) * radius;
+      positions[offset + 2] = origin.z + 0.05 + Math.random() * 0.12;
+      velocities[offset] = Math.cos(angle) * (0.006 + Math.random() * 0.018);
+      velocities[offset + 1] = Math.sin(angle) * (0.006 + Math.random() * 0.018);
+      velocities[offset + 2] = 0.004 + Math.random() * 0.01;
+    }
+
+    geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+    geometry.setAttribute('velocity', new THREE.BufferAttribute(velocities, 3));
+
+    const material = new THREE.PointsMaterial({
+      color,
+      size: this.profile.kind === 'mobile' ? 0.035 : 0.045,
+      transparent: true,
+      opacity: 0.58,
+      depthWrite: false,
+      blending: THREE.AdditiveBlending,
+      toneMapped: false,
+    });
+
+    const particles = new THREE.Points(geometry, material);
+    particles.userData = {
+      nonNodeParticleFeedback: true,
+      spawnTier: tier,
+      createdAt: performance.now(),
+      ttl: 1200,
+    };
+    this.particleGroup.add(particles);
+  }
+
+  private getSpawnTierVisuals(tier: SpawnTier): { scale: number; halo: number; opacity: number; emissive: number; pulse: number } {
+    switch (tier) {
+      case SpawnTier.CRITICAL:
+        return { scale: 1.18, halo: 1.55, opacity: 1.14, emissive: 1.28, pulse: 0.11 };
+      case SpawnTier.HIGH:
+        return { scale: 1.08, halo: 1.25, opacity: 1.06, emissive: 1.12, pulse: 0.075 };
+      case SpawnTier.STANDARD:
+        return { scale: 1.0, halo: 1.0, opacity: 1.0, emissive: 1.0, pulse: 0.045 };
+      case SpawnTier.LOW:
+      default:
+        return { scale: 0.92, halo: 0.9, opacity: 0.95, emissive: 0.95, pulse: 0.03 };
+    }
   }
 
   private createPatinaTexture(cyanCatch: number): THREE.CanvasTexture {
@@ -1266,21 +1328,52 @@ export class SpatialRenderer {
       const blurFactor = Math.min(1, zDistance / 10);
       const archiveFactor = index < Math.max(0, this.nodes.length - 16) ? 0.55 : 1;
       const material = node.mesh.material as THREE.MeshStandardMaterial;
-      material.opacity = THREE.MathUtils.lerp(0.18, 0.78, 1 - blurFactor) * archiveFactor;
-      material.emissiveIntensity = THREE.MathUtils.lerp(0.08, 0.42, 1 - blurFactor);
-      node.halo.material.opacity = THREE.MathUtils.lerp(0.12, 0.025, 1 - blurFactor) * archiveFactor;
-      const bokehScale = THREE.MathUtils.lerp(1.3, 0.72, 1 - blurFactor);
+      const tierVisuals = this.getSpawnTierVisuals(node.spawnTier);
+      const tierPulse = 1 + Math.sin(elapsed * 2.1 + index * 0.73) * tierVisuals.pulse;
+      material.opacity = Math.min(0.94, THREE.MathUtils.lerp(0.18, 0.78, 1 - blurFactor) * archiveFactor * tierVisuals.opacity);
+      material.emissiveIntensity = THREE.MathUtils.lerp(0.08, 0.42, 1 - blurFactor) * tierVisuals.emissive * tierPulse;
+      node.halo.material.opacity = Math.min(0.42, THREE.MathUtils.lerp(0.12, 0.025, 1 - blurFactor) * archiveFactor * tierVisuals.halo);
+      const bokehScale = THREE.MathUtils.lerp(1.3, 0.72, 1 - blurFactor) * tierVisuals.halo;
 
       node.mesh.position.lerp(desired, 0.055);
       node.halo.position.copy(node.mesh.position);
       const pulse = 1 + Math.sin(elapsed * 2.4 + index) * 0.045;
       const hoverBoost = this.hovered === node ? 1.32 : 1;
       const deviceNodeScale = this.profile.kind === 'mobile' ? (this.profile.orientation === 'portrait' ? 0.16 : 0.28) : this.profile.kind === 'tablet' ? 0.55 : 0.74;
-      node.mesh.scale.setScalar(deviceNodeScale * node.mapping.scale * pulse * age * hoverBoost * (1 - blurFactor * 0.18));
+      node.mesh.scale.setScalar(deviceNodeScale * node.mapping.scale * tierVisuals.scale * pulse * tierPulse * age * hoverBoost * (1 - blurFactor * 0.18));
       node.halo.scale.setScalar(deviceNodeScale * bokehScale * node.mapping.scale * (this.hovered === node ? 1.25 : 1));
       node.mesh.rotation.x += 0.006 + index * 0.0002;
       node.mesh.rotation.y += 0.009;
     });
+
+    const particleNow = performance.now();
+    for (let i = this.particleGroup.children.length - 1; i >= 0; i -= 1) {
+      const particleObject = this.particleGroup.children[i] as THREE.Points;
+      const material = particleObject.material as THREE.PointsMaterial;
+      const geometry = particleObject.geometry as THREE.BufferGeometry;
+      const age = particleNow - ((particleObject.userData.createdAt as number | undefined) || particleNow);
+      const ttl = (particleObject.userData.ttl as number | undefined) || 1200;
+      const life = Math.max(0, 1 - age / ttl);
+
+      const positions = geometry.getAttribute('position') as THREE.BufferAttribute | undefined;
+      const velocities = geometry.getAttribute('velocity') as THREE.BufferAttribute | undefined;
+      if (positions && velocities) {
+        for (let j = 0; j < positions.count; j += 1) {
+          positions.setX(j, positions.getX(j) + velocities.getX(j));
+          positions.setY(j, positions.getY(j) + velocities.getY(j));
+          positions.setZ(j, positions.getZ(j) + velocities.getZ(j));
+        }
+        positions.needsUpdate = true;
+      }
+      material.opacity = 0.58 * life;
+      particleObject.scale.setScalar(1 + (1 - life) * 0.35);
+
+      if (age >= ttl) {
+        this.particleGroup.remove(particleObject);
+        geometry.dispose();
+        material.dispose();
+      }
+    }
 
     this.links.forEach((link, index) => {
       const wave = (Math.sin(elapsed * 2.8 + index * 0.65) + 1) / 2;

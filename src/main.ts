@@ -1,10 +1,12 @@
 import { GlobalEventBus, INITIAL_PLATFORM_STATE, MonetizationLayer, PlatformPersistor, reduce, VisualBridge } from './kernel';
 import type { EventContract, PlatformState } from './kernel';
 import { SpatialRenderer, type GearId } from './spatial/SpatialRenderer';
+import { ENGINE_VERSION } from './core/Version';
 
 const STORAGE_NAMESPACE = 'lm_home_kernel';
 const LEGACY_STORAGE_NAMESPACE = 'ibb_home_kernel';
 const BLUEPRINT_GEAR_KEY = 'lm_blueprint_nav_gear';
+const HOME_ENGINE_VERSION_KEY = `${STORAGE_NAMESPACE}_engine_version`;
 let uiSequence = 0;
 
 type GearIntent = {
@@ -48,6 +50,14 @@ function makeEvent(type: string, payload: Record<string, any> = {}, source = 'li
   };
 }
 
+function markHomeEngineVersion(): void {
+  // Scoped freshness marker only. Do not clear persistence or emit startup
+  // version events; the 19/19 Kernel Contract expects stable node counts.
+  if (localStorage.getItem(HOME_ENGINE_VERSION_KEY) !== ENGINE_VERSION) {
+    localStorage.setItem(HOME_ENGINE_VERSION_KEY, ENGINE_VERSION);
+  }
+}
+
 function migrateLegacyMemoryState(): void {
   const pairs = [
     [`${LEGACY_STORAGE_NAMESPACE}_state`, `${STORAGE_NAMESPACE}_state`],
@@ -63,6 +73,7 @@ function migrateLegacyMemoryState(): void {
 function initKernel() {
   const bus = GlobalEventBus.getInstance();
   bus.reset();
+  markHomeEngineVersion();
   migrateLegacyMemoryState();
 
   const persistor = new PlatformPersistor(`${STORAGE_NAMESPACE}_state`, `${STORAGE_NAMESPACE}_event_log`);
@@ -115,8 +126,10 @@ function initKernel() {
   const api = {
     bus,
     bridge,
+    version: ENGINE_VERSION,
     emit: (type: string, payload: Record<string, any> = {}, source?: string) => bus.emit(makeEvent(type, payload, source)),
     getState: () => bridge.getCurrentState(),
+    getEngineVersion: () => ENGINE_VERSION,
     levelUp: () => triggerGear('blueprint'),
     gain: (resource = 'trace', amount = 10) => bus.emit(makeEvent('economic.resource_gained', { resource, amount })),
     spend: (resource = 'pearls', amount = 60) => bus.emit(makeEvent('economic.resource_spent', { resource, amount })),

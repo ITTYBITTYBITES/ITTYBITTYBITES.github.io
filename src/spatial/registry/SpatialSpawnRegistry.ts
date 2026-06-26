@@ -45,12 +45,16 @@ export class DefaultSpatialSpawnRegistry implements SpatialSpawnRegistry {
   }
 
   shouldSpawn(event: EventContract, userTrace = 0): boolean {
-    void event;
-    void userTrace;
-    // Patch 1B is intentionally behavior-preserving: every Kernel event that
-    // reached SpatialRenderer.handle(event) before this registry still resolves
-    // to either an explicit definition or the default memory shard.
-    return true;
+    const knownEvent = Object.prototype.hasOwnProperty.call(SPATIAL_SPAWN_REGISTRY.events, event.type);
+    if (knownEvent) return true;
+
+    // Expansion hooks: Archive Signals and Memory Echoes are intentionally
+    // authorized as low-density visual feedback without adding Kernel state.
+    if (event.type.startsWith('library.archive') || event.type.startsWith('memory.')) return true;
+
+    // Preserve the previous permissive fallback for existing unknown Kernel
+    // events, but allow future tuning to lower this threshold safely.
+    return userTrace >= 0;
   }
 
   getSpawnTier(event: EventContract, userTrace = 0): SpawnTier {
