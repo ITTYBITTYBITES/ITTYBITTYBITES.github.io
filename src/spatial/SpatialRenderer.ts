@@ -86,6 +86,8 @@ export class SpatialRenderer {
   private workstationFallbackActive = false;
   private baseEnvironmentCreated = false;
   private resizeObserver?: ResizeObserver;
+  private mountGuardId?: number;
+  private webglContextLost = false;
   private rafId = 0;
   private focusIndex = -1;
   private hovered?: SpatialNode;
@@ -118,6 +120,8 @@ export class SpatialRenderer {
     this.renderer.domElement.className = 'kernel-spatial-webgl';
     this.renderer.domElement.setAttribute('aria-label', 'Liquid Memory generative spatial ecosystem');
     this.host.appendChild(this.renderer.domElement);
+    this.bindContextMonitoring();
+    this.startMountGuard();
 
     this.scene.add(this.workstationGroup);
     this.scene.add(this.linkGroup);
@@ -284,6 +288,9 @@ export class SpatialRenderer {
 
   dispose(): void {
     cancelAnimationFrame(this.rafId);
+    if (this.mountGuardId !== undefined) window.clearInterval(this.mountGuardId);
+    this.renderer.domElement.removeEventListener('webglcontextlost', this.handleWebGLContextLost);
+    this.renderer.domElement.removeEventListener('webglcontextrestored', this.handleWebGLContextRestored);
     this.resizeObserver?.disconnect();
     this.responsive.dispose();
     this.composer?.dispose();
@@ -1121,6 +1128,49 @@ export class SpatialRenderer {
     this.scene.add(new THREE.Points(geometry, material));
   }
 
+  private bindContextMonitoring(): void {
+    this.renderer.domElement.addEventListener('webglcontextlost', this.handleWebGLContextLost, false);
+    this.renderer.domElement.addEventListener('webglcontextrestored', this.handleWebGLContextRestored, false);
+  }
+
+  private readonly handleWebGLContextLost = (event: Event): void => {
+    event.preventDefault();
+    this.webglContextLost = true;
+    this.host.dataset.webglContext = 'lost';
+    if (this.liveRegion) this.liveRegion.textContent = 'Holographic renderer paused: WebGL context lost';
+  };
+
+  private readonly handleWebGLContextRestored = (): void => {
+    this.webglContextLost = false;
+    this.host.dataset.webglContext = 'restored';
+    this.ensureCanvasMounted();
+    window.dispatchEvent(new Event('resize'));
+    if (this.liveRegion) this.liveRegion.textContent = 'Holographic renderer restored';
+  };
+
+  private startMountGuard(): void {
+    this.mountGuardId = window.setInterval(() => {
+      this.ensureCanvasMounted();
+    }, 500);
+  }
+
+  private ensureCanvasMounted(): boolean {
+    if (!this.host.isConnected) return false;
+    if (!this.host.contains(this.renderer.domElement)) {
+      this.host.appendChild(this.renderer.domElement);
+      this.host.dataset.mountRecovered = String(Date.now());
+    }
+    return this.renderer.domElement.isConnected && this.host.contains(this.renderer.domElement);
+  }
+
+  private isWebGLContextUnavailable(): boolean {
+    try {
+      return this.webglContextLost || this.renderer.getContext().isContextLost();
+    } catch {
+      return true;
+    }
+  }
+
   private bindResize(): void {
     const resize = () => {
       const rect = this.host.getBoundingClientRect();
@@ -1145,6 +1195,16 @@ export class SpatialRenderer {
   }
 
   private animate = () => {
+    if (!this.ensureCanvasMounted() || this.isWebGLContextUnavailable()) {
+      this.rafId = requestAnimationFrame(this.animate);
+      return;
+    }
+
+    if (this.gears.length === 0) {
+      this.createBlueprintGearRig();
+      this.applyResponsiveProfile(this.profile, true);
+    }
+
     const elapsed = this.clock.getElapsedTime();
     this.updateHoverState();
     this.biomeGroup.rotation.y += 0.0017;

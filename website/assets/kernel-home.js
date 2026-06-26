@@ -14756,7 +14756,16 @@ var wf = {
 	memory: "economic.resource_gained"
 }, kf = Object.fromEntries(Object.entries(Of).map(([e, t]) => [t, e])), Af = class {
 	constructor(e, t, n) {
-		this.host = e, this.liveRegion = t, this.onGearSelected = n, this.scene = new zn(), this.camera = new hs(-7.2, 7.2, 4.05, -4.05, .1, 1e3), this.workstationGroup = new jn(), this.biomeGroup = new jn(), this.linkGroup = new jn(), this.gearGroup = new jn(), this.gaugeGroup = new jn(), this.nodes = [], this.links = [], this.gears = [], this.gauges = [], this.modelAnchors = /* @__PURE__ */ new Map(), this.gearRaycastObjects = [], this.workstationModelLoaded = !1, this.workstationFallbackActive = !1, this.baseEnvironmentCreated = !1, this.rafId = 0, this.focusIndex = -1, this.pointer = new U(99, 99), this.raycaster = new Vs(), this.clock = new Ws(), this.haloTexture = this.createHaloTexture(), this.responsive = new Ef(), this.profile = this.responsive.getProfile(), this.lastTouchAt = 0, this.dragStartX = 0, this.didDrag = !1, this.animate = () => {
+		this.host = e, this.liveRegion = t, this.onGearSelected = n, this.scene = new zn(), this.camera = new hs(-7.2, 7.2, 4.05, -4.05, .1, 1e3), this.workstationGroup = new jn(), this.biomeGroup = new jn(), this.linkGroup = new jn(), this.gearGroup = new jn(), this.gaugeGroup = new jn(), this.nodes = [], this.links = [], this.gears = [], this.gauges = [], this.modelAnchors = /* @__PURE__ */ new Map(), this.gearRaycastObjects = [], this.workstationModelLoaded = !1, this.workstationFallbackActive = !1, this.baseEnvironmentCreated = !1, this.webglContextLost = !1, this.rafId = 0, this.focusIndex = -1, this.pointer = new U(99, 99), this.raycaster = new Vs(), this.clock = new Ws(), this.haloTexture = this.createHaloTexture(), this.responsive = new Ef(), this.profile = this.responsive.getProfile(), this.lastTouchAt = 0, this.dragStartX = 0, this.didDrag = !1, this.handleWebGLContextLost = (e) => {
+			e.preventDefault(), this.webglContextLost = !0, this.host.dataset.webglContext = "lost", this.liveRegion && (this.liveRegion.textContent = "Holographic renderer paused: WebGL context lost");
+		}, this.handleWebGLContextRestored = () => {
+			this.webglContextLost = !1, this.host.dataset.webglContext = "restored", this.ensureCanvasMounted(), window.dispatchEvent(new Event("resize")), this.liveRegion && (this.liveRegion.textContent = "Holographic renderer restored");
+		}, this.animate = () => {
+			if (!this.ensureCanvasMounted() || this.isWebGLContextUnavailable()) {
+				this.rafId = requestAnimationFrame(this.animate);
+				return;
+			}
+			this.gears.length === 0 && (this.createBlueprintGearRig(), this.applyResponsiveProfile(this.profile, !0));
 			let e = this.clock.getElapsedTime();
 			this.updateHoverState(), this.biomeGroup.rotation.y += .0017, this.biomeGroup.rotation.x = Math.sin(e * .17) * .06, this.linkGroup.rotation.copy(this.biomeGroup.rotation);
 			let t = this.nodes[this.focusIndex], n = t?.target.z || 0;
@@ -14803,7 +14812,7 @@ var wf = {
 			antialias: !0,
 			alpha: !0,
 			powerPreference: "high-performance"
-		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(0, 0), this.renderer.shadowMap.enabled = !0, this.renderer.shadowMap.type = 2, this.renderer.toneMapping = 4, this.renderer.toneMappingExposure = 1.42, this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.scene.add(this.workstationGroup), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.applyCameraProfile(this.profile, !0), this.composer = new _d(this.renderer), this.composer.addPass(new vd(this.scene, this.camera)), this.bloomPass = new bd(new U(1, 1), .045, .42, .96), this.composer.addPass(this.bloomPass), this.initLighting(), this.createWorkstationEnvironment(), this.createBlueprintGearRig(), this.loadWorkstationAsset(), this.createGauges(), this.createEngageDial(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
+		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(0, 0), this.renderer.shadowMap.enabled = !0, this.renderer.shadowMap.type = 2, this.renderer.toneMapping = 4, this.renderer.toneMappingExposure = 1.42, this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.bindContextMonitoring(), this.startMountGuard(), this.scene.add(this.workstationGroup), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.applyCameraProfile(this.profile, !0), this.composer = new _d(this.renderer), this.composer.addPass(new vd(this.scene, this.camera)), this.bloomPass = new bd(new U(1, 1), .045, .42, .96), this.composer.addPass(this.bloomPass), this.initLighting(), this.createWorkstationEnvironment(), this.createBlueprintGearRig(), this.loadWorkstationAsset(), this.createGauges(), this.createEngageDial(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
 	}
 	initLighting() {
 		this.scene.environment = null, this.scene.background = null, this.renderer.setClearColor(0, 0), this.ambient = new vs(Df.CYAN, .4), this.scene.add(this.ambient), this.lamp = new fs(Df.CYAN, 10, 50, Math.PI / 4), this.lamp.position.set(0, 5, 10), this.scene.add(this.lamp), this.bloomPass.strength = 1.2;
@@ -14885,7 +14894,7 @@ var wf = {
 		return this.modelAnchors.size;
 	}
 	dispose() {
-		cancelAnimationFrame(this.rafId), this.resizeObserver?.disconnect(), this.responsive.dispose(), this.composer?.dispose(), this.renderer.dispose(), this.host.innerHTML = "";
+		cancelAnimationFrame(this.rafId), this.mountGuardId !== void 0 && window.clearInterval(this.mountGuardId), this.renderer.domElement.removeEventListener("webglcontextlost", this.handleWebGLContextLost), this.renderer.domElement.removeEventListener("webglcontextrestored", this.handleWebGLContextRestored), this.resizeObserver?.disconnect(), this.responsive.dispose(), this.composer?.dispose(), this.renderer.dispose(), this.host.innerHTML = "";
 	}
 	applyResponsiveProfile(e, t = !1) {
 		this.profile = e, this.host.dataset.device = `${e.kind}-${e.orientation}`, this.applyCameraProfile(e, t);
@@ -15531,6 +15540,24 @@ var wf = {
 			opacity: .34
 		});
 		this.scene.add(new ya(e, n));
+	}
+	bindContextMonitoring() {
+		this.renderer.domElement.addEventListener("webglcontextlost", this.handleWebGLContextLost, !1), this.renderer.domElement.addEventListener("webglcontextrestored", this.handleWebGLContextRestored, !1);
+	}
+	startMountGuard() {
+		this.mountGuardId = window.setInterval(() => {
+			this.ensureCanvasMounted();
+		}, 500);
+	}
+	ensureCanvasMounted() {
+		return this.host.isConnected ? (this.host.contains(this.renderer.domElement) || (this.host.appendChild(this.renderer.domElement), this.host.dataset.mountRecovered = String(Date.now())), this.renderer.domElement.isConnected && this.host.contains(this.renderer.domElement)) : !1;
+	}
+	isWebGLContextUnavailable() {
+		try {
+			return this.webglContextLost || this.renderer.getContext().isContextLost();
+		} catch {
+			return !0;
+		}
 	}
 	bindResize() {
 		let e = () => {
