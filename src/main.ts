@@ -1,6 +1,7 @@
 import { GlobalEventBus, INITIAL_PLATFORM_STATE, MonetizationLayer, PlatformPersistor, reduce, VisualBridge } from './kernel';
 import type { EventContract, PlatformState } from './kernel';
 import { SpatialRenderer, type GearId } from './spatial/SpatialRenderer';
+import { SpatialEventBus } from './spatial/SpatialEventBus';
 import { ENGINE_VERSION } from './core/Version';
 
 const STORAGE_NAMESPACE = 'lm_home_kernel';
@@ -105,6 +106,7 @@ function initKernel() {
   const spatialHost = document.getElementById('spatial-canvas');
   const spatialLive = document.getElementById('spatial-live-region');
   let spatial: SpatialRenderer | null = null;
+  let spatialEvents: SpatialEventBus | null = null;
 
   function focusGear(gear: GearId): void {
     spatial?.focusGear(gear);
@@ -126,6 +128,11 @@ function initKernel() {
   }
 
   spatial = spatialHost ? new SpatialRenderer(spatialHost, spatialLive, triggerGear) : null;
+  spatialEvents = new SpatialEventBus(
+    (type, payload = {}, source) => bus.emit(makeEvent(type, payload, source)),
+    { getNodeCount: () => spatial?.getNodeCount() || 0, maxNodes: 48 }
+  );
+  spatialEvents.init();
 
   // Rebuild visible biome from persisted event memory without reducer side effects.
   const rememberedEvents = persistor.getEventLog().slice(-48);
@@ -157,6 +164,8 @@ function initKernel() {
     focusGear,
     triggerGear,
     getSpatialNodeCount: () => spatial?.getNodeCount() || 0,
+    emitArchiveSignal: (payload: Record<string, any> = {}) => spatialEvents?.emitArchiveSignal(payload) || false,
+    emitMemoryEcho: (payload: Record<string, any> = {}) => spatialEvents?.emitMemoryEcho(payload) || false,
     getSpatialGearCount: () => spatial?.getGearCount() || 0,
     getSpatialGaugeCount: () => spatial?.getGaugeCount() || 0,
     getResponsiveMode: () => spatial?.getResponsiveMode?.() || 'unknown',

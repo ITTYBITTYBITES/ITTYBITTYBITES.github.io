@@ -90,6 +90,7 @@ export class SpatialRenderer {
   private resizeObserver?: ResizeObserver;
   private mountGuardId?: number;
   private webglContextLost = false;
+  private lastLayoutHealthCheck = 0;
   private rafId = 0;
   private focusIndex = -1;
   private hovered?: SpatialNode;
@@ -1239,29 +1240,45 @@ export class SpatialRenderer {
     }
   }
 
-  private bindResize(): void {
-    const resize = () => {
-      const viewport = window.visualViewport;
-      const viewportWidth = Math.round(viewport?.width || window.innerWidth || document.documentElement.clientWidth || 320);
-      const viewportHeight = Math.round(viewport?.height || window.innerHeight || document.documentElement.clientHeight || 320);
-      const rect = this.host.getBoundingClientRect();
-      const width = Math.max(320, viewportWidth, Math.round(rect.width || 0));
-      const height = Math.max(320, viewportHeight, Math.round(rect.height || 0));
-      const aspect = width / height;
-      const viewHeight = 8.1;
+  private calibrateViewportSize(force = false): void {
+    const viewport = window.visualViewport;
+    const viewportWidth = Math.round(viewport?.width || window.innerWidth || document.documentElement.clientWidth || 320);
+    const viewportHeight = Math.round(viewport?.height || window.innerHeight || document.documentElement.clientHeight || 320);
+    const rect = this.host.getBoundingClientRect();
+    const width = Math.max(320, viewportWidth, Math.round(rect.width || 0));
+    const height = Math.max(320, viewportHeight, Math.round(rect.height || 0));
+    const canvas = this.renderer.domElement;
+    const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
+    const expectedBufferWidth = Math.round(width * pixelRatio);
+    const expectedBufferHeight = Math.round(height * pixelRatio);
+    const cssDrift = Math.abs(canvas.clientWidth - width) > 2 || Math.abs(canvas.clientHeight - height) > 2;
+    const bufferDrift = Math.abs(canvas.width - expectedBufferWidth) > 4 || Math.abs(canvas.height - expectedBufferHeight) > 4;
 
-      this.host.style.width = `${viewportWidth}px`;
-      this.host.style.height = `${viewportHeight}px`;
-      this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-      this.camera.top = viewHeight / 2;
-      this.camera.bottom = -viewHeight / 2;
-      this.camera.left = -viewHeight * aspect / 2;
-      this.camera.right = viewHeight * aspect / 2;
-      this.camera.updateProjectionMatrix();
-      this.renderer.setSize(width, height, false);
-      this.composer?.setSize(width, height);
-      this.bloomPass?.setSize(width, height);
-    };
+    if (!force && !cssDrift && !bufferDrift) return;
+
+    const aspect = width / height;
+    const viewHeight = 8.1;
+    this.host.style.width = `${viewportWidth}px`;
+    this.host.style.height = `${viewportHeight}px`;
+    this.renderer.setPixelRatio(pixelRatio);
+    this.camera.top = viewHeight / 2;
+    this.camera.bottom = -viewHeight / 2;
+    this.camera.left = -viewHeight * aspect / 2;
+    this.camera.right = viewHeight * aspect / 2;
+    this.camera.updateProjectionMatrix();
+    this.renderer.setSize(width, height, false);
+    this.composer?.setSize(width, height);
+    this.bloomPass?.setSize(width, height);
+  }
+
+  private checkLayoutHealth(elapsedMs: number): void {
+    if (elapsedMs - this.lastLayoutHealthCheck < 100) return;
+    this.lastLayoutHealthCheck = elapsedMs;
+    this.calibrateViewportSize(false);
+  }
+
+  private bindResize(): void {
+    const resize = () => this.calibrateViewportSize(true);
     this.resizeObserver = new ResizeObserver(resize);
     this.resizeObserver.observe(this.host);
     window.addEventListener('resize', resize, { passive: true });
@@ -1276,6 +1293,8 @@ export class SpatialRenderer {
       this.rafId = requestAnimationFrame(this.animate);
       return;
     }
+
+    this.checkLayoutHealth(performance.now());
 
     if (this.gears.length === 0) {
       this.createBlueprintGearRig();

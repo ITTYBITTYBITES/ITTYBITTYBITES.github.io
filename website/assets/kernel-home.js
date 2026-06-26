@@ -14565,6 +14565,12 @@ var wf = {
 			lifecycle: {
 				archiveable: !1,
 				connect: !0
+			},
+			contentMetadata: {
+				chamber: "Holographic Data-Hub",
+				route: "./index.html",
+				seoLabel: "Liquid Memory Holographic Data-Hub",
+				interactionEvent: "lifecycle.start"
 			}
 		}),
 		originChamber: Ef({
@@ -14639,7 +14645,13 @@ var wf = {
 			color: 7271653,
 			emissive: 744806,
 			scale: 1.42,
-			pull: 1.9
+			pull: 1.9,
+			contentMetadata: {
+				chamber: "Arcade Genesis",
+				route: "./arcade.html",
+				seoLabel: "Liquid Memory Arcade Genesis",
+				interactionEvent: "library.game_opened"
+			}
 		}),
 		oldMemoryVault: Ef({
 			id: "oldMemoryVault",
@@ -14649,7 +14661,13 @@ var wf = {
 			color: 9404520,
 			emissive: 3155998,
 			scale: .95,
-			pull: .95
+			pull: .95,
+			contentMetadata: {
+				chamber: "Old Memory Vault",
+				route: "./library.html",
+				seoLabel: "Liquid Memory Archive Vault",
+				interactionEvent: "library.archive_opened"
+			}
 		}),
 		archiveSignal: Ef({
 			id: "archiveSignal",
@@ -14659,7 +14677,13 @@ var wf = {
 			color: 9055202,
 			emissive: 3412828,
 			scale: 1.02,
-			pull: 1.08
+			pull: 1.08,
+			contentMetadata: {
+				chamber: "Archive Signal",
+				route: "./library.html",
+				seoLabel: "Archive discovery signal",
+				interactionEvent: "library.archive_signal"
+			}
 		}),
 		communityVortex: Ef({
 			id: "communityVortex",
@@ -14669,7 +14693,12 @@ var wf = {
 			color: wf.magenta,
 			emissive: wf.violetEmissive,
 			scale: 1.7,
-			pull: 2.25
+			pull: 2.25,
+			contentMetadata: {
+				chamber: "Community Vortex",
+				seoLabel: "Liquid Memory Community Vortex",
+				interactionEvent: "community.vortex"
+			}
 		}),
 		memoryShard: Ef({
 			id: "memoryShard",
@@ -14693,6 +14722,11 @@ var wf = {
 			lifecycle: {
 				archiveable: !0,
 				connect: !0
+			},
+			contentMetadata: {
+				chamber: "Memory Mycelium",
+				seoLabel: "Liquid Memory Echo",
+				interactionEvent: "memory.echo"
 			}
 		})
 	},
@@ -14880,7 +14914,7 @@ var Ff = class {
 	memory: "economic.resource_gained"
 }, Rf = Object.fromEntries(Object.entries(Lf).map(([e, t]) => [t, e])), zf = class {
 	constructor(e, t, n) {
-		this.host = e, this.liveRegion = t, this.onGearSelected = n, this.scene = new zn(), this.camera = new hs(-7.2, 7.2, 4.05, -4.05, .1, 1e3), this.workstationGroup = new jn(), this.biomeGroup = new jn(), this.linkGroup = new jn(), this.gearGroup = new jn(), this.gaugeGroup = new jn(), this.particleGroup = new jn(), this.nodes = [], this.links = [], this.gears = [], this.gauges = [], this.modelAnchors = /* @__PURE__ */ new Map(), this.gearRaycastObjects = [], this.workstationModelLoaded = !1, this.workstationFallbackActive = !1, this.baseEnvironmentCreated = !1, this.webglContextLost = !1, this.rafId = 0, this.focusIndex = -1, this.pointer = new U(99, 99), this.raycaster = new Vs(), this.clock = new Ws(), this.haloTexture = this.createHaloTexture(), this.responsive = new Ff(), this.profile = this.responsive.getProfile(), this.lastTouchAt = 0, this.dragStartX = 0, this.didDrag = !1, this.handleWebGLContextLost = (e) => {
+		this.host = e, this.liveRegion = t, this.onGearSelected = n, this.scene = new zn(), this.camera = new hs(-7.2, 7.2, 4.05, -4.05, .1, 1e3), this.workstationGroup = new jn(), this.biomeGroup = new jn(), this.linkGroup = new jn(), this.gearGroup = new jn(), this.gaugeGroup = new jn(), this.particleGroup = new jn(), this.nodes = [], this.links = [], this.gears = [], this.gauges = [], this.modelAnchors = /* @__PURE__ */ new Map(), this.gearRaycastObjects = [], this.workstationModelLoaded = !1, this.workstationFallbackActive = !1, this.baseEnvironmentCreated = !1, this.webglContextLost = !1, this.lastLayoutHealthCheck = 0, this.rafId = 0, this.focusIndex = -1, this.pointer = new U(99, 99), this.raycaster = new Vs(), this.clock = new Ws(), this.haloTexture = this.createHaloTexture(), this.responsive = new Ff(), this.profile = this.responsive.getProfile(), this.lastTouchAt = 0, this.dragStartX = 0, this.didDrag = !1, this.handleWebGLContextLost = (e) => {
 			e.preventDefault(), this.webglContextLost = !0, this.host.dataset.webglContext = "lost", this.liveRegion && (this.liveRegion.textContent = "Holographic renderer paused: WebGL context lost");
 		}, this.handleWebGLContextRestored = () => {
 			this.webglContextLost = !1, this.host.dataset.webglContext = "restored", this.ensureCanvasMounted(), window.dispatchEvent(new Event("resize")), this.liveRegion && (this.liveRegion.textContent = "Holographic renderer restored");
@@ -14889,7 +14923,7 @@ var Ff = class {
 				this.rafId = requestAnimationFrame(this.animate);
 				return;
 			}
-			this.gears.length === 0 && (this.createBlueprintGearRig(), this.applyResponsiveProfile(this.profile, !0));
+			this.checkLayoutHealth(performance.now()), this.gears.length === 0 && (this.createBlueprintGearRig(), this.applyResponsiveProfile(this.profile, !0));
 			let e = this.clock.getElapsedTime();
 			this.updateHoverState(), this.biomeGroup.rotation.y += .0017, this.biomeGroup.rotation.x = Math.sin(e * .17) * .06, this.linkGroup.rotation.copy(this.biomeGroup.rotation);
 			let t = this.nodes[this.focusIndex], n = t?.target.z || 0;
@@ -15748,11 +15782,17 @@ var Ff = class {
 			return !0;
 		}
 	}
+	calibrateViewportSize(e = !1) {
+		let t = window.visualViewport, n = Math.round(t?.width || window.innerWidth || document.documentElement.clientWidth || 320), r = Math.round(t?.height || window.innerHeight || document.documentElement.clientHeight || 320), i = this.host.getBoundingClientRect(), a = Math.max(320, n, Math.round(i.width || 0)), o = Math.max(320, r, Math.round(i.height || 0)), s = this.renderer.domElement, c = Math.min(window.devicePixelRatio || 1, 2), l = Math.round(a * c), u = Math.round(o * c), d = Math.abs(s.clientWidth - a) > 2 || Math.abs(s.clientHeight - o) > 2, f = Math.abs(s.width - l) > 4 || Math.abs(s.height - u) > 4;
+		if (!e && !d && !f) return;
+		let p = a / o, m = 8.1;
+		this.host.style.width = `${n}px`, this.host.style.height = `${r}px`, this.renderer.setPixelRatio(c), this.camera.top = m / 2, this.camera.bottom = -8.1 / 2, this.camera.left = -8.1 * p / 2, this.camera.right = m * p / 2, this.camera.updateProjectionMatrix(), this.renderer.setSize(a, o, !1), this.composer?.setSize(a, o), this.bloomPass?.setSize(a, o);
+	}
+	checkLayoutHealth(e) {
+		e - this.lastLayoutHealthCheck < 100 || (this.lastLayoutHealthCheck = e, this.calibrateViewportSize(!1));
+	}
 	bindResize() {
-		let e = () => {
-			let e = window.visualViewport, t = Math.round(e?.width || window.innerWidth || document.documentElement.clientWidth || 320), n = Math.round(e?.height || window.innerHeight || document.documentElement.clientHeight || 320), r = this.host.getBoundingClientRect(), i = Math.max(320, t, Math.round(r.width || 0)), a = Math.max(320, n, Math.round(r.height || 0)), o = i / a, s = 8.1;
-			this.host.style.width = `${t}px`, this.host.style.height = `${n}px`, this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.camera.top = s / 2, this.camera.bottom = -8.1 / 2, this.camera.left = -8.1 * o / 2, this.camera.right = s * o / 2, this.camera.updateProjectionMatrix(), this.renderer.setSize(i, a, !1), this.composer?.setSize(i, a), this.bloomPass?.setSize(i, a);
-		};
+		let e = () => this.calibrateViewportSize(!0);
 		this.resizeObserver = new ResizeObserver(e), this.resizeObserver.observe(this.host), window.addEventListener("resize", e, { passive: !0 }), window.addEventListener("orientationchange", e, { passive: !0 }), window.visualViewport?.addEventListener("resize", e, { passive: !0 }), window.visualViewport?.addEventListener("scroll", e, { passive: !0 }), e();
 	}
 	updateHoverState() {
@@ -15798,7 +15838,41 @@ var Ff = class {
 	roundRect(e, t, n, r, i, a) {
 		e.beginPath(), e.moveTo(t + a, n), e.arcTo(t + r, n, t + r, n + i, a), e.arcTo(t + r, n + i, t, n + i, a), e.arcTo(t, n + i, t, n, a), e.arcTo(t, n, t + r, n, a), e.closePath();
 	}
-}, Bf = "1.2.9-expansion", Vf = "lm_home_kernel", Hf = "ibb_home_kernel", Uf = "lm_blueprint_nav_gear", Wf = `${Vf}_engine_version`, Gf = "lm-legacy-shell-purge", Kf = 0, qf = {
+}, Bf = class {
+	constructor(e, t) {
+		this.emit = e, this.budget = t, this.teardownCallbacks = [];
+	}
+	init() {
+		this.bindWindowEvent("liquidmemory:archive-signal", "library.archive_signal"), this.bindWindowEvent("liquidmemory:memory-echo", "memory.echo");
+	}
+	emitArchiveSignal(e = {}) {
+		return this.emitIfBudgetAllows("library.archive_signal", {
+			chamber: "Old Memory Vault",
+			signal: "archive-scroll",
+			...e
+		});
+	}
+	emitMemoryEcho(e = {}) {
+		return this.emitIfBudgetAllows("memory.echo", {
+			chamber: "Memory Mycelium",
+			signal: "memory-echo",
+			...e
+		});
+	}
+	destroy() {
+		this.teardownCallbacks.forEach((e) => e()), this.teardownCallbacks = [];
+	}
+	bindWindowEvent(e, t) {
+		let n = (e) => {
+			let n = e;
+			this.emitIfBudgetAllows(t, n.detail || {});
+		};
+		window.addEventListener(e, n, { passive: !0 }), this.teardownCallbacks.push(() => window.removeEventListener(e, n));
+	}
+	emitIfBudgetAllows(e, t = {}) {
+		return this.budget.getNodeCount() >= this.budget.maxNodes ? !1 : this.emit(e, t, "spatial-event-bus");
+	}
+}, Vf = "1.2.9-expansion", Hf = "lm_home_kernel", Uf = "ibb_home_kernel", Wf = "lm_blueprint_nav_gear", Gf = `${Hf}_engine_version`, Kf = "lm-legacy-shell-purge", qf = 0, Jf = {
 	games: {
 		eventType: "library.game_opened",
 		payload: {
@@ -15836,7 +15910,7 @@ var Ff = class {
 		}
 	}
 };
-function Jf() {
+function Yf() {
 	return {
 		...t,
 		timestamp: (/* @__PURE__ */ new Date()).toISOString(),
@@ -15864,10 +15938,10 @@ function Jf() {
 		}
 	};
 }
-function Yf(e, t = {}, n = "liquid-memory-homepage") {
+function Xf(e, t = {}, n = "liquid-memory-homepage") {
 	return {
 		eventId: crypto.randomUUID(),
-		sequenceId: ++Kf,
+		sequenceId: ++qf,
 		timestamp: (/* @__PURE__ */ new Date()).toISOString(),
 		type: e,
 		payload: t,
@@ -15875,64 +15949,69 @@ function Yf(e, t = {}, n = "liquid-memory-homepage") {
 		metadata: { version: "1.0.0" }
 	};
 }
-function Xf() {
-	if (document.getElementById(Gf)) return;
-	let e = document.createElement("style");
-	e.id = Gf, e.textContent = "\n    div.box-link, div.parchment, .box-link, .parchment {\n      opacity: 0 !important;\n      pointer-events: none !important;\n      visibility: hidden !important;\n    }\n  ", document.head.appendChild(e);
-}
 function Zf() {
-	document.querySelectorAll("div.box-link, div.parchment").forEach((e) => e.remove());
+	if (document.getElementById(Kf)) return;
+	let e = document.createElement("style");
+	e.id = Kf, e.textContent = "\n    div.box-link, div.parchment, .box-link, .parchment {\n      opacity: 0 !important;\n      pointer-events: none !important;\n      visibility: hidden !important;\n    }\n  ", document.head.appendChild(e);
 }
 function Qf() {
-	localStorage.getItem(Wf) !== "1.2.9-expansion" && localStorage.setItem(Wf, Bf);
+	document.querySelectorAll("div.box-link, div.parchment").forEach((e) => e.remove());
 }
 function $f() {
-	[[`${Hf}_state`, `${Vf}_state`], [`${Hf}_event_log`, `${Vf}_event_log`]].forEach(([e, t]) => {
+	localStorage.getItem(Gf) !== "1.2.9-expansion" && localStorage.setItem(Gf, Vf);
+}
+function ep() {
+	[[`${Uf}_state`, `${Hf}_state`], [`${Uf}_event_log`, `${Hf}_event_log`]].forEach(([e, t]) => {
 		!localStorage.getItem(t) && localStorage.getItem(e) && localStorage.setItem(t, localStorage.getItem(e));
 	});
 }
-function ep() {
-	Xf();
+function tp() {
+	Zf();
 	let t = e.getInstance();
-	t.reset(), Qf(), $f();
-	let o = new i(`${Vf}_state`, `${Vf}_event_log`), s = new r(o.rehydrate() || Jf());
+	t.reset(), $f(), ep();
+	let o = new i(`${Hf}_state`, `${Hf}_event_log`), s = new r(o.rehydrate() || Yf());
 	new a().init(t);
-	let c = document.getElementById("spatial-canvas"), l = document.getElementById("spatial-live-region"), u = null;
-	function d(e) {
-		u?.focusGear(e), u?.setActiveGear(e), localStorage.setItem(Uf, e);
-	}
+	let c = document.getElementById("spatial-canvas"), l = document.getElementById("spatial-live-region"), u = null, d = null;
 	function f(e) {
-		let n = qf[e], r = { ...n.payload };
+		u?.focusGear(e), u?.setActiveGear(e), localStorage.setItem(Wf, e);
+	}
+	function p(e) {
+		let n = Jf[e], r = { ...n.payload };
 		if (n.eventType === "milestone.level_up") {
 			let e = s.getCurrentState().player.level || 1;
 			r.newLevel = e + 1, r.xp = e * 150;
 		}
-		localStorage.setItem(Uf, e), t.emit(Yf(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => d(e), 90);
+		localStorage.setItem(Wf, e), t.emit(Xf(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => f(e), 90);
 	}
-	u = c ? new zf(c, l, f) : null, o.getEventLog().slice(-48).forEach((e) => u?.handle(e)), t.subscribe((e) => {
+	u = c ? new zf(c, l, p) : null, d = new Bf((e, n = {}, r) => t.emit(Xf(e, n, r)), {
+		getNodeCount: () => u?.getNodeCount() || 0,
+		maxNodes: 48
+	}), d.init(), o.getEventLog().slice(-48).forEach((e) => u?.handle(e)), t.subscribe((e) => {
 		u?.handle(e);
 		let t = s.getCurrentState(), r = n(t, e);
 		r !== t && r.processedEventIds.has(e.eventId) && (o.logEvent(e), o.save(r)), s.onStateUpdated(r), u?.updateFromState(r);
 	}), window.LiquidMemoryKernel = {
 		bus: t,
 		bridge: s,
-		version: Bf,
-		emit: (e, n = {}, r) => t.emit(Yf(e, n, r)),
+		version: Vf,
+		emit: (e, n = {}, r) => t.emit(Xf(e, n, r)),
 		getState: () => s.getCurrentState(),
-		getEngineVersion: () => Bf,
-		levelUp: () => f("blueprint"),
-		gain: (e = "trace", n = 10) => t.emit(Yf("economic.resource_gained", {
+		getEngineVersion: () => Vf,
+		levelUp: () => p("blueprint"),
+		gain: (e = "trace", n = 10) => t.emit(Xf("economic.resource_gained", {
 			resource: e,
 			amount: n
 		})),
-		spend: (e = "pearls", n = 60) => t.emit(Yf("economic.resource_spent", {
+		spend: (e = "pearls", n = 60) => t.emit(Xf("economic.resource_spent", {
 			resource: e,
 			amount: n
 		})),
 		focusSpatial: () => u?.focusNext(),
-		focusGear: d,
-		triggerGear: f,
+		focusGear: f,
+		triggerGear: p,
 		getSpatialNodeCount: () => u?.getNodeCount() || 0,
+		emitArchiveSignal: (e = {}) => d?.emitArchiveSignal(e) || !1,
+		emitMemoryEcho: (e = {}) => d?.emitMemoryEcho(e) || !1,
 		getSpatialGearCount: () => u?.getGearCount() || 0,
 		getSpatialGaugeCount: () => u?.getGaugeCount() || 0,
 		getResponsiveMode: () => u?.getResponsiveMode?.() || "unknown",
@@ -15940,13 +16019,13 @@ function ep() {
 		isProceduralFallbackActive: () => u?.isProceduralFallbackActive?.() || !1,
 		getWorkstationAnchorCount: () => u?.getAnchorCount?.() || 0,
 		clear: () => {
-			o.clear(), localStorage.removeItem(Uf), window.location.reload();
+			o.clear(), localStorage.removeItem(Wf), window.location.reload();
 		}
 	}, window.LiquidMemorySpatial = u, window.setTimeout(() => {
-		document.body.classList.add("liquid-ready"), u?.getGearCount() === 5 && u?.getGaugeCount() >= 4 && u?.isWorkstationModelLoaded?.() && Zf();
+		document.body.classList.add("liquid-ready"), u?.getGearCount() === 5 && u?.getGaugeCount() >= 4 && u?.isWorkstationModelLoaded?.() && Qf();
 	}, 250);
-	let p = localStorage.getItem(Uf) || "games";
-	qf[p] && window.setTimeout(() => d(p), 160), t.emit(Yf("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(Yf("system.heartbeat", { path: location.pathname })), 3e4);
+	let m = localStorage.getItem(Wf) || "games";
+	Jf[m] && window.setTimeout(() => f(m), 160), t.emit(Xf("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(Xf("system.heartbeat", { path: location.pathname })), 3e4);
 }
-document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", ep) : ep();
+document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", tp) : tp();
 //#endregion

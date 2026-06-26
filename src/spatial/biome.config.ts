@@ -28,6 +28,12 @@ export type SpatialNodeDefinition = {
   scale: number;
   pull: number;
   lifecycle: SpatialNodeLifecycle;
+  contentMetadata?: {
+    chamber: string;
+    route?: string;
+    seoLabel?: string;
+    interactionEvent?: string;
+  };
 };
 
 // Backwards-compatible alias for the active renderer while the registry is formalized.
@@ -64,6 +70,7 @@ export const SPATIAL_SPAWN_REGISTRY: SpatialSpawnManifest = {
       scale: 1.18,
       pull: 1.0,
       lifecycle: { archiveable: false, connect: true },
+      contentMetadata: { chamber: 'Holographic Data-Hub', route: './index.html', seoLabel: 'Liquid Memory Holographic Data-Hub', interactionEvent: 'lifecycle.start' },
     }),
     originChamber: defineNode({
       id: 'originChamber',
@@ -135,6 +142,7 @@ export const SPATIAL_SPAWN_REGISTRY: SpatialSpawnManifest = {
       emissive: 0x0b5d66,
       scale: 1.42,
       pull: 1.9,
+      contentMetadata: { chamber: 'Arcade Genesis', route: './arcade.html', seoLabel: 'Liquid Memory Arcade Genesis', interactionEvent: 'library.game_opened' },
     }),
     oldMemoryVault: defineNode({
       id: 'oldMemoryVault',
@@ -145,6 +153,7 @@ export const SPATIAL_SPAWN_REGISTRY: SpatialSpawnManifest = {
       emissive: 0x30281e,
       scale: 0.95,
       pull: 0.95,
+      contentMetadata: { chamber: 'Old Memory Vault', route: './library.html', seoLabel: 'Liquid Memory Archive Vault', interactionEvent: 'library.archive_opened' },
     }),
     archiveSignal: defineNode({
       id: 'archiveSignal',
@@ -155,6 +164,7 @@ export const SPATIAL_SPAWN_REGISTRY: SpatialSpawnManifest = {
       emissive: 0x34135c,
       scale: 1.02,
       pull: 1.08,
+      contentMetadata: { chamber: 'Archive Signal', route: './library.html', seoLabel: 'Archive discovery signal', interactionEvent: 'library.archive_signal' },
     }),
     communityVortex: defineNode({
       id: 'communityVortex',
@@ -165,6 +175,7 @@ export const SPATIAL_SPAWN_REGISTRY: SpatialSpawnManifest = {
       emissive: HOLOGRAPHIC_THEME.violetEmissive,
       scale: 1.7,
       pull: 2.25,
+      contentMetadata: { chamber: 'Community Vortex', seoLabel: 'Liquid Memory Community Vortex', interactionEvent: 'community.vortex' },
     }),
     memoryShard: defineNode({
       id: 'memoryShard',
@@ -186,6 +197,7 @@ export const SPATIAL_SPAWN_REGISTRY: SpatialSpawnManifest = {
       scale: 0.78,
       pull: 0.82,
       lifecycle: { archiveable: true, connect: true },
+      contentMetadata: { chamber: 'Memory Mycelium', seoLabel: 'Liquid Memory Echo', interactionEvent: 'memory.echo' },
     }),
   },
   events: {
