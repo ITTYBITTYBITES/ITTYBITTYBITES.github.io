@@ -52,6 +52,13 @@ type Gauge = {
   lastValue: string;
 };
 
+type PortalIntentDataset = {
+  chamber?: string;
+  route?: string;
+  seoLabel?: string;
+  nodeId?: string;
+} | null;
+
 const GEAR_EVENT_TYPES: Record<GearId, string> = {
   games: 'library.game_opened',
   archive: 'library.archive_opened',
@@ -257,6 +264,26 @@ export class SpatialRenderer {
       }
     }
     return false;
+  }
+
+  setPortalIntent(intent: PortalIntentDataset): void {
+    if (!intent) {
+      delete this.host.dataset.portalIntent;
+      delete this.host.dataset.portalRoute;
+      delete this.host.dataset.portalNode;
+      if (this.liveRegion && this.host.dataset.lastEvent) {
+        this.liveRegion.textContent = `Portal intent cleared. Last event: ${this.host.dataset.lastEvent}`;
+      }
+      return;
+    }
+
+    this.host.dataset.portalIntent = intent.chamber || intent.seoLabel || intent.nodeId || 'unknown';
+    if (intent.route) this.host.dataset.portalRoute = intent.route;
+    else delete this.host.dataset.portalRoute;
+    if (intent.nodeId) this.host.dataset.portalNode = intent.nodeId;
+    if (this.liveRegion) {
+      this.liveRegion.textContent = `Portal intent armed: ${this.host.dataset.portalIntent}`;
+    }
   }
 
   setActiveGear(gear: GearId): void {

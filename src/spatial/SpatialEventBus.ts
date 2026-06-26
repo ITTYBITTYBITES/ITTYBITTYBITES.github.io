@@ -15,9 +15,20 @@ export type ActiveChamberState = {
   trigger: string;
 } | null;
 
+export type PortalIntent = {
+  nodeId: string;
+  chamber: string;
+  route?: string;
+  seoLabel?: string;
+  interactionEvent?: string;
+  trigger: string;
+  updatedAt: string;
+} | null;
+
 export class SpatialEventBus {
   private teardownCallbacks: Array<() => void> = [];
   private activeChamberState: ActiveChamberState = null;
+  private portalIntent: PortalIntent = null;
 
   constructor(
     private emit: SpatialEventEmitter,
@@ -47,17 +58,37 @@ export class SpatialEventBus {
 
   triggerInteraction(nodeId: string, trigger = 'spatial-interaction'): ActiveChamberState {
     const content = getSpatialContent(nodeId);
+    const updatedAt = new Date().toISOString();
     this.activeChamberState = {
       nodeId,
       content,
-      updatedAt: new Date().toISOString(),
+      updatedAt,
       trigger,
     };
+    if (content) {
+      this.portalIntent = {
+        nodeId,
+        chamber: content.chamber,
+        route: content.route,
+        seoLabel: content.seoLabel,
+        interactionEvent: content.interactionEvent,
+        trigger,
+        updatedAt,
+      };
+    }
     return this.activeChamberState;
   }
 
   getActiveChamberState(): ActiveChamberState {
     return this.activeChamberState;
+  }
+
+  getPortalIntent(): PortalIntent {
+    return this.portalIntent;
+  }
+
+  clearPortalIntent(): void {
+    this.portalIntent = null;
   }
 
   destroy(): void {

@@ -15048,6 +15048,13 @@ var If = class {
 		}
 		return !1;
 	}
+	setPortalIntent(e) {
+		if (!e) {
+			delete this.host.dataset.portalIntent, delete this.host.dataset.portalRoute, delete this.host.dataset.portalNode, this.liveRegion && this.host.dataset.lastEvent && (this.liveRegion.textContent = `Portal intent cleared. Last event: ${this.host.dataset.lastEvent}`);
+			return;
+		}
+		this.host.dataset.portalIntent = e.chamber || e.seoLabel || e.nodeId || "unknown", e.route ? this.host.dataset.portalRoute = e.route : delete this.host.dataset.portalRoute, e.nodeId && (this.host.dataset.portalNode = e.nodeId), this.liveRegion && (this.liveRegion.textContent = `Portal intent armed: ${this.host.dataset.portalIntent}`);
+	}
 	setActiveGear(e) {
 		this.gears.forEach((t) => {
 			t.active = t.id === e, t.group.userData.active = t.active;
@@ -15851,7 +15858,7 @@ var If = class {
 	}
 }, Vf = class {
 	constructor(e, t) {
-		this.emit = e, this.budget = t, this.teardownCallbacks = [], this.activeChamberState = null;
+		this.emit = e, this.budget = t, this.teardownCallbacks = [], this.activeChamberState = null, this.portalIntent = null;
 	}
 	init() {
 		this.bindWindowEvent("liquidmemory:archive-signal", "library.archive_signal"), this.bindWindowEvent("liquidmemory:memory-echo", "memory.echo");
@@ -15871,16 +15878,30 @@ var If = class {
 		});
 	}
 	triggerInteraction(e, t = "spatial-interaction") {
-		let n = Ff(e);
+		let n = Ff(e), r = (/* @__PURE__ */ new Date()).toISOString();
 		return this.activeChamberState = {
 			nodeId: e,
 			content: n,
-			updatedAt: (/* @__PURE__ */ new Date()).toISOString(),
+			updatedAt: r,
 			trigger: t
-		}, this.activeChamberState;
+		}, n && (this.portalIntent = {
+			nodeId: e,
+			chamber: n.chamber,
+			route: n.route,
+			seoLabel: n.seoLabel,
+			interactionEvent: n.interactionEvent,
+			trigger: t,
+			updatedAt: r
+		}), this.activeChamberState;
 	}
 	getActiveChamberState() {
 		return this.activeChamberState;
+	}
+	getPortalIntent() {
+		return this.portalIntent;
+	}
+	clearPortalIntent() {
+		this.portalIntent = null;
 	}
 	destroy() {
 		this.teardownCallbacks.forEach((e) => e()), this.teardownCallbacks = [];
@@ -15995,18 +16016,27 @@ function np() {
 	let o = new i(`${Uf}_state`, `${Uf}_event_log`), s = new r(o.rehydrate() || Xf());
 	new a().init(t);
 	let c = document.getElementById("spatial-canvas"), l = document.getElementById("spatial-live-region"), u = null, d = null;
-	function f(e) {
-		u?.focusGear(e), u?.setActiveGear(e), localStorage.setItem(Gf, e);
+	function f() {
+		let e = d?.getPortalIntent() || null;
+		u?.setPortalIntent(e ? {
+			chamber: e.chamber,
+			route: e.route,
+			seoLabel: e.seoLabel,
+			nodeId: e.nodeId
+		} : null);
 	}
 	function p(e) {
+		u?.focusGear(e), u?.setActiveGear(e), localStorage.setItem(Gf, e);
+	}
+	function m(e) {
 		let n = Yf[e], r = { ...n.payload };
 		if (n.eventType === "milestone.level_up") {
 			let e = s.getCurrentState().player.level || 1;
 			r.newLevel = e + 1, r.xp = e * 150;
 		}
-		localStorage.setItem(Gf, e), t.emit(Zf(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => f(e), 90);
+		localStorage.setItem(Gf, e), t.emit(Zf(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => p(e), 90);
 	}
-	u = c ? new Bf(c, l, p) : null, d = new Vf((e, n = {}, r) => t.emit(Zf(e, n, r)), {
+	u = c ? new Bf(c, l, m) : null, d = new Vf((e, n = {}, r) => t.emit(Zf(e, n, r)), {
 		getNodeCount: () => u?.getNodeCount() || 0,
 		maxNodes: 48
 	}), d.init(), o.getEventLog().slice(-48).forEach((e) => u?.handle(e)), t.subscribe((e) => {
@@ -16020,7 +16050,7 @@ function np() {
 		emit: (e, n = {}, r) => t.emit(Zf(e, n, r)),
 		getState: () => s.getCurrentState(),
 		getEngineVersion: () => Hf,
-		levelUp: () => p("blueprint"),
+		levelUp: () => m("blueprint"),
 		gain: (e = "trace", n = 10) => t.emit(Zf("economic.resource_gained", {
 			resource: e,
 			amount: n
@@ -16030,13 +16060,26 @@ function np() {
 			amount: n
 		})),
 		focusSpatial: () => u?.focusNext(),
-		focusGear: f,
-		triggerGear: p,
+		focusGear: p,
+		triggerGear: m,
 		getSpatialNodeCount: () => u?.getNodeCount() || 0,
-		emitArchiveSignal: (e = {}) => d?.emitArchiveSignal(e) || !1,
-		emitMemoryEcho: (e = {}) => d?.emitMemoryEcho(e) || !1,
-		triggerSpatialInteraction: (e, t) => d?.triggerInteraction(e, t),
+		emitArchiveSignal: (e = {}) => {
+			let t = d?.emitArchiveSignal(e) || !1;
+			return f(), t;
+		},
+		emitMemoryEcho: (e = {}) => {
+			let t = d?.emitMemoryEcho(e) || !1;
+			return f(), t;
+		},
+		triggerSpatialInteraction: (e, t) => {
+			let n = d?.triggerInteraction(e, t);
+			return f(), n;
+		},
 		getActiveChamberState: () => d?.getActiveChamberState() || null,
+		getPortalIntent: () => d?.getPortalIntent() || null,
+		clearPortalIntent: () => {
+			d?.clearPortalIntent(), f();
+		},
 		getSpatialGearCount: () => u?.getGearCount() || 0,
 		getSpatialGaugeCount: () => u?.getGaugeCount() || 0,
 		getResponsiveMode: () => u?.getResponsiveMode?.() || "unknown",
@@ -16049,8 +16092,8 @@ function np() {
 	}, window.LiquidMemorySpatial = u, window.setTimeout(() => {
 		document.body.classList.add("liquid-ready"), u?.getGearCount() === 5 && u?.getGaugeCount() >= 4 && u?.isWorkstationModelLoaded?.() && $f();
 	}, 250);
-	let m = localStorage.getItem(Gf) || "games";
-	Yf[m] && window.setTimeout(() => f(m), 160), t.emit(Zf("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(Zf("system.heartbeat", { path: location.pathname })), 3e4);
+	let h = localStorage.getItem(Gf) || "games";
+	Yf[h] && window.setTimeout(() => p(h), 160), t.emit(Zf("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(Zf("system.heartbeat", { path: location.pathname })), 3e4);
 }
 document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", np) : np();
 //#endregion

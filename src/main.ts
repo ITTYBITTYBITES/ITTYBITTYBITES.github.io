@@ -108,6 +108,16 @@ function initKernel() {
   let spatial: SpatialRenderer | null = null;
   let spatialEvents: SpatialEventBus | null = null;
 
+  function syncPortalIntent(): void {
+    const intent = spatialEvents?.getPortalIntent() || null;
+    spatial?.setPortalIntent(intent ? {
+      chamber: intent.chamber,
+      route: intent.route,
+      seoLabel: intent.seoLabel,
+      nodeId: intent.nodeId,
+    } : null);
+  }
+
   function focusGear(gear: GearId): void {
     spatial?.focusGear(gear);
     spatial?.setActiveGear(gear);
@@ -164,10 +174,27 @@ function initKernel() {
     focusGear,
     triggerGear,
     getSpatialNodeCount: () => spatial?.getNodeCount() || 0,
-    emitArchiveSignal: (payload: Record<string, any> = {}) => spatialEvents?.emitArchiveSignal(payload) || false,
-    emitMemoryEcho: (payload: Record<string, any> = {}) => spatialEvents?.emitMemoryEcho(payload) || false,
-    triggerSpatialInteraction: (nodeId: string, trigger?: string) => spatialEvents?.triggerInteraction(nodeId, trigger),
+    emitArchiveSignal: (payload: Record<string, any> = {}) => {
+      const emitted = spatialEvents?.emitArchiveSignal(payload) || false;
+      syncPortalIntent();
+      return emitted;
+    },
+    emitMemoryEcho: (payload: Record<string, any> = {}) => {
+      const emitted = spatialEvents?.emitMemoryEcho(payload) || false;
+      syncPortalIntent();
+      return emitted;
+    },
+    triggerSpatialInteraction: (nodeId: string, trigger?: string) => {
+      const state = spatialEvents?.triggerInteraction(nodeId, trigger);
+      syncPortalIntent();
+      return state;
+    },
     getActiveChamberState: () => spatialEvents?.getActiveChamberState() || null,
+    getPortalIntent: () => spatialEvents?.getPortalIntent() || null,
+    clearPortalIntent: () => {
+      spatialEvents?.clearPortalIntent();
+      syncPortalIntent();
+    },
     getSpatialGearCount: () => spatial?.getGearCount() || 0,
     getSpatialGaugeCount: () => spatial?.getGaugeCount() || 0,
     getResponsiveMode: () => spatial?.getResponsiveMode?.() || 'unknown',
