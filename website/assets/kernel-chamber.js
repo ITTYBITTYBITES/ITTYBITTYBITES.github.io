@@ -24,31 +24,46 @@ function r(e, t) {
     <p style="margin-top:8px;"><a href="${t}" style="color:#00ffff;text-decoration:none;">Return to Holographic Hub</a></p>
   `, document.body && (document.body.insertBefore(n, document.body.firstChild), document.body.appendChild(r));
 }
-function i() {
-	let i = document.querySelector("main[data-gear-id], body[data-gear-id], main[data-kernel-event]") || document.body, a = i?.getAttribute("data-gear-id") || "games", o = i?.getAttribute("data-kernel-event") || "library.game_opened", s = window.location.pathname, c = s.split("/").pop()?.replace(".html", "") || "", l = t.lookup(c) || t.lookup(o) || t.lookup(a), u = l?.title || (a === "archive" ? "Old Memory Vault" : "Arcade Genesis"), d = n();
-	(l?.isLegacyStatic || s.includes("/articles/") || document.body?.classList.contains("legacy-article")) && r(u, d), e.markPortalArrival(u);
-	let f = (t) => {
-		e.storeChamberDeparture(u, o, s, t);
+function i(e, n) {
+	if (document.getElementById("lm-cross-pollination-banner")) return;
+	let r = t.getAllNodes(), i;
+	if (i = e?.category === "legacy" || window.location.pathname.includes("/articles/") ? r.find((e) => e.nodeId === "stroop-calibrator") || r.find((e) => e.category === "arcade") : r.find((e) => e.nodeId === "witness-chamber") || r.find((e) => e.category === "flagship"), !i || i.nodeId === e?.nodeId) return;
+	let a = `${n.replace("index.html", "")}${i.route?.replace("./", "") || "index.html"}`, o = document.createElement("aside");
+	o.id = "lm-cross-pollination-banner", o.style.cssText = "position:fixed;bottom:20px;right:20px;z-index:99999;background:linear-gradient(135deg,#001628,#34135c);border:1px solid #00ffff;border-radius:16px;padding:16px 20px;box-shadow:0 10px 30px rgba(0,0,0,0.8),0 0 20px rgba(0,255,255,0.3);max-width:320px;color:#bfffff;font-family:monospace;", o.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+      <span style="font-size:10px;color:#facc15;font-weight:bold;letter-spacing:1px;">RECOMMENDED CHAMBER</span>
+      <button onclick="this.closest('#lm-cross-pollination-banner').remove()" style="background:none;border:none;color:#bfffff;cursor:pointer;font-weight:bold;font-size:14px;">&times;</button>
+    </div>
+    <strong style="display:block;font-size:13px;color:#fff;margin-bottom:6px;">${i.title}</strong>
+    <p style="font-size:11px;color:#aeb8d6;margin-bottom:12px;">${i.description || "Recommended next step in ecosystem."}</p>
+    <a href="${a}" style="display:block;text-align:center;background:#00ffff;color:#001b1f;padding:8px;border-radius:8px;text-decoration:none;font-size:11px;font-weight:900;text-transform:uppercase;">ENGAGE PIPELINE &rarr;</a>
+  `, document.body && document.body.appendChild(o);
+}
+function a() {
+	let a = document.querySelector("main[data-gear-id], body[data-gear-id], main[data-kernel-event]") || document.body, o = a?.getAttribute("data-gear-id") || "games", s = a?.getAttribute("data-kernel-event") || "library.game_opened", c = window.location.pathname, l = c.split("/").pop()?.replace(".html", "") || "", u = t.lookup(l) || t.lookup(s) || t.lookup(o), d = u?.title || (o === "archive" ? "Old Memory Vault" : "Arcade Genesis"), f = n();
+	(u?.isLegacyStatic || c.includes("/articles/") || document.body?.classList.contains("legacy-article")) && r(d, f), i(u, f), e.markPortalArrival(d);
+	let p = (t) => {
+		e.storeChamberDeparture(d, s, c, t);
 	};
-	window.addEventListener("pagehide", () => f("pagehide"), { passive: !0 }), document.addEventListener("visibilitychange", () => {
-		document.visibilityState === "hidden" && f("visibility-hidden");
+	window.addEventListener("pagehide", () => p("pagehide"), { passive: !0 }), document.addEventListener("visibilitychange", () => {
+		document.visibilityState === "hidden" && p("visibility-hidden");
 	}, { passive: !0 });
-	let p = null, m = 0, h = 0, g = 0, _ = 0;
+	let m = null, h = 0, g = 0, _ = 0, v = 0;
 	document.addEventListener("pointerdown", (e) => {
-		p !== null || e.button > 0 || e.pointerType !== "touch" || (p = e.pointerId, m = e.clientX, h = e.clientY, g = 0, _ = 0);
+		m !== null || e.button > 0 || e.pointerType !== "touch" || (m = e.pointerId, h = e.clientX, g = e.clientY, _ = 0, v = 0);
 	}, { passive: !0 }), document.addEventListener("pointermove", (e) => {
-		p === e.pointerId && (g = e.clientX - m, _ = e.clientY - h);
+		m === e.pointerId && (_ = e.clientX - h, v = e.clientY - g);
 	}, { passive: !0 }), document.addEventListener("pointerup", (e) => {
-		if (p !== e.pointerId) return;
-		let t = Math.abs(g), n = Math.abs(_);
-		p = null, t >= 70 && t > n * 1.2 && (f("portal-swipe-exit"), window.location.assign(d));
+		if (m !== e.pointerId) return;
+		let t = Math.abs(_), n = Math.abs(v);
+		m = null, t >= 70 && t > n * 1.2 && (p("portal-swipe-exit"), window.location.assign(f));
 	}, { passive: !0 }), document.addEventListener("pointercancel", () => {
-		p = null;
+		m = null;
 	}, { passive: !0 }), window.LiquidMemoryChamber = {
 		version: "1.0.0",
 		telemetry: e,
 		registry: t
 	};
 }
-document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", i) : i();
+document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", a) : a();
 //#endregion

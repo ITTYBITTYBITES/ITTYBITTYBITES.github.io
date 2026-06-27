@@ -1,3 +1,7 @@
 User-agent: *
 Allow: /
+Allow: /website/2-second-witness.html
+Allow: /website/games/stroop-calibrator/index.html
+Allow: /website/arcade.html
+Allow: /website/witness/index.html
 Sitemap: https://ittybittybites.github.io/website/sitemap.xml

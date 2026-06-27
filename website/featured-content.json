@@ -1,0 +1,27 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-06-27T20:00:00.000Z",
+  "highVelocityNodes": [
+    {
+      "nodeId": "two-second-witness-chamber",
+      "title": "2 Second Witness",
+      "category": "flagship",
+      "route": "./2-second-witness.html",
+      "signalWeight": 98.5
+    },
+    {
+      "nodeId": "stroop-calibrator",
+      "title": "Stroop Interference Calibrator",
+      "category": "arcade",
+      "route": "./games/stroop-calibrator/index.html",
+      "signalWeight": 89.2
+    },
+    {
+      "nodeId": "arcade-main",
+      "title": "Arcade Genesis",
+      "category": "arcade",
+      "route": "./arcade.html",
+      "signalWeight": 84.0
+    }
+  ]
+}

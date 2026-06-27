@@ -4,10 +4,11 @@
  * Standardized arrival script bundled into kernel-chamber.js.
  * Handles portal arrival marking, chamber departure markers,
  * gesture-driven swipe-to-exit portal navigation back to the Hub,
- * and Legacy-Bridge shell wrapping for older static content.
+ * Legacy-Bridge shell wrapping for older static content,
+ * and Cross-Pollination recommendation banners.
  */
 import { LiquidMemoryTelemetry } from './core/telemetry/LiquidMemoryTelemetry';
-import { Registry } from './registry/Registry';
+import { Registry, type RegistryNode } from './registry/Registry';
 
 function resolveHomeHref(): string {
   const navHome = document.querySelector('nav a[href*="index.html"]')?.getAttribute('href');
@@ -50,12 +51,44 @@ function injectLegacyBridge(title: string, homeHref: string): void {
   }
 }
 
+function injectCrossPollinationBanner(currentNode: RegistryNode | null, homeHref: string): void {
+  if (document.getElementById('lm-cross-pollination-banner')) return;
+  const allNodes = Registry.getAllNodes();
+  let candidate: RegistryNode | undefined;
+
+  if (currentNode?.category === 'legacy' || window.location.pathname.includes('/articles/')) {
+    candidate = allNodes.find((n) => n.nodeId === 'stroop-calibrator') || allNodes.find((n) => n.category === 'arcade');
+  } else {
+    candidate = allNodes.find((n) => n.nodeId === 'witness-chamber') || allNodes.find((n) => n.category === 'flagship');
+  }
+  if (!candidate || candidate.nodeId === currentNode?.nodeId) return;
+
+  const basePath = homeHref.replace('index.html', '');
+  const targetRoute = candidate.route?.replace('./', '') || 'index.html';
+  const fullHref = `${basePath}${targetRoute}`;
+
+  const banner = document.createElement('aside');
+  banner.id = 'lm-cross-pollination-banner';
+  banner.style.cssText =
+    'position:fixed;bottom:20px;right:20px;z-index:99999;background:linear-gradient(135deg,#001628,#34135c);border:1px solid #00ffff;border-radius:16px;padding:16px 20px;box-shadow:0 10px 30px rgba(0,0,0,0.8),0 0 20px rgba(0,255,255,0.3);max-width:320px;color:#bfffff;font-family:monospace;';
+  banner.innerHTML = `
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;">
+      <span style="font-size:10px;color:#facc15;font-weight:bold;letter-spacing:1px;">RECOMMENDED CHAMBER</span>
+      <button onclick="this.closest('#lm-cross-pollination-banner').remove()" style="background:none;border:none;color:#bfffff;cursor:pointer;font-weight:bold;font-size:14px;">&times;</button>
+    </div>
+    <strong style="display:block;font-size:13px;color:#fff;margin-bottom:6px;">${candidate.title}</strong>
+    <p style="font-size:11px;color:#aeb8d6;margin-bottom:12px;">${candidate.description || 'Recommended next step in ecosystem.'}</p>
+    <a href="${fullHref}" style="display:block;text-align:center;background:#00ffff;color:#001b1f;padding:8px;border-radius:8px;text-decoration:none;font-size:11px;font-weight:900;text-transform:uppercase;">ENGAGE PIPELINE &rarr;</a>
+  `;
+
+  if (document.body) document.body.appendChild(banner);
+}
+
 function initChamberShell(): void {
   const host = document.querySelector('main[data-gear-id], body[data-gear-id], main[data-kernel-event]') || document.body;
   const gearId = host?.getAttribute('data-gear-id') || 'games';
   const kernelEvent = host?.getAttribute('data-kernel-event') || 'library.game_opened';
-  
-  // Resolve registry node
+
   const pathname = window.location.pathname;
   const slug = pathname.split('/').pop()?.replace('.html', '') || '';
   const node = Registry.lookup(slug) || Registry.lookup(kernelEvent) || Registry.lookup(gearId);
@@ -63,15 +96,15 @@ function initChamberShell(): void {
 
   const homeHref = resolveHomeHref();
 
-  // If this is legacy static content or an article page, wrap it in Legacy Bridge
   if (node?.isLegacyStatic || pathname.includes('/articles/') || document.body?.classList.contains('legacy-article')) {
     injectLegacyBridge(chamberTitle, homeHref);
   }
 
-  // Mark portal arrival
+  // Cross pollination
+  injectCrossPollinationBanner(node, homeHref);
+
   LiquidMemoryTelemetry.markPortalArrival(chamberTitle);
 
-  // Bind departure telemetry
   const storeDeparture = (reason: string) => {
     LiquidMemoryTelemetry.storeChamberDeparture(chamberTitle, kernelEvent, pathname, reason);
   };
@@ -81,7 +114,6 @@ function initChamberShell(): void {
     if (document.visibilityState === 'hidden') storeDeparture('visibility-hidden');
   }, { passive: true });
 
-  // Bind swipe-to-exit gesture
   let pointerId: number | null = null;
   let startX = 0;
   let startY = 0;
