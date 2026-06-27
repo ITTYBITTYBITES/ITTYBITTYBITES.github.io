@@ -1,8 +1,8 @@
 /**
- * Central Registry v1.0
+ * Central Registry v1.0 (Batch-Processor Model)
  *
- * Definitive Registry-Driven architecture for Liquid Memory nodes, chambers,
- * dynamic routing, and legacy static content bridging.
+ * Definitive Registry-Driven architecture mapping 100% of ecosystem nodes,
+ * chambers, 26 arcade games, and 20 legacy publications.
  */
 
 export type RegistryCategory = 'arcade' | 'flagship' | 'archive' | 'community' | 'system' | 'legacy';
@@ -78,20 +78,6 @@ export class Registry {
       },
     ],
     [
-      'stroop-calibrator',
-      {
-        nodeId: 'stroop-calibrator',
-        gearId: 'games',
-        kernelEvent: 'library.game_opened',
-        route: './games/stroop-calibrator/index.html',
-        title: 'Stroop Interference Calibrator',
-        category: 'arcade',
-        description: 'Rapid 2SW cognitive interference stream.',
-        seoLabel: 'Liquid Memory Stroop Calibrator',
-        payload: { resource: 'trace', amount: 25, chamber: 'Arcade Genesis' },
-      },
-    ],
-    [
       'legacy-static-content',
       {
         nodeId: 'legacy-static-content',
@@ -155,6 +141,7 @@ export class Registry {
     ['two-second-witness', 'two-second-witness-chamber'],
     ['2-second-witness', 'two-second-witness-chamber'],
     ['witness.chamber_opened', 'two-second-witness-chamber'],
+    ['witness', 'witness-chamber'],
     ['archive', 'legacy-static-content'],
     ['library.archive_opened', 'legacy-static-content'],
     ['old memory vault', 'legacy-static-content'],
@@ -167,7 +154,7 @@ export class Registry {
   ]);
 
   static {
-    // Populate legacy static content articles
+    // 1. Automated Archive Indexing (20 articles)
     const articles = [
       ['behavioral-economics', 'Behavioral Economics'],
       ['best-brain-games', 'Best Brain Games'],
@@ -205,6 +192,52 @@ export class Registry {
       });
       this.aliases.set(slug, id);
       this.aliases.set(`${slug}.html`, id);
+      this.aliases.set(title.toLowerCase(), id);
+    });
+
+    // 2. Arcade Mass-Migration (26 games)
+    const games = [
+      ['cyber-vector', '3D Cyber Vector Grid Hover-Racer'],
+      ['neon-polygon', '3D Neon Geometric Defender'],
+      ['quantum-breakout', '3D Particle Breakout Engine'],
+      ['attentional-blink', 'Attentional Blink Assessor'],
+      ['cosmic-tunnel', 'Cosmic Tunnel 3D'],
+      ['hover-drone', 'Cyber Flappy Hover-Drone'],
+      ['cyber-snake', 'Cyber Snake 2026'],
+      ['cyber-mines', 'Cyber Sweeper Sentinel'],
+      ['grid-delver', 'Grid Delver: 1-Minute Micro-Rogue'],
+      ['metronomic-rhythm', 'METRONOMIC RHYTHM ANCHOR'],
+      ['nback-sentinel', 'N-BACK SENTINEL LOG'],
+      ['neon-pong', 'Neon Cyber Pong 1v1'],
+      ['orbital-sandbox', 'Orbital Gravitational Physics Sandbox'],
+      ['quantum-sentinel', 'Quantum Sentinel: Fast Spatial Reflex'],
+      ['raycasted-doom', 'Raycasted 3D Doom Labyrinth'],
+      ['gravity-slingshot', 'Relivistic Space Slingshot'],
+      ['retro-breakout', 'Retro Cyber Neon Breakout'],
+      ['saccadic-target', 'SACCADIC TARGET ACQUISITION'],
+      ['shifting-selector', 'SHIFTING ATTENTIONAL ATTRIBUTE SELECTOR'],
+      ['signal-detection', 'SIGNAL DETECTION FILTER'],
+      ['space-asteroids', 'Space Asteroids Retro Vector'],
+      ['spatial-matrix', 'SPATIAL MATRIX EXPANSION'],
+      ['stroop-calibrator', 'Stroop Interference Calibrator'],
+      ['tachistoscope', 'TACHISTOSCOPE RECOGNITION MATRIX'],
+      ['tachyon-racer', 'Tachyon Hyper-Speed Interceptor'],
+      ['memory-churn', 'WORKING MEMORY CALIBRATION CHURN'],
+    ];
+
+    games.forEach(([slug, title]) => {
+      const id = `arcade-game-${slug}`;
+      this.nodes.set(id, {
+        nodeId: id,
+        gearId: 'games',
+        kernelEvent: 'library.game_opened',
+        route: `./games/${slug}/index.html`,
+        title,
+        category: 'arcade',
+        description: `Arcade chamber: ${title}`,
+        payload: { resource: 'trace', amount: 25, chamber: 'Arcade Genesis' },
+      });
+      this.aliases.set(slug, id);
       this.aliases.set(title.toLowerCase(), id);
     });
   }
