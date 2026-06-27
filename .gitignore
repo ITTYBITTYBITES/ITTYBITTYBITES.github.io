@@ -38,3 +38,4 @@ private/
 release_certification_report.json
 *_audit_private.*
 *_local_report.*
+.cache/

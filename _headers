@@ -1,0 +1,20 @@
+/index.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/404.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/website/index.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/website/arcade.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/website/library.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/website/2-second-witness.html
+  Cache-Control: no-cache, no-store, must-revalidate
+
+/website/assets/*
+  Cache-Control: max-age=31536000
