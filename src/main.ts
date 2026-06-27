@@ -9,11 +9,23 @@ const LEGACY_STORAGE_NAMESPACE = 'ibb_home_kernel';
 const BLUEPRINT_GEAR_KEY = 'lm_blueprint_nav_gear';
 const HOME_ENGINE_VERSION_KEY = `${STORAGE_NAMESPACE}_engine_version`;
 const LEGACY_SHELL_STYLE_ID = 'lm-legacy-shell-purge';
+const PORTAL_ARRIVAL_KEY = 'lm_portal_arrival';
+const PORTAL_TELEMETRY_KEY = `${STORAGE_NAMESPACE}_portal_telemetry`;
 let uiSequence = 0;
 
 type GearIntent = {
   eventType: string;
   payload: Record<string, any>;
+};
+
+type PortalTelemetryIntent = {
+  nodeId: string;
+  chamber: string;
+  route?: string;
+  seoLabel?: string;
+  interactionEvent?: string;
+  trigger: string;
+  updatedAt: string;
 };
 
 const GEAR_INTENTS: Record<GearId, GearIntent> = {
@@ -78,6 +90,44 @@ function markHomeEngineVersion(): void {
   }
 }
 
+function stagePortalArrival(intent: PortalTelemetryIntent, confirmedAt: string): void {
+  try {
+    sessionStorage.setItem(PORTAL_ARRIVAL_KEY, JSON.stringify({
+      type: 'portal_arrival',
+      nodeId: intent.nodeId,
+      chamber: intent.chamber,
+      route: intent.route,
+      seoLabel: intent.seoLabel,
+      interactionEvent: intent.interactionEvent,
+      trigger: intent.trigger,
+      confirmedAt,
+    }));
+  } catch {
+    // Session storage is best-effort chamber context only.
+  }
+}
+
+function logPortalTelemetry(intent: PortalTelemetryIntent, confirmedAt: string): void {
+  try {
+    const entry = {
+      type: 'portal_confirmed',
+      nodeId: intent.nodeId,
+      chamber: intent.chamber,
+      route: intent.route,
+      seoLabel: intent.seoLabel,
+      interactionEvent: intent.interactionEvent,
+      trigger: intent.trigger,
+      confirmedAt,
+    };
+    const existing = JSON.parse(localStorage.getItem(PORTAL_TELEMETRY_KEY) || '[]');
+    const history = Array.isArray(existing) ? existing : [];
+    history.push(entry);
+    localStorage.setItem(PORTAL_TELEMETRY_KEY, JSON.stringify(history.slice(-25)));
+  } catch {
+    // Telemetry is intentionally non-blocking and never emits Kernel events.
+  }
+}
+
 function migrateLegacyMemoryState(): void {
   const pairs = [
     [`${LEGACY_STORAGE_NAMESPACE}_state`, `${STORAGE_NAMESPACE}_state`],
@@ -138,10 +188,13 @@ function initKernel() {
     const route = resolvePortalRoute(intent.route);
     if (!route) return false;
 
+    const confirmedAt = new Date().toISOString();
     if (spatialHost) {
       spatialHost.dataset.portalConfirmed = intent.chamber || intent.seoLabel || intent.nodeId || 'unknown';
-      spatialHost.dataset.portalConfirmedAt = new Date().toISOString();
+      spatialHost.dataset.portalConfirmedAt = confirmedAt;
     }
+    stagePortalArrival(intent, confirmedAt);
+    logPortalTelemetry(intent, confirmedAt);
     window.location.assign(route);
     return true;
   }

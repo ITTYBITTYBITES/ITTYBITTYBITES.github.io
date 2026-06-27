@@ -263,6 +263,31 @@
     games.filter(g => active === 'ALL' || g.category === active).forEach(g => grid.appendChild(card(g)));
   }
 
+
+  function markPortalArrival(){
+    try {
+      const raw = sessionStorage.getItem('lm_portal_arrival');
+      if (!raw) return;
+      const arrival = JSON.parse(raw);
+      if (arrival && arrival.chamber === 'Arcade Genesis') {
+        document.documentElement.dataset.portalArrival = 'arcade-genesis';
+        if (document.body) document.body.dataset.portalArrival = 'arcade-genesis';
+        console.info('[LiquidMemory] Arcade Genesis portal arrival', arrival);
+      }
+      sessionStorage.removeItem('lm_portal_arrival');
+    } catch (error) {
+      console.warn('[LiquidMemory] Portal arrival marker ignored', error);
+    }
+  }
+
+  function detectPortalArrival(){
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', markPortalArrival, { once: true });
+    } else {
+      markPortalArrival();
+    }
+  }
+
   window.addEventListener('message', (event) => {
     const data = event.data || {};
     if (data.type === 'ARCADE_TRIGGER_AD') showAdBreak(event.source, data.adType);
@@ -280,7 +305,8 @@
     const hashId = decodeURIComponent((location.hash || '').replace('#play-', ''));
     const initial = games.find(g => g.id === hashId);
     if (initial) openGame(initial);
-  }).catch(()=>{grid.innerHTML = '<article class="ibb-card"><h3>Arcade registry unavailable</h3><p>Reload the page or browse the games directory directly.</p></article>';});
+    detectPortalArrival();
+  }).catch(()=>{grid.innerHTML = '<article class="ibb-card"><h3>Arcade registry unavailable</h3><p>Reload the page or browse the games directory directly.</p></article>'; detectPortalArrival();});
   filter.addEventListener('change', render);
 })();
 </script>

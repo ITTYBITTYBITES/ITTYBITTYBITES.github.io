@@ -15952,7 +15952,7 @@ var If = class {
 	emitIfBudgetAllows(e, t = {}) {
 		return this.budget.getNodeCount() >= this.budget.maxNodes ? !1 : (this.triggerInteraction(e, t.signal || "spatial-event-bus"), this.emit(e, t, "spatial-event-bus"));
 	}
-}, Uf = "1.2.9-expansion", Wf = "lm_home_kernel", Gf = "ibb_home_kernel", Kf = "lm_blueprint_nav_gear", qf = `${Wf}_engine_version`, Jf = "lm-legacy-shell-purge", Yf = 0, Xf = {
+}, Uf = "1.2.9-expansion", Wf = "lm_home_kernel", Gf = "ibb_home_kernel", Kf = "lm_blueprint_nav_gear", qf = `${Wf}_engine_version`, Jf = "lm-legacy-shell-purge", Yf = "lm_portal_arrival", Xf = `${Wf}_portal_telemetry`, Zf = 0, Qf = {
 	games: {
 		eventType: "library.game_opened",
 		payload: {
@@ -15990,7 +15990,7 @@ var If = class {
 		}
 	}
 };
-function Zf() {
+function $f() {
 	return {
 		...t,
 		timestamp: (/* @__PURE__ */ new Date()).toISOString(),
@@ -16018,10 +16018,10 @@ function Zf() {
 		}
 	};
 }
-function Qf(e, t = {}, n = "liquid-memory-homepage") {
+function ep(e, t = {}, n = "liquid-memory-homepage") {
 	return {
 		eventId: crypto.randomUUID(),
-		sequenceId: ++Yf,
+		sequenceId: ++Zf,
 		timestamp: (/* @__PURE__ */ new Date()).toISOString(),
 		type: e,
 		payload: t,
@@ -16029,27 +16029,56 @@ function Qf(e, t = {}, n = "liquid-memory-homepage") {
 		metadata: { version: "1.0.0" }
 	};
 }
-function $f() {
+function tp() {
 	if (document.getElementById(Jf)) return;
 	let e = document.createElement("style");
 	e.id = Jf, e.textContent = "\n    div.box-link, div.parchment, .box-link, .parchment {\n      opacity: 0 !important;\n      pointer-events: none !important;\n      visibility: hidden !important;\n    }\n  ", document.head.appendChild(e);
 }
-function ep() {
+function np() {
 	document.querySelectorAll("div.box-link, div.parchment").forEach((e) => e.remove());
 }
-function tp() {
+function rp() {
 	localStorage.getItem(qf) !== "1.2.9-expansion" && localStorage.setItem(qf, Uf);
 }
-function np() {
+function ip(e, t) {
+	try {
+		sessionStorage.setItem(Yf, JSON.stringify({
+			type: "portal_arrival",
+			nodeId: e.nodeId,
+			chamber: e.chamber,
+			route: e.route,
+			seoLabel: e.seoLabel,
+			interactionEvent: e.interactionEvent,
+			trigger: e.trigger,
+			confirmedAt: t
+		}));
+	} catch {}
+}
+function ap(e, t) {
+	try {
+		let n = {
+			type: "portal_confirmed",
+			nodeId: e.nodeId,
+			chamber: e.chamber,
+			route: e.route,
+			seoLabel: e.seoLabel,
+			interactionEvent: e.interactionEvent,
+			trigger: e.trigger,
+			confirmedAt: t
+		}, r = JSON.parse(localStorage.getItem(Xf) || "[]"), i = Array.isArray(r) ? r : [];
+		i.push(n), localStorage.setItem(Xf, JSON.stringify(i.slice(-25)));
+	} catch {}
+}
+function op() {
 	[[`${Gf}_state`, `${Wf}_state`], [`${Gf}_event_log`, `${Wf}_event_log`]].forEach(([e, t]) => {
 		!localStorage.getItem(t) && localStorage.getItem(e) && localStorage.setItem(t, localStorage.getItem(e));
 	});
 }
-function rp() {
-	$f();
+function sp() {
+	tp();
 	let t = e.getInstance();
-	t.reset(), tp(), np();
-	let o = new i(`${Wf}_state`, `${Wf}_event_log`), s = new r(o.rehydrate() || Zf());
+	t.reset(), rp(), op();
+	let o = new i(`${Wf}_state`, `${Wf}_event_log`), s = new r(o.rehydrate() || $f());
 	new a().init(t);
 	let c = document.getElementById("spatial-canvas"), l = document.getElementById("spatial-live-region"), u = null, d = null, f = null;
 	function p(e) {
@@ -16074,20 +16103,22 @@ function rp() {
 		let e = d?.getPortalIntent() || null;
 		if (m(), !e?.route) return !1;
 		let t = p(e.route);
-		return t ? (c && (c.dataset.portalConfirmed = e.chamber || e.seoLabel || e.nodeId || "unknown", c.dataset.portalConfirmedAt = (/* @__PURE__ */ new Date()).toISOString()), window.location.assign(t), !0) : !1;
+		if (!t) return !1;
+		let n = (/* @__PURE__ */ new Date()).toISOString();
+		return c && (c.dataset.portalConfirmed = e.chamber || e.seoLabel || e.nodeId || "unknown", c.dataset.portalConfirmedAt = n), ip(e, n), ap(e, n), window.location.assign(t), !0;
 	}
 	function g(e) {
 		u?.focusGear(e), u?.setActiveGear(e), localStorage.setItem(Kf, e);
 	}
 	function _(e) {
-		let n = Xf[e], r = { ...n.payload };
+		let n = Qf[e], r = { ...n.payload };
 		if (n.eventType === "milestone.level_up") {
 			let e = s.getCurrentState().player.level || 1;
 			r.newLevel = e + 1, r.xp = e * 150;
 		}
-		localStorage.setItem(Kf, e), t.emit(Qf(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => g(e), 90);
+		localStorage.setItem(Kf, e), t.emit(ep(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => g(e), 90);
 	}
-	u = c ? new Bf(c, l, _) : null, d = new Hf((e, n = {}, r) => t.emit(Qf(e, n, r)), {
+	u = c ? new Bf(c, l, _) : null, d = new Hf((e, n = {}, r) => t.emit(ep(e, n, r)), {
 		getNodeCount: () => u?.getNodeCount() || 0,
 		maxNodes: 48
 	}), d.init(), c && u && (f = d.bindSwipeGesture(c, {
@@ -16106,15 +16137,15 @@ function rp() {
 		bus: t,
 		bridge: s,
 		version: Uf,
-		emit: (e, n = {}, r) => t.emit(Qf(e, n, r)),
+		emit: (e, n = {}, r) => t.emit(ep(e, n, r)),
 		getState: () => s.getCurrentState(),
 		getEngineVersion: () => Uf,
 		levelUp: () => _("blueprint"),
-		gain: (e = "trace", n = 10) => t.emit(Qf("economic.resource_gained", {
+		gain: (e = "trace", n = 10) => t.emit(ep("economic.resource_gained", {
 			resource: e,
 			amount: n
 		})),
-		spend: (e = "pearls", n = 60) => t.emit(Qf("economic.resource_spent", {
+		spend: (e = "pearls", n = 60) => t.emit(ep("economic.resource_spent", {
 			resource: e,
 			amount: n
 		})),
@@ -16153,10 +16184,10 @@ function rp() {
 			o.clear(), localStorage.removeItem(Kf), window.location.reload();
 		}
 	}, window.LiquidMemorySpatial = u, window.setTimeout(() => {
-		document.body.classList.add("liquid-ready"), u?.getGearCount() === 5 && u?.getGaugeCount() >= 4 && u?.isWorkstationModelLoaded?.() && ep();
+		document.body.classList.add("liquid-ready"), u?.getGearCount() === 5 && u?.getGaugeCount() >= 4 && u?.isWorkstationModelLoaded?.() && np();
 	}, 250);
 	let v = localStorage.getItem(Kf) || "games";
-	Xf[v] && window.setTimeout(() => g(v), 160), t.emit(Qf("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(Qf("system.heartbeat", { path: location.pathname })), 3e4);
+	Qf[v] && window.setTimeout(() => g(v), 160), t.emit(ep("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(ep("system.heartbeat", { path: location.pathname })), 3e4);
 }
-document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", rp) : rp();
+document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", sp) : sp();
 //#endregion
