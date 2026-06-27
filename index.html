@@ -5,27 +5,79 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="refresh" content="0; url=./website/index.html">
   <link rel="canonical" href="https://ittybittybites.github.io/website/index.html">
-  <title>Liquid Memory | Games, Arcade Experiments & 2 Second Witness</title>
-  <meta name="description" content="Liquid Memory is a gaming and entertainment hub for browser games, arcade experiments, creative prototypes, and the flagship 2 Second Witness cognitive training game.">
+  <title>Liquid Memory | Holographic Data-Hub</title>
+  <meta name="description" content="Liquid Memory is a Holographic Data-Hub for browser games, arcade experiments, creative prototypes, and the flagship 2 Second Witness cognitive training game.">
+  <meta name="theme-color" content="#000000">
   <style>
     :root { color-scheme: dark; }
-    body { margin:0; min-height:100vh; display:grid; place-items:center; background:radial-gradient(circle at 20% 20%, rgba(95,232,255,.2), transparent 28rem), radial-gradient(circle at 80% 15%, rgba(255,94,231,.16), transparent 26rem), #070915; color:#f7fbff; font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-    .card { width:min(92vw, 620px); border:1px solid rgba(128,154,255,.22); border-radius:28px; padding:36px; background:rgba(17,24,49,.74); box-shadow:0 24px 80px rgba(0,0,0,.42); text-align:center; }
-    .mark { width:54px; height:54px; display:grid; place-items:center; margin:0 auto 18px; border-radius:16px; background:linear-gradient(135deg,#5fe8ff,#ff5ee7); color:#050713; font-weight:1000; }
-    h1 { margin:0; font-size:clamp(32px,7vw,58px); line-height:.95; letter-spacing:-.05em; }
-    p { color:#aeb8d6; font-size:18px; }
-    a { display:inline-flex; align-items:center; justify-content:center; min-height:48px; padding:12px 18px; border-radius:16px; background:linear-gradient(135deg,#5fe8ff,#58ffbd); color:#061018; text-decoration:none; font-weight:950; text-transform:uppercase; letter-spacing:.08em; font-size:12px; }
+    * { box-sizing: border-box; }
+    html, body { width: 100%; min-height: 100%; margin: 0; }
+    body {
+      min-height: 100dvh;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background:
+        radial-gradient(circle at 50% 46%, rgba(0, 240, 255, .12), transparent 34rem),
+        linear-gradient(rgba(0, 240, 255, .045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 240, 255, .035) 1px, transparent 1px),
+        #000000;
+      background-size: auto, 42px 42px, 42px 42px, auto;
+      color: #a8ffff;
+      font-family: "Courier New", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background: repeating-linear-gradient(0deg, rgba(255,255,255,.026), rgba(255,255,255,.026) 1px, transparent 1px, transparent 4px);
+      mix-blend-mode: screen;
+      opacity: .42;
+    }
+    .entry-shell {
+      position: relative;
+      display: grid;
+      place-items: center;
+      gap: 14px;
+      text-align: center;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      opacity: .92;
+    }
+    .entry-orb {
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      border: 2px solid rgba(0, 240, 255, .76);
+      border-top-color: rgba(255, 0, 255, .74);
+      box-shadow: 0 0 22px rgba(0, 240, 255, .46), inset 0 0 22px rgba(0, 240, 255, .24);
+      animation: spin 1.15s linear infinite;
+    }
+    .entry-label {
+      color: #00f0ff;
+      font-size: clamp(11px, 2.4vw, 13px);
+      font-weight: 800;
+      text-shadow: 0 0 14px rgba(0, 240, 255, .72);
+    }
+    .entry-link {
+      color: rgba(168, 255, 255, .72);
+      font-size: 10px;
+      text-decoration: none;
+      letter-spacing: .14em;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    @media (prefers-reduced-motion: reduce) { .entry-orb { animation: none; } }
   </style>
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
   <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-6P6NPFW4FZ');</script>
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1566091161594729" crossorigin="anonymous"></script>
 </head>
 <body>
-  <main class="card">
-    <div class="mark">LM</div>
-    <h1>Liquid Memory</h1>
-    <p>Entering the games and entertainment hub.</p>
-    <a href="./website/index.html">Enter site</a>
+  <main class="entry-shell" aria-label="Liquid Memory Holographic Data-Hub redirect">
+    <div class="entry-orb" aria-hidden="true"></div>
+    <div class="entry-label">Liquid Memory Data-Hub</div>
+    <a class="entry-link" href="./website/index.html">Enter Holographic Hub</a>
   </main>
 </body>
 </html>
