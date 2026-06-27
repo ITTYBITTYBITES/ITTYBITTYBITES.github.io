@@ -257,6 +257,17 @@ function initKernel() {
     bus,
     bridge,
     version: ENGINE_VERSION,
+    navigate: (nodeId: string) => {
+      const node = Registry.lookup(nodeId);
+      if (!node?.route) return false;
+      const route = resolvePortalRoute(node.route);
+      if (!route) return false;
+      const confirmedAt = new Date().toISOString();
+      telemetry.stagePortalArrival({ nodeId, chamber: node.title, trigger: 'kernel-navigate' }, confirmedAt);
+      telemetry.logPortalConfirmed({ nodeId, chamber: node.title, trigger: 'kernel-navigate' }, confirmedAt);
+      window.location.assign(route);
+      return true;
+    },
     emit: (type: string, payload: Record<string, any> = {}, source?: string) => bus.emit(makeEvent(type, payload, source)),
     getState: () => bridge.getCurrentState(),
     getEngineVersion: () => ENGINE_VERSION,

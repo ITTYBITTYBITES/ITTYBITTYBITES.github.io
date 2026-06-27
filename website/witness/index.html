@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Two-Second Witness | Android App Portal</title>
+  <meta name="description" content="Official Android App landing page and interactive web demonstration for The 2-Second Witness rapid cognitive Stroop training game.">
+  <link rel="stylesheet" href="../assets/brand-system.css">
+  <script type="module" src="../assets/kernel-chamber.js?v=1.1.0"></script>
+</head>
+<body class="ibb-brand bg-slate-950 text-slate-50 min-h-screen flex flex-col antialiased" data-gear-id="games" data-kernel-event="witness.landing_opened">
+  <nav class="ibb-nav" aria-label="Primary navigation">
+    <div class="ibb-nav__inner">
+      <a class="ibb-logo" href="../index.html"><span class="ibb-logo__mark">LM</span><span>Liquid Memory<span class="ibb-logo__sub">android app portal</span></span></a>
+      <div class="ibb-nav__links"><a href="../index.html">Master Portal</a><a href="../arcade.html">Arcade</a><a href="../library.html">Library</a></div>
+    </div>
+  </nav>
+
+  <main class="ibb-main flex-1 max-w-[1100px] w-full mx-auto px-5 py-12 flex flex-col items-center justify-center text-center">
+    <span class="px-4 py-1 border border-amber-400 text-amber-400 text-xs font-bold tracking-[3px] uppercase rounded-full bg-amber-400/10 mb-6 font-mono">MOBILE COGNITIVE DIVISION</span>
+    <h1 class="text-4xl md:text-6xl font-black text-cyan-400 uppercase tracking-wider mb-4 drop-shadow-[0_0_30px_rgba(34,211,238,0.4)] font-display">TWO-SECOND WITNESS</h1>
+    <p class="text-slate-300 text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-body">Rapid-fire Stroop interference training engineered for Android. Train your neural override response. Identify truth under extreme cognitive pressure.</p>
+
+    <!-- App Demo Placeholder -->
+    <div class="w-full max-w-3xl aspect-[16/9] border-2 border-cyan-400/50 rounded-2xl bg-slate-900/80 shadow-[0_0_50px_rgba(0,255,255,0.15)] flex flex-col items-center justify-center relative overflow-hidden mb-10">
+      <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(34,211,238,0.1),transparent_70%)] pointer-events-none"></div>
+      <svg class="w-16 h-16 text-cyan-400 mb-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
+      <strong class="text-xl text-cyan-300 font-mono uppercase tracking-widest mb-2">Android App Interactive Harness Mounted</strong>
+      <p class="text-slate-400 text-sm max-w-md px-4 font-body">Interactive WebGL projection of the 60-world Stroop training simulation.</p>
+    </div>
+
+    <!-- Download CTA with Telemetry hook -->
+    <div class="flex flex-wrap gap-4 justify-center items-center">
+      <a id="btn-download-android" href="https://play.google.com/store/apps/details?id=com.ittybittybites.the2secondwitness" target="_blank" rel="noopener" class="px-8 py-5 bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-300 hover:to-yellow-400 text-slate-950 font-black text-sm tracking-[2px] uppercase rounded-xl shadow-[0_0_30px_rgba(251,191,36,0.4)] hover:scale-105 transition-all cursor-pointer font-mono inline-flex items-center gap-3">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993.0001.5511-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.2439 13.8533 7.8508 12 7.8508s-3.5902.3931-5.1367 1.0991L4.841 5.4469a.4161.4161 0 00-.5676-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396"></path></svg>
+        Download for Android
+      </a>
+      <a href="../arcade.html" class="px-8 py-5 bg-slate-900 border border-cyan-400/40 hover:border-cyan-400 text-cyan-300 font-bold text-sm tracking-[2px] uppercase rounded-xl transition-all font-mono">
+        Explore Web Arcade
+      </a>
+    </div>
+  </main>
+
+  <footer class="ibb-footer text-center py-8 border-t border-cyan-400/20 text-xs text-slate-500 font-mono"><p>TWO-SECOND WITNESS // MOBILE COGNITIVE DIVISION // LIQUID MEMORY</p></footer>
+  <script>
+    document.getElementById('btn-download-android')?.addEventListener('click', () => {
+      try {
+        if (window.LiquidMemory?.Telemetry) {
+          window.LiquidMemory.Telemetry.logPortalConfirmed?.({ nodeId: 'witness-android-dl', chamber: 'Two-Second Witness App', trigger: 'download-cta' }, new Date().toISOString());
+        }
+      } catch(e){}
+    });
+  </script>
+</body>
+</html>

@@ -16142,6 +16142,22 @@ function ap() {
 		bus: r,
 		bridge: u,
 		version: Gf,
+		navigate: (e) => {
+			let n = t.lookup(e);
+			if (!n?.route) return !1;
+			let r = x(n.route);
+			if (!r) return !1;
+			let i = (/* @__PURE__ */ new Date()).toISOString();
+			return c.stagePortalArrival({
+				nodeId: e,
+				chamber: n.title,
+				trigger: "kernel-navigate"
+			}, i), c.logPortalConfirmed({
+				nodeId: e,
+				chamber: n.title,
+				trigger: "kernel-navigate"
+			}, i), window.location.assign(r), !0;
+		},
 		emit: (e, t = {}, n) => r.emit(ep(e, t, n)),
 		getState: () => u.getCurrentState(),
 		getEngineVersion: () => Gf,

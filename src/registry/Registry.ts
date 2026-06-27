@@ -64,6 +64,34 @@ export class Registry {
       },
     ],
     [
+      'witness-chamber',
+      {
+        nodeId: 'witness-chamber',
+        gearId: 'games',
+        kernelEvent: 'witness.landing_opened',
+        route: './witness/index.html',
+        title: 'Two-Second Witness (Android App)',
+        category: 'flagship',
+        description: 'Dedicated Android App interactive landing experience.',
+        seoLabel: 'Liquid Memory Witness App',
+        payload: { resource: 'trace', amount: 25, chamber: 'Arcade Genesis' },
+      },
+    ],
+    [
+      'stroop-calibrator',
+      {
+        nodeId: 'stroop-calibrator',
+        gearId: 'games',
+        kernelEvent: 'library.game_opened',
+        route: './games/stroop-calibrator/index.html',
+        title: 'Stroop Interference Calibrator',
+        category: 'arcade',
+        description: 'Rapid 2SW cognitive interference stream.',
+        seoLabel: 'Liquid Memory Stroop Calibrator',
+        payload: { resource: 'trace', amount: 25, chamber: 'Arcade Genesis' },
+      },
+    ],
+    [
       'legacy-static-content',
       {
         nodeId: 'legacy-static-content',
