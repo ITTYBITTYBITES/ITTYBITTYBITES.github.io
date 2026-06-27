@@ -2,8 +2,8 @@
  * Liquid Memory Home Kernel v1.0
  *
  * Orchestrates the Holographic Data-Hub, preserving compatibility aliases
- * while exposing the unified window.LiquidMemory namespace. Runtime storage
- * helpers live in LiquidMemoryTelemetry so the Kernel remains an orchestrator.
+ * while exposing the unified window.LiquidMemory namespace. Built on
+ * Registry-Driven architecture and centralized LiquidMemoryTelemetry.
  */
 import { GlobalEventBus, INITIAL_PLATFORM_STATE, MonetizationLayer, PlatformPersistor, reduce, VisualBridge } from './kernel';
 import type { EventContract, PlatformState } from './kernel';
@@ -11,6 +11,7 @@ import { SpatialRenderer, type GearId } from './spatial/SpatialRenderer';
 import { SpatialEventBus, type SwipeGestureController } from './spatial/SpatialEventBus';
 import { ENGINE_VERSION } from './core/Version';
 import { LiquidMemoryTelemetry, type ChamberDepartureMarker } from './core/telemetry/LiquidMemoryTelemetry';
+import { Registry } from './registry/Registry';
 
 const STORAGE_NAMESPACE = 'lm_home_kernel';
 const LEGACY_STORAGE_NAMESPACE = 'ibb_home_kernel';
@@ -19,19 +20,6 @@ const HOME_ENGINE_VERSION_KEY = `${STORAGE_NAMESPACE}_engine_version`;
 const LEGACY_SHELL_STYLE_ID = 'lm-legacy-shell-purge';
 const PORTAL_TELEMETRY_KEY = `${STORAGE_NAMESPACE}_portal_telemetry`;
 let uiSequence = 0;
-
-type GearIntent = {
-  eventType: string;
-  payload: Record<string, any>;
-};
-
-const GEAR_INTENTS: Record<GearId, GearIntent> = {
-  games: { eventType: 'library.game_opened', payload: { resource: 'trace', amount: 25, chamber: 'Arcade Genesis' } },
-  archive: { eventType: 'library.archive_opened', payload: { resource: 'trace', amount: 5, chamber: 'Old Memory Vault' } },
-  community: { eventType: 'community.vortex', payload: { resource: 'pearls', amount: 60, chamber: 'Community Vortex' } },
-  blueprint: { eventType: 'milestone.level_up', payload: { chamber: 'Blueprint Dial' } },
-  memory: { eventType: 'economic.resource_gained', payload: { resource: 'trace', amount: 10, chamber: 'Memory Mycelium' } },
-};
 
 function cloneInitialState(): PlatformState {
   return {
@@ -80,8 +68,6 @@ function removeLegacyShellNodes(): void {
 }
 
 function markHomeEngineVersion(): void {
-  // Scoped freshness marker only. Do not clear persistence or emit startup
-  // version events; the 19/19 Kernel Contract expects stable node counts.
   if (localStorage.getItem(HOME_ENGINE_VERSION_KEY) !== ENGINE_VERSION) {
     localStorage.setItem(HOME_ENGINE_VERSION_KEY, ENGINE_VERSION);
   }
@@ -121,7 +107,6 @@ function initKernel() {
   let kernelReady = false;
   let apiRef: any = null;
   const readyCallbacks: Array<(kernel: any) => void> = [];
-
 
   function onReady(callback: (kernel: any) => void): () => void {
     if (kernelReady && apiRef) {
@@ -174,9 +159,13 @@ function initKernel() {
   function confirmPortalIntent(): boolean {
     const intent = spatialEvents?.getPortalIntent() || null;
     syncPortalIntent();
-    if (!intent?.route) return false;
+    if (!intent?.route && !intent?.nodeId) return false;
 
-    const route = resolvePortalRoute(intent.route);
+    const node = Registry.lookup(intent?.nodeId) || Registry.lookup(intent?.chamber) || Registry.lookup(intent?.interactionEvent);
+    const targetRoute = intent?.route || node?.route;
+    if (!targetRoute) return false;
+
+    const route = resolvePortalRoute(targetRoute);
     if (!route) return false;
 
     const confirmedAt = new Date().toISOString();
@@ -197,26 +186,28 @@ function initKernel() {
   }
 
   function triggerGear(gear: GearId): void {
-    const intent = GEAR_INTENTS[gear];
-    const payload = { ...intent.payload };
-    if (intent.eventType === 'milestone.level_up') {
+    const node = Registry.lookup(gear);
+    if (!node) return;
+    const eventType = node.kernelEvent;
+    const payload = { ...(node.payload || {}) };
+    if (eventType === 'milestone.level_up') {
       const current = bridge.getCurrentState().player.level || 1;
       payload.newLevel = current + 1;
       payload.xp = current * 150;
     }
     localStorage.setItem(BLUEPRINT_GEAR_KEY, gear);
-    bus.emit(makeEvent(intent.eventType, payload, `blueprint-gear-${gear}`));
+    bus.emit(makeEvent(eventType, payload, `blueprint-gear-${gear}`));
     window.setTimeout(() => focusGear(gear), 90);
   }
-
 
   function handleChamberReturn(departure: ChamberDepartureMarker | null): void {
     if (!departure || !spatialEvents) return;
     const state = spatialEvents.recordChamberReturn(departure);
     syncPortalIntent();
-    const interactionEvent = state?.content?.interactionEvent || departure.interactionEvent || 'library.game_opened';
+    const node = Registry.lookup(departure.nodeId) || Registry.lookup(departure.interactionEvent) || Registry.lookup(departure.chamber);
+    const interactionEvent = state?.content?.interactionEvent || departure.interactionEvent || node?.kernelEvent || 'library.game_opened';
     spatial?.focusEventType(interactionEvent);
-    if (departure.chamber === 'Arcade Genesis') {
+    if (departure.chamber === 'Arcade Genesis' || node?.gearId === 'games') {
       spatial?.focusGear('games');
       spatial?.setActiveGear('games');
       localStorage.setItem(BLUEPRINT_GEAR_KEY, 'games');
@@ -246,7 +237,6 @@ function initKernel() {
     });
   }
 
-  // Rebuild visible biome from persisted event memory without reducer side effects.
   const rememberedEvents = persistor.getEventLog().slice(-48);
   rememberedEvents.forEach((event) => spatial?.handle(event));
   handleChamberReturn(telemetry.consumeChamberDeparture());
@@ -335,15 +325,15 @@ function initKernel() {
     Spatial: spatial,
     Events: spatialEvents,
     Telemetry: telemetryApi,
+    Registry: Registry,
     onReady,
   };
-  // Compatibility aliases required by the current 19/19 and 20/20 verifier contracts.
   (window as any).LiquidMemoryKernel = api;
   (window as any).LiquidMemorySpatial = spatial;
   requestAnimationFrame(() => dispatchKernelReady());
 
   const savedGear = (localStorage.getItem(BLUEPRINT_GEAR_KEY) || 'games') as GearId;
-  if (GEAR_INTENTS[savedGear]) {
+  if (Registry.lookup(savedGear)) {
     window.setTimeout(() => focusGear(savedGear), 160);
   }
 

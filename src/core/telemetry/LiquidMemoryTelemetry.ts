@@ -2,9 +2,8 @@
  * Liquid Memory Telemetry v1.0
  *
  * Session/local-scoped observability helpers for portal arrivals,
- * chamber returns, and diagnostic sync. This module intentionally avoids
- * Kernel bus emission so telemetry never changes reducer state, node count,
- * or the 19/19 Kernel Contract.
+ * chamber returns, and diagnostic sync. Centralizes all telemetry and
+ * session storage operations across Hub and Chamber shells.
  */
 
 export const PORTAL_ARRIVAL_KEY = 'lm_portal_arrival';
@@ -48,9 +47,9 @@ export type PortalTelemetrySyncPayload = {
 };
 
 export class LiquidMemoryTelemetry {
-  constructor(private telemetryKey: string) {}
+  constructor(private telemetryKey: string = 'lm_portal_telemetry') {}
 
-  stagePortalArrival(intent: PortalTelemetryIntent, confirmedAt: string): void {
+  static stagePortalArrivalStatic(intent: PortalTelemetryIntent, confirmedAt: string): void {
     try {
       sessionStorage.setItem(PORTAL_ARRIVAL_KEY, JSON.stringify({
         type: 'portal_arrival',
@@ -62,9 +61,41 @@ export class LiquidMemoryTelemetry {
         trigger: intent.trigger,
         confirmedAt,
       }));
+    } catch {}
+  }
+
+  static markPortalArrival(expectedChamber?: string): string | null {
+    try {
+      const raw = sessionStorage.getItem(PORTAL_ARRIVAL_KEY);
+      if (!raw) return null;
+      const arrival = JSON.parse(raw);
+      sessionStorage.removeItem(PORTAL_ARRIVAL_KEY);
+      if (arrival) {
+        if (document.documentElement) document.documentElement.dataset.portalArrival = arrival.chamber || arrival.nodeId || 'confirmed';
+        if (document.body) document.body.dataset.portalArrival = arrival.chamber || arrival.nodeId || 'confirmed';
+        return arrival.chamber || arrival.nodeId;
+      }
+      return null;
     } catch {
-      // Session storage is best-effort chamber context only.
+      return null;
     }
+  }
+
+  static storeChamberDeparture(chamber: string, nodeId: string, route: string, reason = 'pagehide'): void {
+    try {
+      sessionStorage.setItem(CHAMBER_DEPARTURE_KEY, JSON.stringify({
+        chamber,
+        nodeId,
+        route,
+        interactionEvent: nodeId,
+        reason,
+        departedAt: new Date().toISOString(),
+      }));
+    } catch {}
+  }
+
+  stagePortalArrival(intent: PortalTelemetryIntent, confirmedAt: string): void {
+    LiquidMemoryTelemetry.stagePortalArrivalStatic(intent, confirmedAt);
   }
 
   logPortalConfirmed(intent: PortalTelemetryIntent, confirmedAt: string): void {
@@ -82,9 +113,7 @@ export class LiquidMemoryTelemetry {
       const history = this.getPortalTelemetry();
       history.push(entry);
       localStorage.setItem(this.telemetryKey, JSON.stringify(history.slice(-25)));
-    } catch {
-      // Telemetry is intentionally non-blocking and never emits Kernel events.
-    }
+    } catch {}
   }
 
   consumeChamberDeparture(): ChamberDepartureMarker | null {

@@ -6,15 +6,17 @@ export default defineConfig({
     outDir: 'website/assets',
     emptyOutDir: false,
     lib: {
-      entry: 'src/main.ts',
+      entry: {
+        'kernel-home': 'src/main.ts',
+        'kernel-chamber': 'src/chamber.ts'
+      },
       formats: ['es'],
-      fileName: () => 'kernel-home.js',
+      fileName: (format, entryName) => `${entryName}.js`,
     },
     rollupOptions: {
       output: {
-        entryFileNames: 'kernel-home.js',
-        chunkFileNames: 'kernel-home-[name].js',
-        assetFileNames: 'kernel-home-[name][extname]',
+        chunkFileNames: 'kernel-chunk-[name].js',
+        assetFileNames: 'kernel-asset-[name][extname]',
       },
     },
   },
