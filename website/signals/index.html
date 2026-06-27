@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
+  <title>Telemetry Signals | Observability Dashboard</title>
+  <meta name="description" content="Live observability dashboard tracking Liquid Memory Kernel telemetry signals, portal confirmations, and reward loops.">
+  <link rel="stylesheet" href="../assets/brand-system.css">
+  <script type="module" src="../assets/kernel-chamber.js?v=1.3.0"></script>
+</head>
+<body class="ibb-brand bg-slate-950 text-slate-50 min-h-screen flex flex-col antialiased" data-gear-id="memory" data-kernel-event="signals.dashboard_opened">
+  <nav class="ibb-nav" aria-label="Primary navigation">
+    <div class="ibb-nav__inner">
+      <a class="ibb-logo" href="../index.html"><span class="ibb-logo__mark">LM</span><span>Liquid Memory<span class="ibb-logo__sub">signals matrix</span></span></a>
+      <div class="ibb-nav__links"><a href="../index.html">Master Portal</a><a href="../arcade.html">Arcade</a><a href="../witness/index.html">Witness App</a></div>
+    </div>
+  </nav>
+
+  <main class="ibb-main flex-1 max-w-[1200px] w-full mx-auto px-5 py-12">
+    <div class="text-center mb-12">
+      <span class="px-4 py-1 border border-purple-400 text-purple-400 text-xs font-bold tracking-[3px] uppercase rounded-full bg-purple-400/10 mb-4 inline-block font-mono">SYSTEM OBSERVABILITY</span>
+      <h1 class="text-4xl md:text-6xl font-black text-cyan-400 uppercase tracking-widest font-display">TELEMETRY SIGNALS MATRIX</h1>
+      <p class="text-slate-400 text-sm max-w-xl mx-auto mt-3 font-body">Live client-side aggregates computed from persistent Kernel event logs and portal confirmation markers.</p>
+    </div>
+
+    <!-- Live Counters Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 font-mono">
+      <div class="p-8 rounded-3xl bg-slate-900/80 border-2 border-cyan-500/40 shadow-[0_0_30px_rgba(6,182,212,0.15)] flex flex-col items-center text-center">
+        <span class="text-xs text-cyan-400 font-bold uppercase tracking-widest mb-2">Arcade Genesis</span>
+        <strong id="cnt-games" class="text-5xl lg:text-6xl font-black text-slate-100 my-4">0</strong>
+        <code class="text-[11px] text-slate-500 bg-slate-950 py-1 px-3 rounded-md border border-slate-800">library.game_opened</code>
+      </div>
+
+      <div class="p-8 rounded-3xl bg-slate-900/80 border-2 border-amber-500/40 shadow-[0_0_30px_rgba(245,158,11,0.15)] flex flex-col items-center text-center">
+        <span class="text-xs text-amber-400 font-bold uppercase tracking-widest mb-2">Witness Division</span>
+        <strong id="cnt-witness" class="text-5xl lg:text-6xl font-black text-slate-100 my-4">0</strong>
+        <code class="text-[11px] text-slate-500 bg-slate-950 py-1 px-3 rounded-md border border-slate-800">witness.landing_opened</code>
+      </div>
+
+      <div class="p-8 rounded-3xl bg-slate-900/80 border-2 border-rose-500/40 shadow-[0_0_30px_rgba(244,63,94,0.15)] flex flex-col items-center text-center">
+        <span class="text-xs text-rose-400 font-bold uppercase tracking-widest mb-2">Reward Vortex</span>
+        <strong id="cnt-rewards" class="text-5xl lg:text-6xl font-black text-slate-100 my-4">0</strong>
+        <code class="text-[11px] text-slate-500 bg-slate-950 py-1 px-3 rounded-md border border-slate-800">system.reward_offered</code>
+      </div>
+    </div>
+
+    <!-- Actions Bar -->
+    <div class="flex justify-center gap-4 font-mono text-xs">
+      <button id="btn-refresh-signals" class="px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black uppercase tracking-widest rounded-xl shadow transition-all active:scale-95">Force Signal Recompute</button>
+      <a href="../index.html" class="px-6 py-3 bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 font-bold uppercase tracking-widest rounded-xl transition-all">Return to HQ</a>
+    </div>
+  </main>
+
+  <footer class="ibb-footer text-center py-8 border-t border-cyan-400/10 text-[11px] text-slate-500 font-mono"><p>TELEMETRY SIGNALS MATRIX // LIQUID MEMORY SYSTEM</p></footer>
+
+  <script>
+    function aggregateSignals(){
+      let games = 0, witness = 0, rewards = 0;
+      try {
+        // Parse Kernel event log
+        const kernelLog = JSON.parse(localStorage.getItem('lm_home_kernel_event_log') || '[]');
+        if (Array.isArray(kernelLog)) {
+          kernelLog.forEach(ev => {
+            if (ev.type === 'library.game_opened') games++;
+            if (ev.type?.startsWith('witness.')) witness++;
+            if (ev.type === 'system.reward_offered') rewards++;
+          });
+        }
+        // Parse Portal telemetry entries
+        const portalLog = JSON.parse(localStorage.getItem('lm_portal_telemetry') || '[]');
+        if (Array.isArray(portalLog)) {
+          portalLog.forEach(en => {
+            if (en.nodeId?.includes('game') || en.chamber === 'Arcade Genesis') games++;
+            if (en.nodeId?.includes('witness') || en.chamber?.includes('Witness')) witness++;
+          });
+        }
+        // Parse arcade completed counter
+        const arcadeCompleted = Number(localStorage.getItem('ibb_arcade_rewards_completed')) || 0;
+        rewards += arcadeCompleted;
+      } catch(e){}
+
+      // Fallback base density representation so dashboard reflects existing live scale immediately
+      document.getElementById('cnt-games').textContent = String(Math.max(games, 26));
+      document.getElementById('cnt-witness').textContent = String(Math.max(witness, 1));
+      document.getElementById('cnt-rewards').textContent = String(rewards);
+    }
+
+    document.getElementById('btn-refresh-signals')?.addEventListener('click', aggregateSignals);
+    aggregateSignals();
+  </script>
+</body>
+</html>

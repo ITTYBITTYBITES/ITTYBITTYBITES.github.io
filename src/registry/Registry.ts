@@ -64,6 +64,19 @@ export class Registry {
       },
     ],
     [
+      'signals-dashboard',
+      {
+        nodeId: 'signals-dashboard',
+        gearId: 'memory',
+        kernelEvent: 'signals.dashboard_opened',
+        route: './signals/index.html',
+        title: 'Telemetry Signals Dashboard',
+        category: 'system',
+        description: 'Live observability matrix for Kernel telemetry signals.',
+        seoLabel: 'Liquid Memory Signals Dashboard',
+      },
+    ],
+    [
       'witness-chamber',
       {
         nodeId: 'witness-chamber',

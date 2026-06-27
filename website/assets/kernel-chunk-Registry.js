@@ -128,6 +128,16 @@ var e = "lm_portal_arrival", t = "lm_chamber_departure", n = class n {
 				description: "Global operative clearance rankings.",
 				seoLabel: "Liquid Memory 2SW Leaderboard"
 			}],
+			["signals-dashboard", {
+				nodeId: "signals-dashboard",
+				gearId: "memory",
+				kernelEvent: "signals.dashboard_opened",
+				route: "./signals/index.html",
+				title: "Telemetry Signals Dashboard",
+				category: "system",
+				description: "Live observability matrix for Kernel telemetry signals.",
+				seoLabel: "Liquid Memory Signals Dashboard"
+			}],
 			["witness-chamber", {
 				nodeId: "witness-chamber",
 				gearId: "games",
