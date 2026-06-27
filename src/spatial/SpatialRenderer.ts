@@ -1271,11 +1271,8 @@ export class SpatialRenderer {
 
   private calibrateViewportSize(force = false): void {
     const viewport = window.visualViewport;
-    const viewportWidth = Math.round(viewport?.width || window.innerWidth || document.documentElement.clientWidth || 320);
-    const viewportHeight = Math.round(viewport?.height || window.innerHeight || document.documentElement.clientHeight || 320);
-    const rect = this.host.getBoundingClientRect();
-    const width = Math.max(320, viewportWidth, Math.round(rect.width || 0));
-    const height = Math.max(320, viewportHeight, Math.round(rect.height || 0));
+    const width = Math.max(320, Math.round(viewport?.width || window.innerWidth || document.documentElement.clientWidth || 320));
+    const height = Math.max(320, Math.round(viewport?.height || window.innerHeight || document.documentElement.clientHeight || 320));
     const canvas = this.renderer.domElement;
     const pixelRatio = Math.min(window.devicePixelRatio || 1, 2);
     const expectedBufferWidth = Math.round(width * pixelRatio);
@@ -1287,8 +1284,9 @@ export class SpatialRenderer {
 
     const aspect = width / height;
     const viewHeight = 8.1;
-    this.host.style.width = `${viewportWidth}px`;
-    this.host.style.height = `${viewportHeight}px`;
+    this.host.style.width = '100vw';
+    this.host.style.height = '100dvh';
+    this.host.style.minHeight = '100dvh';
     this.renderer.setPixelRatio(pixelRatio);
     this.camera.top = viewHeight / 2;
     this.camera.bottom = -viewHeight / 2;

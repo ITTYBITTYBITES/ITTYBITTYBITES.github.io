@@ -15801,10 +15801,10 @@ var If = class {
 		}
 	}
 	calibrateViewportSize(e = !1) {
-		let t = window.visualViewport, n = Math.round(t?.width || window.innerWidth || document.documentElement.clientWidth || 320), r = Math.round(t?.height || window.innerHeight || document.documentElement.clientHeight || 320), i = this.host.getBoundingClientRect(), a = Math.max(320, n, Math.round(i.width || 0)), o = Math.max(320, r, Math.round(i.height || 0)), s = this.renderer.domElement, c = Math.min(window.devicePixelRatio || 1, 2), l = Math.round(a * c), u = Math.round(o * c), d = Math.abs(s.clientWidth - a) > 2 || Math.abs(s.clientHeight - o) > 2, f = Math.abs(s.width - l) > 4 || Math.abs(s.height - u) > 4;
-		if (!e && !d && !f) return;
-		let p = a / o, m = 8.1;
-		this.host.style.width = `${n}px`, this.host.style.height = `${r}px`, this.renderer.setPixelRatio(c), this.camera.top = m / 2, this.camera.bottom = -8.1 / 2, this.camera.left = -8.1 * p / 2, this.camera.right = m * p / 2, this.camera.updateProjectionMatrix(), this.renderer.setSize(a, o, !1), this.composer?.setSize(a, o), this.bloomPass?.setSize(a, o);
+		let t = window.visualViewport, n = Math.max(320, Math.round(t?.width || window.innerWidth || document.documentElement.clientWidth || 320)), r = Math.max(320, Math.round(t?.height || window.innerHeight || document.documentElement.clientHeight || 320)), i = this.renderer.domElement, a = Math.min(window.devicePixelRatio || 1, 2), o = Math.round(n * a), s = Math.round(r * a), c = Math.abs(i.clientWidth - n) > 2 || Math.abs(i.clientHeight - r) > 2, l = Math.abs(i.width - o) > 4 || Math.abs(i.height - s) > 4;
+		if (!e && !c && !l) return;
+		let u = n / r, d = 8.1;
+		this.host.style.width = "100vw", this.host.style.height = "100dvh", this.host.style.minHeight = "100dvh", this.renderer.setPixelRatio(a), this.camera.top = d / 2, this.camera.bottom = -8.1 / 2, this.camera.left = -8.1 * u / 2, this.camera.right = d * u / 2, this.camera.updateProjectionMatrix(), this.renderer.setSize(n, r, !1), this.composer?.setSize(n, r), this.bloomPass?.setSize(n, r);
 	}
 	checkLayoutHealth(e) {
 		e - this.lastLayoutHealthCheck < 100 || (this.lastLayoutHealthCheck = e, this.calibrateViewportSize(!1));
@@ -16016,7 +16016,16 @@ function np() {
 	let o = new i(`${Uf}_state`, `${Uf}_event_log`), s = new r(o.rehydrate() || Xf());
 	new a().init(t);
 	let c = document.getElementById("spatial-canvas"), l = document.getElementById("spatial-live-region"), u = null, d = null;
-	function f() {
+	function f(e) {
+		if (!e) return null;
+		try {
+			let t = new URL(e, window.location.href);
+			return t.origin === window.location.origin ? t.toString() : null;
+		} catch {
+			return null;
+		}
+	}
+	function p() {
 		let e = d?.getPortalIntent() || null;
 		u?.setPortalIntent(e ? {
 			chamber: e.chamber,
@@ -16025,18 +16034,24 @@ function np() {
 			nodeId: e.nodeId
 		} : null);
 	}
-	function p(e) {
+	function m() {
+		let e = d?.getPortalIntent() || null;
+		if (p(), !e?.route) return !1;
+		let t = f(e.route);
+		return t ? (c && (c.dataset.portalConfirmed = e.chamber || e.seoLabel || e.nodeId || "unknown", c.dataset.portalConfirmedAt = (/* @__PURE__ */ new Date()).toISOString()), window.location.assign(t), !0) : !1;
+	}
+	function h(e) {
 		u?.focusGear(e), u?.setActiveGear(e), localStorage.setItem(Gf, e);
 	}
-	function m(e) {
+	function g(e) {
 		let n = Yf[e], r = { ...n.payload };
 		if (n.eventType === "milestone.level_up") {
 			let e = s.getCurrentState().player.level || 1;
 			r.newLevel = e + 1, r.xp = e * 150;
 		}
-		localStorage.setItem(Gf, e), t.emit(Zf(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => p(e), 90);
+		localStorage.setItem(Gf, e), t.emit(Zf(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => h(e), 90);
 	}
-	u = c ? new Bf(c, l, m) : null, d = new Vf((e, n = {}, r) => t.emit(Zf(e, n, r)), {
+	u = c ? new Bf(c, l, g) : null, d = new Vf((e, n = {}, r) => t.emit(Zf(e, n, r)), {
 		getNodeCount: () => u?.getNodeCount() || 0,
 		maxNodes: 48
 	}), d.init(), o.getEventLog().slice(-48).forEach((e) => u?.handle(e)), t.subscribe((e) => {
@@ -16050,7 +16065,7 @@ function np() {
 		emit: (e, n = {}, r) => t.emit(Zf(e, n, r)),
 		getState: () => s.getCurrentState(),
 		getEngineVersion: () => Hf,
-		levelUp: () => m("blueprint"),
+		levelUp: () => g("blueprint"),
 		gain: (e = "trace", n = 10) => t.emit(Zf("economic.resource_gained", {
 			resource: e,
 			amount: n
@@ -16060,26 +16075,27 @@ function np() {
 			amount: n
 		})),
 		focusSpatial: () => u?.focusNext(),
-		focusGear: p,
-		triggerGear: m,
+		focusGear: h,
+		triggerGear: g,
 		getSpatialNodeCount: () => u?.getNodeCount() || 0,
 		emitArchiveSignal: (e = {}) => {
 			let t = d?.emitArchiveSignal(e) || !1;
-			return f(), t;
+			return p(), t;
 		},
 		emitMemoryEcho: (e = {}) => {
 			let t = d?.emitMemoryEcho(e) || !1;
-			return f(), t;
+			return p(), t;
 		},
 		triggerSpatialInteraction: (e, t) => {
 			let n = d?.triggerInteraction(e, t);
-			return f(), n;
+			return p(), n;
 		},
 		getActiveChamberState: () => d?.getActiveChamberState() || null,
 		getPortalIntent: () => d?.getPortalIntent() || null,
 		clearPortalIntent: () => {
-			d?.clearPortalIntent(), f();
+			d?.clearPortalIntent(), c && (delete c.dataset.portalConfirmed, delete c.dataset.portalConfirmedAt), p();
 		},
+		confirmPortalIntent: m,
 		getSpatialGearCount: () => u?.getGearCount() || 0,
 		getSpatialGaugeCount: () => u?.getGaugeCount() || 0,
 		getResponsiveMode: () => u?.getResponsiveMode?.() || "unknown",
@@ -16092,8 +16108,8 @@ function np() {
 	}, window.LiquidMemorySpatial = u, window.setTimeout(() => {
 		document.body.classList.add("liquid-ready"), u?.getGearCount() === 5 && u?.getGaugeCount() >= 4 && u?.isWorkstationModelLoaded?.() && $f();
 	}, 250);
-	let h = localStorage.getItem(Gf) || "games";
-	Yf[h] && window.setTimeout(() => p(h), 160), t.emit(Zf("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(Zf("system.heartbeat", { path: location.pathname })), 3e4);
+	let _ = localStorage.getItem(Gf) || "games";
+	Yf[_] && window.setTimeout(() => h(_), 160), t.emit(Zf("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(Zf("system.heartbeat", { path: location.pathname })), 3e4);
 }
 document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", np) : np();
 //#endregion

@@ -108,6 +108,17 @@ function initKernel() {
   let spatial: SpatialRenderer | null = null;
   let spatialEvents: SpatialEventBus | null = null;
 
+  function resolvePortalRoute(route?: string): string | null {
+    if (!route) return null;
+    try {
+      const target = new URL(route, window.location.href);
+      if (target.origin !== window.location.origin) return null;
+      return target.toString();
+    } catch {
+      return null;
+    }
+  }
+
   function syncPortalIntent(): void {
     const intent = spatialEvents?.getPortalIntent() || null;
     spatial?.setPortalIntent(intent ? {
@@ -116,6 +127,22 @@ function initKernel() {
       seoLabel: intent.seoLabel,
       nodeId: intent.nodeId,
     } : null);
+  }
+
+  function confirmPortalIntent(): boolean {
+    const intent = spatialEvents?.getPortalIntent() || null;
+    syncPortalIntent();
+    if (!intent?.route) return false;
+
+    const route = resolvePortalRoute(intent.route);
+    if (!route) return false;
+
+    if (spatialHost) {
+      spatialHost.dataset.portalConfirmed = intent.chamber || intent.seoLabel || intent.nodeId || 'unknown';
+      spatialHost.dataset.portalConfirmedAt = new Date().toISOString();
+    }
+    window.location.assign(route);
+    return true;
   }
 
   function focusGear(gear: GearId): void {
@@ -193,8 +220,13 @@ function initKernel() {
     getPortalIntent: () => spatialEvents?.getPortalIntent() || null,
     clearPortalIntent: () => {
       spatialEvents?.clearPortalIntent();
+      if (spatialHost) {
+        delete spatialHost.dataset.portalConfirmed;
+        delete spatialHost.dataset.portalConfirmedAt;
+      }
       syncPortalIntent();
     },
+    confirmPortalIntent,
     getSpatialGearCount: () => spatial?.getGearCount() || 0,
     getSpatialGaugeCount: () => spatial?.getGaugeCount() || 0,
     getResponsiveMode: () => spatial?.getResponsiveMode?.() || 'unknown',

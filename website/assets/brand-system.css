@@ -280,8 +280,8 @@ body.liquid-fullscreen { background:#0d0a07; }
 body.liquid-fullscreen::before { z-index:-4; }
 body.liquid-fullscreen::after { z-index:20; opacity:.28; }
 .liquid-memory-system { position:fixed; inset:0; width:100vw; height:100dvh; overflow:hidden; isolation:isolate; }
-.liquid-spatial-viewport { position:fixed !important; inset:0 !important; width:100vw !important; width:100dvw !important; height:100vh !important; height:100svh !important; height:100dvh !important; min-height:100svh !important; z-index:-1; overflow:hidden !important; contain:layout size paint; background: radial-gradient(circle at 50% 45%, rgba(0,255,255,.10), transparent 38%), linear-gradient(135deg, #020617, #001622 55%, #020617); }
-.liquid-spatial-viewport canvas, .liquid-spatial-viewport .kernel-spatial-webgl { width:100% !important; height:100% !important; max-width:100dvw !important; max-height:100dvh !important; display:block; object-fit:contain; }
+.liquid-spatial-viewport { position:fixed !important; inset:0 !important; width:100vw !important; width:100dvw !important; max-width:100dvw !important; height:100vh !important; height:100svh !important; height:100dvh !important; min-height:100dvh !important; max-height:100dvh !important; z-index:-1; overflow:hidden !important; contain:layout size paint; background: radial-gradient(circle at 50% 45%, rgba(0,255,255,.10), transparent 38%), linear-gradient(135deg, #020617, #001622 55%, #020617); }
+.liquid-spatial-viewport canvas, .liquid-spatial-viewport .kernel-spatial-webgl { width:100vw !important; width:100dvw !important; max-width:100dvw !important; height:100vh !important; height:100dvh !important; max-height:100dvh !important; display:block !important; object-fit:fill !important; }
 .liquid-overlay { position:fixed; z-index:30; }
 .liquid-overlay--brand { top: max(18px, env(safe-area-inset-top)); left: max(18px, env(safe-area-inset-left)); right: max(18px, env(safe-area-inset-right)); display:flex; align-items:flex-start; justify-content:space-between; gap:16px; pointer-events:none; }
 .liquid-brand-mark { pointer-events:auto; display:inline-flex; align-items:center; gap:12px; text-decoration:none; color:var(--ibb-text); border:1px solid rgba(215,179,106,.34); border-radius:20px; background:rgba(18,15,11,.58); backdrop-filter: blur(18px); padding:10px 14px; box-shadow:0 18px 42px rgba(0,0,0,.34); }
@@ -350,12 +350,13 @@ div.box-link, div.parchment, .box-link, .parchment { opacity:0 !important; point
 
 
 /* Mobile viewport calibration: keep WebGL canvas and native text overlays bounded. */
-html, body.liquid-fullscreen, .liquid-memory-system { width:100%; max-width:100dvw; min-height:100svh; }
-.kernel-spatial-webgl { max-width:100dvw !important; max-height:100dvh !important; }
+html, body.liquid-fullscreen, .liquid-memory-system { width:100vw; width:100dvw; max-width:100dvw; height:100dvh; min-height:100dvh; }
+#spatial-canvas, .kernel-spatial-canvas, .liquid-spatial-viewport { width:100vw !important; width:100dvw !important; height:100dvh !important; display:block !important; }
+.kernel-spatial-webgl { width:100dvw !important; height:100dvh !important; max-width:100dvw !important; max-height:100dvh !important; }
 .liquid-spatial-viewport svg text, .liquid-spatial-viewport text {
   font-size: clamp(14px, 4vw, 24px) !important;
 }
 @media (max-width: 640px) {
   .liquid-memory-system { height:100svh; height:100dvh; }
-  .liquid-spatial-viewport { min-height:100svh !important; }
+  .liquid-spatial-viewport { height:100dvh !important; min-height:100dvh !important; }
 }
