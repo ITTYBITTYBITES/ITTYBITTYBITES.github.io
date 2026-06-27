@@ -614,7 +614,7 @@ export class SpatialRenderer {
     const title = this.createTextSprite('HOLOGRAPHIC // HUB', '#bfffff', 'rgba(0,255,255,0.16)', 1.0);
     title.position.set(-4.28, 3.62, -1.08);
     title.scale.set(2.55, 0.36, 1);
-    const schematic = this.createTextSprite('DATA-HUB  v1.2.9', '#bfffff', 'rgba(0,255,255,0.14)', 1.05);
+    const schematic = this.createTextSprite('REGISTRY HUB v1.0.0', '#bfffff', 'rgba(0,255,255,0.14)', 1.05);
     schematic.position.set(0, -3.92, -1.06);
     schematic.scale.set(2.35, 0.42, 1);
     this.workstationGroup.add(title, schematic);
@@ -773,7 +773,7 @@ export class SpatialRenderer {
       ctx.beginPath(); ctx.moveTo(cx-18, cy+24); ctx.lineTo(cx+110, cy+24); ctx.stroke();
     }
     ctx.fillStyle = 'rgba(53,31,11,.20)';
-    ctx.font = '900 74px Courier New, monospace'; ctx.textAlign = 'center'; ctx.fillText('DATA-HUB v1.2.9', canvas.width/2, canvas.height-105);
+    ctx.font = '900 74px Courier New, monospace'; ctx.textAlign = 'center'; ctx.fillText('REGISTRY HUB v1.0.0', canvas.width/2, canvas.height-105);
     const texture = new THREE.CanvasTexture(canvas); texture.anisotropy = 4; return texture;
   }
 

@@ -15284,7 +15284,7 @@ var Rf = class {
 		p.rotation.x = Math.PI / 2, p.position.set(4.65, 2.75, -.62), this.workstationGroup.add(d, f, p);
 		let m = this.createTextSprite("HOLOGRAPHIC // HUB", "#bfffff", "rgba(0,255,255,0.16)", 1);
 		m.position.set(-4.28, 3.62, -1.08), m.scale.set(2.55, .36, 1);
-		let h = this.createTextSprite("DATA-HUB  v1.2.9", "#bfffff", "rgba(0,255,255,0.14)", 1.05);
+		let h = this.createTextSprite("REGISTRY HUB v1.0.0", "#bfffff", "rgba(0,255,255,0.14)", 1.05);
 		h.position.set(0, -3.92, -1.06), h.scale.set(2.35, .42, 1), this.workstationGroup.add(m, h), this.createEtchedOrnaments(), this.workstationGroup.traverse((e) => {
 			let t = e;
 			t.isMesh && (t.castShadow = !0, t.receiveShadow = !0);
@@ -15426,7 +15426,7 @@ var Rf = class {
 			let n = 110 + e % 6 * 205, r = 110 + Math.floor(e / 6) * 210;
 			t.strokeRect(n, r, 70, 48), t.beginPath(), t.arc(n + 40, r + 96, 36, 0, Math.PI * 2), t.stroke(), t.beginPath(), t.moveTo(n - 18, r + 24), t.lineTo(n + 110, r + 24), t.stroke();
 		}
-		t.fillStyle = "rgba(53,31,11,.20)", t.font = "900 74px Courier New, monospace", t.textAlign = "center", t.fillText("DATA-HUB v1.2.9", e.width / 2, e.height - 105);
+		t.fillStyle = "rgba(53,31,11,.20)", t.font = "900 74px Courier New, monospace", t.textAlign = "center", t.fillText("REGISTRY HUB v1.0.0", e.width / 2, e.height - 105);
 		let r = new wa(e);
 		return r.anisotropy = 4, r;
 	}
@@ -15993,7 +15993,7 @@ var Rf = class {
 	emitIfBudgetAllows(e, t = {}) {
 		return this.budget.getNodeCount() >= this.budget.maxNodes ? !1 : (this.triggerInteraction(e, t.signal || "spatial-event-bus"), this.emit(e, t, "spatial-event-bus"));
 	}
-}, Gf = "1.2.9-expansion", Kf = "lm_home_kernel", qf = "ibb_home_kernel", Jf = "lm_blueprint_nav_gear", Yf = `${Kf}_engine_version`, Xf = "lm-legacy-shell-purge", Zf = `${Kf}_portal_telemetry`, Qf = 0;
+}, Gf = "1.0.0", Kf = "lm_home_kernel", qf = "ibb_home_kernel", Jf = "lm_blueprint_nav_gear", Yf = `${Kf}_engine_version`, Xf = "lm-legacy-shell-purge", Zf = `${Kf}_portal_telemetry`, Qf = 0;
 function $f() {
 	return {
 		...r,
@@ -16042,7 +16042,7 @@ function np() {
 	document.querySelectorAll("div.box-link, div.parchment").forEach((e) => e.remove());
 }
 function rp() {
-	localStorage.getItem(Yf) !== "1.2.9-expansion" && localStorage.setItem(Yf, Gf);
+	localStorage.getItem(Yf) !== "1.0.0" && localStorage.setItem(Yf, Gf);
 }
 function ip() {
 	[[`${qf}_state`, `${Kf}_state`], [`${qf}_event_log`, `${Kf}_event_log`]].forEach(([e, t]) => {
