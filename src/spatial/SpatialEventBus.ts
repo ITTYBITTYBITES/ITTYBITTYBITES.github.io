@@ -25,6 +25,15 @@ export type PortalIntent = {
   updatedAt: string;
 } | null;
 
+export type ChamberDeparture = {
+  chamber: string;
+  nodeId?: string;
+  route?: string;
+  interactionEvent?: string;
+  departedAt?: string;
+  reason?: string;
+};
+
 
 export type SwipeGestureControllerOptions = {
   threshold?: number;
@@ -116,6 +125,7 @@ export class SpatialEventBus {
   private teardownCallbacks: Array<() => void> = [];
   private activeChamberState: ActiveChamberState = null;
   private portalIntent: PortalIntent = null;
+  private chamberReturnState: ActiveChamberState = null;
 
   constructor(
     private emit: SpatialEventEmitter,
@@ -176,6 +186,35 @@ export class SpatialEventBus {
 
   clearPortalIntent(): void {
     this.portalIntent = null;
+  }
+
+  recordChamberReturn(departure: ChamberDeparture): ActiveChamberState {
+    const nodeId = departure.interactionEvent || departure.nodeId || departure.chamber;
+    const content = getSpatialContent(nodeId) || getSpatialContent(departure.chamber);
+    const updatedAt = new Date().toISOString();
+    this.chamberReturnState = {
+      nodeId,
+      content,
+      updatedAt,
+      trigger: 'portal-return',
+    };
+    this.activeChamberState = this.chamberReturnState;
+    if (content) {
+      this.portalIntent = {
+        nodeId,
+        chamber: content.chamber,
+        route: content.route,
+        seoLabel: content.seoLabel,
+        interactionEvent: content.interactionEvent,
+        trigger: 'portal-return',
+        updatedAt,
+      };
+    }
+    return this.chamberReturnState;
+  }
+
+  getChamberReturnState(): ActiveChamberState {
+    return this.chamberReturnState;
   }
 
   bindSwipeGesture(target: HTMLElement, options: SwipeGestureControllerOptions): SwipeGestureController {

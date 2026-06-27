@@ -1,7 +1,7 @@
 import { GlobalEventBus, INITIAL_PLATFORM_STATE, MonetizationLayer, PlatformPersistor, reduce, VisualBridge } from './kernel';
 import type { EventContract, PlatformState } from './kernel';
 import { SpatialRenderer, type GearId } from './spatial/SpatialRenderer';
-import { SpatialEventBus, type SwipeGestureController } from './spatial/SpatialEventBus';
+import { SpatialEventBus, type ChamberDeparture, type SwipeGestureController } from './spatial/SpatialEventBus';
 import { ENGINE_VERSION } from './core/Version';
 
 const STORAGE_NAMESPACE = 'lm_home_kernel';
@@ -10,6 +10,7 @@ const BLUEPRINT_GEAR_KEY = 'lm_blueprint_nav_gear';
 const HOME_ENGINE_VERSION_KEY = `${STORAGE_NAMESPACE}_engine_version`;
 const LEGACY_SHELL_STYLE_ID = 'lm-legacy-shell-purge';
 const PORTAL_ARRIVAL_KEY = 'lm_portal_arrival';
+const CHAMBER_DEPARTURE_KEY = 'lm_chamber_departure';
 const PORTAL_TELEMETRY_KEY = `${STORAGE_NAMESPACE}_portal_telemetry`;
 let uiSequence = 0;
 
@@ -128,6 +129,39 @@ function logPortalTelemetry(intent: PortalTelemetryIntent, confirmedAt: string):
   }
 }
 
+function consumeChamberDeparture(): ChamberDeparture | null {
+  try {
+    const raw = sessionStorage.getItem(CHAMBER_DEPARTURE_KEY);
+    if (!raw) return null;
+    sessionStorage.removeItem(CHAMBER_DEPARTURE_KEY);
+    const parsed = JSON.parse(raw) as ChamberDeparture;
+    return parsed?.chamber ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+function readPortalTelemetry(): any[] {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(PORTAL_TELEMETRY_KEY) || '[]');
+    return Array.isArray(parsed) ? parsed : [];
+  } catch {
+    return [];
+  }
+}
+
+function syncPortalTelemetry(endpoint = 'console://liquid-memory/portal-telemetry'): { endpoint: string; count: number; syncedAt: string; entries: any[] } {
+  const entries = readPortalTelemetry();
+  const payload = {
+    endpoint,
+    count: entries.length,
+    syncedAt: new Date().toISOString(),
+    entries,
+  };
+  console.info('[LiquidMemoryTelemetry]', JSON.stringify(payload));
+  return payload;
+}
+
 function migrateLegacyMemoryState(): void {
   const pairs = [
     [`${LEGACY_STORAGE_NAMESPACE}_state`, `${STORAGE_NAMESPACE}_state`],
@@ -218,6 +252,24 @@ function initKernel() {
     window.setTimeout(() => focusGear(gear), 90);
   }
 
+
+  function handleChamberReturn(departure: ChamberDeparture | null): void {
+    if (!departure || !spatialEvents) return;
+    const state = spatialEvents.recordChamberReturn(departure);
+    syncPortalIntent();
+    const interactionEvent = state?.content?.interactionEvent || departure.interactionEvent || 'library.game_opened';
+    spatial?.focusEventType(interactionEvent);
+    if (departure.chamber === 'Arcade Genesis') {
+      spatial?.focusGear('games');
+      spatial?.setActiveGear('games');
+      localStorage.setItem(BLUEPRINT_GEAR_KEY, 'games');
+    }
+    if (spatialHost) {
+      spatialHost.dataset.portalReturn = departure.chamber;
+      spatialHost.dataset.portalReturnAt = new Date().toISOString();
+    }
+  }
+
   spatial = spatialHost ? new SpatialRenderer(spatialHost, spatialLive, triggerGear) : null;
   spatialEvents = new SpatialEventBus(
     (type, payload = {}, source) => bus.emit(makeEvent(type, payload, source)),
@@ -240,6 +292,7 @@ function initKernel() {
   // Rebuild visible biome from persisted event memory without reducer side effects.
   const rememberedEvents = persistor.getEventLog().slice(-48);
   rememberedEvents.forEach((event) => spatial?.handle(event));
+  handleChamberReturn(consumeChamberDeparture());
 
   bus.subscribe((event) => {
     spatial?.handle(event);
@@ -284,6 +337,9 @@ function initKernel() {
     },
     getActiveChamberState: () => spatialEvents?.getActiveChamberState() || null,
     getPortalIntent: () => spatialEvents?.getPortalIntent() || null,
+    getChamberReturnState: () => spatialEvents?.getChamberReturnState() || null,
+    getPortalTelemetry: () => readPortalTelemetry(),
+    syncTelemetry: (endpoint?: string) => syncPortalTelemetry(endpoint),
     clearPortalIntent: () => {
       spatialEvents?.clearPortalIntent();
       if (spatialHost) {

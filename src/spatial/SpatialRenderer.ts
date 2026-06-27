@@ -366,6 +366,7 @@ export class SpatialRenderer {
     else this.gearGroup.position.lerp(gearTarget, 0.35);
     this.layoutGauges(profile.gaugeMode);
     this.updateShadowMode(profile);
+    this.updateBloomProfile(profile);
   }
 
   private updateShadowMode(profile: ResponsiveProfile): void {
@@ -378,6 +379,14 @@ export class SpatialRenderer {
       const mesh = obj as THREE.Mesh;
       if (mesh.isMesh) mesh.castShadow = false;
     });
+  }
+
+
+  private updateBloomProfile(profile: ResponsiveProfile): void {
+    if (!this.bloomPass) return;
+    this.bloomPass.strength = profile.kind === 'mobile' ? 1.08 : 1.2;
+    this.bloomPass.radius = profile.kind === 'mobile' ? 0.36 : 0.42;
+    this.bloomPass.threshold = 0.96;
   }
 
   private applyCameraProfile(profile: ResponsiveProfile, instant = false): void {

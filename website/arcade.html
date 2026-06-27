@@ -288,6 +288,26 @@
     }
   }
 
+  function storeChamberDeparture(reason){
+    try {
+      sessionStorage.setItem('lm_chamber_departure', JSON.stringify({
+        chamber: 'Arcade Genesis',
+        nodeId: 'library.game_opened',
+        route: './arcade.html',
+        interactionEvent: 'library.game_opened',
+        reason: reason || 'pagehide',
+        departedAt: new Date().toISOString()
+      }));
+    } catch (error) {
+      console.warn('[LiquidMemory] Chamber departure marker ignored', error);
+    }
+  }
+
+  window.addEventListener('pagehide', () => storeChamberDeparture('pagehide'), { passive: true });
+  document.addEventListener('visibilitychange', () => {
+    if (document.visibilityState === 'hidden') storeChamberDeparture('visibility-hidden');
+  }, { passive: true });
+
   window.addEventListener('message', (event) => {
     const data = event.data || {};
     if (data.type === 'ARCADE_TRIGGER_AD') showAdBreak(event.source, data.adType);

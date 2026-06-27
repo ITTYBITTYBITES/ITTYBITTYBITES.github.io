@@ -351,7 +351,7 @@ div.box-link, div.parchment, .box-link, .parchment { opacity:0 !important; point
 
 /* Mobile viewport calibration: keep WebGL canvas and native text overlays bounded. */
 html, body.liquid-fullscreen, .liquid-memory-system { width:100vw; width:100dvw; max-width:100dvw; height:100dvh; min-height:100dvh; }
-#spatial-canvas, .kernel-spatial-canvas, .liquid-spatial-viewport { width:100vw !important; width:100dvw !important; height:100dvh !important; display:block !important; }
+#spatial-canvas, .kernel-spatial-canvas, .liquid-spatial-viewport { width:100vw !important; width:100dvw !important; height:100dvh !important; display:block !important; backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); will-change: transform; }
 .kernel-spatial-webgl { width:100dvw !important; height:100dvh !important; max-width:100dvw !important; max-height:100dvh !important; }
 .liquid-spatial-viewport svg text, .liquid-spatial-viewport text {
   font-size: clamp(14px, 4vw, 24px) !important;
