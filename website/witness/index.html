@@ -7,9 +7,9 @@
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <title>Two-Second Witness | Android App Portal</title>
-  <meta name="description" content="Official Android App landing page and interactive web demonstration for The 2-Second Witness rapid cognitive Stroop training game.">
+  <meta name="description" content="Official Android App landing page and interactive rapid Stroop web demonstration for The 2-Second Witness.">
   <link rel="stylesheet" href="../assets/brand-system.css">
-  <script type="module" src="../assets/kernel-chamber.js?v=1.1.0"></script>
+  <script type="module" src="../assets/kernel-chamber.js?v=1.2.0"></script>
 </head>
 <body class="ibb-brand bg-slate-950 text-slate-50 min-h-screen flex flex-col antialiased" data-gear-id="games" data-kernel-event="witness.landing_opened">
   <nav class="ibb-nav" aria-label="Primary navigation">
@@ -24,19 +24,30 @@
     <h1 class="text-4xl md:text-6xl font-black text-cyan-400 uppercase tracking-wider mb-4 drop-shadow-[0_0_30px_rgba(34,211,238,0.4)] font-display">TWO-SECOND WITNESS</h1>
     <p class="text-slate-300 text-lg max-w-2xl mx-auto mb-10 leading-relaxed font-body">Rapid-fire Stroop interference training engineered for Android. Train your neural override response. Identify truth under extreme cognitive pressure.</p>
 
-    <!-- App Demo Placeholder -->
-    <div class="w-full max-w-3xl aspect-[16/9] border-2 border-cyan-400/50 rounded-2xl bg-slate-900/80 shadow-[0_0_50px_rgba(0,255,255,0.15)] flex flex-col items-center justify-center relative overflow-hidden mb-10">
-      <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(34,211,238,0.1),transparent_70%)] pointer-events-none"></div>
-      <svg class="w-16 h-16 text-cyan-400 mb-4 animate-bounce" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z"></path></svg>
-      <strong class="text-xl text-cyan-300 font-mono uppercase tracking-widest mb-2">Android App Interactive Harness Mounted</strong>
-      <p class="text-slate-400 text-sm max-w-md px-4 font-body">Interactive WebGL projection of the 60-world Stroop training simulation.</p>
+    <!-- Clearance Level Gauge -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 w-full max-w-3xl mb-8 font-mono text-xs uppercase">
+      <div class="p-3 rounded-xl border border-emerald-500/40 bg-emerald-500/10 text-emerald-300"><strong>RECRUIT</strong><br><span class="text-[10px] text-slate-400">7.0s Window</span></div>
+      <div class="p-3 rounded-xl border border-cyan-500/40 bg-cyan-500/10 text-cyan-300"><strong>AGENT</strong><br><span class="text-[10px] text-slate-400">5.0s Window</span></div>
+      <div class="p-3 rounded-xl border border-amber-500/40 bg-amber-500/10 text-amber-300"><strong>OPERATIVE</strong><br><span class="text-[10px] text-slate-400">3.5s Window</span></div>
+      <div class="p-3 rounded-xl border border-rose-500/40 bg-rose-500/10 text-rose-300"><strong>GHOST</strong><br><span class="text-[10px] text-slate-400">2.5s Window</span></div>
+    </div>
+
+    <!-- Interactive Rapid Stroop Demo Container -->
+    <div class="w-full max-w-2xl border-2 border-cyan-400/60 rounded-3xl bg-slate-900/90 shadow-[0_0_60px_rgba(0,255,255,0.18)] p-8 flex flex-col items-center justify-center relative mb-12 select-none">
+      <div class="w-full h-2 bg-slate-950 rounded-full overflow-hidden mb-8 border border-slate-800"><div id="demo-timer" class="h-full bg-gradient-to-r from-cyan-400 via-amber-400 to-rose-500 w-full transition-all duration-100 linear"></div></div>
+      <div id="demo-word" class="text-5xl sm:text-6xl font-black font-mono tracking-widest py-8 px-12 rounded-2xl bg-slate-950 border border-slate-800 shadow-inner mb-8 w-full cursor-pointer animate-pulse text-cyan-400">CLICK TO ENGAGE DEMO</div>
+      <div id="demo-options" class="grid grid-cols-2 gap-4 w-full font-mono font-black text-sm uppercase"></div>
+      <div class="flex justify-between w-full mt-6 text-xs font-mono text-slate-400">
+        <span id="demo-score">STREAK: 0</span>
+        <span>CLEARANCE: <strong class="text-amber-400">OPERATIVE</strong></span>
+      </div>
     </div>
 
     <!-- Download CTA with Telemetry hook -->
     <div class="flex flex-wrap gap-4 justify-center items-center">
       <a id="btn-download-android" href="https://play.google.com/store/apps/details?id=com.ittybittybites.the2secondwitness" target="_blank" rel="noopener" class="px-8 py-5 bg-gradient-to-r from-amber-400 to-yellow-500 hover:from-amber-300 hover:to-yellow-400 text-slate-950 font-black text-sm tracking-[2px] uppercase rounded-xl shadow-[0_0_30px_rgba(251,191,36,0.4)] hover:scale-105 transition-all cursor-pointer font-mono inline-flex items-center gap-3">
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M17.523 15.3414c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993.0001.5511-.4482.9997-.9993.9997m-11.046 0c-.5511 0-.9993-.4486-.9993-.9997s.4482-.9993.9993-.9993c.5511 0 .9993.4482.9993.9993 0 .5511-.4482.9997-.9993.9997m11.4045-6.02l1.9973-3.4592a.416.416 0 00-.1521-.5676.416.416 0 00-.5676.1521l-2.0223 3.503C15.5902 8.2439 13.8533 7.8508 12 7.8508s-3.5902.3931-5.1367 1.0991L4.841 5.4469a.4161.4161 0 00-.5676-.1521.4157.4157 0 00-.1521.5676l1.9973 3.4592C2.6889 11.1867.3432 14.6589 0 18.761h24c-.3432-4.1021-2.6889-7.5743-6.1185-9.4396"></path></svg>
-        Download for Android
+        Download Full App (60 Worlds)
       </a>
       <a href="../arcade.html" class="px-8 py-5 bg-slate-900 border border-cyan-400/40 hover:border-cyan-400 text-cyan-300 font-bold text-sm tracking-[2px] uppercase rounded-xl transition-all font-mono">
         Explore Web Arcade
@@ -46,6 +57,74 @@
 
   <footer class="ibb-footer text-center py-8 border-t border-cyan-400/20 text-xs text-slate-500 font-mono"><p>TWO-SECOND WITNESS // MOBILE COGNITIVE DIVISION // LIQUID MEMORY</p></footer>
   <script>
+    (function(){
+      const wordEl = document.getElementById('demo-word');
+      const timerEl = document.getElementById('demo-timer');
+      const optsEl = document.getElementById('demo-options');
+      const scoreEl = document.getElementById('demo-score');
+      const colors = [
+        { label: 'RED', hex: '#ef4444', colorClass: '#ef4444' },
+        { label: 'GREEN', hex: '#10b981', colorClass: '#10b981' },
+        { label: 'BLUE', hex: '#3b82f6', colorClass: '#3b82f6' },
+        { label: 'YELLOW', hex: '#facc15', colorClass: '#facc15' }
+      ];
+      let target = null;
+      let interval = null;
+      let width = 100;
+      let streak = 0;
+      let active = false;
+
+      function startRound(){
+        clearInterval(interval);
+        active = true;
+        width = 100;
+        timerEl.style.width = '100%';
+        const tIdx = Math.floor(Math.random() * colors.length);
+        const cIdx = Math.floor(Math.random() * colors.length);
+        target = colors[cIdx];
+        wordEl.textContent = colors[tIdx].label;
+        wordEl.style.color = target.hex;
+        wordEl.className = 'text-5xl sm:text-6xl font-black font-mono tracking-widest py-8 px-12 rounded-2xl bg-slate-950 border border-slate-800 shadow-inner mb-8 w-full select-none';
+
+        optsEl.innerHTML = '';
+        colors.forEach(c => {
+          const btn = document.createElement('button');
+          btn.className = 'py-4 px-6 bg-slate-950 hover:bg-slate-800 border-2 border-slate-800 hover:border-cyan-400 rounded-xl font-bold text-slate-200 transition-all active:scale-95 shadow';
+          btn.textContent = c.label;
+          btn.addEventListener('click', () => evalAnswer(c));
+          optsEl.appendChild(btn);
+        });
+
+        interval = setInterval(() => {
+          width -= 5;
+          if (width <= 0) endGame('TIME EXPIRED');
+          else timerEl.style.width = width + '%';
+        }, 100);
+      }
+
+      function evalAnswer(chosen){
+        if (!active) return;
+        if (chosen.hex === target.hex) {
+          streak++;
+          scoreEl.textContent = 'STREAK: ' + streak;
+          startRound();
+        } else {
+          endGame('INTERFERENCE OVERRIDE FAILED');
+        }
+      }
+
+      function endGame(msg){
+        clearInterval(interval);
+        active = false;
+        wordEl.textContent = msg;
+        wordEl.style.color = '#f43f5e';
+        optsEl.innerHTML = `<button id="btn-retry" class="col-span-2 py-4 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black tracking-widest uppercase rounded-xl shadow-lg active:scale-95 transition-all">Re-engage Harness</button>`;
+        document.getElementById('btn-retry')?.addEventListener('click', startRound);
+      }
+
+      wordEl.addEventListener('click', () => { if (!active) startRound(); });
+    })();
+
     document.getElementById('btn-download-android')?.addEventListener('click', () => {
       try {
         if (window.LiquidMemory?.Telemetry) {

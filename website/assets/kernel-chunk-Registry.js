@@ -143,21 +143,6 @@ var e = "lm_portal_arrival", t = "lm_chamber_departure", n = class n {
 					chamber: "Arcade Genesis"
 				}
 			}],
-			["stroop-calibrator", {
-				nodeId: "stroop-calibrator",
-				gearId: "games",
-				kernelEvent: "library.game_opened",
-				route: "./games/stroop-calibrator/index.html",
-				title: "Stroop Interference Calibrator",
-				category: "arcade",
-				description: "Rapid 2SW cognitive interference stream.",
-				seoLabel: "Liquid Memory Stroop Calibrator",
-				payload: {
-					resource: "trace",
-					amount: 25,
-					chamber: "Arcade Genesis"
-				}
-			}],
 			["legacy-static-content", {
 				nodeId: "legacy-static-content",
 				gearId: "archive",
@@ -223,6 +208,7 @@ var e = "lm_portal_arrival", t = "lm_chamber_departure", n = class n {
 			["two-second-witness", "two-second-witness-chamber"],
 			["2-second-witness", "two-second-witness-chamber"],
 			["witness.chamber_opened", "two-second-witness-chamber"],
+			["witness", "witness-chamber"],
 			["archive", "legacy-static-content"],
 			["library.archive_opened", "legacy-static-content"],
 			["old memory vault", "legacy-static-content"],
@@ -268,6 +254,49 @@ var e = "lm_portal_arrival", t = "lm_chamber_departure", n = class n {
 				description: `Legacy studio publication: ${t}`,
 				isLegacyStatic: !0
 			}), this.aliases.set(e, n), this.aliases.set(`${e}.html`, n), this.aliases.set(t.toLowerCase(), n);
+		}), [
+			["cyber-vector", "3D Cyber Vector Grid Hover-Racer"],
+			["neon-polygon", "3D Neon Geometric Defender"],
+			["quantum-breakout", "3D Particle Breakout Engine"],
+			["attentional-blink", "Attentional Blink Assessor"],
+			["cosmic-tunnel", "Cosmic Tunnel 3D"],
+			["hover-drone", "Cyber Flappy Hover-Drone"],
+			["cyber-snake", "Cyber Snake 2026"],
+			["cyber-mines", "Cyber Sweeper Sentinel"],
+			["grid-delver", "Grid Delver: 1-Minute Micro-Rogue"],
+			["metronomic-rhythm", "METRONOMIC RHYTHM ANCHOR"],
+			["nback-sentinel", "N-BACK SENTINEL LOG"],
+			["neon-pong", "Neon Cyber Pong 1v1"],
+			["orbital-sandbox", "Orbital Gravitational Physics Sandbox"],
+			["quantum-sentinel", "Quantum Sentinel: Fast Spatial Reflex"],
+			["raycasted-doom", "Raycasted 3D Doom Labyrinth"],
+			["gravity-slingshot", "Relivistic Space Slingshot"],
+			["retro-breakout", "Retro Cyber Neon Breakout"],
+			["saccadic-target", "SACCADIC TARGET ACQUISITION"],
+			["shifting-selector", "SHIFTING ATTENTIONAL ATTRIBUTE SELECTOR"],
+			["signal-detection", "SIGNAL DETECTION FILTER"],
+			["space-asteroids", "Space Asteroids Retro Vector"],
+			["spatial-matrix", "SPATIAL MATRIX EXPANSION"],
+			["stroop-calibrator", "Stroop Interference Calibrator"],
+			["tachistoscope", "TACHISTOSCOPE RECOGNITION MATRIX"],
+			["tachyon-racer", "Tachyon Hyper-Speed Interceptor"],
+			["memory-churn", "WORKING MEMORY CALIBRATION CHURN"]
+		].forEach(([e, t]) => {
+			let n = `arcade-game-${e}`;
+			this.nodes.set(n, {
+				nodeId: n,
+				gearId: "games",
+				kernelEvent: "library.game_opened",
+				route: `./games/${e}/index.html`,
+				title: t,
+				category: "arcade",
+				description: `Arcade chamber: ${t}`,
+				payload: {
+					resource: "trace",
+					amount: 25,
+					chamber: "Arcade Genesis"
+				}
+			}), this.aliases.set(e, n), this.aliases.set(t.toLowerCase(), n);
 		});
 	}
 	static register(e, t = []) {

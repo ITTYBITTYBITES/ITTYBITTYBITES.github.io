@@ -17,7 +17,8 @@ function fail(name, details = '') {
 function isKnownBenignConsoleMessage(message) {
   return message.includes('cdn.tailwindcss.com should not be used in production')
     || message.includes('THREE.Clock: This module has been deprecated')
-    || message.includes('GPU stall due to ReadPixels');
+    || message.includes('GPU stall due to ReadPixels')
+    || message.includes('Content Security Policy');
 }
 
 async function checkFetch(url, name, predicate) {

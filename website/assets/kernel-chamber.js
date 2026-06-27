@@ -25,7 +25,7 @@ function r(e, t) {
   `, document.body && (document.body.insertBefore(n, document.body.firstChild), document.body.appendChild(r));
 }
 function i() {
-	let i = document.querySelector("main[data-gear-id], body[data-gear-id], main[data-kernel-event]") || document.body, a = i?.getAttribute("data-gear-id") || "games", o = i?.getAttribute("data-kernel-event") || "library.game_opened", s = window.location.pathname, c = s.split("/").pop()?.replace(".html", "") || "", l = t.lookup(o) || t.lookup(c) || t.lookup(a), u = l?.title || (a === "archive" ? "Old Memory Vault" : "Arcade Genesis"), d = n();
+	let i = document.querySelector("main[data-gear-id], body[data-gear-id], main[data-kernel-event]") || document.body, a = i?.getAttribute("data-gear-id") || "games", o = i?.getAttribute("data-kernel-event") || "library.game_opened", s = window.location.pathname, c = s.split("/").pop()?.replace(".html", "") || "", l = t.lookup(c) || t.lookup(o) || t.lookup(a), u = l?.title || (a === "archive" ? "Old Memory Vault" : "Arcade Genesis"), d = n();
 	(l?.isLegacyStatic || s.includes("/articles/") || document.body?.classList.contains("legacy-article")) && r(u, d), e.markPortalArrival(u);
 	let f = (t) => {
 		e.storeChamberDeparture(u, o, s, t);

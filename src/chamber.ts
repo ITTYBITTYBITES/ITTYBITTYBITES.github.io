@@ -58,7 +58,7 @@ function initChamberShell(): void {
   // Resolve registry node
   const pathname = window.location.pathname;
   const slug = pathname.split('/').pop()?.replace('.html', '') || '';
-  const node = Registry.lookup(kernelEvent) || Registry.lookup(slug) || Registry.lookup(gearId);
+  const node = Registry.lookup(slug) || Registry.lookup(kernelEvent) || Registry.lookup(gearId);
   const chamberTitle = node?.title || (gearId === 'archive' ? 'Old Memory Vault' : 'Arcade Genesis');
 
   const homeHref = resolveHomeHref();
