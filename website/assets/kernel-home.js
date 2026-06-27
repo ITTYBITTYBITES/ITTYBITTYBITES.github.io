@@ -15975,7 +15975,68 @@ var If = class {
 	emitIfBudgetAllows(e, t = {}) {
 		return this.budget.getNodeCount() >= this.budget.maxNodes ? !1 : (this.triggerInteraction(e, t.signal || "spatial-event-bus"), this.emit(e, t, "spatial-event-bus"));
 	}
-}, Uf = "1.2.9-expansion", Wf = "lm_home_kernel", Gf = "ibb_home_kernel", Kf = "lm_blueprint_nav_gear", qf = `${Wf}_engine_version`, Jf = "lm-legacy-shell-purge", Yf = "lm_portal_arrival", Xf = "lm_chamber_departure", Zf = `${Wf}_portal_telemetry`, Qf = 0, $f = {
+}, Uf = "1.2.9-expansion", Wf = "lm_portal_arrival", Gf = "lm_chamber_departure", Kf = class {
+	constructor(e) {
+		this.telemetryKey = e;
+	}
+	stagePortalArrival(e, t) {
+		try {
+			sessionStorage.setItem(Wf, JSON.stringify({
+				type: "portal_arrival",
+				nodeId: e.nodeId,
+				chamber: e.chamber,
+				route: e.route,
+				seoLabel: e.seoLabel,
+				interactionEvent: e.interactionEvent,
+				trigger: e.trigger,
+				confirmedAt: t
+			}));
+		} catch {}
+	}
+	logPortalConfirmed(e, t) {
+		try {
+			let n = {
+				type: "portal_confirmed",
+				nodeId: e.nodeId,
+				chamber: e.chamber,
+				route: e.route,
+				seoLabel: e.seoLabel,
+				interactionEvent: e.interactionEvent,
+				trigger: e.trigger,
+				confirmedAt: t
+			}, r = this.getPortalTelemetry();
+			r.push(n), localStorage.setItem(this.telemetryKey, JSON.stringify(r.slice(-25)));
+		} catch {}
+	}
+	consumeChamberDeparture() {
+		try {
+			let e = sessionStorage.getItem(Gf);
+			if (!e) return null;
+			sessionStorage.removeItem(Gf);
+			let t = JSON.parse(e);
+			return t?.chamber ? t : null;
+		} catch {
+			return null;
+		}
+	}
+	getPortalTelemetry() {
+		try {
+			let e = JSON.parse(localStorage.getItem(this.telemetryKey) || "[]");
+			return Array.isArray(e) ? e : [];
+		} catch {
+			return [];
+		}
+	}
+	syncTelemetry(e = "console://liquid-memory/portal-telemetry") {
+		let t = this.getPortalTelemetry(), n = {
+			endpoint: e,
+			count: t.length,
+			syncedAt: (/* @__PURE__ */ new Date()).toISOString(),
+			entries: t
+		};
+		return console.info("[LiquidMemoryTelemetry]", JSON.stringify(n)), n;
+	}
+}, qf = "lm_home_kernel", Jf = "ibb_home_kernel", Yf = "lm_blueprint_nav_gear", Xf = `${qf}_engine_version`, Zf = "lm-legacy-shell-purge", Qf = `${qf}_portal_telemetry`, $f = 0, ep = {
 	games: {
 		eventType: "library.game_opened",
 		payload: {
@@ -16013,7 +16074,7 @@ var If = class {
 		}
 	}
 };
-function ep() {
+function tp() {
 	return {
 		...t,
 		timestamp: (/* @__PURE__ */ new Date()).toISOString(),
@@ -16041,10 +16102,10 @@ function ep() {
 		}
 	};
 }
-function tp(e, t = {}, n = "liquid-memory-homepage") {
+function np(e, t = {}, n = "liquid-memory-homepage") {
 	return {
 		eventId: crypto.randomUUID(),
-		sequenceId: ++Qf,
+		sequenceId: ++$f,
 		timestamp: (/* @__PURE__ */ new Date()).toISOString(),
 		type: e,
 		payload: t,
@@ -16052,87 +16113,48 @@ function tp(e, t = {}, n = "liquid-memory-homepage") {
 		metadata: { version: "1.0.0" }
 	};
 }
-function np() {
-	if (document.getElementById(Jf)) return;
-	let e = document.createElement("style");
-	e.id = Jf, e.textContent = "\n    div.box-link, div.parchment, .box-link, .parchment {\n      opacity: 0 !important;\n      pointer-events: none !important;\n      visibility: hidden !important;\n    }\n  ", document.head.appendChild(e);
-}
 function rp() {
-	document.querySelectorAll("div.box-link, div.parchment").forEach((e) => e.remove());
+	if (document.getElementById(Zf)) return;
+	let e = document.createElement("style");
+	e.id = Zf, e.textContent = "\n    div.box-link, div.parchment, .box-link, .parchment {\n      opacity: 0 !important;\n      pointer-events: none !important;\n      visibility: hidden !important;\n    }\n  ", document.head.appendChild(e);
 }
 function ip() {
-	localStorage.getItem(qf) !== "1.2.9-expansion" && localStorage.setItem(qf, Uf);
+	document.querySelectorAll("div.box-link, div.parchment").forEach((e) => e.remove());
 }
-function ap(e, t) {
-	try {
-		sessionStorage.setItem(Yf, JSON.stringify({
-			type: "portal_arrival",
-			nodeId: e.nodeId,
-			chamber: e.chamber,
-			route: e.route,
-			seoLabel: e.seoLabel,
-			interactionEvent: e.interactionEvent,
-			trigger: e.trigger,
-			confirmedAt: t
-		}));
-	} catch {}
+function ap() {
+	localStorage.getItem(Xf) !== "1.2.9-expansion" && localStorage.setItem(Xf, Uf);
 }
-function op(e, t) {
-	try {
-		let n = {
-			type: "portal_confirmed",
-			nodeId: e.nodeId,
-			chamber: e.chamber,
-			route: e.route,
-			seoLabel: e.seoLabel,
-			interactionEvent: e.interactionEvent,
-			trigger: e.trigger,
-			confirmedAt: t
-		}, r = JSON.parse(localStorage.getItem(Zf) || "[]"), i = Array.isArray(r) ? r : [];
-		i.push(n), localStorage.setItem(Zf, JSON.stringify(i.slice(-25)));
-	} catch {}
-}
-function sp() {
-	try {
-		let e = sessionStorage.getItem(Xf);
-		if (!e) return null;
-		sessionStorage.removeItem(Xf);
-		let t = JSON.parse(e);
-		return t?.chamber ? t : null;
-	} catch {
-		return null;
-	}
-}
-function cp() {
-	try {
-		let e = JSON.parse(localStorage.getItem(Zf) || "[]");
-		return Array.isArray(e) ? e : [];
-	} catch {
-		return [];
-	}
-}
-function lp(e = "console://liquid-memory/portal-telemetry") {
-	let t = cp(), n = {
-		endpoint: e,
-		count: t.length,
-		syncedAt: (/* @__PURE__ */ new Date()).toISOString(),
-		entries: t
-	};
-	return console.info("[LiquidMemoryTelemetry]", JSON.stringify(n)), n;
-}
-function up() {
-	[[`${Gf}_state`, `${Wf}_state`], [`${Gf}_event_log`, `${Wf}_event_log`]].forEach(([e, t]) => {
+function op() {
+	[[`${Jf}_state`, `${qf}_state`], [`${Jf}_event_log`, `${qf}_event_log`]].forEach(([e, t]) => {
 		!localStorage.getItem(t) && localStorage.getItem(e) && localStorage.setItem(t, localStorage.getItem(e));
 	});
 }
-function dp() {
-	np();
+function sp() {
+	rp();
 	let t = e.getInstance();
-	t.reset(), ip(), up();
-	let o = new i(`${Wf}_state`, `${Wf}_event_log`), s = new r(o.rehydrate() || ep());
+	t.reset(), ap(), op();
+	let o = new Kf(Qf), s = new i(`${qf}_state`, `${qf}_event_log`), c = new r(s.rehydrate() || tp());
 	new a().init(t);
-	let c = document.getElementById("spatial-canvas"), l = document.getElementById("spatial-live-region"), u = null, d = null, f = null;
-	function p(e) {
+	let l = document.getElementById("spatial-canvas"), u = document.getElementById("spatial-live-region"), d = null, f = null, p = null, m = !1, h = null, g = [];
+	function _(e) {
+		return m && h ? (queueMicrotask(() => e(h)), () => void 0) : (g.push(e), () => {
+			let t = g.indexOf(e);
+			t >= 0 && g.splice(t, 1);
+		});
+	}
+	function v() {
+		m || !h || (m = !0, document.body.classList.add("liquid-ready"), d?.getGearCount() === 5 && d?.getGaugeCount() >= 4 && d?.isWorkstationModelLoaded?.() && ip(), g.splice(0).forEach((e) => {
+			try {
+				e(h);
+			} catch (e) {
+				console.warn("[LiquidMemory] ready callback failed", e);
+			}
+		}), window.dispatchEvent(new CustomEvent("liquidmemory:ready", { detail: {
+			version: Uf,
+			nodeCount: d?.getNodeCount() || 0
+		} })));
+	}
+	function y(e) {
 		if (!e) return null;
 		try {
 			let t = new URL(e, window.location.href);
@@ -16141,114 +16163,126 @@ function dp() {
 			return null;
 		}
 	}
-	function m() {
-		let e = d?.getPortalIntent() || null;
-		u?.setPortalIntent(e ? {
+	function b() {
+		let e = f?.getPortalIntent() || null;
+		d?.setPortalIntent(e ? {
 			chamber: e.chamber,
 			route: e.route,
 			seoLabel: e.seoLabel,
 			nodeId: e.nodeId
 		} : null);
 	}
-	function h() {
-		let e = d?.getPortalIntent() || null;
-		if (m(), !e?.route) return !1;
-		let t = p(e.route);
+	function x() {
+		let e = f?.getPortalIntent() || null;
+		if (b(), !e?.route) return !1;
+		let t = y(e.route);
 		if (!t) return !1;
 		let n = (/* @__PURE__ */ new Date()).toISOString();
-		return c && (c.dataset.portalConfirmed = e.chamber || e.seoLabel || e.nodeId || "unknown", c.dataset.portalConfirmedAt = n), ap(e, n), op(e, n), window.location.assign(t), !0;
+		return l && (l.dataset.portalConfirmed = e.chamber || e.seoLabel || e.nodeId || "unknown", l.dataset.portalConfirmedAt = n), o.stagePortalArrival(e, n), o.logPortalConfirmed(e, n), window.location.assign(t), !0;
 	}
-	function g(e) {
-		u?.focusGear(e), u?.setActiveGear(e), localStorage.setItem(Kf, e);
+	function S(e) {
+		d?.focusGear(e), d?.setActiveGear(e), localStorage.setItem(Yf, e);
 	}
-	function _(e) {
-		let n = $f[e], r = { ...n.payload };
+	function C(e) {
+		let n = ep[e], r = { ...n.payload };
 		if (n.eventType === "milestone.level_up") {
-			let e = s.getCurrentState().player.level || 1;
+			let e = c.getCurrentState().player.level || 1;
 			r.newLevel = e + 1, r.xp = e * 150;
 		}
-		localStorage.setItem(Kf, e), t.emit(tp(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => g(e), 90);
+		localStorage.setItem(Yf, e), t.emit(np(n.eventType, r, `blueprint-gear-${e}`)), window.setTimeout(() => S(e), 90);
 	}
-	function v(e) {
-		if (!e || !d) return;
-		let t = d.recordChamberReturn(e);
-		m();
+	function w(e) {
+		if (!e || !f) return;
+		let t = f.recordChamberReturn(e);
+		b();
 		let n = t?.content?.interactionEvent || e.interactionEvent || "library.game_opened";
-		u?.focusEventType(n), e.chamber === "Arcade Genesis" && (u?.focusGear("games"), u?.setActiveGear("games"), localStorage.setItem(Kf, "games")), c && (c.dataset.portalReturn = e.chamber, c.dataset.portalReturnAt = (/* @__PURE__ */ new Date()).toISOString());
+		d?.focusEventType(n), e.chamber === "Arcade Genesis" && (d?.focusGear("games"), d?.setActiveGear("games"), localStorage.setItem(Yf, "games")), l && (l.dataset.portalReturn = e.chamber, l.dataset.portalReturnAt = (/* @__PURE__ */ new Date()).toISOString());
 	}
-	u = c ? new Bf(c, l, _) : null, d = new Hf((e, n = {}, r) => t.emit(tp(e, n, r)), {
-		getNodeCount: () => u?.getNodeCount() || 0,
+	d = l ? new Bf(l, u, C) : null, f = new Hf((e, n = {}, r) => t.emit(np(e, n, r)), {
+		getNodeCount: () => d?.getNodeCount() || 0,
 		maxNodes: 48
-	}), d.init(), c && u && (f = d.bindSwipeGesture(c, {
+	}), f.init(), l && d && (p = f.bindSwipeGesture(l, {
 		threshold: 50,
-		getIntentNodeId: () => d?.getPortalIntent()?.interactionEvent || u?.getPortalGestureTargetNodeId() || null,
+		getIntentNodeId: () => f?.getPortalIntent()?.interactionEvent || d?.getPortalGestureTargetNodeId() || null,
 		armIntent: (e, t = "portal-swipe") => {
-			d?.triggerInteraction(e, t), m();
+			f?.triggerInteraction(e, t), b();
 		},
-		onPreflight: (e, t, n) => u?.setPortalPreflight(e, t, n),
-		onConfirm: () => h()
-	})), o.getEventLog().slice(-48).forEach((e) => u?.handle(e)), v(sp()), t.subscribe((e) => {
-		u?.handle(e);
-		let t = s.getCurrentState(), r = n(t, e);
-		r !== t && r.processedEventIds.has(e.eventId) && (o.logEvent(e), o.save(r)), s.onStateUpdated(r), u?.updateFromState(r);
-	}), window.LiquidMemoryKernel = {
+		onPreflight: (e, t, n) => d?.setPortalPreflight(e, t, n),
+		onConfirm: () => x()
+	})), s.getEventLog().slice(-48).forEach((e) => d?.handle(e)), w(o.consumeChamberDeparture()), t.subscribe((e) => {
+		d?.handle(e);
+		let t = c.getCurrentState(), r = n(t, e);
+		r !== t && r.processedEventIds.has(e.eventId) && (s.logEvent(e), s.save(r)), c.onStateUpdated(r), d?.updateFromState(r);
+	});
+	let T = {
 		bus: t,
-		bridge: s,
+		bridge: c,
 		version: Uf,
-		emit: (e, n = {}, r) => t.emit(tp(e, n, r)),
-		getState: () => s.getCurrentState(),
+		emit: (e, n = {}, r) => t.emit(np(e, n, r)),
+		getState: () => c.getCurrentState(),
 		getEngineVersion: () => Uf,
-		levelUp: () => _("blueprint"),
-		gain: (e = "trace", n = 10) => t.emit(tp("economic.resource_gained", {
+		isReady: () => m,
+		onReady: _,
+		levelUp: () => C("blueprint"),
+		gain: (e = "trace", n = 10) => t.emit(np("economic.resource_gained", {
 			resource: e,
 			amount: n
 		})),
-		spend: (e = "pearls", n = 60) => t.emit(tp("economic.resource_spent", {
+		spend: (e = "pearls", n = 60) => t.emit(np("economic.resource_spent", {
 			resource: e,
 			amount: n
 		})),
-		focusSpatial: () => u?.focusNext(),
-		focusGear: g,
-		triggerGear: _,
-		getSpatialNodeCount: () => u?.getNodeCount() || 0,
+		focusSpatial: () => d?.focusNext(),
+		focusGear: S,
+		triggerGear: C,
+		getSpatialNodeCount: () => d?.getNodeCount() || 0,
 		emitArchiveSignal: (e = {}) => {
-			let t = d?.emitArchiveSignal(e) || !1;
-			return m(), t;
+			let t = f?.emitArchiveSignal(e) || !1;
+			return b(), t;
 		},
 		emitMemoryEcho: (e = {}) => {
-			let t = d?.emitMemoryEcho(e) || !1;
-			return m(), t;
+			let t = f?.emitMemoryEcho(e) || !1;
+			return b(), t;
 		},
 		triggerSpatialInteraction: (e, t) => {
-			let n = d?.triggerInteraction(e, t);
-			return m(), n;
+			let n = f?.triggerInteraction(e, t);
+			return b(), n;
 		},
-		getActiveChamberState: () => d?.getActiveChamberState() || null,
-		getPortalIntent: () => d?.getPortalIntent() || null,
-		getChamberReturnState: () => d?.getChamberReturnState() || null,
-		getPortalTelemetry: () => cp(),
-		syncTelemetry: (e) => lp(e),
+		getActiveChamberState: () => f?.getActiveChamberState() || null,
+		getPortalIntent: () => f?.getPortalIntent() || null,
+		getChamberReturnState: () => f?.getChamberReturnState() || null,
+		getPortalTelemetry: () => o.getPortalTelemetry(),
+		syncTelemetry: (e) => o.syncTelemetry(e),
 		clearPortalIntent: () => {
-			d?.clearPortalIntent(), c && (delete c.dataset.portalConfirmed, delete c.dataset.portalConfirmedAt), m();
+			f?.clearPortalIntent(), l && (delete l.dataset.portalConfirmed, delete l.dataset.portalConfirmedAt), b();
 		},
-		confirmPortalIntent: h,
-		getSpatialGearCount: () => u?.getGearCount() || 0,
-		getSpatialGaugeCount: () => u?.getGaugeCount() || 0,
-		getResponsiveMode: () => u?.getResponsiveMode?.() || "unknown",
-		isWorkstationModelLoaded: () => u?.isWorkstationModelLoaded?.() || !1,
-		isProceduralFallbackActive: () => u?.isProceduralFallbackActive?.() || !1,
-		getWorkstationAnchorCount: () => u?.getAnchorCount?.() || 0,
+		confirmPortalIntent: x,
+		getSpatialGearCount: () => d?.getGearCount() || 0,
+		getSpatialGaugeCount: () => d?.getGaugeCount() || 0,
+		getResponsiveMode: () => d?.getResponsiveMode?.() || "unknown",
+		isWorkstationModelLoaded: () => d?.isWorkstationModelLoaded?.() || !1,
+		isProceduralFallbackActive: () => d?.isProceduralFallbackActive?.() || !1,
+		getWorkstationAnchorCount: () => d?.getAnchorCount?.() || 0,
 		destroy: () => {
-			f?.destroy(), f = null, d?.destroy(), u?.dispose(), u = null;
+			p?.destroy(), p = null, f?.destroy(), d?.dispose(), d = null;
 		},
 		clear: () => {
-			o.clear(), localStorage.removeItem(Kf), window.location.reload();
+			s.clear(), localStorage.removeItem(Yf), window.location.reload();
 		}
-	}, window.LiquidMemorySpatial = u, window.setTimeout(() => {
-		document.body.classList.add("liquid-ready"), u?.getGearCount() === 5 && u?.getGaugeCount() >= 4 && u?.isWorkstationModelLoaded?.() && rp();
-	}, 250);
-	let y = localStorage.getItem(Kf) || "games";
-	$f[y] && window.setTimeout(() => g(y), 160), t.emit(tp("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(tp("system.heartbeat", { path: location.pathname })), 3e4);
+	};
+	h = T, window.LiquidMemory = {
+		version: Uf,
+		Kernel: T,
+		Spatial: d,
+		Events: f,
+		Telemetry: {
+			getPortalTelemetry: () => o.getPortalTelemetry(),
+			syncTelemetry: (e) => o.syncTelemetry(e)
+		},
+		onReady: _
+	}, window.LiquidMemoryKernel = T, window.LiquidMemorySpatial = d, requestAnimationFrame(() => v());
+	let E = localStorage.getItem(Yf) || "games";
+	ep[E] && window.setTimeout(() => S(E), 160), t.emit(np("lifecycle.start", { page: location.pathname })), window.setInterval(() => t.emit(np("system.heartbeat", { path: location.pathname })), 3e4);
 }
-document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", dp) : dp();
+document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", sp) : sp();
 //#endregion

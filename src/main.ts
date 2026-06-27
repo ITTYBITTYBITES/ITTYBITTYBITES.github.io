@@ -1,32 +1,28 @@
+/**
+ * Liquid Memory Home Kernel v1.0
+ *
+ * Orchestrates the Holographic Data-Hub, preserving compatibility aliases
+ * while exposing the unified window.LiquidMemory namespace. Runtime storage
+ * helpers live in LiquidMemoryTelemetry so the Kernel remains an orchestrator.
+ */
 import { GlobalEventBus, INITIAL_PLATFORM_STATE, MonetizationLayer, PlatformPersistor, reduce, VisualBridge } from './kernel';
 import type { EventContract, PlatformState } from './kernel';
 import { SpatialRenderer, type GearId } from './spatial/SpatialRenderer';
-import { SpatialEventBus, type ChamberDeparture, type SwipeGestureController } from './spatial/SpatialEventBus';
+import { SpatialEventBus, type SwipeGestureController } from './spatial/SpatialEventBus';
 import { ENGINE_VERSION } from './core/Version';
+import { LiquidMemoryTelemetry, type ChamberDepartureMarker } from './core/telemetry/LiquidMemoryTelemetry';
 
 const STORAGE_NAMESPACE = 'lm_home_kernel';
 const LEGACY_STORAGE_NAMESPACE = 'ibb_home_kernel';
 const BLUEPRINT_GEAR_KEY = 'lm_blueprint_nav_gear';
 const HOME_ENGINE_VERSION_KEY = `${STORAGE_NAMESPACE}_engine_version`;
 const LEGACY_SHELL_STYLE_ID = 'lm-legacy-shell-purge';
-const PORTAL_ARRIVAL_KEY = 'lm_portal_arrival';
-const CHAMBER_DEPARTURE_KEY = 'lm_chamber_departure';
 const PORTAL_TELEMETRY_KEY = `${STORAGE_NAMESPACE}_portal_telemetry`;
 let uiSequence = 0;
 
 type GearIntent = {
   eventType: string;
   payload: Record<string, any>;
-};
-
-type PortalTelemetryIntent = {
-  nodeId: string;
-  chamber: string;
-  route?: string;
-  seoLabel?: string;
-  interactionEvent?: string;
-  trigger: string;
-  updatedAt: string;
 };
 
 const GEAR_INTENTS: Record<GearId, GearIntent> = {
@@ -91,77 +87,6 @@ function markHomeEngineVersion(): void {
   }
 }
 
-function stagePortalArrival(intent: PortalTelemetryIntent, confirmedAt: string): void {
-  try {
-    sessionStorage.setItem(PORTAL_ARRIVAL_KEY, JSON.stringify({
-      type: 'portal_arrival',
-      nodeId: intent.nodeId,
-      chamber: intent.chamber,
-      route: intent.route,
-      seoLabel: intent.seoLabel,
-      interactionEvent: intent.interactionEvent,
-      trigger: intent.trigger,
-      confirmedAt,
-    }));
-  } catch {
-    // Session storage is best-effort chamber context only.
-  }
-}
-
-function logPortalTelemetry(intent: PortalTelemetryIntent, confirmedAt: string): void {
-  try {
-    const entry = {
-      type: 'portal_confirmed',
-      nodeId: intent.nodeId,
-      chamber: intent.chamber,
-      route: intent.route,
-      seoLabel: intent.seoLabel,
-      interactionEvent: intent.interactionEvent,
-      trigger: intent.trigger,
-      confirmedAt,
-    };
-    const existing = JSON.parse(localStorage.getItem(PORTAL_TELEMETRY_KEY) || '[]');
-    const history = Array.isArray(existing) ? existing : [];
-    history.push(entry);
-    localStorage.setItem(PORTAL_TELEMETRY_KEY, JSON.stringify(history.slice(-25)));
-  } catch {
-    // Telemetry is intentionally non-blocking and never emits Kernel events.
-  }
-}
-
-function consumeChamberDeparture(): ChamberDeparture | null {
-  try {
-    const raw = sessionStorage.getItem(CHAMBER_DEPARTURE_KEY);
-    if (!raw) return null;
-    sessionStorage.removeItem(CHAMBER_DEPARTURE_KEY);
-    const parsed = JSON.parse(raw) as ChamberDeparture;
-    return parsed?.chamber ? parsed : null;
-  } catch {
-    return null;
-  }
-}
-
-function readPortalTelemetry(): any[] {
-  try {
-    const parsed = JSON.parse(localStorage.getItem(PORTAL_TELEMETRY_KEY) || '[]');
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
-  }
-}
-
-function syncPortalTelemetry(endpoint = 'console://liquid-memory/portal-telemetry'): { endpoint: string; count: number; syncedAt: string; entries: any[] } {
-  const entries = readPortalTelemetry();
-  const payload = {
-    endpoint,
-    count: entries.length,
-    syncedAt: new Date().toISOString(),
-    entries,
-  };
-  console.info('[LiquidMemoryTelemetry]', JSON.stringify(payload));
-  return payload;
-}
-
 function migrateLegacyMemoryState(): void {
   const pairs = [
     [`${LEGACY_STORAGE_NAMESPACE}_state`, `${STORAGE_NAMESPACE}_state`],
@@ -180,6 +105,7 @@ function initKernel() {
   bus.reset();
   markHomeEngineVersion();
   migrateLegacyMemoryState();
+  const telemetry = new LiquidMemoryTelemetry(PORTAL_TELEMETRY_KEY);
 
   const persistor = new PlatformPersistor(`${STORAGE_NAMESPACE}_state`, `${STORAGE_NAMESPACE}_event_log`);
   const rehydrated = persistor.rehydrate();
@@ -192,6 +118,37 @@ function initKernel() {
   let spatial: SpatialRenderer | null = null;
   let spatialEvents: SpatialEventBus | null = null;
   let swipeGestures: SwipeGestureController | null = null;
+  let kernelReady = false;
+  let apiRef: any = null;
+  const readyCallbacks: Array<(kernel: any) => void> = [];
+
+
+  function onReady(callback: (kernel: any) => void): () => void {
+    if (kernelReady && apiRef) {
+      queueMicrotask(() => callback(apiRef));
+      return () => undefined;
+    }
+    readyCallbacks.push(callback);
+    return () => {
+      const index = readyCallbacks.indexOf(callback);
+      if (index >= 0) readyCallbacks.splice(index, 1);
+    };
+  }
+
+  function dispatchKernelReady(): void {
+    if (kernelReady || !apiRef) return;
+    kernelReady = true;
+    document.body.classList.add('liquid-ready');
+    if (spatial?.getGearCount() === 5 && spatial?.getGaugeCount() >= 4 && spatial?.isWorkstationModelLoaded?.()) {
+      removeLegacyShellNodes();
+    }
+    readyCallbacks.splice(0).forEach((callback) => {
+      try { callback(apiRef); } catch (error) { console.warn('[LiquidMemory] ready callback failed', error); }
+    });
+    window.dispatchEvent(new CustomEvent('liquidmemory:ready', {
+      detail: { version: ENGINE_VERSION, nodeCount: spatial?.getNodeCount() || 0 },
+    }));
+  }
 
   function resolvePortalRoute(route?: string): string | null {
     if (!route) return null;
@@ -227,8 +184,8 @@ function initKernel() {
       spatialHost.dataset.portalConfirmed = intent.chamber || intent.seoLabel || intent.nodeId || 'unknown';
       spatialHost.dataset.portalConfirmedAt = confirmedAt;
     }
-    stagePortalArrival(intent, confirmedAt);
-    logPortalTelemetry(intent, confirmedAt);
+    telemetry.stagePortalArrival(intent, confirmedAt);
+    telemetry.logPortalConfirmed(intent, confirmedAt);
     window.location.assign(route);
     return true;
   }
@@ -253,7 +210,7 @@ function initKernel() {
   }
 
 
-  function handleChamberReturn(departure: ChamberDeparture | null): void {
+  function handleChamberReturn(departure: ChamberDepartureMarker | null): void {
     if (!departure || !spatialEvents) return;
     const state = spatialEvents.recordChamberReturn(departure);
     syncPortalIntent();
@@ -292,7 +249,7 @@ function initKernel() {
   // Rebuild visible biome from persisted event memory without reducer side effects.
   const rememberedEvents = persistor.getEventLog().slice(-48);
   rememberedEvents.forEach((event) => spatial?.handle(event));
-  handleChamberReturn(consumeChamberDeparture());
+  handleChamberReturn(telemetry.consumeChamberDeparture());
 
   bus.subscribe((event) => {
     spatial?.handle(event);
@@ -313,6 +270,8 @@ function initKernel() {
     emit: (type: string, payload: Record<string, any> = {}, source?: string) => bus.emit(makeEvent(type, payload, source)),
     getState: () => bridge.getCurrentState(),
     getEngineVersion: () => ENGINE_VERSION,
+    isReady: () => kernelReady,
+    onReady,
     levelUp: () => triggerGear('blueprint'),
     gain: (resource = 'trace', amount = 10) => bus.emit(makeEvent('economic.resource_gained', { resource, amount })),
     spend: (resource = 'pearls', amount = 60) => bus.emit(makeEvent('economic.resource_spent', { resource, amount })),
@@ -338,8 +297,8 @@ function initKernel() {
     getActiveChamberState: () => spatialEvents?.getActiveChamberState() || null,
     getPortalIntent: () => spatialEvents?.getPortalIntent() || null,
     getChamberReturnState: () => spatialEvents?.getChamberReturnState() || null,
-    getPortalTelemetry: () => readPortalTelemetry(),
-    syncTelemetry: (endpoint?: string) => syncPortalTelemetry(endpoint),
+    getPortalTelemetry: () => telemetry.getPortalTelemetry(),
+    syncTelemetry: (endpoint?: string) => telemetry.syncTelemetry(endpoint),
     clearPortalIntent: () => {
       spatialEvents?.clearPortalIntent();
       if (spatialHost) {
@@ -365,14 +324,23 @@ function initKernel() {
     clear: () => { persistor.clear(); localStorage.removeItem(BLUEPRINT_GEAR_KEY); window.location.reload(); },
   };
 
+  apiRef = api;
+  const telemetryApi = {
+    getPortalTelemetry: () => telemetry.getPortalTelemetry(),
+    syncTelemetry: (endpoint?: string) => telemetry.syncTelemetry(endpoint),
+  };
+  (window as any).LiquidMemory = {
+    version: ENGINE_VERSION,
+    Kernel: api,
+    Spatial: spatial,
+    Events: spatialEvents,
+    Telemetry: telemetryApi,
+    onReady,
+  };
+  // Compatibility aliases required by the current 19/19 and 20/20 verifier contracts.
   (window as any).LiquidMemoryKernel = api;
   (window as any).LiquidMemorySpatial = spatial;
-  window.setTimeout(() => {
-    document.body.classList.add('liquid-ready');
-    if (spatial?.getGearCount() === 5 && spatial?.getGaugeCount() >= 4 && spatial?.isWorkstationModelLoaded?.()) {
-      removeLegacyShellNodes();
-    }
-  }, 250);
+  requestAnimationFrame(() => dispatchKernelReady());
 
   const savedGear = (localStorage.getItem(BLUEPRINT_GEAR_KEY) || 'games') as GearId;
   if (GEAR_INTENTS[savedGear]) {

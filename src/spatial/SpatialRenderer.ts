@@ -1,3 +1,10 @@
+/**
+ * Liquid Memory SpatialRenderer v1.0
+ *
+ * WebGL-native renderer for the Holographic Data-Hub. Handles fluid viewport
+ * calibration, portal preflight feedback, chamber focus, and responsive bloom
+ * without requiring DOM visual overlays.
+ */
 import * as THREE from 'three';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';

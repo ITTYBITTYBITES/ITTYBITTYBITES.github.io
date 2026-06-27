@@ -275,12 +275,14 @@ img { max-width: 100%; height: auto; }
 @media (max-width: 620px) { .kernel-state-grid { grid-template-columns: 1fr; } .kernel-canvas, .kernel-spatial-canvas { min-height:360px; } .kernel-spatial-hud { align-items:flex-start; flex-direction:column; } .kernel-focus-dial { width:82px; height:82px; font-size:9px; } }
 
 /* Liquid Memory Fullscreen System */
-html, body.liquid-fullscreen { width:100%; min-height:100%; overflow:hidden; }
+html, body.liquid-fullscreen { width:100vw; width:100dvw; max-width:100dvw; min-height:100dvh; overflow:hidden; }
 body.liquid-fullscreen { background:#0d0a07; }
 body.liquid-fullscreen::before { z-index:-4; }
 body.liquid-fullscreen::after { z-index:20; opacity:.28; }
-.liquid-memory-system { position:fixed; inset:0; width:100vw; height:100dvh; overflow:hidden; isolation:isolate; }
-.liquid-spatial-viewport { position:fixed !important; inset:0 !important; width:100vw !important; width:100dvw !important; max-width:100dvw !important; height:100vh !important; height:100svh !important; height:100dvh !important; min-height:100dvh !important; max-height:100dvh !important; z-index:-1; overflow:hidden !important; contain:layout size paint; background: radial-gradient(circle at 50% 45%, rgba(0,255,255,.10), transparent 38%), linear-gradient(135deg, #020617, #001622 55%, #020617); }
+.liquid-memory-system { position:fixed; inset:0; width:100vw; width:100dvw; height:100dvh; min-height:100dvh; overflow:hidden; isolation:isolate; }
+
+/* Liquid Memory v1.0 Spatial Viewport Contract */
+.liquid-spatial-viewport, #spatial-canvas.kernel-spatial-canvas { position:fixed !important; inset:0 !important; width:100vw !important; width:100dvw !important; max-width:100dvw !important; height:100vh !important; height:100svh !important; height:100dvh !important; min-height:100dvh !important; max-height:100dvh !important; z-index:0; display:block !important; overflow:hidden !important; contain:layout size paint; backdrop-filter:blur(0px); -webkit-backdrop-filter:blur(0px); will-change:transform; background:radial-gradient(circle at 50% 45%, rgba(0,255,255,.10), transparent 30%), linear-gradient(rgba(0,255,255,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,255,.04) 1px, transparent 1px), linear-gradient(135deg, #020617, #001622 55%, #020617); background-size:auto, clamp(28px, 8vw, 72px) clamp(28px, 8vw, 72px), clamp(28px, 8vw, 72px) clamp(28px, 8vw, 72px), auto; background-position:center; }
 .liquid-spatial-viewport canvas, .liquid-spatial-viewport .kernel-spatial-webgl { width:100vw !important; width:100dvw !important; max-width:100dvw !important; height:100vh !important; height:100dvh !important; max-height:100dvh !important; display:block !important; object-fit:fill !important; }
 .liquid-overlay { position:fixed; z-index:30; }
 .liquid-overlay--brand { top: max(18px, env(safe-area-inset-top)); left: max(18px, env(safe-area-inset-left)); right: max(18px, env(safe-area-inset-right)); display:flex; align-items:flex-start; justify-content:space-between; gap:16px; pointer-events:none; }
@@ -310,7 +312,6 @@ body.liquid-fullscreen::after { z-index:20; opacity:.28; }
 
 /* Fused 3D system: suppress page-era overlays; the interface is now WebGL-native. */
 .liquid-fused-system .liquid-sr-status { position:absolute !important; width:1px !important; height:1px !important; padding:0 !important; margin:-1px !important; overflow:hidden !important; clip:rect(0,0,0,0) !important; white-space:nowrap !important; border:0 !important; }
-.liquid-fused-system .liquid-spatial-viewport { z-index:0; }
 .liquid-fused-system .liquid-memory-system { background: radial-gradient(circle at 50% 50%, rgba(110,244,229,.035), transparent 42%), #0d0a07; }
 
 /* SEO/no-JS/loading fallbacks: centered, diegetic, and non-dashboard. */
@@ -323,9 +324,6 @@ body.liquid-ready .liquid-loading { opacity:0; pointer-events:none; transition:o
 .liquid-noscript p { max-width:680px; color:#c9bda5; }
 .liquid-noscript nav { display:flex; flex-wrap:wrap; justify-content:center; gap:10px; }
 .liquid-noscript a { color:#6ef4e5; border:1px solid #6d5732; padding:10px 14px; text-decoration:none; text-transform:uppercase; font-size:12px; }
-.liquid-spatial-viewport { background-image: radial-gradient(circle at 50% 45%, rgba(0,255,255,.10), transparent 30%), linear-gradient(rgba(0,255,255,.055) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,255,.04) 1px, transparent 1px); background-size:auto, clamp(28px, 8vw, 72px) clamp(28px, 8vw, 72px), clamp(28px, 8vw, 72px) clamp(28px, 8vw, 72px); background-position:center; }
-
-
 /* Production loading behavior: never obscure the workstation with a black web splash. */
 .liquid-loading { background: transparent !important; opacity: 0 !important; pointer-events: none !important; z-index: 1 !important; }
 body:not(.liquid-ready) .liquid-spatial-viewport { opacity: 1; }
@@ -349,14 +347,11 @@ div.box-link, div.parchment, .box-link, .parchment { opacity:0 !important; point
 }
 
 
-/* Mobile viewport calibration: keep WebGL canvas and native text overlays bounded. */
-html, body.liquid-fullscreen, .liquid-memory-system { width:100vw; width:100dvw; max-width:100dvw; height:100dvh; min-height:100dvh; }
-#spatial-canvas, .kernel-spatial-canvas, .liquid-spatial-viewport { width:100vw !important; width:100dvw !important; height:100dvh !important; display:block !important; backdrop-filter: blur(0px); -webkit-backdrop-filter: blur(0px); will-change: transform; }
+/* Native text overlays remain bounded; canvas sizing is governed by the v1.0 Spatial Viewport Contract above. */
 .kernel-spatial-webgl { width:100dvw !important; height:100dvh !important; max-width:100dvw !important; max-height:100dvh !important; }
 .liquid-spatial-viewport svg text, .liquid-spatial-viewport text {
   font-size: clamp(14px, 4vw, 24px) !important;
 }
 @media (max-width: 640px) {
   .liquid-memory-system { height:100svh; height:100dvh; }
-  .liquid-spatial-viewport { height:100dvh !important; min-height:100dvh !important; }
 }
