@@ -120,6 +120,16 @@ function initKernel() {
     };
   }
 
+  function performSystemRehydration(): void {
+    try {
+      Object.keys(localStorage).forEach((key) => {
+        if (key.includes('liquid-memory-cache') || key.includes('arcade_client_deployment_ver')) {
+          localStorage.removeItem(key);
+        }
+      });
+    } catch {}
+  }
+
   function dispatchKernelReady(): void {
     if (kernelReady || !apiRef) return;
     kernelReady = true;
@@ -127,6 +137,11 @@ function initKernel() {
     if (spatial?.getGearCount() === 5 && spatial?.getGaugeCount() >= 4 && spatial?.isWorkstationModelLoaded?.()) {
       removeLegacyShellNodes();
     }
+    const dbgReg = document.getElementById('dbg-reg-cnt');
+    const dbgCnv = document.getElementById('dbg-cnv-st');
+    if (dbgReg) dbgReg.textContent = String(Registry.getAllNodes().length);
+    if (dbgCnv) dbgCnv.textContent = spatial?.isWorkstationModelLoaded?.() ? 'GLB Mounted' : 'Procedural Fallback Active';
+
     readyCallbacks.splice(0).forEach((callback) => {
       try { callback(apiRef); } catch (error) { console.warn('[LiquidMemory] ready callback failed', error); }
     });
@@ -237,8 +252,21 @@ function initKernel() {
     });
   }
 
+  performSystemRehydration();
   const rememberedEvents = persistor.getEventLog().slice(-48);
-  rememberedEvents.forEach((event) => spatial?.handle(event));
+  if (rememberedEvents.length === 0) {
+    const initialNodes = ['arcade-main', 'legacy-static-content', 'community-vortex', 'witness-chamber', 'signals-dashboard'];
+    initialNodes.forEach((id) => {
+      const regNode = Registry.lookup(id);
+      if (regNode) {
+        spatial?.handle(makeEvent(regNode.kernelEvent, regNode.payload || {}));
+      } else {
+        spatial?.handle(makeEvent('system.terminal_fallback', { chamber: id }));
+      }
+    });
+  } else {
+    rememberedEvents.forEach((event) => spatial?.handle(event));
+  }
   handleChamberReturn(telemetry.consumeChamberDeparture());
 
   bus.subscribe((event) => {
