@@ -115,6 +115,9 @@ export class SpatialRenderer {
   private dragGear?: GearAssembly;
   private dragStartX = 0;
   private didDrag = false;
+  private portalPreflightProgress = 0;
+  private portalPreflightNodeId: string | null = null;
+  private portalPreflightDirection = 0;
 
   constructor(
     private host: HTMLElement,
@@ -322,6 +325,24 @@ export class SpatialRenderer {
     return this.modelAnchors.size;
   }
 
+  getPortalGestureTargetNodeId(): string | null {
+    const candidate = this.hovered || this.nodes[this.focusIndex] || this.nodes[this.nodes.length - 1];
+    return candidate?.contentMetadata?.interactionEvent || candidate?.eventType || null;
+  }
+
+  setPortalPreflight(progress: number, nodeId: string | null = null, deltaX = 0): void {
+    this.portalPreflightProgress = THREE.MathUtils.clamp(progress, 0, 1);
+    this.portalPreflightNodeId = nodeId;
+    this.portalPreflightDirection = Math.sign(deltaX);
+    if (this.portalPreflightProgress > 0 && nodeId) {
+      this.host.dataset.portalSwipe = this.portalPreflightProgress >= 1 ? 'ready' : 'preflight';
+      this.host.dataset.portalSwipeNode = nodeId;
+    } else {
+      delete this.host.dataset.portalSwipe;
+      delete this.host.dataset.portalSwipeNode;
+    }
+  }
+
   dispose(): void {
     cancelAnimationFrame(this.rafId);
     if (this.mountGuardId !== undefined) window.clearInterval(this.mountGuardId);
@@ -330,6 +351,7 @@ export class SpatialRenderer {
     this.resizeObserver?.disconnect();
     this.responsive.dispose();
     this.composer?.dispose();
+    this.setPortalPreflight(0, null, 0);
     this.renderer.dispose();
     this.host.innerHTML = '';
   }
@@ -1399,9 +1421,16 @@ export class SpatialRenderer {
       node.halo.position.copy(node.mesh.position);
       const pulse = 1 + Math.sin(elapsed * 2.4 + index) * 0.045;
       const hoverBoost = this.hovered === node ? 1.32 : 1;
+      const preflightTargeted = this.portalPreflightProgress > 0 && (
+        this.portalPreflightNodeId === node.eventType ||
+        this.portalPreflightNodeId === node.contentMetadata?.interactionEvent ||
+        this.portalPreflightNodeId === node.contentMetadata?.chamber ||
+        this.portalPreflightNodeId === node.id
+      );
+      const preflightBoost = preflightTargeted ? 1 + this.portalPreflightProgress * 0.38 : 1;
       const deviceNodeScale = this.profile.kind === 'mobile' ? (this.profile.orientation === 'portrait' ? 0.16 : 0.28) : this.profile.kind === 'tablet' ? 0.55 : 0.74;
-      node.mesh.scale.setScalar(deviceNodeScale * node.mapping.scale * tierVisuals.scale * pulse * tierPulse * age * hoverBoost * (1 - blurFactor * 0.18));
-      node.halo.scale.setScalar(deviceNodeScale * bokehScale * node.mapping.scale * (this.hovered === node ? 1.25 : 1));
+      node.mesh.scale.setScalar(deviceNodeScale * node.mapping.scale * tierVisuals.scale * pulse * tierPulse * age * hoverBoost * preflightBoost * (1 - blurFactor * 0.18));
+      node.halo.scale.setScalar(deviceNodeScale * bokehScale * node.mapping.scale * (this.hovered === node ? 1.25 : 1) * (preflightTargeted ? 1 + this.portalPreflightProgress * 0.55 : 1));
       node.mesh.rotation.x += 0.006 + index * 0.0002;
       node.mesh.rotation.y += 0.009;
     });
@@ -1442,11 +1471,29 @@ export class SpatialRenderer {
       link.mesh.scale.setScalar(1 + wave * 0.045);
     });
 
-    if (focus) {
+    const preflightNode = this.portalPreflightProgress > 0
+      ? this.nodes.find((node) => (
+        this.portalPreflightNodeId === node.eventType ||
+        this.portalPreflightNodeId === node.contentMetadata?.interactionEvent ||
+        this.portalPreflightNodeId === node.contentMetadata?.chamber ||
+        this.portalPreflightNodeId === node.id
+      ))
+      : undefined;
+    const desiredZoom = this.profile.camera.zoom * (1 + this.portalPreflightProgress * 0.035);
+    if (Math.abs(this.camera.zoom - desiredZoom) > 0.001) {
+      this.camera.zoom = THREE.MathUtils.lerp(this.camera.zoom, desiredZoom, 0.12);
+      this.camera.updateProjectionMatrix();
+    }
+
+    if (focus || preflightNode) {
       const desired = new THREE.Vector3(this.profile.camera.x, this.profile.camera.y, this.profile.camera.z);
-      const focal = new THREE.Vector3(this.profile.camera.targetX, this.profile.camera.targetY, this.profile.camera.targetZ)
-        .add(focus.target.clone().multiplyScalar(0.012));
-      this.camera.position.lerp(desired, 0.016);
+      const baseFocal = new THREE.Vector3(this.profile.camera.targetX, this.profile.camera.targetY, this.profile.camera.targetZ);
+      const focusVector = (preflightNode || focus)?.target.clone() || new THREE.Vector3();
+      const focal = baseFocal
+        .add((focus?.target.clone() || new THREE.Vector3()).multiplyScalar(0.012))
+        .add(focusVector.multiplyScalar(0.052 * this.portalPreflightProgress))
+        .add(new THREE.Vector3(this.portalPreflightDirection * 0.06 * this.portalPreflightProgress, 0, 0));
+      this.camera.position.lerp(desired, 0.016 + this.portalPreflightProgress * 0.018);
       this.camera.lookAt(focal);
     } else {
       this.camera.lookAt(this.profile.camera.targetX, this.profile.camera.targetY, this.profile.camera.targetZ);

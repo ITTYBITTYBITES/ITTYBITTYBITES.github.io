@@ -1,7 +1,7 @@
 import { GlobalEventBus, INITIAL_PLATFORM_STATE, MonetizationLayer, PlatformPersistor, reduce, VisualBridge } from './kernel';
 import type { EventContract, PlatformState } from './kernel';
 import { SpatialRenderer, type GearId } from './spatial/SpatialRenderer';
-import { SpatialEventBus } from './spatial/SpatialEventBus';
+import { SpatialEventBus, type SwipeGestureController } from './spatial/SpatialEventBus';
 import { ENGINE_VERSION } from './core/Version';
 
 const STORAGE_NAMESPACE = 'lm_home_kernel';
@@ -107,6 +107,7 @@ function initKernel() {
   const spatialLive = document.getElementById('spatial-live-region');
   let spatial: SpatialRenderer | null = null;
   let spatialEvents: SpatialEventBus | null = null;
+  let swipeGestures: SwipeGestureController | null = null;
 
   function resolvePortalRoute(route?: string): string | null {
     if (!route) return null;
@@ -170,6 +171,18 @@ function initKernel() {
     { getNodeCount: () => spatial?.getNodeCount() || 0, maxNodes: 48 }
   );
   spatialEvents.init();
+  if (spatialHost && spatial) {
+    swipeGestures = spatialEvents.bindSwipeGesture(spatialHost, {
+      threshold: 50,
+      getIntentNodeId: () => spatialEvents?.getPortalIntent()?.interactionEvent || spatial?.getPortalGestureTargetNodeId() || null,
+      armIntent: (nodeId, trigger = 'portal-swipe') => {
+        spatialEvents?.triggerInteraction(nodeId, trigger);
+        syncPortalIntent();
+      },
+      onPreflight: (progress, nodeId, deltaX) => spatial?.setPortalPreflight(progress, nodeId, deltaX),
+      onConfirm: () => confirmPortalIntent(),
+    });
+  }
 
   // Rebuild visible biome from persisted event memory without reducer side effects.
   const rememberedEvents = persistor.getEventLog().slice(-48);
@@ -233,6 +246,13 @@ function initKernel() {
     isWorkstationModelLoaded: () => spatial?.isWorkstationModelLoaded?.() || false,
     isProceduralFallbackActive: () => spatial?.isProceduralFallbackActive?.() || false,
     getWorkstationAnchorCount: () => spatial?.getAnchorCount?.() || 0,
+    destroy: () => {
+      swipeGestures?.destroy();
+      swipeGestures = null;
+      spatialEvents?.destroy();
+      spatial?.dispose();
+      spatial = null;
+    },
     clear: () => { persistor.clear(); localStorage.removeItem(BLUEPRINT_GEAR_KEY); window.location.reload(); },
   };
 

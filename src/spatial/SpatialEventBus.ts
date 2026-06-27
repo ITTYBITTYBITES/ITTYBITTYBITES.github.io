@@ -25,6 +25,93 @@ export type PortalIntent = {
   updatedAt: string;
 } | null;
 
+
+export type SwipeGestureControllerOptions = {
+  threshold?: number;
+  getIntentNodeId: () => string | null;
+  armIntent: (nodeId: string, trigger?: string) => void;
+  onPreflight?: (progress: number, nodeId: string | null, deltaX: number) => void;
+  onConfirm: () => boolean;
+};
+
+export class SwipeGestureController {
+  private pointerId: number | null = null;
+  private startX = 0;
+  private startY = 0;
+  private deltaX = 0;
+  private deltaY = 0;
+  private armedNodeId: string | null = null;
+  private threshold: number;
+
+  private readonly handlePointerDown = (event: PointerEvent): void => {
+    if (this.pointerId !== null || event.button > 0 || event.pointerType !== 'touch') return;
+    this.pointerId = event.pointerId;
+    this.startX = event.clientX;
+    this.startY = event.clientY;
+    this.deltaX = 0;
+    this.deltaY = 0;
+    this.armedNodeId = this.options.getIntentNodeId();
+    if (this.armedNodeId) this.options.armIntent(this.armedNodeId, 'portal-swipe-start');
+    this.options.onPreflight?.(0, this.armedNodeId, 0);
+  };
+
+  private readonly handlePointerMove = (event: PointerEvent): void => {
+    if (this.pointerId !== event.pointerId) return;
+    this.deltaX = event.clientX - this.startX;
+    this.deltaY = event.clientY - this.startY;
+    const absX = Math.abs(this.deltaX);
+    const absY = Math.abs(this.deltaY);
+    if (absX <= absY || absX < 8) return;
+
+    // Horizontal portal swipes are intentionally canvas-local; vertical motion is left alone.
+    event.preventDefault();
+    if (!this.armedNodeId) this.armedNodeId = this.options.getIntentNodeId();
+    if (this.armedNodeId) this.options.armIntent(this.armedNodeId, 'portal-swipe-preflight');
+    const progress = Math.min(1, absX / this.threshold);
+    this.options.onPreflight?.(progress, this.armedNodeId, this.deltaX);
+  };
+
+  private readonly handlePointerUp = (event: PointerEvent): void => {
+    if (this.pointerId !== event.pointerId) return;
+    const absX = Math.abs(this.deltaX);
+    const absY = Math.abs(this.deltaY);
+    const shouldConfirm = absX >= this.threshold && absX > absY;
+    this.options.onPreflight?.(0, null, 0);
+    this.pointerId = null;
+    this.armedNodeId = null;
+    this.deltaX = 0;
+    this.deltaY = 0;
+    if (shouldConfirm) this.options.onConfirm();
+  };
+
+  private readonly handlePointerCancel = (event: PointerEvent): void => {
+    if (this.pointerId !== event.pointerId) return;
+    this.options.onPreflight?.(0, null, 0);
+    this.pointerId = null;
+    this.armedNodeId = null;
+    this.deltaX = 0;
+    this.deltaY = 0;
+  };
+
+  constructor(private target: HTMLElement, private options: SwipeGestureControllerOptions) {
+    this.threshold = options.threshold || 50;
+    this.target.addEventListener('pointerdown', this.handlePointerDown, { passive: true });
+    this.target.addEventListener('pointermove', this.handlePointerMove, { passive: false });
+    this.target.addEventListener('pointerup', this.handlePointerUp, { passive: true });
+    this.target.addEventListener('pointercancel', this.handlePointerCancel, { passive: true });
+    this.target.addEventListener('pointerleave', this.handlePointerCancel, { passive: true });
+  }
+
+  destroy(): void {
+    this.target.removeEventListener('pointerdown', this.handlePointerDown);
+    this.target.removeEventListener('pointermove', this.handlePointerMove);
+    this.target.removeEventListener('pointerup', this.handlePointerUp);
+    this.target.removeEventListener('pointercancel', this.handlePointerCancel);
+    this.target.removeEventListener('pointerleave', this.handlePointerCancel);
+    this.options.onPreflight?.(0, null, 0);
+  }
+}
+
 export class SpatialEventBus {
   private teardownCallbacks: Array<() => void> = [];
   private activeChamberState: ActiveChamberState = null;
@@ -89,6 +176,12 @@ export class SpatialEventBus {
 
   clearPortalIntent(): void {
     this.portalIntent = null;
+  }
+
+  bindSwipeGesture(target: HTMLElement, options: SwipeGestureControllerOptions): SwipeGestureController {
+    const controller = new SwipeGestureController(target, options);
+    this.teardownCallbacks.push(() => controller.destroy());
+    return controller;
   }
 
   destroy(): void {
