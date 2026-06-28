@@ -6,7 +6,7 @@
 /* 1. Global Reset & Theme Variables */
 :root {
   --color-bg: #030509;
-  --color-panel: rgba(13, 18, 32, 0.88);
+  --color-panel: rgba(13, 18, 32, 0.94);
   --color-border: rgba(95, 232, 255, 0.25);
   --color-border-active: #5fe8ff;
   
@@ -20,6 +20,7 @@
   --color-error: #ff5e7e;
 
   --font-family: monospace;
+  --sidebar-width: 320px;
 }
 
 *, *::before, *::after {
@@ -126,18 +127,151 @@ body {
   color: var(--color-gold);
 }
 
-/* 4. Full-Bleed Viewport Canvas (Holographic central portal takes full page) */
+/* 4. Main Body Layout (Phase 19 persistent Command Dock) */
 #hub-body {
+  display: flex;
   flex: 1;
+  position: relative;
   width: 100%;
   height: 100%;
+  overflow: hidden;
 }
 
+/* Sidebar: High-Fidelity command control panel */
+#hub-sidebar {
+  display: flex !important;
+  flex-direction: column;
+  width: var(--sidebar-width);
+  height: 100%;
+  background-color: var(--color-panel);
+  border-right: 2px solid var(--color-border);
+  padding: 85px 1.2rem 1.2rem 1.2rem; /* Give top padding to clear floating header */
+  gap: 16px;
+  z-index: 150;
+  overflow-y: auto;
+  box-shadow: 10px 0 32px rgba(0,0,0,0.5);
+  backdrop-filter: blur(12px);
+  transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), margin-left 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Slide sidebar off-screen when minimized in game view */
+#hub-sidebar.minimized {
+  transform: translateX(-100%);
+  margin-left: calc(-1 * var(--sidebar-width));
+}
+
+#sidebar-toggle-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1.5px solid var(--color-border);
+  padding-bottom: 8px;
+}
+
+.console-title {
+  font-size: 0.85rem;
+  font-weight: bold;
+  color: var(--color-cyan);
+  text-shadow: 0 0 8px rgba(95, 232, 255, 0.4);
+}
+
+.console-icon-btn {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-muted);
+  border-radius: 4px;
+  padding: 2px 8px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.console-icon-btn:hover {
+  border-color: var(--color-cyan);
+  color: var(--color-cyan);
+  box-shadow: 0 0 8px rgba(95, 232, 255, 0.3);
+}
+
+.sidebar-block {
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.block-header {
+  font-size: 0.62rem;
+  color: var(--color-pink);
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+  border-bottom: 1px dashed rgba(255, 94, 231, 0.15);
+  padding-bottom: 4px;
+}
+
+/* Telemetry sidebar indicators */
+.telemetry-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tel-row {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+}
+
+.tel-label {
+  color: var(--color-muted);
+}
+
+.tel-val {
+  font-weight: bold;
+  color: var(--color-gold);
+}
+
+/* Expand Sidebar Toggle Tab */
+#sidebar-expand-tab {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: var(--color-panel);
+  border: 1.5px solid var(--color-cyan);
+  border-left: none;
+  border-radius: 0 10px 10px 0;
+  color: var(--color-cyan);
+  padding: 16px 8px;
+  font-family: monospace;
+  font-size: 0.7rem;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 180;
+  box-shadow: 4px 0 16px rgba(0,0,0,0.5);
+  backdrop-filter: blur(12px);
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+#sidebar-expand-tab:hover {
+  background-color: var(--color-cyan);
+  color: #030509;
+  box-shadow: 0 0 12px var(--color-cyan);
+}
+
+/* Full-Bleed Viewport Container next to sidebar */
 #hub-main {
-  width: 100%;
+  flex: 1;
   height: 100%;
   display: flex;
   flex-direction: column;
+  background-color: var(--color-bg);
+  position: relative;
 }
 
 #hub-viewport {
@@ -145,12 +279,6 @@ body {
   height: 100%;
   position: relative;
   overflow: hidden;
-  background-color: #010204;
-}
-
-/* Sidebar is completely deprecated and removed from layout flow */
-#hub-sidebar {
-  display: none !important;
 }
 
 /* Embedded iframe elements inside viewport */
@@ -159,7 +287,7 @@ body {
   height: 100%;
   flex: 1;
   border: 0;
-  border-radius: 0; /* Full bleed seamless fit */
+  border-radius: 0; 
   background-color: #000;
 }
 
@@ -184,7 +312,7 @@ body {
 
 #hud-overlay {
   position: absolute;
-  top: 100px;
+  top: 90px;
   left: 20px;
   right: 20px;
   display: flex;
@@ -211,6 +339,7 @@ body {
 
 .hud-right {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
   align-self: flex-start;
 }

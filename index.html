@@ -38,7 +38,7 @@
         <span class="hub-icon">❖</span>
         <div class="logo-title">
           <h1>ittybittybites</h1>
-          <span class="hub-tagline">Holographic Operational Hub</span>
+          <span class="hub-tagline">Phase 19 Command Console</span>
         </div>
       </div>
       <div id="hub-telemetry-panel">
@@ -53,14 +53,52 @@
       </div>
     </header>
 
-    <!-- App Body containing Sidebar Navigation and Central Viewport -->
+    <!-- App Body containing Sidebar Navigation Dock and Central Viewport -->
     <div id="hub-body">
-      <aside id="hub-sidebar">
-        <h2>Game Registry Directory</h2>
-        <div id="hub-nav-links">
-          <!-- Dynamic category groups and game buttons are injected here by the engine -->
+      <!-- High-Fidelity Command Console Sidebar (Phase 19 Dock) -->
+      <aside id="hub-sidebar" class="hidden-ui">
+        <!-- Sidebar Collapse / Toggle Header -->
+        <div id="sidebar-toggle-header">
+          <span class="console-title">❖ COMMAND DOCK</span>
+          <button id="sidebar-collapse-btn" class="console-icon-btn" title="Minimize Command Dock">◂ Minimize</button>
+        </div>
+
+        <!-- Telemetry readout panel inside Sidebar -->
+        <div class="sidebar-block telemetry-block">
+          <div class="block-header">SYS METRICS</div>
+          <div class="telemetry-grid">
+            <div class="tel-row">
+              <span class="tel-label">SESSIONS:</span>
+              <span id="tel-sessions-side" class="tel-val">0</span>
+            </div>
+            <div class="tel-row">
+              <span class="tel-label">PLAYTIME:</span>
+              <span id="tel-playtime-side" class="tel-val">0s</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Console Category Filter inside Sidebar -->
+        <div class="sidebar-block filter-block">
+          <div class="block-header">CATEGORY FOCUS</div>
+          <select id="sidebar-category-select" class="hud-select" style="width: 100%;">
+            <!-- Populated dynamically -->
+          </select>
+        </div>
+
+        <!-- Compact Game Registry inside Sidebar -->
+        <div class="sidebar-block index-block">
+          <div class="block-header">QUICK DIRECTORY</div>
+          <div id="sidebar-game-list" class="panel-node-list" style="max-height: calc(100vh - 350px); min-height: 180px;">
+            <!-- Populated dynamically -->
+          </div>
         </div>
       </aside>
+
+      <!-- Minimized/Standby Floating Toggle Tab -->
+      <button id="sidebar-expand-tab" class="sidebar-tab-btn" style="display: none;">
+        ❖ SHOW COMMAND DOCK
+      </button>
 
       <main id="hub-main">
         <div id="hub-viewport">
@@ -79,19 +117,23 @@
       
       const sessionEl = document.getElementById('tel-sessions');
       const playtimeEl = document.getElementById('tel-playtime');
+      const sessionSide = document.getElementById('tel-sessions-side');
+      const playtimeSide = document.getElementById('tel-playtime-side');
 
-      if (sessionEl) sessionEl.textContent = stats.sessionsCount || 1;
+      const setVal = (el, val) => { if(el) el.textContent = val; };
       
-      if (playtimeEl) {
-        const totalSec = stats.totalPlaytimeSeconds || 0;
-        if (totalSec >= 60) {
-          const min = Math.floor(totalSec / 60);
-          const sec = totalSec % 60;
-          playtimeEl.textContent = `${min}m ${sec}s`;
-        } else {
-          playtimeEl.textContent = `${totalSec}s`;
-        }
+      setVal(sessionEl, stats.sessionsCount || 1);
+      setVal(sessionSide, stats.sessionsCount || 1);
+      
+      const totalSec = stats.totalPlaytimeSeconds || 0;
+      let playtimeStr = `${totalSec}s`;
+      if (totalSec >= 60) {
+        const min = Math.floor(totalSec / 60);
+        const sec = totalSec % 60;
+        playtimeStr = `${min}m ${sec}s`;
       }
+      setVal(playtimeEl, playtimeStr);
+      setVal(playtimeSide, playtimeStr);
     });
 
     // Unlocking Web Audio Context on first mouse / click gesture

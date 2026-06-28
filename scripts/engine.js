@@ -1,6 +1,6 @@
 /**
- * ITTYBITTYBITES HUB ENGINE (Phase 10 - Final Category Filters & Polish)
- * Robust ES6 Platform Orchestration, Telemetry, Spatial HUD, Audio, and Ad-Bridge Orchestration
+ * ITTYBITTYBITES HUB ENGINE (Phase 19 - Command Console Integration)
+ * Robust ES6 Platform Orchestration, Telemetry, Spatial HUD, Audio, Ad-Bridge, and Command Dock Integration
  */
 
 class IttyBittyBitesEngine {
@@ -13,6 +13,7 @@ class IttyBittyBitesEngine {
     this.activeNodeId = null;
     this.isMounting = false;
     this.activeCategory = "ALL";
+    this.isSidebarMinimized = false;
     
     // Instantiates TelemetryManager to manage LocalStorage and heartbeat synchronization
     this.telemetry = new TelemetryManager();
@@ -34,6 +35,9 @@ class IttyBittyBitesEngine {
     const categories = ["ALL", ...new Set(this.registry.map(item => item.category))];
     const categoryOptions = categories.map(cat => `<option value="${cat}">${cat === "ALL" ? "❖ ALL CATEGORIES" : cat}</option>`).join("");
 
+    // Setup and Populate Persistent Command Dock Sidebar elements (Phase 19)
+    this.initCommandDockSidebar(categoryOptions);
+
     // Reset viewport and insert separate layers for WebGL Portal vs Iframe Sandbox
     viewport.innerHTML = `
       <!-- WebGL Portal Layer -->
@@ -41,8 +45,8 @@ class IttyBittyBitesEngine {
         <!-- CSS3D ad overlay layer (Phase 7) -->
         <div id="css3d-renderer-container" style="position: absolute; inset: 0; pointer-events: none; z-index: 5;"></div>
 
-        <!-- HUD Overlay (Phase 5 / Phase 10 Category Filters) -->
-        <div id="hud-overlay" style="z-index: 10;">
+        <!-- HUD Overlay (Phase 5 / Phase 10 / Phase 11 / Phase 12 / Phase 19) -->
+        <div id="hud-overlay" class="hidden-hud" style="z-index: 10;">
           <div class="hud-left">
             <span id="hud-breadcrumb">Hub &gt; Navigation</span>
             <div class="filter-wrapper">
@@ -82,11 +86,14 @@ class IttyBittyBitesEngine {
       exitBtn.addEventListener("click", () => this.showPortal());
     }
 
-    // Bind Category Filter changes (Phase 10)
+    // Bind Category Filter changes inside HUD dropdown
     const catSelect = document.getElementById("hud-category-select");
     if (catSelect) {
       catSelect.addEventListener("change", (e) => {
         this.activeCategory = e.target.value;
+        // Sync with sidebar select box
+        const sideSelect = document.getElementById("sidebar-category-select");
+        if (sideSelect) sideSelect.value = this.activeCategory;
         if (this.spatialController) {
           this.spatialController.filterCategory(this.activeCategory);
         }
@@ -112,7 +119,7 @@ class IttyBittyBitesEngine {
       });
     }
 
-    // Bind Panic Re-sync Button (Phase 10 Hardening)
+    // Bind Panic Re-sync Button
     const panicBtn = document.getElementById("hud-panic-btn");
     if (panicBtn) {
       panicBtn.addEventListener("click", () => {
@@ -123,7 +130,7 @@ class IttyBittyBitesEngine {
               cacheNames.map((name) => caches.delete(name))
             );
           }).then(() => {
-            location.reload(true); // Force full site bypass reload
+            location.reload(true);
           });
         } else {
           location.reload(true);
@@ -138,14 +145,26 @@ class IttyBittyBitesEngine {
       const data = event.detail;
       if (data) {
         tooltip.innerHTML = `
-          <div class="tip-kicker">3D Vector Node</div>
+          <div class="tip-kicker">3D Command Console</div>
           <div class="tip-title">${data.title}</div>
-          <div class="tip-action">CLICK NODE TO PLAY</div>
+          <div class="tip-action">CLICK NODE TO LAUNCH</div>
         `;
         tooltip.style.display = "block";
       } else {
         tooltip.style.display = "none";
       }
+    });
+
+    // Listen for the engagement event to reveal HUD and sidebar UI elements (Phase 11)
+    window.addEventListener("ibb-hub-engaged", () => {
+      console.log("🎬 [Cinematic Cold Boot] Engagement handshake received. Revealing cockpit HUD...");
+      
+      const targetHud = document.getElementById("hud-overlay");
+      if (targetHud) {
+        targetHud.classList.remove("hidden-hud");
+      }
+      
+      this.maximizeSidebar(); // Maximize sidebar automatically on initial engage
     });
 
     // Boot up the 3D Spatial Controller environment inside the portal container
@@ -158,6 +177,100 @@ class IttyBittyBitesEngine {
         this.telemetry.stats
       );
     }
+  }
+
+  /**
+   * Builds and binds event handlers for the persistent Command Dock Sidebar (Phase 19).
+   */
+  initCommandDockSidebar(categoryOptions) {
+    const sidebar = document.getElementById("hub-sidebar");
+    const sideSelect = document.getElementById("sidebar-category-select");
+    const sideList = document.getElementById("sidebar-game-list");
+    const collapseBtn = document.getElementById("sidebar-collapse-btn");
+    const expandTab = document.getElementById("sidebar-expand-tab");
+
+    if (sidebar) {
+      sidebar.classList.add("hidden-ui"); // Start hidden for Cold Boot
+    }
+
+    // Populate Sidebar Category dropdown
+    if (sideSelect) {
+      sideSelect.innerHTML = categoryOptions;
+      sideSelect.addEventListener("change", (e) => {
+        this.activeCategory = e.target.value;
+        // Sync with HUD select box
+        const hudSelect = document.getElementById("hud-category-select");
+        if (hudSelect) hudSelect.value = this.activeCategory;
+        if (this.spatialController) {
+          this.spatialController.filterCategory(this.activeCategory);
+        }
+      });
+    }
+
+    // Populate Sidebar Games Directory List
+    if (sideList) {
+      sideList.innerHTML = this.registry.map(item => 
+        `<div class="panel-node-item nav-node-btn" data-node-id="${item.id}">❖ ${item.title.toUpperCase()}</div>`
+      ).join("");
+
+      // Bind sidebar list clicks directly to mountNode (which dives and mounts)
+      const listItems = sideList.querySelectorAll(".panel-node-item");
+      listItems.forEach(btn => {
+        btn.addEventListener("click", () => {
+          this.mountNode(btn.getAttribute("data-node-id"));
+        });
+      });
+    }
+
+    // Bind Collapse Button click
+    if (collapseBtn) {
+      collapseBtn.addEventListener("click", () => this.minimizeSidebar());
+    }
+
+    // Bind Expand Tab click
+    if (expandTab) {
+      expandTab.addEventListener("click", () => this.maximizeSidebar());
+    }
+  }
+
+  /**
+   * Slides the Command Dock Sidebar off-screen and shows the minimized expand tab.
+   */
+  minimizeSidebar() {
+    const sidebar = document.getElementById("hub-sidebar");
+    const expandTab = document.getElementById("sidebar-expand-tab");
+    
+    if (sidebar) {
+      sidebar.classList.add("minimized");
+      sidebar.classList.add("hidden-ui");
+    }
+    
+    if (expandTab) {
+      expandTab.style.display = "block";
+    }
+
+    this.isSidebarMinimized = true;
+    console.log("💤 [Command Dock] Sidebar minimized to standby tab.");
+  }
+
+  /**
+   * Slides the Command Dock Sidebar back into view and hides the expand tab.
+   */
+  maximizeSidebar() {
+    const sidebar = document.getElementById("hub-sidebar");
+    const expandTab = document.getElementById("sidebar-expand-tab");
+
+    if (sidebar) {
+      sidebar.classList.remove("minimized");
+      sidebar.classList.remove("hidden-ui");
+    }
+
+    if (expandTab) {
+      expandTab.style.display = "none";
+    }
+
+    this.isSidebarMinimized = false;
+    console.log("⚡ [Command Dock] Sidebar maximized.");
   }
 
   /**
@@ -179,6 +292,9 @@ class IttyBittyBitesEngine {
 
       this.activeNodeId = null;
       this.updateActiveNavigationUI(null);
+
+      // Maximize sidebar automatically when returning to portal view! (Phase 19)
+      this.maximizeSidebar();
 
       // Restore HUD breadcrumb and filter
       const breadcrumb = document.getElementById("hud-breadcrumb");
@@ -209,8 +325,7 @@ class IttyBittyBitesEngine {
   }
 
   /**
-   * Instantly restores the portal canvas without executing fly-back camera tweens
-   * (ideal for rapid switching directly from sidebar directory clicks).
+   * Instantly restores the portal canvas without executing fly-back camera tweens.
    */
   showPortalImmediate() {
     const portalContainer = document.getElementById("spatial-portal-container");
@@ -223,6 +338,13 @@ class IttyBittyBitesEngine {
       portalContainer.style.display = "block";
       exitBtn.style.display = "none";
 
+      this.maximizeSidebar(); // Maximize sidebar on instant return
+
+      const hud = document.getElementById("hud-overlay");
+      if (hud) {
+        hud.classList.remove("hidden-hud");
+      }
+
       if (window.ibbAudio) {
         window.ibbAudio.startAmbience();
       }
@@ -232,10 +354,12 @@ class IttyBittyBitesEngine {
       }
 
       if (this.spatialController) {
+        // Bypass cold boot nodes and force full load
+        this.spatialController.isEngaged = true;
         this.spatialController.updateTelemetryStats(this.telemetry.stats);
         this.spatialController.resume();
         // Snap camera back to entrance instantly
-        this.spatialController.camera.position.set(0, 0, 10);
+        this.spatialController.camera.position.set(0, 0, 0);
         this.spatialController.camera.lookAt(new THREE.Vector3(0, 0, -100));
       }
     }
@@ -283,7 +407,6 @@ class IttyBittyBitesEngine {
 
   /**
    * Performs the immediate mounting of the game iframe inside the workspace.
-   * @param {Object} node - Mapped registry item data.
    */
   mountNodeImmediate(node) {
     const portalContainer = document.getElementById("spatial-portal-container");
@@ -314,7 +437,10 @@ class IttyBittyBitesEngine {
     }
     portalContainer.style.display = "none";
 
-    // 4. Clear previous active context and display viewport frame
+    // 4. Automatically minimize the sidebar Command Dock to standby during active gameplay! (Phase 19)
+    this.minimizeSidebar();
+
+    // 5. Clear previous active context and display viewport frame
     frameContainer.innerHTML = "";
     frameContainer.style.display = "block";
     exitBtn.style.display = "flex";
@@ -390,38 +516,6 @@ window.addEventListener("DOMContentLoaded", async () => {
 
     // Initialize viewport structural layers
     window.ibbEngine.initViewportLayers();
-
-    // Dynamically build navigation sidebar or dropdown header
-    const navContainer = document.getElementById("hub-nav-links");
-    if (navContainer) {
-      // Group games by category for ultra-structured UI layout
-      const categories = [...new Set(registry.map(item => item.category))];
-      categories.forEach(category => {
-        const catGroup = document.createElement("div");
-        catGroup.className = "nav-category-group";
-        
-        const catHeader = document.createElement("h3");
-        catHeader.textContent = category;
-        catGroup.appendChild(catHeader);
-
-        const items = registry.filter(item => item.category === category);
-        items.forEach(item => {
-          const btn = document.createElement("button");
-          btn.className = "nav-node-btn";
-          btn.setAttribute("data-node-id", item.id);
-          btn.textContent = item.id.split("-").map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(" ");
-          
-          btn.addEventListener("click", () => {
-            window.ibbEngine.mountNode(item.id);
-          });
-          
-          catGroup.appendChild(btn);
-        });
-
-        navContainer.appendChild(catGroup);
-      });
-    }
-
   } catch (err) {
     console.error("✗ [IttyBittyBitesEngine] System Bootstrap Failed:", err);
     const viewport = document.getElementById("hub-viewport");
