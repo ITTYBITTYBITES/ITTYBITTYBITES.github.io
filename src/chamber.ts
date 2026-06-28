@@ -85,6 +85,25 @@ function injectCrossPollinationBanner(currentNode: RegistryNode | null, homeHref
 }
 
 function initChamberShell(): void {
+  // Adaptive Cognitive Pacing calculation on arrival load-sequence
+  let pacingFactor = 1.0;
+  let averageThroughput = 240;
+  try {
+    const rawTelemetry = localStorage.getItem('lm_telemetry_cog-assess-01');
+    if (rawTelemetry) {
+      const parsed = JSON.parse(rawTelemetry);
+      const recent = (parsed.throughputMs || []).slice(-10);
+      if (recent.length > 0) {
+        averageThroughput = Math.round(recent.reduce((a: number, b: number) => a + b, 0) / recent.length);
+        if (averageThroughput < 200) pacingFactor = 1.2;
+        else if (averageThroughput > 300) pacingFactor = 0.8;
+      }
+    }
+  } catch {}
+  (window as any).LiquidMemoryPacingFactor = pacingFactor;
+  localStorage.setItem('lm_adaptive_pacing_factor', String(pacingFactor));
+  localStorage.setItem('lm_adaptive_average_throughput', String(averageThroughput));
+
   const host = document.querySelector('main[data-gear-id], body[data-gear-id], main[data-kernel-event]') || document.body;
   const gearId = host?.getAttribute('data-gear-id') || 'games';
   const kernelEvent = host?.getAttribute('data-kernel-event') || 'library.game_opened';

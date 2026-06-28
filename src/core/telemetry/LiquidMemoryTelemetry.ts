@@ -103,8 +103,28 @@ export class LiquidMemoryTelemetry {
       existing.throughputMs.push(deltaMs);
       if (existing.throughputMs.length > 50) existing.throughputMs.shift();
       existing.lastThroughputMs = deltaMs;
+
+      // Adaptive Cognitive Pacing calculation (moving average of last 10 entries)
+      const recent = existing.throughputMs.slice(-10);
+      const avg = Math.round(recent.reduce((a: number, b: number) => a + b, 0) / recent.length);
+      let pacingFactor = 1.0;
+      if (avg < 200) pacingFactor = 1.2;
+      else if (avg > 300) pacingFactor = 0.8;
+
+      existing.averageThroughputMs = avg;
+      existing.pacingFactor = pacingFactor;
       existing.updatedAt = new Date().toISOString();
       localStorage.setItem(key, JSON.stringify(existing));
+
+      (window as any).LiquidMemoryPacingFactor = pacingFactor;
+      localStorage.setItem('lm_adaptive_pacing_factor', String(pacingFactor));
+      localStorage.setItem('lm_adaptive_average_throughput', String(avg));
+
+      const srLive = document.getElementById('spatial-live-region') || document.querySelector('[aria-live="polite"]');
+      if (srLive) {
+        const modeTxt = pacingFactor >= 1.2 ? 'high-performance 1.2x velocity mode' : pacingFactor <= 0.8 ? 'deliberate calm 0.8x mode' : 'standard 1.0x baseline mode';
+        srLive.textContent = `Reaction time recorded: ${deltaMs} milliseconds. Platform Pacing adjusted to ${modeTxt}`;
+      }
     } catch {}
   }
 

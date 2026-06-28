@@ -40,55 +40,64 @@ function i(e, n) {
   `, document.body && document.body.appendChild(o);
 }
 function a() {
-	let a = document.querySelector("main[data-gear-id], body[data-gear-id], main[data-kernel-event]") || document.body, s = a?.getAttribute("data-gear-id") || "games", c = a?.getAttribute("data-kernel-event") || "library.game_opened", l = window.location.pathname, u = l.split("/").pop()?.replace(".html", "") || "", d = t.lookup(u) || t.lookup(c) || t.lookup(s), f = d?.title || (s === "archive" ? "Old Memory Vault" : "Arcade Genesis"), p = n();
-	if ((d?.isLegacyStatic || l.includes("/articles/") || document.body?.classList.contains("legacy-article")) && r(f, p), i(d, p), e.markPortalArrival(f), d?.nodeId === "cog-assess-01" || d?.payload?.type === "interactive-assessment" || l.includes("cog-assess-01")) {
+	let a = 1, s = 240;
+	try {
+		let e = localStorage.getItem("lm_telemetry_cog-assess-01");
+		if (e) {
+			let t = (JSON.parse(e).throughputMs || []).slice(-10);
+			t.length > 0 && (s = Math.round(t.reduce((e, t) => e + t, 0) / t.length), s < 200 ? a = 1.2 : s > 300 && (a = .8));
+		}
+	} catch {}
+	window.LiquidMemoryPacingFactor = a, localStorage.setItem("lm_adaptive_pacing_factor", String(a)), localStorage.setItem("lm_adaptive_average_throughput", String(s));
+	let c = document.querySelector("main[data-gear-id], body[data-gear-id], main[data-kernel-event]") || document.body, l = c?.getAttribute("data-gear-id") || "games", u = c?.getAttribute("data-kernel-event") || "library.game_opened", d = window.location.pathname, f = d.split("/").pop()?.replace(".html", "") || "", p = t.lookup(f) || t.lookup(u) || t.lookup(l), m = p?.title || (l === "archive" ? "Old Memory Vault" : "Arcade Genesis"), h = n();
+	if ((p?.isLegacyStatic || d.includes("/articles/") || document.body?.classList.contains("legacy-article")) && r(m, h), i(p, h), e.markPortalArrival(m), p?.nodeId === "cog-assess-01" || p?.payload?.type === "interactive-assessment" || d.includes("cog-assess-01")) {
 		let t = document.createElement("section");
 		t.id = "lm-cog-assessment-hud", t.style.cssText = "position:relative;min-height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid #58ffbd;border-radius:24px;padding:24px;margin:24px 0;background:rgba(2,6,23,0.92);box-shadow:0 0 30px rgba(88,255,189,0.18);font-family:monospace;select-none;";
 		let n = document.createElement("div");
 		n.id = "assess-throughput-pill", n.style.cssText = "font-size:14px;color:#58ffbd;font-weight:900;letter-spacing:1px;margin-bottom:20px;padding:8px 16px;background:rgba(0,0,0,0.6);border:1px solid rgba(88,255,189,0.4);border-radius:12px;", n.textContent = "THROUGHPUT HUD // Awaiting Stimulus";
 		let r = document.createElement("div");
 		r.id = "assess-stimulus-target", r.style.cssText = "width:80px;height:80px;border-radius:16px;background:#58ffbd;box-shadow:0 0 25px #58ffbd;cursor:pointer;transition:transform .1s;display:flex;align-items:center;justify-content:center;color:#020617;font-weight:900;font-size:12px;", r.textContent = "ENGAGE";
-		let i = performance.now(), o = () => {
+		let i = performance.now(), a = () => {
 			i = performance.now(), r.style.background = "#ff00ff", r.style.boxShadow = "0 0 30px #ff00ff", r.textContent = "CLICK";
 		};
-		setTimeout(o, 800);
-		let s = () => {
+		setTimeout(a, 800);
+		let o = () => {
 			let t = Math.round(performance.now() - i);
-			e.capture(d?.nodeId || "cog-assess-01", t), n.textContent = `THROUGHPUT HUD // Recorded: ${t} ms`;
-			let a = document.getElementById("spatial-live-region") || document.querySelector("[aria-live=\"polite\"]");
-			a && (a.textContent = `Reaction time recorded: ${t} milliseconds`), r.style.background = "#22d3ee", r.style.boxShadow = "0 0 20px #22d3ee", r.textContent = `${t}ms`, setTimeout(o, 1500 + Math.random() * 1e3);
+			e.capture(p?.nodeId || "cog-assess-01", t), n.textContent = `THROUGHPUT HUD // Recorded: ${t} ms`;
+			let o = document.getElementById("spatial-live-region") || document.querySelector("[aria-live=\"polite\"]");
+			o && (o.textContent = `Reaction time recorded: ${t} milliseconds`), r.style.background = "#22d3ee", r.style.boxShadow = "0 0 20px #22d3ee", r.textContent = `${t}ms`, setTimeout(a, 1500 + Math.random() * 1e3);
 		};
 		r.addEventListener("pointerdown", (e) => {
-			e.stopPropagation(), s();
-		}), t.appendChild(n), t.appendChild(r), a?.insertBefore(t, a.firstChild);
-		let c = document.createElement("button");
-		c.className = "sr-only assess-twin-btn", c.tabIndex = 0, c.id = "twin-node-cog-assess-01", c.setAttribute("aria-label", "Cognitive Assessment Stimulus Target Twin. Press Enter or Space to record reaction time."), c.addEventListener("keydown", (e) => {
-			(e.key === "Enter" || e.key === " ") && (e.preventDefault(), s());
-		}), document.body && document.body.appendChild(c);
+			e.stopPropagation(), o();
+		}), t.appendChild(n), t.appendChild(r), c?.insertBefore(t, c.firstChild);
+		let s = document.createElement("button");
+		s.className = "sr-only assess-twin-btn", s.tabIndex = 0, s.id = "twin-node-cog-assess-01", s.setAttribute("aria-label", "Cognitive Assessment Stimulus Target Twin. Press Enter or Space to record reaction time."), s.addEventListener("keydown", (e) => {
+			(e.key === "Enter" || e.key === " ") && (e.preventDefault(), o());
+		}), document.body && document.body.appendChild(s);
 	}
-	if (!document.getElementById(`twin-spatial-${d?.nodeId || u || s}`)) {
+	if (!document.getElementById(`twin-spatial-${p?.nodeId || f || l}`)) {
 		let e = document.createElement("button");
-		e.className = "sr-only chamber-twin-btn", e.tabIndex = 0, e.id = `twin-spatial-${d?.nodeId || u || s}`, e.setAttribute("aria-label", `Spatial Twin: ${f}. Press Enter to return to Master Hub.`), e.addEventListener("keydown", (e) => {
-			(e.key === "Enter" || e.key === " ") && (e.preventDefault(), m("twin-keyboard-exit"), window.location.assign(p));
+		e.className = "sr-only chamber-twin-btn", e.tabIndex = 0, e.id = `twin-spatial-${p?.nodeId || f || l}`, e.setAttribute("aria-label", `Spatial Twin: ${m}. Press Enter to return to Master Hub.`), e.addEventListener("keydown", (e) => {
+			(e.key === "Enter" || e.key === " ") && (e.preventDefault(), g("twin-keyboard-exit"), window.location.assign(h));
 		}), document.body && document.body.appendChild(e);
 	}
-	let m = (t) => {
-		e.storeChamberDeparture(f, c, l, t);
+	let g = (t) => {
+		e.storeChamberDeparture(m, u, d, t);
 	};
-	window.addEventListener("pagehide", () => m("pagehide"), { passive: !0 }), document.addEventListener("visibilitychange", () => {
-		document.visibilityState === "hidden" && m("visibility-hidden");
+	window.addEventListener("pagehide", () => g("pagehide"), { passive: !0 }), document.addEventListener("visibilitychange", () => {
+		document.visibilityState === "hidden" && g("visibility-hidden");
 	}, { passive: !0 });
-	let h = null, g = 0, _ = 0, v = 0, y = 0;
+	let _ = null, v = 0, y = 0, b = 0, x = 0;
 	document.addEventListener("pointerdown", (e) => {
-		h !== null || e.button > 0 || e.pointerType !== "touch" || (h = e.pointerId, g = e.clientX, _ = e.clientY, v = 0, y = 0);
+		_ !== null || e.button > 0 || e.pointerType !== "touch" || (_ = e.pointerId, v = e.clientX, y = e.clientY, b = 0, x = 0);
 	}, { passive: !0 }), document.addEventListener("pointermove", (e) => {
-		h === e.pointerId && (v = e.clientX - g, y = e.clientY - _);
+		_ === e.pointerId && (b = e.clientX - v, x = e.clientY - y);
 	}, { passive: !0 }), document.addEventListener("pointerup", (e) => {
-		if (h !== e.pointerId) return;
-		let t = Math.abs(v), n = Math.abs(y);
-		h = null, t >= 70 && t > n * 1.2 && (m("portal-swipe-exit"), window.location.assign(p));
+		if (_ !== e.pointerId) return;
+		let t = Math.abs(b), n = Math.abs(x);
+		_ = null, t >= 70 && t > n * 1.2 && (g("portal-swipe-exit"), window.location.assign(h));
 	}, { passive: !0 }), document.addEventListener("pointercancel", () => {
-		h = null;
+		_ = null;
 	}, { passive: !0 }), window.LiquidMemoryChamber = {
 		version: "1.0.0",
 		telemetry: e,

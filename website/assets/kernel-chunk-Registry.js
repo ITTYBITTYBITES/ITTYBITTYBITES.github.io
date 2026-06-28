@@ -42,7 +42,11 @@ var e = "lm_portal_arrival", t = "lm_chamber_departure", n = class n {
 	static capture(e, t) {
 		try {
 			let n = `lm_telemetry_${e}`, r = JSON.parse(localStorage.getItem(n) || "{\"count\":0,\"throughputMs\":[]}");
-			r.count = (r.count || 0) + 1, r.throughputMs = r.throughputMs || [], r.throughputMs.push(t), r.throughputMs.length > 50 && r.throughputMs.shift(), r.lastThroughputMs = t, r.updatedAt = (/* @__PURE__ */ new Date()).toISOString(), localStorage.setItem(n, JSON.stringify(r));
+			r.count = (r.count || 0) + 1, r.throughputMs = r.throughputMs || [], r.throughputMs.push(t), r.throughputMs.length > 50 && r.throughputMs.shift(), r.lastThroughputMs = t;
+			let i = r.throughputMs.slice(-10), a = Math.round(i.reduce((e, t) => e + t, 0) / i.length), o = 1;
+			a < 200 ? o = 1.2 : a > 300 && (o = .8), r.averageThroughputMs = a, r.pacingFactor = o, r.updatedAt = (/* @__PURE__ */ new Date()).toISOString(), localStorage.setItem(n, JSON.stringify(r)), window.LiquidMemoryPacingFactor = o, localStorage.setItem("lm_adaptive_pacing_factor", String(o)), localStorage.setItem("lm_adaptive_average_throughput", String(a));
+			let s = document.getElementById("spatial-live-region") || document.querySelector("[aria-live=\"polite\"]");
+			s && (s.textContent = `Reaction time recorded: ${t} milliseconds. Platform Pacing adjusted to ${o >= 1.2 ? "high-performance 1.2x velocity mode" : o <= .8 ? "deliberate calm 0.8x mode" : "standard 1.0x baseline mode"}`);
 		} catch {}
 	}
 	stagePortalArrival(e, t) {

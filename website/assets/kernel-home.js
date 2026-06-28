@@ -14941,7 +14941,7 @@ var Rf = class {
 	memory: "economic.resource_gained"
 }, Vf = Object.fromEntries(Object.entries(Bf).map(([e, t]) => [t, e])), Hf = class {
 	constructor(e, t, n) {
-		this.host = e, this.liveRegion = t, this.onGearSelected = n, this.scene = new Vn(), this.camera = new _s(-7.2, 7.2, 4.05, -4.05, .1, 1e3), this.workstationGroup = new Nn(), this.biomeGroup = new Nn(), this.linkGroup = new Nn(), this.gearGroup = new Nn(), this.gaugeGroup = new Nn(), this.particleGroup = new Nn(), this.nodes = [], this.links = [], this.gears = [], this.gauges = [], this.modelAnchors = /* @__PURE__ */ new Map(), this.gearRaycastObjects = [], this.workstationModelLoaded = !1, this.workstationFallbackActive = !1, this.baseEnvironmentCreated = !1, this.webglContextLost = !1, this.lastLayoutHealthCheck = 0, this.rafId = 0, this.focusIndex = -1, this.pointer = new U(99, 99), this.raycaster = new Us(), this.clock = new Ks(), this.haloTexture = this.createHaloTexture(), this.responsive = new Rf(), this.profile = this.responsive.getProfile(), this.lastTouchAt = 0, this.dragStartX = 0, this.didDrag = !1, this.portalPreflightProgress = 0, this.portalPreflightNodeId = null, this.portalPreflightDirection = 0, this.handleWebGLContextLost = (e) => {
+		this.host = e, this.liveRegion = t, this.onGearSelected = n, this.scene = new Vn(), this.camera = new _s(-7.2, 7.2, 4.05, -4.05, .1, 1e3), this.workstationGroup = new Nn(), this.biomeGroup = new Nn(), this.linkGroup = new Nn(), this.gearGroup = new Nn(), this.gaugeGroup = new Nn(), this.particleGroup = new Nn(), this.nodes = [], this.links = [], this.gears = [], this.gauges = [], this.modelAnchors = /* @__PURE__ */ new Map(), this.gearRaycastObjects = [], this.workstationModelLoaded = !1, this.workstationFallbackActive = !1, this.baseEnvironmentCreated = !1, this.webglContextLost = !1, this.lastLayoutHealthCheck = 0, this.rafId = 0, this.focusIndex = -1, this.pointer = new U(99, 99), this.raycaster = new Us(), this.clock = new Ks(), this.haloTexture = this.createHaloTexture(), this.responsive = new Rf(), this.profile = this.responsive.getProfile(), this.lastTouchAt = 0, this.dragStartX = 0, this.didDrag = !1, this.portalPreflightProgress = 0, this.portalPreflightNodeId = null, this.portalPreflightDirection = 0, this.ghostLineGroup = new Nn(), this.lastGhostSync = 0, this.handleWebGLContextLost = (e) => {
 			e.preventDefault(), this.webglContextLost = !0, this.host.dataset.webglContext = "lost", this.liveRegion && (this.liveRegion.textContent = "Holographic renderer paused: WebGL context lost");
 		}, this.handleWebGLContextRestored = () => {
 			this.webglContextLost = !1, this.host.dataset.webglContext = "restored", this.ensureCanvasMounted(), window.dispatchEvent(new Event("resize")), this.liveRegion && (this.liveRegion.textContent = "Holographic renderer restored");
@@ -14952,8 +14952,10 @@ var Rf = class {
 			}
 			this.checkLayoutHealth(performance.now()), this.gears.length === 0 && (this.createBlueprintGearRig(), this.applyResponsiveProfile(this.profile, !0));
 			let e = this.clock.getElapsedTime();
-			this.updateHoverState(), this.biomeGroup.rotation.y += .0017, this.biomeGroup.rotation.x = Math.sin(e * .17) * .06, this.linkGroup.rotation.copy(this.biomeGroup.rotation);
-			let t = this.nodes[this.focusIndex], n = t?.target.z || 0;
+			this.updateHoverState();
+			let t = Number(window.LiquidMemoryPacingFactor || localStorage.getItem("lm_adaptive_pacing_factor") || 1);
+			this.biomeGroup.rotation.y += .0017 * t, this.biomeGroup.rotation.x = Math.sin(e * .17) * .06, this.linkGroup.rotation.copy(this.biomeGroup.rotation), e - this.lastGhostSync > 1.2 && (this.lastGhostSync = e, this.renderGhostLineTrend());
+			let n = this.nodes[this.focusIndex], r = n?.target.z || 0;
 			this.gears.forEach((t, n) => {
 				let r = e * 1.08 + n * .82, i = t.group.userData.homeY ?? t.anchor.y, a = t.group.userData.homeZ ?? t.anchor.z;
 				t.group.position.y = i + Math.sin(r) * .045, t.group.position.z = a + Math.cos(r * .7) * .012;
@@ -14970,7 +14972,7 @@ var Rf = class {
 					m.scale.set(t, t, 1);
 				}
 				t.group.scale.lerp(new W(p, p, p), .08);
-			}), this.focusDial && (this.focusDial.rotation.z -= .004), this.nodes.forEach((t, r) => {
+			}), this.focusDial && (this.focusDial.rotation.z -= .004), this.nodes.forEach((t, n) => {
 				let i = Math.min(1, (performance.now() - t.createdAt) / 620), a = t.target.clone();
 				if (this.hovered && this.hovered !== t) {
 					let e = a.distanceTo(this.hovered.target);
@@ -14979,37 +14981,37 @@ var Rf = class {
 						a.add(t);
 					}
 				}
-				let o = Math.abs(t.target.z - n), s = Math.min(1, o / 10), c = r < Math.max(0, this.nodes.length - 16) ? .55 : 1, l = t.mesh.material, u = this.getSpawnTierVisuals(t.spawnTier), d = 1 + Math.sin(e * 2.1 + r * .73) * u.pulse;
+				let o = Math.abs(t.target.z - r), s = Math.min(1, o / 10), c = n < Math.max(0, this.nodes.length - 16) ? .55 : 1, l = t.mesh.material, u = this.getSpawnTierVisuals(t.spawnTier), d = 1 + Math.sin(e * 2.1 + n * .73) * u.pulse;
 				l.opacity = Math.min(.94, It.lerp(.18, .78, 1 - s) * c * u.opacity), l.emissiveIntensity = It.lerp(.08, .42, 1 - s) * u.emissive * d, t.halo.material.opacity = Math.min(.42, It.lerp(.12, .025, 1 - s) * c * u.halo);
 				let f = It.lerp(1.3, .72, 1 - s) * u.halo;
 				t.mesh.position.lerp(a, .055), t.halo.position.copy(t.mesh.position);
-				let p = 1 + Math.sin(e * 2.4 + r) * .045, m = this.hovered === t ? 1.32 : 1, h = this.portalPreflightProgress > 0 && (this.portalPreflightNodeId === t.eventType || this.portalPreflightNodeId === t.contentMetadata?.interactionEvent || this.portalPreflightNodeId === t.contentMetadata?.chamber || this.portalPreflightNodeId === t.id), g = h ? 1 + this.portalPreflightProgress * .38 : 1, _ = this.profile.kind === "mobile" ? this.profile.orientation === "portrait" ? .16 : .28 : this.profile.kind === "tablet" ? .55 : .74;
-				t.mesh.scale.setScalar(_ * t.mapping.scale * u.scale * p * d * i * m * g * (1 - s * .18)), t.halo.scale.setScalar(_ * f * t.mapping.scale * (this.hovered === t ? 1.25 : 1) * (h ? 1 + this.portalPreflightProgress * .55 : 1)), t.mesh.rotation.x += .006 + r * 2e-4, t.mesh.rotation.y += .009;
+				let p = 1 + Math.sin(e * 2.4 + n) * .045, m = this.hovered === t ? 1.32 : 1, h = this.portalPreflightProgress > 0 && (this.portalPreflightNodeId === t.eventType || this.portalPreflightNodeId === t.contentMetadata?.interactionEvent || this.portalPreflightNodeId === t.contentMetadata?.chamber || this.portalPreflightNodeId === t.id), g = h ? 1 + this.portalPreflightProgress * .38 : 1, _ = this.profile.kind === "mobile" ? this.profile.orientation === "portrait" ? .16 : .28 : this.profile.kind === "tablet" ? .55 : .74;
+				t.mesh.scale.setScalar(_ * t.mapping.scale * u.scale * p * d * i * m * g * (1 - s * .18)), t.halo.scale.setScalar(_ * f * t.mapping.scale * (this.hovered === t ? 1.25 : 1) * (h ? 1 + this.portalPreflightProgress * .55 : 1)), t.mesh.rotation.x += .006 + n * 2e-4, t.mesh.rotation.y += .009;
 			});
-			let r = performance.now();
+			let i = performance.now();
 			for (let e = this.particleGroup.children.length - 1; e >= 0; --e) {
-				let t = this.particleGroup.children[e], n = t.material, i = t.geometry, a = r - (t.userData.createdAt || r), o = t.userData.ttl || 1200, s = Math.max(0, 1 - a / o), c = i.getAttribute("position"), l = i.getAttribute("velocity");
+				let t = this.particleGroup.children[e], n = t.material, r = t.geometry, a = i - (t.userData.createdAt || i), o = t.userData.ttl || 1200, s = Math.max(0, 1 - a / o), c = r.getAttribute("position"), l = r.getAttribute("velocity");
 				if (c && l) {
 					for (let e = 0; e < c.count; e += 1) c.setX(e, c.getX(e) + l.getX(e)), c.setY(e, c.getY(e) + l.getY(e)), c.setZ(e, c.getZ(e) + l.getZ(e));
 					c.needsUpdate = !0;
 				}
-				n.opacity = .58 * s, t.scale.setScalar(1 + (1 - s) * .35), a >= o && (this.particleGroup.remove(t), i.dispose(), n.dispose());
+				n.opacity = .58 * s, t.scale.setScalar(1 + (1 - s) * .35), a >= o && (this.particleGroup.remove(t), r.dispose(), n.dispose());
 			}
 			this.links.forEach((t, n) => {
 				let r = (Math.sin(e * 2.8 + n * .65) + 1) / 2;
 				t.material.opacity = .18 + r * .34, t.material.emissiveIntensity = .7 + r * .95, t.mesh.scale.setScalar(1 + r * .045);
 			});
-			let i = this.portalPreflightProgress > 0 ? this.nodes.find((e) => this.portalPreflightNodeId === e.eventType || this.portalPreflightNodeId === e.contentMetadata?.interactionEvent || this.portalPreflightNodeId === e.contentMetadata?.chamber || this.portalPreflightNodeId === e.id) : void 0, a = this.profile.camera.zoom * (1 + this.portalPreflightProgress * .035);
-			if (Math.abs(this.camera.zoom - a) > .001 && (this.camera.zoom = It.lerp(this.camera.zoom, a, .12), this.camera.updateProjectionMatrix()), t || i) {
-				let e = new W(this.profile.camera.x, this.profile.camera.y, this.profile.camera.z), n = new W(this.profile.camera.targetX, this.profile.camera.targetY, this.profile.camera.targetZ), r = (i || t)?.target.clone() || new W(), a = n.add((t?.target.clone() || new W()).multiplyScalar(.012)).add(r.multiplyScalar(.052 * this.portalPreflightProgress)).add(new W(this.portalPreflightDirection * .06 * this.portalPreflightProgress, 0, 0));
-				window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? this.camera.position.copy(e) : this.camera.position.lerp(e, .016 + this.portalPreflightProgress * .018), this.camera.lookAt(a);
+			let a = this.portalPreflightProgress > 0 ? this.nodes.find((e) => this.portalPreflightNodeId === e.eventType || this.portalPreflightNodeId === e.contentMetadata?.interactionEvent || this.portalPreflightNodeId === e.contentMetadata?.chamber || this.portalPreflightNodeId === e.id) : void 0, o = this.profile.camera.zoom * (1 + this.portalPreflightProgress * .035);
+			if (Math.abs(this.camera.zoom - o) > .001 && (this.camera.zoom = It.lerp(this.camera.zoom, o, .12), this.camera.updateProjectionMatrix()), n || a) {
+				let e = new W(this.profile.camera.x, this.profile.camera.y, this.profile.camera.z), t = new W(this.profile.camera.targetX, this.profile.camera.targetY, this.profile.camera.targetZ), r = (a || n)?.target.clone() || new W(), i = t.add((n?.target.clone() || new W()).multiplyScalar(.012)).add(r.multiplyScalar(.052 * this.portalPreflightProgress)).add(new W(this.portalPreflightDirection * .06 * this.portalPreflightProgress, 0, 0));
+				window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? this.camera.position.copy(e) : this.camera.position.lerp(e, .016 + this.portalPreflightProgress * .018), this.camera.lookAt(i);
 			} else this.camera.lookAt(this.profile.camera.targetX, this.profile.camera.targetY, this.profile.camera.targetZ);
 			this.composer.render(), this.rafId = requestAnimationFrame(this.animate);
 		}, this.renderer = new ud({
 			antialias: !0,
 			alpha: !0,
 			powerPreference: "high-performance"
-		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(0, 0), this.renderer.shadowMap.enabled = !0, this.renderer.shadowMap.type = 2, this.renderer.toneMapping = 4, this.renderer.toneMappingExposure = 1.42, this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.semanticTwinsContainer = document.createElement("div"), this.semanticTwinsContainer.id = "spatial-semantic-twins", this.semanticTwinsContainer.className = "sr-only", this.semanticTwinsContainer.style.cssText = "position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;", this.host.appendChild(this.semanticTwinsContainer), this.bindContextMonitoring(), this.startMountGuard(), this.scene.add(this.workstationGroup), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.scene.add(this.particleGroup), this.applyCameraProfile(this.profile, !0), this.composer = new yd(this.renderer), this.composer.addPass(new bd(this.scene, this.camera)), this.bloomPass = new Sd(new U(1, 1), .045, .42, .96), this.composer.addPass(this.bloomPass), this.initLighting(), this.createWorkstationEnvironment(), this.createBlueprintGearRig(), this.loadWorkstationAsset(), this.createGauges(), this.createEngageDial(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
+		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(0, 0), this.renderer.shadowMap.enabled = !0, this.renderer.shadowMap.type = 2, this.renderer.toneMapping = 4, this.renderer.toneMappingExposure = 1.42, this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.semanticTwinsContainer = document.createElement("div"), this.semanticTwinsContainer.id = "spatial-semantic-twins", this.semanticTwinsContainer.className = "sr-only", this.semanticTwinsContainer.style.cssText = "position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;", this.host.appendChild(this.semanticTwinsContainer), this.bindContextMonitoring(), this.startMountGuard(), this.scene.add(this.workstationGroup), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.scene.add(this.particleGroup), this.scene.add(this.ghostLineGroup), this.renderGhostLineTrend(), this.applyCameraProfile(this.profile, !0), this.composer = new yd(this.renderer), this.composer.addPass(new bd(this.scene, this.camera)), this.bloomPass = new Sd(new U(1, 1), .045, .42, .96), this.composer.addPass(this.bloomPass), this.initLighting(), this.createWorkstationEnvironment(), this.createBlueprintGearRig(), this.loadWorkstationAsset(), this.createGauges(), this.createEngageDial(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
 	}
 	initLighting() {
 		this.scene.environment = null, this.scene.background = null, this.renderer.setClearColor(0, 0), this.ambient = new bs(zf.CYAN, .4), this.scene.add(this.ambient), this.lamp = new ms(zf.CYAN, 10, 50, Math.PI / 4), this.lamp.position.set(0, 5, 10), this.scene.add(this.lamp), this.bloomPass.strength = 1.2;
@@ -15113,6 +15115,24 @@ var Rf = class {
 	}
 	setPortalPreflight(e, t = null, n = 0) {
 		this.portalPreflightProgress = It.clamp(e, 0, 1), this.portalPreflightNodeId = t, this.portalPreflightDirection = Math.sign(n), this.portalPreflightProgress > 0 && t ? (this.host.dataset.portalSwipe = this.portalPreflightProgress >= 1 ? "ready" : "preflight", this.host.dataset.portalSwipeNode = t) : (delete this.host.dataset.portalSwipe, delete this.host.dataset.portalSwipeNode);
+	}
+	renderGhostLineTrend() {
+		for (; this.ghostLineGroup.children.length > 0;) {
+			let e = this.ghostLineGroup.children.pop();
+			e instanceof ua && (e.geometry.dispose(), e.material.dispose());
+		}
+		let e = localStorage.getItem("lm_adaptive_average_throughput") || "240", t = Number(e) || 240, n = [];
+		for (let e = 0; e < 15; e++) {
+			let r = e / 14 * 5.6 - 2.8, i = Math.sin(e * .72) * .18 + (Math.random() - .5) * .04, a = -3.4 + (240 - t) * .002 + i;
+			n.push(new W(r, a, -1.02));
+		}
+		let r = new ua(new Pr().setFromPoints(n), new na({
+			color: 2282478,
+			transparent: !0,
+			opacity: .22,
+			linewidth: 1
+		}));
+		r.userData = { ghostLineTrend: !0 }, this.ghostLineGroup.add(r);
 	}
 	dispose() {
 		cancelAnimationFrame(this.rafId), this.mountGuardId !== void 0 && window.clearInterval(this.mountGuardId), this.renderer.domElement.removeEventListener("webglcontextlost", this.handleWebGLContextLost), this.renderer.domElement.removeEventListener("webglcontextrestored", this.handleWebGLContextRestored), this.resizeObserver?.disconnect(), this.responsive.dispose(), this.composer?.dispose(), this.setPortalPreflight(0, null, 0), this.renderer.dispose(), this.host.innerHTML = "";

@@ -126,6 +126,8 @@ export class SpatialRenderer {
   private portalPreflightNodeId: string | null = null;
   private portalPreflightDirection = 0;
   private semanticTwinsContainer?: HTMLElement;
+  private ghostLineGroup = new THREE.Group();
+  private lastGhostSync = 0;
 
   constructor(
     private host: HTMLElement,
@@ -158,6 +160,8 @@ export class SpatialRenderer {
     this.scene.add(this.gearGroup);
     this.scene.add(this.gaugeGroup);
     this.scene.add(this.particleGroup);
+    this.scene.add(this.ghostLineGroup);
+    this.renderGhostLineTrend();
     this.applyCameraProfile(this.profile, true);
 
     this.composer = new EffectComposer(this.renderer);
@@ -370,6 +374,39 @@ export class SpatialRenderer {
       delete this.host.dataset.portalSwipe;
       delete this.host.dataset.portalSwipeNode;
     }
+  }
+
+  private renderGhostLineTrend(): void {
+    while (this.ghostLineGroup.children.length > 0) {
+      const old = this.ghostLineGroup.children.pop();
+      if (old instanceof THREE.Line) {
+        old.geometry.dispose();
+        (old.material as THREE.Material).dispose();
+      }
+    }
+
+    const rawAvg = localStorage.getItem('lm_adaptive_average_throughput') || '240';
+    const avg = Number(rawAvg) || 240;
+    const points: THREE.Vector3[] = [];
+    const count = 15;
+    for (let i = 0; i < count; i++) {
+      const x = (i / (count - 1)) * 5.6 - 2.8;
+      const wave = Math.sin(i * 0.72) * 0.18 + (Math.random() - 0.5) * 0.04;
+      const y = -3.4 + (240 - avg) * 0.002 + wave;
+      points.push(new THREE.Vector3(x, y, -1.02));
+    }
+
+    const geometry = new THREE.BufferGeometry().setFromPoints(points);
+    const material = new THREE.LineBasicMaterial({
+      color: 0x22d3ee,
+      transparent: true,
+      opacity: 0.22,
+      linewidth: 1
+    });
+
+    const ghostLine = new THREE.Line(geometry, material);
+    ghostLine.userData = { ghostLineTrend: true };
+    this.ghostLineGroup.add(ghostLine);
   }
 
   dispose(): void {
@@ -1474,9 +1511,16 @@ export class SpatialRenderer {
 
     const elapsed = this.clock.getElapsedTime();
     this.updateHoverState();
-    this.biomeGroup.rotation.y += 0.0017;
+
+    const pacingFactor = Number((window as any).LiquidMemoryPacingFactor || localStorage.getItem('lm_adaptive_pacing_factor') || 1.0);
+    this.biomeGroup.rotation.y += 0.0017 * pacingFactor;
     this.biomeGroup.rotation.x = Math.sin(elapsed * 0.17) * 0.06;
     this.linkGroup.rotation.copy(this.biomeGroup.rotation);
+
+    if (elapsed - this.lastGhostSync > 1.2) {
+      this.lastGhostSync = elapsed;
+      this.renderGhostLineTrend();
+    }
 
     const focus = this.nodes[this.focusIndex];
     const focalZ = focus?.target.z || 0;
