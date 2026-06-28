@@ -378,10 +378,7 @@ body.liquid-fullscreen,
 
 /* Phase 3 Static Hero Mobile Fallback */
 #spatial-canvas.hero-static-active {
-  background-image: url('workstation-hero.webp'), radial-gradient(circle at 50% 45%, rgba(0,255,255,.10), transparent 30%), linear-gradient(135deg, #020617, #001622 55%, #020617) !important;
-  background-size: cover, clamp(28px, 8vw, 72px) clamp(28px, 8vw, 72px), auto !important;
-  background-position: center !important;
-  background-repeat: no-repeat !important;
+  background: radial-gradient(circle at 50% 45%, rgba(0,255,255,.10), transparent 30%), linear-gradient(135deg, #020617, #001622 55%, #020617) !important;
 }
 #spatial-canvas.hero-static-active canvas {
   opacity: 0 !important;
