@@ -18,6 +18,8 @@ export interface RegistryNode {
   seoLabel?: string;
   payload?: Record<string, any>;
   isLegacyStatic?: boolean;
+  isInternalTelemetry?: boolean;
+  metrics?: Array<{ key: string; sourceEvent: string; label: string; baseline: number }>;
 }
 
 export class Registry {
@@ -64,16 +66,20 @@ export class Registry {
       },
     ],
     [
-      'signals-dashboard',
+      'access-terminal-telemetry',
       {
-        nodeId: 'signals-dashboard',
+        nodeId: 'access-terminal-telemetry',
         gearId: 'memory',
-        kernelEvent: 'signals.dashboard_opened',
-        route: './signals/index.html',
-        title: 'Telemetry Signals Dashboard',
+        kernelEvent: 'system.telemetry_projection',
+        title: 'Access Terminal // System Telemetry',
         category: 'system',
-        description: 'Live observability matrix for Kernel telemetry signals.',
-        seoLabel: 'Liquid Memory Signals Dashboard',
+        description: 'Pure 3D WebGL floating void telemetry HUD projection node.',
+        isInternalTelemetry: true,
+        metrics: [
+          { key: 'games', sourceEvent: 'library.game_opened', label: 'Arcade Genesis', baseline: 26 },
+          { key: 'witness', sourceEvent: 'witness.landing_opened', label: 'Witness Division', baseline: 14 },
+          { key: 'rewards', sourceEvent: 'system.reward_offered', label: 'Reward Vortex', baseline: 42 },
+        ],
       },
     ],
     [
@@ -164,6 +170,8 @@ export class Registry {
     ['milestone.level_up', 'blueprint-dial'],
     ['memory', 'memory-mycelium'],
     ['economic.resource_gained', 'memory-mycelium'],
+    ['signals-dashboard', 'access-terminal-telemetry'],
+    ['signals', 'access-terminal-telemetry'],
   ]);
 
   static {

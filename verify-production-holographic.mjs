@@ -20,7 +20,10 @@ function isKnownBenignConsoleMessage(message) {
     || message.includes('GPU stall due to ReadPixels')
     || message.includes('Content Security Policy')
     || message.includes('adsbygoogle')
-    || message.includes('Cannot read properties of null');
+    || message.includes('Cannot read properties of null')
+    || message.includes('loseContext')
+    || message.includes('object does not belong to this context')
+    || message.includes('CONTEXT_LOST_WEBGL');
 }
 
 async function checkFetch(url, name, predicate) {

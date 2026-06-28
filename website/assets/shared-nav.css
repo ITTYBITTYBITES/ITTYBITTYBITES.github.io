@@ -121,3 +121,21 @@
 .lm-footer-inner a:hover {
   text-decoration: underline;
 }
+
+/* Iframe Encapsulation & Nested Shell Pollution Suppression */
+.is-iframe-sandbox nav,
+.is-iframe-sandbox header,
+.is-iframe-sandbox footer,
+.is-iframe-sandbox .ibb-nav,
+.is-iframe-sandbox .ibb-footer,
+.is-iframe-sandbox #lm-global-nav,
+.is-iframe-sandbox #lm-global-footer {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+body.is-iframe-sandbox {
+  padding-top: 0 !important;
+  margin: 0 !important;
+}

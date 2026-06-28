@@ -1142,7 +1142,7 @@ function generateHtmlSitemap(libraryPages, intelPages) {
     { loc: 'best-brain-games.html', title: 'Best Diagnostic Brain Games & Metric Testers' },
     { loc: 'brain-training-tips.html', title: 'Brain Training Optimization Protocol Guide' },
     { loc: 'about.html', title: 'About Central Operational Command // Taskforce' },
-    { loc: 'contact.html', title: 'Secure Base Support Contact Terminal' },
+    
     { loc: 'terms_of_service.html', title: 'Authoritative Terms of Service // Legal Framework' },
     { loc: 'privacy_policy.html', title: 'Authoritative Privacy Policy // Telemetry Insulation' }
   ].map(item => `<a href="./${item.loc}" class="block p-3 bg-slate-900/60 hover:bg-slate-900 border border-slate-800/80 hover:border-cyan-400 rounded-xl text-xs text-slate-300 hover:text-white transition-all font-mono shadow-md truncate">◈ ${item.title}</a>`).join('\n          ');
@@ -1270,7 +1270,7 @@ function updateSitemap(libraryPages, intelPages) {
     { loc: '/intel/index.html', changefreq: 'daily', priority: 0.9 },
     { loc: '/feed.html', changefreq: 'weekly', priority: 0.7 },
     { loc: '/about.html', changefreq: 'monthly', priority: 0.6 },
-    { loc: '/contact.html', changefreq: 'monthly', priority: 0.5 },
+    
     { loc: '/privacy_policy.html', changefreq: 'yearly', priority: 0.4 },
     { loc: '/terms_of_service.html', changefreq: 'yearly', priority: 0.4 },
     { loc: '/stroop-effect.html', changefreq: 'monthly', priority: 0.9 },
@@ -1454,7 +1454,7 @@ function makeGlobalFooter(prefix = '') {
                 <a href="{{PREFIX}}privacy_policy.html" class="hover:text-cyan-400 transition-colors">Privacy Policy</a>
                 <a href="{{PREFIX}}terms_of_service.html" class="hover:text-cyan-400 transition-colors">Terms of Service</a>
                 <a href="{{PREFIX}}about.html" class="hover:text-cyan-400 transition-colors">About Us</a>
-                <a href="{{PREFIX}}contact.html" class="hover:text-cyan-400 transition-colors">Contact Us</a>
+                
                 <a href="{{PREFIX}}sitemap.html" class="hover:text-cyan-400 transition-colors text-cyan-300">Sitemap HTML</a>
                 <a href="{{PREFIX}}sitemap.xml" class="hover:text-cyan-400 transition-colors">Sitemap XML</a>
                 <a href="{{PREFIX}}feed.html" class="hover:text-cyan-400 transition-colors">RSS Database</a>

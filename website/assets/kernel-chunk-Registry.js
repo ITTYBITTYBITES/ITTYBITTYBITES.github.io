@@ -128,15 +128,34 @@ var e = "lm_portal_arrival", t = "lm_chamber_departure", n = class n {
 				description: "Global operative clearance rankings.",
 				seoLabel: "Liquid Memory 2SW Leaderboard"
 			}],
-			["signals-dashboard", {
-				nodeId: "signals-dashboard",
+			["access-terminal-telemetry", {
+				nodeId: "access-terminal-telemetry",
 				gearId: "memory",
-				kernelEvent: "signals.dashboard_opened",
-				route: "./signals/index.html",
-				title: "Telemetry Signals Dashboard",
+				kernelEvent: "system.telemetry_projection",
+				title: "Access Terminal // System Telemetry",
 				category: "system",
-				description: "Live observability matrix for Kernel telemetry signals.",
-				seoLabel: "Liquid Memory Signals Dashboard"
+				description: "Pure 3D WebGL floating void telemetry HUD projection node.",
+				isInternalTelemetry: !0,
+				metrics: [
+					{
+						key: "games",
+						sourceEvent: "library.game_opened",
+						label: "Arcade Genesis",
+						baseline: 26
+					},
+					{
+						key: "witness",
+						sourceEvent: "witness.landing_opened",
+						label: "Witness Division",
+						baseline: 14
+					},
+					{
+						key: "rewards",
+						sourceEvent: "system.reward_offered",
+						label: "Reward Vortex",
+						baseline: 42
+					}
+				]
 			}],
 			["witness-chamber", {
 				nodeId: "witness-chamber",
@@ -227,7 +246,9 @@ var e = "lm_portal_arrival", t = "lm_chamber_departure", n = class n {
 			["blueprint", "blueprint-dial"],
 			["milestone.level_up", "blueprint-dial"],
 			["memory", "memory-mycelium"],
-			["economic.resource_gained", "memory-mycelium"]
+			["economic.resource_gained", "memory-mycelium"],
+			["signals-dashboard", "access-terminal-telemetry"],
+			["signals", "access-terminal-telemetry"]
 		]);
 	}
 	static {

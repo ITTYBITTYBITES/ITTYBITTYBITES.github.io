@@ -5,6 +5,20 @@
  * Standardized absolute-relative link paths and complete footer scrub.
  */
 (function(){
+  if (window.self !== window.top) {
+    if (document.documentElement) document.documentElement.classList.add('is-iframe-sandbox');
+    const cleanIframe = () => {
+      document.querySelectorAll('nav, header, footer, .ibb-nav, .ibb-footer, #lm-global-nav, #lm-global-footer').forEach(el => el.remove());
+      if (document.body) {
+        document.body.classList.add('is-iframe-sandbox');
+        document.body.style.paddingTop = '0px';
+        document.body.style.margin = '0px';
+      }
+    };
+    if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', cleanIframe);
+    else cleanIframe();
+    return;
+  }
   if (document.getElementById('lm-global-nav') && document.getElementById('lm-global-footer')) return;
 
   const nav = document.createElement('nav');
@@ -20,7 +34,6 @@
       <div class="lm-nav-links">
         <a href="/website/arcade.html">ARCADE</a>
         <a href="/website/library.html">LIBRARY</a>
-        <a href="/website/signals/index.html">SIGNALS</a>
       </div>
     </div>
   `;
@@ -35,7 +48,7 @@
     }
     footer.innerHTML = `
       <div class="lm-footer-inner">
-        <p>© 2026 Ittybittybites • <a href="/website/privacy_policy.html">Privacy</a> • <a href="/website/terms_of_service.html">Terms</a> • <a href="/website/contact.html">Contact the Curator</a></p>
+        <p>© 2026 Ittybittybites • <a href="/website/privacy_policy.html">Privacy</a> • <a href="/website/terms_of_service.html">Terms</a></p>
         <p style="margin-top:6px;font-size:10px;color:#64748b;">LIQUID MEMORY // COGNITIVE GAMING DIVISION</p>
       </div>
     `;
