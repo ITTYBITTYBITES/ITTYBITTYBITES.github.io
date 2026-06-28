@@ -557,7 +557,9 @@ export class SpatialRenderer {
         <span style="display:block;font-size:9px;color:#22d3ee;font-weight:bold;letter-spacing:1px;margin-bottom:4px;">CHAMBER WINDOW</span>
         <strong style="font-size:12px;color:#fff;">${win.label}</strong>
       `;
-      card.addEventListener('click', () => {
+      card.addEventListener('pointerdown', (e) => e.stopPropagation());
+      card.addEventListener('click', (e) => {
+        e.stopPropagation();
         window.location.assign(win.route);
       });
       rig.appendChild(card);

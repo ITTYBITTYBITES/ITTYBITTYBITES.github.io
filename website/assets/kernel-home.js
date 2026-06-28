@@ -15245,8 +15245,8 @@ var Rf = class {
 			n.id = t.id, n.className = "chamber-window lm-card", n.style.cssText = "pointer-events:auto;background:rgba(2,6,23,0.85);border:1px solid rgba(0,255,255,0.3);border-radius:12px;padding:12px 20px;backdrop-filter:blur(10px);box-shadow:0 0 20px rgba(0,255,255,0.15);cursor:pointer;text-align:center;font-family:monospace;", n.innerHTML = `
         <span style="display:block;font-size:9px;color:#22d3ee;font-weight:bold;letter-spacing:1px;margin-bottom:4px;">CHAMBER WINDOW</span>
         <strong style="font-size:12px;color:#fff;">${t.label}</strong>
-      `, n.addEventListener("click", () => {
-				window.location.assign(t.route);
+      `, n.addEventListener("pointerdown", (e) => e.stopPropagation()), n.addEventListener("click", (e) => {
+				e.stopPropagation(), window.location.assign(t.route);
 			}), e.appendChild(n);
 		}), this.host && this.host.appendChild(e);
 	}

@@ -99,3 +99,13 @@
   backdrop-filter: blur(10px);
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
+
+/* Footer Anchor Normalization */
+.ibb-footer,
+footer.ibb-footer {
+  position: relative !important;
+  margin-top: auto !important;
+  z-index: 10 !important;
+  clear: both !important;
+  background: #020617;
+}
