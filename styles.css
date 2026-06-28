@@ -1,13 +1,13 @@
 /* ==========================================================================
    🎮 ittybittybites CSS Reset & Theme Styles (Mobile-First)
-   High-Contrast, Accessible, Adaptive Desktop/Mobile Layout
+   Immersive First-Person Cockpit Layout - Holographic Console Override
    ========================================================================== */
 
 /* 1. Global Reset & Theme Variables */
 :root {
-  --color-bg: #070911;
-  --color-panel: #0d1220;
-  --color-border: #1a233a;
+  --color-bg: #030509;
+  --color-panel: rgba(13, 18, 32, 0.88);
+  --color-border: rgba(95, 232, 255, 0.25);
   --color-border-active: #5fe8ff;
   
   --color-text: #f7fbff;
@@ -19,8 +19,7 @@
   --color-pink: #ff5ee7;
   --color-error: #ff5e7e;
 
-  --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --sidebar-width: 320px;
+  --font-family: monospace;
 }
 
 *, *::before, *::after {
@@ -39,25 +38,36 @@ body {
   font-family: var(--font-family);
   background-color: var(--color-bg);
   color: var(--color-text);
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
-/* 2. Core Layout Shell */
+/* 2. Core Immersive Layout Shell */
 #hub-shell {
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
-  max-width: 100vw;
+  width: 100vw;
+  height: 100vh;
+  position: relative;
 }
 
-/* 3. Header & Telemetry Scoreboard */
+/* 3. Floating Overlay Header (HUD style) */
 #hub-header {
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
+  width: calc(100% - 32px);
+  max-width: 1400px;
   background-color: var(--color-panel);
-  border-bottom: 2px solid var(--color-border);
-  padding: 1rem 1.5rem;
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  padding: 12px 24px;
+  z-index: 200;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(12px);
 }
 
 .logo-area {
@@ -67,24 +77,23 @@ body {
 }
 
 .hub-icon {
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: var(--color-cyan);
   text-shadow: 0 0 10px rgba(95, 232, 255, 0.4);
 }
 
 .logo-title h1 {
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   line-height: 1.1;
   font-weight: 900;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.01em;
   background: linear-gradient(135deg, var(--color-cyan), var(--color-pink));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
 .hub-tagline {
-  font-size: 0.75rem;
-  font-family: monospace;
+  font-size: 0.65rem;
   color: var(--color-muted);
   text-transform: uppercase;
   letter-spacing: 0.15em;
@@ -94,10 +103,9 @@ body {
   display: flex;
   gap: 16px;
   background: rgba(0, 0, 0, 0.3);
-  padding: 8px 16px;
-  border-radius: 8px;
+  padding: 6px 12px;
+  border-radius: 6px;
   border: 1px solid var(--color-border);
-  align-self: flex-start;
 }
 
 .telemetry-item {
@@ -106,105 +114,43 @@ body {
 }
 
 .telemetry-item .label {
-  font-size: 0.65rem;
+  font-size: 0.6rem;
   font-weight: 900;
   color: var(--color-muted);
-  letter-spacing: 0.1em;
+  letter-spacing: 0.08em;
 }
 
 .telemetry-item .value {
-  font-size: 1.1rem;
-  font-family: monospace;
+  font-size: 0.95rem;
   font-weight: bold;
   color: var(--color-gold);
 }
 
-/* 4. Main Body: Sidebar and Viewport */
+/* 4. Full-Bleed Viewport Canvas (Holographic central portal takes full page) */
 #hub-body {
-  display: flex;
-  flex-direction: column;
   flex: 1;
-}
-
-/* Sidebar Directory */
-#hub-sidebar {
-  background-color: #0b0e1a;
-  border-bottom: 2px solid var(--color-border);
-  padding: 1.2rem;
-  max-height: 380px;
-  overflow-y: auto;
-}
-
-#hub-sidebar h2 {
-  font-size: 0.85rem;
-  color: var(--color-cyan);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin-bottom: 1rem;
-  border-bottom: 1px solid var(--color-border);
-  padding-bottom: 6px;
-}
-
-/* Category styling and Buttons inside registry */
-.nav-category-group {
-  margin-bottom: 1.5rem;
-}
-
-.nav-category-group h3 {
-  font-size: 0.75rem;
-  color: var(--color-muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 0.6rem;
-}
-
-.nav-node-btn {
-  display: block;
   width: 100%;
-  text-align: left;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid var(--color-border);
-  color: var(--color-text);
-  padding: 8px 12px;
-  margin-bottom: 6px;
-  border-radius: 6px;
-  font-size: 0.8rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
+  height: 100%;
 }
 
-.nav-node-btn:hover {
-  background: rgba(95, 232, 255, 0.06);
-  border-color: rgba(95, 232, 255, 0.4);
-  color: var(--color-cyan);
-}
-
-.nav-node-btn.active {
-  background: rgba(95, 232, 255, 0.12);
-  border-color: var(--color-border-active);
-  color: var(--color-cyan);
-  font-weight: bold;
-  box-shadow: 0 0 10px rgba(95, 232, 255, 0.1);
-}
-
-/* Viewport Panel */
 #hub-main {
-  flex: 1;
-  background-color: var(--color-bg);
-  padding: 1rem;
+  width: 100%;
+  height: 100%;
   display: flex;
   flex-direction: column;
 }
 
 #hub-viewport {
-  flex: 1;
-  background-color: #04060b;
-  border: 2px solid var(--color-border);
-  border-radius: 12px;
+  width: 100%;
+  height: 100%;
   position: relative;
-  min-height: 480px;
-  display: flex;
-  flex-direction: column;
+  overflow: hidden;
+  background-color: #010204;
+}
+
+/* Sidebar is completely deprecated and removed from layout flow */
+#hub-sidebar {
+  display: none !important;
 }
 
 /* Embedded iframe elements inside viewport */
@@ -213,7 +159,7 @@ body {
   height: 100%;
   flex: 1;
   border: 0;
-  border-radius: 10px;
+  border-radius: 0; /* Full bleed seamless fit */
   background-color: #000;
 }
 
@@ -232,70 +178,50 @@ body {
   font-size: 0.95rem;
 }
 
-.error-container {
-  padding: 2.5rem;
-  text-align: center;
-  max-width: 500px;
-  margin: auto;
-}
-
-.error-container h2 {
-  color: var(--color-error);
-  font-size: 1.3rem;
-  margin-bottom: 0.8rem;
-}
-
-.error-container p {
-  color: var(--color-muted);
-  font-size: 0.9rem;
-}
-
 /* ==========================================================================
-   🌐 Wayfinding HUD Overlay (Phase 5 / Phase 10 Category Filters)
+   🌐 Wayfinding HUD Overlay (Flanks Central Portal)
    ========================================================================== */
 
 #hud-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  top: 100px;
+  left: 20px;
+  right: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 16px 20px;
-  background: linear-gradient(to bottom, rgba(7, 9, 17, 0.95), rgba(7, 9, 17, 0));
+  padding: 12px 18px;
+  background: transparent;
   z-index: 100;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+  pointer-events: none;
+}
+
+#hud-overlay * {
+  pointer-events: auto; /* Allow buttons to click */
 }
 
 #hud-breadcrumb {
-  font-family: monospace;
-  font-size: 0.7rem;
+  font-size: 0.65rem;
   font-weight: bold;
   color: var(--color-cyan);
   text-transform: uppercase;
   letter-spacing: 0.12em;
   text-shadow: 0 0 10px rgba(95, 232, 255, 0.35);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  display: block;
 }
 
 .hud-right {
   display: flex;
-  flex-wrap: wrap;
   gap: 8px;
+  align-self: flex-start;
 }
 
 .hud-btn {
-  background: rgba(13, 18, 32, 0.8);
+  background: rgba(13, 18, 32, 0.9);
   color: var(--color-cyan);
   border: 1px solid rgba(95, 232, 255, 0.3);
   border-radius: 6px;
   padding: 6px 12px;
-  font-size: 0.72rem;
-  font-family: monospace;
+  font-size: 0.68rem;
   font-weight: bold;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -321,7 +247,20 @@ body {
   box-shadow: 0 0 12px var(--color-pink);
 }
 
-/* Category Filter Select dropdown styling (Phase 10) */
+/* Panic button styling */
+.hud-btn.danger {
+  color: var(--color-error);
+  border-color: rgba(255, 94, 126, 0.3);
+}
+
+.hud-btn.danger:hover {
+  background: var(--color-error);
+  color: #04060b;
+  border-color: var(--color-error);
+  box-shadow: 0 0 12px var(--color-error);
+}
+
+/* Category Filter Select dropdown styling */
 .hud-select {
   background: rgba(13, 18, 32, 0.9);
   color: var(--color-cyan);
@@ -352,67 +291,299 @@ body {
   margin-top: 4px;
 }
 
-/* Panic button styling (Phase 10 Hardening) */
-.hud-btn.danger {
-  color: var(--color-error);
-  border-color: rgba(255, 94, 126, 0.3);
+/* ==========================================================================
+   👑 3D Holographic Command Console CSS Panels (Phase 12 / Phase 16 Updates)
+   ========================================================================== */
+
+.cyber-hud-panel {
+  width: 320px;
+  background-color: rgba(3, 6, 15, 0.88);
+  border: 1.5px solid rgba(95, 232, 255, 0.3);
+  border-radius: 12px;
+  color: var(--color-text);
+  font-family: monospace;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 0 25px rgba(95, 232, 255, 0.15);
+  backdrop-filter: blur(12px);
+  padding: 16px;
+  overflow: hidden;
+  user-select: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.hud-btn.danger:hover {
-  background: var(--color-error);
-  color: #04060b;
-  border-color: var(--color-error);
-  box-shadow: 0 0 12px var(--color-error);
+.cyber-hud-panel:hover {
+  border-color: var(--color-cyan);
+  box-shadow: 0 0 35px rgba(95, 232, 255, 0.4);
 }
 
-/* 5. Responsive Upgrades (Desktop Layouts) */
-@media (min-width: 768px) {
-  #hub-header {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-  }
-  
-  #hub-telemetry-panel {
-    align-self: auto;
-  }
-  
-  #hub-body {
-    flex-direction: row;
-  }
-  
-  #hub-sidebar {
-    width: var(--sidebar-width);
-    border-bottom: 0;
-    border-right: 2px solid var(--color-border);
-    max-height: calc(100vh - 84px);
-    position: sticky;
-    top: 84px;
-  }
-  
-  #hub-main {
-    padding: 1.5rem;
-  }
-  
-  #hub-viewport {
-    min-height: auto;
-  }
+.panel-header {
+  font-size: 0.72rem;
+  font-weight: bold;
+  letter-spacing: 0.12em;
+  color: var(--color-cyan);
+  text-transform: uppercase;
+  border-bottom: 1px dashed rgba(95, 232, 255, 0.2);
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+}
 
-  #hud-overlay {
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 18px 24px;
-  }
+.panel-title {
+  text-shadow: 0 0 8px rgba(95, 232, 255, 0.5);
+}
 
-  #hud-breadcrumb {
-    font-size: 0.75rem;
-  }
+.panel-sub {
+  color: var(--color-pink);
+  font-size: 0.65rem;
+}
 
-  .filter-wrapper {
-    margin-top: 0;
-  }
+/* Sparkline graphic grids */
+.hud-sparkline-area {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.hud-big-num {
+  font-size: 2.8rem;
+  font-weight: bold;
+  color: var(--color-cyan);
+  line-height: 1;
+  text-shadow: 0 0 15px rgba(95, 232, 255, 0.6);
+}
+
+.sparkline-svg {
+  width: 140px;
+  height: 48px;
+}
+
+.sparkline-path {
+  fill: none;
+  stroke: var(--color-cyan);
+  stroke-width: 2;
+  filter: drop-shadow(0 0 4px var(--color-cyan));
+}
+
+/* Horizontal bar graph charts */
+.chart-bar-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 4px;
+}
+
+.chart-bar-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chart-bar-label {
+  font-size: 0.65rem;
+  color: var(--color-muted);
+}
+
+.chart-bar-track {
+  flex: 1;
+  margin: 0 10px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 3px;
+  position: relative;
+  overflow: hidden;
+}
+
+.chart-bar-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background: var(--color-cyan);
+  box-shadow: 0 0 6px var(--color-cyan);
+  border-radius: 3px;
+}
+
+.chart-bar-val {
+  font-size: 0.65rem;
+  color: var(--color-cyan);
+  font-weight: bold;
+}
+
+/* Circular ring chart */
+.circle-chart-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 120px;
+  margin: 10px 0;
+}
+
+.circle-chart-svg {
+  width: 110px;
+  height: 110px;
+  transform: rotate(-90deg);
+}
+
+.circle-chart-bg {
+  fill: none;
+  stroke: rgba(255, 255, 255, 0.05);
+  stroke-width: 8;
+}
+
+.circle-chart-ring {
+  fill: none;
+  stroke: var(--color-pink);
+  stroke-width: 8;
+  stroke-dasharray: 283;
+  stroke-dashoffset: 147; 
+  stroke-linecap: round;
+  filter: drop-shadow(0 0 6px var(--color-pink));
+  transform-origin: center;
+  animation: ring-pulse 2s infinite alternate;
+}
+
+.circle-chart-text {
+  position: absolute;
+  font-size: 1.8rem;
+  font-weight: 1000;
+  color: var(--color-pink);
+  text-shadow: 0 0 10px rgba(255, 94, 231, 0.6);
+}
+
+@keyframes ring-pulse {
+  0% { opacity: 0.8; }
+  100% { opacity: 1; }
+}
+
+/* Interactive games directory inside HUD panels */
+.panel-node-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  overflow-y: auto;
+  max-height: 165px;
+  padding-right: 4px;
+}
+
+.panel-node-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 0.72rem;
+  cursor: pointer;
+  color: var(--color-muted);
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.panel-node-item:hover {
+  background: rgba(95, 232, 255, 0.08);
+  border-color: rgba(95, 232, 255, 0.4);
+  color: var(--color-cyan);
+}
+
+/* Scrollbar customizations */
+.panel-node-list::-webkit-scrollbar {
+  width: 4px;
+}
+.panel-node-list::-webkit-scrollbar-thumb {
+  background: rgba(95, 232, 255, 0.2);
+  border-radius: 2px;
+}
+
+/* Interactive general terminal link item */
+.panel-action-btn {
+  display: block;
+  width: 100%;
+  background: rgba(255, 94, 231, 0.04);
+  border: 1px solid rgba(255, 94, 231, 0.2);
+  color: var(--color-pink);
+  padding: 8px 12px;
+  margin-top: 6px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.panel-action-btn:hover {
+  background: rgba(255, 94, 231, 0.12);
+  border-color: var(--color-pink);
+  color: var(--color-text);
+  box-shadow: 0 0 10px rgba(255, 94, 231, 0.2);
+}
+
+/* ==========================================================================
+   🖼️ Phase 16: Spatial Browser CSS3D Preview Card Windows
+   ========================================================================== */
+
+.holographic-preview-window {
+  width: 380px;
+  height: 240px;
+  background-color: rgba(3, 6, 15, 0.92);
+  border: 2px solid var(--color-cyan);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(95, 232, 255, 0.2);
+  padding: 16px;
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: monospace;
+  overflow: hidden;
+  user-select: none;
+  cursor: pointer;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, opacity 0.3s ease, filter 0.3s ease;
+}
+
+.holographic-preview-window.hovered {
+  border-color: var(--color-pink);
+  box-shadow: 0 0 35px rgba(255, 94, 231, 0.45);
+}
+
+.holographic-preview-window.hovered .panel-action-btn {
+  background: var(--color-pink);
+  color: #030509;
+  border-color: var(--color-pink);
+  box-shadow: 0 0 12px var(--color-pink);
+}
+
+.holographic-card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+.holographic-card-body h3 {
+  font-size: 1.1rem;
+  color: var(--color-cyan);
+  margin-bottom: 6px;
+  font-weight: bold;
+  text-shadow: 0 0 8px rgba(95, 232, 255, 0.4);
+  line-height: 1.25;
+}
+
+.holographic-card-body p {
+  font-size: 0.72rem;
+  color: var(--color-muted);
+  line-height: 1.45;
+  max-height: 80px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
 }
 
 /* ==========================================================================
@@ -463,4 +634,23 @@ body {
   color: #000;
   border-color: var(--color-error);
   box-shadow: 0 0 14px var(--color-error);
+}
+
+/* 5. Responsive Upgrades (Desktop Layouts) */
+@media (min-width: 768px) {
+  #hud-overlay {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+    top: 90px;
+  }
+
+  #hud-breadcrumb {
+    font-size: 0.75rem;
+  }
+
+  .filter-wrapper {
+    margin-top: 0;
+  }
 }

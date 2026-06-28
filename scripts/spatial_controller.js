@@ -1,76 +1,16 @@
 /**
- * 3D SPATIAL TUNNEL CONTROLLER (Phase 10 - Final Category Filters & Polish)
- * Orchestrates a high-fidelity holographic WebGL post-processing pipeline
- * featuring UnrealBloom, Chromatic Aberration, custom Fresnel Edge-Glow Shader nodes,
- * dynamic category filtering with custom pulsing/dimming animators, and cinematic signpost tours.
+ * 3D SPATIAL TUNNEL CONTROLLER (Phase 16 - Spatial Browser Conversion)
+ * Orchestrates a high-fidelity spatial browser tunnel.
+ * Replaces abstract shapes with interactive 3D CSS3D Holographic Preview Windows,
+ * featuring real-time Depth-Of-Field (DoF) blurring, fading, and cinematic morph launches.
  */
-
-// 1. Custom Fresnel Holographic Edge-Glow Shader Definition
-const FresnelShader = {
-  uniforms: {
-    "color": { value: new THREE.Color(0x5fe8ff) },
-    "glowInternal": { value: 0.25 },
-    "glowPower": { value: 3.0 },
-    "glowIntensity": { value: 1.35 }
-  },
-  vertexShader: `
-    varying vec3 vNormal;
-    varying vec3 vViewPosition;
-    void main() {
-      vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
-      vNormal = normalize(normalMatrix * normal);
-      vViewPosition = -mvPosition.xyz;
-      gl_Position = projectionMatrix * mvPosition;
-    }
-  `,
-  fragmentShader: `
-    uniform vec3 color;
-    uniform float glowInternal;
-    uniform float glowPower;
-    uniform float glowIntensity;
-    varying vec3 vNormal;
-    varying vec3 vViewPosition;
-    void main() {
-      vec3 normal = normalize(vNormal);
-      vec3 viewDir = normalize(vViewPosition);
-      float intensity = pow(1.0 - max(dot(normal, viewDir), 0.0), glowPower) * glowIntensity;
-      gl_FragColor = vec4(color, glowInternal + intensity);
-    }
-  `
-};
-
-// 2. Custom Chromatic Aberration Post-Processing Shader Definition
-const ChromaticAberrationShader = {
-  uniforms: {
-    "tDiffuse": { value: null },
-    "uAmount": { value: 0.0025 }
-  },
-  vertexShader: `
-    varying vec2 vUv;
-    void main() {
-      vUv = uv;
-      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-    }
-  `,
-  fragmentShader: `
-    uniform sampler2D tDiffuse;
-    uniform float uAmount;
-    varying vec2 vUv;
-    void main() {
-      vec4 cr = texture2D(tDiffuse, vUv + vec2(uAmount, 0.0));
-      vec4 cg = texture2D(tDiffuse, vUv);
-      vec4 cb = texture2D(tDiffuse, vUv - vec2(uAmount, 0.0));
-      gl_FragColor = vec4(cr.r, cg.g, cb.b, cg.a);
-    }
-  `
-};
 
 class SpatialController {
   /**
    * Constructs the 3D spatial tunnel interface.
    * @param {HTMLElement} container - DOM element to render WebGL canvas.
    * @param {Array} registry - Active game nodes manifest catalog.
-   * @param {Function} onNodeSelected - Callback triggered on raycast node clicks.
+   * @param {Function} onNodeSelected - Callback triggered on node selection.
    * @param {Object} telemetryStats - Current user statistics database.
    */
   constructor(container, registry, onNodeSelected, telemetryStats) {
@@ -82,20 +22,15 @@ class SpatialController {
     this.scene = null;
     this.camera = null;
     this.renderer = null;
-    this.composer = null; // EffectComposer post-processing
-    this.css3dRenderer = null; // CSS3DRenderer for HTML boards
+    this.composer = null; 
+    this.css3dRenderer = null; 
     
     this.tunnelRings = [];
-    this.nodeMeshes = [];
+    this.nodeMeshes = []; // Stores the 3D CSS3D holographic preview panels (Phase 16)
     this.signpostMeshes = [];
     this.animationFrameId = null;
     
-    // Raycaster states
-    this.raycaster = new THREE.Raycaster();
-    this.mouse = new THREE.Vector2();
-    this.hoveredMesh = null;
-
-    // Transition Locks & Category Filters
+    // Interaction states
     this.isTransitioning = false;
     this.activeCategory = "ALL";
 
@@ -107,17 +42,17 @@ class SpatialController {
   }
 
   /**
-   * Initializes Three.js environment, geometries, materials, and post-processing passes.
+   * Initializes Three.js environment, geometries, and post-processing passes.
    */
   init() {
     // 1. Create Scene & Black Fog for depth fade
     this.scene = new THREE.Scene();
-    this.scene.background = new THREE.Color(0x04060b);
-    this.scene.fog = new THREE.FogExp2(0x04060b, 0.015);
+    this.scene.background = new THREE.Color(0x030509);
+    this.scene.fog = new THREE.FogExp2(0x030509, 0.015);
 
-    // 2. Setup Camera
+    // 2. Setup Camera. Boot state starts at Z=20
     this.camera = new THREE.PerspectiveCamera(60, this.width / this.height, 0.1, 1000);
-    this.camera.position.set(0, 0, 10); // Center camera in tunnel entrance
+    this.camera.position.set(0, 0, 20); 
 
     // 3. Setup WebGL Renderer with custom options for post-processing buffer support
     this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: "high-performance" });
@@ -127,7 +62,7 @@ class SpatialController {
     this.renderer.toneMappingExposure = 1.0;
     this.container.appendChild(this.renderer.domElement);
 
-    // 4. Setup THREE.CSS3DRenderer for dynamic 3D HTML ad boards
+    // 4. Setup THREE.CSS3DRenderer for dynamic 3D HTML elements
     const cssContainer = document.getElementById("css3d-renderer-container");
     if (cssContainer) {
       this.css3dRenderer = new THREE.CSS3DRenderer();
@@ -147,16 +82,27 @@ class SpatialController {
     pointLightPink.position.set(0, -5, -20);
     this.scene.add(pointLightPink);
 
-    // 6. Setup Post-Processing EffectComposer Pipeline
+    // 6. Setup Post-Processing EffectComposer Pipeline (UnrealBloom + Chromatic Aberration)
     this.setupPostProcessingPipeline();
 
     // 7. Construct Vector Glowing Ring Tunnel
     this.buildVectorTunnel();
 
-    // 8. Spawn Holographic Fresnel Nodes, Fast-Travel Signposts, and Sponsored Ad boards
+    // 8. Spatial Browser Conversion initialization (Phase 16)
     this.spawnManifestNodes();
     this.spawnSignposts();
     this.spawnAdBoards();
+
+    // Camera entrance tween: Z=20 to Z=0 over 3 seconds
+    this.isTransitioning = true;
+    new TWEEN.Tween(this.camera.position)
+      .to({ x: 0, y: 0, z: 0 }, 3000)
+      .easing(TWEEN.Easing.Cubic.Out)
+      .onComplete(() => {
+        this.isTransitioning = false;
+        console.log("✓ [3D Spatial] Camera arrived at portal root.");
+      })
+      .start();
 
     // 9. Bind Listeners
     this.bindEvents();
@@ -171,22 +117,19 @@ class SpatialController {
   setupPostProcessingPipeline() {
     this.composer = new THREE.EffectComposer(this.renderer);
     
-    // 1. Render Pass
     const renderPass = new THREE.RenderPass(this.scene, this.camera);
     this.composer.addPass(renderPass);
 
-    // 2. UnrealBloomPass for glowing vector light bleeding
     const bloomPass = new THREE.UnrealBloomPass(
       new THREE.Vector2(this.width, this.height),
-      1.8,  // Strength: bright bleed
-      0.45, // Radius
-      0.15  // Threshold (low allows rich colors to bloom)
+      1.8,  
+      0.45, 
+      0.15  
     );
     this.composer.addPass(bloomPass);
 
-    // 3. Chromatic Aberration Shader Pass for holographic lens separation
     const chromaticPass = new THREE.ShaderPass(ChromaticAberrationShader);
-    chromaticPass.uniforms["uAmount"].value = 0.0022; // Subtle glitchy separation
+    chromaticPass.uniforms["uAmount"].value = 0.0022; 
     this.composer.addPass(chromaticPass);
   }
 
@@ -196,15 +139,13 @@ class SpatialController {
   spawnAdBoards() {
     if (typeof AdManager !== "undefined") {
       window.ibbAds = new AdManager(this.scene, this.camera);
-      // Spawn two distinct 3D Sponsored Hologram Nodes in peripheral zones
-      window.ibbAds.spawnSponsoredNode(-5.8, 1.8, -25.0); // Left side midway
-      window.ibbAds.spawnSponsoredNode(5.8, -1.8, -60.0);  // Right side deeper
+      window.ibbAds.spawnSponsoredNode(-6.0, 2.8, -45.0); 
+      window.ibbAds.spawnSponsoredNode(6.0, -2.8, -95.0);  
     }
   }
 
   /**
    * Sets active category filter and triggers a smooth re-ordering animation down the tunnel.
-   * @param {string} category - Category title to focus on.
    */
   filterCategory(category) {
     this.activeCategory = category || "ALL";
@@ -231,7 +172,6 @@ class SpatialController {
     for (let i = 0; i < ringCount; i++) {
       const radius = 8 + Math.sin(i * 0.5) * 1.5;
       const geometry = new THREE.TorusGeometry(radius, 0.06, 8, 16);
-      
       const color = i % 2 === 0 ? 0x5fe8ff : 0xff5ee7;
       
       const material = new THREE.MeshBasicMaterial({
@@ -250,89 +190,123 @@ class SpatialController {
   }
 
   /**
-   * Maps nodes based on unplayed status, category matching, and priority_score.
+   * Spatial Browser Conversion: Renders 26 high-fidelity holographic preview windows
+   * as CSS3DObjects in 3D tunnel coordinates, eliminating obsolete abstract shapes.
    */
   spawnManifestNodes() {
     const sortedRegistry = this.getSortedRegistry();
 
     sortedRegistry.forEach((item, index) => {
-      let geometry;
-      if (item.category.includes("3D WebGL")) {
-        geometry = new THREE.OctahedronGeometry(1.0, 0);
-      } else if (item.category.includes("Physics")) {
-        geometry = new THREE.IcosahedronGeometry(0.9, 0);
-      } else if (item.category.includes("Classics")) {
-        geometry = new THREE.BoxGeometry(0.85, 0.85, 0.85);
-      } else {
-        geometry = new THREE.TetrahedronGeometry(1.0, 0);
-      }
+      // 1. Create high-fidelity DOM element data container for Phase 16
+      const container = document.createElement("div");
+      container.className = "holographic-preview-window";
+      container.setAttribute("data-node-id", item.id);
+      container.innerHTML = `
+        <div class="panel-header">
+          <span class="panel-title">${item.category.toUpperCase()}</span>
+          <span class="panel-sub">PRIORITY: ${item.priority_score || 50}</span>
+        </div>
+        <div class="holographic-card-body">
+          <h3>${item.title.toUpperCase()}</h3>
+          <p>${item.description}</p>
+        </div>
+        <button class="panel-action-btn">
+          ❖ ENGAGE PORTAL
+        </button>
+      `;
 
-      const baseColor = 0x5fe8ff; 
+      // 2. Wrap inside THREE.CSS3DObject
+      const cssObj = new THREE.CSS3DObject(container);
 
-      const customFresnelMat = new THREE.ShaderMaterial({
-        uniforms: THREE.UniformsUtils.clone(FresnelShader.uniforms),
-        vertexShader: FresnelShader.vertexShader,
-        fragmentShader: FresnelShader.fragmentShader,
-        transparent: true,
-        depthWrite: false, 
-        blending: THREE.NormalBlending
-      });
-
-      customFresnelMat.uniforms["color"].value = new THREE.Color(baseColor);
-      customFresnelMat.uniforms["glowInternal"].value = 0.22;
-      customFresnelMat.uniforms["glowPower"].value = 3.2;
-      customFresnelMat.uniforms["glowIntensity"].value = 1.45;
-
-      const mesh = new THREE.Mesh(geometry, customFresnelMat);
-
+      // Compute spiral coordinate down Z-axis
       const angle = index * 0.8;
-      const spiralRadius = 4.2;
+      const spiralRadius = 5.8; // Position in peripheral view flanking the central tunnel ring
       const x = Math.cos(angle) * spiralRadius;
       const y = Math.sin(angle) * spiralRadius;
-      const z = -index * 7.5 + 4; 
+      const z = -index * 12.0 + 4; // Extend Z spacing to prevent overlay clutter
 
-      mesh.position.set(x, y, z);
-      mesh.userData = { 
-        nodeId: item.id,
-        title: item.id.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
-        category: item.category, // Map category directly on meshes (Phase 10)
-        baseColor: baseColor,
-        hoverColor: 0xffe27a,
-        angle: angle,
-        index: index,
-        priority: item.priority_score || 50
-      };
+      cssObj.position.set(x, y, z);
+      cssObj.scale.set(0.015, 0.015, 0.015);
+      
+      // Orient the preview board slant inwards towards the incoming player camera path
+      cssObj.lookAt(0, 0, z + 20);
 
-      this.scene.add(mesh);
-      this.nodeMeshes.push(mesh);
+      // 3. Add responsive hover/click interactivity directly via DOM listeners
+      this._bindHUDPanelInteractions(cssObj, item.id);
+
+      this.scene.add(cssObj);
+      this.nodeMeshes.push(cssObj);
+    });
+  }
+
+  /**
+   * Binds clean hover audio pings and trigger dives directly on CSS3D DOM element layers.
+   */
+  _bindHUDPanelInteractions(cssObj, nodeId) {
+    const el = cssObj.element;
+    if (!el) return;
+
+    // Hover-In Listener
+    el.addEventListener("mouseenter", () => {
+      if (this.isTransitioning) return;
+      el.classList.add("hovered");
+      
+      // Scale up slightly for physical feedback
+      new TWEEN.Tween(cssObj.scale)
+        .to({ x: 0.018, y: 0.018, z: 0.018 }, 200)
+        .easing(TWEEN.Easing.Quadratic.Out)
+        .start();
+
+      if (window.ibbAudio) {
+        window.ibbAudio.playHoverPing();
+      }
+
+      this.dispatchEvent("ibb-node-hover", { 
+        id: nodeId, 
+        title: nodeId.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" ")
+      });
+    });
+
+    // Hover-Out Listener
+    el.addEventListener("mouseleave", () => {
+      el.classList.remove("hovered");
+      new TWEEN.Tween(cssObj.scale)
+        .to({ x: 0.015, y: 0.015, z: 0.015 }, 200)
+        .easing(TWEEN.Easing.Quadratic.Out)
+        .start();
+
+      this.dispatchEvent("ibb-node-hover", null);
+    });
+
+    // Click trigger to mount game
+    el.addEventListener("click", () => {
+      if (this.isTransitioning) return;
+      console.log(`🎯 [3D Spatial HUD] Window selected: '${nodeId}'`);
+      this.onNodeSelected(nodeId);
     });
   }
 
   /**
    * Sort comparator combining category filtering, play history, and priority_score.
-   * Matches the active filter category smoothly so matching elements drift closest (Z: 0 to -10).
    */
   getSortedRegistry() {
     const gamesPlayed = this.telemetryStats ? this.telemetryStats.gamesPlayed || {} : {};
     
     return [...this.registry].sort((a, b) => {
-      // 1. Group by category matching first (Phase 10)
       if (this.activeCategory !== "ALL") {
         const aMatches = a.category === this.activeCategory;
         const bMatches = b.category === this.activeCategory;
         if (aMatches !== bMatches) {
-          return aMatches ? -1 : 1; // Matching categories drift closest to entrance
+          return aMatches ? -1 : 1;
         }
       }
 
-      // 2. Within groups, sort unplayed nodes first
       const aPlayed = (gamesPlayed[a.id] || 0) > 0;
       const bPlayed = (gamesPlayed[b.id] || 0) > 0;
       if (aPlayed !== bPlayed) {
         return aPlayed ? 1 : -1;
       }
       
-      // 3. Within play states, sort by priority_score descending
       const aPriority = a.priority_score || 50;
       const bPriority = b.priority_score || 50;
       return bPriority - aPriority;
@@ -346,23 +320,24 @@ class SpatialController {
     const sortedRegistry = this.getSortedRegistry();
 
     sortedRegistry.forEach((item, sortedIndex) => {
-      const mesh = this.nodeMeshes.find(m => m.userData.nodeId === item.id);
+      const mesh = this.nodeMeshes.find(m => m.element && m.element.getAttribute("data-node-id") === item.id);
       if (!mesh) return;
 
       const newAngle = sortedIndex * 0.8;
-      const spiralRadius = 4.2;
+      const spiralRadius = 5.8;
       const newX = Math.cos(newAngle) * spiralRadius;
       const newY = Math.sin(newAngle) * spiralRadius;
-      const newZ = -sortedIndex * 7.5 + 4;
+      const newZ = -sortedIndex * 12.0 + 4;
 
-      mesh.userData.angle = newAngle;
-      mesh.userData.index = sortedIndex;
-
-      // Tween each mesh to its new ranked coordinate
+      // Tween position
       new TWEEN.Tween(mesh.position)
         .to({ x: newX, y: newY, z: newZ }, 1500)
         .easing(TWEEN.Easing.Cubic.Out)
         .start();
+
+      // Recalculate slanted orientation
+      const targetLookAt = new THREE.Vector3(0, 0, newZ + 20);
+      mesh.lookAt(targetLookAt);
     });
   }
 
@@ -384,7 +359,7 @@ class SpatialController {
         depthWrite: false
       });
 
-      customFresnelMat.uniforms["color"].value = new THREE.Color(0xff5ee7); // Pink base
+      customFresnelMat.uniforms["color"].value = new THREE.Color(0xff5ee7); 
       customFresnelMat.uniforms["glowInternal"].value = 0.35;
       customFresnelMat.uniforms["glowPower"].value = 2.5;
       customFresnelMat.uniforms["glowIntensity"].value = 1.6;
@@ -403,7 +378,7 @@ class SpatialController {
         };
       } else {
         mesh.rotation.x = Math.PI / 2; // Point backward
-        mesh.position.set(0, -2.5, -120); // Deep end
+        mesh.position.set(0, -2.5, -300); // Deep end corresponding to extended 12u spacing
         mesh.userData = {
           isSignpost: true,
           type: "entrance-zone",
@@ -463,21 +438,15 @@ class SpatialController {
     this.mouse.x = ((event.clientX - rect.left) / this.width) * 2 - 1;
     this.mouse.y = -((event.clientY - rect.top) / this.height) * 2 + 1;
 
-    const targets = [...this.nodeMeshes, ...this.signpostMeshes];
-
+    // Raycast only on the fast-travel signposts
     this.raycaster.setFromCamera(this.mouse, this.camera);
-    const intersects = this.raycaster.intersectObjects(targets);
+    const intersects = this.raycaster.intersectObjects(this.signpostMeshes);
 
     if (intersects.length > 0) {
       const hit = intersects[0].object;
       
-      // Prevent highlighting faded/dimmed non-matching category items
-      if (this.activeCategory !== "ALL" && hit.userData.category !== this.activeCategory && !hit.userData.isSignpost) {
-        return;
-      }
-      
       if (this.hoveredMesh !== hit) {
-        if (this.hoveredMesh) {
+        if (this.hoveredMesh && this.hoveredMesh.userData.isSignpost) {
           const prevColor = this.hoveredMesh.userData.baseColor;
           if (this.hoveredMesh.material.uniforms) {
             this.hoveredMesh.material.uniforms["color"].value.setHex(prevColor);
@@ -502,7 +471,7 @@ class SpatialController {
         });
       }
     } else {
-      if (this.hoveredMesh) {
+      if (this.hoveredMesh && this.hoveredMesh.userData.isSignpost) {
         const prevColor = this.hoveredMesh.userData.baseColor;
         if (this.hoveredMesh.material.uniforms) {
           this.hoveredMesh.material.uniforms["color"].value.setHex(prevColor);
@@ -522,18 +491,12 @@ class SpatialController {
   handleMouseClick() {
     if (this.isTransitioning) return;
 
-    if (this.hoveredMesh) {
-      if (this.hoveredMesh.userData.isSignpost) {
-        const type = this.hoveredMesh.userData.type;
-        if (type === "deep-storage") {
-          this.travelToZCoordinate(-110);
-        } else if (type === "entrance-zone") {
-          this.resetToEntrance();
-        }
-      } else {
-        const clickedId = this.hoveredMesh.userData.nodeId;
-        console.log(`🎯 [3D Spatial] Raycast Selected: '${clickedId}'`);
-        this.onNodeSelected(clickedId);
+    if (this.hoveredMesh && this.hoveredMesh.userData.isSignpost) {
+      const type = this.hoveredMesh.userData.type;
+      if (type === "deep-storage") {
+        this.travelToZCoordinate(-280);
+      } else if (type === "entrance-zone") {
+        this.resetToEntrance();
       }
     }
   }
@@ -565,37 +528,48 @@ class SpatialController {
   }
 
   /**
-   * Tweens camera coordinates to focus right in front of the selected node.
+   * Full-Screen Morph Focus Transition (Phase 16): Tweens camera coordinates
+   * to align perfectly center-face in front of the selected CSS3D window panel.
    */
   diveToNode(nodeId, onComplete) {
-    const mesh = this.nodeMeshes.find(m => m.userData.nodeId === nodeId);
+    const mesh = this.nodeMeshes.find(m => m.element && m.element.getAttribute("data-node-id") === nodeId);
     if (!mesh) {
       if (onComplete) onComplete();
       return;
     }
 
     this.isTransitioning = true;
-    this.renderer.domElement.style.cursor = "default";
     this.dispatchEvent("ibb-node-hover", null);
 
-    const targetZ = mesh.position.z + 2.2;
+    // Calculate morph focus: sit exactly 3.2 units directly flat-on facing the card
+    const targetZ = mesh.position.z + 3.2;
     const targetX = mesh.position.x;
     const targetY = mesh.position.y;
 
-    console.log(`🌀 [3D Spatial] Launching camera dive to node: ${nodeId} at Z=${targetZ}`);
+    console.log(`🌀 [Focus Morph] Direct camera dive to preview card: ${nodeId} at Z=${targetZ}`);
 
     if (window.ibbAudio) {
       window.ibbAudio.playWoosh();
     }
 
+    // 1. Animate camera position
     new TWEEN.Tween(this.camera.position)
       .to({ x: targetX, y: targetY, z: targetZ }, 1400)
       .easing(TWEEN.Easing.Cubic.InOut)
       .onUpdate(() => {
         this.camera.lookAt(mesh.position);
       })
+      .start();
+
+    // 2. Morph the CSS3D container element: scale up massively to take up full-screen bounds
+    new TWEEN.Tween(mesh.scale)
+      .to({ x: 0.024, y: 0.024, z: 0.024 }, 1400)
+      .easing(TWEEN.Easing.Cubic.InOut)
       .onComplete(() => {
         this.isTransitioning = false;
+        
+        // Restore card scale for next unmount reset
+        mesh.scale.set(0.015, 0.015, 0.015);
         if (onComplete) onComplete();
       })
       .start();
@@ -629,11 +603,9 @@ class SpatialController {
   }
 
   /**
-   * Cinematic guided tour sweeping smoothly down the entire tunnel structure,
-   * flying past the entrance signpost and deepest storage zones.
+   * Cinematic guided tour down the entire tunnel structure.
    */
-  startGuidedTour() {
-    if (this.isTransitioning) return;
+  startGuidedTour(onComplete) {
     this.isTransitioning = true;
     this.dispatchEvent("ibb-node-hover", null);
 
@@ -644,13 +616,11 @@ class SpatialController {
     }
 
     const originalPos = { x: 0, y: 0, z: 10 };
-    const midPos = { x: 0, y: 0, z: -50 };
-    const deepPos = { x: 0, y: 0, z: -110 };
-    const endPos = { x: 0, y: 0, z: -130 };
+    const deepPos = { x: 0, y: 0, z: -250 };
+    const endPos = { x: 0, y: 0, z: -300 };
 
-    const lookAhead = new THREE.Vector3(0, 0, -250);
+    const lookAhead = new THREE.Vector3(0, 0, -400);
 
-    // 1. Tour Dive forward
     const tourForward = new TWEEN.Tween(this.camera.position)
       .to(deepPos, 2800)
       .easing(TWEEN.Easing.Cubic.InOut)
@@ -658,7 +628,6 @@ class SpatialController {
         this.camera.lookAt(lookAhead);
       });
 
-    // 2. Cruise the Deep zone
     const tourCruise = new TWEEN.Tween(this.camera.position)
       .to(endPos, 1200)
       .easing(TWEEN.Easing.Linear.None)
@@ -666,7 +635,6 @@ class SpatialController {
         this.camera.lookAt(lookAhead);
       });
 
-    // 3. Cinematic return sweeping back up
     const tourReturn = new TWEEN.Tween(this.camera.position)
       .to(originalPos, 2800)
       .easing(TWEEN.Easing.Cubic.InOut)
@@ -676,6 +644,7 @@ class SpatialController {
       .onComplete(() => {
         this.isTransitioning = false;
         console.log("🎬 [Guided Tour] Cinematic tour completed.");
+        if (onComplete) onComplete();
       });
 
     tourForward.chain(tourCruise);
@@ -693,12 +662,11 @@ class SpatialController {
 
   /**
    * Core animation loop driving WebGL/CSS3D renders, real-time audio depth-tuning,
-   * and dynamic holographic pulsing/dimming animators.
+   * and Contextual Scaling (Depth-Of-Field optical blurs and fades).
    */
   animate() {
     this.animationFrameId = requestAnimationFrame(this.animate.bind(this));
 
-    // Update TWEEN engines
     TWEEN.update();
 
     const time = Date.now() * 0.001;
@@ -709,32 +677,47 @@ class SpatialController {
       ring.position.x = Math.sin(time + index * 0.3) * 0.08;
     });
 
-    // 2. Float and rotate nodes. Apply holographic pulsing and dimming.
+    // 2. Float, rotate, pulse and apply Contextual Scaling to preview cards (Phase 16)
     this.nodeMeshes.forEach(mesh => {
-      mesh.rotation.y += 0.015;
-      mesh.rotation.x += 0.005;
+      // Float mesh
+      const floatOffset = Math.sin(time * 1.5 + mesh.userData.index) * 0.12;
+      mesh.position.y = Math.sin(mesh.userData.angle) * 5.8 + floatOffset;
 
-      const floatOffset = Math.sin(time * 1.5 + mesh.userData.index) * 0.15;
-      mesh.position.y = Math.sin(mesh.userData.angle) * 4.2 + floatOffset;
+      // Calculate relative Z-axis distance to apply optical Depth-Of-Field (DoF) effects
+      const distance = Math.abs(this.camera.position.z - mesh.position.z);
+      
+      let opacity = 1.0;
+      let blurAmount = 0;
 
-      // Dynamic Holographic Filters (Phase 10)
+      // Setup depth threshold layers
+      if (distance > 20) {
+        // Fade out linearly as card gets further away
+        opacity = 1.0 - (distance - 20) / 75;
+        opacity = Math.max(0.04, Math.min(1.0, opacity));
+
+        // Blur card proportionally to simulate a real lens blur
+        blurAmount = Math.max(0, (distance - 20) * 0.075);
+        blurAmount = Math.min(6, blurAmount); // cap maximum blur
+      }
+
+      // Filter category dimming overlays (Phase 10 integration)
       const matchesCategory = this.activeCategory === "ALL" || mesh.userData.category === this.activeCategory;
+      if (!matchesCategory) {
+        opacity *= 0.15; // heavily dim non-matching categories
+        blurAmount = Math.max(blurAmount, 4.0); // add heavy constant blur
+      }
 
-      if (matchesCategory) {
-        // Pulse matching nodes with subtle sin-scale shifts and solid outline intensity
-        const pulse = 1.0 + Math.sin(time * 4.5 + mesh.userData.index) * 0.08;
-        mesh.scale.set(pulse, pulse, pulse);
+      // Apply styles directly to CSS3D HTML DOM container element
+      const el = mesh.element;
+      if (el) {
+        el.style.opacity = opacity;
+        el.style.filter = `blur(${blurAmount}px)`;
         
-        if (mesh.material.uniforms) {
-          // Standard transparent glowing shader
-          mesh.material.uniforms["glowIntensity"].value = 1.45 + Math.sin(time * 4.5) * 0.15;
-        }
-      } else {
-        // Dim and shrink non-matching nodes to drive visual focus to the category selection
-        mesh.scale.set(0.65, 0.65, 0.65);
-        if (mesh.material.uniforms) {
-          // Dim outline intensity completely down
-          mesh.material.uniforms["glowIntensity"].value = 0.25;
+        // Prevent click interactions on heavily faded or blurred elements
+        if (opacity < 0.25 || this.isTransitioning) {
+          el.style.pointerEvents = "none";
+        } else {
+          el.style.pointerEvents = "auto";
         }
       }
     });
@@ -746,19 +729,19 @@ class SpatialController {
       sign.scale.set(pulse, pulse, pulse);
     });
 
-    // 4. Update Web Audio depth low-pass filter in real-time tracking camera Z position!
+    // 4. Update Web Audio depth low-pass filter
     if (window.ibbAudio) {
       window.ibbAudio.updateDepth(this.camera.position.z);
     }
 
-    // 5. Render WebGL Composer post-processing pipeline (UnrealBloom + Chromatic Aberration)
+    // 5. Render WebGL post-processing compositor
     if (this.composer) {
       this.composer.render();
     } else {
       this.renderer.render(this.scene, this.camera);
     }
 
-    // 6. Render CSS3D Frame (Phase 7)
+    // 6. Render CSS3D Frame
     if (this.css3dRenderer && (!window.ibbAds || !window.ibbAds.isDormant)) {
       this.css3dRenderer.render(this.scene, this.camera);
     }
@@ -809,13 +792,8 @@ class SpatialController {
     }
 
     this.nodeMeshes.forEach(mesh => {
-      mesh.geometry.dispose();
-      mesh.material.dispose();
-    });
-
-    this.tunnelRings.forEach(ring => {
-      ring.geometry.dispose();
-      ring.material.dispose();
+      // Clean up DOM listeners if needed
+      mesh.element.parentNode.removeChild(mesh.element);
     });
 
     this.signpostMeshes.forEach(sign => {
