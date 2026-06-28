@@ -1306,6 +1306,55 @@ function updateSitemap(libraryPages, intelPages) {
   console.log(`✓ sitemap.xml built with ${allUrls.length} URLs (${staticUrls.length} static + ${libraryUrls.length} library + ${intelUrls.length} intel)`);
 }
 
+function hydratePortalFiles() {
+  console.log('\n🌌 [ENGINE 4] Registry-Driven Portal Hydration — hydrating arcade.html and library.html...');
+  const gamesPath = path.join(__dirname, 'games.json');
+  if (!fs.existsSync(gamesPath)) return;
+  const gameList = JSON.parse(fs.readFileSync(gamesPath, 'utf-8'));
+
+  const arcadeJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "IttyBittyBites Arcade Genesis",
+    "description": "Registry-driven 3D WebGL game archive.",
+    "itemListElement": gameList.map((g, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "item": {
+        "@type": "VideoGame",
+        "name": g.title || g.id,
+        "url": `https://ittybittybites.github.io/website/${g.directory_path || 'games/' + g.id + '/index.html'}`,
+        "applicationCategory": "Game",
+        "genre": g.category || "WebGL Experimental"
+      }
+    }))
+  };
+
+  const arcadePath = path.join(__dirname, 'arcade.html');
+  if (fs.existsSync(arcadePath)) {
+    let arcadeHtml = fs.readFileSync(arcadePath, 'utf-8');
+    if (!arcadeHtml.includes('application/ld+json')) {
+      arcadeHtml = arcadeHtml.replace('</head>', `  <script type="application/ld+json">\n${JSON.stringify(arcadeJsonLd, null, 2)}\n  </script>\n</head>`);
+      fs.writeFileSync(arcadePath, arcadeHtml, 'utf-8');
+      console.log(`  ✓ Hydrated arcade.html with ${gameList.length} ItemList JSON-LD schema entries`);
+    } else {
+      console.log('  ✓ arcade.html JSON-LD already hydrated');
+    }
+  }
+
+  const libraryPath = path.join(__dirname, 'library.html');
+  if (fs.existsSync(libraryPath)) {
+    let libraryHtml = fs.readFileSync(libraryPath, 'utf-8');
+    if (!libraryHtml.includes('application/ld+json')) {
+      libraryHtml = libraryHtml.replace('</head>', `  <script type="application/ld+json">\n${JSON.stringify(arcadeJsonLd, null, 2)}\n  </script>\n</head>`);
+      fs.writeFileSync(libraryPath, libraryHtml, 'utf-8');
+      console.log(`  ✓ Hydrated library.html JSON-LD schema`);
+    } else {
+      console.log('  ✓ library.html JSON-LD already hydrated');
+    }
+  }
+}
+
 // ─── Main Execution ─────────────────────────────────────────────────────────────
 
 async function main() {
@@ -1369,6 +1418,7 @@ async function main() {
     updateDynamicShowcases(intelPages);
     generateHtmlSitemap(libraryPages, intelPages);
     updateSitemap(libraryPages, intelPages);
+    hydratePortalFiles();
 
     const elapsed = ((Date.now() - startTime) / 1000).toFixed(1);
     console.log('\n' + '═'.repeat(60));
@@ -1461,4 +1511,8 @@ function makeGlobalFooter(prefix = '') {
             </div>
         </div>
     </footer>`.replace(/\{\{PREFIX\}\}/g, prefix);
+}
+
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { makeGlobalFooter, hydratePortalFiles };
 }
