@@ -105,6 +105,68 @@ function initChamberShell(): void {
 
   LiquidMemoryTelemetry.markPortalArrival(chamberTitle);
 
+  if (node?.nodeId === 'cog-assess-01' || node?.payload?.type === 'interactive-assessment' || pathname.includes('cog-assess-01')) {
+    const assessContainer = document.createElement('section');
+    assessContainer.id = 'lm-cog-assessment-hud';
+    assessContainer.style.cssText = 'position:relative;min-height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid #58ffbd;border-radius:24px;padding:24px;margin:24px 0;background:rgba(2,6,23,0.92);box-shadow:0 0 30px rgba(88,255,189,0.18);font-family:monospace;select-none;';
+
+    const hudPill = document.createElement('div');
+    hudPill.id = 'assess-throughput-pill';
+    hudPill.style.cssText = 'font-size:14px;color:#58ffbd;font-weight:900;letter-spacing:1px;margin-bottom:20px;padding:8px 16px;background:rgba(0,0,0,0.6);border:1px solid rgba(88,255,189,0.4);border-radius:12px;';
+    hudPill.textContent = 'THROUGHPUT HUD // Awaiting Stimulus';
+
+    const targetBox = document.createElement('div');
+    targetBox.id = 'assess-stimulus-target';
+    targetBox.style.cssText = 'width:80px;height:80px;border-radius:16px;background:#58ffbd;box-shadow:0 0 25px #58ffbd;cursor:pointer;transition:transform .1s;display:flex;align-items:center;justify-content:center;color:#020617;font-weight:900;font-size:12px;';
+    targetBox.textContent = 'ENGAGE';
+
+    let stimulusStart = performance.now();
+    const triggerStimulus = () => {
+      stimulusStart = performance.now();
+      targetBox.style.background = '#ff00ff';
+      targetBox.style.boxShadow = '0 0 30px #ff00ff';
+      targetBox.textContent = 'CLICK';
+    };
+
+    setTimeout(triggerStimulus, 800);
+
+    const onAcquire = () => {
+      const delta = Math.round(performance.now() - stimulusStart);
+      LiquidMemoryTelemetry.capture(node?.nodeId || 'cog-assess-01', delta);
+      hudPill.textContent = `THROUGHPUT HUD // Recorded: ${delta} ms`;
+      const srLive = document.getElementById('spatial-live-region') || document.querySelector('[aria-live="polite"]');
+      if (srLive) srLive.textContent = `Reaction time recorded: ${delta} milliseconds`;
+
+      targetBox.style.background = '#22d3ee';
+      targetBox.style.boxShadow = '0 0 20px #22d3ee';
+      targetBox.textContent = `${delta}ms`;
+      setTimeout(triggerStimulus, 1500 + Math.random() * 1000);
+    };
+
+    targetBox.addEventListener('pointerdown', (e) => {
+      e.stopPropagation();
+      onAcquire();
+    });
+
+    assessContainer.appendChild(hudPill);
+    assessContainer.appendChild(targetBox);
+    host?.insertBefore(assessContainer, host.firstChild);
+
+    // SR-Twin accessibility mapping
+    const assessTwin = document.createElement('button');
+    assessTwin.className = 'sr-only assess-twin-btn';
+    assessTwin.tabIndex = 0;
+    assessTwin.id = 'twin-node-cog-assess-01';
+    assessTwin.setAttribute('aria-label', 'Cognitive Assessment Stimulus Target Twin. Press Enter or Space to record reaction time.');
+    assessTwin.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        onAcquire();
+      }
+    });
+    if (document.body) document.body.appendChild(assessTwin);
+  }
+
   if (!document.getElementById(`twin-spatial-${node?.nodeId || slug || gearId}`)) {
     const twin = document.createElement('button');
     twin.className = 'sr-only chamber-twin-btn';

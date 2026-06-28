@@ -94,6 +94,20 @@ export class LiquidMemoryTelemetry {
     } catch {}
   }
 
+  static capture(nodeId: string, deltaMs: number): void {
+    try {
+      const key = `lm_telemetry_${nodeId}`;
+      const existing = JSON.parse(localStorage.getItem(key) || '{"count":0,"throughputMs":[]}');
+      existing.count = (existing.count || 0) + 1;
+      existing.throughputMs = existing.throughputMs || [];
+      existing.throughputMs.push(deltaMs);
+      if (existing.throughputMs.length > 50) existing.throughputMs.shift();
+      existing.lastThroughputMs = deltaMs;
+      existing.updatedAt = new Date().toISOString();
+      localStorage.setItem(key, JSON.stringify(existing));
+    } catch {}
+  }
+
   stagePortalArrival(intent: PortalTelemetryIntent, confirmedAt: string): void {
     LiquidMemoryTelemetry.stagePortalArrivalStatic(intent, confirmedAt);
   }

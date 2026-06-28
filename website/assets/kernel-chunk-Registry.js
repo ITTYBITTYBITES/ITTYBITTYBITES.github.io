@@ -39,6 +39,12 @@ var e = "lm_portal_arrival", t = "lm_chamber_departure", n = class n {
 			}));
 		} catch {}
 	}
+	static capture(e, t) {
+		try {
+			let n = `lm_telemetry_${e}`, r = JSON.parse(localStorage.getItem(n) || "{\"count\":0,\"throughputMs\":[]}");
+			r.count = (r.count || 0) + 1, r.throughputMs = r.throughputMs || [], r.throughputMs.push(t), r.throughputMs.length > 50 && r.throughputMs.shift(), r.lastThroughputMs = t, r.updatedAt = (/* @__PURE__ */ new Date()).toISOString(), localStorage.setItem(n, JSON.stringify(r));
+		} catch {}
+	}
 	stagePortalArrival(e, t) {
 		n.stagePortalArrivalStatic(e, t);
 	}

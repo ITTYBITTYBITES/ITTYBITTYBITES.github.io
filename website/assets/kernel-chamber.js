@@ -41,7 +41,32 @@ function i(e, n) {
 }
 function a() {
 	let a = document.querySelector("main[data-gear-id], body[data-gear-id], main[data-kernel-event]") || document.body, s = a?.getAttribute("data-gear-id") || "games", c = a?.getAttribute("data-kernel-event") || "library.game_opened", l = window.location.pathname, u = l.split("/").pop()?.replace(".html", "") || "", d = t.lookup(u) || t.lookup(c) || t.lookup(s), f = d?.title || (s === "archive" ? "Old Memory Vault" : "Arcade Genesis"), p = n();
-	if ((d?.isLegacyStatic || l.includes("/articles/") || document.body?.classList.contains("legacy-article")) && r(f, p), i(d, p), e.markPortalArrival(f), !document.getElementById(`twin-spatial-${d?.nodeId || u || s}`)) {
+	if ((d?.isLegacyStatic || l.includes("/articles/") || document.body?.classList.contains("legacy-article")) && r(f, p), i(d, p), e.markPortalArrival(f), d?.nodeId === "cog-assess-01" || d?.payload?.type === "interactive-assessment" || l.includes("cog-assess-01")) {
+		let t = document.createElement("section");
+		t.id = "lm-cog-assessment-hud", t.style.cssText = "position:relative;min-height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;border:1px solid #58ffbd;border-radius:24px;padding:24px;margin:24px 0;background:rgba(2,6,23,0.92);box-shadow:0 0 30px rgba(88,255,189,0.18);font-family:monospace;select-none;";
+		let n = document.createElement("div");
+		n.id = "assess-throughput-pill", n.style.cssText = "font-size:14px;color:#58ffbd;font-weight:900;letter-spacing:1px;margin-bottom:20px;padding:8px 16px;background:rgba(0,0,0,0.6);border:1px solid rgba(88,255,189,0.4);border-radius:12px;", n.textContent = "THROUGHPUT HUD // Awaiting Stimulus";
+		let r = document.createElement("div");
+		r.id = "assess-stimulus-target", r.style.cssText = "width:80px;height:80px;border-radius:16px;background:#58ffbd;box-shadow:0 0 25px #58ffbd;cursor:pointer;transition:transform .1s;display:flex;align-items:center;justify-content:center;color:#020617;font-weight:900;font-size:12px;", r.textContent = "ENGAGE";
+		let i = performance.now(), o = () => {
+			i = performance.now(), r.style.background = "#ff00ff", r.style.boxShadow = "0 0 30px #ff00ff", r.textContent = "CLICK";
+		};
+		setTimeout(o, 800);
+		let s = () => {
+			let t = Math.round(performance.now() - i);
+			e.capture(d?.nodeId || "cog-assess-01", t), n.textContent = `THROUGHPUT HUD // Recorded: ${t} ms`;
+			let a = document.getElementById("spatial-live-region") || document.querySelector("[aria-live=\"polite\"]");
+			a && (a.textContent = `Reaction time recorded: ${t} milliseconds`), r.style.background = "#22d3ee", r.style.boxShadow = "0 0 20px #22d3ee", r.textContent = `${t}ms`, setTimeout(o, 1500 + Math.random() * 1e3);
+		};
+		r.addEventListener("pointerdown", (e) => {
+			e.stopPropagation(), s();
+		}), t.appendChild(n), t.appendChild(r), a?.insertBefore(t, a.firstChild);
+		let c = document.createElement("button");
+		c.className = "sr-only assess-twin-btn", c.tabIndex = 0, c.id = "twin-node-cog-assess-01", c.setAttribute("aria-label", "Cognitive Assessment Stimulus Target Twin. Press Enter or Space to record reaction time."), c.addEventListener("keydown", (e) => {
+			(e.key === "Enter" || e.key === " ") && (e.preventDefault(), s());
+		}), document.body && document.body.appendChild(c);
+	}
+	if (!document.getElementById(`twin-spatial-${d?.nodeId || u || s}`)) {
 		let e = document.createElement("button");
 		e.className = "sr-only chamber-twin-btn", e.tabIndex = 0, e.id = `twin-spatial-${d?.nodeId || u || s}`, e.setAttribute("aria-label", `Spatial Twin: ${f}. Press Enter to return to Master Hub.`), e.addEventListener("keydown", (e) => {
 			(e.key === "Enter" || e.key === " ") && (e.preventDefault(), m("twin-keyboard-exit"), window.location.assign(p));
