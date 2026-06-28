@@ -82,9 +82,32 @@ async function checkBrowserStateAndEvents() {
   await browser.close();
 }
 
+async function checkEscapeValve() {
+  const browser = await chromium.launch({ headless: true });
+  const page = await browser.newPage();
+  const targetUrl = 'https://ittybittybites.github.io/website/arcade.html';
+  await page.goto(targetUrl, { waitUntil: 'domcontentloaded', timeout: 60000 });
+  await page.waitForSelector('.play-game', { timeout: 30000 });
+
+  await page.locator('.play-game').first().click();
+  await page.waitForTimeout(800);
+
+  const returnDot = page.locator('#lm-spatial-return');
+  if (await returnDot.count() > 0) ok('Escape Valve: Spatial Return dot exists on loaded node');
+  else fail('Escape Valve: Spatial Return dot missing on loaded node');
+
+  await returnDot.click();
+  await page.waitForTimeout(1000);
+  if (page.url().includes('index.html') || page.url().endsWith('/website/')) ok('Escape Valve: Spatial Return dot successfully returns home');
+  else fail('Escape Valve: Spatial Return navigation failed', page.url());
+
+  await browser.close();
+}
+
 try {
   await checkAssetPaths();
   await checkBrowserStateAndEvents();
+  await checkEscapeValve();
 } catch (err) {
   fail('Verification runner crashed', err?.stack || err?.message || String(err));
 }
