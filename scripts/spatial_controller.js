@@ -1,8 +1,70 @@
 /**
- * 3D SPATIAL TUNNEL CONTROLLER (Phase 7)
- * Orchestrates a responsive Three.js environment with ranking systems, fast-travel signposts,
- * immersive Web Audio integrations, and fully responsive 3D CSS3D Google AdSense ad units.
+ * 3D SPATIAL TUNNEL CONTROLLER (Phase 8 - Holographic Overhaul)
+ * Orchestrates a high-fidelity holographic WebGL post-processing pipeline
+ * featuring UnrealBloom, Chromatic Aberration, and custom Fresnel Edge-Glow Shader nodes.
  */
+
+// 1. Custom Fresnel Holographic Edge-Glow Shader Definition
+const FresnelShader = {
+  uniforms: {
+    "color": { value: new THREE.Color(0x5fe8ff) },
+    "glowInternal": { value: 0.25 },
+    "glowPower": { value: 3.0 },
+    "glowIntensity": { value: 1.35 }
+  },
+  vertexShader: `
+    varying vec3 vNormal;
+    varying vec3 vViewPosition;
+    void main() {
+      vec4 mvPosition = modelViewMatrix * vec4(position, 1.0);
+      vNormal = normalize(normalMatrix * normal);
+      vViewPosition = -mvPosition.xyz;
+      gl_Position = projectionMatrix * mvPosition;
+    }
+  `,
+  fragmentShader: `
+    uniform vec3 color;
+    uniform float glowInternal;
+    uniform float glowPower;
+    uniform float glowIntensity;
+    varying vec3 vNormal;
+    varying vec3 vViewPosition;
+    void main() {
+      vec3 normal = normalize(vNormal);
+      vec3 viewDir = normalize(vViewPosition);
+      // Fresnel edge lighting calculation based on camera perspective angle
+      float intensity = pow(1.0 - max(dot(normal, viewDir), 0.0), glowPower) * glowIntensity;
+      gl_FragColor = vec4(color, glowInternal + intensity);
+    }
+  `
+};
+
+// 2. Custom Chromatic Aberration Post-Processing Shader Definition
+const ChromaticAberrationShader = {
+  uniforms: {
+    "tDiffuse": { value: null },
+    "uAmount": { value: 0.0025 }
+  },
+  vertexShader: `
+    varying vec2 vUv;
+    void main() {
+      vUv = uv;
+      gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+    }
+  `,
+  fragmentShader: `
+    uniform sampler2D tDiffuse;
+    uniform float uAmount;
+    varying vec2 vUv;
+    void main() {
+      // Offset red and blue channels slightly to simulate a lens projection refraction
+      vec4 cr = texture2D(tDiffuse, vUv + vec2(uAmount, 0.0));
+      vec4 cg = texture2D(tDiffuse, vUv);
+      vec4 cb = texture2D(tDiffuse, vUv - vec2(uAmount, 0.0));
+      gl_FragColor = vec4(cr.r, cg.g, cb.b, cg.a);
+    }
+  `
+};
 
 class SpatialController {
   /**
@@ -21,7 +83,9 @@ class SpatialController {
     this.scene = null;
     this.camera = null;
     this.renderer = null;
-    this.css3dRenderer = null; // Phase 7 CSS3DRenderer
+    this.composer = null; // EffectComposer post-processing
+    this.css3dRenderer = null; // CSS3DRenderer for HTML boards
+    
     this.tunnelRings = [];
     this.nodeMeshes = [];
     this.signpostMeshes = [];
@@ -35,7 +99,6 @@ class SpatialController {
     // Transition Locks
     this.isTransitioning = false;
 
-    // Responsive design dimensions
     this.width = this.container.clientWidth;
     this.height = this.container.clientHeight;
 
@@ -43,7 +106,7 @@ class SpatialController {
   }
 
   /**
-   * Initializes Three.js environment, geometries, materials, and binding listeners.
+   * Initializes Three.js environment, geometries, materials, and post-processing passes.
    */
   init() {
     // 1. Create Scene & Black Fog for depth fade
@@ -55,13 +118,15 @@ class SpatialController {
     this.camera = new THREE.PerspectiveCamera(60, this.width / this.height, 0.1, 1000);
     this.camera.position.set(0, 0, 10); // Center camera in tunnel entrance
 
-    // 3. Setup WebGL Renderer
-    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false });
+    // 3. Setup WebGL Renderer with custom options for post-processing buffer support
+    this.renderer = new THREE.WebGLRenderer({ antialias: true, alpha: false, powerPreference: "high-performance" });
     this.renderer.setSize(this.width, this.height);
     this.renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    this.renderer.toneMapping = THREE.ReinhardToneMapping;
+    this.renderer.toneMappingExposure = 1.0;
     this.container.appendChild(this.renderer.domElement);
 
-    // 4. Setup THREE.CSS3DRenderer for dynamic 3D HTML / AdSense boards (Phase 7)
+    // 4. Setup THREE.CSS3DRenderer for dynamic 3D HTML ad boards
     const cssContainer = document.getElementById("css3d-renderer-container");
     if (cssContainer) {
       this.css3dRenderer = new THREE.CSS3DRenderer();
@@ -70,30 +135,58 @@ class SpatialController {
     }
 
     // 5. Setup Ambient & Point Lights
-    const ambientLight = new THREE.AmbientLight(0x1a233a);
+    const ambientLight = new THREE.AmbientLight(0x111625);
     this.scene.add(ambientLight);
 
-    const pointLightCyan = new THREE.PointLight(0x5fe8ff, 2, 50);
+    const pointLightCyan = new THREE.PointLight(0x5fe8ff, 3, 50);
     pointLightCyan.position.set(0, 5, 0);
     this.scene.add(pointLightCyan);
 
-    const pointLightPink = new THREE.PointLight(0xff5ee7, 2, 50);
+    const pointLightPink = new THREE.PointLight(0xff5ee7, 3, 50);
     pointLightPink.position.set(0, -5, -20);
     this.scene.add(pointLightPink);
 
-    // 6. Construct Vector Glowing Ring Tunnel
+    // 6. Setup Post-Processing EffectComposer Pipeline
+    this.setupPostProcessingPipeline();
+
+    // 7. Construct Vector Glowing Ring Tunnel
     this.buildVectorTunnel();
 
-    // 7. Spawn Ranked Nodes, Fast-Travel Signposts, and Sponsored Ad boards
+    // 8. Spawn Holographic Fresnel Nodes, Fast-Travel Signposts, and Sponsored Ad boards
     this.spawnManifestNodes();
     this.spawnSignposts();
     this.spawnAdBoards();
 
-    // 8. Bind Listeners
+    // 9. Bind Listeners
     this.bindEvents();
 
-    // 9. Launch Loop
+    // 10. Launch Loop
     this.animate();
+  }
+
+  /**
+   * Constructs the Post-Processing chain: UnrealBloom and Chromatic Aberration.
+   */
+  setupPostProcessingPipeline() {
+    this.composer = new THREE.EffectComposer(this.renderer);
+    
+    // 1. Render Pass
+    const renderPass = new THREE.RenderPass(this.scene, this.camera);
+    this.composer.addPass(renderPass);
+
+    // 2. UnrealBloomPass for glowing vector light bleeding
+    const bloomPass = new THREE.UnrealBloomPass(
+      new THREE.Vector2(this.width, this.height),
+      1.8,  // Strength: bright bleed
+      0.45, // Radius
+      0.15  // Threshold (low allows rich colors to bloom)
+    );
+    this.composer.addPass(bloomPass);
+
+    // 3. Chromatic Aberration Shader Pass for holographic lens separation
+    const chromaticPass = new THREE.ShaderPass(ChromaticAberrationShader);
+    chromaticPass.uniforms["uAmount"].value = 0.0022; // Subtle glitchy separation
+    this.composer.addPass(chromaticPass);
   }
 
   /**
@@ -121,19 +214,21 @@ class SpatialController {
    * Generates concentric vector grid rings simulating a spatial speed-tunnel.
    */
   buildVectorTunnel() {
-    const ringCount = 20; // Extend tunnel length
-    const ringSpacing = 12; // Gap along Z-axis
+    const ringCount = 20; 
+    const ringSpacing = 12; 
     
     for (let i = 0; i < ringCount; i++) {
       const radius = 8 + Math.sin(i * 0.5) * 1.5;
-      const geometry = new THREE.TorusGeometry(radius, 0.05, 8, 16);
+      const geometry = new THREE.TorusGeometry(radius, 0.06, 8, 16);
       
       const color = i % 2 === 0 ? 0x5fe8ff : 0xff5ee7;
+      
+      // Use basic material with high color values to intensify bloom pass
       const material = new THREE.MeshBasicMaterial({
         color: color,
         wireframe: true,
         transparent: true,
-        opacity: 0.35 - (i / ringCount) * 0.2
+        opacity: 0.45 - (i / ringCount) * 0.25
       });
       
       const mesh = new THREE.Mesh(geometry, material);
@@ -145,9 +240,7 @@ class SpatialController {
   }
 
   /**
-   * Maps nodes based on unplayed status and priority_score.
-   * Unplayed nodes are allocated positions near the entrance (Z: 0 to -10),
-   * while played nodes drift deeper down the Z-axis.
+   * Maps nodes to beautiful semi-transparent holographic shapes utilizing a custom Fresnel Shader.
    */
   spawnManifestNodes() {
     const sortedRegistry = this.getSortedRegistry();
@@ -164,17 +257,24 @@ class SpatialController {
         geometry = new THREE.TetrahedronGeometry(1.0, 0);
       }
 
-      const baseColor = 0x5fe8ff;
-      const material = new THREE.MeshPhongMaterial({
-        color: baseColor,
-        emissive: 0x112c3a,
-        shininess: 30,
-        flatShading: true,
+      const baseColor = 0x5fe8ff; // Glowing neon cyan
+
+      // Instantiate Custom Fresnel Shader Material for holographic depth
+      const customFresnelMat = new THREE.ShaderMaterial({
+        uniforms: THREE.UniformsUtils.clone(FresnelShader.uniforms),
+        vertexShader: FresnelShader.vertexShader,
+        fragmentShader: FresnelShader.fragmentShader,
         transparent: true,
-        opacity: 0.9
+        depthWrite: false, // smooth depth blending
+        blending: THREE.NormalBlending
       });
 
-      const mesh = new THREE.Mesh(geometry, material);
+      customFresnelMat.uniforms["color"].value = new THREE.Color(baseColor);
+      customFresnelMat.uniforms["glowInternal"].value = 0.22;
+      customFresnelMat.uniforms["glowPower"].value = 3.2;
+      customFresnelMat.uniforms["glowIntensity"].value = 1.45;
+
+      const mesh = new THREE.Mesh(geometry, customFresnelMat);
 
       const angle = index * 0.8;
       const spiralRadius = 4.2;
@@ -187,7 +287,7 @@ class SpatialController {
         nodeId: item.id,
         title: item.id.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
         baseColor: baseColor,
-        hoverColor: 0xffe27a,
+        hoverColor: 0xffe27a, // Yellow glow on hover
         angle: angle,
         index: index,
         priority: item.priority_score || 50
@@ -256,13 +356,22 @@ class SpatialController {
 
       const isFirst = index === 0;
       const geometry = new THREE.ConeGeometry(0.5, 1.4, 4);
-      const material = new THREE.MeshPhongMaterial({
-        color: 0xff5ee7, 
-        emissive: 0x3d0d34,
-        flatShading: true
+      
+      // Holographic Fresnel shader on signposts too for visual consistency!
+      const customFresnelMat = new THREE.ShaderMaterial({
+        uniforms: THREE.UniformsUtils.clone(FresnelShader.uniforms),
+        vertexShader: FresnelShader.vertexShader,
+        fragmentShader: FresnelShader.fragmentShader,
+        transparent: true,
+        depthWrite: false
       });
 
-      const mesh = new THREE.Mesh(geometry, material);
+      customFresnelMat.uniforms["color"].value = new THREE.Color(0xff5ee7); // Pink base
+      customFresnelMat.uniforms["glowInternal"].value = 0.35;
+      customFresnelMat.uniforms["glowPower"].value = 2.5;
+      customFresnelMat.uniforms["glowIntensity"].value = 1.6;
+
+      const mesh = new THREE.Mesh(geometry, customFresnelMat);
       
       if (isFirst) {
         mesh.rotation.x = -Math.PI / 2; // Point forward
@@ -317,6 +426,10 @@ class SpatialController {
       this.renderer.setSize(this.width, this.height);
     }
 
+    if (this.composer) {
+      this.composer.setSize(this.width, this.height);
+    }
+
     if (this.css3dRenderer) {
       this.css3dRenderer.setSize(this.width, this.height);
     }
@@ -342,12 +455,19 @@ class SpatialController {
       
       if (this.hoveredMesh !== hit) {
         if (this.hoveredMesh) {
-          this.hoveredMesh.material.color.setHex(this.hoveredMesh.userData.baseColor);
+          // Reset previous mesh Fresnel color uniform
+          const prevColor = this.hoveredMesh.userData.baseColor;
+          if (this.hoveredMesh.material.uniforms) {
+            this.hoveredMesh.material.uniforms["color"].value.setHex(prevColor);
+          }
           this.hoveredMesh.scale.set(1.0, 1.0, 1.0);
         }
         
         this.hoveredMesh = hit;
-        this.hoveredMesh.material.color.setHex(hit.userData.hoverColor);
+        // Hover highlight: shift Fresnel uniform color to neon yellow
+        if (hit.material.uniforms) {
+          hit.material.uniforms["color"].value.setHex(hit.userData.hoverColor);
+        }
         this.hoveredMesh.scale.set(1.25, 1.25, 1.25);
         this.renderer.domElement.style.cursor = "pointer";
 
@@ -363,7 +483,11 @@ class SpatialController {
       }
     } else {
       if (this.hoveredMesh) {
-        this.hoveredMesh.material.color.setHex(this.hoveredMesh.userData.baseColor);
+        // Restore base color uniform
+        const prevColor = this.hoveredMesh.userData.baseColor;
+        if (this.hoveredMesh.material.uniforms) {
+          this.hoveredMesh.material.uniforms["color"].value.setHex(prevColor);
+        }
         this.hoveredMesh.scale.set(1.0, 1.0, 1.0);
         this.hoveredMesh = null;
         this.renderer.domElement.style.cursor = "default";
@@ -575,8 +699,12 @@ class SpatialController {
       window.ibbAudio.updateDepth(this.camera.position.z);
     }
 
-    // 5. Render standard WebGL Frame
-    this.renderer.render(this.scene, this.camera);
+    // 5. Render WebGL Composer post-processing pipeline (UnrealBloom + Chromatic Aberration)
+    if (this.composer) {
+      this.composer.render();
+    } else {
+      this.renderer.render(this.scene, this.camera);
+    }
 
     // 6. Render CSS3D Frame (Phase 7)
     if (this.css3dRenderer && (!window.ibbAds || !window.ibbAds.isDormant)) {
@@ -618,6 +746,7 @@ class SpatialController {
       this.container.removeChild(this.renderer.domElement);
     }
     
+    const cssContainer = document.getElementById("css3d-renderer-container");
     if (cssContainer && this.css3dRenderer && this.css3dRenderer.domElement.parentNode) {
       cssContainer.removeChild(this.css3dRenderer.domElement);
     }
