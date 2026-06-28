@@ -1,4 +1,4 @@
-/* Global Shared Navigation & UI Harmonization v1.0 */
+/* Global Shared Navigation & UI Harmonization v1.2 */
 
 .lm-shared-nav {
   position: fixed;
@@ -100,12 +100,24 @@
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.5);
 }
 
-/* Footer Anchor Normalization */
-.ibb-footer,
-footer.ibb-footer {
+/* Universal Brand Footer */
+.lm-shared-footer {
   position: relative !important;
   margin-top: auto !important;
   z-index: 10 !important;
   clear: both !important;
   background: #020617;
+  border-top: 1px solid rgba(34, 211, 238, 0.2);
+  padding: 24px;
+  text-align: center;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 11px;
+  color: #94a3b8;
+}
+.lm-footer-inner a {
+  color: #22d3ee;
+  text-decoration: none;
+}
+.lm-footer-inner a:hover {
+  text-decoration: underline;
 }
