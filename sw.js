@@ -1,88 +1,41 @@
 /**
- * ITTYBITTYBITES HUB SERVICE WORKER (Phase 9 - PWA Lifecycle)
- * Implements a robust Stale-While-Revalidate caching strategy.
- * Ensures instant offline boots and silent background updates.
+ * SELF-DESTRUCTING SERVICE WORKER (PWA Cache Buster)
+ * Instantly clears all stored browser caches and unregisters itself
+ * to ensure that users are immediately served the latest live production files.
  */
 
-const CACHE_NAME = "ibb-cache-v9.0.0";
-
-const ASSETS_TO_CACHE = [
-  "./",
-  "./index.html",
-  "./styles.css",
-  "./manifest.json",
-  "./scripts/engine.js",
-  "./scripts/telemetry.js",
-  "./scripts/audio_manager.js",
-  "./scripts/ad_manager.js",
-  "./scripts/spatial_controller.js",
-  "https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js",
-  "https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/renderers/CSS3DRenderer.js",
-  "https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"
-];
-
-// 1. Install Event: Populate Cache Storage with core shell assets
 self.addEventListener("install", (event) => {
-  console.log(`📥 [Service Worker] Installing version: ${CACHE_NAME}`);
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      console.log("📥 [Service Worker] Pre-caching core platform shell assets.");
-      return cache.addAll(ASSETS_TO_CACHE);
-    }).then(() => {
-      // Force immediate takeover
-      return self.skipWaiting();
-    })
-  );
+  console.log("📥 [Service Worker] Installed. Forcing immediate takeover...");
+  self.skipWaiting();
 });
 
-// 2. Activate Event: Clean up stale caches from previous builds
 self.addEventListener("activate", (event) => {
-  console.log("⚙ [Service Worker] Activating and taking control of active tabs.");
+  console.log("⚙ [Service Worker] Activated. Wiping stale cache layers...");
   event.waitUntil(
     caches.keys().then((cacheNames) => {
       return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME) {
-            console.log(`⚙ [Service Worker] Deleting obsolete cache: ${cacheName}`);
-            return caches.delete(cacheName);
-          }
+        cacheNames.map((name) => {
+          console.log(`⚙ [Service Worker] Purging cache: ${name}`);
+          return caches.delete(name);
         })
       );
     }).then(() => {
-      // Take immediate client control
-      return self.clients.claim();
+      console.log("⚙ [Service Worker] Unregistering self from client registration...");
+      return self.registration.unregister();
+    }).then(() => {
+      console.log("⚙ [Service Worker] Refreshing active client windows...");
+      return self.clients.matchAll();
+    }).then((clients) => {
+      clients.forEach((client) => {
+        if (client.url) {
+          client.navigate(client.url); // Force immediate refresh
+        }
+      });
     })
   );
 });
 
-// 3. Fetch Event: Execute high-fidelity Stale-While-Revalidate caching strategy
+// Pass-through all fetch requests directly to network (no-cache)
 self.addEventListener("fetch", (event) => {
-  // Avoid intercepting third-party metrics/AdSense calls directly (must fetch fresh)
-  if (
-    event.request.url.includes("pagead") || 
-    event.request.url.includes("googlesyndication") ||
-    event.request.url.includes("adsterra")
-  ) {
-    return;
-  }
-
-  event.respondWith(
-    caches.open(CACHE_NAME).then((cache) => {
-      return cache.match(event.request).then((cachedResponse) => {
-        // Run network query in background to update cache (revalidate)
-        const fetchPromise = fetch(event.request).then((networkResponse) => {
-          // Only cache valid GET responses
-          if (event.request.method === "GET" && networkResponse.status === 200) {
-            cache.put(event.request, networkResponse.clone());
-          }
-          return networkResponse;
-        }).catch((err) => {
-          console.warn(`⚠️ [Service Worker] Network request failed for: ${event.request.url}`, err);
-        });
-
-        // Return cached version instantly (fast load) or fallback to network if missing
-        return cachedResponse || fetchPromise;
-      });
-    })
-  );
+  event.respondWith(fetch(event.request));
 });
