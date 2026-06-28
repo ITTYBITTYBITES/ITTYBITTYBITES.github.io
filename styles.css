@@ -251,7 +251,7 @@ body {
 }
 
 /* ==========================================================================
-   🌐 Wayfinding HUD Overlay (Phase 5)
+   🌐 Wayfinding HUD Overlay (Phase 5 / Phase 10 Category Filters)
    ========================================================================== */
 
 #hud-overlay {
@@ -284,6 +284,7 @@ body {
 
 .hud-right {
   display: flex;
+  flex-wrap: wrap;
   gap: 8px;
 }
 
@@ -318,6 +319,50 @@ body {
   color: #04060b;
   border-color: var(--color-pink);
   box-shadow: 0 0 12px var(--color-pink);
+}
+
+/* Category Filter Select dropdown styling (Phase 10) */
+.hud-select {
+  background: rgba(13, 18, 32, 0.9);
+  color: var(--color-cyan);
+  border: 1px solid rgba(95, 232, 255, 0.4);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 0.7rem;
+  font-family: monospace;
+  font-weight: bold;
+  cursor: pointer;
+  outline: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  transition: all 0.2s ease;
+}
+
+.hud-select:hover, .hud-select:focus {
+  border-color: var(--color-cyan);
+  box-shadow: 0 0 12px rgba(95, 232, 255, 0.3);
+}
+
+.hud-select option {
+  background: #0d1220;
+  color: var(--color-cyan);
+  font-family: monospace;
+}
+
+.filter-wrapper {
+  margin-top: 4px;
+}
+
+/* Panic button styling (Phase 10 Hardening) */
+.hud-btn.danger {
+  color: var(--color-error);
+  border-color: rgba(255, 94, 126, 0.3);
+}
+
+.hud-btn.danger:hover {
+  background: var(--color-error);
+  color: #04060b;
+  border-color: var(--color-error);
+  box-shadow: 0 0 12px var(--color-error);
 }
 
 /* 5. Responsive Upgrades (Desktop Layouts) */
@@ -363,6 +408,10 @@ body {
 
   #hud-breadcrumb {
     font-size: 0.75rem;
+  }
+
+  .filter-wrapper {
+    margin-top: 0;
   }
 }
 

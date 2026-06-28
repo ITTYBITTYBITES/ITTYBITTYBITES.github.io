@@ -1,5 +1,5 @@
 /**
- * ITTYBITTYBITES HUB ENGINE (Phase 7)
+ * ITTYBITTYBITES HUB ENGINE (Phase 10 - Final Category Filters & Polish)
  * Robust ES6 Platform Orchestration, Telemetry, Spatial HUD, Audio, and Ad-Bridge Orchestration
  */
 
@@ -12,6 +12,7 @@ class IttyBittyBitesEngine {
     this.registry = registry || [];
     this.activeNodeId = null;
     this.isMounting = false;
+    this.activeCategory = "ALL";
     
     // Instantiates TelemetryManager to manage LocalStorage and heartbeat synchronization
     this.telemetry = new TelemetryManager();
@@ -29,6 +30,10 @@ class IttyBittyBitesEngine {
     const viewport = document.getElementById("hub-viewport");
     if (!viewport) return;
 
+    // Compile unique categories from registry for dynamic HUD selection
+    const categories = ["ALL", ...new Set(this.registry.map(item => item.category))];
+    const categoryOptions = categories.map(cat => `<option value="${cat}">${cat === "ALL" ? "❖ ALL CATEGORIES" : cat}</option>`).join("");
+
     // Reset viewport and insert separate layers for WebGL Portal vs Iframe Sandbox
     viewport.innerHTML = `
       <!-- WebGL Portal Layer -->
@@ -36,10 +41,15 @@ class IttyBittyBitesEngine {
         <!-- CSS3D ad overlay layer (Phase 7) -->
         <div id="css3d-renderer-container" style="position: absolute; inset: 0; pointer-events: none; z-index: 5;"></div>
 
-        <!-- HUD Overlay (Phase 5) -->
+        <!-- HUD Overlay (Phase 5 / Phase 10 Category Filters) -->
         <div id="hud-overlay" style="z-index: 10;">
           <div class="hud-left">
             <span id="hud-breadcrumb">Hub &gt; Navigation</span>
+            <div class="filter-wrapper">
+              <select id="hud-category-select" class="hud-select" title="Filter 3D Nodes by Category">
+                ${categoryOptions}
+              </select>
+            </div>
           </div>
           <div class="hud-right">
             <button id="hud-home-btn" class="hud-btn" title="Reset Camera to Tunnel Entrance">
@@ -47,6 +57,9 @@ class IttyBittyBitesEngine {
             </button>
             <button id="hud-tour-btn" class="hud-btn secondary" title="Guided Spatial Tour">
               ☄ Guided Tour
+            </button>
+            <button id="hud-panic-btn" class="hud-btn danger" title="Clear Service Worker Cache and Force Reload">
+              ⚡ Re-sync Panic
             </button>
           </div>
         </div>
@@ -69,6 +82,17 @@ class IttyBittyBitesEngine {
       exitBtn.addEventListener("click", () => this.showPortal());
     }
 
+    // Bind Category Filter changes (Phase 10)
+    const catSelect = document.getElementById("hud-category-select");
+    if (catSelect) {
+      catSelect.addEventListener("change", (e) => {
+        this.activeCategory = e.target.value;
+        if (this.spatialController) {
+          this.spatialController.filterCategory(this.activeCategory);
+        }
+      });
+    }
+
     // Bind HUD buttons
     const homeBtn = document.getElementById("hud-home-btn");
     if (homeBtn) {
@@ -84,6 +108,25 @@ class IttyBittyBitesEngine {
       tourBtn.addEventListener("click", () => {
         if (this.spatialController) {
           this.spatialController.startGuidedTour();
+        }
+      });
+    }
+
+    // Bind Panic Re-sync Button (Phase 10 Hardening)
+    const panicBtn = document.getElementById("hud-panic-btn");
+    if (panicBtn) {
+      panicBtn.addEventListener("click", () => {
+        console.log("⚡ [Panic Button] Clearing Service Worker Cache and forcing hard reload...");
+        if ("serviceWorker" in navigator) {
+          caches.keys().then((cacheNames) => {
+            return Promise.all(
+              cacheNames.map((name) => caches.delete(name))
+            );
+          }).then(() => {
+            location.reload(true); // Force full site bypass reload
+          });
+        } else {
+          location.reload(true);
         }
       });
     }
@@ -137,6 +180,12 @@ class IttyBittyBitesEngine {
       this.activeNodeId = null;
       this.updateActiveNavigationUI(null);
 
+      // Restore HUD breadcrumb and filter
+      const breadcrumb = document.getElementById("hud-breadcrumb");
+      if (breadcrumb) {
+        breadcrumb.textContent = "Hub > Navigation";
+      }
+
       // 3. Resume audio drone ambience smoothly!
       if (window.ibbAudio) {
         window.ibbAudio.startAmbience();
@@ -156,6 +205,39 @@ class IttyBittyBitesEngine {
       }
 
       console.log("❖ [IttyBittyBitesEngine] Returned to 3D Spatial Navigation Tunnel.");
+    }
+  }
+
+  /**
+   * Instantly restores the portal canvas without executing fly-back camera tweens
+   * (ideal for rapid switching directly from sidebar directory clicks).
+   */
+  showPortalImmediate() {
+    const portalContainer = document.getElementById("spatial-portal-container");
+    const frameContainer = document.getElementById("game-frame-container");
+    const exitBtn = document.getElementById("hub-exit-btn");
+
+    if (portalContainer && frameContainer && exitBtn) {
+      frameContainer.style.display = "none";
+      frameContainer.innerHTML = "";
+      portalContainer.style.display = "block";
+      exitBtn.style.display = "none";
+
+      if (window.ibbAudio) {
+        window.ibbAudio.startAmbience();
+      }
+
+      if (window.ibbAds) {
+        window.ibbAds.resume();
+      }
+
+      if (this.spatialController) {
+        this.spatialController.updateTelemetryStats(this.telemetry.stats);
+        this.spatialController.resume();
+        // Snap camera back to entrance instantly
+        this.spatialController.camera.position.set(0, 0, 10);
+        this.spatialController.camera.lookAt(new THREE.Vector3(0, 0, -100));
+      }
     }
   }
 
@@ -182,7 +264,12 @@ class IttyBittyBitesEngine {
       breadcrumb.textContent = `Hub > ${node.category} > ${node.id}`;
     }
 
-    if (isPortalActive && this.spatialController) {
+    if (!isPortalActive) {
+      // If switching games from sidebar while playing, snap back to portal instantly first, then dive!
+      this.showPortalImmediate();
+    }
+
+    if (this.spatialController) {
       this.isMounting = true;
       // Trigger smooth camera fly dive to the selected 3D node
       this.spatialController.diveToNode(nodeId, () => {
@@ -190,7 +277,6 @@ class IttyBittyBitesEngine {
         this.isMounting = false;
       });
     } else {
-      // Mount immediately if we are switching directly from another game session
       this.mountNodeImmediate(node);
     }
   }

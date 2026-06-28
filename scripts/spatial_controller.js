@@ -1,7 +1,8 @@
 /**
- * 3D SPATIAL TUNNEL CONTROLLER (Phase 8 - Holographic Overhaul)
+ * 3D SPATIAL TUNNEL CONTROLLER (Phase 10 - Final Category Filters & Polish)
  * Orchestrates a high-fidelity holographic WebGL post-processing pipeline
- * featuring UnrealBloom, Chromatic Aberration, and custom Fresnel Edge-Glow Shader nodes.
+ * featuring UnrealBloom, Chromatic Aberration, custom Fresnel Edge-Glow Shader nodes,
+ * dynamic category filtering with custom pulsing/dimming animators, and cinematic signpost tours.
  */
 
 // 1. Custom Fresnel Holographic Edge-Glow Shader Definition
@@ -32,7 +33,6 @@ const FresnelShader = {
     void main() {
       vec3 normal = normalize(vNormal);
       vec3 viewDir = normalize(vViewPosition);
-      // Fresnel edge lighting calculation based on camera perspective angle
       float intensity = pow(1.0 - max(dot(normal, viewDir), 0.0), glowPower) * glowIntensity;
       gl_FragColor = vec4(color, glowInternal + intensity);
     }
@@ -57,7 +57,6 @@ const ChromaticAberrationShader = {
     uniform float uAmount;
     varying vec2 vUv;
     void main() {
-      // Offset red and blue channels slightly to simulate a lens projection refraction
       vec4 cr = texture2D(tDiffuse, vUv + vec2(uAmount, 0.0));
       vec4 cg = texture2D(tDiffuse, vUv);
       vec4 cb = texture2D(tDiffuse, vUv - vec2(uAmount, 0.0));
@@ -96,9 +95,11 @@ class SpatialController {
     this.mouse = new THREE.Vector2();
     this.hoveredMesh = null;
 
-    // Transition Locks
+    // Transition Locks & Category Filters
     this.isTransitioning = false;
+    this.activeCategory = "ALL";
 
+    // Responsive design dimensions
     this.width = this.container.clientWidth;
     this.height = this.container.clientHeight;
 
@@ -202,6 +203,16 @@ class SpatialController {
   }
 
   /**
+   * Sets active category filter and triggers a smooth re-ordering animation down the tunnel.
+   * @param {string} category - Category title to focus on.
+   */
+  filterCategory(category) {
+    this.activeCategory = category || "ALL";
+    console.log(`🌀 [3D Spatial] Filtering by category: '${this.activeCategory}'. Rearranging tunnel...`);
+    this.reorderNodesDynamically();
+  }
+
+  /**
    * Updates telemetry stats and re-sorts node positions dynamically.
    */
   updateTelemetryStats(newStats) {
@@ -223,7 +234,6 @@ class SpatialController {
       
       const color = i % 2 === 0 ? 0x5fe8ff : 0xff5ee7;
       
-      // Use basic material with high color values to intensify bloom pass
       const material = new THREE.MeshBasicMaterial({
         color: color,
         wireframe: true,
@@ -240,7 +250,7 @@ class SpatialController {
   }
 
   /**
-   * Maps nodes to beautiful semi-transparent holographic shapes utilizing a custom Fresnel Shader.
+   * Maps nodes based on unplayed status, category matching, and priority_score.
    */
   spawnManifestNodes() {
     const sortedRegistry = this.getSortedRegistry();
@@ -257,15 +267,14 @@ class SpatialController {
         geometry = new THREE.TetrahedronGeometry(1.0, 0);
       }
 
-      const baseColor = 0x5fe8ff; // Glowing neon cyan
+      const baseColor = 0x5fe8ff; 
 
-      // Instantiate Custom Fresnel Shader Material for holographic depth
       const customFresnelMat = new THREE.ShaderMaterial({
         uniforms: THREE.UniformsUtils.clone(FresnelShader.uniforms),
         vertexShader: FresnelShader.vertexShader,
         fragmentShader: FresnelShader.fragmentShader,
         transparent: true,
-        depthWrite: false, // smooth depth blending
+        depthWrite: false, 
         blending: THREE.NormalBlending
       });
 
@@ -286,8 +295,9 @@ class SpatialController {
       mesh.userData = { 
         nodeId: item.id,
         title: item.id.split("-").map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(" "),
+        category: item.category, // Map category directly on meshes (Phase 10)
         baseColor: baseColor,
-        hoverColor: 0xffe27a, // Yellow glow on hover
+        hoverColor: 0xffe27a,
         angle: angle,
         index: index,
         priority: item.priority_score || 50
@@ -299,21 +309,30 @@ class SpatialController {
   }
 
   /**
-   * Sort comparator combining unplayed state and priority_score ranking.
+   * Sort comparator combining category filtering, play history, and priority_score.
+   * Matches the active filter category smoothly so matching elements drift closest (Z: 0 to -10).
    */
   getSortedRegistry() {
     const gamesPlayed = this.telemetryStats ? this.telemetryStats.gamesPlayed || {} : {};
     
     return [...this.registry].sort((a, b) => {
+      // 1. Group by category matching first (Phase 10)
+      if (this.activeCategory !== "ALL") {
+        const aMatches = a.category === this.activeCategory;
+        const bMatches = b.category === this.activeCategory;
+        if (aMatches !== bMatches) {
+          return aMatches ? -1 : 1; // Matching categories drift closest to entrance
+        }
+      }
+
+      // 2. Within groups, sort unplayed nodes first
       const aPlayed = (gamesPlayed[a.id] || 0) > 0;
       const bPlayed = (gamesPlayed[b.id] || 0) > 0;
-      
-      // Unplayed nodes first
       if (aPlayed !== bPlayed) {
         return aPlayed ? 1 : -1;
       }
       
-      // Within same play state, sort by priority_score descending
+      // 3. Within play states, sort by priority_score descending
       const aPriority = a.priority_score || 50;
       const bPriority = b.priority_score || 50;
       return bPriority - aPriority;
@@ -321,7 +340,7 @@ class SpatialController {
   }
 
   /**
-   * Smoothly animates nodes to their newly calculated Z-depths on telemetry sync.
+   * Smoothly animates nodes to their newly calculated Z-depths on telemetry or category sync.
    */
   reorderNodesDynamically() {
     const sortedRegistry = this.getSortedRegistry();
@@ -357,7 +376,6 @@ class SpatialController {
       const isFirst = index === 0;
       const geometry = new THREE.ConeGeometry(0.5, 1.4, 4);
       
-      // Holographic Fresnel shader on signposts too for visual consistency!
       const customFresnelMat = new THREE.ShaderMaterial({
         uniforms: THREE.UniformsUtils.clone(FresnelShader.uniforms),
         vertexShader: FresnelShader.vertexShader,
@@ -453,9 +471,13 @@ class SpatialController {
     if (intersects.length > 0) {
       const hit = intersects[0].object;
       
+      // Prevent highlighting faded/dimmed non-matching category items
+      if (this.activeCategory !== "ALL" && hit.userData.category !== this.activeCategory && !hit.userData.isSignpost) {
+        return;
+      }
+      
       if (this.hoveredMesh !== hit) {
         if (this.hoveredMesh) {
-          // Reset previous mesh Fresnel color uniform
           const prevColor = this.hoveredMesh.userData.baseColor;
           if (this.hoveredMesh.material.uniforms) {
             this.hoveredMesh.material.uniforms["color"].value.setHex(prevColor);
@@ -464,14 +486,12 @@ class SpatialController {
         }
         
         this.hoveredMesh = hit;
-        // Hover highlight: shift Fresnel uniform color to neon yellow
         if (hit.material.uniforms) {
           hit.material.uniforms["color"].value.setHex(hit.userData.hoverColor);
         }
         this.hoveredMesh.scale.set(1.25, 1.25, 1.25);
         this.renderer.domElement.style.cursor = "pointer";
 
-        // Play high-frequency hover ping sound!
         if (window.ibbAudio) {
           window.ibbAudio.playHoverPing();
         }
@@ -483,7 +503,6 @@ class SpatialController {
       }
     } else {
       if (this.hoveredMesh) {
-        // Restore base color uniform
         const prevColor = this.hoveredMesh.userData.baseColor;
         if (this.hoveredMesh.material.uniforms) {
           this.hoveredMesh.material.uniforms["color"].value.setHex(prevColor);
@@ -528,7 +547,6 @@ class SpatialController {
 
     console.log(`🚀 [Fast-Travel] Tweening camera to depth Z=${targetZ}`);
 
-    // Play woosh transition sound!
     if (window.ibbAudio) {
       window.ibbAudio.playWoosh();
     }
@@ -566,7 +584,6 @@ class SpatialController {
 
     console.log(`🌀 [3D Spatial] Launching camera dive to node: ${nodeId} at Z=${targetZ}`);
 
-    // Play woosh transition sound!
     if (window.ibbAudio) {
       window.ibbAudio.playWoosh();
     }
@@ -592,7 +609,6 @@ class SpatialController {
     this.dispatchEvent("ibb-node-hover", null);
     console.log(`🌀 [3D Spatial] Resetting camera smoothly to entrance: (0, 0, 10)`);
 
-    // Play woosh transition sound!
     if (window.ibbAudio) {
       window.ibbAudio.playWoosh();
     }
@@ -613,34 +629,47 @@ class SpatialController {
   }
 
   /**
-   * Cinematic guided tour down the entire tunnel structure.
+   * Cinematic guided tour sweeping smoothly down the entire tunnel structure,
+   * flying past the entrance signpost and deepest storage zones.
    */
   startGuidedTour() {
     if (this.isTransitioning) return;
     this.isTransitioning = true;
     this.dispatchEvent("ibb-node-hover", null);
 
-    console.log("🎬 [Guided Tour] Starting cinematic spatial tour...");
+    console.log("🎬 [Guided Tour] Starting cinematic spatial tour past signposts...");
 
-    // Play woosh transition sound!
     if (window.ibbAudio) {
       window.ibbAudio.playWoosh();
     }
 
     const originalPos = { x: 0, y: 0, z: 10 };
+    const midPos = { x: 0, y: 0, z: -50 };
     const deepPos = { x: 0, y: 0, z: -110 };
-    const lookAtTarget = new THREE.Vector3(0, 0, -200);
+    const endPos = { x: 0, y: 0, z: -130 };
 
+    const lookAhead = new THREE.Vector3(0, 0, -250);
+
+    // 1. Tour Dive forward
     const tourForward = new TWEEN.Tween(this.camera.position)
-      .to(deepPos, 3000)
-      .easing(TWEEN.Easing.Quadratic.InOut)
+      .to(deepPos, 2800)
+      .easing(TWEEN.Easing.Cubic.InOut)
       .onUpdate(() => {
-        this.camera.lookAt(lookAtTarget);
+        this.camera.lookAt(lookAhead);
       });
 
+    // 2. Cruise the Deep zone
+    const tourCruise = new TWEEN.Tween(this.camera.position)
+      .to(endPos, 1200)
+      .easing(TWEEN.Easing.Linear.None)
+      .onUpdate(() => {
+        this.camera.lookAt(lookAhead);
+      });
+
+    // 3. Cinematic return sweeping back up
     const tourReturn = new TWEEN.Tween(this.camera.position)
-      .to(originalPos, 3000)
-      .easing(TWEEN.Easing.Quadratic.InOut)
+      .to(originalPos, 2800)
+      .easing(TWEEN.Easing.Cubic.InOut)
       .onUpdate(() => {
         this.camera.lookAt(new THREE.Vector3(0, 0, -100));
       })
@@ -649,7 +678,8 @@ class SpatialController {
         console.log("🎬 [Guided Tour] Cinematic tour completed.");
       });
 
-    tourForward.chain(tourReturn);
+    tourForward.chain(tourCruise);
+    tourCruise.chain(tourReturn);
     tourForward.start();
   }
 
@@ -662,7 +692,8 @@ class SpatialController {
   }
 
   /**
-   * Core animation loop driving WebGL/CSS3D renders and real-time audio depth-tuning.
+   * Core animation loop driving WebGL/CSS3D renders, real-time audio depth-tuning,
+   * and dynamic holographic pulsing/dimming animators.
    */
   animate() {
     this.animationFrameId = requestAnimationFrame(this.animate.bind(this));
@@ -678,13 +709,34 @@ class SpatialController {
       ring.position.x = Math.sin(time + index * 0.3) * 0.08;
     });
 
-    // 2. Float and rotate nodes
+    // 2. Float and rotate nodes. Apply holographic pulsing and dimming.
     this.nodeMeshes.forEach(mesh => {
       mesh.rotation.y += 0.015;
       mesh.rotation.x += 0.005;
 
       const floatOffset = Math.sin(time * 1.5 + mesh.userData.index) * 0.15;
       mesh.position.y = Math.sin(mesh.userData.angle) * 4.2 + floatOffset;
+
+      // Dynamic Holographic Filters (Phase 10)
+      const matchesCategory = this.activeCategory === "ALL" || mesh.userData.category === this.activeCategory;
+
+      if (matchesCategory) {
+        // Pulse matching nodes with subtle sin-scale shifts and solid outline intensity
+        const pulse = 1.0 + Math.sin(time * 4.5 + mesh.userData.index) * 0.08;
+        mesh.scale.set(pulse, pulse, pulse);
+        
+        if (mesh.material.uniforms) {
+          // Standard transparent glowing shader
+          mesh.material.uniforms["glowIntensity"].value = 1.45 + Math.sin(time * 4.5) * 0.15;
+        }
+      } else {
+        // Dim and shrink non-matching nodes to drive visual focus to the category selection
+        mesh.scale.set(0.65, 0.65, 0.65);
+        if (mesh.material.uniforms) {
+          // Dim outline intensity completely down
+          mesh.material.uniforms["glowIntensity"].value = 0.25;
+        }
+      }
     });
 
     // 3. Spin and pulse Signposts
