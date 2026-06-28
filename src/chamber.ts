@@ -155,7 +155,27 @@ function initChamberShell(): void {
     version: '1.0.0',
     telemetry: LiquidMemoryTelemetry,
     registry: Registry,
+    mountSpatialAssetNode,
   };
+}
+
+export async function mountSpatialAssetNode(nodeId: string, assetPath: string): Promise<void> {
+  const response = await fetch(assetPath);
+  const rawData = await response.text();
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(rawData, "text/html");
+  const fragment = doc.querySelector("#spatial-root") || doc.querySelector(".liquid-main") || doc.body.firstChild;
+  if (!fragment) return;
+
+  if (fragment instanceof Element || fragment instanceof DocumentFragment) {
+    fragment.querySelectorAll('nav, header#lm-legacy-bridge-header').forEach((el) => el.remove());
+  }
+
+  const chamber = document.getElementById("chamber") || document.querySelector("main");
+  if (chamber) {
+    chamber.innerHTML = "";
+    chamber.appendChild(fragment);
+  }
 }
 
 if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', initChamberShell);

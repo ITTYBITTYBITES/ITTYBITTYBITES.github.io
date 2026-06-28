@@ -15002,14 +15002,14 @@ var Rf = class {
 			let i = this.portalPreflightProgress > 0 ? this.nodes.find((e) => this.portalPreflightNodeId === e.eventType || this.portalPreflightNodeId === e.contentMetadata?.interactionEvent || this.portalPreflightNodeId === e.contentMetadata?.chamber || this.portalPreflightNodeId === e.id) : void 0, a = this.profile.camera.zoom * (1 + this.portalPreflightProgress * .035);
 			if (Math.abs(this.camera.zoom - a) > .001 && (this.camera.zoom = It.lerp(this.camera.zoom, a, .12), this.camera.updateProjectionMatrix()), t || i) {
 				let e = new W(this.profile.camera.x, this.profile.camera.y, this.profile.camera.z), n = new W(this.profile.camera.targetX, this.profile.camera.targetY, this.profile.camera.targetZ), r = (i || t)?.target.clone() || new W(), a = n.add((t?.target.clone() || new W()).multiplyScalar(.012)).add(r.multiplyScalar(.052 * this.portalPreflightProgress)).add(new W(this.portalPreflightDirection * .06 * this.portalPreflightProgress, 0, 0));
-				this.camera.position.lerp(e, .016 + this.portalPreflightProgress * .018), this.camera.lookAt(a);
+				window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? this.camera.position.copy(e) : this.camera.position.lerp(e, .016 + this.portalPreflightProgress * .018), this.camera.lookAt(a);
 			} else this.camera.lookAt(this.profile.camera.targetX, this.profile.camera.targetY, this.profile.camera.targetZ);
 			this.composer.render(), this.rafId = requestAnimationFrame(this.animate);
 		}, this.renderer = new ud({
 			antialias: !0,
 			alpha: !0,
 			powerPreference: "high-performance"
-		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(0, 0), this.renderer.shadowMap.enabled = !0, this.renderer.shadowMap.type = 2, this.renderer.toneMapping = 4, this.renderer.toneMappingExposure = 1.42, this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.bindContextMonitoring(), this.startMountGuard(), this.scene.add(this.workstationGroup), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.scene.add(this.particleGroup), this.applyCameraProfile(this.profile, !0), this.composer = new yd(this.renderer), this.composer.addPass(new bd(this.scene, this.camera)), this.bloomPass = new Sd(new U(1, 1), .045, .42, .96), this.composer.addPass(this.bloomPass), this.initLighting(), this.createWorkstationEnvironment(), this.createBlueprintGearRig(), this.loadWorkstationAsset(), this.createGauges(), this.createEngageDial(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
+		}), this.renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2)), this.renderer.setClearColor(0, 0), this.renderer.shadowMap.enabled = !0, this.renderer.shadowMap.type = 2, this.renderer.toneMapping = 4, this.renderer.toneMappingExposure = 1.42, this.renderer.domElement.className = "kernel-spatial-webgl", this.renderer.domElement.setAttribute("aria-label", "Liquid Memory generative spatial ecosystem"), this.host.appendChild(this.renderer.domElement), this.semanticTwinsContainer = document.createElement("div"), this.semanticTwinsContainer.id = "spatial-semantic-twins", this.semanticTwinsContainer.className = "sr-only", this.semanticTwinsContainer.style.cssText = "position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;", this.host.appendChild(this.semanticTwinsContainer), this.bindContextMonitoring(), this.startMountGuard(), this.scene.add(this.workstationGroup), this.scene.add(this.linkGroup), this.scene.add(this.biomeGroup), this.scene.add(this.gearGroup), this.scene.add(this.gaugeGroup), this.scene.add(this.particleGroup), this.applyCameraProfile(this.profile, !0), this.composer = new yd(this.renderer), this.composer.addPass(new bd(this.scene, this.camera)), this.bloomPass = new Sd(new U(1, 1), .045, .42, .96), this.composer.addPass(this.bloomPass), this.initLighting(), this.createWorkstationEnvironment(), this.createBlueprintGearRig(), this.loadWorkstationAsset(), this.createGauges(), this.createEngageDial(), this.applyResponsiveProfile(this.profile, !0), this.responsive.subscribe((e) => this.applyResponsiveProfile(e)), this.bindPointer(), this.bindResize(), this.animate();
 	}
 	initLighting() {
 		this.scene.environment = null, this.scene.background = null, this.renderer.setClearColor(0, 0), this.ambient = new bs(zf.CYAN, .4), this.scene.add(this.ambient), this.lamp = new ms(zf.CYAN, 10, 50, Math.PI / 4), this.lamp.position.set(0, 5, 10), this.scene.add(this.lamp), this.bloomPass.strength = 1.2;
@@ -15045,7 +15045,13 @@ var Rf = class {
 			mapping: t,
 			gearId: i
 		};
-		for (this.nodes.push(u), this.archiveOldMemories(), this.connectToPrevious(u), this.connectGearToNode(u), this.emitCriticalParticleFeedback(n, o, t.color), this.updateHud(e, t), this.focusIndex = this.nodes.length - 1, i && this.setActiveGear(i); this.nodes.length > 54;) {
+		if (this.nodes.push(u), this.semanticTwinsContainer) {
+			let n = document.createElement("button");
+			n.className = "sr-only spatial-twin-btn", n.tabIndex = 0, n.id = `twin-node-${u.id}`, n.setAttribute("aria-label", `Spatial Node Twin: ${t.label} (${e.type}). Press Enter to inspect.`), n.addEventListener("focus", () => {
+				this.focusIndex = this.nodes.indexOf(u), this.hovered = u, this.liveRegion && (this.liveRegion.textContent = `Keyboard focus: Spatial Node ${t.label}`);
+			}), this.semanticTwinsContainer.appendChild(n);
+		}
+		for (this.archiveOldMemories(), this.connectToPrevious(u), this.connectGearToNode(u), this.emitCriticalParticleFeedback(n, o, t.color), this.updateHud(e, t), this.focusIndex = this.nodes.length - 1, i && this.setActiveGear(i); this.nodes.length > 54;) {
 			let e = this.nodes.shift();
 			e && (this.biomeGroup.remove(e.mesh), this.biomeGroup.remove(e.halo));
 		}
@@ -15113,8 +15119,8 @@ var Rf = class {
 	}
 	applyResponsiveProfile(e, t = !1) {
 		this.profile = e, this.host.dataset.device = `${e.kind}-${e.orientation}`, this.applyCameraProfile(e, t);
-		let n = new W(e.gearPosition.x, e.gearPosition.y, e.gearPosition.z);
-		t ? this.gearGroup.position.copy(n) : this.gearGroup.position.lerp(n, .35), this.layoutGauges(e.gaugeMode), this.updateShadowMode(e), this.updateBloomProfile(e);
+		let n = new W(e.gearPosition.x, e.gearPosition.y, e.gearPosition.z), r = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+		t || r ? this.gearGroup.position.copy(n) : this.gearGroup.position.lerp(n, .35), this.layoutGauges(e.gaugeMode), this.updateShadowMode(e), this.updateBloomProfile(e);
 	}
 	updateShadowMode(e) {
 		let t = e.kind === "mobile";
@@ -15131,7 +15137,9 @@ var Rf = class {
 	}
 	applyCameraProfile(e, t = !1) {
 		let n = new W(e.camera.x, e.camera.y, e.camera.z), r = new W(e.camera.targetX, e.camera.targetY, e.camera.targetZ);
-		this.camera.zoom = e.camera.zoom, this.camera.updateProjectionMatrix(), t ? this.camera.position.copy(n) : this.camera.position.lerp(n, .2), this.camera.lookAt(r);
+		this.camera.zoom = e.camera.zoom, this.camera.updateProjectionMatrix();
+		let i = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+		t || i ? this.camera.position.copy(n) : this.camera.position.lerp(n, .2), this.camera.lookAt(r);
 	}
 	layoutGauges(e) {
 		let t = {
@@ -15573,7 +15581,7 @@ var Rf = class {
 		let o = this.createTextSprite(t, "#001b1f", "rgba(0,255,255,0.42)", 1);
 		o.position.set(0, -.88, .035), o.scale.set(1.36, .34, 1), a.add(o), this.gearRaycastObjects.push(a), this.gearGroup.add(a);
 		let s = a.userData.hitProxy;
-		this.gears.push({
+		if (this.gears.push({
 			id: e,
 			group: a,
 			hit: s,
@@ -15582,7 +15590,14 @@ var Rf = class {
 			unlockedLevel: i,
 			active: !1,
 			label: o
-		});
+		}), this.semanticTwinsContainer) {
+			let n = document.createElement("button");
+			n.className = "sr-only spatial-twin-btn", n.tabIndex = 0, n.id = `twin-gear-${e}`, n.setAttribute("aria-label", `3D Gear Twin: ${t}. Press Enter or Space to operate.`), n.addEventListener("focus", () => {
+				this.hoveredGear = this.gears.find((t) => t.id === e), this.liveRegion && (this.liveRegion.textContent = `Keyboard focus: 3D gear ${t}`);
+			}), n.addEventListener("keydown", (t) => {
+				(t.key === "Enter" || t.key === " ") && (t.preventDefault(), this.onGearSelected?.(e));
+			}), this.semanticTwinsContainer.appendChild(n);
+		}
 	}
 	createHolographicPanel(e) {
 		let t = new Nn();
@@ -15712,14 +15727,19 @@ var Rf = class {
 			]
 		].forEach(([e, t, n, r]) => {
 			let i = this.createTextSprite(t, "#bfffff", "rgba(0,255,255,0.14)", 1);
-			i.position.set(n, r, .7), i.scale.set(1.65, .42, 1), i.userData = {
+			if (i.position.set(n, r, .7), i.scale.set(1.65, .42, 1), i.userData = {
 				gaugeKey: e,
 				holographicGauge: !0
 			}, this.applyHolographicStyle(i), this.gaugeGroup.add(i), this.gauges.push({
 				key: e,
 				sprite: i,
 				lastValue: t
-			});
+			}), e === "signals" && this.semanticTwinsContainer) {
+				let e = document.createElement("button");
+				e.className = "sr-only spatial-twin-btn", e.tabIndex = 0, e.id = "twin-signals-hud", e.setAttribute("aria-label", "Signals Telemetry 3D HUD: Focus to monitor real-time system events and engine throughput."), e.addEventListener("focus", () => {
+					this.focusEventType("access-terminal-telemetry"), this.liveRegion && (this.liveRegion.textContent = `Keyboard focus: Signals Telemetry 3D HUD (${t})`);
+				}), this.semanticTwinsContainer.appendChild(e);
+			}
 		});
 	}
 	updateGaugeText(e, t) {

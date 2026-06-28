@@ -328,10 +328,32 @@ var e = "lm_portal_arrival", t = "lm_chamber_departure", n = class n {
 					chamber: "Arcade Genesis"
 				}
 			}), this.aliases.set(e, n), this.aliases.set(t.toLowerCase(), n);
-		});
+		}), this.updateJsonLdSchema();
+	}
+	static updateJsonLdSchema() {
+		if (typeof document > "u" || !document.head) return;
+		let e = document.head.querySelector("script[type=\"application/ld+json\"][data-registry-schema]");
+		e || (e = document.createElement("script"), e.setAttribute("type", "application/ld+json"), e.setAttribute("data-registry-schema", "true"), document.head.appendChild(e));
+		let t = {
+			"@context": "https://schema.org",
+			"@type": "ItemList",
+			name: "Liquid Memory Spatial Registry Archive",
+			description: "Monolithic WebGL spatial gaming and publication collection.",
+			itemListElement: Array.from(this.nodes.values()).map((e, t) => ({
+				"@type": "ListItem",
+				position: t + 1,
+				item: {
+					"@type": e.category === "arcade" ? "VideoGame" : "WebPage",
+					name: e.title,
+					url: `https://ittybittybites.github.io/#${e.nodeId}`,
+					description: e.description || e.title
+				}
+			}))
+		};
+		e.textContent = JSON.stringify(t);
 	}
 	static register(e, t = []) {
-		this.nodes.set(e.nodeId, e), t.forEach((t) => this.aliases.set(t.toLowerCase(), e.nodeId));
+		this.nodes.set(e.nodeId, e), t.forEach((t) => this.aliases.set(t.toLowerCase(), e.nodeId)), this.updateJsonLdSchema();
 	}
 	static lookup(e) {
 		if (!e) return null;

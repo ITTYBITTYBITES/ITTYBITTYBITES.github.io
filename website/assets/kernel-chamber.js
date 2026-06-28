@@ -40,30 +40,39 @@ function i(e, n) {
   `, document.body && document.body.appendChild(o);
 }
 function a() {
-	let a = document.querySelector("main[data-gear-id], body[data-gear-id], main[data-kernel-event]") || document.body, o = a?.getAttribute("data-gear-id") || "games", s = a?.getAttribute("data-kernel-event") || "library.game_opened", c = window.location.pathname, l = c.split("/").pop()?.replace(".html", "") || "", u = t.lookup(l) || t.lookup(s) || t.lookup(o), d = u?.title || (o === "archive" ? "Old Memory Vault" : "Arcade Genesis"), f = n();
-	(u?.isLegacyStatic || c.includes("/articles/") || document.body?.classList.contains("legacy-article")) && r(d, f), i(u, f), e.markPortalArrival(d);
-	let p = (t) => {
-		e.storeChamberDeparture(d, s, c, t);
+	let a = document.querySelector("main[data-gear-id], body[data-gear-id], main[data-kernel-event]") || document.body, s = a?.getAttribute("data-gear-id") || "games", c = a?.getAttribute("data-kernel-event") || "library.game_opened", l = window.location.pathname, u = l.split("/").pop()?.replace(".html", "") || "", d = t.lookup(u) || t.lookup(c) || t.lookup(s), f = d?.title || (s === "archive" ? "Old Memory Vault" : "Arcade Genesis"), p = n();
+	(d?.isLegacyStatic || l.includes("/articles/") || document.body?.classList.contains("legacy-article")) && r(f, p), i(d, p), e.markPortalArrival(f);
+	let m = (t) => {
+		e.storeChamberDeparture(f, c, l, t);
 	};
-	window.addEventListener("pagehide", () => p("pagehide"), { passive: !0 }), document.addEventListener("visibilitychange", () => {
-		document.visibilityState === "hidden" && p("visibility-hidden");
+	window.addEventListener("pagehide", () => m("pagehide"), { passive: !0 }), document.addEventListener("visibilitychange", () => {
+		document.visibilityState === "hidden" && m("visibility-hidden");
 	}, { passive: !0 });
-	let m = null, h = 0, g = 0, _ = 0, v = 0;
+	let h = null, g = 0, _ = 0, v = 0, y = 0;
 	document.addEventListener("pointerdown", (e) => {
-		m !== null || e.button > 0 || e.pointerType !== "touch" || (m = e.pointerId, h = e.clientX, g = e.clientY, _ = 0, v = 0);
+		h !== null || e.button > 0 || e.pointerType !== "touch" || (h = e.pointerId, g = e.clientX, _ = e.clientY, v = 0, y = 0);
 	}, { passive: !0 }), document.addEventListener("pointermove", (e) => {
-		m === e.pointerId && (_ = e.clientX - h, v = e.clientY - g);
+		h === e.pointerId && (v = e.clientX - g, y = e.clientY - _);
 	}, { passive: !0 }), document.addEventListener("pointerup", (e) => {
-		if (m !== e.pointerId) return;
-		let t = Math.abs(_), n = Math.abs(v);
-		m = null, t >= 70 && t > n * 1.2 && (p("portal-swipe-exit"), window.location.assign(f));
+		if (h !== e.pointerId) return;
+		let t = Math.abs(v), n = Math.abs(y);
+		h = null, t >= 70 && t > n * 1.2 && (m("portal-swipe-exit"), window.location.assign(p));
 	}, { passive: !0 }), document.addEventListener("pointercancel", () => {
-		m = null;
+		h = null;
 	}, { passive: !0 }), window.LiquidMemoryChamber = {
 		version: "1.0.0",
 		telemetry: e,
-		registry: t
+		registry: t,
+		mountSpatialAssetNode: o
 	};
+}
+async function o(e, t) {
+	let n = await (await fetch(t)).text(), r = new DOMParser().parseFromString(n, "text/html"), i = r.querySelector("#spatial-root") || r.querySelector(".liquid-main") || r.body.firstChild;
+	if (!i) return;
+	(i instanceof Element || i instanceof DocumentFragment) && i.querySelectorAll("nav, header#lm-legacy-bridge-header").forEach((e) => e.remove());
+	let a = document.getElementById("chamber") || document.querySelector("main");
+	a && (a.innerHTML = "", a.appendChild(i));
 }
 document.readyState === "loading" ? document.addEventListener("DOMContentLoaded", a) : a();
 //#endregion
+export { o as mountSpatialAssetNode };

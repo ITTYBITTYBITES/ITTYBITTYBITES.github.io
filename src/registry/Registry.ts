@@ -261,11 +261,42 @@ export class Registry {
       this.aliases.set(slug, id);
       this.aliases.set(title.toLowerCase(), id);
     });
+
+    this.updateJsonLdSchema();
+  }
+
+  private static updateJsonLdSchema(): void {
+    if (typeof document === 'undefined' || !document.head) return;
+    let script = document.head.querySelector('script[type="application/ld+json"][data-registry-schema]');
+    if (!script) {
+      script = document.createElement('script');
+      script.setAttribute('type', 'application/ld+json');
+      script.setAttribute('data-registry-schema', 'true');
+      document.head.appendChild(script);
+    }
+    const itemList = {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Liquid Memory Spatial Registry Archive",
+      "description": "Monolithic WebGL spatial gaming and publication collection.",
+      "itemListElement": Array.from(this.nodes.values()).map((node, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "item": {
+          "@type": node.category === 'arcade' ? "VideoGame" : "WebPage",
+          "name": node.title,
+          "url": `https://ittybittybites.github.io/#${node.nodeId}`,
+          "description": node.description || node.title
+        }
+      }))
+    };
+    script.textContent = JSON.stringify(itemList);
   }
 
   static register(node: RegistryNode, extraAliases: string[] = []): void {
     this.nodes.set(node.nodeId, node);
     extraAliases.forEach((alias) => this.aliases.set(alias.toLowerCase(), node.nodeId));
+    this.updateJsonLdSchema();
   }
 
   static lookup(query?: string | null): RegistryNode | null {

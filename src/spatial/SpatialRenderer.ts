@@ -125,6 +125,7 @@ export class SpatialRenderer {
   private portalPreflightProgress = 0;
   private portalPreflightNodeId: string | null = null;
   private portalPreflightDirection = 0;
+  private semanticTwinsContainer?: HTMLElement;
 
   constructor(
     private host: HTMLElement,
@@ -141,6 +142,13 @@ export class SpatialRenderer {
     this.renderer.domElement.className = 'kernel-spatial-webgl';
     this.renderer.domElement.setAttribute('aria-label', 'Liquid Memory generative spatial ecosystem');
     this.host.appendChild(this.renderer.domElement);
+
+    this.semanticTwinsContainer = document.createElement('div');
+    this.semanticTwinsContainer.id = 'spatial-semantic-twins';
+    this.semanticTwinsContainer.className = 'sr-only';
+    this.semanticTwinsContainer.style.cssText = 'position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;';
+    this.host.appendChild(this.semanticTwinsContainer);
+
     this.bindContextMonitoring();
     this.startMountGuard();
 
@@ -225,6 +233,20 @@ export class SpatialRenderer {
 
     const node: SpatialNode = { id: event.eventId, eventType: event.type, spawnTier, contentMetadata, mesh, halo, target: target.clone(), home: target.clone(), createdAt: performance.now(), mapping, gearId };
     this.nodes.push(node);
+
+    if (this.semanticTwinsContainer) {
+      const nodeBtn = document.createElement('button');
+      nodeBtn.className = 'sr-only spatial-twin-btn';
+      nodeBtn.tabIndex = 0;
+      nodeBtn.id = `twin-node-${node.id}`;
+      nodeBtn.setAttribute('aria-label', `Spatial Node Twin: ${mapping.label} (${event.type}). Press Enter to inspect.`);
+      nodeBtn.addEventListener('focus', () => {
+        this.focusIndex = this.nodes.indexOf(node);
+        this.hovered = node;
+        if (this.liveRegion) this.liveRegion.textContent = `Keyboard focus: Spatial Node ${mapping.label}`;
+      });
+      this.semanticTwinsContainer.appendChild(nodeBtn);
+    }
     this.archiveOldMemories();
     this.connectToPrevious(node);
     this.connectGearToNode(node);
@@ -369,7 +391,8 @@ export class SpatialRenderer {
     this.host.dataset.device = `${profile.kind}-${profile.orientation}`;
     this.applyCameraProfile(profile, instant);
     const gearTarget = new THREE.Vector3(profile.gearPosition.x, profile.gearPosition.y, profile.gearPosition.z);
-    if (instant) this.gearGroup.position.copy(gearTarget);
+    const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (instant || reducedMotion) this.gearGroup.position.copy(gearTarget);
     else this.gearGroup.position.lerp(gearTarget, 0.35);
     this.layoutGauges(profile.gaugeMode);
     this.updateShadowMode(profile);
@@ -401,7 +424,8 @@ export class SpatialRenderer {
     const focal = new THREE.Vector3(profile.camera.targetX, profile.camera.targetY, profile.camera.targetZ);
     this.camera.zoom = profile.camera.zoom;
     this.camera.updateProjectionMatrix();
-    if (instant) this.camera.position.copy(target);
+    const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    if (instant || reducedMotion) this.camera.position.copy(target);
     else this.camera.position.lerp(target, 0.2);
     this.camera.lookAt(focal);
   }
@@ -486,7 +510,7 @@ export class SpatialRenderer {
         if (dbgCnv) dbgCnv.textContent = 'GLB Mounted';
         this.forceMountDomInterfaceWindows();
         return;
-      } catch (error) {
+      } catch (error: any) {
         retries++;
         console.error(`[AssetLoader Debug] Fetch error reason on attempt ${retries}:`, error?.message || error);
         if (retries > maxRetries) {
@@ -946,6 +970,25 @@ export class SpatialRenderer {
     this.gearGroup.add(group);
     const hit = group.userData.hitProxy as THREE.Mesh;
     this.gears.push({ id, group, hit, anchor: position.clone(), eventType: GEAR_EVENT_TYPES[id], unlockedLevel, active: false, label: labelSprite });
+
+    if (this.semanticTwinsContainer) {
+      const btn = document.createElement('button');
+      btn.className = 'sr-only spatial-twin-btn';
+      btn.tabIndex = 0;
+      btn.id = `twin-gear-${id}`;
+      btn.setAttribute('aria-label', `3D Gear Twin: ${label}. Press Enter or Space to operate.`);
+      btn.addEventListener('focus', () => {
+        this.hoveredGear = this.gears.find(g => g.id === id);
+        if (this.liveRegion) this.liveRegion.textContent = `Keyboard focus: 3D gear ${label}`;
+      });
+      btn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          this.onGearSelected?.(id);
+        }
+      });
+      this.semanticTwinsContainer.appendChild(btn);
+    }
   }
 
   private createHolographicPanel(id: GearId): THREE.Group {
@@ -1104,6 +1147,19 @@ export class SpatialRenderer {
       this.applyHolographicStyle(sprite);
       this.gaugeGroup.add(sprite);
       this.gauges.push({ key, sprite, lastValue: text });
+
+      if (key === 'signals' && this.semanticTwinsContainer) {
+        const hudBtn = document.createElement('button');
+        hudBtn.className = 'sr-only spatial-twin-btn';
+        hudBtn.tabIndex = 0;
+        hudBtn.id = 'twin-signals-hud';
+        hudBtn.setAttribute('aria-label', 'Signals Telemetry 3D HUD: Focus to monitor real-time system events and engine throughput.');
+        hudBtn.addEventListener('focus', () => {
+          this.focusEventType('access-terminal-telemetry');
+          if (this.liveRegion) this.liveRegion.textContent = `Keyboard focus: Signals Telemetry 3D HUD (${text})`;
+        });
+        this.semanticTwinsContainer.appendChild(hudBtn);
+      }
     });
   }
 
@@ -1559,7 +1615,12 @@ export class SpatialRenderer {
         .add((focus?.target.clone() || new THREE.Vector3()).multiplyScalar(0.012))
         .add(focusVector.multiplyScalar(0.052 * this.portalPreflightProgress))
         .add(new THREE.Vector3(this.portalPreflightDirection * 0.06 * this.portalPreflightProgress, 0, 0));
-      this.camera.position.lerp(desired, 0.016 + this.portalPreflightProgress * 0.018);
+      const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+      if (reducedMotion) {
+        this.camera.position.copy(desired);
+      } else {
+        this.camera.position.lerp(desired, 0.016 + this.portalPreflightProgress * 0.018);
+      }
       this.camera.lookAt(focal);
     } else {
       this.camera.lookAt(this.profile.camera.targetX, this.profile.camera.targetY, this.profile.camera.targetZ);
