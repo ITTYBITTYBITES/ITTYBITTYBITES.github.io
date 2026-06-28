@@ -16198,7 +16198,9 @@ function ap() {
 	].forEach((e) => {
 		let n = t.lookup(e);
 		n ? p?.handle(ep(n.kernelEvent, n.payload || {})) : p?.handle(ep("system.terminal_fallback", { chamber: e }));
-	}) : ee.forEach((e) => p?.handle(e)), D(c.consumeChamberDeparture()), r.subscribe((e) => {
+	}) : ee.forEach((e) => p?.handle(e)), D(c.consumeChamberDeparture()), d && (window.matchMedia("(max-width: 768px)").matches || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) ? d.classList.add("hero-static-active") : window.setTimeout(() => {
+		p?.isWorkstationModelLoaded?.() || d.classList.add("hero-static-active");
+	}, 2e3)), r.subscribe((e) => {
 		p?.handle(e);
 		let t = u.getCurrentState(), n = i(t, e);
 		n !== t && n.processedEventIds.has(e.eventId) && (l.logEvent(e), l.save(n)), u.onStateUpdated(n), p?.updateFromState(n);

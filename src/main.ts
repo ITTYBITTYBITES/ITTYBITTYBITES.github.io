@@ -265,6 +265,19 @@ function initKernel() {
   }
   handleChamberReturn(telemetry.consumeChamberDeparture());
 
+  if (spatialHost) {
+    const isMobileDevice = window.matchMedia('(max-width: 768px)').matches || /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+    if (isMobileDevice) {
+      spatialHost.classList.add('hero-static-active');
+    } else {
+      window.setTimeout(() => {
+        if (!spatial?.isWorkstationModelLoaded?.()) {
+          spatialHost.classList.add('hero-static-active');
+        }
+      }, 2000);
+    }
+  }
+
   bus.subscribe((event) => {
     spatial?.handle(event);
     const current = bridge.getCurrentState();
