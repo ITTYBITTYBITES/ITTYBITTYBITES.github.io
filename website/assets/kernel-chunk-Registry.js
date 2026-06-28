@@ -226,11 +226,24 @@ var e = "lm_portal_arrival", t = "lm_chamber_departure", n = class n {
 					amount: 10,
 					chamber: "Memory Mycelium"
 				}
+			}],
+			["echo-void", {
+				nodeId: "echo-void",
+				gearId: "archive",
+				kernelEvent: "library.echo_void",
+				route: "./library/echo-void.html",
+				title: "Experimental Echo-Void Spatial Prototype",
+				category: "legacy",
+				description: "An experimental acoustic spatial WebGL prototype probing deep obsidian chambers via spatialized echo reverberation loops.",
+				seoLabel: "Liquid Memory Echo Void Prototype",
+				isLegacyStatic: !0
 			}]
 		]);
 	}
 	static {
 		this.aliases = new Map([
+			["echo void", "echo-void"],
+			["echo-void.html", "echo-void"],
 			["games", "arcade-main"],
 			["library.game_opened", "arcade-main"],
 			["arcade genesis", "arcade-main"],

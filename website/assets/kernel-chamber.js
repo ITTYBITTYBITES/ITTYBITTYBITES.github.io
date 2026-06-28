@@ -41,7 +41,12 @@ function i(e, n) {
 }
 function a() {
 	let a = document.querySelector("main[data-gear-id], body[data-gear-id], main[data-kernel-event]") || document.body, s = a?.getAttribute("data-gear-id") || "games", c = a?.getAttribute("data-kernel-event") || "library.game_opened", l = window.location.pathname, u = l.split("/").pop()?.replace(".html", "") || "", d = t.lookup(u) || t.lookup(c) || t.lookup(s), f = d?.title || (s === "archive" ? "Old Memory Vault" : "Arcade Genesis"), p = n();
-	(d?.isLegacyStatic || l.includes("/articles/") || document.body?.classList.contains("legacy-article")) && r(f, p), i(d, p), e.markPortalArrival(f);
+	if ((d?.isLegacyStatic || l.includes("/articles/") || document.body?.classList.contains("legacy-article")) && r(f, p), i(d, p), e.markPortalArrival(f), !document.getElementById(`twin-spatial-${d?.nodeId || u || s}`)) {
+		let e = document.createElement("button");
+		e.className = "sr-only chamber-twin-btn", e.tabIndex = 0, e.id = `twin-spatial-${d?.nodeId || u || s}`, e.setAttribute("aria-label", `Spatial Twin: ${f}. Press Enter to return to Master Hub.`), e.addEventListener("keydown", (e) => {
+			(e.key === "Enter" || e.key === " ") && (e.preventDefault(), m("twin-keyboard-exit"), window.location.assign(p));
+		}), document.body && document.body.appendChild(e);
+	}
 	let m = (t) => {
 		e.storeChamberDeparture(f, c, l, t);
 	};

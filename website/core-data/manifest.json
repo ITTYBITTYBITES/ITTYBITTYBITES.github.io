@@ -931,6 +931,21 @@
       ],
       "summary": "Auto-discovered via Open Library — The personal MBA by Josh Kaufman. Related to: Perceptual Degradation Reversal.",
       "deepDiveBriefing": "This entry was autonomously discovered and validated during a nightly build cycle. The resource \"The personal MBA\" by Josh Kaufman relates directly to the \"Perceptual Degradation Reversal\" cognitive training protocol.\n\nSubject tags: Commerce, Management, Study and teaching, Business, MBA\nSource: Open Library API\nDiscovery date: 2026-06-25T12:38:18.575Z"
+    },
+    {
+      "asin": "B0ECHOVOID",
+      "slug": "echo-void",
+      "category": "Experimental Prototypes",
+      "title": "Experimental Echo-Void Spatial Prototype",
+      "author": "Liquid Memory Studio",
+      "targetKeywords": [
+        "echo void",
+        "acoustic spatial engine",
+        "reverberation loop",
+        "particle reflection"
+      ],
+      "summary": "Experimental acoustic spatial WebGL prototype probing deep obsidian chambers via spatialized echo loops and particle reflection mechanics.",
+      "deepDiveBriefing": "The Experimental Echo-Void Spatial Prototype represents an acoustic spatial rendering milestone inside the Liquid Memory monolithic engine. By probing deep obsidian void chambers using spatialized echo reverberation loops and particle reflection mechanics, this prototype validates non-visual feedback channels.\n\nFor operators navigating the spatial void, Echo-Void demonstrates how acoustic echoes can map invisible boundary anchors and provide high-signal orientation cues without visual clutter."
     }
   ]
 }

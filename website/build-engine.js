@@ -1333,25 +1333,48 @@ function hydratePortalFiles() {
   const arcadePath = path.join(__dirname, 'arcade.html');
   if (fs.existsSync(arcadePath)) {
     let arcadeHtml = fs.readFileSync(arcadePath, 'utf-8');
-    if (!arcadeHtml.includes('application/ld+json')) {
-      arcadeHtml = arcadeHtml.replace('</head>', `  <script type="application/ld+json">\n${JSON.stringify(arcadeJsonLd, null, 2)}\n  </script>\n</head>`);
-      fs.writeFileSync(arcadePath, arcadeHtml, 'utf-8');
-      console.log(`  ✓ Hydrated arcade.html with ${gameList.length} ItemList JSON-LD schema entries`);
+    const newScript = `<script type="application/ld+json">\n${JSON.stringify(arcadeJsonLd, null, 2)}\n  </script>`;
+    if (arcadeHtml.includes('application/ld+json')) {
+      arcadeHtml = arcadeHtml.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, newScript);
     } else {
-      console.log('  ✓ arcade.html JSON-LD already hydrated');
+      arcadeHtml = arcadeHtml.replace('</head>', `  ${newScript}\n</head>`);
     }
+    fs.writeFileSync(arcadePath, arcadeHtml, 'utf-8');
+    console.log(`  ✓ Hydrated arcade.html with ${gameList.length} ItemList JSON-LD schema entries`);
   }
 
   const libraryPath = path.join(__dirname, 'library.html');
   if (fs.existsSync(libraryPath)) {
     let libraryHtml = fs.readFileSync(libraryPath, 'utf-8');
-    if (!libraryHtml.includes('application/ld+json')) {
-      libraryHtml = libraryHtml.replace('</head>', `  <script type="application/ld+json">\n${JSON.stringify(arcadeJsonLd, null, 2)}\n  </script>\n</head>`);
-      fs.writeFileSync(libraryPath, libraryHtml, 'utf-8');
-      console.log(`  ✓ Hydrated library.html JSON-LD schema`);
-    } else {
-      console.log('  ✓ library.html JSON-LD already hydrated');
+    const manifestPath = path.join(__dirname, 'core-data', 'manifest.json');
+    let libItems = [];
+    if (fs.existsSync(manifestPath)) {
+      const mData = JSON.parse(fs.readFileSync(manifestPath, 'utf-8'));
+      libItems = mData.catalog || [];
     }
+    const libraryJsonLd = {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      "name": "Liquid Memory Archive & Experimental Library",
+      "description": "Curated digital archive and prototype registry.",
+      "itemListElement": libItems.map((item, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "item": {
+          "@type": "WebPage",
+          "name": item.title,
+          "url": `https://ittybittybites.github.io/website/library/${item.slug}.html`
+        }
+      }))
+    };
+    const newLibScript = `<script type="application/ld+json">\n${JSON.stringify(libraryJsonLd, null, 2)}\n</script>`;
+    if (libraryHtml.includes('application/ld+json')) {
+      libraryHtml = libraryHtml.replace(/<script type="application\/ld\+json">[\s\S]*?<\/script>/, newLibScript);
+    } else {
+      libraryHtml = libraryHtml.replace('</head>', `${newLibScript}\n</head>`);
+    }
+    fs.writeFileSync(libraryPath, libraryHtml, 'utf-8');
+    console.log(`  ✓ Hydrated library.html with ${libItems.length} ItemList JSON-LD schema entries`);
   }
 }
 

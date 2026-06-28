@@ -105,6 +105,22 @@ function initChamberShell(): void {
 
   LiquidMemoryTelemetry.markPortalArrival(chamberTitle);
 
+  if (!document.getElementById(`twin-spatial-${node?.nodeId || slug || gearId}`)) {
+    const twin = document.createElement('button');
+    twin.className = 'sr-only chamber-twin-btn';
+    twin.tabIndex = 0;
+    twin.id = `twin-spatial-${node?.nodeId || slug || gearId}`;
+    twin.setAttribute('aria-label', `Spatial Twin: ${chamberTitle}. Press Enter to return to Master Hub.`);
+    twin.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        storeDeparture('twin-keyboard-exit');
+        window.location.assign(homeHref);
+      }
+    });
+    if (document.body) document.body.appendChild(twin);
+  }
+
   const storeDeparture = (reason: string) => {
     LiquidMemoryTelemetry.storeChamberDeparture(chamberTitle, kernelEvent, pathname, reason);
   };
