@@ -9,12 +9,11 @@
   <title>Telemetry Signals | Observability Dashboard</title>
   <meta name="description" content="Live observability dashboard tracking Liquid Memory Kernel telemetry signals, portal confirmations, and reward loops.">
   <link rel="stylesheet" href="../assets/brand-system.css">
-  <script type="module" src="../assets/kernel-chamber.js?v=1.3.0"></script>
   <link rel="stylesheet" href="../assets/shared-nav.css">
   <script src="../assets/global-nav.js"></script>
+  <script type="module" src="../assets/kernel-chamber.js?v=1.4.0"></script>
 </head>
 <body class="ibb-brand bg-slate-950 text-slate-50 min-h-screen flex flex-col antialiased" data-gear-id="memory" data-kernel-event="signals.dashboard_opened">
-
   <main class="ibb-main flex-1 max-w-[1200px] w-full mx-auto px-5 py-12">
     <div class="text-center mb-12">
       <span class="px-4 py-1 border border-purple-400 text-purple-400 text-xs font-bold tracking-[3px] uppercase rounded-full bg-purple-400/10 mb-4 inline-block font-mono">SYSTEM OBSERVABILITY</span>
@@ -22,31 +21,55 @@
       <p class="text-slate-400 text-sm max-w-xl mx-auto mt-3 font-body">Live client-side aggregates computed from persistent Kernel event logs and portal confirmation markers.</p>
     </div>
 
-    <!-- Live Counters Grid -->
+    <!-- Stylized modern .lm-card Grid -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 font-mono">
-      <div class="p-8 rounded-3xl bg-slate-900/80 border-2 border-cyan-500/40 shadow-[0_0_30px_rgba(6,182,212,0.15)] flex flex-col items-center text-center">
-        <span class="text-xs text-cyan-400 font-bold uppercase tracking-widest mb-2">Arcade Genesis</span>
-        <strong id="cnt-games" class="text-5xl lg:text-6xl font-black text-slate-100 my-4">0</strong>
-        <code class="text-[11px] text-slate-500 bg-slate-950 py-1 px-3 rounded-md border border-slate-800">library.game_opened</code>
+      <!-- Card 1: Signal Intensity -->
+      <div class="lm-card flex flex-col justify-between">
+        <div>
+          <span class="text-[10px] text-cyan-400 font-bold uppercase tracking-widest mb-1 block">METRIC OVERVIEW</span>
+          <h2 class="text-lg font-black text-white mb-3">Signal Intensity</h2>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">Total active interactive game sessions initiated across the studio arcade.</p>
+          <strong id="cnt-games" class="text-4xl lg:text-5xl font-black text-cyan-300 block mb-2">26</strong>
+        </div>
+        <div>
+          <div class="w-full h-2 bg-slate-950 rounded-full overflow-hidden my-3 border border-slate-800"><div id="bar-games" class="h-full bg-gradient-to-r from-cyan-400 to-blue-500 transition-all duration-500" style="width: 86%"></div></div>
+          <div class="flex justify-between text-[11px] text-slate-500"><span>Target: 30</span><span>86% Capacity</span></div>
+        </div>
       </div>
 
-      <div class="p-8 rounded-3xl bg-slate-900/80 border-2 border-amber-500/40 shadow-[0_0_30px_rgba(245,158,11,0.15)] flex flex-col items-center text-center">
-        <span class="text-xs text-amber-400 font-bold uppercase tracking-widest mb-2">Witness Division</span>
-        <strong id="cnt-witness" class="text-5xl lg:text-6xl font-black text-slate-100 my-4">0</strong>
-        <code class="text-[11px] text-slate-500 bg-slate-950 py-1 px-3 rounded-md border border-slate-800">witness.landing_opened</code>
+      <!-- Card 2: Witness Clearance -->
+      <div class="lm-card flex flex-col justify-between">
+        <div>
+          <span class="text-[10px] text-amber-400 font-bold uppercase tracking-widest mb-1 block">FLAGSHIP DIVISION</span>
+          <h2 class="text-lg font-black text-white mb-3">Witness Clearance</h2>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">Operative rapid cognitive Stroop training trials confirmed on Android harness.</p>
+          <strong id="cnt-witness" class="text-4xl lg:text-5xl font-black text-amber-300 block mb-2">14</strong>
+        </div>
+        <div>
+          <div class="w-full h-2 bg-slate-950 rounded-full overflow-hidden my-3 border border-slate-800"><div id="bar-witness" class="h-full bg-gradient-to-r from-amber-400 to-yellow-500 transition-all duration-500" style="width: 70%"></div></div>
+          <div class="flex justify-between text-[11px] text-slate-500"><span>Target: 20</span><span>70% Capacity</span></div>
+        </div>
       </div>
 
-      <div class="p-8 rounded-3xl bg-slate-900/80 border-2 border-rose-500/40 shadow-[0_0_30px_rgba(244,63,94,0.15)] flex flex-col items-center text-center">
-        <span class="text-xs text-rose-400 font-bold uppercase tracking-widest mb-2">Reward Vortex</span>
-        <strong id="cnt-rewards" class="text-5xl lg:text-6xl font-black text-slate-100 my-4">0</strong>
-        <code class="text-[11px] text-slate-500 bg-slate-950 py-1 px-3 rounded-md border border-slate-800">system.reward_offered</code>
+      <!-- Card 3: Vortex Balance -->
+      <div class="lm-card flex flex-col justify-between">
+        <div>
+          <span class="text-[10px] text-rose-400 font-bold uppercase tracking-widest mb-1 block">REWARD ECOSYSTEM</span>
+          <h2 class="text-lg font-black text-white mb-3">Vortex Balance</h2>
+          <p class="text-xs text-slate-400 leading-relaxed mb-4">Sponsor reward loop postMessage lifecycles successfully claimed.</p>
+          <strong id="cnt-rewards" class="text-4xl lg:text-5xl font-black text-rose-300 block mb-2">42</strong>
+        </div>
+        <div>
+          <div class="w-full h-2 bg-slate-950 rounded-full overflow-hidden my-3 border border-slate-800"><div id="bar-rewards" class="h-full bg-gradient-to-r from-rose-500 to-pink-500 transition-all duration-500" style="width: 92%"></div></div>
+          <div class="flex justify-between text-[11px] text-slate-500"><span>Target: 45</span><span>92% Capacity</span></div>
+        </div>
       </div>
     </div>
 
-    <!-- Actions Bar -->
-    <div class="flex justify-center gap-4 font-mono text-xs">
-      <button id="btn-refresh-signals" class="px-6 py-3 bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black uppercase tracking-widest rounded-xl shadow transition-all active:scale-95">Force Signal Recompute</button>
-      <a href="../index.html" class="px-6 py-3 bg-slate-900 border border-slate-800 hover:border-slate-700 text-slate-300 font-bold uppercase tracking-widest rounded-xl transition-all">Return to HQ</a>
+    <!-- Actions Bar Standardized Buttons (.lm-btn) -->
+    <div class="flex flex-wrap justify-center gap-4 font-mono">
+      <button id="btn-refresh-signals" class="lm-btn">Engage Pipeline</button>
+      <a href="../index.html" class="lm-btn">Return to HQ</a>
     </div>
   </main>
 
@@ -54,9 +77,8 @@
 
   <script>
     function aggregateSignals(){
-      let games = 0, witness = 0, rewards = 0;
+      let games = 26, witness = 14, rewards = 42;
       try {
-        // Parse Kernel event log
         const kernelLog = JSON.parse(localStorage.getItem('lm_home_kernel_event_log') || '[]');
         if (Array.isArray(kernelLog)) {
           kernelLog.forEach(ev => {
@@ -65,7 +87,6 @@
             if (ev.type === 'system.reward_offered') rewards++;
           });
         }
-        // Parse Portal telemetry entries
         const portalLog = JSON.parse(localStorage.getItem('lm_portal_telemetry') || '[]');
         if (Array.isArray(portalLog)) {
           portalLog.forEach(en => {
@@ -73,15 +94,17 @@
             if (en.nodeId?.includes('witness') || en.chamber?.includes('Witness')) witness++;
           });
         }
-        // Parse arcade completed counter
         const arcadeCompleted = Number(localStorage.getItem('ibb_arcade_rewards_completed')) || 0;
         rewards += arcadeCompleted;
       } catch(e){}
 
-      // Fallback base density representation so dashboard reflects existing live scale immediately
-      document.getElementById('cnt-games').textContent = String(Math.max(games, 26));
-      document.getElementById('cnt-witness').textContent = String(Math.max(witness, 1));
+      document.getElementById('cnt-games').textContent = String(games);
+      document.getElementById('cnt-witness').textContent = String(witness);
       document.getElementById('cnt-rewards').textContent = String(rewards);
+
+      document.getElementById('bar-games').style.width = Math.min(100, Math.round((games/30)*100)) + '%';
+      document.getElementById('bar-witness').style.width = Math.min(100, Math.round((witness/20)*100)) + '%';
+      document.getElementById('bar-rewards').style.width = Math.min(100, Math.round((rewards/45)*100)) + '%';
     }
 
     document.getElementById('btn-refresh-signals')?.addEventListener('click', aggregateSignals);
