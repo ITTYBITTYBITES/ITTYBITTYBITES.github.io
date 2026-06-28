@@ -1,8 +1,8 @@
 /**
- * Global Unified Navigation & Footer Mounter v1.2
+ * Global Unified Navigation & Footer Mounter v1.3
  *
- * Standardized absolute-relative link paths and universal brand identity:
- * Studio: Ittybittybites | Platform: Liquid Memory
+ * Universal brand identity: Studio: Ittybittybites | Platform: Liquid Memory
+ * Standardized absolute-relative link paths and complete footer scrub.
  */
 (function(){
   if (document.getElementById('lm-global-nav') && document.getElementById('lm-global-footer')) return;
@@ -39,11 +39,11 @@
         <p style="margin-top:6px;font-size:10px;color:#64748b;">LIQUID MEMORY // COGNITIVE GAMING DIVISION</p>
       </div>
     `;
-    document.querySelectorAll('footer:not(#lm-global-footer), .ibb-footer').forEach(f => f.remove());
+    document.querySelectorAll('footer:not(#lm-global-footer), .ibb-footer, footer.border-t, footer[class*="bg-"]').forEach(f => f.remove());
   };
 
   const purgeOldHeaders = () => {
-    document.querySelectorAll('nav:not(#lm-global-nav), header.ibb-nav, .ibb-nav').forEach(n => n.remove());
+    document.querySelectorAll('nav:not(#lm-global-nav), header.ibb-nav, .ibb-nav, header[class*="sticky"]').forEach(n => n.remove());
   };
 
   const mount = () => {
