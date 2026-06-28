@@ -1,0 +1,158 @@
+[
+  {
+    "id": "cyber-vector",
+    "category": "3D WebGL Space Simulators",
+    "path": "legacy_archive/website/games/cyber-vector/index.html",
+    "priority_score": 91
+  },
+  {
+    "id": "neon-polygon",
+    "category": "3D WebGL Space Simulators",
+    "path": "legacy_archive/website/games/neon-polygon/index.html",
+    "priority_score": 24
+  },
+  {
+    "id": "quantum-breakout",
+    "category": "Physics Engines",
+    "path": "legacy_archive/website/games/quantum-breakout/index.html",
+    "priority_score": 13
+  },
+  {
+    "id": "attentional-blink",
+    "category": "Fast-Reaction Arcade",
+    "path": "legacy_archive/website/games/attentional-blink/index.html",
+    "priority_score": 45
+  },
+  {
+    "id": "cosmic-tunnel",
+    "category": "3D WebGL Space Simulators",
+    "path": "legacy_archive/website/games/cosmic-tunnel/index.html",
+    "priority_score": 41
+  },
+  {
+    "id": "hover-drone",
+    "category": "Classics & Mainstream Retro",
+    "path": "legacy_archive/website/games/hover-drone/index.html",
+    "priority_score": 38
+  },
+  {
+    "id": "cyber-snake",
+    "category": "Classics & Mainstream Retro",
+    "path": "legacy_archive/website/games/cyber-snake/index.html",
+    "priority_score": 27
+  },
+  {
+    "id": "cyber-mines",
+    "category": "Classics & Mainstream Retro",
+    "path": "legacy_archive/website/games/cyber-mines/index.html",
+    "priority_score": 23
+  },
+  {
+    "id": "grid-delver",
+    "category": "Tactical Roguelikes",
+    "path": "legacy_archive/website/games/grid-delver/index.html",
+    "priority_score": 96
+  },
+  {
+    "id": "metronomic-rhythm",
+    "category": "Reaction & Cognitive Arcade",
+    "path": "legacy_archive/website/games/metronomic-rhythm/index.html",
+    "priority_score": 79
+  },
+  {
+    "id": "nback-sentinel",
+    "category": "Cognitive Challenge Labs",
+    "path": "legacy_archive/website/games/nback-sentinel/index.html",
+    "priority_score": 21
+  },
+  {
+    "id": "neon-pong",
+    "category": "Classics & Mainstream Retro",
+    "path": "legacy_archive/website/games/neon-pong/index.html",
+    "priority_score": 85
+  },
+  {
+    "id": "orbital-sandbox",
+    "category": "Physics Engines",
+    "path": "legacy_archive/website/games/orbital-sandbox/index.html",
+    "priority_score": 64
+  },
+  {
+    "id": "quantum-sentinel",
+    "category": "Reaction & Speed",
+    "path": "legacy_archive/website/games/quantum-sentinel/index.html",
+    "priority_score": 14
+  },
+  {
+    "id": "raycasted-doom",
+    "category": "Raycasted Mazes",
+    "path": "legacy_archive/website/games/raycasted-doom/index.html",
+    "priority_score": 13
+  },
+  {
+    "id": "gravity-slingshot",
+    "category": "Physics Engines",
+    "path": "legacy_archive/website/games/gravity-slingshot/index.html",
+    "priority_score": 21
+  },
+  {
+    "id": "retro-breakout",
+    "category": "Classics & Mainstream Retro",
+    "path": "legacy_archive/website/games/retro-breakout/index.html",
+    "priority_score": 37
+  },
+  {
+    "id": "saccadic-target",
+    "category": "Reaction & Cognitive Arcade",
+    "path": "legacy_archive/website/games/saccadic-target/index.html",
+    "priority_score": 39
+  },
+  {
+    "id": "shifting-selector",
+    "category": "Cognitive Challenge Labs",
+    "path": "legacy_archive/website/games/shifting-selector/index.html",
+    "priority_score": 74
+  },
+  {
+    "id": "signal-detection",
+    "category": "Reaction & Cognitive Arcade",
+    "path": "legacy_archive/website/games/signal-detection/index.html",
+    "priority_score": 87
+  },
+  {
+    "id": "space-asteroids",
+    "category": "Classics & Mainstream Retro",
+    "path": "legacy_archive/website/games/space-asteroids/index.html",
+    "priority_score": 13
+  },
+  {
+    "id": "spatial-matrix",
+    "category": "Cognitive Challenge Labs",
+    "path": "legacy_archive/website/games/spatial-matrix/index.html",
+    "priority_score": 81
+  },
+  {
+    "id": "stroop-calibrator",
+    "category": "Fast-Reaction Arcade",
+    "path": "legacy_archive/website/games/stroop-calibrator/index.html",
+    "priority_score": 35
+  },
+  {
+    "id": "tachistoscope",
+    "category": "Cognitive Challenge Labs",
+    "path": "legacy_archive/website/games/tachistoscope/index.html",
+    "priority_score": 93
+  },
+  {
+    "id": "tachyon-racer",
+    "category": "Reaction & Speed",
+    "path": "legacy_archive/website/games/tachyon-racer/index.html",
+    "priority_score": 99
+  },
+  {
+    "id": "memory-churn",
+    "category": "Cognitive Challenge Labs",
+    "path": "legacy_archive/website/games/memory-churn/index.html",
+    "priority_score": 79
+  }
+]

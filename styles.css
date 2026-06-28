@@ -1,0 +1,417 @@
+/* ==========================================================================
+   🎮 ittybittybites CSS Reset & Theme Styles (Mobile-First)
+   High-Contrast, Accessible, Adaptive Desktop/Mobile Layout
+   ========================================================================== */
+
+/* 1. Global Reset & Theme Variables */
+:root {
+  --color-bg: #070911;
+  --color-panel: #0d1220;
+  --color-border: #1a233a;
+  --color-border-active: #5fe8ff;
+  
+  --color-text: #f7fbff;
+  --color-muted: #a1b0cb;
+  
+  --color-cyan: #5fe8ff;
+  --color-gold: #ffe27a;
+  --color-green: #58ffbd;
+  --color-pink: #ff5ee7;
+  --color-error: #ff5e7e;
+
+  --font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --sidebar-width: 320px;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body, h1, h2, h3, p, ul, ol, figure, blockquote {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  line-height: 1.5;
+  font-family: var(--font-family);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+/* 2. Core Layout Shell */
+#hub-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  max-width: 100vw;
+}
+
+/* 3. Header & Telemetry Scoreboard */
+#hub-header {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background-color: var(--color-panel);
+  border-bottom: 2px solid var(--color-border);
+  padding: 1rem 1.5rem;
+}
+
+.logo-area {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.hub-icon {
+  font-size: 2rem;
+  color: var(--color-cyan);
+  text-shadow: 0 0 10px rgba(95, 232, 255, 0.4);
+}
+
+.logo-title h1 {
+  font-size: 1.5rem;
+  line-height: 1.1;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, var(--color-cyan), var(--color-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hub-tagline {
+  font-size: 0.75rem;
+  font-family: monospace;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+#hub-telemetry-panel {
+  display: flex;
+  gap: 16px;
+  background: rgba(0, 0, 0, 0.3);
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  align-self: flex-start;
+}
+
+.telemetry-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.telemetry-item .label {
+  font-size: 0.65rem;
+  font-weight: 900;
+  color: var(--color-muted);
+  letter-spacing: 0.1em;
+}
+
+.telemetry-item .value {
+  font-size: 1.1rem;
+  font-family: monospace;
+  font-weight: bold;
+  color: var(--color-gold);
+}
+
+/* 4. Main Body: Sidebar and Viewport */
+#hub-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* Sidebar Directory */
+#hub-sidebar {
+  background-color: #0b0e1a;
+  border-bottom: 2px solid var(--color-border);
+  padding: 1.2rem;
+  max-height: 380px;
+  overflow-y: auto;
+}
+
+#hub-sidebar h2 {
+  font-size: 0.85rem;
+  color: var(--color-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 6px;
+}
+
+/* Category styling and Buttons inside registry */
+.nav-category-group {
+  margin-bottom: 1.5rem;
+}
+
+.nav-category-group h3 {
+  font-size: 0.75rem;
+  color: var(--color-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.6rem;
+}
+
+.nav-node-btn {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+  padding: 8px 12px;
+  margin-bottom: 6px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.nav-node-btn:hover {
+  background: rgba(95, 232, 255, 0.06);
+  border-color: rgba(95, 232, 255, 0.4);
+  color: var(--color-cyan);
+}
+
+.nav-node-btn.active {
+  background: rgba(95, 232, 255, 0.12);
+  border-color: var(--color-border-active);
+  color: var(--color-cyan);
+  font-weight: bold;
+  box-shadow: 0 0 10px rgba(95, 232, 255, 0.1);
+}
+
+/* Viewport Panel */
+#hub-main {
+  flex: 1;
+  background-color: var(--color-bg);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+#hub-viewport {
+  flex: 1;
+  background-color: #04060b;
+  border: 2px solid var(--color-border);
+  border-radius: 12px;
+  position: relative;
+  min-height: 480px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Embedded iframe elements inside viewport */
+.embedded-viewport-iframe {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+  border: 0;
+  border-radius: 10px;
+  background-color: #000;
+}
+
+/* States: Loader / Error Fallbacks */
+.loading-spinner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+  color: var(--color-cyan);
+  font-family: monospace;
+  font-weight: bold;
+  letter-spacing: 0.08em;
+  font-size: 0.95rem;
+}
+
+.error-container {
+  padding: 2.5rem;
+  text-align: center;
+  max-width: 500px;
+  margin: auto;
+}
+
+.error-container h2 {
+  color: var(--color-error);
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+}
+
+.error-container p {
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+/* ==========================================================================
+   🌐 Wayfinding HUD Overlay (Phase 5)
+   ========================================================================== */
+
+#hud-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 16px 20px;
+  background: linear-gradient(to bottom, rgba(7, 9, 17, 0.95), rgba(7, 9, 17, 0));
+  z-index: 100;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+#hud-breadcrumb {
+  font-family: monospace;
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: var(--color-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  text-shadow: 0 0 10px rgba(95, 232, 255, 0.35);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: block;
+}
+
+.hud-right {
+  display: flex;
+  gap: 8px;
+}
+
+.hud-btn {
+  background: rgba(13, 18, 32, 0.8);
+  color: var(--color-cyan);
+  border: 1px solid rgba(95, 232, 255, 0.3);
+  border-radius: 6px;
+  padding: 6px 12px;
+  font-size: 0.72rem;
+  font-family: monospace;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+
+.hud-btn:hover {
+  background: var(--color-cyan);
+  color: #04060b;
+  border-color: var(--color-cyan);
+  box-shadow: 0 0 12px var(--color-cyan);
+}
+
+.hud-btn.secondary {
+  color: var(--color-pink);
+  border-color: rgba(255, 94, 231, 0.3);
+}
+
+.hud-btn.secondary:hover {
+  background: var(--color-pink);
+  color: #04060b;
+  border-color: var(--color-pink);
+  box-shadow: 0 0 12px var(--color-pink);
+}
+
+/* 5. Responsive Upgrades (Desktop Layouts) */
+@media (min-width: 768px) {
+  #hub-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+  }
+  
+  #hub-telemetry-panel {
+    align-self: auto;
+  }
+  
+  #hub-body {
+    flex-direction: row;
+  }
+  
+  #hub-sidebar {
+    width: var(--sidebar-width);
+    border-bottom: 0;
+    border-right: 2px solid var(--color-border);
+    max-height: calc(100vh - 84px);
+    position: sticky;
+    top: 84px;
+  }
+  
+  #hub-main {
+    padding: 1.5rem;
+  }
+  
+  #hub-viewport {
+    min-height: auto;
+  }
+
+  #hud-overlay {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 18px 24px;
+  }
+
+  #hud-breadcrumb {
+    font-size: 0.75rem;
+  }
+}
+
+/* ==========================================================================
+   👑 Interactive Embed Styles
+   ========================================================================== */
+.glowing-tooltip {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(13, 18, 32, 0.95);
+  border: 1px solid var(--color-border-active);
+  box-shadow: 0 8px 32px rgba(95, 232, 255, 0.25);
+  border-radius: 12px;
+  padding: 12px 24px;
+  text-align: center;
+  z-index: 100;
+  pointer-events: none;
+  font-family: monospace;
+  animation: tooltipPulse 1.5s infinite alternate;
+}
+
+@keyframes tooltipPulse {
+  0% { box-shadow: 0 8px 24px rgba(95, 232, 255, 0.15); }
+  100% { box-shadow: 0 8px 36px rgba(95, 232, 255, 0.35); }
+}
+
+.exit-overlay-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(7, 9, 17, 0.92);
+  color: var(--color-error);
+  border: 1px solid rgba(255, 94, 126, 0.4);
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-size: 0.75rem;
+  font-family: monospace;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 2147483000;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.5);
+}
+
+.exit-overlay-btn:hover {
+  background: var(--color-error);
+  color: #000;
+  border-color: var(--color-error);
+  box-shadow: 0 0 14px var(--color-error);
+}

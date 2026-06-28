@@ -1,87 +1,112 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <meta http-equiv="Pragma" content="no-cache" />
-  <meta http-equiv="Expires" content="0" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta http-equiv="refresh" content="0; url=./website/index.html">
-  <link rel="canonical" href="https://ittybittybites.github.io/website/index.html">
-  <title>Liquid Memory | Holographic Data-Hub</title>
-  <meta name="description" content="Liquid Memory is a Holographic Data-Hub for browser games, arcade experiments, creative prototypes, and the flagship 2 Second Witness cognitive training game.">
-  <meta name="theme-color" content="#000000">
-  <style>
-    :root { color-scheme: dark; }
-    * { box-sizing: border-box; }
-    html, body { width: 100%; min-height: 100%; margin: 0; }
-    body {
-      min-height: 100dvh;
-      display: grid;
-      place-items: center;
-      overflow-y: auto;
-      overflow-x: hidden;
-      background:
-        radial-gradient(circle at 50% 46%, rgba(0, 240, 255, .12), transparent 34rem),
-        linear-gradient(rgba(0, 240, 255, .045) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 240, 255, .035) 1px, transparent 1px),
-        #000000;
-      background-size: auto, 42px 42px, 42px 42px, auto;
-      color: #a8ffff;
-      font-family: "Courier New", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    }
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background: repeating-linear-gradient(0deg, rgba(255,255,255,.026), rgba(255,255,255,.026) 1px, transparent 1px, transparent 4px);
-      mix-blend-mode: screen;
-      opacity: .42;
-    }
-    .entry-shell {
-      position: relative;
-      display: grid;
-      place-items: center;
-      gap: 14px;
-      text-align: center;
-      letter-spacing: .18em;
-      text-transform: uppercase;
-      opacity: .92;
-    }
-    .entry-orb {
-      width: 54px;
-      height: 54px;
-      border-radius: 999px;
-      border: 2px solid rgba(0, 240, 255, .76);
-      border-top-color: rgba(255, 0, 255, .74);
-      box-shadow: 0 0 22px rgba(0, 240, 255, .46), inset 0 0 22px rgba(0, 240, 255, .24);
-      animation: spin 1.15s linear infinite;
-    }
-    .entry-label {
-      color: #00f0ff;
-      font-size: clamp(11px, 2.4vw, 13px);
-      font-weight: 800;
-      text-shadow: 0 0 14px rgba(0, 240, 255, .72);
-    }
-    .entry-link {
-      color: rgba(168, 255, 255, .72);
-      font-size: 10px;
-      text-decoration: none;
-      letter-spacing: .14em;
-    }
-    @keyframes spin { to { transform: rotate(360deg); } }
-    @media (prefers-reduced-motion: reduce) { .entry-orb { animation: none; } }
-  </style>
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6P6NPFW4FZ"></script>
-  <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-6P6NPFW4FZ');</script>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1566091161594729" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="website/assets/shared-nav.css"><script src="website/assets/global-nav.js"></script></head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ittybittybites Hub</title>
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Three.js CDN Dependency -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  
+  <!-- Three.js CSS3D Renderer Dependency -->
+  <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/renderers/CSS3DRenderer.js"></script>
+  
+  <!-- Tween.js CDN Dependency -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tween.js/18.6.4/tween.umd.js"></script>
+  
+  <!-- Platform Engine Scripts -->
+  <script defer src="scripts/telemetry.js"></script>
+  <script defer src="scripts/audio_manager.js"></script>
+  <script defer src="scripts/ad_manager.js"></script>
+  <script defer src="scripts/spatial_controller.js"></script>
+  <script defer src="scripts/engine.js"></script>
+</head>
 <body>
-  <main class="entry-shell" aria-label="Liquid Memory Holographic Data-Hub redirect">
-    <div class="entry-orb" aria-hidden="true"></div>
-    <div class="entry-label">Liquid Memory Data-Hub</div>
-    <a class="entry-link" href="./website/index.html">Enter Holographic Hub</a>
-  </main>
+  <div id="hub-shell">
+    <!-- Header: Navigation and Telemetry scoreboard -->
+    <header id="hub-header">
+      <div class="logo-area" style="cursor: pointer;" onclick="if(window.ibbEngine) window.ibbEngine.showPortal();">
+        <span class="hub-icon">❖</span>
+        <div class="logo-title">
+          <h1>ittybittybites</h1>
+          <span class="hub-tagline">Phase 7 Ad-Bridge Portal</span>
+        </div>
+      </div>
+      <div id="hub-telemetry-panel">
+        <div class="telemetry-item">
+          <span class="label">SESSIONS</span>
+          <span id="tel-sessions" class="value">0</span>
+        </div>
+        <div class="telemetry-item">
+          <span class="label">PLAYTIME</span>
+          <span id="tel-playtime" class="value">0s</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- App Body containing Sidebar Navigation and Central Viewport -->
+    <div id="hub-body">
+      <aside id="hub-sidebar">
+        <h2>Game Registry Directory</h2>
+        <div id="hub-nav-links">
+          <!-- Dynamic category groups and game buttons are injected here by the engine -->
+        </div>
+      </aside>
+
+      <main id="hub-main">
+        <div id="hub-viewport">
+          <!-- Viewport layers will be injected dynamically by engine.js -->
+          <div class="loading-spinner">Initializing Engine Platform...</div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    // Listen to the custom event emitted by TelemetryManager to update telemetry scores on-screen
+    window.addEventListener('ibb-telemetry-sync', (event) => {
+      const stats = event.detail;
+      if (!stats) return;
+      
+      const sessionEl = document.getElementById('tel-sessions');
+      const playtimeEl = document.getElementById('tel-playtime');
+
+      if (sessionEl) sessionEl.textContent = stats.sessionsCount || 1;
+      
+      if (playtimeEl) {
+        const totalSec = stats.totalPlaytimeSeconds || 0;
+        if (totalSec >= 60) {
+          const min = Math.floor(totalSec / 60);
+          const sec = totalSec % 60;
+          playtimeEl.textContent = `${min}m ${sec}s`;
+        } else {
+          playtimeEl.textContent = `${totalSec}s`;
+        }
+      }
+    });
+
+    // Unlocking Web Audio Context on first mouse / click gesture
+    const unlockAudio = () => {
+      if (window.ibbAudio) {
+        window.ibbAudio.resumeContext();
+        window.ibbAudio.startAmbience();
+      }
+      window.removeEventListener('click', unlockAudio);
+      window.removeEventListener('keydown', unlockAudio);
+    };
+    window.addEventListener('click', unlockAudio);
+    window.addEventListener('keydown', unlockAudio);
+
+    // Initial setup fallback check
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const stats = window.ibbEngine && window.ibbEngine.telemetry ? window.ibbEngine.telemetry.stats : null;
+        if (stats) {
+          window.dispatchEvent(new CustomEvent('ibb-telemetry-sync', { detail: stats }));
+        }
+      }, 500);
+    });
+  </script>
 </body>
 </html>
