@@ -15242,8 +15242,8 @@ var Rf = class {
 			}
 		].forEach((t) => {
 			let n = document.createElement("div");
-			n.id = t.id, n.style.cssText = `pointer-events:auto;background:rgba(0,16,28,0.85);border:2px solid ${t.tone};border-radius:14px;padding:10px 16px;backdrop-filter:blur(10px);box-shadow:0 0 20px ${t.tone}44;cursor:pointer;text-align:center;font-family:monospace;`, n.innerHTML = `
-        <span style="display:block;font-size:9px;color:${t.tone};font-weight:bold;letter-spacing:1px;margin-bottom:2px;">CHAMBER WINDOW</span>
+			n.id = t.id, n.className = "chamber-window lm-card", n.style.cssText = "pointer-events:auto;background:rgba(2,6,23,0.85);border:1px solid rgba(0,255,255,0.3);border-radius:12px;padding:12px 20px;backdrop-filter:blur(10px);box-shadow:0 0 20px rgba(0,255,255,0.15);cursor:pointer;text-align:center;font-family:monospace;", n.innerHTML = `
+        <span style="display:block;font-size:9px;color:#22d3ee;font-weight:bold;letter-spacing:1px;margin-bottom:4px;">CHAMBER WINDOW</span>
         <strong style="font-size:12px;color:#fff;">${t.label}</strong>
       `, n.addEventListener("click", () => {
 				window.location.assign(t.route);
@@ -16117,10 +16117,7 @@ function ap() {
 		} catch {}
 	}
 	function x() {
-		if (g || !_) return;
-		g = !0, document.body.classList.add("liquid-ready"), p?.getGearCount() === 5 && p?.getGaugeCount() >= 4 && p?.isWorkstationModelLoaded?.() && np();
-		let e = document.getElementById("dbg-reg-cnt"), n = document.getElementById("dbg-cnv-st"), r = document.getElementById("dbg-tgt-id");
-		e && (e.textContent = String(t.getAllNodes().length)), n && (n.textContent = p?.isWorkstationModelLoaded?.() ? "GLB Mounted" : "Procedural Fallback Active"), r && (r.textContent = document.getElementById("lm-ui-anchor-rig") ? "DOM_UI_Rig" : "WebGL_Host"), v.splice(0).forEach((e) => {
+		g || !_ || (g = !0, document.body.classList.add("liquid-ready"), p?.getGearCount() === 5 && p?.getGaugeCount() >= 4 && p?.isWorkstationModelLoaded?.() && np(), v.splice(0).forEach((e) => {
 			try {
 				e(_);
 			} catch (e) {
@@ -16129,7 +16126,7 @@ function ap() {
 		}), window.dispatchEvent(new CustomEvent("liquidmemory:ready", { detail: {
 			version: Gf,
 			nodeCount: p?.getNodeCount() || 0
-		} }));
+		} })));
 	}
 	function S(e) {
 		if (!e) return null;

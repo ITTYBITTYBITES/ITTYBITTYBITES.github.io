@@ -551,9 +551,10 @@ export class SpatialRenderer {
     windows.forEach((win) => {
       const card = document.createElement('div');
       card.id = win.id;
-      card.style.cssText = `pointer-events:auto;background:rgba(0,16,28,0.85);border:2px solid ${win.tone};border-radius:14px;padding:10px 16px;backdrop-filter:blur(10px);box-shadow:0 0 20px ${win.tone}44;cursor:pointer;text-align:center;font-family:monospace;`;
+      card.className = 'chamber-window lm-card';
+      card.style.cssText = `pointer-events:auto;background:rgba(2,6,23,0.85);border:1px solid rgba(0,255,255,0.3);border-radius:12px;padding:12px 20px;backdrop-filter:blur(10px);box-shadow:0 0 20px rgba(0,255,255,0.15);cursor:pointer;text-align:center;font-family:monospace;`;
       card.innerHTML = `
-        <span style="display:block;font-size:9px;color:${win.tone};font-weight:bold;letter-spacing:1px;margin-bottom:2px;">CHAMBER WINDOW</span>
+        <span style="display:block;font-size:9px;color:#22d3ee;font-weight:bold;letter-spacing:1px;margin-bottom:4px;">CHAMBER WINDOW</span>
         <strong style="font-size:12px;color:#fff;">${win.label}</strong>
       `;
       card.addEventListener('click', () => {
