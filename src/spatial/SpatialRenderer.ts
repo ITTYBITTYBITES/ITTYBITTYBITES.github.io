@@ -439,50 +439,66 @@ export class SpatialRenderer {
 
   private async loadWorkstationAsset(): Promise<void> {
     const loader = new GLTFLoader();
-    try {
-      const gltf = await loader.loadAsync('assets/models/liquid-memory-workstation.glb');
-      const root = gltf.scene;
-      root.name = 'liquid_memory_workstation_glb_root';
-      // The proxy/high-fidelity GLB is authored with its visible paper near local z=0.
-      // The renderer's ink/gears operate on the workstation surface around z=-1.
-      // Drop the imported asset into the renderer's desk-plane coordinate space so
-      // paper/desk geometry does not occlude the interactive gear mechanism.
-      root.position.z = -1.96;
-      this.workstationGroup.add(root);
-      this.modelAnchors.clear();
+    const assetPath = 'assets/models/liquid-memory-workstation.glb';
+    let retries = 0;
+    const maxRetries = 5;
 
-      root.traverse((obj) => {
-        if (obj.name?.startsWith('anchor_')) {
-          this.modelAnchors.set(obj.name, obj);
-          obj.visible = false;
-        }
+    while (retries <= maxRetries) {
+      try {
+        const gltf = await loader.loadAsync(assetPath);
+        console.log(`[AssetLoader Debug] GLB asset loaded 200 OK: ${assetPath}`);
+        const root = gltf.scene;
+        root.name = 'liquid_memory_workstation_glb_root';
+        root.position.z = -1.96;
+        this.workstationGroup.add(root);
+        this.modelAnchors.clear();
 
-        const mesh = obj as THREE.Mesh;
-        if (mesh.isMesh) {
-          mesh.castShadow = true;
-          mesh.receiveShadow = true;
-          this.tuneImportedMaterial(mesh);
-          const gearId = this.inferGearIdFromName(mesh.name);
-          if (gearId) {
-            mesh.userData.gearId = gearId;
-            mesh.visible = false;
+        root.traverse((obj) => {
+          if (obj.name?.startsWith('anchor_')) {
+            this.modelAnchors.set(obj.name, obj);
+            obj.visible = false;
           }
+
+          const mesh = obj as THREE.Mesh;
+          if (mesh.isMesh) {
+            mesh.castShadow = true;
+            mesh.receiveShadow = true;
+            this.tuneImportedMaterial(mesh);
+            const gearId = this.inferGearIdFromName(mesh.name);
+            if (gearId) {
+              mesh.userData.gearId = gearId;
+              mesh.visible = false;
+            }
+          }
+        });
+
+        this.resetGearControls();
+        (['games', 'archive', 'community', 'blueprint', 'memory'] as GearId[]).forEach((id) => {
+          const anchor = this.getModelAnchorPosition(`anchor_${id}`) || this.getFallbackGearAnchor(id);
+          const radius = id === 'games' ? 1.02 : id === 'memory' ? 0.62 : id === 'blueprint' ? 0.86 : 0.76;
+          this.createPanelGear(id, id.toUpperCase(), anchor, radius, id === 'community' ? 2 : id === 'memory' ? 3 : 1);
+        });
+
+        this.workstationModelLoaded = true;
+        this.workstationFallbackActive = false;
+        this.host.dataset.workstationModel = 'loaded';
+        const dbgCnv = document.getElementById('dbg-cnv-st');
+        if (dbgCnv) dbgCnv.textContent = 'GLB Mounted';
+        this.forceMountDomInterfaceWindows();
+        return;
+      } catch (error) {
+        retries++;
+        console.error(`[AssetLoader Debug] Fetch error reason on attempt ${retries}:`, error?.message || error);
+        if (retries > maxRetries) {
+          console.warn('[SpatialRenderer] Workstation GLB failed after max retries; using procedural fallback.', error);
+          this.renderProceduralWorkstation();
+          const dbgCnv = document.getElementById('dbg-cnv-st');
+          if (dbgCnv) dbgCnv.textContent = 'Procedural Fallback Active';
+          return;
         }
-      });
-
-      this.resetGearControls();
-      (['games', 'archive', 'community', 'blueprint', 'memory'] as GearId[]).forEach((id) => {
-        const anchor = this.getModelAnchorPosition(`anchor_${id}`) || this.getFallbackGearAnchor(id);
-        const radius = id === 'games' ? 1.02 : id === 'memory' ? 0.62 : id === 'blueprint' ? 0.86 : 0.76;
-        this.createPanelGear(id, id.toUpperCase(), anchor, radius, id === 'community' ? 2 : id === 'memory' ? 3 : 1);
-      });
-
-      this.workstationModelLoaded = true;
-      this.workstationFallbackActive = false;
-      this.host.dataset.workstationModel = 'loaded';
-    } catch (error) {
-      console.warn('[SpatialRenderer] Workstation GLB failed; using procedural fallback.', error);
-      this.renderProceduralWorkstation();
+        const delay = Math.pow(2, retries) * 400;
+        await new Promise((res) => setTimeout(res, delay));
+      }
     }
   }
 
@@ -519,11 +535,42 @@ export class SpatialRenderer {
     });
   }
 
+  private forceMountDomInterfaceWindows(): void {
+    if (document.getElementById('lm-ui-anchor-rig')) return;
+    const rig = document.createElement('div');
+    rig.id = 'lm-ui-anchor-rig';
+    rig.style.cssText =
+      'position:absolute;bottom:80px;left:0;right:0;pointer-events:none;z-index:1000;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;padding:10px;';
+
+    const windows = [
+      { id: 'arcade-chamber', regId: 'arcade-main', label: 'ARCADE GENESIS', route: './arcade.html', tone: '#00ffff' },
+      { id: 'archive-chamber', regId: 'legacy-static-content', label: 'OLD MEMORY VAULT', route: './library.html', tone: '#8a2be2' },
+      { id: 'signals-chamber', regId: 'signals-dashboard', label: 'TELEMETRY SIGNALS', route: './signals/index.html', tone: '#ff00ff' },
+    ];
+
+    windows.forEach((win) => {
+      const card = document.createElement('div');
+      card.id = win.id;
+      card.style.cssText = `pointer-events:auto;background:rgba(0,16,28,0.85);border:2px solid ${win.tone};border-radius:14px;padding:10px 16px;backdrop-filter:blur(10px);box-shadow:0 0 20px ${win.tone}44;cursor:pointer;text-align:center;font-family:monospace;`;
+      card.innerHTML = `
+        <span style="display:block;font-size:9px;color:${win.tone};font-weight:bold;letter-spacing:1px;margin-bottom:2px;">CHAMBER WINDOW</span>
+        <strong style="font-size:12px;color:#fff;">${win.label}</strong>
+      `;
+      card.addEventListener('click', () => {
+        window.location.assign(win.route);
+      });
+      rig.appendChild(card);
+    });
+
+    if (this.host) this.host.appendChild(rig);
+  }
+
   private renderProceduralWorkstation(): void {
     this.workstationFallbackActive = true;
     this.workstationModelLoaded = false;
     this.host.dataset.workstationModel = 'procedural-fallback';
     this.createWorkstationEnvironment();
+    this.forceMountDomInterfaceWindows();
   }
 
   private inferGearIdFromName(name: string): GearId | undefined {

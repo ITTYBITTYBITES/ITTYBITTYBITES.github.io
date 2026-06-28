@@ -139,8 +139,10 @@ function initKernel() {
     }
     const dbgReg = document.getElementById('dbg-reg-cnt');
     const dbgCnv = document.getElementById('dbg-cnv-st');
+    const dbgTgt = document.getElementById('dbg-tgt-id');
     if (dbgReg) dbgReg.textContent = String(Registry.getAllNodes().length);
     if (dbgCnv) dbgCnv.textContent = spatial?.isWorkstationModelLoaded?.() ? 'GLB Mounted' : 'Procedural Fallback Active';
+    if (dbgTgt) dbgTgt.textContent = document.getElementById('lm-ui-anchor-rig') ? 'DOM_UI_Rig' : 'WebGL_Host';
 
     readyCallbacks.splice(0).forEach((callback) => {
       try { callback(apiRef); } catch (error) { console.warn('[LiquidMemory] ready callback failed', error); }

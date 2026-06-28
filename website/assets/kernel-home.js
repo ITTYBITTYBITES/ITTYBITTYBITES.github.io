@@ -15170,10 +15170,12 @@ var Rf = class {
 		return this.focusDial ? (this.raycaster.setFromCamera(this.pointer, this.camera), this.raycaster.intersectObjects(this.focusDial.children, !0).some((e) => e.object.userData.engageDial)) : !1;
 	}
 	async loadWorkstationAsset() {
-		let e = new Ed();
-		try {
-			let t = (await e.loadAsync("assets/models/liquid-memory-workstation.glb")).scene;
-			t.name = "liquid_memory_workstation_glb_root", t.position.z = -1.96, this.workstationGroup.add(t), this.modelAnchors.clear(), t.traverse((e) => {
+		let e = new Ed(), t = "assets/models/liquid-memory-workstation.glb", n = 0;
+		for (; n <= 5;) try {
+			let n = await e.loadAsync(t);
+			console.log(`[AssetLoader Debug] GLB asset loaded 200 OK: ${t}`);
+			let r = n.scene;
+			r.name = "liquid_memory_workstation_glb_root", r.position.z = -1.96, this.workstationGroup.add(r), this.modelAnchors.clear(), r.traverse((e) => {
 				e.name?.startsWith("anchor_") && (this.modelAnchors.set(e.name, e), e.visible = !1);
 				let t = e;
 				if (t.isMesh) {
@@ -15191,8 +15193,18 @@ var Rf = class {
 				let t = this.getModelAnchorPosition(`anchor_${e}`) || this.getFallbackGearAnchor(e), n = e === "games" ? 1.02 : e === "memory" ? .62 : e === "blueprint" ? .86 : .76;
 				this.createPanelGear(e, e.toUpperCase(), t, n, e === "community" ? 2 : e === "memory" ? 3 : 1);
 			}), this.workstationModelLoaded = !0, this.workstationFallbackActive = !1, this.host.dataset.workstationModel = "loaded";
+			let i = document.getElementById("dbg-cnv-st");
+			i && (i.textContent = "GLB Mounted"), this.forceMountDomInterfaceWindows();
+			return;
 		} catch (e) {
-			console.warn("[SpatialRenderer] Workstation GLB failed; using procedural fallback.", e), this.renderProceduralWorkstation();
+			if (n++, console.error(`[AssetLoader Debug] Fetch error reason on attempt ${n}:`, e?.message || e), n > 5) {
+				console.warn("[SpatialRenderer] Workstation GLB failed after max retries; using procedural fallback.", e), this.renderProceduralWorkstation();
+				let t = document.getElementById("dbg-cnv-st");
+				t && (t.textContent = "Procedural Fallback Active");
+				return;
+			}
+			let t = 2 ** n * 400;
+			await new Promise((e) => setTimeout(e, t));
 		}
 	}
 	tuneImportedMaterial(e) {
@@ -15203,8 +15215,43 @@ var Rf = class {
 			r.includes("paper") || r.includes("parchment") || r.includes("blueprint") ? (n.map = null, n.roughnessMap = null, n.normalMap = null, n.bumpMap = null, n.color.set(zf.CYAN), n.emissive = new J(zf.CYAN), n.emissiveIntensity = .16, n.opacity = .18, n.transparent = !0, n.roughness = .48, n.metalness = .08) : r.includes("bronze") || r.includes("brass") || r.includes("gear") ? (n.color.set(zf.CYAN), n.emissive = new J(zf.CYAN), n.emissiveIntensity = .12, n.roughness = Math.min(.72, Math.max(.42, n.roughness ?? .55))) : (r.includes("wood") || r.includes("desk")) && (n.color.set(5666), n.emissive = new J(13124), n.emissiveIntensity = .06, n.roughness = .82), n.needsUpdate = !0;
 		});
 	}
+	forceMountDomInterfaceWindows() {
+		if (document.getElementById("lm-ui-anchor-rig")) return;
+		let e = document.createElement("div");
+		e.id = "lm-ui-anchor-rig", e.style.cssText = "position:absolute;bottom:80px;left:0;right:0;pointer-events:none;z-index:1000;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;padding:10px;", [
+			{
+				id: "arcade-chamber",
+				regId: "arcade-main",
+				label: "ARCADE GENESIS",
+				route: "./arcade.html",
+				tone: "#00ffff"
+			},
+			{
+				id: "archive-chamber",
+				regId: "legacy-static-content",
+				label: "OLD MEMORY VAULT",
+				route: "./library.html",
+				tone: "#8a2be2"
+			},
+			{
+				id: "signals-chamber",
+				regId: "signals-dashboard",
+				label: "TELEMETRY SIGNALS",
+				route: "./signals/index.html",
+				tone: "#ff00ff"
+			}
+		].forEach((t) => {
+			let n = document.createElement("div");
+			n.id = t.id, n.style.cssText = `pointer-events:auto;background:rgba(0,16,28,0.85);border:2px solid ${t.tone};border-radius:14px;padding:10px 16px;backdrop-filter:blur(10px);box-shadow:0 0 20px ${t.tone}44;cursor:pointer;text-align:center;font-family:monospace;`, n.innerHTML = `
+        <span style="display:block;font-size:9px;color:${t.tone};font-weight:bold;letter-spacing:1px;margin-bottom:2px;">CHAMBER WINDOW</span>
+        <strong style="font-size:12px;color:#fff;">${t.label}</strong>
+      `, n.addEventListener("click", () => {
+				window.location.assign(t.route);
+			}), e.appendChild(n);
+		}), this.host && this.host.appendChild(e);
+	}
 	renderProceduralWorkstation() {
-		this.workstationFallbackActive = !0, this.workstationModelLoaded = !1, this.host.dataset.workstationModel = "procedural-fallback", this.createWorkstationEnvironment();
+		this.workstationFallbackActive = !0, this.workstationModelLoaded = !1, this.host.dataset.workstationModel = "procedural-fallback", this.createWorkstationEnvironment(), this.forceMountDomInterfaceWindows();
 	}
 	inferGearIdFromName(e) {
 		let t = e.toLowerCase();
@@ -16072,8 +16119,8 @@ function ap() {
 	function x() {
 		if (g || !_) return;
 		g = !0, document.body.classList.add("liquid-ready"), p?.getGearCount() === 5 && p?.getGaugeCount() >= 4 && p?.isWorkstationModelLoaded?.() && np();
-		let e = document.getElementById("dbg-reg-cnt"), n = document.getElementById("dbg-cnv-st");
-		e && (e.textContent = String(t.getAllNodes().length)), n && (n.textContent = p?.isWorkstationModelLoaded?.() ? "GLB Mounted" : "Procedural Fallback Active"), v.splice(0).forEach((e) => {
+		let e = document.getElementById("dbg-reg-cnt"), n = document.getElementById("dbg-cnv-st"), r = document.getElementById("dbg-tgt-id");
+		e && (e.textContent = String(t.getAllNodes().length)), n && (n.textContent = p?.isWorkstationModelLoaded?.() ? "GLB Mounted" : "Procedural Fallback Active"), r && (r.textContent = document.getElementById("lm-ui-anchor-rig") ? "DOM_UI_Rig" : "WebGL_Host"), v.splice(0).forEach((e) => {
 			try {
 				e(_);
 			} catch (e) {
