@@ -237,11 +237,23 @@ var e = "lm_portal_arrival", t = "lm_chamber_departure", n = class n {
 				description: "An experimental acoustic spatial WebGL prototype probing deep obsidian chambers via spatialized echo reverberation loops.",
 				seoLabel: "Liquid Memory Echo Void Prototype",
 				isLegacyStatic: !0
+			}],
+			["2-second-recognition-window", {
+				nodeId: "2-second-recognition-window",
+				gearId: "games",
+				kernelEvent: "witness.recognition_window",
+				route: "./library/2-second-recognition-window.html",
+				title: "The 2-Second Recognition Window",
+				category: "flagship",
+				description: "Split-second trial calibrating pattern recognition and cognitive load under competitive gaming pressure.",
+				seoLabel: "Liquid Memory 2 Second Recognition Window"
 			}]
 		]);
 	}
 	static {
 		this.aliases = new Map([
+			["recognition window", "2-second-recognition-window"],
+			["2-second-recognition-window", "2-second-recognition-window"],
 			["echo void", "echo-void"],
 			["echo-void.html", "echo-void"],
 			["games", "arcade-main"],

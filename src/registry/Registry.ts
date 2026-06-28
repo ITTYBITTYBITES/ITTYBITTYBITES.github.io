@@ -165,9 +165,24 @@ export class Registry {
         isLegacyStatic: true,
       },
     ],
+    [
+      '2-second-recognition-window',
+      {
+        nodeId: '2-second-recognition-window',
+        gearId: 'games',
+        kernelEvent: 'witness.recognition_window',
+        route: './library/2-second-recognition-window.html',
+        title: 'The 2-Second Recognition Window',
+        category: 'flagship',
+        description: 'Split-second trial calibrating pattern recognition and cognitive load under competitive gaming pressure.',
+        seoLabel: 'Liquid Memory 2 Second Recognition Window',
+      },
+    ],
   ]);
 
   private static aliases: Map<string, string> = new Map([
+    ['recognition window', '2-second-recognition-window'],
+    ['2-second-recognition-window', '2-second-recognition-window'],
     ['echo void', 'echo-void'],
     ['echo-void.html', 'echo-void'],
     ['games', 'arcade-main'],
