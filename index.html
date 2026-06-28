@@ -115,6 +115,19 @@
         }
       }, 500);
     });
+
+    // Register Service Worker for PWA Lifecycle (Phase 9)
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+          .then((registration) => {
+            console.log('✓ [Service Worker] Registered successfully with scope:', registration.scope);
+          })
+          .catch((err) => {
+            console.error('✗ [Service Worker] Registration failed:', err);
+          });
+      });
+    }
   </script>
 </body>
 </html>
