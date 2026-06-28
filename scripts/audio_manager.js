@@ -1,8 +1,8 @@
 /**
- * ITTYBITTYBITES AUDIO MANAGER (Phase 20 - Audio Engine Refactor)
- * Fully rebalanced Web Audio API Synth Engine.
- * Implements a non-intrusive, low-frequency atmospheric background thrum,
- * crisp short UI interaction pings, and prioritized gain ducking.
+ * ITTYBITTYBITES AUDIO MANAGER (Phase 20 - Audio Engine Refactor V2)
+ * Fully rebalanced Web Audio API Synth Engine optimized for hardware audibility.
+ * Implements a warm, non-intrusive, mid-low frequency atmospheric drone (A2 note)
+ * designed to be clearly audible on laptops/mobiles, yet soft and soothing.
  */
 
 class AudioManager {
@@ -16,10 +16,10 @@ class AudioManager {
     this.isMuted = false;
     this.isAmbiencePlaying = false;
     
-    // Core frequency limits for depth-aware synthesis (Phase 20 Rebalance: much softer, warm cutoff)
-    this.maxCutoff = 350; // Warm, low cutoff at tunnel entrance (Z = 10)
-    this.minCutoff = 120; // Barely audible deep sub-bass thrum at deep-storage (Z = -300)
-    this.baseAmbienceVolume = 0.035; // Lower base gain significantly (15% volume level)
+    // Core frequency limits for depth-aware synthesis (Phase 20 Rebalance: warm mid-bass cutoff)
+    this.maxCutoff = 500; // Warm, easily reproducible cutoff at entrance (Z = 10)
+    this.minCutoff = 180; // Softer muffled sub-bass cutoff at depth (Z = -300)
+    this.baseAmbienceVolume = 0.055; // Calibrated non-intrusive gain (audible on laptop speakers!)
   }
 
   /**
@@ -41,7 +41,8 @@ class AudioManager {
 
   /**
    * Builds the soft low-frequency ambient drone synthesis pipeline.
-   * Completely rebalanced to avoid jarring noise.
+   * Calibrated with A2 (110Hz) frequencies so that it is beautifully audible
+   * on all standard computer and laptop speakers (which cut off below 100Hz).
    */
   setupAmbienceSynth() {
     if (!this.ctx) return;
@@ -53,14 +54,14 @@ class AudioManager {
     this.ambientOsc1.type = "sine";      // Pure smooth sine wave
     this.ambientOsc2.type = "triangle";  // Soft triangle wave for warmth
 
-    this.ambientOsc1.frequency.value = 55;   // Deep A1 sub-bass note
-    this.ambientOsc2.frequency.value = 55.2; // Slightly detuned for slow, relaxing phased thrum
+    this.ambientOsc1.frequency.value = 110;   // Detuned A2 mid-bass note (reproducible on laptop speakers!)
+    this.ambientOsc2.frequency.value = 110.3; // Phased detuning for slow relaxing thrum
 
     // 2. Create high-resonance low-pass filter to restrict higher harmonics
     this.ambientFilter = this.ctx.createBiquadFilter();
     this.ambientFilter.type = "lowpass";
     this.ambientFilter.frequency.value = this.maxCutoff;
-    this.ambientFilter.Q.value = 3.0; // Moderate resonance
+    this.ambientFilter.Q.value = 3.5; // Moderate resonance
 
     // 3. Create Gain Node for volume control
     this.ambientGain = this.ctx.createGain();
@@ -93,7 +94,8 @@ class AudioManager {
    */
   startAmbience() {
     this.resumeContext().then(() => {
-      if (!this.ctx || this.isAmbiencePlaying || this.isMuted) return;
+      if (!this.ctx || this.isMuted) return;
+      if (this.isAmbiencePlaying) return;
 
       console.log("🔊 [AudioManager] Starting ambient drone soundscape...");
       this.isAmbiencePlaying = true;
@@ -102,7 +104,7 @@ class AudioManager {
       const now = this.ctx.currentTime;
       this.ambientGain.gain.cancelScheduledValues(now);
       this.ambientGain.gain.setValueAtTime(0, now);
-      this.ambientGain.gain.linearRampToValueAtTime(this.baseGainValue(), now + 2.5); // 2.5s fade-in
+      this.ambientGain.gain.linearRampToValueAtTime(this.baseGainValue(), now + 2.0); // 2.0s fade-in
     });
   }
 
@@ -130,7 +132,6 @@ class AudioManager {
 
   /**
    * Modulates the cutoff frequency of the ambient lowpass filter based on camera Z depth.
-   * Logs smooth sub-bass filters proportional to the extended depth coordinates.
    * @param {number} cameraZ - Active camera position on the Z-axis.
    */
   updateDepth(cameraZ) {
