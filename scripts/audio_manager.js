@@ -1,7 +1,8 @@
 /**
- * ITTYBITTYBITES AUDIO MANAGER (Phase 6)
- * Programmatic Web Audio API Synth Engine for Ambient Drones and UI Sound FX.
- * Depth-aware low-pass filter synthesis tracking camera position.
+ * ITTYBITTYBITES AUDIO MANAGER (Phase 20 - Audio Engine Refactor)
+ * Fully rebalanced Web Audio API Synth Engine.
+ * Implements a non-intrusive, low-frequency atmospheric background thrum,
+ * crisp short UI interaction pings, and prioritized gain ducking.
  */
 
 class AudioManager {
@@ -15,9 +16,10 @@ class AudioManager {
     this.isMuted = false;
     this.isAmbiencePlaying = false;
     
-    // Core frequency limits for depth-aware synthesis
-    this.maxCutoff = 1800; // Crisp frequency at tunnel entrance (Z = 10)
-    this.minCutoff = 250;  // Deep muffled frequency at deep-storage (Z = -110)
+    // Core frequency limits for depth-aware synthesis (Phase 20 Rebalance: much softer, warm cutoff)
+    this.maxCutoff = 350; // Warm, low cutoff at tunnel entrance (Z = 10)
+    this.minCutoff = 120; // Barely audible deep sub-bass thrum at deep-storage (Z = -300)
+    this.baseAmbienceVolume = 0.035; // Lower base gain significantly (15% volume level)
   }
 
   /**
@@ -38,26 +40,27 @@ class AudioManager {
   }
 
   /**
-   * Builds the low-frequency ambient drone synthesis pipeline.
+   * Builds the soft low-frequency ambient drone synthesis pipeline.
+   * Completely rebalanced to avoid jarring noise.
    */
   setupAmbienceSynth() {
     if (!this.ctx) return;
 
-    // 1. Create detuned drone oscillators (detuned saw/triangle notes for phasing rich texture)
+    // 1. Create detuned drone oscillators (detuned sine/triangle notes for extremely warm background thrum)
     this.ambientOsc1 = this.ctx.createOscillator();
     this.ambientOsc2 = this.ctx.createOscillator();
     
-    this.ambientOsc1.type = "triangle";
-    this.ambientOsc2.type = "sawtooth";
+    this.ambientOsc1.type = "sine";      // Pure smooth sine wave
+    this.ambientOsc2.type = "triangle";  // Soft triangle wave for warmth
 
-    this.ambientOsc1.frequency.value = 110; // A2 note
-    this.ambientOsc2.frequency.value = 110.4; // Detuned slightly for lush phasing drone
+    this.ambientOsc1.frequency.value = 55;   // Deep A1 sub-bass note
+    this.ambientOsc2.frequency.value = 55.2; // Slightly detuned for slow, relaxing phased thrum
 
-    // 2. Create high-resonance low-pass filter
+    // 2. Create high-resonance low-pass filter to restrict higher harmonics
     this.ambientFilter = this.ctx.createBiquadFilter();
     this.ambientFilter.type = "lowpass";
     this.ambientFilter.frequency.value = this.maxCutoff;
-    this.ambientFilter.Q.value = 4.5; // Resonant peak
+    this.ambientFilter.Q.value = 3.0; // Moderate resonance
 
     // 3. Create Gain Node for volume control
     this.ambientGain = this.ctx.createGain();
@@ -95,40 +98,46 @@ class AudioManager {
       console.log("🔊 [AudioManager] Starting ambient drone soundscape...");
       this.isAmbiencePlaying = true;
 
-      // Smooth fade-in
+      // Smooth, long fade-in to prevent jarring onset pops
       const now = this.ctx.currentTime;
       this.ambientGain.gain.cancelScheduledValues(now);
       this.ambientGain.gain.setValueAtTime(0, now);
-      this.ambientGain.gain.linearRampToValueAtTime(0.18, now + 2.0); // 2-second fade-in
+      this.ambientGain.gain.linearRampToValueAtTime(this.baseGainValue(), now + 2.5); // 2.5s fade-in
     });
   }
 
   /**
-   * Fades out and mutes the ambient drone (e.g. when mounting active game sandbox).
+   * Fades out the ambient drone immediately (ducking to 0%) when a game is loaded.
+   * Completely avoids background audio bleed to respect privacy and policy.
    */
   stopAmbience() {
     if (!this.ctx || !this.isAmbiencePlaying) return;
 
-    console.log("🔊 [AudioManager] Muting ambient drone soundscape...");
+    console.log("🔊 [AudioManager] Attenuating (ducking) ambient drone to 0% for game focus...");
     this.isAmbiencePlaying = false;
 
     const now = this.ctx.currentTime;
     this.ambientGain.gain.cancelScheduledValues(now);
-    this.ambientGain.gain.linearRampToValueAtTime(0.0, now + 0.8); // 0.8s smooth fade-out
+    this.ambientGain.gain.linearRampToValueAtTime(0.0, now + 0.2); // Instant, fast 0.2s fade-out (ducking)
+  }
+
+  /**
+   * Helper: Calculates targeted gain volume based on muting states.
+   */
+  baseGainValue() {
+    return this.isMuted ? 0.0 : this.baseAmbienceVolume;
   }
 
   /**
    * Modulates the cutoff frequency of the ambient lowpass filter based on camera Z depth.
-   * Camera Z = 10 (entrance) -> Crisp, high cutoff.
-   * Camera Z = -110 (deep) -> Muffled, heavy bass cutoff.
+   * Logs smooth sub-bass filters proportional to the extended depth coordinates.
    * @param {number} cameraZ - Active camera position on the Z-axis.
    */
   updateDepth(cameraZ) {
     if (!this.ctx || !this.ambientFilter || !this.isAmbiencePlaying) return;
 
-    // Clamp camera bounds
     const entranceZ = 10;
-    const deepZ = -110;
+    const deepZ = -300; // Track the extended Phase 16 tunnel coordinates
     
     // Calculate progress ratio (0.0 at entrance, 1.0 at maximum depth)
     const ratio = Math.max(0, Math.min(1, (entranceZ - cameraZ) / (entranceZ - deepZ)));
@@ -142,7 +151,8 @@ class AudioManager {
   }
 
   /**
-   * Plays a quick synth 'ping' upon hovering over interactive 3D nodes.
+   * Plays a crisp, short, clean high-frequency synth 'ping' upon node clicks or hovers.
+   * Deleted any chaotic, distorted, or high-gain assets.
    */
   playHoverPing() {
     this.resumeContext().then(() => {
@@ -153,51 +163,50 @@ class AudioManager {
       const osc = this.ctx.createOscillator();
       const gainNode = this.ctx.createGain();
 
-      osc.type = "sine";
-      // Slide frequency up slightly for an organic sound
-      osc.frequency.setValueAtTime(880, now); // A5 note
-      osc.frequency.exponentialRampToValueAtTime(1320, now + 0.08); // Sweep up
+      osc.type = "sine"; // Pure high-frequency clean sine wave
+      osc.frequency.setValueAtTime(960, now); // Crisp high C6 note
+      osc.frequency.exponentialRampToValueAtTime(1440, now + 0.05); // Clean brief sweep up
 
-      gainNode.gain.setValueAtTime(0.08, now);
-      gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.15); // Short decay
+      gainNode.gain.setValueAtTime(0.04, now); // Gentle, low volume
+      gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.1); // Ultra-fast clean decay (100ms)
 
       osc.connect(gainNode);
       gainNode.connect(this.ctx.destination);
 
       osc.start(now);
-      osc.stop(now + 0.16);
+      osc.stop(now + 0.12);
     });
   }
 
   /**
-   * Synthesizes a deep wind-like 'woosh' when performing camera transitions/dives.
+   * Synthesizes a very soft, filtered air-woosh when performing camera transitions/dives.
+   * Non-distorted, low gain.
    */
   playWoosh() {
     this.resumeContext().then(() => {
       if (!this.ctx || this.isMuted) return;
 
       const now = this.ctx.currentTime;
-      const duration = 1.4; // Match camera tween transition duration exactly
+      const duration = 1.4;
 
       const osc = this.ctx.createOscillator();
       const filter = this.ctx.createBiquadFilter();
       const gainNode = this.ctx.createGain();
 
-      osc.type = "triangle";
-      osc.frequency.setValueAtTime(80, now);
-      // Sweep frequency up then back down to simulate speed rush
-      osc.frequency.quadraticRampToValueAtTime(280, now + duration / 2);
-      osc.frequency.exponentialRampToValueAtTime(60, now + duration);
+      osc.type = "sine"; // Sine oscillators prevent standard triangle/saw clipping
+      osc.frequency.setValueAtTime(60, now);
+      osc.frequency.quadraticRampToValueAtTime(120, now + duration / 2);
+      osc.frequency.exponentialRampToValueAtTime(40, now + duration);
 
       filter.type = "lowpass";
-      filter.frequency.setValueAtTime(200, now);
-      filter.frequency.exponentialRampToValueAtTime(1200, now + duration / 2);
-      filter.frequency.exponentialRampToValueAtTime(100, now + duration);
-      filter.Q.value = 5.0;
+      filter.frequency.setValueAtTime(100, now);
+      filter.frequency.exponentialRampToValueAtTime(400, now + duration / 2);
+      filter.frequency.exponentialRampToValueAtTime(80, now + duration);
+      filter.Q.value = 2.0;
 
       gainNode.gain.setValueAtTime(0.0, now);
-      gainNode.gain.linearRampToValueAtTime(0.24, now + duration * 0.3); // Rise
-      gainNode.gain.exponentialRampToValueAtTime(0.001, now + duration); // Fall
+      gainNode.gain.linearRampToValueAtTime(0.06, now + duration * 0.2); // Extremely soft, background woosh
+      gainNode.gain.exponentialRampToValueAtTime(0.001, now + duration);
 
       osc.connect(filter);
       filter.connect(gainNode);
