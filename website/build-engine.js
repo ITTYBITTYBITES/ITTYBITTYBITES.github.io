@@ -969,7 +969,7 @@ ${topicCards}
         </div>
 
         <div class="max-w-[1400px] mx-auto text-center text-xs text-slate-500 tracking-widest uppercase flex flex-col sm:flex-row items-center justify-between gap-6 font-mono font-bold">
-            <div class="text-slate-400">© 2026 LIQUID MEMORY // CLASSIFIED COGNITIVE TRAINING DIVISION</div>
+            <div class="text-slate-400">© 2026 Ittybittybites • Liquid Memory Platform</div>
             <div class="flex flex-wrap justify-center gap-6 text-slate-400">
                 <a href="../privacy_policy.html" class="hover:text-cyan-400 transition-colors">Privacy Policy</a>
                 <a href="../terms_of_service.html" class="hover:text-cyan-400 transition-colors">Terms of Service</a>
@@ -1443,7 +1443,7 @@ function makeGlobalFooter(prefix = '') {
         </div>
 
         <div class="max-w-[1400px] mx-auto text-center text-xs text-slate-500 tracking-widest uppercase flex flex-col sm:flex-row items-center justify-between gap-6 font-mono font-bold">
-            <div class="text-slate-400">© 2026 LIQUID MEMORY // CLASSIFIED COGNITIVE TRAINING DIVISION</div>
+            <div class="text-slate-400">© 2026 Ittybittybites • Liquid Memory Platform</div>
             <div class="flex flex-wrap justify-center gap-6 text-slate-400 font-mono">
                 <a href="{{PREFIX}}privacy_policy.html" class="hover:text-cyan-400 transition-colors">Privacy Policy</a>
                 <a href="{{PREFIX}}terms_of_service.html" class="hover:text-cyan-400 transition-colors">Terms of Service</a>
