@@ -128,6 +128,7 @@ export class SpatialRenderer {
   private semanticTwinsContainer?: HTMLElement;
   private ghostLineGroup = new THREE.Group();
   private lastGhostSync = 0;
+  private bootStartTime = performance.now();
 
   constructor(
     private host: HTMLElement,
@@ -1502,6 +1503,17 @@ export class SpatialRenderer {
     if (!this.ensureCanvasMounted() || this.isWebGLContextUnavailable()) {
       this.rafId = requestAnimationFrame(this.animate);
       return;
+    }
+
+    const bootOverlay = document.getElementById('lm-boot-overlay');
+    if (bootOverlay && !bootOverlay.dataset.hidden) {
+      const start = Number(bootOverlay.dataset.start) || this.bootStartTime;
+      if (performance.now() - start >= 220) {
+        bootOverlay.dataset.hidden = 'true';
+        bootOverlay.style.pointerEvents = 'none';
+        bootOverlay.style.opacity = '0';
+        window.setTimeout(() => { if (bootOverlay) bootOverlay.style.visibility = 'hidden'; }, 400);
+      }
     }
 
     this.checkLayoutHealth(performance.now());

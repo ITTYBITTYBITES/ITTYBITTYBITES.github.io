@@ -1,15 +1,14 @@
 /**
- * Total Spatial Purge (Zero-Nav State) & Universal Footer Mounter v2.0
+ * Total Spatial Purge (Zero-Nav State), Universal Deep-Link Interception,
+ * Entering Site Flash-Blanking Overlay & Footer Mounter v2.2
  *
  * Studio: Ittybittybites | Platform: Liquid Memory
- * Completely purges top visual navigation bars (#lm-global-nav) and replaces
- * with a persistent top-center 1x1px glowing dot root return icon.
  */
 (function(){
   if (window.self !== window.top) {
     if (document.documentElement) document.documentElement.classList.add('is-iframe-sandbox');
     const cleanIframe = () => {
-      document.querySelectorAll('nav, header, footer, .ibb-nav, .ibb-footer, #lm-global-nav, #lm-global-footer, #lm-spatial-return').forEach(el => el.remove());
+      document.querySelectorAll('nav, header, footer, .ibb-nav, .ibb-footer, #lm-global-nav, #lm-global-footer, #lm-spatial-return, #lm-boot-overlay').forEach(el => el.remove());
       if (document.body) {
         document.body.classList.add('is-iframe-sandbox');
         document.body.style.paddingTop = '0px';
@@ -19,6 +18,19 @@
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', cleanIframe);
     else cleanIframe();
     return;
+  }
+
+  // Intercept deep link requests and boot Kernel Master Hub
+  const path = window.location.pathname;
+  if (path.includes('/games/') || path.includes('/library/') || path.includes('/articles/') || path.includes('/arcade/')) {
+    const slug = path.split('/').pop().replace('.html', '');
+    if (slug && !['index', 'arcade', 'library', 'feed', 'sitemap'].includes(slug)) {
+      try {
+        sessionStorage.setItem('lm_portal_arrival', JSON.stringify({ chamber: 'Arcade Genesis', nodeId: slug }));
+      } catch {}
+      window.location.replace('/website/index.html#' + encodeURIComponent(slug));
+      return;
+    }
   }
 
   const mountFooter = () => {
@@ -39,8 +51,43 @@
   };
 
   const purgeNavAndMountReturn = () => {
-    // Total Spatial Purge of visual navigation
     document.querySelectorAll('nav, header.ibb-nav, .ibb-nav, #lm-global-nav, header[class*="sticky"]').forEach(n => n.remove());
+
+    let bootOverlay = document.getElementById('lm-boot-overlay');
+    if (!bootOverlay) {
+      bootOverlay = document.createElement('div');
+      bootOverlay.id = 'lm-boot-overlay';
+      bootOverlay.dataset.start = performance.now();
+      bootOverlay.style.cssText = 'position:fixed;top:0;left:0;right:0;bottom:0;z-index:999999;background-color:#020617;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#22d3ee;font-family:monospace;transition:opacity .4s ease, visibility .4s ease;';
+      bootOverlay.innerHTML = `
+        <style>
+          @keyframes enteringSitePulse {
+            0%, 100% { opacity: 0.3; transform: scale(0.98); filter: drop-shadow(0 0 10px #22d3ee); }
+            50% { opacity: 1; transform: scale(1.02); filter: drop-shadow(0 0 25px #00ffff); }
+          }
+          .entering-site-anim { animation: enteringSitePulse 1.2s infinite ease-in-out; text-align: center; }
+        </style>
+        <div class="entering-site-anim">
+          <span style="font-size:10px;letter-spacing:3px;color:#facc15;font-weight:900;display:block;margin-bottom:8px;">LIQUID MEMORY SYSTEM</span>
+          <strong style="font-size:16px;letter-spacing:2px;color:#fff;">ENTERING SITE // HOLOGRAPHIC VOID</strong>
+        </div>
+      `;
+      if (document.body) document.body.insertBefore(bootOverlay, document.body.firstChild);
+      
+      const start = Number(bootOverlay.dataset.start) || performance.now();
+      const hideBoot = () => {
+        if (performance.now() - start < 220) {
+          setTimeout(hideBoot, 40);
+          return;
+        }
+        bootOverlay.style.pointerEvents = 'none';
+        bootOverlay.style.opacity = '0';
+        setTimeout(() => { if (bootOverlay) bootOverlay.style.visibility = 'hidden'; }, 400);
+      };
+      if (!window.location.pathname.endsWith('/website/') && !window.location.pathname.endsWith('index.html')) {
+        setTimeout(hideBoot, 220);
+      }
+    }
 
     let returnDot = document.getElementById('lm-spatial-return');
     if (!returnDot) {

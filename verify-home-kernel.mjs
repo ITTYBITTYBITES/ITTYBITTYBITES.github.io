@@ -6,6 +6,7 @@ const page=await browser.newPage();
 const errors=[]; page.on('pageerror', e=>errors.push(e.message));
 await page.goto(BASE, {waitUntil:'domcontentloaded', timeout: 60000});
 await page.waitForSelector('#living-kernel');
+if (await page.locator('#lm-boot-overlay').count()) ok('Entering Site boot overlay present'); else fail('Entering Site boot overlay present');
 if (await page.locator('script[src="assets/kernel-home.js"]').count()) ok('Homepage kernel bundle referenced'); else fail('Homepage kernel bundle referenced');
 await page.waitForFunction(() => !!window.LiquidMemoryKernel);
 ok('Liquid Memory Kernel attached to window');

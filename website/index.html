@@ -46,6 +46,21 @@
   <script src="assets/global-nav.js"></script>
 </head>
 <body class="ibb-brand liquid-fullscreen liquid-fused-system" style="background-color: #020617; color: #bfffff;">
+  <div id="lm-boot-overlay" data-start="">
+    <style>
+      @keyframes enteringSitePulse {
+        0%, 100% { opacity: 0.3; transform: scale(0.98); filter: drop-shadow(0 0 10px #22d3ee); }
+        50% { opacity: 1; transform: scale(1.02); filter: drop-shadow(0 0 25px #00ffff); }
+      }
+      #lm-boot-overlay { position:fixed;top:0;left:0;right:0;bottom:0;z-index:999999;background-color:#020617;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#22d3ee;font-family:monospace;transition:opacity .4s ease, visibility .4s ease; }
+      .entering-site-anim { animation: enteringSitePulse 1.2s infinite ease-in-out; text-align: center; }
+    </style>
+    <div class="entering-site-anim">
+      <span style="font-size:10px;letter-spacing:3px;color:#facc15;font-weight:900;display:block;margin-bottom:8px;">LIQUID MEMORY SYSTEM</span>
+      <strong style="font-size:16px;letter-spacing:2px;color:#fff;">ENTERING SITE // HOLOGRAPHIC VOID</strong>
+    </div>
+  </div>
+  <script>document.getElementById("lm-boot-overlay").dataset.start = performance.now();</script>
   <main id="living-kernel" class="liquid-memory-system" aria-label="Liquid Memory fused WebGL Blueprint machine">
 
     <div id="liquid-loading" class="liquid-loading" aria-live="polite"><span>Liquid Memory</span><small>Initializing Blueprint Workstation</small></div>
