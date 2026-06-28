@@ -14968,8 +14968,8 @@ var Rf = class {
 				s && (s.rotation.z = Math.PI / 4 + Math.sin(e * .55 + n) * .018), c && (c.position.y = Math.sin(e * 1.6 + n) * .72);
 				let l = t.active ? 1.08 : 1, u = this.hoveredGear === t || this.selectedGear === t ? 1.08 : 1, d = t.group.userData.panelScale ?? 1, f = this.profile.gearScale * this.profile.touchTargetScale * d, p = f * l * u, m = t.group.userData.hitProxy;
 				if (m) {
-					let e = this.profile.kind === "mobile" ? this.profile.orientation === "portrait" ? .78 : .72 : 0, t = e > 0 ? Math.max(1, e / Math.max(.001, 2 * f)) : 1;
-					m.scale.set(t, t, 1);
+					let e = Math.max(1, .75 / Math.max(.001, 2 * f));
+					m.scale.set(e, e, 1);
 				}
 				t.group.scale.lerp(new W(p, p, p), .08);
 			}), this.focusDial && (this.focusDial.rotation.z -= .004), this.nodes.forEach((t, n) => {
@@ -15150,17 +15150,16 @@ var Rf = class {
 		t || r ? this.gearGroup.position.copy(n) : this.gearGroup.position.lerp(n, .35), this.layoutGauges(e.gaugeMode), this.updateShadowMode(e), this.updateBloomProfile(e);
 	}
 	updateShadowMode(e) {
-		let t = e.kind === "mobile";
 		this.gearGroup.traverse((e) => {
-			let n = e;
-			n.isMesh && (n.castShadow = !t);
+			let t = e;
+			t.isMesh && (t.castShadow = !0);
 		}), this.biomeGroup.traverse((e) => {
 			let t = e;
 			t.isMesh && (t.castShadow = !1);
 		});
 	}
 	updateBloomProfile(e) {
-		this.bloomPass && (this.bloomPass.strength = e.kind === "mobile" ? 1.25 : 1.42, this.bloomPass.radius = e.kind === "mobile" ? .48 : .58, this.bloomPass.threshold = .82);
+		this.bloomPass && (this.bloomPass.strength = 1.42, this.bloomPass.radius = .58, this.bloomPass.threshold = .82);
 	}
 	applyCameraProfile(e, t = !1) {
 		let n = new W(e.camera.x, e.camera.y, e.camera.z), r = new W(e.camera.targetX, e.camera.targetY, e.camera.targetZ);
@@ -15525,27 +15524,27 @@ var Rf = class {
 	}
 	emitCriticalParticleFeedback(e, t, n) {
 		if (e !== Af.CRITICAL) return;
-		let r = this.profile.kind === "mobile" ? 18 : 28, i = new Pr(), a = new Float32Array(r * 3), o = new Float32Array(r * 3);
-		for (let e = 0; e < r; e += 1) {
-			let n = e * 3, i = e / r * Math.PI * 2, s = .04 + Math.random() * .18;
-			a[n] = t.x + Math.cos(i) * s, a[n + 1] = t.y + Math.sin(i) * s, a[n + 2] = t.z + .05 + Math.random() * .12, o[n] = Math.cos(i) * (.006 + Math.random() * .018), o[n + 1] = Math.sin(i) * (.006 + Math.random() * .018), o[n + 2] = .004 + Math.random() * .01;
+		let r = new Pr(), i = new Float32Array(84), a = new Float32Array(84);
+		for (let e = 0; e < 28; e += 1) {
+			let n = e * 3, r = e / 28 * Math.PI * 2, o = .04 + Math.random() * .18;
+			i[n] = t.x + Math.cos(r) * o, i[n + 1] = Math.sin(r) * o, i[n + 2] = t.z + .05 + Math.random() * .12, a[n] = Math.cos(r) * (.006 + Math.random() * .018), a[n + 1] = Math.sin(r) * (.006 + Math.random() * .018), a[n + 2] = .004 + Math.random() * .01;
 		}
-		i.setAttribute("position", new br(a, 3)), i.setAttribute("velocity", new br(o, 3));
-		let s = new xa(i, new ga({
+		r.setAttribute("position", new br(i, 3)), r.setAttribute("velocity", new br(a, 3));
+		let o = new xa(r, new ga({
 			color: n,
-			size: this.profile.kind === "mobile" ? .035 : .045,
+			size: .045,
 			transparent: !0,
 			opacity: .58,
 			depthWrite: !1,
 			blending: 2,
 			toneMapped: !1
 		}));
-		s.userData = {
+		o.userData = {
 			nonNodeParticleFeedback: !0,
 			spawnTier: e,
 			createdAt: performance.now(),
 			ttl: 1200
-		}, this.particleGroup.add(s);
+		}, this.particleGroup.add(o);
 	}
 	getSpawnTierVisuals(e) {
 		switch (e) {

@@ -437,10 +437,10 @@ export class SpatialRenderer {
   }
 
   private updateShadowMode(profile: ResponsiveProfile): void {
-    const mobile = profile.kind === 'mobile';
+    // Consolidated full-capacity shadow casting across all desktop and mobile inputs
     this.gearGroup.traverse((obj) => {
       const mesh = obj as THREE.Mesh;
-      if (mesh.isMesh) mesh.castShadow = !mobile;
+      if (mesh.isMesh) mesh.castShadow = true;
     });
     this.biomeGroup.traverse((obj) => {
       const mesh = obj as THREE.Mesh;
@@ -451,8 +451,9 @@ export class SpatialRenderer {
 
   private updateBloomProfile(profile: ResponsiveProfile): void {
     if (!this.bloomPass) return;
-    this.bloomPass.strength = profile.kind === 'mobile' ? 1.25 : 1.42;
-    this.bloomPass.radius = profile.kind === 'mobile' ? 0.48 : 0.58;
+    // Consolidated full-capacity holographic bloom across all viewports
+    this.bloomPass.strength = 1.42;
+    this.bloomPass.radius = 0.58;
     this.bloomPass.threshold = 0.82;
   }
 
@@ -898,7 +899,8 @@ export class SpatialRenderer {
   private emitCriticalParticleFeedback(tier: SpawnTier, origin: THREE.Vector3, color: number): void {
     if (tier !== SpawnTier.CRITICAL) return;
 
-    const particleCount = this.profile.kind === 'mobile' ? 18 : 28;
+    // Consolidated full-capacity particle count and point sizing across all devices
+    const particleCount = 28;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(particleCount * 3);
     const velocities = new Float32Array(particleCount * 3);
@@ -908,7 +910,7 @@ export class SpatialRenderer {
       const angle = (i / particleCount) * Math.PI * 2;
       const radius = 0.04 + Math.random() * 0.18;
       positions[offset] = origin.x + Math.cos(angle) * radius;
-      positions[offset + 1] = origin.y + Math.sin(angle) * radius;
+      positions[offset + 1] = Math.sin(angle) * radius;
       positions[offset + 2] = origin.z + 0.05 + Math.random() * 0.12;
       velocities[offset] = Math.cos(angle) * (0.006 + Math.random() * 0.018);
       velocities[offset + 1] = Math.sin(angle) * (0.006 + Math.random() * 0.018);
@@ -920,7 +922,7 @@ export class SpatialRenderer {
 
     const material = new THREE.PointsMaterial({
       color,
-      size: this.profile.kind === 'mobile' ? 0.035 : 0.045,
+      size: 0.045,
       transparent: true,
       opacity: 0.58,
       depthWrite: false,
@@ -1551,8 +1553,9 @@ export class SpatialRenderer {
       const targetScale = baseScale * activeScale * hoverScale;
       const hitProxy = gear.group.userData.hitProxy as THREE.Mesh | undefined;
       if (hitProxy) {
-        const minHitWidth = this.profile.kind === 'mobile' ? (this.profile.orientation === 'portrait' ? 0.78 : 0.72) : 0;
-        const hitScale = minHitWidth > 0 ? Math.max(1, minHitWidth / Math.max(0.001, 2.0 * baseScale)) : 1;
+        // Unified Input Registry: Consolidated identical interaction hit proxy boundary across all viewports
+        const minHitWidth = 0.75;
+        const hitScale = Math.max(1, minHitWidth / Math.max(0.001, 2.0 * baseScale));
         hitProxy.scale.set(hitScale, hitScale, 1);
       }
       gear.group.scale.lerp(new THREE.Vector3(targetScale, targetScale, targetScale), 0.08);
