@@ -15005,7 +15005,14 @@ var Rf = class {
 			if (Math.abs(this.camera.zoom - o) > .001 && (this.camera.zoom = It.lerp(this.camera.zoom, o, .12), this.camera.updateProjectionMatrix()), n || a) {
 				let e = new W(this.profile.camera.x, this.profile.camera.y, this.profile.camera.z), t = new W(this.profile.camera.targetX, this.profile.camera.targetY, this.profile.camera.targetZ), r = (a || n)?.target.clone() || new W(), i = t.add((n?.target.clone() || new W()).multiplyScalar(.012)).add(r.multiplyScalar(.052 * this.portalPreflightProgress)).add(new W(this.portalPreflightDirection * .06 * this.portalPreflightProgress, 0, 0));
 				window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ? this.camera.position.copy(e) : this.camera.position.lerp(e, .016 + this.portalPreflightProgress * .018), this.camera.lookAt(i);
-			} else this.camera.lookAt(this.profile.camera.targetX, this.profile.camera.targetY, this.profile.camera.targetZ);
+			} else {
+				if (window.matchMedia?.("(prefers-reduced-motion: reduce)").matches) this.camera.position.set(this.profile.camera.x, this.profile.camera.y, this.profile.camera.z);
+				else {
+					let t = Math.sin(e * .35) * .38, n = Math.cos(e * .28) * .22, r = Math.sin(e * .2) * .14, i = new W(this.profile.camera.x + t, this.profile.camera.y + n, this.profile.camera.z + r);
+					this.camera.position.lerp(i, .05);
+				}
+				this.camera.lookAt(this.profile.camera.targetX, this.profile.camera.targetY, this.profile.camera.targetZ);
+			}
 			this.composer.render(), this.rafId = requestAnimationFrame(this.animate);
 		}, this.renderer = new ud({
 			antialias: !0,
@@ -15153,7 +15160,7 @@ var Rf = class {
 		});
 	}
 	updateBloomProfile(e) {
-		this.bloomPass && (this.bloomPass.strength = e.kind === "mobile" ? 1.08 : 1.2, this.bloomPass.radius = e.kind === "mobile" ? .36 : .42, this.bloomPass.threshold = .96);
+		this.bloomPass && (this.bloomPass.strength = e.kind === "mobile" ? 1.25 : 1.42, this.bloomPass.radius = e.kind === "mobile" ? .48 : .58, this.bloomPass.threshold = .82);
 	}
 	applyCameraProfile(e, t = !1) {
 		let n = new W(e.camera.x, e.camera.y, e.camera.z), r = new W(e.camera.targetX, e.camera.targetY, e.camera.targetZ);
@@ -15246,31 +15253,34 @@ var Rf = class {
 	forceMountDomInterfaceWindows() {
 		if (document.getElementById("lm-ui-anchor-rig")) return;
 		let e = document.createElement("div");
-		e.id = "lm-ui-anchor-rig", e.style.cssText = "position:absolute;bottom:80px;left:0;right:0;pointer-events:none;z-index:1000;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;padding:10px;", [
+		e.id = "lm-ui-anchor-rig", e.style.cssText = "position:absolute;bottom:80px;left:0;right:0;pointer-events:none;z-index:1000;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;padding:10px;perspective:1200px;transform-style:preserve-3d;", [
 			{
 				id: "arcade-chamber",
 				regId: "arcade-main",
 				label: "ARCADE GENESIS",
 				route: "./arcade.html",
-				tone: "#00ffff"
+				tone: "#00ffff",
+				transform: "translate3d(-24px, -12px, 35px) rotateY(12deg)"
 			},
 			{
 				id: "archive-chamber",
 				regId: "legacy-static-content",
 				label: "OLD MEMORY VAULT",
 				route: "./library.html",
-				tone: "#8a2be2"
+				tone: "#8a2be2",
+				transform: "translate3d(0px, -28px, 55px) scale(1.06)"
 			},
 			{
 				id: "signals-chamber",
 				regId: "signals-dashboard",
 				label: "TELEMETRY SIGNALS",
 				route: "./signals/index.html",
-				tone: "#ff00ff"
+				tone: "#ff00ff",
+				transform: "translate3d(24px, -12px, 35px) rotateY(-12deg)"
 			}
 		].forEach((t) => {
 			let n = document.createElement("div");
-			n.id = t.id, n.className = "chamber-window lm-card", n.style.cssText = "pointer-events:auto;background:rgba(2,6,23,0.85);border:1px solid rgba(0,255,255,0.3);border-radius:12px;padding:12px 20px;backdrop-filter:blur(10px);box-shadow:0 0 20px rgba(0,255,255,0.15);cursor:pointer;text-align:center;font-family:monospace;", n.innerHTML = `
+			n.id = t.id, n.className = "chamber-window lm-card", n.style.cssText = `pointer-events:auto;background:rgba(2,6,23,0.88);border:1px solid ${t.tone};border-radius:14px;padding:14px 22px;backdrop-filter:blur(14px);box-shadow:0 15px 35px rgba(0,0,0,0.85), 0 0 25px ${t.tone};cursor:pointer;text-align:center;font-family:monospace;transform:${t.transform};transition:transform .3s, box-shadow .3s;`, n.innerHTML = `
         <span style="display:block;font-size:9px;color:#22d3ee;font-weight:bold;letter-spacing:1px;margin-bottom:4px;">CHAMBER WINDOW</span>
         <strong style="font-size:12px;color:#fff;">${t.label}</strong>
       `, n.addEventListener("pointerdown", (e) => e.stopPropagation()), n.addEventListener("click", (e) => {

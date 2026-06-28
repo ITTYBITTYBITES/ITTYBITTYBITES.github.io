@@ -451,9 +451,9 @@ export class SpatialRenderer {
 
   private updateBloomProfile(profile: ResponsiveProfile): void {
     if (!this.bloomPass) return;
-    this.bloomPass.strength = profile.kind === 'mobile' ? 1.08 : 1.2;
-    this.bloomPass.radius = profile.kind === 'mobile' ? 0.36 : 0.42;
-    this.bloomPass.threshold = 0.96;
+    this.bloomPass.strength = profile.kind === 'mobile' ? 1.25 : 1.42;
+    this.bloomPass.radius = profile.kind === 'mobile' ? 0.48 : 0.58;
+    this.bloomPass.threshold = 0.82;
   }
 
   private applyCameraProfile(profile: ResponsiveProfile, instant = false): void {
@@ -601,19 +601,19 @@ export class SpatialRenderer {
     const rig = document.createElement('div');
     rig.id = 'lm-ui-anchor-rig';
     rig.style.cssText =
-      'position:absolute;bottom:80px;left:0;right:0;pointer-events:none;z-index:1000;display:flex;justify-content:center;gap:12px;flex-wrap:wrap;padding:10px;';
+      'position:absolute;bottom:80px;left:0;right:0;pointer-events:none;z-index:1000;display:flex;justify-content:center;gap:18px;flex-wrap:wrap;padding:10px;perspective:1200px;transform-style:preserve-3d;';
 
     const windows = [
-      { id: 'arcade-chamber', regId: 'arcade-main', label: 'ARCADE GENESIS', route: './arcade.html', tone: '#00ffff' },
-      { id: 'archive-chamber', regId: 'legacy-static-content', label: 'OLD MEMORY VAULT', route: './library.html', tone: '#8a2be2' },
-      { id: 'signals-chamber', regId: 'signals-dashboard', label: 'TELEMETRY SIGNALS', route: './signals/index.html', tone: '#ff00ff' },
+      { id: 'arcade-chamber', regId: 'arcade-main', label: 'ARCADE GENESIS', route: './arcade.html', tone: '#00ffff', transform: 'translate3d(-24px, -12px, 35px) rotateY(12deg)' },
+      { id: 'archive-chamber', regId: 'legacy-static-content', label: 'OLD MEMORY VAULT', route: './library.html', tone: '#8a2be2', transform: 'translate3d(0px, -28px, 55px) scale(1.06)' },
+      { id: 'signals-chamber', regId: 'signals-dashboard', label: 'TELEMETRY SIGNALS', route: './signals/index.html', tone: '#ff00ff', transform: 'translate3d(24px, -12px, 35px) rotateY(-12deg)' },
     ];
 
     windows.forEach((win) => {
       const card = document.createElement('div');
       card.id = win.id;
       card.className = 'chamber-window lm-card';
-      card.style.cssText = `pointer-events:auto;background:rgba(2,6,23,0.85);border:1px solid rgba(0,255,255,0.3);border-radius:12px;padding:12px 20px;backdrop-filter:blur(10px);box-shadow:0 0 20px rgba(0,255,255,0.15);cursor:pointer;text-align:center;font-family:monospace;`;
+      card.style.cssText = `pointer-events:auto;background:rgba(2,6,23,0.88);border:1px solid ${win.tone};border-radius:14px;padding:14px 22px;backdrop-filter:blur(14px);box-shadow:0 15px 35px rgba(0,0,0,0.85), 0 0 25px ${win.tone};cursor:pointer;text-align:center;font-family:monospace;transform:${win.transform};transition:transform .3s, box-shadow .3s;`;
       card.innerHTML = `
         <span style="display:block;font-size:9px;color:#22d3ee;font-weight:bold;letter-spacing:1px;margin-bottom:4px;">CHAMBER WINDOW</span>
         <strong style="font-size:12px;color:#fff;">${win.label}</strong>
@@ -1667,6 +1667,16 @@ export class SpatialRenderer {
       }
       this.camera.lookAt(focal);
     } else {
+      const reducedMotion = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+      if (reducedMotion) {
+        this.camera.position.set(this.profile.camera.x, this.profile.camera.y, this.profile.camera.z);
+      } else {
+        const swayX = Math.sin(elapsed * 0.35) * 0.38;
+        const swayY = Math.cos(elapsed * 0.28) * 0.22;
+        const swayZ = Math.sin(elapsed * 0.2) * 0.14;
+        const idleCam = new THREE.Vector3(this.profile.camera.x + swayX, this.profile.camera.y + swayY, this.profile.camera.z + swayZ);
+        this.camera.position.lerp(idleCam, 0.05);
+      }
       this.camera.lookAt(this.profile.camera.targetX, this.profile.camera.targetY, this.profile.camera.targetZ);
     }
 
