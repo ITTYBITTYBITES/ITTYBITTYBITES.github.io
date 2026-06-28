@@ -130,7 +130,7 @@
     <section class="ibb-hero">
       <div class="ibb-container ibb-hero-grid">
         <div><p class="ibb-kicker">Experimental arcade</p><h1 class="ibb-title">Playable prototypes, <span>professionally archived.</span></h1><p class="ibb-lede">A dedicated home for current HTML games, browser projects, prototype experiences, and archived experiments from the Liquid Memory studio.</p><div class="ibb-actions"><a class="ibb-button ibb-button--primary" href="#browse">Browse games</a><a class="ibb-button ibb-button--secondary" href="2-second-witness.html">Flagship title</a></div></div>
-        <div class="ibb-showpiece"><div class="ibb-screen"><div class="ibb-screen__top"><span class="ibb-dot"></span></div><div class="ibb-screen__body"><p class="ibb-kicker">Arcade index</p><div class="ibb-metric-grid"><div class="ibb-metric"><strong id="game-count">26</strong><span>Games loaded</span></div><div class="ibb-metric"><strong>AdSense</strong><span>Site ads active</span></div><div class="ibb-metric"><strong>Modal</strong><span>In-game reward breaks</span></div><div class="ibb-metric"><strong>Live</strong><span>Iframe play loop</span></div></div></div></div></div>
+
       </div>
     </section>
 
@@ -324,7 +324,7 @@
 
   fetch('games.json').then(r=>r.json()).then(data=>{
     games = Array.isArray(data) ? data : (data.games || []);
-    count.textContent = games.length;
+    if (count) count.textContent = games.length;
     [...new Set(games.map(g=>g.category).filter(Boolean))].sort().forEach(cat=>{const o=document.createElement('option');o.value=cat;o.textContent=cat;filter.appendChild(o);});
     render();
     const hashId = decodeURIComponent((location.hash || '').replace('#play-', ''));

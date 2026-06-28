@@ -781,6 +781,8 @@ body::before { content: ''; position: fixed; inset: 0; background: linear-gradie
 <!-- Google AdSense Universal Publisher Tag -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1566091161594729" crossorigin="anonymous"></script>
 <link rel="stylesheet" href="../assets/brand-system.css">
+<link rel="stylesheet" href="../assets/shared-nav.css">
+<script src="../assets/global-nav.js"></script>
 </head>
 <body class="bg-slate-950 text-slate-50 font-mono leading-relaxed overflow-x-hidden relative antialiased">
 <nav class="bg-slate-950 border-b border-cyan-400/20 py-3 sticky top-0 z-50 backdrop-blur-md shadow-2xl select-none font-mono">
@@ -887,6 +889,8 @@ body::before { content: ''; position: fixed; inset: 0; background: linear-gradie
 .nav-node.active { color: #22d3ee; border-color: #22d3ee; font-weight: 900; background: rgba(34,211,238,0.15); box-shadow: 0 0 20px rgba(34,211,238,0.4); }
 </style>
 <link rel="stylesheet" href="../assets/brand-system.css">
+<link rel="stylesheet" href="../assets/shared-nav.css">
+<script src="../assets/global-nav.js"></script>
 </head>
 <body class="bg-slate-950 text-slate-50 font-mono antialiased">
 <nav class="bg-slate-950 border-b border-cyan-400/20 py-3 sticky top-0 z-50 backdrop-blur-md shadow-2xl select-none font-mono">
@@ -1192,6 +1196,8 @@ body::before { content: ''; position: fixed; inset: 0; background: linear-gradie
 .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #475569; }
 </style>
 <link rel="stylesheet" href="assets/brand-system.css">
+<link rel="stylesheet" href="assets/shared-nav.css">
+<script src="assets/global-nav.js"></script>
 </head>
 <body class="bg-slate-950 text-slate-50 font-mono antialiased flex flex-col min-h-screen relative">
 <nav class="bg-slate-950 border-b border-cyan-400/20 py-3 sticky top-0 z-50 backdrop-blur-md shadow-2xl select-none font-mono">
