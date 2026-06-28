@@ -300,5 +300,32 @@
     "description": "In competitive gaming, survival operates within a strict two-second recognition window. Peak performance requires rapid pattern recognition before cognitive load saturates working memory.",
     "thumbnail_url": "data:image/svg+xml;utf8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27600%27 height=%27375%27 viewBox=%270 0 600 375%27%3E%3Crect width=%27600%27 height=%27375%27 fill=%27%23020617%27/%3E%3Ccircle cx=%27300%27 cy=%27187%27 r=%27110%27 fill=%27none%27 stroke=%27%2322d3ee%27 stroke-width=%273%27 stroke-dasharray=%2720,10%27 opacity=%270.6%27/%3E%3Cpath d=%27M280 187L300 160L320 187L300 214Z%27 fill=%27%23facc15%27 filter=%27drop-shadow(0 0 15px %23facc15)%27/%3E%3Ctext x=%27300%27 y=%27320%27 font-family=%27monospace%27 font-size=%3D%2718%27 font-weight=%3D%27900%27 fill=%3D%27%23bfffff%27 text-anchor=%3D%27middle%27%3E2-SECOND WINDOW%3C/text%3E%3C/svg%3E",
     "directory_path": "library/2-second-recognition-window.html"
+  },
+  {
+    "id": "nav-arcade",
+    "type": "system-node",
+    "title": "Navigation Portal // Arcade Genesis",
+    "category": "System Navigation Nodes",
+    "description": "System navigation node accessing Arcade Genesis WebGL games.",
+    "thumbnail_url": "data:image/svg+xml;utf8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27600%27 height=%27375%27 viewBox=%270 0 600 375%27%3E%3Crect width=%27600%27 height=%27375%27 fill=%27%23020617%27/%3E%3Ccircle cx=%27300%27 cy=%27187%27 r=%2780%27 fill=%27%2300ffff%27 opacity=%270.8%27/%3E%3C/svg%3E",
+    "directory_path": "arcade.html"
+  },
+  {
+    "id": "nav-library",
+    "type": "system-node",
+    "title": "Navigation Portal // Old Memory Vault Library",
+    "category": "System Navigation Nodes",
+    "description": "System navigation node accessing digital archive Library.",
+    "thumbnail_url": "data:image/svg+xml;utf8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27600%27 height=%27375%27 viewBox=%270 0 600 375%27%3E%3Crect width=%27600%27 height=%27375%27 fill=%27%23020617%27/%3E%3Ccircle cx=%27300%27 cy=%27187%27 r=%2780%27 fill=%27%238a2be2%27 opacity=%270.8%27/%3E%3C/svg%3E",
+    "directory_path": "library.html"
+  },
+  {
+    "id": "nav-signals",
+    "type": "system-node",
+    "title": "Navigation Portal // Telemetry Signals HUD",
+    "category": "System Navigation Nodes",
+    "description": "System navigation node accessing live Telemetry Signals HUD projection.",
+    "thumbnail_url": "data:image/svg+xml;utf8,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 width=%27600%27 height=%27375%27 viewBox=%270 0 600 375%27%3E%3Crect width=%27600%27 height=%27375%27 fill=%27%23020617%27/%3E%3Ccircle cx=%27300%27 cy=%27187%27 r=%2780%27 fill=%27%23ff00ff%27 opacity=%270.8%27/%3E%3C/svg%3E",
+    "directory_path": "signals/index.html"
   }
 ]

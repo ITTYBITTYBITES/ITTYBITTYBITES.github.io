@@ -1312,12 +1312,13 @@ function hydratePortalFiles() {
   if (!fs.existsSync(gamesPath)) return;
   const gameList = JSON.parse(fs.readFileSync(gamesPath, 'utf-8'));
 
+  const arcadeGames = gameList.filter((g) => g.type !== 'system-node');
   const arcadeJsonLd = {
     "@context": "https://schema.org",
     "@type": "ItemList",
     "name": "IttyBittyBites Arcade Genesis",
     "description": "Registry-driven 3D WebGL game archive.",
-    "itemListElement": gameList.map((g, i) => ({
+    "itemListElement": arcadeGames.map((g, i) => ({
       "@type": "ListItem",
       "position": i + 1,
       "item": {
@@ -1340,7 +1341,7 @@ function hydratePortalFiles() {
       arcadeHtml = arcadeHtml.replace('</head>', `  ${newScript}\n</head>`);
     }
     fs.writeFileSync(arcadePath, arcadeHtml, 'utf-8');
-    console.log(`  ✓ Hydrated arcade.html with ${gameList.length} ItemList JSON-LD schema entries`);
+    console.log(`  ✓ Hydrated arcade.html with ${arcadeGames.length} ItemList JSON-LD schema entries`);
   }
 
   const libraryPath = path.join(__dirname, 'library.html');
