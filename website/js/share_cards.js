@@ -144,6 +144,9 @@
     if (copyBtn) {
       copyBtn.addEventListener('click', function () {
         var text = `I achieved ${ratingText} in Two Second Witness (${scenarioName}) with a reaction speed of ${timeText} (${accuracyText} accuracy)!\nCan you beat my visual memory? https://twosecondwitness.com/pages/scenarios.html`;
+        if (typeof window.trackWitnessEvent === 'function') {
+          window.trackWitnessEvent('share_card_generated', { type: 'text', rating: ratingText });
+        }
         if (navigator.clipboard) {
           navigator.clipboard.writeText(text).then(function () {
             showStatus('Testimony text copied to clipboard!');
@@ -156,6 +159,9 @@
 
     if (downloadBtn) {
       downloadBtn.addEventListener('click', function () {
+        if (typeof window.trackWitnessEvent === 'function') {
+          window.trackWitnessEvent('share_card_generated', { type: 'image_canvas', rating: ratingText });
+        }
         exportCanvasCard(ratingText, timeText, accuracyText, scenarioName, isCorrect);
       });
     }
@@ -164,6 +170,9 @@
       challengeBtn.addEventListener('click', function () {
         var timeVal = timeText.replace('s', '').replace(' ms', '') * (timeText.indexOf('ms') !== -1 ? 1 : 1000);
         var challengeUrl = window.location.origin + window.location.pathname + '?challenge=trial_active&time=' + Math.round(timeVal) + '&score=' + ratingText;
+        if (typeof window.trackWitnessEvent === 'function') {
+          window.trackWitnessEvent('challenge_link_opened', { targetSpeed: timeText, rating: ratingText });
+        }
         if (navigator.clipboard) {
           navigator.clipboard.writeText(challengeUrl).then(function () {
             showStatus('Viral Challenge Link copied! Send it to a friend.');

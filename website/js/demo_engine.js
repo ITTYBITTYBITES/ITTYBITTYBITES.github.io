@@ -1,6 +1,6 @@
 /* ============================================
    Two Second Witness — Core Demo Engine
-   Phase 3 Playable System Layer (Vanilla JS)
+   Phase 5 Production Hardened Playable Layer
    ============================================ */
 
 (function () {
@@ -17,45 +17,74 @@
     selectionStartTime: 0,
     reactionTime: 0,
     selectedOptionId: null,
-    isCorrect: false
+    isCorrect: false,
+    isProcessingInput: false
   };
 
   var rootEl = null;
 
+  function clearAllTimers() {
+    if (engineState.countdownTimer) clearInterval(engineState.countdownTimer);
+    if (engineState.observationTimer) clearTimeout(engineState.observationTimer);
+    if (engineState.transitionTimer) clearTimeout(engineState.transitionTimer);
+    engineState.countdownTimer = null;
+    engineState.observationTimer = null;
+    engineState.transitionTimer = null;
+  }
+
   function initDemoEngine(containerId, initialWorldId) {
+    clearAllTimers();
     rootEl = document.getElementById(containerId);
     if (!rootEl) return;
 
-    // Check if initialWorldId was passed or in URL query
+    // Set accessibility landmarks on container
+    rootEl.setAttribute('role', 'region');
+    rootEl.setAttribute('aria-label', 'Two Second Witness Interactive Trial System');
+    rootEl.setAttribute('aria-live', 'polite');
+
     var targetWorld = initialWorldId;
     if (!targetWorld && window.location.search) {
-      var params = new URLSearchParams(window.location.search);
-      targetWorld = params.get('world');
+      try {
+        var params = new URLSearchParams(window.location.search);
+        targetWorld = params.get('world');
+      } catch (e) {}
     }
 
     var scenarios = window.DemoScenarios || [];
     if (scenarios.length === 0) {
-      rootEl.innerHTML = '<p style="color:var(--text-muted); text-align:center; padding:2rem;">No demo scenarios loaded.</p>';
+      rootEl.innerHTML = '<div class="card" style="text-align:center; padding:2rem; border-color:#ef4444;"><p style="color:#ef4444; font-weight:bold;">Error: No perception scenarios found in registry.</p><p style="color:var(--text-muted); font-size:0.85rem; margin-top:0.5rem;">Please ensure JavaScript is enabled and reload the page.</p></div>';
       return;
     }
 
     if (targetWorld) {
+      var found = false;
       for (var i = 0; i < scenarios.length; i++) {
         if (scenarios[i].worldId === targetWorld) {
           engineState.currentScenarioIndex = i;
+          found = true;
           break;
         }
       }
+      if (!found) {
+        // Fallback gracefully to first scenario
+        engineState.currentScenarioIndex = 0;
+      }
+    } else {
+      // Bounds check safeguard
+      if (engineState.currentScenarioIndex < 0 || engineState.currentScenarioIndex >= scenarios.length) {
+        engineState.currentScenarioIndex = 0;
+      }
     }
 
-    // Attach global keyboard listener for selection phase (1-4 keys)
+    // Attach global keyboard listener for selection phase (1-4 keys) if not already attached
+    document.removeEventListener('keydown', handleKeyboardSelection);
     document.addEventListener('keydown', handleKeyboardSelection);
 
     renderWelcomeScreen();
   }
 
   function handleKeyboardSelection(e) {
-    if (engineState.phase !== 'SELECTING' || !engineState.activeScenario) return;
+    if (engineState.phase !== 'SELECTING' || engineState.isProcessingInput || !engineState.activeScenario) return;
     var key = e.key;
     var index = -1;
     if (key === '1') index = 0;
@@ -64,14 +93,21 @@
     else if (key === '4') index = 3;
 
     if (index >= 0 && index < engineState.activeScenario.options.length) {
+      e.preventDefault();
       selectOption(engineState.activeScenario.options[index].id);
     }
   }
 
   function renderWelcomeScreen() {
+    clearAllTimers();
     engineState.phase = 'IDLE';
+    engineState.isProcessingInput = false;
     var scenarios = window.DemoScenarios;
     var scenario = scenarios[engineState.currentScenarioIndex];
+
+    if (typeof window.trackWitnessEvent === 'function') {
+      window.trackWitnessEvent('demo_start', { world: scenario.worldId, scenario: scenario.id });
+    }
 
     var html = `
       <div class="card demo-card" style="border-color: var(--accent-cyan); box-shadow: 0 0 30px rgba(0,229,255,0.15);">
@@ -86,9 +122,9 @@
         <div style="background: rgba(5,5,16,0.8); border: 1px solid var(--border-color); border-radius: 8px; padding: 1.25rem; margin-bottom: 1.75rem;">
           <h3 class="h3" style="font-size: 1rem; color: var(--accent-cyan); margin-bottom: 0.5rem;">Trial Protocol:</h3>
           <ul style="color: var(--text-secondary); font-size: 0.9rem; line-height: 1.7; margin-left: 1.25rem;">
-            <li>A 3-second countdown will prepare your focus.</li>
-            <li>The visual scene will appear for <strong>exactly 2 seconds (2000ms)</strong>.</li>
-            <li>During the blackout transition, one critical detail will change.</li>
+            <li>A 3-second countdown will prepare your focal attention.</li>
+            <li>The visual scene will display for <strong>exactly 2.0 seconds (2000ms)</strong>.</li>
+            <li>During the blackout transition, one critical detail will alter.</li>
             <li>Identify the anomaly as quickly and accurately as possible.</li>
           </ul>
         </div>
@@ -96,14 +132,14 @@
         <div class="flex flex-between" style="align-items: center; flex-wrap: wrap; gap: 1rem;">
           <div>
             <label for="scenarioSelect" style="font-size: 0.85rem; color: var(--text-muted); display: block; margin-bottom: 0.35rem;">Select Scenario Biome:</label>
-            <select id="scenarioSelect" style="background: var(--bg-deep); color: var(--text-primary); border: 1px solid var(--border-color); padding: 0.5rem 1rem; border-radius: 6px; font-weight: 600; cursor: pointer;">
+            <select id="scenarioSelect" aria-label="Select Scenario Biome" style="background: var(--bg-deep); color: var(--text-primary); border: 1px solid var(--border-color); padding: 0.6rem 1rem; border-radius: 6px; font-weight: 600; cursor: pointer; min-height: 44px;">
               ${scenarios.map(function(s, idx) {
                 return `<option value="${idx}" ${idx === engineState.currentScenarioIndex ? 'selected' : ''}>${s.world} — ${s.name}</option>`;
               }).join('')}
             </select>
           </div>
           
-          <button id="startTrialBtn" class="btn btn-primary" style="padding: 0.85rem 2.5rem; font-size: 1.05rem;">
+          <button id="startTrialBtn" class="btn btn-primary" style="padding: 0.85rem 2.5rem; font-size: 1.05rem; min-height: 48px;" aria-label="Launch Trial for ${scenario.name}">
             Launch Trial &#9654;
           </button>
         </div>
@@ -129,7 +165,9 @@
   }
 
   function startCountdown() {
+    clearAllTimers();
     engineState.phase = 'COUNTDOWN';
+    engineState.isProcessingInput = false;
     engineState.activeScenario = window.DemoScenarios[engineState.currentScenarioIndex];
     var count = 3;
 
@@ -137,7 +175,7 @@
       rootEl.innerHTML = `
         <div class="card demo-card flex flex-center" style="min-height: 380px; text-align: center; border-color: var(--accent-cyan);">
           <span class="status-text" style="color: var(--text-muted); margin-bottom: 1rem;">GET READY &mdash; PREPARE VISUAL FOCUS</span>
-          <div style="font-size: clamp(4rem, 15vw, 7rem); font-weight: 800; color: var(--accent-cyan); filter: drop-shadow(0 0 30px var(--glow-cyan)); line-height: 1;">
+          <div style="font-size: clamp(4rem, 15vw, 7rem); font-weight: 800; color: var(--accent-cyan); filter: drop-shadow(0 0 30px var(--glow-cyan)); line-height: 1;" aria-live="assertive">
             ${count > 0 ? count : 'WITNESS'}
           </div>
           <p style="color: var(--text-secondary); margin-top: 1.5rem; font-size: 0.95rem;">
@@ -156,14 +194,16 @@
       } else if (count === 0) {
         renderCount();
       } else {
-        clearInterval(engineState.countdownTimer);
+        clearAllTimers();
         startObservationPhase();
       }
     }, 1000);
   }
 
   function startObservationPhase() {
+    clearAllTimers();
     engineState.phase = 'OBSERVING';
+    engineState.isProcessingInput = false;
     var scenario = engineState.activeScenario;
     engineState.observationStartTime = performance.now();
 
@@ -176,7 +216,7 @@
         
         <!-- Progress Bar -->
         <div style="width: 100%; height: 6px; background: rgba(255,255,255,0.1); border-radius: 3px; overflow: hidden; margin-bottom: 1rem;">
-          <div id="observationProgress" style="width: 100%; height: 100%; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple)); transition: width 2000ms linear;"></div>
+          <div id="observationProgress" style="width: 100%; height: 100%; background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple)); transition: width 2000ms linear; will-change: width;"></div>
         </div>
 
         <div style="width: 100%; min-height: 320px; display: flex; align-items: center; justify-content: center; background: #050510; border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.05);">
@@ -185,7 +225,6 @@
       </div>
     `;
 
-    // Trigger CSS transition on next tick
     setTimeout(function() {
       var prog = document.getElementById('observationProgress');
       if (prog) prog.style.width = '0%';
@@ -197,6 +236,7 @@
   }
 
   function startFadeTransition() {
+    clearAllTimers();
     engineState.phase = 'TRANSITION';
 
     rootEl.innerHTML = `
@@ -208,11 +248,13 @@
 
     engineState.transitionTimer = setTimeout(function() {
       startSelectionPhase();
-    }, 400); // 400ms transition blackout
+    }, 400);
   }
 
   function startSelectionPhase() {
+    clearAllTimers();
     engineState.phase = 'SELECTING';
+    engineState.isProcessingInput = false;
     var scenario = engineState.activeScenario;
     engineState.selectionStartTime = performance.now();
 
@@ -220,7 +262,7 @@
       <div class="card demo-card" style="padding: 1.25rem; border-color: var(--accent-purple); box-shadow: 0 0 25px rgba(168,85,247,0.2);">
         <div class="flex flex-between" style="margin-bottom: 0.75rem; align-items: center; flex-wrap: wrap; gap: 0.5rem;">
           <span class="status-text" style="color: var(--accent-purple); font-size: 0.8rem;">TESTIMONY PHASE &mdash; SELECT ANOMALY</span>
-          <span style="font-size: 0.75rem; color: var(--text-muted);">Use mouse or press <kbd style="background:#1e293b; padding:0.15rem 0.4rem; border-radius:4px; border:1px solid #334155;">1</kbd>-<kbd style="background:#1e293b; padding:0.15rem 0.4rem; border-radius:4px; border:1px solid #334155;">4</kbd></span>
+          <span style="font-size: 0.75rem; color: var(--text-muted);">Use touch/mouse or press <kbd style="background:#1e293b; padding:0.15rem 0.4rem; border-radius:4px; border:1px solid #334155;">1</kbd>-<kbd style="background:#1e293b; padding:0.15rem 0.4rem; border-radius:4px; border:1px solid #334155;">4</kbd></span>
         </div>
 
         <div style="width: 100%; min-height: 280px; display: flex; align-items: center; justify-content: center; background: #050510; border-radius: 8px; overflow: hidden; margin-bottom: 1.25rem; border: 1px solid rgba(255,255,255,0.05);">
@@ -229,10 +271,10 @@
 
         <h3 class="h3" style="font-size: 1.05rem; margin-bottom: 0.75rem; color: var(--text-primary);">What changed from the initial 2-second flash?</h3>
         
-        <div class="grid" style="gap: 0.6rem;">
+        <div class="grid" style="gap: 0.6rem;" role="group" aria-label="Testimony Options">
           ${scenario.options.map(function(opt, idx) {
             return `
-              <button class="btn btn-outline demo-option-btn" data-option-id="${opt.id}" style="justify-content: flex-start; text-align: left; padding: 0.8rem 1.2rem; font-size: 0.95rem; border-color: rgba(255,255,255,0.12); width: 100%;">
+              <button class="btn btn-outline demo-option-btn" data-option-id="${opt.id}" style="justify-content: flex-start; text-align: left; padding: 0.85rem 1.2rem; font-size: 0.95rem; border-color: rgba(255,255,255,0.12); width: 100%; min-height: 48px;" aria-label="Option ${idx + 1}: ${opt.label}">
                 <span style="color: var(--accent-cyan); font-weight: bold; margin-right: 0.5rem;">[${idx + 1}]</span> ${opt.label}
               </button>
             `;
@@ -252,8 +294,9 @@
   }
 
   function selectOption(optionId) {
-    if (engineState.phase !== 'SELECTING') return;
-    engineState.reactionTime = Math.round(performance.now() - engineState.selectionStartTime);
+    if (engineState.phase !== 'SELECTING' || engineState.isProcessingInput) return;
+    engineState.isProcessingInput = true; // Safeguard against double click submission
+    engineState.reactionTime = Math.max(1, Math.round(performance.now() - engineState.selectionStartTime));
     engineState.selectedOptionId = optionId;
     engineState.isCorrect = (optionId === engineState.activeScenario.correctAnswerId);
     
@@ -261,7 +304,9 @@
   }
 
   function renderResultScreen() {
+    clearAllTimers();
     engineState.phase = 'RESULT';
+    engineState.isProcessingInput = false;
     var scenario = engineState.activeScenario;
     var isCorrect = engineState.isCorrect;
     var timeMs = engineState.reactionTime;
@@ -280,9 +325,20 @@
 
     var score = isCorrect ? Math.max(1000 + Math.floor((5000 - timeMs) / 4), 500) : 0;
 
+    if (typeof window.trackWitnessEvent === 'function') {
+      window.trackWitnessEvent('scenario_complete', {
+        scenarioId: scenario.id,
+        worldId: scenario.worldId,
+        isCorrect: isCorrect,
+        reactionTimeMs: timeMs,
+        rating: rating,
+        score: score
+      });
+    }
+
     var html = `
-      <div class="card demo-card" style="border-color: ${isCorrect ? 'var(--accent-cyan)' : '#ef4444'}; box-shadow: 0 0 35px ${isCorrect ? 'rgba(0,229,255,0.2)' : 'rgba(239,68,68,0.2)'}; text-align: center; padding: 2rem 1.5rem;">
-        <div style="display:inline-block; font-size: 3rem; margin-bottom: 0.75rem;">
+      <div class="card demo-card" style="border-color: ${isCorrect ? 'var(--accent-cyan)' : '#ef4444'}; box-shadow: 0 0 35px ${isCorrect ? 'rgba(0,229,255,0.2)' : 'rgba(239,68,68,0.2)'}; text-align: center; padding: 2rem 1.5rem;" role="region" aria-label="Trial Result: ${rating}">
+        <div style="display:inline-block; font-size: 3rem; margin-bottom: 0.75rem;" aria-hidden="true">
           ${isCorrect ? '&#10004;' : '&#10008;'}
         </div>
         
@@ -325,13 +381,13 @@
 
         <!-- Action Buttons -->
         <div class="flex flex-center gap-md" style="flex-wrap: wrap;">
-          <button id="retryBtn" class="btn btn-primary">
+          <button id="retryBtn" class="btn btn-primary" style="min-height:48px;" aria-label="Retry Scenario">
             Retry Scenario &#8635;
           </button>
-          <button id="nextScenarioBtn" class="btn btn-outline">
+          <button id="nextScenarioBtn" class="btn btn-outline" style="min-height:48px;" aria-label="Next Scenario">
             Next Scenario &#9658;
           </button>
-          <a href="worlds.html" class="btn btn-outline" style="text-decoration:none;">
+          <a href="worlds.html" class="btn btn-outline" style="text-decoration:none; min-height:48px; display:inline-flex; align-items:center;">
             Return to Biomes
           </a>
         </div>
@@ -356,10 +412,8 @@
     }
   }
 
-  // Export initialization API
   window.initTwoSecondDemo = initDemoEngine;
 
-  // Auto-initialize if DOM ready and demo-root exists
   document.addEventListener('DOMContentLoaded', function() {
     if (document.getElementById('demo-root')) {
       window.initTwoSecondDemo('demo-root');

@@ -843,3 +843,47 @@ body {
   background: var(--cyan);
   color: var(--bg-deep);
 }
+
+/* ============================================
+   Phase 5 Production Hardening & Polish
+   ============================================ */
+
+/* Hardware accelerated animation layers for 60fps */
+.demo-card, #observationProgress, .pulse-dot {
+  will-change: transform, opacity;
+  transform: translateZ(0);
+}
+
+/* 320px device safeguard & thumb-friendly touch targets */
+@media (max-width: 480px) {
+  body {
+    padding-left: max(0.5rem, env(safe-area-inset-left));
+    padding-right: max(0.5rem, env(safe-area-inset-right));
+  }
+  .btn, .cta-button, select, button, .nav-link {
+    min-height: 48px;
+  }
+  .grid-2, .grid-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* WCAG 2.1 AA Focus-Visible Ring */
+a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible {
+  outline: 2px solid var(--accent-cyan) !important;
+  outline-offset: 3px !important;
+  box-shadow: 0 0 12px var(--glow-cyan);
+}
+
+/* Screen Reader Only Utility */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}

@@ -79,7 +79,14 @@
 
     <!-- Phase 3 Demo Integration Mount Point -->
     <section class="section">
-      <div id="demo-root" style="min-height: 250px;"></div>
+      <div id="demo-root" style="min-height: 250px;">
+        <noscript>
+          <div class="card" style="text-align:center; padding:2rem; border-color:#ef4444;">
+            <p style="color:#ef4444; font-weight:bold;">JavaScript is required to launch the interactive trial system.</p>
+            <p style="color:var(--text-muted); font-size:0.85rem; margin-top:0.5rem;">Please enable JavaScript in your browser preferences to test your visual perception.</p>
+          </div>
+        </noscript>
+      </div>
     </section>
 
     <section class="section">
@@ -180,7 +187,8 @@
     </div>
   </footer>
 
-  <!-- Phase 3 & 4 Demo System Layer -->
+  <!-- Phase 3, 4 & 5 Demo System Layer -->
+  <script src="../js/analytics.js"></script>
   <script src="../js/scenarios.js"></script>
   <script src="../js/demo_engine.js"></script>
   <script src="../js/share_cards.js"></script>
