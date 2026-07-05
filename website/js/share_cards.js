@@ -80,7 +80,11 @@
     var accuracyText = isCorrect ? '100%' : '0%';
 
     var selectEl = document.getElementById('scenarioSelect');
-    var scenarioName = selectEl && selectEl.options[selectEl.selectedIndex] ? selectEl.options[selectEl.selectedIndex].text : 'Ancient Egypt — Pharaoh Chamber Trial';
+    var selectedIdx = selectEl && selectEl.selectedIndex >= 0 ? selectEl.selectedIndex : 0;
+    var activeScenarioObj = window.DemoScenarios && window.DemoScenarios[selectedIdx] ? window.DemoScenarios[selectedIdx] : { worldId: 'egypt', id: 'stub_egypt_01', name: 'Pharaoh Chamber Trial' };
+    var scenarioName = activeScenarioObj.world + ' — ' + activeScenarioObj.name;
+    var worldId = activeScenarioObj.worldId || 'egypt';
+    var scenarioId = activeScenarioObj.id || 'stub_egypt_01';
 
     var container = document.createElement('div');
     container.id = 'shareCardContainer';
@@ -143,13 +147,14 @@
 
     if (copyBtn) {
       copyBtn.addEventListener('click', function () {
-        var text = `I achieved ${ratingText} in Two Second Witness (${scenarioName}) with a reaction speed of ${timeText} (${accuracyText} accuracy)!\nCan you beat my visual memory? https://twosecondwitness.com/pages/scenarios.html`;
+        var canonicalShareUrl = `https://ittybittybites.github.io/?world=${encodeURIComponent(worldId)}&scenario=${encodeURIComponent(scenarioId)}&src=share`;
+        var text = `I achieved ${ratingText} in Two Second Witness (${scenarioName}) with a reaction speed of ${timeText} (${accuracyText} accuracy)!\nCan you beat my visual memory? ${canonicalShareUrl}`;
         if (typeof window.trackWitnessEvent === 'function') {
-          window.trackWitnessEvent('share_card_generated', { type: 'text', rating: ratingText });
+          window.trackWitnessEvent('share_card_generated', { type: 'text', rating: ratingText, world_id: worldId, scenario_id: scenarioId });
         }
         if (navigator.clipboard) {
           navigator.clipboard.writeText(text).then(function () {
-            showStatus('Testimony text copied to clipboard!');
+            showStatus('Testimony text & link copied to clipboard!');
           });
         } else {
           showStatus('Testimony ready to share: ' + text);
@@ -160,7 +165,7 @@
     if (downloadBtn) {
       downloadBtn.addEventListener('click', function () {
         if (typeof window.trackWitnessEvent === 'function') {
-          window.trackWitnessEvent('share_card_generated', { type: 'image_canvas', rating: ratingText });
+          window.trackWitnessEvent('share_card_generated', { type: 'image_canvas', rating: ratingText, world_id: worldId, scenario_id: scenarioId });
         }
         exportCanvasCard(ratingText, timeText, accuracyText, scenarioName, isCorrect);
       });
@@ -169,9 +174,9 @@
     if (challengeBtn) {
       challengeBtn.addEventListener('click', function () {
         var timeVal = timeText.replace('s', '').replace(' ms', '') * (timeText.indexOf('ms') !== -1 ? 1 : 1000);
-        var challengeUrl = window.location.origin + window.location.pathname + '?challenge=trial_active&time=' + Math.round(timeVal) + '&score=' + ratingText;
+        var challengeUrl = `https://ittybittybites.github.io/?world=${encodeURIComponent(worldId)}&scenario=${encodeURIComponent(scenarioId)}&challenge=${encodeURIComponent(scenarioId)}&time=${Math.round(timeVal)}&score=${encodeURIComponent(ratingText)}&src=friend`;
         if (typeof window.trackWitnessEvent === 'function') {
-          window.trackWitnessEvent('challenge_link_opened', { targetSpeed: timeText, rating: ratingText });
+          window.trackWitnessEvent('challenge_link_opened', { targetSpeed: timeText, rating: ratingText, world_id: worldId, scenario_id: scenarioId });
         }
         if (navigator.clipboard) {
           navigator.clipboard.writeText(challengeUrl).then(function () {
