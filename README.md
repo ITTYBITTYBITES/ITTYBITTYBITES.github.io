@@ -1,4 +1,4 @@
-# Two Second Witness — Phase 2 Architecture Build
+# Two Second Witness — Phase 3 Demo Integration System
 
 **Can You Trust What You Just Saw?**
 
@@ -8,9 +8,9 @@ A fast-paced visual memory and perception game where every scene lasts only two 
 
 ## About This Repository
 
-This repository hosts the **scalable static website architecture** for Two Second Witness — structured and scaffolded in preparation for Phase 3 interactive demo integration.
+This repository hosts the **unified playable static website architecture** for Two Second Witness — featuring an embedded browser-based vertical slice trial system.
 
-It retains the original Phase 1 coming-soon splash landing page (`/website/index.html`) while expanding into a multi-page SEO-optimized website architecture.
+It combines our Phase 1 cinematic splash landing page (`/website/index.html`), Phase 2 scalable multi-page SEO architecture (`/website/pages/*.html`), and Phase 3 interactive demo integration engine (`/website/js/demo_engine.js`).
 
 ## Structure
 
@@ -21,8 +21,8 @@ It retains the original Phase 1 coming-soon splash landing page (`/website/index
 ├── robots.txt                  — Search crawler directives
 ├── pages/
 │   ├── home.html               — Architecture Overview & Hub
-│   ├── worlds.html             — 5 Biome Card Placeholders (Ancient Egypt, Vikings, Mars Colony, Fantasy, Cyberpunk)
-│   ├── scenarios.html          — 4 Cognitive Scenario Placeholders (Memory Recall, Spot Difference, Sequence Memory, Pattern Recognition)
+│   ├── worlds.html             — Game Biomes with Phase 3 Trial Launchers
+│   ├── scenarios.html          — Cognitive Scenarios + #demo-root Trial Mount Point
 │   ├── faq.html                — General & Technical Knowledge Base
 │   ├── press.html              — Press Kit, Fact Sheet & Asset Placeholders
 │   ├── blog.html               — Scaffolded Development Chronicles
@@ -30,25 +30,28 @@ It retains the original Phase 1 coming-soon splash landing page (`/website/index
 ├── css/
 │   └── main.css                — Expanded layout, typography, card & button systems (zero frameworks)
 ├── js/
-│   └── main.js                 — Responsive navigation toggle & accessibility handlers (zero dependencies)
+│   ├── demo_engine.js          — Core 11-step playable timing & scoring loop (vanilla JS)
+│   ├── scenarios.js            — Data-driven stub scenarios (Ancient Egypt, Vikings, Mars Colony)
+│   └── main.js                 — Responsive navigation toggle & accessibility handlers
 └── assets/
     └── images/                 — Favicon SVG and placeholder assets
 README.md
 ```
 
-## Phase 2 Architecture Highlights
+## Phase 3 Demo Engine Highlights
 
-- **Pure Static Stack:** Built with semantic HTML5, CSS Grid/Flexbox utilities, and vanilla JS. Zero frameworks or dependencies.
-- **Global Navigation System:** Accessible, keyboard-navigable header with mobile hamburger drawer support.
-- **Scalable Component System:** Modular card, button, and badge systems ready for Phase 3 gameplay hooks.
-- **Full SEO Baseline:** Optimized `<title>` tags, semantic headings (H1 → H2 → H3), Open Graph & Twitter Cards, canonical URLs, and XML sitemap.
-- **Accessibility & Performance Compliant:** WCAG 2.1 AA contrast ratios, screen reader skip links, focus trapping, and sub-1.5s load target.
+- **Pure Vanilla JS Engine (`demo_engine.js`):** Implements the exact 11-step gameplay loop: Scenario Init → Scene A Load → 3s Countdown → Exactly 2000ms Observation → 400ms Blackout Fade → Scene B Testimony Input → Speed/Accuracy Evaluation → Persistent Forensic Result Card → Retry/Next Handlers.
+- **Data-Driven Scenarios (`scenarios.js`):** Modular schema decoupling engine logic from scenario content. Includes 3 high-detail SVG geometric trials with distinct anomalies.
+- **Precision Timing & Scoring:** Accurate millisecond reaction speed tracking (`performance.now()`) with three tier ratings: *Master Witness* (≤2.2s), *Sharp Observer* (>2.2s), or *Keep Practicing*.
+- **Full Keyboard Accessibility:** Supports instantaneous anomaly testimony selection via number keys `1`-`4` alongside mouse/touch input.
+- **Zero Layout Shift & Zero Frameworks:** Sub-1.5s load target maintained across all devices.
 
 ## Roadmap & Readiness
 
 - **Phase 1:** Clean Splash Landing Page & Git History Sanitization — **Completed**
 - **Phase 2:** Multi-Page Static Website Architecture & Content Scaffolding — **Completed**
-- **Phase 3:** Interactive WebGL / HTML5 Playable Demo Integration — **Ready for Integration**
+- **Phase 3:** Unified Browser Playable Demo Integration System — **Completed**
+- **Phase 4:** Content Expansion, Marketing Ecosystem & Viral Share Cards — **Ready for Phase 4**
 
 ## License
 
