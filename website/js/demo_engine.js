@@ -105,6 +105,8 @@
     var scenarios = window.DemoScenarios;
     var scenario = scenarios[engineState.currentScenarioIndex];
 
+    window.__engineDebugState = { phase: 'IDLE', time: 0, scenario: scenario.id, locked: false };
+
     if (typeof window.trackWitnessEvent === 'function') {
       window.trackWitnessEvent('demo_start', { world: scenario.worldId, scenario: scenario.id });
     }
@@ -169,6 +171,7 @@
     engineState.phase = 'COUNTDOWN';
     engineState.isProcessingInput = false;
     engineState.activeScenario = window.DemoScenarios[engineState.currentScenarioIndex];
+    window.__engineDebugState = { phase: 'COUNTDOWN', time: 3000, scenario: engineState.activeScenario.id, locked: false };
     var count = 3;
 
     function renderCount() {
@@ -206,6 +209,7 @@
     engineState.isProcessingInput = false;
     var scenario = engineState.activeScenario;
     engineState.observationStartTime = performance.now();
+    window.__engineDebugState = { phase: 'OBSERVING', time: 2000, scenario: scenario.id, locked: false };
 
     rootEl.innerHTML = `
       <div class="card demo-card" style="padding: 1.25rem; border-color: var(--accent-cyan); box-shadow: 0 0 25px rgba(0,229,255,0.2);">
@@ -257,6 +261,7 @@
     engineState.isProcessingInput = false;
     var scenario = engineState.activeScenario;
     engineState.selectionStartTime = performance.now();
+    window.__engineDebugState = { phase: 'SELECTING', time: 0, scenario: scenario.id, locked: false };
 
     var html = `
       <div class="card demo-card" style="padding: 1.25rem; border-color: var(--accent-purple); box-shadow: 0 0 25px rgba(168,85,247,0.2);">
@@ -299,6 +304,7 @@
     engineState.reactionTime = Math.max(1, Math.round(performance.now() - engineState.selectionStartTime));
     engineState.selectedOptionId = optionId;
     engineState.isCorrect = (optionId === engineState.activeScenario.correctAnswerId);
+    window.__engineDebugState = { phase: 'RESULT', time: engineState.reactionTime, scenario: engineState.activeScenario.id, locked: true };
     
     renderResultScreen();
   }

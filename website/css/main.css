@@ -887,3 +887,21 @@ a:focus-visible, button:focus-visible, select:focus-visible, input:focus-visible
   white-space: nowrap;
   border-width: 0;
 }
+
+/* ============================================
+   Phase 6 Controlled Launch & Onboarding
+   ============================================ */
+
+@keyframes firstVisitPulse {
+  0%, 100% {
+    box-shadow: 0 0 15px var(--glow-cyan);
+  }
+  50% {
+    box-shadow: 0 0 35px var(--glow-cyan), 0 0 60px rgba(0,229,255,0.4);
+  }
+}
+
+html.witness-first-visit .btn-primary,
+html.witness-first-visit #startTrialBtn {
+  animation: firstVisitPulse 2.5s infinite;
+}

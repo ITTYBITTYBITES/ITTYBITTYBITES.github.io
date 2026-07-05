@@ -3,10 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Two Second Witness | Coming Soon</title>
-  <meta http-equiv="refresh" content="0; url=website/index.html">
+  <title>Two Second Witness | Canonical Launch Gateway</title>
   <script>
-    window.location.replace("website/index.html");
+    (function() {
+      var search = window.location.search || '';
+      var params = new URLSearchParams(search);
+      if (params.has('world') || params.has('scenario') || params.has('challenge')) {
+        window.location.replace("website/pages/scenarios.html" + search);
+      } else {
+        window.location.replace("website/index.html" + search);
+      }
+    })();
   </script>
 </head>
 <body style="background:#0a0a1a;color:#fff;font-family:sans-serif;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;">

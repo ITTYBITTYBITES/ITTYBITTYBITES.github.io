@@ -1,6 +1,6 @@
 /* ============================================
    Two Second Witness — Static Safe Analytics
-   Phase 5 Production Hardening Layer
+   Phase 6 Launch Structure Alignment Layer
    ============================================ */
 
 (function () {
@@ -12,39 +12,50 @@
   };
 
   /**
-   * Lightweight static event tracker.
-   * Dispatches custom DOM events and safely logs to console if debug mode is active.
+   * Static event telemetry tracker.
+   * Aligns with Phase 6 schema requirements: attaches timestamp, traffic_source, scenario_id, world_id.
    */
   window.trackWitnessEvent = function (eventName, eventData) {
     if (!window.TWO_SECOND_CONFIG.analyticsEnabled) return;
 
     try {
-      var detail = {
+      var data = eventData || {};
+      var src = 'direct';
+      try {
+        src = sessionStorage.getItem('trafficSource') || 'direct';
+      } catch (e) {}
+
+      var payload = {
         event: eventName,
-        data: eventData || {},
-        timestamp: new Date().toISOString()
+        timestamp: performance.now(),
+        iso_time: new Date().toISOString(),
+        traffic_source: src,
+        scenario_id: data.scenarioId || data.scenario || 'N/A',
+        world_id: data.worldId || data.world || 'N/A',
+        reaction_time: data.reactionTimeMs || data.reactionTime || 0,
+        accuracy: data.isCorrect !== undefined ? (data.isCorrect ? 100 : 0) : null,
+        rating: data.rating || null,
+        meta: data
       };
 
-      // Dispatch custom DOM event for any frontend listeners
+      // Dispatch custom DOM event for frontend hooks & measurement
       var customEvt = new CustomEvent('twosecondwitness:analytics', {
-        detail: detail,
+        detail: payload,
         bubbles: true
       });
       document.dispatchEvent(customEvt);
 
       if (window.TWO_SECOND_CONFIG.debugMode && console && console.log) {
-        console.log('[Witness Analytics]', eventName, eventData);
+        console.log('[Witness Telemetry]', eventName, payload);
       }
 
-      // Safe hook for Google Analytics / gtag / Plausible if configured later
+      // Safe hook for analytics receivers
       if (typeof window.gtag === 'function') {
-        window.gtag('event', eventName, eventData);
+        window.gtag('event', eventName, payload);
       } else if (typeof window.plausible === 'function') {
-        window.plausible(eventName, { props: eventData });
+        window.plausible(eventName, { props: payload });
       }
-    } catch (e) {
-      // Never let telemetry errors break the application
-    }
+    } catch (e) {}
   };
 
 })();
