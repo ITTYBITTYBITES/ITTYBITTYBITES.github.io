@@ -5,47 +5,28 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <title>Development Blog | Two Second Witness</title>
+  <title>Development & Cognitive Blog | Two Second Witness</title>
 
   <!-- SEO Meta -->
-  <meta name="description" content="Read developer updates, cognitive design notes, and technical architecture articles from the creators of Two Second Witness.">
+  <meta name="description" content="Read cognitive science research, design notes, and technical architecture articles from the creators of Two Second Witness.">
   <meta name="keywords" content="Two Second Witness dev blog, game design psychology, visual memory research, indie game development updates">
   <meta name="author" content="Two Second Witness">
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#0a0a1a">
   <link rel="canonical" href="https://twosecondwitness.com/pages/blog.html">
 
-  <!-- Open Graph -->
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Development Blog | Two Second Witness">
-  <meta property="og:description" content="Read developer updates and cognitive design notes for Two Second Witness.">
-  <meta property="og:image" content="../assets/images/og-image.png">
-  <meta property="og:url" content="https://twosecondwitness.com/pages/blog.html">
-  <meta property="og:site_name" content="Two Second Witness">
-
-  <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Development Blog | Two Second Witness">
-  <meta name="twitter:description" content="Read developer updates and cognitive design notes for Two Second Witness.">
-  <meta property="twitter:image" content="../assets/images/og-image.png">
-
-  <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="../assets/images/favicon.svg">
   <link rel="apple-touch-icon" href="../assets/images/favicon.svg">
-
-  <!-- Stylesheet -->
   <link rel="stylesheet" href="../css/main.css">
 </head>
 <body>
   <a href="#mainContent" class="skip-to-content">Skip to main content</a>
-
   <div class="noise-overlay"></div>
   <div class="gradient-bg"></div>
 
-  <!-- Global Navigation Header -->
   <header class="site-header" role="banner">
     <nav class="nav-container" role="navigation" aria-label="Main Navigation">
-      <a href="../index.html" class="nav-brand" aria-label="Two Second Witness Homepage">
+      <a href="../index.html" class="nav-brand">
         <svg class="nav-brand-eye" viewBox="0 0 80 44" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M40 4C20 4 4 22 4 22s16 18 36 18 36-18 36-18S60 4 40 4z" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
           <circle cx="40" cy="22" r="10" stroke="currentColor" stroke-width="3"/>
@@ -53,9 +34,7 @@
         </svg>
         <span class="nav-brand-text">Two Second <span>Witness</span></span>
       </a>
-      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="navList">
-        &#9776;
-      </button>
+      <button class="nav-toggle" id="navToggle">&#9776;</button>
       <ul class="nav-list" id="navList">
         <li><a href="../index.html" class="nav-link">Home</a></li>
         <li><a href="worlds.html" class="nav-link">Worlds</a></li>
@@ -69,10 +48,10 @@
   <main class="page-main" id="mainContent">
     <section class="section">
       <div class="section-header">
-        <span class="status-text" style="color:var(--accent-cyan); display:block; margin-bottom:0.5rem; letter-spacing:0.15em;">DEVELOPMENT CHRONICLES</span>
-        <h1 class="h1">Developer Notes & News</h1>
+        <span class="status-text" style="color:var(--accent-cyan); display:block; margin-bottom:0.5rem; letter-spacing:0.15em;">RESEARCH CHRONICLES</span>
+        <h1 class="h1">Developer & Cognitive Blog</h1>
         <p class="text-lead">
-          Dive into our design logs explaining the cognitive science of visual attention and our technical journey building Two Second Witness.
+          Dive into our research logs explaining the cognitive psychology of visual attention and our technical journey building Two Second Witness.
         </p>
       </div>
     </section>
@@ -80,27 +59,45 @@
     <section class="section">
       <div class="grid grid-2">
         <article class="card">
-          <span style="font-size:0.75rem; color:var(--accent-cyan); margin-bottom:0.5rem; display:block;">JULY 2026 &bull; DESIGN LOG #02</span>
-          <h2 class="h2" style="font-size:1.4rem;">Structuring the Five Memory Biomes</h2>
-          <p class="card-desc">
-            Why did we choose Ancient Egypt, Vikings, Mars Colony, Fantasy, and Cyberpunk? We break down visual contrast ratios and how background clutter impacts player perception during rapid two-second exposures.
-          </p>
-          <div class="card-meta">
-            <span>Author: Lead Level Designer</span>
-            <a href="worlds.html" style="color:var(--accent-cyan); font-weight:600; text-decoration:none;">View Biomes &rarr;</a>
-          </div>
+          <span style="font-size:0.75rem; color:var(--accent-cyan); margin-bottom:0.5rem; display:block;">JULY 2026 &bull; COGNITIVE SCIENCE</span>
+          <h2 class="h2" style="font-size:1.35rem;">Why Your Brain Lies After 2 Seconds</h2>
+          <p class="card-desc">Explaining iconic visual memory decay and predictive filling errors during rapid visual disruptions.</p>
+          <div class="card-meta"><span>Reading Time: 4 min</span><a href="blog/why-your-brain-lies-after-2-seconds.html" style="color:var(--accent-cyan); font-weight:bold;">Read Article &rarr;</a></div>
         </article>
 
         <article class="card">
-          <span style="font-size:0.75rem; color:var(--accent-purple); margin-bottom:0.5rem; display:block;">JUNE 2026 &bull; ARCHITECTURE LOG #01</span>
-          <h2 class="h2" style="font-size:1.4rem;">Zero-Dependency Web Scaffolding</h2>
-          <p class="card-desc">
-            How we achieved sub-second load times and 100/100 accessibility scores using pure vanilla JavaScript, modern CSS variables, and clean static HTML architecture without bloatware frameworks.
-          </p>
-          <div class="card-meta">
-            <span>Author: Lead Systems Architect</span>
-            <a href="home.html" style="color:var(--accent-cyan); font-weight:600; text-decoration:none;">Hub Architecture &rarr;</a>
-          </div>
+          <span style="font-size:0.75rem; color:var(--accent-cyan); margin-bottom:0.5rem; display:block;">JULY 2026 &bull; PERCEPTION DISCOVERY</span>
+          <h2 class="h2" style="font-size:1.35rem;">What Is Change Blindness?</h2>
+          <p class="card-desc">Understand the perceptual phenomenon where observers fail to notice major environmental alterations.</p>
+          <div class="card-meta"><span>Reading Time: 3 min</span><a href="blog/what-is-change-blindness.html" style="color:var(--accent-cyan); font-weight:bold;">Read Article &rarr;</a></div>
+        </article>
+
+        <article class="card">
+          <span style="font-size:0.75rem; color:var(--accent-purple); margin-bottom:0.5rem; display:block;">JULY 2026 &bull; NEUROPLASTICITY</span>
+          <h2 class="h2" style="font-size:1.35rem;">Can Memory Be Trained Like A Muscle?</h2>
+          <p class="card-desc">How chunking and rapid 2-second perception drills strengthen short-term working memory over time.</p>
+          <div class="card-meta"><span>Reading Time: 4 min</span><a href="blog/can-memory-be-trained-like-a-muscle.html" style="color:var(--accent-cyan); font-weight:bold;">Read Article &rarr;</a></div>
+        </article>
+
+        <article class="card">
+          <span style="font-size:0.75rem; color:var(--accent-purple); margin-bottom:0.5rem; display:block;">JULY 2026 &bull; RESEARCH NOTES</span>
+          <h2 class="h2" style="font-size:1.35rem;">The Science Behind Visual Attention</h2>
+          <p class="card-desc">Anatomy of focal foveal gaze versus peripheral processing during high-stress time-critical tasks.</p>
+          <div class="card-meta"><span>Reading Time: 3 min</span><a href="blog/the-science-behind-visual-attention.html" style="color:var(--accent-cyan); font-weight:bold;">Read Article &rarr;</a></div>
+        </article>
+
+        <article class="card">
+          <span style="font-size:0.75rem; color:var(--accent-cyan); margin-bottom:0.5rem; display:block;">JULY 2026 &bull; COGNITIVE FITNESS</span>
+          <h2 class="h2" style="font-size:1.35rem;">Why Fast Perception Games Improve Focus</h2>
+          <p class="card-desc">How gamified visual challenges counteract modern digital attention fatigue and passive scrolling.</p>
+          <div class="card-meta"><span>Reading Time: 3 min</span><a href="blog/why-fast-perception-games-improve-focus.html" style="color:var(--accent-cyan); font-weight:bold;">Read Article &rarr;</a></div>
+        </article>
+
+        <article class="card">
+          <span style="font-size:0.75rem; color:var(--accent-purple); margin-bottom:0.5rem; display:block;">JULY 2026 &bull; DEVELOPMENT</span>
+          <h2 class="h2" style="font-size:1.35rem;">How Two Second Witness Was Designed</h2>
+          <p class="card-desc">Behind the scenes of building a zero-dependency web playable thriller with 2000ms timing precision.</p>
+          <div class="card-meta"><span>Reading Time: 5 min</span><a href="blog/how-two-second-witness-was-designed.html" style="color:var(--accent-cyan); font-weight:bold;">Read Article &rarr;</a></div>
         </article>
       </div>
     </section>
@@ -121,7 +118,6 @@
       <p class="footer-copy">&copy; 2026 Two Second Witness. All rights reserved.</p>
     </div>
   </footer>
-
   <script src="../js/main.js"></script>
 </body>
 </html>
