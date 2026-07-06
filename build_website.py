@@ -45,6 +45,9 @@ def sync_data():
     for fn in ["worlds.json","universes.json","characters.json","events.json","releases.json"]:
         shutil.copy2(SHARED_DIR / fn, DATA_DIR / fn)
     shutil.copy2(SHARED_DIR / "export" / "manifest.json", DATA_DIR / "manifest.json")
+    if (SHARED_DIR / "build_state.json").exists():
+        shutil.copy2(SHARED_DIR / "build_state.json", DATA_DIR / "build_state.json")
+        print("  build_state.json synced")
 
 def build_index():
     print("index.html...")
@@ -106,11 +109,42 @@ def build_releases():
     html=f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Releases – Chronicle</title><link rel="stylesheet" href="assets/chronicle.css"></head><body>{nav("releases")}<div style="max-width:900px;margin:40px auto;padding:0 20px"><h2>Releases – Deterministic Snapshots</h2><p><strong>{rid}</strong> · schema {sv}</p><pre style="background:#0b1022;padding:16px;border-radius:10px;overflow:auto;font-size:12px">{rj}</pre></div>{FOOTER}</body></html>'
     with open(WEBSITE_DIR/"releases.html","w",encoding="utf-8") as f: f.write(html)
 
+
 def build_journal():
     print("journal.html...")
-    ts=manifest_data.get("timestamp","unknown"); cnt=manifest_data.get("counts",{})
-    html=f'<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Journal – Chronicle</title><link rel="stylesheet" href="assets/chronicle.css"></head><body>{nav("journal")}<div style="max-width:900px;margin:40px auto;padding:0 20px"><h2>Chronicle Journal – Regeneration Log</h2><div class="card" style="margin-bottom:16px"><h3>Export Complete — {ts}</h3><table><tr><th>observation banks</th><td>{cnt.get("observation_banks",0)}</td></tr><tr><th>observations</th><td>{cnt.get("observations_exported",0)}</td></tr><tr><th>worlds</th><td>{cnt.get("worlds",0)}</td></tr><tr><th>universes</th><td>{cnt.get("universes",0)}</td></tr><tr><th>behavioral fields</th><td>{cnt.get("characters",0)}</td></tr><tr><th>validation</th><td>PASS — 0 schema violations, 0 orphan refs, 0 duplicates</td></tr><tr><th>pipeline</th><td>app → shared → chronicle → website → GitHub Pages</td></tr></table></div></div>{FOOTER}</body></html>'
-    with open(WEBSITE_DIR/"journal.html","w",encoding="utf-8") as f: f.write(html)
+    bs = None
+    if (DATA_DIR / "build_state.json").exists():
+        try:
+            bs = json.loads((DATA_DIR / "build_state.json").read_text(encoding="utf-8"))
+        except Exception:
+            pass
+    ts = manifest_data.get("timestamp", "unknown")
+    cnt = manifest_data.get("counts", {})
+    bs_section = ""
+    if bs:
+        r = bs.get("run_id", "?")
+        ap = bs.get("app_commit_short", "")
+        wp = bs.get("website_commit_short", "")
+        eh = (bs.get("export_hash", "") or "")[:32]
+        obs = bs.get("counts", {}).get("observations_exported", "")
+        wld = bs.get("counts", {}).get("worlds", "")
+        uni = bs.get("counts", {}).get("universes", "")
+        ts_bs = bs.get("timestamp", "")
+        pv = bs.get("pipeline_version", "")
+        bs_section = '<div class="card" style="margin-bottom:16px"><h3>Build State - ' + r + '</h3><table>'
+        bs_section += '<tr><th>run_id</th><td><code>' + r + '</code></td></tr>'
+        bs_section += '<tr><th>timestamp</th><td>' + ts_bs + '</td></tr>'
+        bs_section += '<tr><th>pipeline_version</th><td>' + pv + '</td></tr>'
+        bs_section += '<tr><th>app_commit</th><td><code>' + ap + '</code></td></tr>'
+        bs_section += '<tr><th>website_commit</th><td><code>' + wp + '</code></td></tr>'
+        bs_section += '<tr><th>export_hash</th><td><code>' + eh + '...</code></td></tr>'
+        bs_section += '<tr><th>observations</th><td>' + str(obs) + '</td></tr>'
+        bs_section += '<tr><th>worlds</th><td>' + str(wld) + '</td></tr>'
+        bs_section += '<tr><th>universes</th><td>' + str(uni) + '</td></tr>'
+        bs_section += '</table></div>'
+    html = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Journal - Chronicle</title><link rel="stylesheet" href="assets/chronicle.css"></head><body>' + nav("journal") + '<div style="max-width:900px;margin:40px auto;padding:0 20px"><h2>Chronicle Journal - Regeneration Log</h2>' + bs_section + '<div class="card" style="margin-bottom:16px"><h3>Export Complete - ' + ts + '</h3><table><tr><th>observation banks</th><td>' + str(cnt.get("observation_banks",0)) + '</td></tr><tr><th>observations</th><td>' + str(cnt.get("observations_exported",0)) + '</td></tr><tr><th>worlds</th><td>' + str(cnt.get("worlds",0)) + '</td></tr><tr><th>universes</th><td>' + str(cnt.get("universes",0)) + '</td></tr><tr><th>behavioral fields</th><td>' + str(cnt.get("characters",0)) + '</td></tr><tr><th>validation</th><td>PASS</td></tr><tr><th>pipeline</th><td>app - shared - chronicle - website - GitHub Pages</td></tr></table></div></div>' + FOOTER + '</body></html>'
+    with open(WEBSITE_DIR / "journal.html", "w", encoding="utf-8") as f:
+        f.write(html)
 
 def main():
     print("="*50); print("Chronicle Website Builder v1"); print("="*50)

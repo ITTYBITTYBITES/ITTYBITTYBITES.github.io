@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0.0",
+  "run_id": "2026-07-06-001",
+  "pipeline_version": "1.0.0",
+  "timestamp": "2026-07-06T19:16:21.503448Z",
+  "app_commit": "a1ad8db8e6be0a47bbc9c448ef0e53bc26a9c155",
+  "app_commit_short": "a1ad8db",
+  "website_commit": "a1ad8db8e6be0a47bbc9c448ef0e53bc26a9c155",
+  "website_commit_short": "a1ad8db",
+  "export_hash": "sha256:fcea97ba788fd2b6f57ba3a2fbb7ef276fa326850d6050f46707273e7c74d1da",
+  "manifest_timestamp": "2026-07-06T19:16:09.862749Z",
+  "counts": {
+    "observation_banks": 143,
+    "observations_exported": 22059,
+    "worlds": 61,
+    "universes": 7,
+    "characters": 4
+  },
+  "validation": {
+    "duplicate_identifiers": 0,
+    "schema_violations": 0,
+    "orphaned_references": 0,
+    "private_data_leakage": "PASS \u2013 0 source_code, 0 private_assets, 0 runtime_internals, 0 secrets"
+  },
+  "source_provenance": "app",
+  "authority_tier": "tier_1_projection",
+  "provenance": {
+    "generated_by": "generate_build_state.py",
+    "pipeline": "chronicle_export -> build_state -> build_website -> deploy"
+  }
+}
