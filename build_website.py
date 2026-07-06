@@ -54,6 +54,10 @@ def sync_data():
     if (SHARED_DIR / "build_state.json").exists():
         shutil.copy2(SHARED_DIR / "build_state.json", DATA_DIR / "build_state.json")
         print("  build_state.json synced")
+    vm = SHARED_DIR / "contracts" / "version_manifest.json"
+    if vm.exists():
+        shutil.copy2(vm, DATA_DIR / "version_manifest.json")
+        print("  version_manifest.json synced")
 
 def build_index():
     print("index.html...")
@@ -119,13 +123,35 @@ def build_releases():
 def build_journal():
     print("journal.html...")
     bs = None
+    vm = None
     if (DATA_DIR / "build_state.json").exists():
         try:
             bs = json.loads((DATA_DIR / "build_state.json").read_text(encoding="utf-8"))
         except Exception:
             pass
+    if (DATA_DIR / "version_manifest.json").exists():
+        try:
+            vm = json.loads((DATA_DIR / "version_manifest.json").read_text(encoding="utf-8"))
+        except Exception:
+            pass
     ts = manifest_data.get("timestamp", "unknown")
     cnt = manifest_data.get("counts", {})
+    vm_section = ""
+    if vm:
+        vs = vm.get("version", "?")
+        fa = vm.get("frozen_at", "")
+        ac = (vm.get("app_commit", "") or "")[:7]
+        wc = (vm.get("website_commit", "") or "")[:7]
+        bp = vm.get("build_pipeline", "")
+        pr = vm.get("principle", "")
+        vm_section = "<div class=\"card\" style=\"margin-bottom:16px\"><h3>Version Freeze - " + vs + "</h3><table>"
+        vm_section += "<tr><th>version</th><td><code>" + vs + "</code></td></tr>"
+        vm_section += "<tr><th>frozen_at</th><td>" + fa + "</td></tr>"
+        vm_section += "<tr><th>app_commit</th><td><code>" + ac + "</code></td></tr>"
+        vm_section += "<tr><th>website_commit</th><td><code>" + wc + "</code></td></tr>"
+        vm_section += "<tr><th>pipeline</th><td>" + bp + "</td></tr>"
+        vm_section += "<tr><th>principle</th><td>" + pr + "</td></tr>"
+        vm_section += "</table></div>"
     bs_section = ""
     if bs:
         r = bs.get("run_id", "?")
@@ -148,7 +174,7 @@ def build_journal():
         bs_section += '<tr><th>worlds</th><td>' + str(wld) + '</td></tr>'
         bs_section += '<tr><th>universes</th><td>' + str(uni) + '</td></tr>'
         bs_section += '</table></div>'
-    html = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Journal - Chronicle</title><link rel="stylesheet" href="assets/chronicle.css"></head><body>' + nav("journal") + '<div style="max-width:900px;margin:40px auto;padding:0 20px"><h2>Chronicle Journal - Regeneration Log</h2>' + bs_section + '<div class="card" style="margin-bottom:16px"><h3>Export Complete - ' + ts + '</h3><table><tr><th>observation banks</th><td>' + str(cnt.get("observation_banks",0)) + '</td></tr><tr><th>observations</th><td>' + str(cnt.get("observations_exported",0)) + '</td></tr><tr><th>worlds</th><td>' + str(cnt.get("worlds",0)) + '</td></tr><tr><th>universes</th><td>' + str(cnt.get("universes",0)) + '</td></tr><tr><th>behavioral fields</th><td>' + str(cnt.get("characters",0)) + '</td></tr><tr><th>validation</th><td>PASS</td></tr><tr><th>pipeline</th><td>app - shared - chronicle - website - GitHub Pages</td></tr></table></div></div>' + FOOTER + '</body></html>'
+    html = '<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Journal - Chronicle</title><link rel="stylesheet" href="assets/chronicle.css"></head><body>' + nav("journal") + '<div style="max-width:900px;margin:40px auto;padding:0 20px"><h2>Chronicle Journal - Regeneration Log</h2>' + vm_section + bs_section + '<div class="card" style="margin-bottom:16px"><h3>Export Complete - ' + ts + '</h3><table><tr><th>observation banks</th><td>' + str(cnt.get("observation_banks",0)) + '</td></tr><tr><th>observations</th><td>' + str(cnt.get("observations_exported",0)) + '</td></tr><tr><th>worlds</th><td>' + str(cnt.get("worlds",0)) + '</td></tr><tr><th>universes</th><td>' + str(cnt.get("universes",0)) + '</td></tr><tr><th>behavioral fields</th><td>' + str(cnt.get("characters",0)) + '</td></tr><tr><th>validation</th><td>PASS</td></tr><tr><th>pipeline</th><td>app - shared - chronicle - website - GitHub Pages</td></tr></table></div></div>' + FOOTER + '</body></html>'
     with open(WEBSITE_DIR / "journal.html", "w", encoding="utf-8") as f:
         f.write(html)
 
