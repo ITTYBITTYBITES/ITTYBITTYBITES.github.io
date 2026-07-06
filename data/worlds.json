@@ -1,1 +1,2628 @@
-{"schema_version": "1.0.0", "source_provenance": "app", "authority_tier": "tier_1_projection", "generated_at": "2026-07-06T16:27:12.736759Z", "count": 61, "worlds": [{"id": "animation", "universe_id": "creative_arts", "slug": "animation", "display_name": "Animation", "taxonomy": {"domain": "creative_arts", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.76, "gravity": 0.76, "overlap_regions": ["architecture", "art_history", "calligraphy_lettering"], "drift_potential": 0.067, "field_coordinates": {"x": 0.417, "y": 0.79, "z": -0.5}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 1000, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/creative_arts/animation", "schema_version": "1.0.0"}}, {"id": "architecture", "universe_id": "creative_arts", "slug": "architecture", "display_name": "Architecture", "taxonomy": {"domain": "creative_arts", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.52, "gravity": 0.48, "overlap_regions": ["animation", "art_history", "calligraphy_lettering"], "drift_potential": 0.18, "field_coordinates": {"x": 0.103, "y": -0.19, "z": 0.127}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 1000, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/creative_arts/architecture", "schema_version": "1.0.0"}}, {"id": "art_history", "universe_id": "creative_arts", "slug": "art-history", "display_name": "Art History", "taxonomy": {"domain": "creative_arts", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.595, "gravity": 0.44, "overlap_regions": ["animation", "architecture", "calligraphy_lettering"], "drift_potential": 0.073, "field_coordinates": {"x": 0.597, "y": -0.546, "z": -0.474}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 1000, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/creative_arts/art_history", "schema_version": "1.0.0"}}, {"id": "calligraphy_lettering", "universe_id": "creative_arts", "slug": "calligraphy-lettering", "display_name": "Calligraphy Lettering", "taxonomy": {"domain": "creative_arts", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.525, "gravity": 0.44, "overlap_regions": ["animation", "architecture", "art_history"], "drift_potential": 0.323, "field_coordinates": {"x": -0.179, "y": -0.042, "z": 0.769}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 1000, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/creative_arts/calligraphy_lettering", "schema_version": "1.0.0"}}, {"id": "comics_manga", "universe_id": "creative_arts", "slug": "comics-manga", "display_name": "Comics Manga", "taxonomy": {"domain": "creative_arts", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.925, "gravity": 0.48, "overlap_regions": ["animation", "architecture", "art_history"], "drift_potential": 0.187, "field_coordinates": {"x": -0.046, "y": 0.173, "z": -0.13}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 1000, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/creative_arts/comics_manga", "schema_version": "1.0.0"}}, {"id": "crafts_diy", "universe_id": "creative_arts", "slug": "crafts-diy", "display_name": "Crafts Diy", "taxonomy": {"domain": "creative_arts", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.83, "gravity": 0.4, "overlap_regions": ["animation", "architecture", "art_history"], "drift_potential": 0.183, "field_coordinates": {"x": 0.153, "y": 0.776, "z": 0.255}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 1000, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/creative_arts/crafts_diy", "schema_version": "1.0.0"}}, {"id": "creative_technology", "universe_id": "creative_arts", "slug": "creative-technology", "display_name": "Creative Technology", "taxonomy": {"domain": "creative_arts", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.515, "gravity": 0.76, "overlap_regions": ["animation", "architecture", "art_history"], "drift_potential": 0.16, "field_coordinates": {"x": -0.339, "y": 0.32, "z": 0.178}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 1000, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/creative_arts/creative_technology", "schema_version": "1.0.0"}}, {"id": "digital_art", "universe_id": "creative_arts", "slug": "digital-art", "display_name": "Digital Art", "taxonomy": {"domain": "creative_arts", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.51, "gravity": 0.44, "overlap_regions": ["animation", "architecture", "art_history"], "drift_potential": 0.31, "field_coordinates": {"x": 0.107, "y": 0.887, "z": -0.524}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 1000, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/creative_arts/digital_art", "schema_version": "1.0.0"}}, {"id": "drawing", "universe_id": "creative_arts", "slug": "drawing", "display_name": "Drawing", "taxonomy": {"domain": "creative_arts", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.655, "gravity": 0.68, "overlap_regions": ["animation", "architecture", "art_history"], "drift_potential": 0.127, "field_coordinates": {"x": -0.567, "y": -0.981, "z": -0.58}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 1000, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/creative_arts/drawing", "schema_version": "1.0.0"}}, {"id": "famous_artists", "universe_id": "creative_arts", "slug": "famous-artists", "display_name": "Famous Artists", "taxonomy": {"domain": "creative_arts", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.66, "gravity": 0.56, "overlap_regions": ["animation", "architecture", "art_history"], "drift_potential": 0.177, "field_coordinates": {"x": -0.021, "y": 0.095, "z": 0.213}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 1000, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/creative_arts/famous_artists", "schema_version": "1.0.0"}}, {"id": "fashion", "universe_id": "creative_arts", "slug": "fashion", "display_name": "Fashion", "taxonomy": {"domain": "creative_arts", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.995, "gravity": 0.68, "overlap_regions": ["animation", "architecture", "art_history"], "drift_potential": 0.243, "field_coordinates": {"x": -0.14, "y": 0.116, "z": 0.251}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 1000, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/creative_arts/fashion", "schema_version": "1.0.0"}}, {"id": "graphic_design", "universe_id": "creative_arts", "slug": "graphic-design", "display_name": "Graphic Design", "taxonomy": {"domain": "creative_arts", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.715, "gravity": 0.56, "overlap_regions": ["animation", "architecture", "art_history"], "drift_potential": 0.083, "field_coordinates": {"x": 0.047, "y": -0.653, "z": -0.306}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 1000, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/creative_arts/graphic_design", "schema_version": "1.0.0"}}, {"id": "interior_design", "universe_id": "creative_arts", "slug": "interior-design", "display_name": "Interior Design", "taxonomy": {"domain": "creative_arts", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.845, "gravity": 0.6, "overlap_regions": ["animation", "architecture", "art_history"], "drift_potential": 0.127, "field_coordinates": {"x": 0.793, "y": 0.844, "z": 0.01}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 1000, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/creative_arts/interior_design", "schema_version": "1.0.0"}}, {"id": "movies_cinematography", "universe_id": "creative_arts", "slug": "movies-cinematography", "display_name": "Movies Cinematography", "taxonomy": {"domain": "creative_arts", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.82, "gravity": 0.44, "overlap_regions": ["animation", "architecture", "art_history"], "drift_potential": 0.317, "field_coordinates": {"x": -0.451, "y": -0.264, "z": -0.801}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 1000, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/creative_arts/movies_cinematography", "schema_version": "1.0.0"}}, {"id": "painting", "universe_id": "creative_arts", "slug": "painting", "display_name": "Painting", "taxonomy": {"domain": "creative_arts", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.65, "gravity": 0.72, "overlap_regions": ["animation", "architecture", "art_history"], "drift_potential": 0.177, "field_coordinates": {"x": -0.839, "y": 0.384, "z": -0.598}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 1000, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/creative_arts/painting", "schema_version": "1.0.0"}}, {"id": "photography", "universe_id": "creative_arts", "slug": "photography", "display_name": "Photography", "taxonomy": {"domain": "creative_arts", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.545, "gravity": 0.44, "overlap_regions": ["animation", "architecture", "art_history"], "drift_potential": 0.323, "field_coordinates": {"x": -0.645, "y": -0.755, "z": -0.888}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 1000, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/creative_arts/photography", "schema_version": "1.0.0"}}, {"id": "pottery_ceramics", "universe_id": "creative_arts", "slug": "pottery-ceramics", "display_name": "Pottery Ceramics", "taxonomy": {"domain": "creative_arts", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.7, "gravity": 0.64, "overlap_regions": ["animation", "architecture", "art_history"], "drift_potential": 0.167, "field_coordinates": {"x": 0.927, "y": -0.087, "z": -0.151}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 1000, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/creative_arts/pottery_ceramics", "schema_version": "1.0.0"}}, {"id": "sculpture", "universe_id": "creative_arts", "slug": "sculpture", "display_name": "Sculpture", "taxonomy": {"domain": "creative_arts", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.77, "gravity": 0.76, "overlap_regions": ["animation", "architecture", "art_history"], "drift_potential": 0.237, "field_coordinates": {"x": -0.881, "y": 0.948, "z": 0.749}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 1000, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/creative_arts/sculpture", "schema_version": "1.0.0"}}, {"id": "street_art", "universe_id": "creative_arts", "slug": "street-art", "display_name": "Street Art", "taxonomy": {"domain": "creative_arts", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.57, "gravity": 0.4, "overlap_regions": ["animation", "architecture", "art_history"], "drift_potential": 0.063, "field_coordinates": {"x": -0.971, "y": -0.814, "z": 0.289}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 1000, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/creative_arts/street_art", "schema_version": "1.0.0"}}, {"id": "tattoos_body_art", "universe_id": "creative_arts", "slug": "tattoos-body-art", "display_name": "Tattoos Body Art", "taxonomy": {"domain": "creative_arts", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.935, "gravity": 0.64, "overlap_regions": ["animation", "architecture", "art_history"], "drift_potential": 0.313, "field_coordinates": {"x": -0.527, "y": -0.491, "z": 0.934}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 1000, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/creative_arts/tattoos_body_art", "schema_version": "1.0.0"}}, {"id": "age_of_exploration", "universe_id": "history", "slug": "age-of-exploration", "display_name": "Age Of Exploration", "taxonomy": {"domain": "history", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.695, "gravity": 0.72, "overlap_regions": ["ancient_china", "ancient_egypt", "ancient_greece"], "drift_potential": 0.263, "field_coordinates": {"x": -0.789, "y": 0.381, "z": -0.784}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 51, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/history/age_of_exploration", "schema_version": "1.0.0"}}, {"id": "ancient_china", "universe_id": "history", "slug": "ancient-china", "display_name": "Ancient China", "taxonomy": {"domain": "history", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.63, "gravity": 0.52, "overlap_regions": ["age_of_exploration", "ancient_egypt", "ancient_greece"], "drift_potential": 0.21, "field_coordinates": {"x": 0.134, "y": -0.681, "z": 0.712}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 50, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/history/ancient_china", "schema_version": "1.0.0"}}, {"id": "ancient_egypt", "universe_id": "history", "slug": "ancient-egypt", "display_name": "Ancient Egypt", "taxonomy": {"domain": "history", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.715, "gravity": 0.52, "overlap_regions": ["age_of_exploration", "ancient_china", "ancient_greece"], "drift_potential": 0.067, "field_coordinates": {"x": 0.233, "y": 0.491, "z": 0.444}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 50, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/history/ancient_egypt", "schema_version": "1.0.0"}}, {"id": "ancient_greece", "universe_id": "history", "slug": "ancient-greece", "display_name": "Ancient Greece", "taxonomy": {"domain": "history", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.55, "gravity": 0.56, "overlap_regions": ["age_of_exploration", "ancient_china", "ancient_egypt"], "drift_potential": 0.31, "field_coordinates": {"x": -0.101, "y": 0.413, "z": 0.361}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 53, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/history/ancient_greece", "schema_version": "1.0.0"}}, {"id": "ancient_rome", "universe_id": "history", "slug": "ancient-rome", "display_name": "Ancient Rome", "taxonomy": {"domain": "history", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.595, "gravity": 0.48, "overlap_regions": ["age_of_exploration", "ancient_china", "ancient_egypt"], "drift_potential": 0.31, "field_coordinates": {"x": 0.112, "y": -0.247, "z": 0.791}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 71, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/history/ancient_rome", "schema_version": "1.0.0"}}, {"id": "cold_war", "universe_id": "history", "slug": "cold-war", "display_name": "Cold War", "taxonomy": {"domain": "history", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.62, "gravity": 0.72, "overlap_regions": ["age_of_exploration", "ancient_china", "ancient_egypt"], "drift_potential": 0.057, "field_coordinates": {"x": -0.004, "y": -0.066, "z": 0.884}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 58, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/history/cold_war", "schema_version": "1.0.0"}}, {"id": "colonial_america", "universe_id": "history", "slug": "colonial-america", "display_name": "Colonial America", "taxonomy": {"domain": "history", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.905, "gravity": 0.64, "overlap_regions": ["age_of_exploration", "ancient_china", "ancient_egypt"], "drift_potential": 0.257, "field_coordinates": {"x": 0.671, "y": 0.593, "z": 0.254}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 50, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/history/colonial_america", "schema_version": "1.0.0"}}, {"id": "enlightenment", "universe_id": "history", "slug": "enlightenment", "display_name": "Enlightenment", "taxonomy": {"domain": "history", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.69, "gravity": 0.52, "overlap_regions": ["age_of_exploration", "ancient_china", "ancient_egypt"], "drift_potential": 0.273, "field_coordinates": {"x": 0.612, "y": 0.125, "z": -0.987}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 51, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/history/enlightenment", "schema_version": "1.0.0"}}, {"id": "feudal_japan", "universe_id": "history", "slug": "feudal-japan", "display_name": "Feudal Japan", "taxonomy": {"domain": "history", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.54, "gravity": 0.48, "overlap_regions": ["age_of_exploration", "ancient_china", "ancient_egypt"], "drift_potential": 0.097, "field_coordinates": {"x": 0.48, "y": 0.239, "z": 0.487}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 50, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/history/feudal_japan", "schema_version": "1.0.0"}}, {"id": "industrial_revolution", "universe_id": "history", "slug": "industrial-revolution", "display_name": "Industrial Revolution", "taxonomy": {"domain": "history", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.545, "gravity": 0.44, "overlap_regions": ["age_of_exploration", "ancient_china", "ancient_egypt"], "drift_potential": 0.187, "field_coordinates": {"x": 0.543, "y": -0.727, "z": 0.637}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 51, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/history/industrial_revolution", "schema_version": "1.0.0"}}, {"id": "islamic_golden_age", "universe_id": "history", "slug": "islamic-golden-age", "display_name": "Islamic Golden Age", "taxonomy": {"domain": "history", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.67, "gravity": 0.72, "overlap_regions": ["age_of_exploration", "ancient_china", "ancient_egypt"], "drift_potential": 0.13, "field_coordinates": {"x": -0.476, "y": -0.591, "z": 0.121}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 50, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/history/islamic_golden_age", "schema_version": "1.0.0"}}, {"id": "medieval_europe", "universe_id": "history", "slug": "medieval-europe", "display_name": "Medieval Europe", "taxonomy": {"domain": "history", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.835, "gravity": 0.6, "overlap_regions": ["age_of_exploration", "ancient_china", "ancient_egypt"], "drift_potential": 0.023, "field_coordinates": {"x": -0.54, "y": 0.597, "z": 0.757}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 51, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/history/medieval_europe", "schema_version": "1.0.0"}}, {"id": "mesoamerica", "universe_id": "history", "slug": "mesoamerica", "display_name": "Mesoamerica", "taxonomy": {"domain": "history", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.6, "gravity": 0.44, "overlap_regions": ["age_of_exploration", "ancient_china", "ancient_egypt"], "drift_potential": 0.32, "field_coordinates": {"x": 0.137, "y": -0.415, "z": -0.351}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 50, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/history/mesoamerica", "schema_version": "1.0.0"}}, {"id": "mesopotamia", "universe_id": "history", "slug": "mesopotamia", "display_name": "Mesopotamia", "taxonomy": {"domain": "history", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.75, "gravity": 0.44, "overlap_regions": ["age_of_exploration", "ancient_china", "ancient_egypt"], "drift_potential": 0.183, "field_coordinates": {"x": 0.302, "y": -0.18, "z": 0.245}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 51, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/history/mesopotamia", "schema_version": "1.0.0"}}, {"id": "modern_era", "universe_id": "history", "slug": "modern-era", "display_name": "Modern Era", "taxonomy": {"domain": "history", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.56, "gravity": 0.4, "overlap_regions": ["age_of_exploration", "ancient_china", "ancient_egypt"], "drift_potential": 0.247, "field_coordinates": {"x": 0.823, "y": 0.548, "z": -0.642}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 51, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/history/modern_era", "schema_version": "1.0.0"}}, {"id": "ottoman_empire", "universe_id": "history", "slug": "ottoman-empire", "display_name": "Ottoman Empire", "taxonomy": {"domain": "history", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.94, "gravity": 0.56, "overlap_regions": ["age_of_exploration", "ancient_china", "ancient_egypt"], "drift_potential": 0.093, "field_coordinates": {"x": 0.237, "y": -0.409, "z": 0.736}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 50, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/history/ottoman_empire", "schema_version": "1.0.0"}}, {"id": "renaissance", "universe_id": "history", "slug": "renaissance", "display_name": "Renaissance", "taxonomy": {"domain": "history", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.835, "gravity": 0.44, "overlap_regions": ["age_of_exploration", "ancient_china", "ancient_egypt"], "drift_potential": 0.007, "field_coordinates": {"x": 0.437, "y": -0.61, "z": 0.034}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 50, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/history/renaissance", "schema_version": "1.0.0"}}, {"id": "russian_empire", "universe_id": "history", "slug": "russian-empire", "display_name": "Russian Empire", "taxonomy": {"domain": "history", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.72, "gravity": 0.56, "overlap_regions": ["age_of_exploration", "ancient_china", "ancient_egypt"], "drift_potential": 0.303, "field_coordinates": {"x": -0.467, "y": 0.977, "z": 0.603}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 50, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/history/russian_empire", "schema_version": "1.0.0"}}, {"id": "viking_age", "universe_id": "history", "slug": "viking-age", "display_name": "Viking Age", "taxonomy": {"domain": "history", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.97, "gravity": 0.4, "overlap_regions": ["age_of_exploration", "ancient_china", "ancient_egypt"], "drift_potential": 0.183, "field_coordinates": {"x": -0.481, "y": 0.242, "z": 0.177}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 50, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/history/viking_age", "schema_version": "1.0.0"}}, {"id": "world_wars", "universe_id": "history", "slug": "world-wars", "display_name": "World Wars", "taxonomy": {"domain": "history", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.69, "gravity": 0.4, "overlap_regions": ["age_of_exploration", "ancient_china", "ancient_egypt"], "drift_potential": 0.117, "field_coordinates": {"x": 0.497, "y": -0.795, "z": -0.637}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 50, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/history/world_wars", "schema_version": "1.0.0"}}, {"id": "ai", "universe_id": "science_lab", "slug": "ai", "display_name": "Ai", "taxonomy": {"domain": "science_lab", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.925, "gravity": 0.48, "overlap_regions": ["astronomy", "biotechnology", "chemistry"], "drift_potential": 0.277, "field_coordinates": {"x": 0.724, "y": -0.466, "z": -0.679}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 52, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/science_lab/ai", "schema_version": "1.0.0"}}, {"id": "astronomy", "universe_id": "science_lab", "slug": "astronomy", "display_name": "Astronomy", "taxonomy": {"domain": "science_lab", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.73, "gravity": 0.76, "overlap_regions": ["ai", "biotechnology", "chemistry"], "drift_potential": 0.173, "field_coordinates": {"x": -0.249, "y": -0.659, "z": 0.881}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 53, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/science_lab/astronomy", "schema_version": "1.0.0"}}, {"id": "biotechnology", "universe_id": "science_lab", "slug": "biotechnology", "display_name": "Biotechnology", "taxonomy": {"domain": "science_lab", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.53, "gravity": 0.52, "overlap_regions": ["ai", "astronomy", "chemistry"], "drift_potential": 0.073, "field_coordinates": {"x": -0.838, "y": 0.23, "z": 0.226}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 50, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/science_lab/biotechnology", "schema_version": "1.0.0"}}, {"id": "chemistry", "universe_id": "science_lab", "slug": "chemistry", "display_name": "Chemistry", "taxonomy": {"domain": "science_lab", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.82, "gravity": 0.76, "overlap_regions": ["ai", "astronomy", "biotechnology"], "drift_potential": 0.127, "field_coordinates": {"x": 0.749, "y": 0.839, "z": 0.92}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 51, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/science_lab/chemistry", "schema_version": "1.0.0"}}, {"id": "ecology", "universe_id": "science_lab", "slug": "ecology", "display_name": "Ecology", "taxonomy": {"domain": "science_lab", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.87, "gravity": 0.68, "overlap_regions": ["ai", "astronomy", "biotechnology"], "drift_potential": 0.283, "field_coordinates": {"x": 0.829, "y": -0.129, "z": -0.86}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 50, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/science_lab/ecology", "schema_version": "1.0.0"}}, {"id": "forensics", "universe_id": "science_lab", "slug": "forensics", "display_name": "Forensics", "taxonomy": {"domain": "science_lab", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.8, "gravity": 0.76, "overlap_regions": ["ai", "astronomy", "biotechnology"], "drift_potential": 0.077, "field_coordinates": {"x": 0.883, "y": 0.205, "z": -0.377}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 51, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/science_lab/forensics", "schema_version": "1.0.0"}}, {"id": "genetics", "universe_id": "science_lab", "slug": "genetics", "display_name": "Genetics", "taxonomy": {"domain": "science_lab", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.56, "gravity": 0.72, "overlap_regions": ["ai", "astronomy", "biotechnology"], "drift_potential": 0.207, "field_coordinates": {"x": 0.911, "y": -0.541, "z": 0.583}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 50, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/science_lab/genetics", "schema_version": "1.0.0"}}, {"id": "geology", "universe_id": "science_lab", "slug": "geology", "display_name": "Geology", "taxonomy": {"domain": "science_lab", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.93, "gravity": 0.68, "overlap_regions": ["ai", "astronomy", "biotechnology"], "drift_potential": 0.18, "field_coordinates": {"x": -0.139, "y": 0.975, "z": -0.01}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 52, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/science_lab/geology", "schema_version": "1.0.0"}}, {"id": "marine_biology", "universe_id": "science_lab", "slug": "marine-biology", "display_name": "Marine Biology", "taxonomy": {"domain": "science_lab", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.625, "gravity": 0.56, "overlap_regions": ["ai", "astronomy", "biotechnology"], "drift_potential": 0.043, "field_coordinates": {"x": -0.65, "y": -0.061, "z": -0.294}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 50, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/science_lab/marine_biology", "schema_version": "1.0.0"}}, {"id": "meteorology", "universe_id": "science_lab", "slug": "meteorology", "display_name": "Meteorology", "taxonomy": {"domain": "science_lab", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.565, "gravity": 0.44, "overlap_regions": ["ai", "astronomy", "biotechnology"], "drift_potential": 0.17, "field_coordinates": {"x": 0.754, "y": 0.269, "z": -0.804}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 50, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/science_lab/meteorology", "schema_version": "1.0.0"}}, {"id": "microbiology", "universe_id": "science_lab", "slug": "microbiology", "display_name": "Microbiology", "taxonomy": {"domain": "science_lab", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.66, "gravity": 0.48, "overlap_regions": ["ai", "astronomy", "biotechnology"], "drift_potential": 0.323, "field_coordinates": {"x": 0.197, "y": 0.051, "z": -0.114}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 50, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/science_lab/microbiology", "schema_version": "1.0.0"}}, {"id": "nanotechnology", "universe_id": "science_lab", "slug": "nanotechnology", "display_name": "Nanotechnology", "taxonomy": {"domain": "science_lab", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.805, "gravity": 0.56, "overlap_regions": ["ai", "astronomy", "biotechnology"], "drift_potential": 0.12, "field_coordinates": {"x": 0.935, "y": 0.772, "z": 0.153}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 50, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/science_lab/nanotechnology", "schema_version": "1.0.0"}}, {"id": "neuroscience", "universe_id": "science_lab", "slug": "neuroscience", "display_name": "Neuroscience", "taxonomy": {"domain": "science_lab", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.535, "gravity": 0.48, "overlap_regions": ["ai", "astronomy", "biotechnology"], "drift_potential": 0.127, "field_coordinates": {"x": -0.401, "y": 0.527, "z": -0.501}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 50, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/science_lab/neuroscience", "schema_version": "1.0.0"}}, {"id": "optics", "universe_id": "science_lab", "slug": "optics", "display_name": "Optics", "taxonomy": {"domain": "science_lab", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.915, "gravity": 0.64, "overlap_regions": ["ai", "astronomy", "biotechnology"], "drift_potential": 0.033, "field_coordinates": {"x": 0.157, "y": -0.213, "z": -0.775}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 51, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/science_lab/optics", "schema_version": "1.0.0"}}, {"id": "paleontology", "universe_id": "science_lab", "slug": "paleontology", "display_name": "Paleontology", "taxonomy": {"domain": "science_lab", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.5, "gravity": 0.48, "overlap_regions": ["ai", "astronomy", "biotechnology"], "drift_potential": 0.2, "field_coordinates": {"x": 0.177, "y": 0.836, "z": -0.087}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 51, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/science_lab/paleontology", "schema_version": "1.0.0"}}, {"id": "physics", "universe_id": "science_lab", "slug": "physics", "display_name": "Physics", "taxonomy": {"domain": "science_lab", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.585, "gravity": 0.68, "overlap_regions": ["ai", "astronomy", "biotechnology"], "drift_potential": 0.033, "field_coordinates": {"x": 0.396, "y": 0.193, "z": 0.216}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 52, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/science_lab/physics", "schema_version": "1.0.0"}}, {"id": "quantum_mechanics", "universe_id": "science_lab", "slug": "quantum-mechanics", "display_name": "Quantum Mechanics", "taxonomy": {"domain": "science_lab", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.975, "gravity": 0.68, "overlap_regions": ["ai", "astronomy", "biotechnology"], "drift_potential": 0.31, "field_coordinates": {"x": -0.862, "y": -0.899, "z": 0.75}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 51, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/science_lab/quantum_mechanics", "schema_version": "1.0.0"}}, {"id": "robotics", "universe_id": "science_lab", "slug": "robotics", "display_name": "Robotics", "taxonomy": {"domain": "science_lab", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.925, "gravity": 0.72, "overlap_regions": ["ai", "astronomy", "biotechnology"], "drift_potential": 0.163, "field_coordinates": {"x": -0.49, "y": 0.185, "z": -0.402}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 50, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/science_lab/robotics", "schema_version": "1.0.0"}}, {"id": "thermodynamics", "universe_id": "science_lab", "slug": "thermodynamics", "display_name": "Thermodynamics", "taxonomy": {"domain": "science_lab", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.665, "gravity": 0.56, "overlap_regions": ["ai", "astronomy", "biotechnology"], "drift_potential": 0.047, "field_coordinates": {"x": -0.534, "y": -0.936, "z": 0.368}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 50, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/science_lab/thermodynamics", "schema_version": "1.0.0"}}, {"id": "virology", "universe_id": "science_lab", "slug": "virology", "display_name": "Virology", "taxonomy": {"domain": "science_lab", "subcategories": []}, "embodiment": {"density": 1.0, "intensity": 0.525, "gravity": 0.72, "overlap_regions": ["ai", "astronomy", "biotechnology"], "drift_potential": 0.067, "field_coordinates": {"x": -0.473, "y": 0.899, "z": 0.565}, "field_radius": 1.0, "temporal_decay": 0.1}, "statistics": {"observation_count": 50, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/science_lab/virology", "schema_version": "1.0.0"}}, {"id": "solar_system", "universe_id": "space_astronomy", "slug": "solar-system", "display_name": "Solar System", "taxonomy": {"domain": "space_astronomy", "subcategories": []}, "embodiment": {"density": 0.14, "intensity": 0.985, "gravity": 0.48, "overlap_regions": [], "drift_potential": 0.313, "field_coordinates": {"x": 0.721, "y": 0.647, "z": -0.177}, "field_radius": 0.57, "temporal_decay": 0.1}, "statistics": {"observation_count": 7, "entity_types": [], "difficulty_distribution": {"1": 0, "2": 0, "3": 0}}, "provenance": {"source_provenance": "app", "authority_tier": "tier_1_projection", "app_path": "app/data/content/base_bundle/space_astronomy/solar_system", "schema_version": "1.0.0"}}]}
+{
+  "schema_version": "1.0.0",
+  "source_provenance": "app",
+  "authority_tier": "tier_1_projection",
+  "generated_at": "2026-07-06T19:04:14.637775Z",
+  "count": 61,
+  "worlds": [
+    {
+      "id": "animation",
+      "universe_id": "creative_arts",
+      "slug": "animation",
+      "display_name": "Animation",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.89,
+        "gravity": 0.76,
+        "overlap_regions": [
+          "architecture",
+          "art_history",
+          "calligraphy_lettering"
+        ],
+        "drift_potential": 0.06,
+        "field_coordinates": {
+          "x": -0.56,
+          "y": -0.168,
+          "z": 0.502
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/animation",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "architecture",
+      "universe_id": "creative_arts",
+      "slug": "architecture",
+      "display_name": "Architecture",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.955,
+        "gravity": 0.48,
+        "overlap_regions": [
+          "animation",
+          "art_history",
+          "calligraphy_lettering"
+        ],
+        "drift_potential": 0.21,
+        "field_coordinates": {
+          "x": 0.041,
+          "y": -0.805,
+          "z": -0.138
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/architecture",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "art_history",
+      "universe_id": "creative_arts",
+      "slug": "art-history",
+      "display_name": "Art History",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.985,
+        "gravity": 0.44,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "calligraphy_lettering"
+        ],
+        "drift_potential": 0.313,
+        "field_coordinates": {
+          "x": 0.793,
+          "y": 0.221,
+          "z": -0.367
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/art_history",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "calligraphy_lettering",
+      "universe_id": "creative_arts",
+      "slug": "calligraphy-lettering",
+      "display_name": "Calligraphy Lettering",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.9,
+        "gravity": 0.44,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.12,
+        "field_coordinates": {
+          "x": 0.327,
+          "y": -0.955,
+          "z": 0.14
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/calligraphy_lettering",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "comics_manga",
+      "universe_id": "creative_arts",
+      "slug": "comics-manga",
+      "display_name": "Comics Manga",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.52,
+        "gravity": 0.48,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.123,
+        "field_coordinates": {
+          "x": -0.003,
+          "y": 0.988,
+          "z": -0.081
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/comics_manga",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "crafts_diy",
+      "universe_id": "creative_arts",
+      "slug": "crafts-diy",
+      "display_name": "Crafts Diy",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.94,
+        "gravity": 0.4,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.243,
+        "field_coordinates": {
+          "x": -0.07,
+          "y": -0.015,
+          "z": -0.34
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/crafts_diy",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "creative_technology",
+      "universe_id": "creative_arts",
+      "slug": "creative-technology",
+      "display_name": "Creative Technology",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.935,
+        "gravity": 0.76,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.143,
+        "field_coordinates": {
+          "x": 0.018,
+          "y": 0.015,
+          "z": 0.966
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/creative_technology",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "digital_art",
+      "universe_id": "creative_arts",
+      "slug": "digital-art",
+      "display_name": "Digital Art",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.71,
+        "gravity": 0.44,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.31,
+        "field_coordinates": {
+          "x": 0.256,
+          "y": 0.583,
+          "z": 0.076
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/digital_art",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "drawing",
+      "universe_id": "creative_arts",
+      "slug": "drawing",
+      "display_name": "Drawing",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.5,
+        "gravity": 0.68,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.117,
+        "field_coordinates": {
+          "x": -0.001,
+          "y": -0.645,
+          "z": 0.896
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/drawing",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "famous_artists",
+      "universe_id": "creative_arts",
+      "slug": "famous-artists",
+      "display_name": "Famous Artists",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.61,
+        "gravity": 0.56,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.027,
+        "field_coordinates": {
+          "x": -0.583,
+          "y": -0.399,
+          "z": 0.385
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/famous_artists",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "fashion",
+      "universe_id": "creative_arts",
+      "slug": "fashion",
+      "display_name": "Fashion",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.62,
+        "gravity": 0.68,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.033,
+        "field_coordinates": {
+          "x": 0.718,
+          "y": 0.636,
+          "z": 0.174
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/fashion",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "graphic_design",
+      "universe_id": "creative_arts",
+      "slug": "graphic-design",
+      "display_name": "Graphic Design",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.57,
+        "gravity": 0.56,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.223,
+        "field_coordinates": {
+          "x": 0.569,
+          "y": -0.895,
+          "z": 0.902
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/graphic_design",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "interior_design",
+      "universe_id": "creative_arts",
+      "slug": "interior-design",
+      "display_name": "Interior Design",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.98,
+        "gravity": 0.6,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.297,
+        "field_coordinates": {
+          "x": -0.052,
+          "y": -0.759,
+          "z": 0.19
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/interior_design",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "movies_cinematography",
+      "universe_id": "creative_arts",
+      "slug": "movies-cinematography",
+      "display_name": "Movies Cinematography",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.575,
+        "gravity": 0.44,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.197,
+        "field_coordinates": {
+          "x": -0.632,
+          "y": -0.267,
+          "z": 0.413
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/movies_cinematography",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "painting",
+      "universe_id": "creative_arts",
+      "slug": "painting",
+      "display_name": "Painting",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.88,
+        "gravity": 0.72,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.09,
+        "field_coordinates": {
+          "x": -0.366,
+          "y": -0.899,
+          "z": -0.826
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/painting",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "photography",
+      "universe_id": "creative_arts",
+      "slug": "photography",
+      "display_name": "Photography",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.845,
+        "gravity": 0.44,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.293,
+        "field_coordinates": {
+          "x": -0.162,
+          "y": -0.128,
+          "z": 0.503
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/photography",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "pottery_ceramics",
+      "universe_id": "creative_arts",
+      "slug": "pottery-ceramics",
+      "display_name": "Pottery Ceramics",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.955,
+        "gravity": 0.64,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.14,
+        "field_coordinates": {
+          "x": -0.167,
+          "y": -0.223,
+          "z": 0.179
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/pottery_ceramics",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "sculpture",
+      "universe_id": "creative_arts",
+      "slug": "sculpture",
+      "display_name": "Sculpture",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.935,
+        "gravity": 0.76,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.197,
+        "field_coordinates": {
+          "x": 0.724,
+          "y": -0.772,
+          "z": -0.897
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/sculpture",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "street_art",
+      "universe_id": "creative_arts",
+      "slug": "street-art",
+      "display_name": "Street Art",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.6,
+        "gravity": 0.4,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.2,
+        "field_coordinates": {
+          "x": -0.155,
+          "y": -0.108,
+          "z": -0.496
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/street_art",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "tattoos_body_art",
+      "universe_id": "creative_arts",
+      "slug": "tattoos-body-art",
+      "display_name": "Tattoos Body Art",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.855,
+        "gravity": 0.64,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.04,
+        "field_coordinates": {
+          "x": -0.503,
+          "y": -0.499,
+          "z": -0.153
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/tattoos_body_art",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "age_of_exploration",
+      "universe_id": "history",
+      "slug": "age-of-exploration",
+      "display_name": "Age Of Exploration",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.575,
+        "gravity": 0.72,
+        "overlap_regions": [
+          "ancient_china",
+          "ancient_egypt",
+          "ancient_greece"
+        ],
+        "drift_potential": 0.08,
+        "field_coordinates": {
+          "x": 0.039,
+          "y": 0.649,
+          "z": -0.758
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 51,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/age_of_exploration",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "ancient_china",
+      "universe_id": "history",
+      "slug": "ancient-china",
+      "display_name": "Ancient China",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.63,
+        "gravity": 0.52,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_egypt",
+          "ancient_greece"
+        ],
+        "drift_potential": 0.147,
+        "field_coordinates": {
+          "x": -0.596,
+          "y": -0.123,
+          "z": -0.807
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/ancient_china",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "ancient_egypt",
+      "universe_id": "history",
+      "slug": "ancient-egypt",
+      "display_name": "Ancient Egypt",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.86,
+        "gravity": 0.52,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_greece"
+        ],
+        "drift_potential": 0.033,
+        "field_coordinates": {
+          "x": -0.234,
+          "y": 0.201,
+          "z": 0.451
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/ancient_egypt",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "ancient_greece",
+      "universe_id": "history",
+      "slug": "ancient-greece",
+      "display_name": "Ancient Greece",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.96,
+        "gravity": 0.56,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_egypt"
+        ],
+        "drift_potential": 0.037,
+        "field_coordinates": {
+          "x": 0.124,
+          "y": 0.765,
+          "z": -0.626
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 53,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/ancient_greece",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "ancient_rome",
+      "universe_id": "history",
+      "slug": "ancient-rome",
+      "display_name": "Ancient Rome",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.86,
+        "gravity": 0.48,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_egypt"
+        ],
+        "drift_potential": 0.33,
+        "field_coordinates": {
+          "x": 0.801,
+          "y": -0.541,
+          "z": 0.915
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 71,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/ancient_rome",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "cold_war",
+      "universe_id": "history",
+      "slug": "cold-war",
+      "display_name": "Cold War",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.505,
+        "gravity": 0.72,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_egypt"
+        ],
+        "drift_potential": 0.04,
+        "field_coordinates": {
+          "x": 0.224,
+          "y": -0.146,
+          "z": 0.8
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 58,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/cold_war",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "colonial_america",
+      "universe_id": "history",
+      "slug": "colonial-america",
+      "display_name": "Colonial America",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.895,
+        "gravity": 0.64,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_egypt"
+        ],
+        "drift_potential": 0.103,
+        "field_coordinates": {
+          "x": 0.747,
+          "y": 0.131,
+          "z": 0.77
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/colonial_america",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "enlightenment",
+      "universe_id": "history",
+      "slug": "enlightenment",
+      "display_name": "Enlightenment",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.725,
+        "gravity": 0.52,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_egypt"
+        ],
+        "drift_potential": 0.147,
+        "field_coordinates": {
+          "x": 0.058,
+          "y": -0.846,
+          "z": 0.295
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 51,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/enlightenment",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "feudal_japan",
+      "universe_id": "history",
+      "slug": "feudal-japan",
+      "display_name": "Feudal Japan",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.62,
+        "gravity": 0.48,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_egypt"
+        ],
+        "drift_potential": 0.29,
+        "field_coordinates": {
+          "x": -0.032,
+          "y": -0.737,
+          "z": 0.893
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/feudal_japan",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "industrial_revolution",
+      "universe_id": "history",
+      "slug": "industrial-revolution",
+      "display_name": "Industrial Revolution",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.79,
+        "gravity": 0.44,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_egypt"
+        ],
+        "drift_potential": 0.19,
+        "field_coordinates": {
+          "x": 0.749,
+          "y": -0.892,
+          "z": 0.596
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 51,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/industrial_revolution",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "islamic_golden_age",
+      "universe_id": "history",
+      "slug": "islamic-golden-age",
+      "display_name": "Islamic Golden Age",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.745,
+        "gravity": 0.72,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_egypt"
+        ],
+        "drift_potential": 0.317,
+        "field_coordinates": {
+          "x": 0.82,
+          "y": 0.67,
+          "z": -0.19
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/islamic_golden_age",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "medieval_europe",
+      "universe_id": "history",
+      "slug": "medieval-europe",
+      "display_name": "Medieval Europe",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.7,
+        "gravity": 0.6,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_egypt"
+        ],
+        "drift_potential": 0.077,
+        "field_coordinates": {
+          "x": 0.149,
+          "y": -0.284,
+          "z": 0.44
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 51,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/medieval_europe",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "mesoamerica",
+      "universe_id": "history",
+      "slug": "mesoamerica",
+      "display_name": "Mesoamerica",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.79,
+        "gravity": 0.44,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_egypt"
+        ],
+        "drift_potential": 0.01,
+        "field_coordinates": {
+          "x": 0.46,
+          "y": 0.066,
+          "z": 0.204
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/mesoamerica",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "mesopotamia",
+      "universe_id": "history",
+      "slug": "mesopotamia",
+      "display_name": "Mesopotamia",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.78,
+        "gravity": 0.44,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_egypt"
+        ],
+        "drift_potential": 0.057,
+        "field_coordinates": {
+          "x": 0.096,
+          "y": 0.072,
+          "z": 0.726
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 51,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/mesopotamia",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "modern_era",
+      "universe_id": "history",
+      "slug": "modern-era",
+      "display_name": "Modern Era",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.715,
+        "gravity": 0.4,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_egypt"
+        ],
+        "drift_potential": 0.083,
+        "field_coordinates": {
+          "x": 0.604,
+          "y": -0.827,
+          "z": 0.462
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 51,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/modern_era",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "ottoman_empire",
+      "universe_id": "history",
+      "slug": "ottoman-empire",
+      "display_name": "Ottoman Empire",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.735,
+        "gravity": 0.56,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_egypt"
+        ],
+        "drift_potential": 0.23,
+        "field_coordinates": {
+          "x": -0.963,
+          "y": -0.344,
+          "z": 0.43
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/ottoman_empire",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "renaissance",
+      "universe_id": "history",
+      "slug": "renaissance",
+      "display_name": "Renaissance",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.93,
+        "gravity": 0.44,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_egypt"
+        ],
+        "drift_potential": 0.107,
+        "field_coordinates": {
+          "x": 0.623,
+          "y": 0.268,
+          "z": 0.828
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/renaissance",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "russian_empire",
+      "universe_id": "history",
+      "slug": "russian-empire",
+      "display_name": "Russian Empire",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.73,
+        "gravity": 0.56,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_egypt"
+        ],
+        "drift_potential": 0.093,
+        "field_coordinates": {
+          "x": -0.247,
+          "y": -0.005,
+          "z": -0.788
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/russian_empire",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "viking_age",
+      "universe_id": "history",
+      "slug": "viking-age",
+      "display_name": "Viking Age",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.89,
+        "gravity": 0.4,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_egypt"
+        ],
+        "drift_potential": 0.137,
+        "field_coordinates": {
+          "x": 0.448,
+          "y": 0.235,
+          "z": -0.367
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/viking_age",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "world_wars",
+      "universe_id": "history",
+      "slug": "world-wars",
+      "display_name": "World Wars",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.505,
+        "gravity": 0.4,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_egypt"
+        ],
+        "drift_potential": 0.173,
+        "field_coordinates": {
+          "x": 0.224,
+          "y": -0.834,
+          "z": 0.329
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/world_wars",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "ai",
+      "universe_id": "science_lab",
+      "slug": "ai",
+      "display_name": "Ai",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.585,
+        "gravity": 0.48,
+        "overlap_regions": [
+          "astronomy",
+          "biotechnology",
+          "chemistry"
+        ],
+        "drift_potential": 0.283,
+        "field_coordinates": {
+          "x": 0.766,
+          "y": 0.546,
+          "z": 0.183
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 52,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/ai",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "astronomy",
+      "universe_id": "science_lab",
+      "slug": "astronomy",
+      "display_name": "Astronomy",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.985,
+        "gravity": 0.76,
+        "overlap_regions": [
+          "ai",
+          "biotechnology",
+          "chemistry"
+        ],
+        "drift_potential": 0.167,
+        "field_coordinates": {
+          "x": 0.785,
+          "y": 0.537,
+          "z": -0.661
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 53,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/astronomy",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "biotechnology",
+      "universe_id": "science_lab",
+      "slug": "biotechnology",
+      "display_name": "Biotechnology",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.585,
+        "gravity": 0.52,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "chemistry"
+        ],
+        "drift_potential": 0.067,
+        "field_coordinates": {
+          "x": -0.953,
+          "y": 0.066,
+          "z": 0.51
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/biotechnology",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "chemistry",
+      "universe_id": "science_lab",
+      "slug": "chemistry",
+      "display_name": "Chemistry",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.985,
+        "gravity": 0.76,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.163,
+        "field_coordinates": {
+          "x": -0.06,
+          "y": -0.154,
+          "z": 0.917
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 51,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/chemistry",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "ecology",
+      "universe_id": "science_lab",
+      "slug": "ecology",
+      "display_name": "Ecology",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.72,
+        "gravity": 0.68,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.19,
+        "field_coordinates": {
+          "x": 0.945,
+          "y": 0.185,
+          "z": -0.923
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/ecology",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "forensics",
+      "universe_id": "science_lab",
+      "slug": "forensics",
+      "display_name": "Forensics",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.96,
+        "gravity": 0.76,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.06,
+        "field_coordinates": {
+          "x": -0.806,
+          "y": -0.116,
+          "z": -0.95
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 51,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/forensics",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "genetics",
+      "universe_id": "science_lab",
+      "slug": "genetics",
+      "display_name": "Genetics",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.675,
+        "gravity": 0.72,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.087,
+        "field_coordinates": {
+          "x": 0.499,
+          "y": -0.638,
+          "z": 0.277
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/genetics",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "geology",
+      "universe_id": "science_lab",
+      "slug": "geology",
+      "display_name": "Geology",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.58,
+        "gravity": 0.68,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.163,
+        "field_coordinates": {
+          "x": -0.63,
+          "y": -0.644,
+          "z": -0.923
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 52,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/geology",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "marine_biology",
+      "universe_id": "science_lab",
+      "slug": "marine-biology",
+      "display_name": "Marine Biology",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.555,
+        "gravity": 0.56,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.303,
+        "field_coordinates": {
+          "x": 0.341,
+          "y": 0.829,
+          "z": -0.971
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/marine_biology",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "meteorology",
+      "universe_id": "science_lab",
+      "slug": "meteorology",
+      "display_name": "Meteorology",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.63,
+        "gravity": 0.44,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.013,
+        "field_coordinates": {
+          "x": -0.224,
+          "y": 0.317,
+          "z": -0.298
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/meteorology",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "microbiology",
+      "universe_id": "science_lab",
+      "slug": "microbiology",
+      "display_name": "Microbiology",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.755,
+        "gravity": 0.48,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.287,
+        "field_coordinates": {
+          "x": 0.917,
+          "y": 0.173,
+          "z": -0.859
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/microbiology",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "nanotechnology",
+      "universe_id": "science_lab",
+      "slug": "nanotechnology",
+      "display_name": "Nanotechnology",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.685,
+        "gravity": 0.56,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.0,
+        "field_coordinates": {
+          "x": 0.172,
+          "y": 0.326,
+          "z": -0.329
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/nanotechnology",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "neuroscience",
+      "universe_id": "science_lab",
+      "slug": "neuroscience",
+      "display_name": "Neuroscience",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.895,
+        "gravity": 0.48,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.137,
+        "field_coordinates": {
+          "x": 0.987,
+          "y": 0.436,
+          "z": 0.329
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/neuroscience",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "optics",
+      "universe_id": "science_lab",
+      "slug": "optics",
+      "display_name": "Optics",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.82,
+        "gravity": 0.64,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.167,
+        "field_coordinates": {
+          "x": 0.116,
+          "y": -0.709,
+          "z": 0.436
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 51,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/optics",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "paleontology",
+      "universe_id": "science_lab",
+      "slug": "paleontology",
+      "display_name": "Paleontology",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.865,
+        "gravity": 0.48,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.297,
+        "field_coordinates": {
+          "x": -0.001,
+          "y": 0.789,
+          "z": 0.674
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 51,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/paleontology",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "physics",
+      "universe_id": "science_lab",
+      "slug": "physics",
+      "display_name": "Physics",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.655,
+        "gravity": 0.68,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.133,
+        "field_coordinates": {
+          "x": 0.403,
+          "y": -0.36,
+          "z": 0.052
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 52,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/physics",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "quantum_mechanics",
+      "universe_id": "science_lab",
+      "slug": "quantum-mechanics",
+      "display_name": "Quantum Mechanics",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.675,
+        "gravity": 0.68,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.177,
+        "field_coordinates": {
+          "x": 0.739,
+          "y": -0.463,
+          "z": 0.831
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 51,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/quantum_mechanics",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "robotics",
+      "universe_id": "science_lab",
+      "slug": "robotics",
+      "display_name": "Robotics",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.86,
+        "gravity": 0.72,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.267,
+        "field_coordinates": {
+          "x": -0.761,
+          "y": 0.581,
+          "z": -0.253
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/robotics",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "thermodynamics",
+      "universe_id": "science_lab",
+      "slug": "thermodynamics",
+      "display_name": "Thermodynamics",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.725,
+        "gravity": 0.56,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.273,
+        "field_coordinates": {
+          "x": 0.155,
+          "y": 0.409,
+          "z": 0.45
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/thermodynamics",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "virology",
+      "universe_id": "science_lab",
+      "slug": "virology",
+      "display_name": "Virology",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.735,
+        "gravity": 0.72,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.023,
+        "field_coordinates": {
+          "x": -0.359,
+          "y": 0.058,
+          "z": 0.323
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/virology",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "solar_system",
+      "universe_id": "space_astronomy",
+      "slug": "solar-system",
+      "display_name": "Solar System",
+      "taxonomy": {
+        "domain": "space_astronomy",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 0.14,
+        "intensity": 0.86,
+        "gravity": 0.48,
+        "overlap_regions": [],
+        "drift_potential": 0.243,
+        "field_coordinates": {
+          "x": -0.472,
+          "y": 0.917,
+          "z": 0.786
+        },
+        "field_radius": 0.57,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 7,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/space_astronomy/solar_system",
+        "schema_version": "1.0.0"
+      }
+    }
+  ]
+}

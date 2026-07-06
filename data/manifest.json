@@ -1,1 +1,22 @@
-{"export_tool": "chronicle_export_v1", "timestamp": "2026-07-06T16:27:12.744076Z", "schema_version": "1.0.0", "authority_tier": "tier_1_projection", "source_provenance": "app", "counts": {"observation_banks": 143, "observations_exported": 22059, "worlds": 61, "universes": 7, "characters": 4}, "validation": {"duplicate_identifiers": 0, "schema_violations": 0, "missing_fields": 0, "orphaned_references": 0, "invalid_relationships": 0}, "private_data_leakage_check": "PASS \u2013 0 source_code, 0 private_assets, 0 runtime_internals, 0 secrets"}
+{
+  "export_tool": "chronicle_export_v1",
+  "timestamp": "2026-07-06T19:04:14.644021Z",
+  "schema_version": "1.0.0",
+  "authority_tier": "tier_1_projection",
+  "source_provenance": "app",
+  "counts": {
+    "observation_banks": 143,
+    "observations_exported": 22059,
+    "worlds": 61,
+    "universes": 7,
+    "characters": 4
+  },
+  "validation": {
+    "duplicate_identifiers": 0,
+    "schema_violations": 0,
+    "missing_fields": 0,
+    "orphaned_references": 0,
+    "invalid_relationships": 0
+  },
+  "private_data_leakage_check": "PASS \u2013 0 source_code, 0 private_assets, 0 runtime_internals, 0 secrets"
+}

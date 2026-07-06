@@ -1,4 +1,4 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Releases – Chronicle</title><link rel="stylesheet" href="assets/chronicle.css"></head><body><header class="site-header"><div class="nav"><div class="brand">👁 <span>Two Second <span class="accent">Witness</span></span> · <span style="color:#ff00aa;font-size:12px;margin-left:8px">CHRONICLE LIVE</span></div><div class="nav-links"><a href="index.html">Field</a><a href="worlds.html">Worlds</a><a href="characters.html">Characters</a><a href="events.html">Events</a><a href="releases.html" class="active">Releases</a><a href="journal.html">Journal</a></div></div></header><div style="max-width:900px;margin:40px auto;padding:0 20px"><h2>Releases – Deterministic Snapshots</h2><p><strong>chronicle-v1.0.0</strong> · schema 1.0.0</p><pre style="background:#0b1022;padding:16px;border-radius:10px;overflow:auto;font-size:12px">{
+{
   "release_id": "chronicle-v1.0.0",
   "schema_version": "1.0.0",
   "contract_bundle_version": "1.0.0",
@@ -81,4 +81,4 @@
     "exported_by": "chronicle_export_v1",
     "released_by": "automated"
   }
-}</pre></div><footer class="footer">Chronicle System v1 · Shared Canonical Truth · App → Shared → Chronicle → Website<br><span style="font-size:11px">Regenerated • No manual edits • source_provenance="app"</span><br>© 2026 Two Second Witness · ITTY BITTY BITES</footer></body></html>
+}
