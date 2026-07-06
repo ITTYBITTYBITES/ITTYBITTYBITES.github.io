@@ -9,23 +9,23 @@
       "display_name": "Memory Cascade",
       "behavioral_signature": {
         "trait_vector": [
-          0.02,
-          -0.569,
-          -0.733,
-          -0.318,
-          0.498,
-          0.741,
-          0.961,
-          -0.506
+          -0.129,
+          0.051,
+          0.835,
+          0.059,
+          0.812,
+          0.122,
+          -0.655,
+          -0.875
         ],
         "attention_bias": {},
         "perception_style": "memory_cascade",
-        "fidelity_preference": 0.277
+        "fidelity_preference": 0.366
       },
       "field_influence": {
-        "event_modulation": -0.184,
+        "event_modulation": 0.2,
         "world_affinity": {},
-        "influence_radius": 1.956,
+        "influence_radius": 1.499,
         "influence_falloff": "gaussian"
       },
       "temporal_drift": {
@@ -57,21 +57,21 @@
           {
             "source": "observer.memory_cascade",
             "target": "observer.rapid_classification",
-            "weight": 0.463,
+            "weight": -0.276,
             "relation_type": "influences",
             "temporal": true
           },
           {
             "source": "observer.memory_cascade",
             "target": "observer.signal_noise",
-            "weight": -0.34,
+            "weight": -0.275,
             "relation_type": "influences",
             "temporal": true
           },
           {
             "source": "observer.memory_cascade",
             "target": "observer.stroop",
-            "weight": 0.398,
+            "weight": 0.099,
             "relation_type": "influences",
             "temporal": true
           }
@@ -98,23 +98,23 @@
       "display_name": "Rapid Classifier",
       "behavioral_signature": {
         "trait_vector": [
-          0.922,
-          0.224,
-          -0.969,
-          0.655,
-          -0.835,
-          0.545,
-          0.31,
-          -0.114
+          -0.914,
+          -0.624,
+          0.796,
+          -0.467,
+          0.765,
+          -0.553,
+          0.475,
+          -0.694
         ],
         "attention_bias": {},
         "perception_style": "rapid_classifier",
-        "fidelity_preference": 0.161
+        "fidelity_preference": 0.71
       },
       "field_influence": {
-        "event_modulation": -0.283,
+        "event_modulation": 0.192,
         "world_affinity": {},
-        "influence_radius": 0.989,
+        "influence_radius": 1.38,
         "influence_falloff": "gaussian"
       },
       "temporal_drift": {
@@ -146,21 +146,21 @@
           {
             "source": "observer.rapid_classification",
             "target": "observer.memory_cascade",
-            "weight": 0.297,
+            "weight": 0.454,
             "relation_type": "influences",
             "temporal": true
           },
           {
             "source": "observer.rapid_classification",
             "target": "observer.signal_noise",
-            "weight": 0.872,
+            "weight": -0.345,
             "relation_type": "influences",
             "temporal": true
           },
           {
             "source": "observer.rapid_classification",
             "target": "observer.stroop",
-            "weight": -0.007,
+            "weight": 0.42,
             "relation_type": "influences",
             "temporal": true
           }
@@ -187,23 +187,23 @@
       "display_name": "Signal Detector",
       "behavioral_signature": {
         "trait_vector": [
-          0.569,
-          0.796,
-          1.0,
-          -0.082,
-          0.278,
-          -0.906,
-          0.686,
-          -0.976
+          0.459,
+          0.788,
+          0.741,
+          0.929,
+          -0.867,
+          0.765,
+          -0.663,
+          -0.082
         ],
         "attention_bias": {},
         "perception_style": "signal_detector",
-        "fidelity_preference": 0.851
+        "fidelity_preference": 0.522
       },
       "field_influence": {
-        "event_modulation": 0.016,
+        "event_modulation": -0.234,
         "world_affinity": {},
-        "influence_radius": 0.718,
+        "influence_radius": 1.113,
         "influence_falloff": "gaussian"
       },
       "temporal_drift": {
@@ -235,21 +235,21 @@
           {
             "source": "observer.signal_noise",
             "target": "observer.memory_cascade",
-            "weight": -0.069,
+            "weight": -0.163,
             "relation_type": "influences",
             "temporal": true
           },
           {
             "source": "observer.signal_noise",
             "target": "observer.rapid_classification",
-            "weight": -0.359,
+            "weight": 0.876,
             "relation_type": "influences",
             "temporal": true
           },
           {
             "source": "observer.signal_noise",
             "target": "observer.stroop",
-            "weight": 0.454,
+            "weight": 0.738,
             "relation_type": "influences",
             "temporal": true
           }
@@ -276,23 +276,23 @@
       "display_name": "Pattern Matcher",
       "behavioral_signature": {
         "trait_vector": [
-          -0.051,
-          -0.09,
+          -0.976,
+          0.592,
+          -0.129,
+          0.529,
           -0.059,
-          0.349,
-          0.114,
-          0.02,
-          0.184,
-          -0.537
+          -0.725,
+          -0.075,
+          -0.882
         ],
         "attention_bias": {},
         "perception_style": "pattern_matcher",
-        "fidelity_preference": 0.636
+        "fidelity_preference": 0.224
       },
       "field_influence": {
-        "event_modulation": -0.136,
+        "event_modulation": 0.185,
         "world_affinity": {},
-        "influence_radius": 0.756,
+        "influence_radius": 1.788,
         "influence_falloff": "gaussian"
       },
       "temporal_drift": {
@@ -324,21 +324,21 @@
           {
             "source": "observer.stroop",
             "target": "observer.memory_cascade",
-            "weight": -0.16,
+            "weight": 0.202,
             "relation_type": "influences",
             "temporal": true
           },
           {
             "source": "observer.stroop",
             "target": "observer.rapid_classification",
-            "weight": 0.831,
+            "weight": 0.437,
             "relation_type": "influences",
             "temporal": true
           },
           {
             "source": "observer.stroop",
             "target": "observer.signal_noise",
-            "weight": 0.32,
+            "weight": 0.763,
             "relation_type": "influences",
             "temporal": true
           }
@@ -361,6 +361,6 @@
       }
     }
   ],
-  "generated_at": "2026-07-06T19:57:14.574483Z",
+  "generated_at": "2026-07-06T20:03:50.971072Z",
   "note": "Behavioral field systems derived from app Observation Engine mechanics \u2013 0 website personas \u2013 CR-004 enforced"
 }
