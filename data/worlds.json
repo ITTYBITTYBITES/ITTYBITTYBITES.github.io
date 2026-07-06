@@ -2,7 +2,7 @@
   "schema_version": "1.0.0",
   "source_provenance": "app",
   "authority_tier": "tier_1_projection",
-  "generated_at": "2026-07-06T19:17:21.187862Z",
+  "generated_at": "2026-07-06T19:55:52.101125Z",
   "count": 61,
   "worlds": [
     {
@@ -16,18 +16,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.915,
+        "intensity": 0.55,
         "gravity": 0.76,
         "overlap_regions": [
           "architecture",
           "art_history",
           "calligraphy_lettering"
         ],
-        "drift_potential": 0.023,
+        "drift_potential": 0.07,
         "field_coordinates": {
-          "x": 0.252,
-          "y": -0.066,
-          "z": -0.189
+          "x": -0.788,
+          "y": -0.3,
+          "z": 0.959
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -59,18 +59,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.785,
+        "intensity": 0.65,
         "gravity": 0.48,
         "overlap_regions": [
           "animation",
           "art_history",
           "calligraphy_lettering"
         ],
-        "drift_potential": 0.12,
+        "drift_potential": 0.24,
         "field_coordinates": {
-          "x": -0.55,
-          "y": -0.759,
-          "z": 0.868
+          "x": -0.579,
+          "y": 0.603,
+          "z": 0.447
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -102,18 +102,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.715,
+        "intensity": 0.81,
         "gravity": 0.44,
         "overlap_regions": [
           "animation",
           "architecture",
           "calligraphy_lettering"
         ],
-        "drift_potential": 0.31,
+        "drift_potential": 0.21,
         "field_coordinates": {
-          "x": 0.545,
-          "y": -0.136,
-          "z": -0.819
+          "x": -0.457,
+          "y": -0.856,
+          "z": 0.403
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -145,18 +145,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.965,
+        "intensity": 0.97,
         "gravity": 0.44,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.063,
+        "drift_potential": 0.097,
         "field_coordinates": {
-          "x": 0.849,
-          "y": -0.007,
-          "z": 0.633
+          "x": 0.987,
+          "y": 0.645,
+          "z": 0.701
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -188,18 +188,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.71,
+        "intensity": 0.565,
         "gravity": 0.48,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.27,
+        "drift_potential": 0.177,
         "field_coordinates": {
-          "x": 0.435,
-          "y": 0.746,
-          "z": -0.296
+          "x": -0.33,
+          "y": -0.095,
+          "z": 0.724
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -231,18 +231,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.73,
+        "intensity": 0.67,
         "gravity": 0.4,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.153,
+        "drift_potential": 0.313,
         "field_coordinates": {
-          "x": -0.162,
-          "y": -0.449,
-          "z": 0.255
+          "x": -0.046,
+          "y": 0.839,
+          "z": -0.537
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -274,18 +274,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.64,
+        "intensity": 0.665,
         "gravity": 0.76,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.023,
+        "drift_potential": 0.33,
         "field_coordinates": {
-          "x": 0.445,
-          "y": -0.457,
-          "z": 0.068
+          "x": -0.857,
+          "y": -0.529,
+          "z": 0.791
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -317,18 +317,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.78,
+        "intensity": 0.86,
         "gravity": 0.44,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.203,
+        "drift_potential": 0.183,
         "field_coordinates": {
-          "x": 0.132,
-          "y": 0.421,
-          "z": 0.942
+          "x": 0.038,
+          "y": -0.234,
+          "z": -0.733
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -360,18 +360,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.96,
+        "intensity": 0.765,
         "gravity": 0.68,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.29,
+        "drift_potential": 0.19,
         "field_coordinates": {
-          "x": 0.541,
-          "y": -0.558,
-          "z": 0.738
+          "x": 0.075,
+          "y": -0.351,
+          "z": 0.803
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -403,18 +403,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.935,
+        "intensity": 0.74,
         "gravity": 0.56,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.007,
+        "drift_potential": 0.26,
         "field_coordinates": {
-          "x": 0.958,
-          "y": -0.022,
-          "z": 0.897
+          "x": -0.014,
+          "y": 0.618,
+          "z": 0.758
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -446,18 +446,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.77,
+        "intensity": 0.83,
         "gravity": 0.68,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.167,
+        "drift_potential": 0.017,
         "field_coordinates": {
-          "x": -0.79,
-          "y": 0.237,
-          "z": -0.214
+          "x": -0.637,
+          "y": 0.098,
+          "z": 0.405
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -489,18 +489,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.505,
+        "intensity": 0.965,
         "gravity": 0.56,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.23,
+        "drift_potential": 0.203,
         "field_coordinates": {
-          "x": 0.419,
-          "y": -0.212,
-          "z": -0.612
+          "x": 0.709,
+          "y": 0.055,
+          "z": -0.884
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -532,18 +532,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.995,
+        "intensity": 0.78,
         "gravity": 0.6,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.097,
+        "drift_potential": 0.307,
         "field_coordinates": {
-          "x": -0.347,
-          "y": -0.467,
-          "z": -0.134
+          "x": -0.943,
+          "y": -0.641,
+          "z": 0.354
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -575,18 +575,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.74,
+        "intensity": 0.975,
         "gravity": 0.44,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.287,
+        "drift_potential": 0.177,
         "field_coordinates": {
-          "x": 0.493,
-          "y": -0.613,
-          "z": -0.188
+          "x": 0.123,
+          "y": 0.095,
+          "z": 0.662
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -618,18 +618,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.58,
+        "intensity": 0.665,
         "gravity": 0.72,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.12,
+        "drift_potential": 0.25,
         "field_coordinates": {
-          "x": -0.633,
-          "y": 0.864,
-          "z": 0.943
+          "x": 0.054,
+          "y": -0.042,
+          "z": 0.845
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -661,18 +661,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.635,
+        "intensity": 0.855,
         "gravity": 0.44,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.267,
+        "drift_potential": 0.073,
         "field_coordinates": {
-          "x": 0.971,
-          "y": 0.595,
-          "z": 0.307
+          "x": -0.685,
+          "y": -0.465,
+          "z": -0.82
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -704,18 +704,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.835,
+        "intensity": 0.815,
         "gravity": 0.64,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.07,
+        "drift_potential": 0.243,
         "field_coordinates": {
-          "x": 0.801,
-          "y": -0.002,
-          "z": 0.37
+          "x": 0.096,
+          "y": -0.429,
+          "z": -0.513
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -747,18 +747,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.565,
+        "intensity": 0.965,
         "gravity": 0.76,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.077,
+        "drift_potential": 0.177,
         "field_coordinates": {
-          "x": -0.193,
-          "y": -0.037,
-          "z": -0.847
+          "x": 0.51,
+          "y": 0.691,
+          "z": -0.804
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -790,18 +790,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.725,
+        "intensity": 0.525,
         "gravity": 0.4,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.227,
+        "drift_potential": 0.033,
         "field_coordinates": {
-          "x": -0.361,
-          "y": 0.111,
-          "z": -0.463
+          "x": 0.736,
+          "y": 0.362,
+          "z": 0.424
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -833,18 +833,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.8,
+        "intensity": 0.9,
         "gravity": 0.64,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.013,
+        "drift_potential": 0.133,
         "field_coordinates": {
-          "x": 0.206,
-          "y": 0.116,
-          "z": -0.099
+          "x": -0.797,
+          "y": -0.465,
+          "z": -0.004
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -876,18 +876,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.96,
+        "intensity": 0.655,
         "gravity": 0.72,
         "overlap_regions": [
           "ancient_china",
           "ancient_egypt",
           "ancient_greece"
         ],
-        "drift_potential": 0.11,
+        "drift_potential": 0.1,
         "field_coordinates": {
-          "x": -0.017,
-          "y": -0.912,
-          "z": -0.228
+          "x": 0.375,
+          "y": 0.428,
+          "z": 0.654
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -919,18 +919,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.975,
+        "intensity": 0.81,
         "gravity": 0.52,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_egypt",
           "ancient_greece"
         ],
-        "drift_potential": 0.013,
+        "drift_potential": 0.23,
         "field_coordinates": {
-          "x": -0.345,
-          "y": -0.512,
-          "z": -0.152
+          "x": 0.309,
+          "y": 0.184,
+          "z": -0.609
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -962,18 +962,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.785,
+        "intensity": 0.645,
         "gravity": 0.52,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_greece"
         ],
-        "drift_potential": 0.107,
+        "drift_potential": 0.2,
         "field_coordinates": {
-          "x": -0.306,
-          "y": 0.581,
-          "z": -0.362
+          "x": 0.134,
+          "y": 0.765,
+          "z": 0.31
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1005,18 +1005,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.65,
+        "intensity": 0.515,
         "gravity": 0.56,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.173,
+        "drift_potential": 0.237,
         "field_coordinates": {
-          "x": -0.324,
-          "y": 0.158,
-          "z": 0.393
+          "x": -0.55,
+          "y": -0.31,
+          "z": 0.081
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1048,18 +1048,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.625,
+        "intensity": 0.815,
         "gravity": 0.48,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.203,
+        "drift_potential": 0.217,
         "field_coordinates": {
-          "x": -0.353,
-          "y": -0.081,
-          "z": 0.282
+          "x": -0.751,
+          "y": -0.65,
+          "z": -0.463
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1091,18 +1091,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.785,
+        "intensity": 0.535,
         "gravity": 0.72,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.083,
+        "drift_potential": 0.057,
         "field_coordinates": {
-          "x": 0.95,
-          "y": -0.67,
-          "z": 0.384
+          "x": 0.34,
+          "y": -0.919,
+          "z": -0.54
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1134,18 +1134,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.84,
+        "intensity": 0.605,
         "gravity": 0.64,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.18,
+        "drift_potential": 0.28,
         "field_coordinates": {
-          "x": 0.73,
-          "y": -0.465,
-          "z": 0.4
+          "x": 0.761,
+          "y": 0.648,
+          "z": -0.099
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1177,18 +1177,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.81,
+        "intensity": 0.915,
         "gravity": 0.52,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.037,
+        "drift_potential": 0.13,
         "field_coordinates": {
-          "x": -0.654,
-          "y": 0.334,
-          "z": 0.751
+          "x": -0.095,
+          "y": -0.515,
+          "z": -0.558
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1220,18 +1220,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.78,
+        "intensity": 0.595,
         "gravity": 0.48,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.25,
+        "drift_potential": 0.017,
         "field_coordinates": {
-          "x": 0.912,
-          "y": 0.452,
-          "z": 0.306
+          "x": -0.546,
+          "y": 0.589,
+          "z": -0.005
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1263,18 +1263,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.89,
+        "intensity": 0.515,
         "gravity": 0.44,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.11,
+        "drift_potential": 0.187,
         "field_coordinates": {
-          "x": 0.393,
-          "y": -0.157,
-          "z": -0.09
+          "x": -0.401,
+          "y": 0.088,
+          "z": 0.679
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1306,18 +1306,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.55,
+        "intensity": 0.715,
         "gravity": 0.72,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.05,
+        "drift_potential": 0.243,
         "field_coordinates": {
-          "x": -0.025,
-          "y": 0.789,
-          "z": 0.227
+          "x": 0.461,
+          "y": -0.475,
+          "z": -0.65
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1349,18 +1349,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.505,
+        "intensity": 0.69,
         "gravity": 0.6,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.29,
+        "drift_potential": 0.253,
         "field_coordinates": {
-          "x": 0.414,
-          "y": -0.018,
-          "z": 0.097
+          "x": -0.213,
+          "y": 0.807,
+          "z": -0.351
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1392,18 +1392,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.695,
+        "intensity": 0.635,
         "gravity": 0.44,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.097,
+        "drift_potential": 0.26,
         "field_coordinates": {
-          "x": 0.568,
-          "y": -0.865,
-          "z": -0.599
+          "x": 0.188,
+          "y": -0.711,
+          "z": 0.991
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1435,18 +1435,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.92,
+        "intensity": 0.63,
         "gravity": 0.44,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.043,
+        "drift_potential": 0.213,
         "field_coordinates": {
-          "x": 0.797,
-          "y": -0.813,
-          "z": 0.441
+          "x": 0.436,
+          "y": -0.019,
+          "z": 0.229
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1478,18 +1478,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.635,
+        "intensity": 0.9,
         "gravity": 0.4,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.113,
+        "drift_potential": 0.1,
         "field_coordinates": {
-          "x": 0.514,
-          "y": -0.578,
-          "z": -0.145
+          "x": 0.878,
+          "y": -0.285,
+          "z": 0.512
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1521,18 +1521,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.63,
+        "intensity": 0.51,
         "gravity": 0.56,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.17,
+        "drift_potential": 0.22,
         "field_coordinates": {
-          "x": -0.368,
-          "y": 0.716,
-          "z": 0.665
+          "x": -0.28,
+          "y": -0.515,
+          "z": -0.16
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1564,18 +1564,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.595,
+        "intensity": 0.73,
         "gravity": 0.44,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.127,
+        "drift_potential": 0.09,
         "field_coordinates": {
-          "x": -0.098,
-          "y": -0.368,
-          "z": 0.111
+          "x": -0.013,
+          "y": -0.151,
+          "z": 0.427
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1607,18 +1607,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.885,
+        "intensity": 0.845,
         "gravity": 0.56,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.013,
+        "drift_potential": 0.223,
         "field_coordinates": {
-          "x": 0.292,
-          "y": -0.4,
-          "z": 0.812
+          "x": 0.86,
+          "y": -0.825,
+          "z": -0.402
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1650,18 +1650,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.535,
+        "intensity": 0.965,
         "gravity": 0.4,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.06,
+        "drift_potential": 0.317,
         "field_coordinates": {
-          "x": 0.646,
-          "y": 0.918,
-          "z": 0.446
+          "x": 0.66,
+          "y": -0.067,
+          "z": 0.665
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1693,18 +1693,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.97,
+        "intensity": 0.85,
         "gravity": 0.4,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.29,
+        "drift_potential": 0.107,
         "field_coordinates": {
-          "x": -0.68,
-          "y": -0.316,
-          "z": -0.536
+          "x": -0.067,
+          "y": 0.545,
+          "z": -0.145
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1736,7 +1736,7 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.905,
+        "intensity": 0.535,
         "gravity": 0.48,
         "overlap_regions": [
           "astronomy",
@@ -1745,9 +1745,9 @@
         ],
         "drift_potential": 0.007,
         "field_coordinates": {
-          "x": 0.512,
-          "y": 0.928,
-          "z": -0.736
+          "x": -0.042,
+          "y": -0.758,
+          "z": -0.945
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1779,18 +1779,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.755,
+        "intensity": 0.81,
         "gravity": 0.76,
         "overlap_regions": [
           "ai",
           "biotechnology",
           "chemistry"
         ],
-        "drift_potential": 0.167,
+        "drift_potential": 0.147,
         "field_coordinates": {
-          "x": -0.893,
-          "y": -0.477,
-          "z": 0.477
+          "x": -0.068,
+          "y": -0.331,
+          "z": 0.784
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1822,18 +1822,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.52,
+        "intensity": 0.87,
         "gravity": 0.52,
         "overlap_regions": [
           "ai",
           "astronomy",
           "chemistry"
         ],
-        "drift_potential": 0.313,
+        "drift_potential": 0.07,
         "field_coordinates": {
-          "x": 0.105,
-          "y": 0.479,
-          "z": -0.403
+          "x": -0.72,
+          "y": -0.074,
+          "z": -0.329
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1865,18 +1865,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.57,
+        "intensity": 0.985,
         "gravity": 0.76,
         "overlap_regions": [
           "ai",
           "astronomy",
           "biotechnology"
         ],
-        "drift_potential": 0.053,
+        "drift_potential": 0.133,
         "field_coordinates": {
-          "x": -0.274,
-          "y": -0.952,
-          "z": -0.542
+          "x": 0.953,
+          "y": 0.505,
+          "z": -0.683
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1908,18 +1908,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.51,
+        "intensity": 0.72,
         "gravity": 0.68,
         "overlap_regions": [
           "ai",
           "astronomy",
           "biotechnology"
         ],
-        "drift_potential": 0.233,
+        "drift_potential": 0.223,
         "field_coordinates": {
-          "x": -0.015,
-          "y": -0.417,
-          "z": 0.06
+          "x": -0.56,
+          "y": -0.184,
+          "z": -0.75
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1951,18 +1951,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.885,
+        "intensity": 0.69,
         "gravity": 0.76,
         "overlap_regions": [
           "ai",
           "astronomy",
           "biotechnology"
         ],
-        "drift_potential": 0.23,
+        "drift_potential": 0.09,
         "field_coordinates": {
-          "x": -0.734,
-          "y": 0.045,
-          "z": 0.567
+          "x": -0.454,
+          "y": -0.284,
+          "z": -0.87
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -1994,18 +1994,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.8,
+        "intensity": 0.58,
         "gravity": 0.72,
         "overlap_regions": [
           "ai",
           "astronomy",
           "biotechnology"
         ],
-        "drift_potential": 0.313,
+        "drift_potential": 0.037,
         "field_coordinates": {
-          "x": 0.527,
-          "y": -0.341,
-          "z": -0.463
+          "x": 0.997,
+          "y": -0.683,
+          "z": -0.027
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -2037,18 +2037,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.76,
+        "intensity": 0.755,
         "gravity": 0.68,
         "overlap_regions": [
           "ai",
           "astronomy",
           "biotechnology"
         ],
-        "drift_potential": 0.327,
+        "drift_potential": 0.16,
         "field_coordinates": {
-          "x": 0.49,
-          "y": 0.527,
-          "z": -0.802
+          "x": -0.551,
+          "y": 0.043,
+          "z": 0.851
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -2080,18 +2080,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.685,
+        "intensity": 0.695,
         "gravity": 0.56,
         "overlap_regions": [
           "ai",
           "astronomy",
           "biotechnology"
         ],
-        "drift_potential": 0.037,
+        "drift_potential": 0.327,
         "field_coordinates": {
-          "x": -0.489,
-          "y": -0.592,
-          "z": -0.118
+          "x": -0.887,
+          "y": -0.996,
+          "z": -0.577
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -2123,18 +2123,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.74,
+        "intensity": 0.705,
         "gravity": 0.44,
         "overlap_regions": [
           "ai",
           "astronomy",
           "biotechnology"
         ],
-        "drift_potential": 0.22,
+        "drift_potential": 0.073,
         "field_coordinates": {
-          "x": 0.844,
-          "y": 0.732,
-          "z": 0.88
+          "x": 0.56,
+          "y": -0.81,
+          "z": -0.555
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -2166,18 +2166,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.755,
+        "intensity": 0.555,
         "gravity": 0.48,
         "overlap_regions": [
           "ai",
           "astronomy",
           "biotechnology"
         ],
-        "drift_potential": 0.067,
+        "drift_potential": 0.003,
         "field_coordinates": {
-          "x": -0.913,
-          "y": 0.524,
-          "z": -0.227
+          "x": -0.873,
+          "y": -0.224,
+          "z": -0.154
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -2209,18 +2209,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.85,
+        "intensity": 0.505,
         "gravity": 0.56,
         "overlap_regions": [
           "ai",
           "astronomy",
           "biotechnology"
         ],
-        "drift_potential": 0.043,
+        "drift_potential": 0.003,
         "field_coordinates": {
-          "x": -0.846,
-          "y": -0.121,
-          "z": -0.864
+          "x": 0.906,
+          "y": -0.863,
+          "z": -0.449
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -2252,18 +2252,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.565,
+        "intensity": 0.855,
         "gravity": 0.48,
         "overlap_regions": [
           "ai",
           "astronomy",
           "biotechnology"
         ],
-        "drift_potential": 0.16,
+        "drift_potential": 0.113,
         "field_coordinates": {
-          "x": -0.997,
-          "y": 0.408,
-          "z": -0.255
+          "x": 0.523,
+          "y": -0.822,
+          "z": 0.051
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -2295,18 +2295,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.89,
+        "intensity": 0.98,
         "gravity": 0.64,
         "overlap_regions": [
           "ai",
           "astronomy",
           "biotechnology"
         ],
-        "drift_potential": 0.02,
+        "drift_potential": 0.103,
         "field_coordinates": {
-          "x": -0.516,
-          "y": 0.315,
-          "z": 0.812
+          "x": -0.308,
+          "y": 0.476,
+          "z": 0.701
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -2338,18 +2338,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.765,
+        "intensity": 0.585,
         "gravity": 0.48,
         "overlap_regions": [
           "ai",
           "astronomy",
           "biotechnology"
         ],
-        "drift_potential": 0.0,
+        "drift_potential": 0.217,
         "field_coordinates": {
-          "x": 0.147,
-          "y": -0.09,
-          "z": 0.519
+          "x": -0.781,
+          "y": -0.436,
+          "z": 0.171
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -2381,18 +2381,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.59,
+        "intensity": 0.87,
         "gravity": 0.68,
         "overlap_regions": [
           "ai",
           "astronomy",
           "biotechnology"
         ],
-        "drift_potential": 0.083,
+        "drift_potential": 0.09,
         "field_coordinates": {
-          "x": 0.575,
-          "y": -0.805,
-          "z": 0.711
+          "x": -0.615,
+          "y": 0.257,
+          "z": -0.863
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -2424,18 +2424,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.695,
+        "intensity": 0.745,
         "gravity": 0.68,
         "overlap_regions": [
           "ai",
           "astronomy",
           "biotechnology"
         ],
-        "drift_potential": 0.053,
+        "drift_potential": 0.16,
         "field_coordinates": {
-          "x": 0.936,
-          "y": 0.088,
-          "z": -0.942
+          "x": 0.763,
+          "y": 0.491,
+          "z": -0.306
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -2467,18 +2467,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.55,
+        "intensity": 0.535,
         "gravity": 0.72,
         "overlap_regions": [
           "ai",
           "astronomy",
           "biotechnology"
         ],
-        "drift_potential": 0.03,
+        "drift_potential": 0.287,
         "field_coordinates": {
-          "x": -0.436,
-          "y": 0.666,
-          "z": -0.109
+          "x": -0.857,
+          "y": 0.217,
+          "z": -0.249
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -2510,18 +2510,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.88,
+        "intensity": 0.695,
         "gravity": 0.56,
         "overlap_regions": [
           "ai",
           "astronomy",
           "biotechnology"
         ],
-        "drift_potential": 0.147,
+        "drift_potential": 0.073,
         "field_coordinates": {
-          "x": 0.151,
-          "y": 0.852,
-          "z": -0.727
+          "x": 0.07,
+          "y": -0.238,
+          "z": -0.562
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -2553,18 +2553,18 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.96,
+        "intensity": 0.975,
         "gravity": 0.72,
         "overlap_regions": [
           "ai",
           "astronomy",
           "biotechnology"
         ],
-        "drift_potential": 0.227,
+        "drift_potential": 0.15,
         "field_coordinates": {
-          "x": -0.578,
-          "y": 0.769,
-          "z": 0.334
+          "x": 0.879,
+          "y": 0.529,
+          "z": 0.705
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
@@ -2596,14 +2596,14 @@
       },
       "embodiment": {
         "density": 0.14,
-        "intensity": 0.99,
+        "intensity": 0.545,
         "gravity": 0.48,
         "overlap_regions": [],
-        "drift_potential": 0.203,
+        "drift_potential": 0.187,
         "field_coordinates": {
-          "x": 0.958,
-          "y": 0.255,
-          "z": 0.073
+          "x": -0.888,
+          "y": 0.12,
+          "z": -0.752
         },
         "field_radius": 0.57,
         "temporal_decay": 0.1
