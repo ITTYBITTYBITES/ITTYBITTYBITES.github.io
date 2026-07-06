@@ -1,8 +1,0 @@
-name: Chronicle Health Check – Website
-on: [push, pull_request, workflow_dispatch]
-jobs:
-  health:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - run: echo "repo healthy – website – chronicle locked"

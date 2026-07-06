@@ -4,24 +4,46 @@
   "count": 7,
   "universes": [
     {
-      "id": "creative_arts",
-      "display_name": "Creative Arts",
+      "id": "science_lab",
+      "display_name": "Science Lab",
       "banners": [
-        "banner_creative_arts"
+        "banner_science_lab"
       ],
       "audio": [
-        "ambience_creative_arts",
+        "ambience_science_lab",
         "ui_click",
         "ui_error"
       ],
       "meshes": [
-        "prismatic_lens",
+        "iris_crystalline",
         "data_node"
       ],
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
-        "app_path": "universes/creative_arts/universe.json",
+        "app_path": "universes/science_lab/universe.json",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "society_mind",
+      "display_name": "Society Mind",
+      "banners": [
+        "banner_society_mind"
+      ],
+      "audio": [
+        "ambience_society_mind",
+        "ui_click",
+        "ui_error"
+      ],
+      "meshes": [
+        "historical_astrolabe",
+        "data_node"
+      ],
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "universes/society_mind/universe.json",
         "schema_version": "1.0.0"
       }
     },
@@ -70,68 +92,24 @@
       }
     },
     {
-      "id": "life_sciences",
-      "display_name": "Life Sciences",
+      "id": "creative_arts",
+      "display_name": "Creative Arts",
       "banners": [
-        "banner_life_sciences"
+        "banner_creative_arts"
       ],
       "audio": [
-        "ambience_life_sciences",
+        "ambience_creative_arts",
         "ui_click",
         "ui_error"
       ],
       "meshes": [
-        "cellular_membrane",
+        "prismatic_lens",
         "data_node"
       ],
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
-        "app_path": "universes/life_sciences/universe.json",
-        "schema_version": "1.0.0"
-      }
-    },
-    {
-      "id": "science_lab",
-      "display_name": "Science Lab",
-      "banners": [
-        "banner_science_lab"
-      ],
-      "audio": [
-        "ambience_science_lab",
-        "ui_click",
-        "ui_error"
-      ],
-      "meshes": [
-        "iris_crystalline",
-        "data_node"
-      ],
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "universes/science_lab/universe.json",
-        "schema_version": "1.0.0"
-      }
-    },
-    {
-      "id": "society_mind",
-      "display_name": "Society Mind",
-      "banners": [
-        "banner_society_mind"
-      ],
-      "audio": [
-        "ambience_society_mind",
-        "ui_click",
-        "ui_error"
-      ],
-      "meshes": [
-        "historical_astrolabe",
-        "data_node"
-      ],
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "universes/society_mind/universe.json",
+        "app_path": "universes/creative_arts/universe.json",
         "schema_version": "1.0.0"
       }
     },
@@ -156,7 +134,29 @@
         "app_path": "universes/tech_ops/universe.json",
         "schema_version": "1.0.0"
       }
+    },
+    {
+      "id": "life_sciences",
+      "display_name": "Life Sciences",
+      "banners": [
+        "banner_life_sciences"
+      ],
+      "audio": [
+        "ambience_life_sciences",
+        "ui_click",
+        "ui_error"
+      ],
+      "meshes": [
+        "cellular_membrane",
+        "data_node"
+      ],
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "universes/life_sciences/universe.json",
+        "schema_version": "1.0.0"
+      }
     }
   ],
-  "generated_at": "2026-07-06T19:17:21.190689Z"
+  "generated_at": "2026-07-06T19:49:18.557623Z"
 }
