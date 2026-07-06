@@ -9,8 +9,14 @@ import os
 from pathlib import Path
 from datetime import datetime, timezone
 
-SHARED_DIR = Path("/home/user/workspace/shared")
-WEBSITE_DIR = Path("/home/user/website")
+# Path resolution: GITHUB_WORKSPACE in CI, fallback to local layout
+_GW = os.environ.get("GITHUB_WORKSPACE")
+if _GW:
+    ROOT = Path(_GW)
+else:
+    ROOT = Path("/home/user/workspace")
+SHARED_DIR = ROOT / "shared"
+WEBSITE_DIR = ROOT / "website"
 DATA_DIR = WEBSITE_DIR / "data"
 WORLDS_OUT = WEBSITE_DIR / "worlds"
 DATA_DIR.mkdir(parents=True, exist_ok=True)
