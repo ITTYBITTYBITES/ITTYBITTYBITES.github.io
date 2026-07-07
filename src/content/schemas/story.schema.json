@@ -8,9 +8,23 @@
     "id": { "type": "string", "pattern": "^[a-z0-9-]{3,32}$" },
     "title": { "type": "string", "minLength": 3, "maxLength": 80 },
     "description": { "type": "string", "minLength": 10, "maxLength": 300 },
+    "summary": { "type": "string", "minLength": 10, "maxLength": 200 },
     "relatedCollections": { "type": "array", "items": { "type": "string" } },
     "relatedExperiences": { "type": "array", "items": { "type": "string" } },
     "narrative": { "type": "string" },
+    "segments": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": { "type": "string" },
+          "title": { "type": "string" },
+          "text": { "type": "string" },
+          "trigger": { "type": "string" }
+        },
+        "required": ["id", "text"]
+      }
+    },
     "version": { "type": "string", "default": "1.0.0" }
   },
   "additionalProperties": false

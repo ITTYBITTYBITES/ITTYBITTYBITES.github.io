@@ -10,6 +10,7 @@
   "estimatedDuration": "5-15 min",
   "returnValue": "Save and revisit your patterns. They grow more interesting the more you tend them.",
   "collection": "foundations",
+  "story": "foundations-journey",
   "accessibility": {
     "keyboard": true,
     "screenReader": true,

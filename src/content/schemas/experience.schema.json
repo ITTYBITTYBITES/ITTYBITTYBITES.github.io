@@ -8,12 +8,16 @@
     "id": { "type": "string", "pattern": "^[a-z0-9-]{3,32}$" },
     "title": { "type": "string", "minLength": 3, "maxLength": 80 },
     "description": { "type": "string", "minLength": 10, "maxLength": 300 },
+    "summary": { "type": "string", "minLength": 10, "maxLength": 200 },
     "category": {
       "type": "string",
       "enum": ["reflection", "game", "application", "interactive", "utility", "experiment", "documentation", "media", "future"]
     },
     "module": { "type": "string", "pattern": "^[a-z0-9-]+\\.ts$" },
     "tags": { "type": "array", "items": { "type": "string" }, "maxItems": 8 },
+    "searchKeywords": { "type": "array", "items": { "type": "string" } },
+    "estimatedDuration": { "type": "string", "maxLength": 30 },
+    "returnValue": { "type": "string", "maxLength": 300 },
     "collection": { "type": "string" },
     "story": { "type": "string" },
     "version": { "type": "string", "default": "1.0.0" },

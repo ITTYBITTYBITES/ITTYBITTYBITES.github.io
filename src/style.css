@@ -1,9 +1,8 @@
 /**
  * Platform base styles.
  *
- * This is intentionally minimal: it provides a responsive, accessible,
- * and neutral foundation. Branding, color themes, and motion are left
- * to future design passes.
+ * Provides a responsive, accessible, and neutral foundation.
+ * Supports light/dark color schemes and reduced motion preferences.
  */
 
 :root {
@@ -12,6 +11,14 @@
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
   --measure: 65ch;
   --radius: 0.25rem;
+  --radius-lg: 0.5rem;
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
 }
 
 *,
@@ -64,26 +71,27 @@ select {
 
 .app-main {
   min-height: 60vh;
-  padding-block: 2rem;
+  padding-block: var(--space-8);
 }
 
 /* Header / navigation */
 .site-header {
   border-block-end: 1px solid ButtonBorder;
-  padding-block: 1rem;
+  padding-block: var(--space-4);
 }
 
 .header-inner {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1rem;
+  gap: var(--space-4);
 }
 
 .brand {
   font-weight: 700;
   text-decoration: none;
   color: inherit;
+  font-size: 1.125rem;
 }
 
 .site-nav {
@@ -92,7 +100,7 @@ select {
 
 .nav-list {
   display: flex;
-  gap: 1rem;
+  gap: var(--space-4);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -101,22 +109,24 @@ select {
 .nav-list a {
   color: inherit;
   text-decoration: none;
-  padding: 0.25rem 0.5rem;
+  padding: var(--space-1) var(--space-2);
   border-radius: var(--radius);
 }
 
 .nav-list a[aria-current='page'] {
   text-decoration: underline;
   text-underline-offset: 0.2em;
+  font-weight: 600;
 }
 
 .nav-toggle {
   display: none;
-  padding: 0.5rem;
+  padding: var(--space-2);
   border: 1px solid ButtonBorder;
   background: ButtonFace;
   color: inherit;
   cursor: pointer;
+  border-radius: var(--radius);
 }
 
 @media (max-width: 40rem) {
@@ -127,14 +137,16 @@ select {
   .nav-list {
     display: none;
     position: absolute;
-    inset-block-start: calc(100% + 0.5rem);
+    inset-block-start: calc(100% + var(--space-2));
     inset-inline-end: 0;
     flex-direction: column;
     min-width: 12rem;
-    padding: 0.5rem;
+    padding: var(--space-2);
     border: 1px solid ButtonBorder;
     background: canvas;
     box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    border-radius: var(--radius-lg);
+    z-index: 100;
   }
 
   .nav-list.open {
@@ -145,13 +157,13 @@ select {
 /* Footer */
 .site-footer {
   border-block-start: 1px solid ButtonBorder;
-  padding-block: 1.5rem;
+  padding-block: var(--space-6);
 }
 
 .footer-inner {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: var(--space-2);
   justify-content: space-between;
   align-items: center;
 }
@@ -163,18 +175,19 @@ h3,
 h4 {
   line-height: 1.2;
   margin-block-start: 0;
-  margin-block-end: 0.75rem;
+  margin-block-end: var(--space-3);
 }
 
 p {
   margin-block-start: 0;
-  margin-block-end: 1rem;
+  margin-block-end: var(--space-4);
   max-width: var(--measure);
 }
 
 .lead {
   font-size: 1.125rem;
   max-width: var(--measure);
+  color: canvastext;
 }
 
 .meta {
@@ -184,18 +197,26 @@ p {
   letter-spacing: 0.02em;
 }
 
+.muted {
+  color: GrayText;
+}
+
 /* Components */
 .btn {
   display: inline-flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-4);
   border: 1px solid ButtonBorder;
   border-radius: var(--radius);
   background: ButtonFace;
   color: inherit;
   text-decoration: none;
   cursor: pointer;
+  font-size: 1rem;
+  line-height: 1.5;
+  min-height: 2.5rem;
+  transition: background 0.15s, color 0.15s, transform 0.05s;
 }
 
 .btn:hover {
@@ -203,42 +224,104 @@ p {
   color: AccentColorText;
 }
 
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.btn.primary {
+  background: canvastext;
+  color: canvas;
+  border-color: canvastext;
+}
+
+.btn.primary:hover {
+  background: AccentColor;
+  color: AccentColorText;
+  border-color: AccentColor;
+}
+
+.btn.subtle {
+  background: transparent;
+  border-color: transparent;
+}
+
+.btn.subtle:hover {
+  background: ButtonFace;
+  color: inherit;
+}
+
 .cta-row {
   display: flex;
   flex-wrap: wrap;
-  gap: 1rem;
-  margin-block: 1.5rem;
+  gap: var(--space-4);
+  margin-block: var(--space-6);
 }
 
 .section {
-  margin-block-start: 3rem;
+  margin-block-start: var(--space-12);
 }
 
 .hero {
-  margin-block-end: 3rem;
+  margin-block-end: var(--space-12);
+  padding-block: var(--space-6);
 }
 
 .grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
-  gap: 1rem;
-  margin-block-start: 1.5rem;
+  gap: var(--space-4);
+  margin-block-start: var(--space-6);
 }
 
 .card {
-  padding: 1rem;
+  padding: var(--space-4);
   border: 1px solid ButtonBorder;
-  border-radius: var(--radius);
+  border-radius: var(--radius-lg);
+  background: canvas;
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow 0.15s, transform 0.1s;
+}
+
+.card:hover {
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.08);
 }
 
 .card h2 {
-  margin-block-end: 0.5rem;
+  margin-block-end: var(--space-2);
   font-size: 1.125rem;
+}
+
+.card h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.card h2 a:hover {
+  text-decoration: underline;
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: var(--space-2);
+  margin-block-end: var(--space-2);
+}
+
+.card-footer {
+  margin-block-start: auto;
+  padding-block-start: var(--space-3);
 }
 
 .search-input {
   width: min(100%, 24rem);
-  padding: 0.5rem;
+  padding: var(--space-2);
   border: 1px solid ButtonBorder;
   border-radius: var(--radius);
   background: Field;
@@ -246,20 +329,325 @@ p {
 }
 
 .page-header {
-  margin-block-end: 1.5rem;
+  margin-block-end: var(--space-6);
+}
+
+/* Badges */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.15rem 0.5rem;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.badge.completed {
+  background: #22c55e22;
+  color: #16a34a;
+}
+
+.badge.in-progress {
+  background: #3b82f622;
+  color: #2563eb;
+}
+
+.badge.unstarted {
+  background: #64748b22;
+  color: #64748b;
+}
+
+@media (prefers-color-scheme: dark) {
+  .badge.completed {
+    background: #22c55e33;
+    color: #4ade80;
+  }
+  .badge.in-progress {
+    background: #3b82f633;
+    color: #60a5fa;
+  }
+  .badge.unstarted {
+    background: #64748b33;
+    color: #94a3b8;
+  }
+}
+
+/* Progress */
+.progress-track {
+  width: 100%;
+  height: 0.5rem;
+  background: ButtonFace;
+  border-radius: 999px;
+  overflow: hidden;
+  margin: var(--space-2) 0;
+  border: 1px solid ButtonBorder;
+}
+
+.progress-track.small {
+  height: 0.35rem;
+}
+
+.progress-fill {
+  height: 100%;
+  background: AccentColor;
+  border-radius: 999px;
+  transition: width 0.4s ease;
+}
+
+/* Collection page */
+.collection-card {
+  margin-block-start: var(--space-8);
+  padding: var(--space-6);
+  border: 1px solid ButtonBorder;
+  border-radius: var(--radius-lg);
+  background: canvas;
+}
+
+.collection-header {
+  margin-block-end: var(--space-6);
+}
+
+.collection-header h2 {
+  font-size: 1.5rem;
+  margin-block-end: var(--space-2);
+}
+
+.collection-meta {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  margin-block: var(--space-2);
+  font-size: 0.875rem;
+  color: GrayText;
+}
+
+.collection-story {
+  padding: var(--space-4);
+  border-inline-start: 3px solid AccentColor;
+  background: ButtonFace;
+  border-radius: 0 var(--radius) var(--radius) 0;
+  margin-block-end: var(--space-6);
+}
+
+.collection-story h3 {
+  font-size: 1rem;
+  margin-block-end: var(--space-2);
+}
+
+.collection-story p {
+  margin-block-end: 0;
+  font-size: 0.95rem;
+}
+
+.collection-experience-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.collection-experience-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  border: 1px solid ButtonBorder;
+  border-radius: var(--radius-lg);
+  background: canvas;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.collection-experience-item.is-active {
+  border-color: AccentColor;
+  background: AccentColorText;
+}
+
+.collection-experience-item.is-completed {
+  opacity: 0.85;
+}
+
+.step-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: ButtonFace;
+  border: 1px solid ButtonBorder;
+  font-weight: 700;
+  font-size: 0.875rem;
+  flex-shrink: 0;
+}
+
+.collection-experience-item.is-completed .step-number {
+  background: #22c55e;
+  color: #fff;
+  border-color: #22c55e;
+}
+
+.experience-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.experience-info a {
+  font-weight: 600;
+  color: inherit;
+  text-decoration: none;
+  font-size: 1.05rem;
+}
+
+.experience-info a:hover {
+  text-decoration: underline;
+}
+
+.experience-info p {
+  margin-block: var(--space-1) 0;
+  font-size: 0.9rem;
+  color: GrayText;
+}
+
+.experience-meta {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+  margin-block-start: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.collection-actions {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+  margin-block-start: var(--space-6);
+  padding-block-start: var(--space-4);
+  border-block-start: 1px solid ButtonBorder;
+}
+
+.completion-banner {
+  margin-block: var(--space-6);
+  padding: var(--space-4);
+  border: 1px solid #22c55e;
+  border-radius: var(--radius-lg);
+  background: #22c55e11;
+}
+
+.completion-banner h3 {
+  color: #16a34a;
+  margin-block-end: var(--space-2);
+}
+
+@media (prefers-color-scheme: dark) {
+  .completion-banner {
+    background: #22c55e22;
+  }
+  .completion-banner h3 {
+    color: #4ade80;
+  }
+}
+
+/* Story transitions */
+.story-transition {
+  margin-block: var(--space-6);
+  padding: var(--space-4);
+  border-inline-start: 3px solid AccentColor;
+  background: ButtonFace;
+  border-radius: 0 var(--radius) var(--radius) 0;
+}
+
+.story-transition h3 {
+  font-size: 1rem;
+  margin-block-end: var(--space-2);
+}
+
+.story-transition p {
+  margin-block-end: 0;
+  font-size: 0.95rem;
+}
+
+/* Next step / related */
+.next-step {
+  margin-block: var(--space-6);
+  padding: var(--space-4);
+  border: 1px solid ButtonBorder;
+  border-radius: var(--radius-lg);
+  background: ButtonFace;
+}
+
+.next-step h4 {
+  margin-block-end: var(--space-3);
+}
+
+.collection-context,
+.return-context {
+  font-size: 0.9rem;
+  color: GrayText;
+}
+
+/* Suggestion list */
+.suggestion-list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-4) 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.suggestion-list li {
+  padding: var(--space-3);
+  border: 1px solid ButtonBorder;
+  border-radius: var(--radius);
+  background: canvas;
+}
+
+.suggestion-list a {
+  font-weight: 600;
+  color: inherit;
+}
+
+.reason {
+  color: GrayText;
+  font-size: 0.9rem;
+}
+
+/* Empty states */
+.empty-state {
+  padding: var(--space-8);
+  text-align: center;
+  border: 1px dashed ButtonBorder;
+  border-radius: var(--radius-lg);
+  color: GrayText;
+}
+
+.empty-state p {
+  margin-inline: auto;
+}
+
+/* Collection compact cards on home */
+.collection-card-compact .collection-meta-row {
+  display: flex;
+  gap: var(--space-4);
+  margin-block: var(--space-2);
 }
 
 /* Experience primitives */
 .experience-counter,
 .experience-canvas,
 .experience-docs {
-  margin-block-start: 1rem;
+  margin-block-start: var(--space-4);
 }
 
 .counter-controls {
   display: flex;
-  gap: 0.5rem;
-  margin-block-end: 1rem;
+  gap: var(--space-2);
+  margin-block-end: var(--space-4);
 }
 
 .counter-value {
@@ -275,6 +663,85 @@ p {
   cursor: crosshair;
 }
 
+/* Echo Chamber */
+.echo-chamber {
+  padding: var(--space-4);
+  border: 1px solid ButtonBorder;
+  border-radius: var(--radius-lg);
+  background: canvas;
+}
+
+.echo-input {
+  width: 100%;
+  padding: var(--space-3);
+  border: 1px solid ButtonBorder;
+  border-radius: var(--radius);
+  background: Field;
+  color: FieldText;
+  margin-block-end: var(--space-3);
+  resize: vertical;
+}
+
+.echo-history {
+  margin-block: var(--space-4);
+  min-height: 3rem;
+}
+
+.echo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.echo-entry {
+  padding: var(--space-3);
+  border: 1px solid ButtonBorder;
+  border-radius: var(--radius);
+  background: ButtonFace;
+}
+
+.echo-text {
+  font-size: 1rem;
+  margin-block-end: var(--space-1);
+}
+
+.echo-meta {
+  font-size: 0.8rem;
+  color: GrayText;
+}
+
+/* Signal Detection */
+.signal-detection canvas {
+  touch-action: none;
+}
+
+.signal-status {
+  min-height: 1.5rem;
+}
+
+/* Memory Sequence */
+.memory-board {
+  max-width: 360px;
+  margin-inline: auto;
+}
+
+.memory-cell:focus-visible {
+  outline: 3px solid AccentColor;
+  outline-offset: 2px;
+}
+
+/* Perspective Shift */
+.perspective-shift .scene-card {
+  background: ButtonFace;
+}
+
+.lens-bar button[aria-selected='true'] {
+  font-weight: 600;
+}
+
 /* Documentation content */
 .prose {
   max-width: var(--measure);
@@ -283,11 +750,11 @@ p {
 .prose h1,
 .prose h2,
 .prose h3 {
-  margin-block-start: 2rem;
+  margin-block-start: var(--space-8);
 }
 
 .prose pre {
-  padding: 1rem;
+  padding: var(--space-4);
   overflow-x: auto;
   border: 1px solid ButtonBorder;
   border-radius: var(--radius);
@@ -321,5 +788,26 @@ p {
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
+  }
+}
+
+/* Focus visible for interactive elements */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid AccentColor;
+  outline-offset: 2px;
+}
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: more) {
+  .card,
+  .collection-card,
+  .collection-experience-item,
+  .echo-entry,
+  .next-step,
+  .completion-banner {
+    border-width: 2px;
   }
 }

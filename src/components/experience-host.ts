@@ -1,6 +1,7 @@
 import { analytics } from '../platform/analytics';
 import { events } from '../platform/events';
 import { getExperienceById, loadExperience } from '../platform/registry';
+import { startSession, endSession, recordInteraction, markExperienceCompleted, updateCollectionProgress } from '../platform/lifecycle';
 import type { ExperienceContext, ExperienceModule } from '../platform/types';
 
 /**
@@ -11,6 +12,7 @@ import type { ExperienceContext, ExperienceModule } from '../platform/types';
  */
 export class ExperienceHost extends HTMLElement {
   private cleanup?: (() => void) | undefined;
+  private sessionStarted = false;
 
   async connectedCallback(): Promise<void> {
     const id = this.dataset.id;
@@ -43,24 +45,63 @@ export class ExperienceHost extends HTMLElement {
       analytics,
     };
 
+    // Start session tracking
+    startSession(entry.id);
+    this.sessionStarted = true;
+
     // Notify the rest of the platform that an experience is opening.
     events.emit('experience_opened', { experience_id: entry.id, category: entry.category });
+
+    // Bridge interaction events to lifecycle
+    const interactionHandler = (e: CustomEvent) => {
+      const detail = e.detail || {};
+      if (detail.experience_id === entry.id) {
+        recordInteraction(entry.id);
+        if (detail.action === 'completed' || detail.action === 'collection_complete' || detail.action === 'game_over' || detail.action === 'perspective_viewed') {
+          // Some experiences self-report completion
+          if (detail.action === 'completed' || (detail.perspective_total_viewed && detail.perspective_total_viewed >= 3)) {
+            markExperienceCompleted(entry.id);
+          }
+        }
+        if (entry.collection) {
+          updateCollectionProgress(entry.collection, entry.id);
+        }
+      }
+    };
+    events.on('experience_interaction', interactionHandler as any);
 
     try {
       const result = mod.mount(this, context);
       if (typeof result === 'function') {
-        this.cleanup = result;
+        this.cleanup = () => {
+          result();
+          events.off('experience_interaction', interactionHandler as any);
+        };
       } else if (mod.unmount) {
-        this.cleanup = () => mod.unmount!(this);
+        this.cleanup = () => {
+          mod.unmount!(this);
+          events.off('experience_interaction', interactionHandler as any);
+        };
+      } else {
+        this.cleanup = () => {
+          events.off('experience_interaction', interactionHandler as any);
+        };
       }
     } catch (error) {
       this.renderError(`Experience "${id}" failed to start.`);
       // eslint-disable-next-line no-console
       console.error(error);
+      events.off('experience_interaction', interactionHandler as any);
     }
   }
 
   disconnectedCallback(): void {
+    if (this.sessionStarted) {
+      const id = this.dataset.id;
+      if (id) {
+        endSession(id);
+      }
+    }
     if (typeof this.cleanup === 'function') {
       try {
         this.cleanup();

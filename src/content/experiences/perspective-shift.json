@@ -1,0 +1,19 @@
+{
+  "id": "perspective-shift",
+  "title": "Perspective Shift",
+  "description": "The same scene holds different truths. Switch lenses to uncover what hides in plain sight.",
+  "summary": "Three perspectives. One scene. Each view reveals details the others conceal.",
+  "category": "reflection",
+  "module": "perspective-shift.ts",
+  "tags": ["perspective", "insight", "reflection", "observation"],
+  "searchKeywords": ["perspective", "shift", "viewpoint", "insight", "reflection"],
+  "estimatedDuration": "4-8 min",
+  "returnValue": "Collect all perspectives to see the complete picture. New insights emerge on return visits.",
+  "collection": "foundations",
+  "story": "foundations-journey",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

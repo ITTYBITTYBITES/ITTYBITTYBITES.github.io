@@ -13,6 +13,19 @@
     "collection": "foundations"
   },
   {
+    "id": "memory-sequence",
+    "type": "experience",
+    "title": "Memory Sequence",
+    "description": "Build and repeat growing sequences. Strengthen recall through rhythmic challenge.",
+    "tags": [
+      "memory",
+      "sequence",
+      "recall",
+      "rhythm"
+    ],
+    "collection": "foundations"
+  },
+  {
     "id": "pattern-garden",
     "type": "experience",
     "title": "Pattern Garden",
@@ -21,6 +34,32 @@
       "pattern",
       "emergence",
       "rules"
+    ],
+    "collection": "foundations"
+  },
+  {
+    "id": "perspective-shift",
+    "type": "experience",
+    "title": "Perspective Shift",
+    "description": "The same scene holds different truths. Switch lenses to uncover what hides in plain sight.",
+    "tags": [
+      "perspective",
+      "insight",
+      "reflection",
+      "observation"
+    ],
+    "collection": "foundations"
+  },
+  {
+    "id": "signal-detection",
+    "type": "experience",
+    "title": "Signal Detection",
+    "description": "Find meaning in noise. Train your eye to spot hidden patterns among random motion.",
+    "tags": [
+      "attention",
+      "pattern",
+      "focus",
+      "observation"
     ],
     "collection": "foundations"
   },
@@ -40,5 +79,11 @@
     "type": "story",
     "title": "The Origin of Echo",
     "description": "A reflection on why the first coherent experience was built around listening and repetition."
+  },
+  {
+    "id": "foundations-journey",
+    "type": "story",
+    "title": "The Foundations Journey",
+    "description": "A guided path through five core experiences that build upon each other — from listening to seeing."
   }
 ]

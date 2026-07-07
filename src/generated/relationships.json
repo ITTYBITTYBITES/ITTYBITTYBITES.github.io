@@ -2,14 +2,26 @@
   "collectionsToExperiences": {
     "foundations": [
       "echo-chamber",
-      "pattern-garden"
+      "signal-detection",
+      "pattern-garden",
+      "memory-sequence",
+      "perspective-shift"
     ]
   },
   "experiencesToCollections": {
     "echo-chamber": [
       "foundations"
     ],
+    "signal-detection": [
+      "foundations"
+    ],
     "pattern-garden": [
+      "foundations"
+    ],
+    "memory-sequence": [
+      "foundations"
+    ],
+    "perspective-shift": [
       "foundations"
     ]
   }

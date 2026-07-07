@@ -2,15 +2,27 @@
   {
     "id": "foundations",
     "title": "Foundations",
-    "count": 2,
+    "count": 5,
     "experiences": [
       {
         "id": "echo-chamber",
         "title": "Echo Chamber"
       },
       {
+        "id": "signal-detection",
+        "title": "Signal Detection"
+      },
+      {
         "id": "pattern-garden",
         "title": "Pattern Garden"
+      },
+      {
+        "id": "memory-sequence",
+        "title": "Memory Sequence"
+      },
+      {
+        "id": "perspective-shift",
+        "title": "Perspective Shift"
       }
     ]
   }

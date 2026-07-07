@@ -1,7 +1,7 @@
 import { ExperienceHost } from '../components/experience-host';
-import { getExperienceById } from '../platform/registry';
+import { getExperienceById, getStoryById } from '../platform/registry';
 import { getNextSteps } from '../platform/discovery';
-import { getReturnSummary } from '../platform/lifecycle';
+import { getReturnSummary, markExperienceCompleted } from '../platform/lifecycle';
 import { h } from '../platform/utils';
 
 export function renderExperience({ params, query }: { params: Record<string, string>; query: URLSearchParams }): HTMLElement {
@@ -27,18 +27,43 @@ export function renderExperience({ params, query }: { params: Record<string, str
   const next = getNextSteps(entry.id);
   const returnSummary = getReturnSummary(entry.id);
 
-  const elements: any[] = [
-    h('header', { class: 'page-header' }, [
-      h('div', { class: 'meta' }, [entry.category]),
-      h('h1', {}, [entry.title]),
-      h('p', {}, [entry.description]),
-    ]),
+  // Story transition
+  let storyTransition: HTMLElement | null = null;
+  if (entry.story) {
+    const story = getStoryById(entry.story);
+    if (story?.segments) {
+      // Find transition for this experience
+      const segment = story.segments.find(s => s.trigger === `after_${entry.id}`);
+      if (segment) {
+        storyTransition = h('div', { class: 'story-transition' }, [
+          h('h3', {}, [segment.title]),
+          h('p', {}, [segment.text]),
+        ]);
+      }
+    }
+  }
+
+  const headerChildren: (string | Node)[] = [
+    h('div', { class: 'meta' }, [entry.category]),
+    h('h1', {}, [entry.title]),
+    h('p', {}, [entry.description]),
+  ];
+  if (entry.estimatedDuration) {
+    headerChildren.push(h('p', { class: 'meta' }, [`Estimated time: ${entry.estimatedDuration}`]));
+  }
+
+  const elements: HTMLElement[] = [
+    h('header', { class: 'page-header' }, headerChildren),
     host,
   ];
 
+  if (storyTransition) {
+    elements.push(storyTransition);
+  }
+
   if (next.collection) {
     elements.push(
-      h('p', {}, [
+      h('p', { class: 'collection-context' }, [
         'Part of ',
         h('a', { href: '/collections' }, [next.collection.title]),
       ])
@@ -46,16 +71,35 @@ export function renderExperience({ params, query }: { params: Record<string, str
   }
 
   if (returnSummary.totalSessions > 0) {
+    const returnText = returnSummary.completed
+      ? `Completed • Visited ${returnSummary.totalSessions} time${returnSummary.totalSessions === 1 ? '' : 's'}`
+      : `Visited ${returnSummary.totalSessions} time${returnSummary.totalSessions === 1 ? '' : 's'}`;
     elements.push(
-      h('p', { class: 'return-context' }, [
-        `You have visited ${returnSummary.totalSessions} time${returnSummary.totalSessions === 1 ? '' : 's'}.`,
-      ])
+      h('p', { class: 'return-context' }, [returnText])
     );
   }
 
-  if (next.related && next.related.length > 0) {
+  // Mark complete button for experiences that don't self-report
+  const completeBtn = h('button', { class: 'btn subtle', type: 'button' }, ['Mark as complete']);
+  completeBtn.addEventListener('click', () => {
+    markExperienceCompleted(entry.id);
+    completeBtn.textContent = 'Completed';
+    completeBtn.setAttribute('disabled', 'true');
+  });
+  elements.push(completeBtn);
+
+  if (next.nextInCollection) {
     elements.push(
-      h('div', {}, [
+      h('div', { class: 'next-step' }, [
+        h('h4', {}, ['Next in this collection']),
+        h('a', { class: 'btn', href: `/experience/${next.nextInCollection.id}` }, [
+          `Continue to ${next.nextInCollection.title}`
+        ]),
+      ])
+    );
+  } else if (next.related && next.related.length > 0) {
+    elements.push(
+      h('div', { class: 'next-step' }, [
         h('h4', {}, ['Related in this collection']),
         h('ul', {}, next.related.map((r: any) =>
           h('li', {}, [h('a', { href: `/experience/${r.id}` }, [r.title])])

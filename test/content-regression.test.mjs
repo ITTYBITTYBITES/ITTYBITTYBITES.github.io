@@ -5,7 +5,7 @@ import path from 'path';
 
 const ROOT = path.resolve('.');
 
-describe('BUILD ORDER 005 Regression Suite (Phases 1-8)', () => {
+describe('BUILD ORDER 006 Regression Suite', () => {
   // Phase 6: Schema validation
   it('experience schema validates required fields', () => {
     const schema = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/content/schemas/experience.schema.json'), 'utf-8'));
@@ -13,11 +13,21 @@ describe('BUILD ORDER 005 Regression Suite (Phases 1-8)', () => {
     assert.ok(schema.required.includes('title'));
     assert.ok(schema.required.includes('module'));
     assert.ok(schema.properties.accessibility, 'accessibility metadata required in schema');
+    assert.ok(schema.properties.estimatedDuration, 'estimatedDuration in schema');
+    assert.ok(schema.properties.returnValue, 'returnValue in schema');
   });
 
   it('collection schema valid', () => {
     const schema = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/content/schemas/collection.schema.json'), 'utf-8'));
     assert.ok(schema.required.includes('experiences'));
+    assert.ok(schema.properties.estimatedDuration, 'collection estimatedDuration in schema');
+    assert.ok(schema.properties.story, 'collection story in schema');
+  });
+
+  it('story schema valid', () => {
+    const schema = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/content/schemas/story.schema.json'), 'utf-8'));
+    assert.ok(schema.required.includes('id'));
+    assert.ok(schema.properties.segments, 'story segments in schema');
   });
 
   // Registry generation
@@ -27,7 +37,7 @@ describe('BUILD ORDER 005 Regression Suite (Phases 1-8)', () => {
     const reg = JSON.parse(fs.readFileSync(regPath, 'utf-8'));
     assert.ok(reg.version);
     assert.ok(Array.isArray(reg.experiences));
-    assert.ok(reg.experiences.length >= 2);
+    assert.ok(reg.experiences.length >= 5, 'Foundations collection has 5 experiences');
     assert.ok(reg.experiences.every(e => e.id && e.title && e.module));
   });
 
@@ -48,6 +58,9 @@ describe('BUILD ORDER 005 Regression Suite (Phases 1-8)', () => {
     assert.ok(rel.collectionsToExperiences);
     assert.ok(rel.collectionsToExperiences.foundations);
     assert.ok(rel.experiencesToCollections['echo-chamber']);
+    assert.ok(rel.experiencesToCollections['signal-detection']);
+    assert.ok(rel.experiencesToCollections['memory-sequence']);
+    assert.ok(rel.experiencesToCollections['perspective-shift']);
   });
 
   // Lazy-loading & route generation (basic structural)
@@ -65,12 +78,37 @@ describe('BUILD ORDER 005 Regression Suite (Phases 1-8)', () => {
     const expIds = new Set(reg.experiences.map(e => e.id));
     assert.ok(expIds.has('echo-chamber'));
     assert.ok(expIds.has('pattern-garden'));
+    assert.ok(expIds.has('signal-detection'));
+    assert.ok(expIds.has('memory-sequence'));
+    assert.ok(expIds.has('perspective-shift'));
     reg.experiences.forEach(e => {
       if (e.collection) {
         const col = reg.collections.find(c => c.id === e.collection);
         assert.ok(col, `Collection ref broken: ${e.collection}`);
       }
+      if (e.story) {
+        const story = reg.stories.find(s => s.id === e.story);
+        assert.ok(story, `Story ref broken: ${e.story}`);
+      }
     });
+  });
+
+  // Foundations collection completeness
+  it('foundations collection contains 5 experiences', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const foundations = reg.collections.find(c => c.id === 'foundations');
+    assert.ok(foundations, 'foundations collection exists');
+    assert.strictEqual(foundations.experiences.length, 5);
+    assert.ok(foundations.story, 'foundations has a story');
+    assert.ok(foundations.estimatedDuration, 'foundations has estimatedDuration');
+  });
+
+  // Story segments exist
+  it('foundations journey story has segments', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const story = reg.stories.find(s => s.id === 'foundations-journey');
+    assert.ok(story, 'foundations-journey story exists');
+    assert.ok(story.segments && story.segments.length >= 6, 'story has segments for each phase');
   });
 
   // Privacy boundary verification (CI guard check)
@@ -78,7 +116,7 @@ describe('BUILD ORDER 005 Regression Suite (Phases 1-8)', () => {
     const ci = fs.readFileSync(path.join(ROOT, '.github/workflows/ci.yml'), 'utf-8');
     assert.ok(ci.includes('Privacy Boundary Guard'));
     assert.ok(ci.includes('governing'));
-    assert.ok(ci.includes('*.md'));
+    assert.ok(ci.includes('\\.md$'));
   });
 
   // Generated content consistency
@@ -135,12 +173,32 @@ describe('BUILD ORDER 005 Regression Suite (Phases 1-8)', () => {
   it('no private files leaked to dist', () => {
     if (fs.existsSync(path.join(ROOT, 'dist'))) {
       const distFiles = fs.readdirSync(path.join(ROOT, 'dist'), { recursive: true });
-      const forbidden = distFiles.some(f => 
-        String(f).includes('governing') || 
-        String(f).endsWith('.md') || 
+      const forbidden = distFiles.some(f =>
+        String(f).includes('governing') ||
+        String(f).endsWith('.md') ||
         String(f).includes('PRODUCT_CONSTITUTION')
       );
       assert.ok(!forbidden, 'Private content leaked into dist');
     }
+  });
+
+  // Progress system validation
+  it('progress system exports completion tracking', () => {
+    const lifecyclePath = path.join(ROOT, 'src/platform/lifecycle.ts');
+    const lifecycle = fs.readFileSync(lifecyclePath, 'utf-8');
+    assert.ok(lifecycle.includes('markExperienceCompleted'));
+    assert.ok(lifecycle.includes('resetAllProgress'));
+    assert.ok(lifecycle.includes('PlatformProgress'));
+    assert.ok(lifecycle.includes('version'));
+  });
+
+  // Collection page validation
+  it('collection page imports progress and discovery', () => {
+    const collectionsPath = path.join(ROOT, 'src/pages/collections.ts');
+    const collections = fs.readFileSync(collectionsPath, 'utf-8');
+    assert.ok(collections.includes('getCollectionCompletion'));
+    assert.ok(collections.includes('getSuggestedNextExperience'));
+    assert.ok(collections.includes('progressBar'));
+    assert.ok(collections.includes('completionBanner'));
   });
 });

@@ -1,0 +1,19 @@
+{
+  "id": "signal-detection",
+  "title": "Signal Detection",
+  "description": "Find meaning in noise. Train your eye to spot hidden patterns among random motion.",
+  "summary": "Particles move. Some drift with purpose. Identify the signals before they fade.",
+  "category": "interactive",
+  "module": "signal-detection.ts",
+  "tags": ["attention", "pattern", "focus", "observation"],
+  "searchKeywords": ["signal", "noise", "detection", "focus", "attention"],
+  "estimatedDuration": "5-10 min",
+  "returnValue": "Your accuracy and streak improve with practice. Return to beat your detection time.",
+  "collection": "foundations",
+  "story": "foundations-journey",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}
