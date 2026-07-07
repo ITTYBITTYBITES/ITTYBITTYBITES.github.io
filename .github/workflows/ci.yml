@@ -22,11 +22,11 @@ jobs:
       - name: Type check
         run: npm run lint
 
-      - name: Run tests
-        run: npm test
-
       - name: Full Build + Quality Gates
         run: npm run build
+
+      - name: Run tests
+        run: npm test
 
       - name: Verify dist
         run: |
