@@ -35,6 +35,7 @@
 |-----------|-------------|-------|--------|
 | Foundations | 5 | The Foundations Journey | Complete |
 | History | 5 | Echoes of Evidence | Complete |
+| Science | 5 | Ways of Knowing | Complete |
 
 ### Platform Shell
 - Header navigation (Home, Experiences, Collections, Library)
@@ -49,7 +50,7 @@
 ## What Is Intentionally Deferred
 
 - Creator tools / scaffolding scripts
-- Additional Collections (Science, Nature, Creativity, Engineering, Mathematics)
+- Additional Collections (Nature, Creativity, Engineering, Mathematics)
 - User testing and feedback integration
 - Analytics dashboard or reporting
 - Cloud sync or cross-device progress
@@ -61,8 +62,8 @@
 
 ## Current Release Goals
 
-**Release 0.2** — Foundations + History (current)
-- Two complete Collections
+**Release 0.3** — Foundations + History + Science (current)
+- Three complete Collections
 - Full discovery and personalization
 - Production-ready, deployable
 
@@ -72,7 +73,6 @@
 
 | Release | Content | Status |
 |---------|---------|--------|
-| 0.3 | Science Collection | Not started |
 | 0.4 | Nature Collection | Not started |
 | 0.5 | Creativity Collection | Not started |
 | 0.6 | Engineering Collection | Not started |

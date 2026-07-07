@@ -26,6 +26,19 @@
     "collection": "history"
   },
   {
+    "id": "controlled",
+    "type": "experience",
+    "title": "Controlled",
+    "description": "Change one thing at a time. Everything else must stay constant. Only then can you know what caused what.",
+    "tags": [
+      "variables",
+      "control",
+      "causation",
+      "experiment"
+    ],
+    "collection": "science"
+  },
+  {
     "id": "dueling-accounts",
     "type": "experience",
     "title": "Dueling Accounts",
@@ -50,6 +63,19 @@
       "memory"
     ],
     "collection": "foundations"
+  },
+  {
+    "id": "hypothesis",
+    "type": "experience",
+    "title": "Hypothesis",
+    "description": "Form a guess from limited observations. Test it. Revise when the evidence contradicts you. That is the rhythm of science.",
+    "tags": [
+      "hypothesis",
+      "experiment",
+      "revision",
+      "evidence"
+    ],
+    "collection": "science"
   },
   {
     "id": "memory-sequence",
@@ -90,6 +116,20 @@
     "collection": "foundations"
   },
   {
+    "id": "scale",
+    "type": "experience",
+    "title": "Scale",
+    "description": "Navigate from the quantum to the cosmic. The same laws behave differently at different magnitudes. Perspective changes everything.",
+    "tags": [
+      "scale",
+      "magnitude",
+      "perspective",
+      "physics",
+      "orders"
+    ],
+    "collection": "science"
+  },
+  {
     "id": "signal-detection",
     "type": "experience",
     "title": "Signal Detection",
@@ -101,6 +141,34 @@
       "observation"
     ],
     "collection": "foundations"
+  },
+  {
+    "id": "signal-in-data",
+    "type": "experience",
+    "title": "Signal in Data",
+    "description": "Data is noisy. The pattern you see might be real, or it might be a trick of randomness. Learn to tell the difference.",
+    "tags": [
+      "data",
+      "pattern",
+      "noise",
+      "statistics",
+      "inference"
+    ],
+    "collection": "science"
+  },
+  {
+    "id": "uncertainty",
+    "type": "experience",
+    "title": "Uncertainty",
+    "description": "Make decisions when the answer is not yet known. Science lives in the space between what we know and what we are still figuring out.",
+    "tags": [
+      "uncertainty",
+      "probability",
+      "confidence",
+      "decision",
+      "limits"
+    ],
+    "collection": "science"
   },
   {
     "id": "unlabeled",
@@ -152,6 +220,19 @@
     ]
   },
   {
+    "id": "science",
+    "type": "collection",
+    "title": "Science",
+    "description": "Science is not a body of facts. It is a way of asking questions, testing guesses, and holding conclusions lightly. These experiences teach scientific thinking through doing.",
+    "tags": [
+      "science",
+      "experiment",
+      "reasoning",
+      "evidence",
+      "inquiry"
+    ]
+  },
+  {
     "id": "echo-origin",
     "type": "story",
     "title": "The Origin of Echo",
@@ -168,5 +249,11 @@
     "type": "story",
     "title": "The Foundations Journey",
     "description": "A guided path through five core experiences that build upon each other — from listening to seeing."
+  },
+  {
+    "id": "ways-of-knowing",
+    "type": "story",
+    "title": "Ways of Knowing",
+    "description": "Science does not begin with answers. It begins with noticing something strange and refusing to look away. This collection walks the path from curiosity to understanding — through guesses, tests, patterns, perspective, and humility."
   }
 ]

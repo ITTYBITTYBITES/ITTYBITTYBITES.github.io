@@ -1,0 +1,19 @@
+{
+  "id": "hypothesis",
+  "title": "Hypothesis",
+  "description": "Form a guess from limited observations. Test it. Revise when the evidence contradicts you. That is the rhythm of science.",
+  "summary": "Observe, guess, test, revise. Form hypotheses and watch how evidence strengthens or breaks them.",
+  "category": "interactive",
+  "module": "hypothesis.ts",
+  "tags": ["hypothesis", "experiment", "revision", "evidence"],
+  "searchKeywords": ["hypothesis", "guess", "test", "evidence", "observation"],
+  "estimatedDuration": "6-10 min",
+  "returnValue": "Your hypothesis accuracy improves with practice. New scenarios challenge your guessing on return visits.",
+  "collection": "science",
+  "story": "ways-of-knowing",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

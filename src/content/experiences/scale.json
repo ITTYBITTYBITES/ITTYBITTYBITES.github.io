@@ -1,0 +1,19 @@
+{
+  "id": "scale",
+  "title": "Scale",
+  "description": "Navigate from the quantum to the cosmic. The same laws behave differently at different magnitudes. Perspective changes everything.",
+  "summary": "Explore how physical phenomena change across vastly different scales of size and time.",
+  "category": "interactive",
+  "module": "scale.ts",
+  "tags": ["scale", "magnitude", "perspective", "physics", "orders"],
+  "searchKeywords": ["scale", "size", "magnitude", "orders", "perspective"],
+  "estimatedDuration": "5-8 min",
+  "returnValue": "Unlock all scale levels to see how the same concept transforms across magnitudes.",
+  "collection": "science",
+  "story": "ways-of-knowing",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

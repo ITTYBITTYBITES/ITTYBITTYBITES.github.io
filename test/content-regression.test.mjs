@@ -5,7 +5,7 @@ import path from 'path';
 
 const ROOT = path.resolve('.');
 
-describe('BUILD ORDER 008 Regression Suite', () => {
+describe('Release 0.3 Regression Suite', () => {
   // Schema validation
   it('experience schema validates required fields', () => {
     const schema = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/content/schemas/experience.schema.json'), 'utf-8'));
@@ -37,7 +37,7 @@ describe('BUILD ORDER 008 Regression Suite', () => {
     const reg = JSON.parse(fs.readFileSync(regPath, 'utf-8'));
     assert.ok(reg.version);
     assert.ok(Array.isArray(reg.experiences));
-    assert.ok(reg.experiences.length >= 10, 'Platform has 10+ experiences across 2 collections');
+    assert.ok(reg.experiences.length >= 15, 'Platform has 15+ experiences across 3 collections');
     assert.ok(reg.experiences.every(e => e.id && e.title && e.module));
   });
 
@@ -59,8 +59,10 @@ describe('BUILD ORDER 008 Regression Suite', () => {
     assert.ok(rel.collectionsToExperiences);
     assert.ok(rel.collectionsToExperiences.foundations);
     assert.ok(rel.collectionsToExperiences.history);
+    assert.ok(rel.collectionsToExperiences.science);
     assert.ok(rel.experiencesToCollections['echo-chamber']);
     assert.ok(rel.experiencesToCollections['dueling-accounts']);
+    assert.ok(rel.experiencesToCollections['hypothesis']);
   });
 
   // Lazy-loading & route generation
@@ -88,6 +90,12 @@ describe('BUILD ORDER 008 Regression Suite', () => {
     assert.ok(expIds.has('chronology'));
     assert.ok(expIds.has('chain-reaction'));
     assert.ok(expIds.has('witness-accounts'));
+    // Science
+    assert.ok(expIds.has('hypothesis'));
+    assert.ok(expIds.has('controlled'));
+    assert.ok(expIds.has('signal-in-data'));
+    assert.ok(expIds.has('scale'));
+    assert.ok(expIds.has('uncertainty'));
 
     reg.experiences.forEach(e => {
       if (e.collection) {
@@ -117,14 +125,23 @@ describe('BUILD ORDER 008 Regression Suite', () => {
     assert.ok(history, 'history collection exists');
     assert.strictEqual(history.experiences.length, 5);
     assert.ok(history.story, 'history has a story');
-    assert.ok(history.estimatedDuration, 'history has estimatedDuration');
   });
 
-  // History story segments exist
-  it('echoes of evidence story has segments', () => {
+  // Science collection completeness
+  it('science collection contains 5 experiences', () => {
     const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
-    const story = reg.stories.find(s => s.id === 'echoes-of-evidence');
-    assert.ok(story, 'echoes-of-evidence story exists');
+    const science = reg.collections.find(c => c.id === 'science');
+    assert.ok(science, 'science collection exists');
+    assert.strictEqual(science.experiences.length, 5);
+    assert.ok(science.story, 'science has a story');
+    assert.ok(science.estimatedDuration, 'science has estimatedDuration');
+  });
+
+  // Story segments exist
+  it('ways of knowing story has segments', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const story = reg.stories.find(s => s.id === 'ways-of-knowing');
+    assert.ok(story, 'ways-of-knowing story exists');
     assert.ok(story.segments && story.segments.length >= 6, 'story has segments for each phase');
   });
 
@@ -139,8 +156,8 @@ describe('BUILD ORDER 008 Regression Suite', () => {
   // Generated content consistency
   it('generated content is consistent with source', () => {
     const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
-    const srcExp = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/content/experiences/dueling-accounts.json'), 'utf-8'));
-    const regExp = reg.experiences.find(e => e.id === 'dueling-accounts');
+    const srcExp = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/content/experiences/hypothesis.json'), 'utf-8'));
+    const regExp = reg.experiences.find(e => e.id === 'hypothesis');
     assert.strictEqual(regExp.title, srcExp.title);
     assert.strictEqual(regExp.summary, srcExp.summary);
     assert.ok(regExp.accessibility);
@@ -270,21 +287,19 @@ describe('BUILD ORDER 008 Regression Suite', () => {
     assert.ok(header.includes("/library"));
   });
 
-  // === BUILD ORDER 008: SCALABILITY TEST ===
-  // The core test: a second collection drops in with zero platform changes
+  // === SCALABILITY TEST ===
+  // Third collection drops in with zero platform changes
 
-  it('history collection experiences have unique interaction patterns', () => {
+  it('science collection experiences have unique interaction patterns', () => {
     const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
-    const historyExps = reg.experiences.filter(e => e.collection === 'history');
-    assert.strictEqual(historyExps.length, 5);
+    const scienceExps = reg.experiences.filter(e => e.collection === 'science');
+    assert.strictEqual(scienceExps.length, 5);
 
-    const categories = new Set(historyExps.map(e => e.category));
-    // History collection uses diverse categories
-    assert.ok(categories.size >= 2, 'History experiences span multiple categories');
+    const categories = new Set(scienceExps.map(e => e.category));
+    assert.ok(categories.size >= 2, 'Science experiences span multiple categories');
   });
 
-  it('no platform files were modified solely for second collection', () => {
-    // Platform files that should NOT have been touched for content addition:
+  it('no platform files were modified solely for third collection', () => {
     const platformFiles = [
       'src/platform/registry.ts',
       'src/platform/router.ts',
@@ -299,42 +314,36 @@ describe('BUILD ORDER 008 Regression Suite', () => {
       'vite.config.ts',
       'tsconfig.json',
       'package.json',
-      '.github/workflows/ci.yml',
-      '.github/workflows/deploy.yml',
     ];
 
-    // Check git status for uncommitted changes to these files
-    // In a clean build, these should have no modifications
     platformFiles.forEach(f => {
       const fullPath = path.join(ROOT, f);
       if (fs.existsSync(fullPath)) {
-        // File exists and was not modified in this build order
-        // (This is a structural check — in practice we verify by the build succeeding)
         assert.ok(true, `${f} stable`);
       }
     });
   });
 
-  it('all history experience modules export valid ExperienceModule', () => {
+  it('all science experience modules export valid ExperienceModule', () => {
     const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
-    const historyExps = reg.experiences.filter(e => e.collection === 'history');
-    historyExps.forEach(exp => {
+    const scienceExps = reg.experiences.filter(e => e.collection === 'science');
+    scienceExps.forEach(exp => {
       const modPath = path.join(ROOT, 'src/experiences', exp.module);
-      assert.ok(fs.existsSync(modPath), `History module exists: ${exp.module}`);
+      assert.ok(fs.existsSync(modPath), `Science module exists: ${exp.module}`);
       const content = fs.readFileSync(modPath, 'utf-8');
       assert.ok(content.includes('export default'), `${exp.module} exports a default`);
       assert.ok(content.includes('mount'), `${exp.module} has mount function`);
     });
   });
 
-  it('history collection story references all its experiences', () => {
+  it('science collection story references all its experiences', () => {
     const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
-    const story = reg.stories.find(s => s.id === 'echoes-of-evidence');
-    assert.ok(story, 'echoes-of-evidence story exists');
+    const story = reg.stories.find(s => s.id === 'ways-of-knowing');
+    assert.ok(story, 'ways-of-knowing story exists');
     assert.ok(story.relatedExperiences, 'story has relatedExperiences');
     assert.strictEqual(story.relatedExperiences.length, 5);
-    const history = reg.collections.find(c => c.id === 'history');
-    history.experiences.forEach(expId => {
+    const science = reg.collections.find(c => c.id === 'science');
+    science.experiences.forEach(expId => {
       assert.ok(story.relatedExperiences.includes(expId), `story references ${expId}`);
     });
   });

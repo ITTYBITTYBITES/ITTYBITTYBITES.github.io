@@ -1,0 +1,19 @@
+{
+  "id": "controlled",
+  "title": "Controlled",
+  "description": "Change one thing at a time. Everything else must stay constant. Only then can you know what caused what.",
+  "summary": "Isolate variables in an experiment to find true cause and eliminate false leads.",
+  "category": "interactive",
+  "module": "controlled.ts",
+  "tags": ["variables", "control", "causation", "experiment"],
+  "searchKeywords": ["control", "variables", "experiment", "isolation", "cause"],
+  "estimatedDuration": "6-10 min",
+  "returnValue": "New experimental setups test your ability to isolate cause on each return.",
+  "collection": "science",
+  "story": "ways-of-knowing",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

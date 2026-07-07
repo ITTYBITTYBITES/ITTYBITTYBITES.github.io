@@ -1,0 +1,19 @@
+{
+  "id": "signal-in-data",
+  "title": "Signal in Data",
+  "description": "Data is noisy. The pattern you see might be real, or it might be a trick of randomness. Learn to tell the difference.",
+  "summary": "Find meaningful patterns in noisy datasets and learn to distinguish signal from noise.",
+  "category": "interactive",
+  "module": "signal-in-data.ts",
+  "tags": ["data", "pattern", "noise", "statistics", "inference"],
+  "searchKeywords": ["data", "pattern", "noise", "signal", "statistics"],
+  "estimatedDuration": "6-10 min",
+  "returnValue": "Your accuracy at spotting real patterns improves with practice. New datasets appear on return.",
+  "collection": "science",
+  "story": "ways-of-knowing",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

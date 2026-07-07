@@ -52,5 +52,32 @@
         "title": "Witness Accounts"
       }
     ]
+  },
+  {
+    "id": "science",
+    "title": "Science",
+    "count": 5,
+    "experiences": [
+      {
+        "id": "hypothesis",
+        "title": "Hypothesis"
+      },
+      {
+        "id": "controlled",
+        "title": "Controlled"
+      },
+      {
+        "id": "signal-in-data",
+        "title": "Signal in Data"
+      },
+      {
+        "id": "scale",
+        "title": "Scale"
+      },
+      {
+        "id": "uncertainty",
+        "title": "Uncertainty"
+      }
+    ]
   }
 ]

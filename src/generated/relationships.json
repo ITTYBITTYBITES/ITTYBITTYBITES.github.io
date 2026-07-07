@@ -13,6 +13,13 @@
       "chronology",
       "chain-reaction",
       "witness-accounts"
+    ],
+    "science": [
+      "hypothesis",
+      "controlled",
+      "signal-in-data",
+      "scale",
+      "uncertainty"
     ]
   },
   "experiencesToCollections": {
@@ -45,6 +52,21 @@
     ],
     "witness-accounts": [
       "history"
+    ],
+    "hypothesis": [
+      "science"
+    ],
+    "controlled": [
+      "science"
+    ],
+    "signal-in-data": [
+      "science"
+    ],
+    "scale": [
+      "science"
+    ],
+    "uncertainty": [
+      "science"
     ]
   }
 }

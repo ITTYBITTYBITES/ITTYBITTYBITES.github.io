@@ -1,0 +1,48 @@
+{
+  "id": "ways-of-knowing",
+  "title": "Ways of Knowing",
+  "description": "Science does not begin with answers. It begins with noticing something strange and refusing to look away. This collection walks the path from curiosity to understanding — through guesses, tests, patterns, perspective, and humility.",
+  "summary": "How scientific thinking moves from observation to understanding through hypothesis, experiment, pattern, scale, and uncertainty.",
+  "relatedCollections": ["science"],
+  "relatedExperiences": ["hypothesis", "controlled", "signal-in-data", "scale", "uncertainty"],
+  "narrative": "Every scientific discovery begins with a person who noticed something that did not fit. The scientific method is not a rigid sequence — it is a set of habits. Notice. Guess. Test. Revise. Notice again. The Ways of Knowing collection puts you in the role of the noticer, the guesser, the tester, and the reviser. You will form hypotheses, control variables, find patterns in noise, navigate impossible scales, and sit with uncertainty. These are the habits that built modern science. They are also the habits that help anyone think more clearly.",
+  "segments": [
+    {
+      "id": "intro",
+      "title": "The Question Comes First",
+      "text": "Before there is an experiment, there is a noticing. Something does not fit. Something behaves differently than expected. The first skill of science is to hold that discomfort without rushing to explain it away. Your first task is to form a hypothesis — a guess that can be tested — and then see how the evidence treats it.",
+      "trigger": "collection_start"
+    },
+    {
+      "id": "hypothesis-to-controlled",
+      "title": "Isolating the Cause",
+      "text": "A good guess is not enough. The world is full of variables, and most of them hide behind the one you are looking at. The next skill is control — changing one thing at a time so you know what actually caused what. This is harder than it sounds, because everything is connected.",
+      "trigger": "after_hypothesis"
+    },
+    {
+      "id": "controlled-to-signal",
+      "title": "Finding the Pattern",
+      "text": "Once you can control variables, you collect data. But data is noisy. The signal you seek is buried in randomness, in measurement error, in things you did not think to control. The next skill is pattern recognition — knowing when a pattern is real and when it is a trick of the noise.",
+      "trigger": "after_controlled"
+    },
+    {
+      "id": "signal-to-scale",
+      "title": "The Size of Understanding",
+      "text": "Patterns exist at every scale, but our intuition fails at the extremes. What is true for a drop of water may not be true for an ocean. What is true for a planet may not be true for a galaxy. The next skill is scale — holding the same idea across magnitudes that our senses were never designed to grasp.",
+      "trigger": "after_signal-in-data"
+    },
+    {
+      "id": "scale-to-uncertainty",
+      "title": "What We Do Not Know",
+      "text": "The final skill is the hardest: knowing the limits of your own knowledge. Science does not claim certainty. It claims the best current explanation, held with the humility to revise it. The last experience asks you to sit with uncertainty — to make decisions when the answer is not yet known, and may never be.",
+      "trigger": "after_scale"
+    },
+    {
+      "id": "completion",
+      "title": "You Are Now a Practitioner",
+      "text": "You have guessed and revised. You have controlled variables and found patterns. You have stretched your mind across scales and sat with uncertainty. These are not just scientific skills. They are thinking skills. Return to any experience and you will notice details that escaped you before. That is the sign of a mind that has learned to learn.",
+      "trigger": "collection_complete"
+    }
+  ],
+  "version": "1.0.0"
+}
