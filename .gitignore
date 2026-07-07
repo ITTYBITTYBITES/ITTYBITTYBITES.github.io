@@ -1,26 +1,5 @@
-# Dependencies
 node_modules/
-
-# Build output
 dist/
-dist-ssr/
-
-# Local files
-*.local
-.cache
-.eslintcache
-.idea
-.vscode/*
-!.vscode/extensions.json
-!.vscode/settings.json
-
-# OS / logs
-.DS_Store
+.build-reports/
 *.log
-
-# PRIVATE - never deploy, but still tracked in repo for governance
-governing/private/
-governing/CURRENT_MODE.md
-governing/GOVERNANCE.md
-governing/HANDOFF_REPORT.md
-governing/VERSION.md
+.DS_Store

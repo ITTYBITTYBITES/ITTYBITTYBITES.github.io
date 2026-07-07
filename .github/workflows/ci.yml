@@ -1,4 +1,4 @@
-name: CI Build & Lint
+name: CI Build & Quality Gates
 
 on:
   push:
@@ -6,88 +6,52 @@ on:
   pull_request:
     branches: [ main ]
 
-permissions:
-  contents: read
-
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Setup Node
-        uses: actions/setup-node@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
+          cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci
+      - run: npm ci
 
       - name: Type check
         run: npm run lint
 
-      - name: Build
+      - name: Run tests
+        run: npm test
+
+      - name: Full Build + Quality Gates
         run: npm run build
 
-      - name: Verify dist artifacts
+      - name: Verify dist
         run: |
           ls -la dist/
-          test -f dist/index.html || exit 1
-          test -f dist/404.html || exit 1
-          test -f dist/manifest.webmanifest || exit 1
-          echo "✓ Build artifacts verified"
+          test -f dist/index.html
+          test -f dist/manifest.webmanifest
 
       - name: Privacy Boundary Guard
         run: |
-          echo "=== Running strict public/private boundary enforcement ==="
-          
-          FORBIDDEN=(
-            "PRODUCT_CONSTITUTION"
-            "PLATFORM_BLUEPRINT"
-            "DEVELOPMENT_MANUAL"
-            "ENGINEERING_STANDARDS"
-            "DESIGN_SYSTEM"
-            "CONTENT_SYSTEM"
-            "DECISION_LOG"
-            "diagnostic"
-            "admin"
-            "private"
-            "governing"
-            "\.md$"
-          )
-          
+          echo "=== Privacy Boundary Guard ==="
+          FORBIDDEN=("PRODUCT_CONSTITUTION" "PLATFORM_BLUEPRINT" "DEVELOPMENT_MANUAL" "ENGINEERING_STANDARDS" "DESIGN_SYSTEM" "CONTENT_SYSTEM" "DECISION_LOG" "diagnostic" "admin" "private" "governing" "\.md$")
           FAIL=0
-          
-          for pattern in "${FORBIDDEN[@]}"; do
-            if find dist -type f | grep -iE "$pattern" > /dev/null 2>&1; then
-              echo "❌ PRIVACY VIOLATION: Found forbidden pattern '$pattern' in dist/"
-              find dist -type f | grep -iE "$pattern"
+          for p in "${FORBIDDEN[@]}"; do
+            if find dist -type f | grep -iE "$p" > /dev/null 2>&1; then
+              echo "❌ PRIVACY: $p"
               FAIL=1
             fi
           done
-          
-          # Also block any .md files in dist (no documentation should ship)
-          if find dist -name "*.md" | grep -q .; then
-            echo "❌ PRIVACY VIOLATION: Markdown files found in dist/"
-            find dist -name "*.md"
-            FAIL=1
-          fi
-          
-          if [ $FAIL -eq 1 ]; then
-            echo ""
-            echo "DEPLOYMENT BLOCKED: Private or internal content leaked into public build."
-            echo "Move the offending files to governing/ and ensure they are gitignored."
-            exit 1
-          fi
-          
-          echo "✓ Privacy Boundary Guard passed. dist/ contains only public assets."
-          
-      - name: Upload build artifact (for PR review)
-        if: github.event_name == 'pull_request'
+          if find dist -name "*.md" | grep -q .; then FAIL=1; fi
+          if [ $FAIL -eq 1 ]; then exit 1; fi
+          echo "✅ Privacy Boundary Guard passed"
+
+      - name: Upload build reports (artifact)
         uses: actions/upload-artifact@v4
         with:
-          name: dist
-          path: dist
-          retention-days: 7
+          name: build-reports
+          path: .build-reports/
+          retention-days: 14

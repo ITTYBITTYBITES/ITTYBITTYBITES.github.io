@@ -20,8 +20,7 @@
     "tags": [
       "pattern",
       "emergence",
-      "rules",
-      "discovery"
+      "rules"
     ],
     "collection": "foundations"
   },
@@ -40,6 +39,6 @@
     "id": "echo-origin",
     "type": "story",
     "title": "The Origin of Echo",
-    "description": "A reflection on why the first coherent experience on this platform was built around listening and repetition."
+    "description": "A reflection on why the first coherent experience was built around listening and repetition."
   }
 ]

@@ -2,9 +2,18 @@
   "id": "echo-chamber",
   "title": "Echo Chamber",
   "description": "Speak. Listen. Return. A living mirror that captures your words and returns them with gentle evolution.",
+  "summary": "Type something. Watch it come back changed. Build a personal archive of evolving echoes.",
   "category": "reflection",
   "module": "echo-chamber.ts",
   "tags": ["interaction", "reflection", "voice", "memory"],
+  "searchKeywords": ["echo", "reflection", "memory", "return", "voice"],
+  "estimatedDuration": "3-8 min",
+  "returnValue": "Your echoes persist and become more meaningful over time. You build a personal archive worth returning to.",
   "collection": "foundations",
-  "story": "echo-origin"
+  "story": "echo-origin",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
 }

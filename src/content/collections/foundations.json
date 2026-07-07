@@ -2,6 +2,8 @@
   "id": "foundations",
   "title": "Foundations",
   "description": "Core interactive building blocks that demonstrate how small meaningful interactions create lasting value.",
+  "summary": "The first experiences proving the platform model works.",
   "experiences": ["echo-chamber", "pattern-garden"],
-  "tags": ["core", "interaction", "foundation"]
+  "tags": ["core", "interaction", "foundation"],
+  "searchKeywords": ["foundation", "core", "basics"]
 }

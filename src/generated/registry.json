@@ -1,11 +1,12 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-07-07T19:04:27.649Z",
+  "generatedAt": "2026-07-07T19:34:02.176Z",
   "experiences": [
     {
       "id": "echo-chamber",
       "title": "Echo Chamber",
       "description": "Speak. Listen. Return. A living mirror that captures your words and returns them with gentle evolution.",
+      "summary": "Type something. Watch it come back changed. Build a personal archive of evolving echoes.",
       "category": "reflection",
       "module": "echo-chamber.ts",
       "tags": [
@@ -14,22 +15,49 @@
         "voice",
         "memory"
       ],
+      "searchKeywords": [
+        "echo",
+        "reflection",
+        "memory",
+        "return",
+        "voice"
+      ],
+      "estimatedDuration": "3-8 min",
+      "returnValue": "Your echoes persist and become more meaningful over time. You build a personal archive worth returning to.",
       "collection": "foundations",
-      "story": "echo-origin"
+      "story": "echo-origin",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
     },
     {
       "id": "pattern-garden",
       "title": "Pattern Garden",
       "description": "Plant simple rules. Watch patterns grow. Discover how small changes create surprising order.",
+      "summary": "Draw rules. Run time. Watch beautiful emergent behavior appear from simple systems.",
       "category": "reflection",
       "module": "pattern-garden.ts",
       "tags": [
         "pattern",
         "emergence",
-        "rules",
-        "discovery"
+        "rules"
       ],
-      "collection": "foundations"
+      "searchKeywords": [
+        "pattern",
+        "garden",
+        "emergence",
+        "rules"
+      ],
+      "estimatedDuration": "5-15 min",
+      "returnValue": "Save and revisit your patterns. They grow more interesting the more you tend them.",
+      "collection": "foundations",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
     }
   ],
   "collections": [
@@ -37,6 +65,7 @@
       "id": "foundations",
       "title": "Foundations",
       "description": "Core interactive building blocks that demonstrate how small meaningful interactions create lasting value.",
+      "summary": "The first experiences proving the platform model works.",
       "experiences": [
         "echo-chamber",
         "pattern-garden"
@@ -45,6 +74,11 @@
         "core",
         "interaction",
         "foundation"
+      ],
+      "searchKeywords": [
+        "foundation",
+        "core",
+        "basics"
       ]
     }
   ],
@@ -52,7 +86,8 @@
     {
       "id": "echo-origin",
       "title": "The Origin of Echo",
-      "description": "A reflection on why the first coherent experience on this platform was built around listening and repetition.",
+      "description": "A reflection on why the first coherent experience was built around listening and repetition.",
+      "summary": "How listening became the first test of the platform.",
       "relatedCollections": [
         "foundations"
       ],
