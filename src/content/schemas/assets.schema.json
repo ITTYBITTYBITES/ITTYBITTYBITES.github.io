@@ -1,0 +1,14 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Asset",
+  "version": "1.0.0",
+  "type": "object",
+  "required": ["id", "type", "url"],
+  "properties": {
+    "id": { "type": "string" },
+    "type": { "enum": ["image", "audio", "video", "icon", "data"] },
+    "url": { "type": "string" },
+    "alt": { "type": "string" },
+    "license": { "type": "string" }
+  }
+}

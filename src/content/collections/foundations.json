@@ -1,0 +1,7 @@
+{
+  "id": "foundations",
+  "title": "Foundations",
+  "description": "Core interactive building blocks that demonstrate how small meaningful interactions create lasting value.",
+  "experiences": ["echo-chamber", "pattern-garden"],
+  "tags": ["core", "interaction", "foundation"]
+}

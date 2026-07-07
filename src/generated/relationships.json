@@ -1,0 +1,16 @@
+{
+  "collectionsToExperiences": {
+    "foundations": [
+      "echo-chamber",
+      "pattern-garden"
+    ]
+  },
+  "experiencesToCollections": {
+    "echo-chamber": [
+      "foundations"
+    ],
+    "pattern-garden": [
+      "foundations"
+    ]
+  }
+}

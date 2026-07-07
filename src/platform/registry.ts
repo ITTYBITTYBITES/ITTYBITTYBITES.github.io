@@ -1,76 +1,51 @@
 /**
- * Experience registry.
+ * Experience Registry (Build-time generated)
  *
- * `src/content/experiences.json` is the source of truth for available experiences.
- * Modules live in `src/experiences/` and are lazy-loaded on demand.
- *
- * Per PLATFORM_BLUEPRINT v1.0.0:
- * Experiences create Collections. Collections create Discovery.
+ * Source of truth: src/content/{experiences,collections,stories}/*.json
+ * Generated at build time into src/generated/registry.json
  */
 
-import rawExperiences from '../content/experiences.json';
-import rawCollections from '../content/collections.json';
-import rawStories from '../content/stories.json';
+import generated from '../generated/registry.json' assert { type: 'json' };
 
 import type { ExperienceEntry, CollectionEntry, StoryEntry } from './registry-types';
 import type { ExperienceModule } from './types';
 
-const experiences = rawExperiences as ExperienceEntry[];
-const collections = rawCollections as CollectionEntry[];
-const stories = rawStories as StoryEntry[];
+const data = generated as {
+  experiences: ExperienceEntry[];
+  collections: CollectionEntry[];
+  stories: StoryEntry[];
+};
 
-// Vite collects all experience modules so they are bundled and available for dynamic import.
+const experiences = data.experiences || [];
+const collections = data.collections || [];
+const stories = data.stories || [];
+
+// Vite collects experience modules for dynamic loading
 const modules = import.meta.glob<ExperienceModule>('../experiences/*.ts');
 
 export { experiences, collections, stories };
 
-export function getAllExperiences(): ExperienceEntry[] {
-  return experiences;
+export function getAllExperiences(): ExperienceEntry[] { return experiences; }
+export function getExperienceById(id: string) { return experiences.find(e => e.id === id); }
+export function getExperiencesByCategory(cat: string) { return experiences.filter(e => e.category === cat); }
+
+export function getAllCollections(): CollectionEntry[] { return collections; }
+export function getCollectionById(id: string) { return collections.find(c => c.id === id); }
+export function getExperiencesInCollection(colId: string) {
+  const col = getCollectionById(colId);
+  if (!col) return [];
+  return col.experiences.map(id => getExperienceById(id)).filter(Boolean) as ExperienceEntry[];
 }
 
-export function getExperienceById(id: string): ExperienceEntry | undefined {
-  return experiences.find((entry) => entry.id === id);
-}
-
-export function getExperiencesByCategory(category: string): ExperienceEntry[] {
-  return experiences.filter((entry) => entry.category === category);
-}
-
-export function getAllCollections(): CollectionEntry[] {
-  return collections;
-}
-
-export function getCollectionById(id: string): CollectionEntry | undefined {
-  return collections.find((c) => c.id === id);
-}
-
-export function getExperiencesInCollection(collectionId: string): ExperienceEntry[] {
-  const collection = getCollectionById(collectionId);
-  if (!collection) return [];
-  return collection.experiences
-    .map(id => getExperienceById(id))
-    .filter((e): e is ExperienceEntry => !!e);
-}
-
-export function getAllStories(): StoryEntry[] {
-  return stories;
-}
-
-export function getStoryById(id: string): StoryEntry | undefined {
-  return stories.find((s) => s.id === id);
-}
+export function getAllStories(): StoryEntry[] { return stories; }
+export function getStoryById(id: string) { return stories.find(s => s.id === id); }
 
 export async function loadExperience(entry: ExperienceEntry): Promise<ExperienceModule> {
   const modulePath = `../experiences/${entry.module}`;
   const loader = modules[modulePath];
-  if (!loader) {
-    throw new Error(`Experience module not found: ${modulePath}`);
-  }
-  const imported = await loader();
-  // Handle both named export and default export patterns
-  const mod = (imported as any).default || imported;
-  if (typeof mod.mount !== 'function') {
-    throw new Error(`Experience module must export a mount function: ${modulePath}`);
-  }
-  return mod;
+  if (!loader) throw new Error(`Module not found: ${modulePath}`);
+  const mod = await loader();
+  const actual = (mod as any).default || mod;
+  if (typeof actual.mount !== 'function') throw new Error(`Invalid module: ${modulePath}`);
+  return actual;
 }

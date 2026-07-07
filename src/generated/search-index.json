@@ -1,0 +1,45 @@
+[
+  {
+    "id": "echo-chamber",
+    "type": "experience",
+    "title": "Echo Chamber",
+    "description": "Speak. Listen. Return. A living mirror that captures your words and returns them with gentle evolution.",
+    "tags": [
+      "interaction",
+      "reflection",
+      "voice",
+      "memory"
+    ],
+    "collection": "foundations"
+  },
+  {
+    "id": "pattern-garden",
+    "type": "experience",
+    "title": "Pattern Garden",
+    "description": "Plant simple rules. Watch patterns grow. Discover how small changes create surprising order.",
+    "tags": [
+      "pattern",
+      "emergence",
+      "rules",
+      "discovery"
+    ],
+    "collection": "foundations"
+  },
+  {
+    "id": "foundations",
+    "type": "collection",
+    "title": "Foundations",
+    "description": "Core interactive building blocks that demonstrate how small meaningful interactions create lasting value.",
+    "tags": [
+      "core",
+      "interaction",
+      "foundation"
+    ]
+  },
+  {
+    "id": "echo-origin",
+    "type": "story",
+    "title": "The Origin of Echo",
+    "description": "A reflection on why the first coherent experience on this platform was built around listening and repetition."
+  }
+]

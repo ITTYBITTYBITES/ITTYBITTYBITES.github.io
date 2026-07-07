@@ -3,10 +3,11 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "Modular platform foundation for browser games, applications, interactive experiences, utilities, experiments, documentation, and media.",
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build && cp dist/index.html dist/404.html",
+    "build": "node scripts/validate-content.mjs && node scripts/generate-content.mjs && tsc && vite build && cp dist/index.html dist/404.html",
+    "validate": "node scripts/validate-content.mjs",
+    "generate": "node scripts/generate-content.mjs",
     "preview": "vite preview",
     "lint": "tsc --noEmit"
   },
@@ -16,7 +17,5 @@
     "vite": "^5.4.2",
     "vite-plugin-pwa": "^0.20.1"
   },
-  "engines": {
-    "node": ">=20"
-  }
+  "engines": { "node": ">=20" }
 }

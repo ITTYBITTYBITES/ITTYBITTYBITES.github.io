@@ -1,0 +1,17 @@
+[
+  {
+    "id": "foundations",
+    "title": "Foundations",
+    "count": 2,
+    "experiences": [
+      {
+        "id": "echo-chamber",
+        "title": "Echo Chamber"
+      },
+      {
+        "id": "pattern-garden",
+        "title": "Pattern Garden"
+      }
+    ]
+  }
+]
