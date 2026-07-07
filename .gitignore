@@ -1,2 +1,12 @@
-0
-__pycache__/
+.DS_Store
+node_modules
+dist
+dist-ssr
+*.local
+.cache
+.eslintcache
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+.idea
+*.log

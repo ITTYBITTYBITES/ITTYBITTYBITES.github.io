@@ -1,0 +1,325 @@
+/**
+ * Platform base styles.
+ *
+ * This is intentionally minimal: it provides a responsive, accessible,
+ * and neutral foundation. Branding, color themes, and motion are left
+ * to future design passes.
+ */
+
+:root {
+  color-scheme: light dark;
+  --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', monospace;
+  --measure: 65ch;
+  --radius: 0.25rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: var(--font-sans);
+  line-height: 1.5;
+  -webkit-text-size-adjust: 100%;
+  -moz-tab-size: 4;
+  tab-size: 4;
+}
+
+body {
+  margin: 0;
+  color: canvastext;
+  background-color: canvas;
+}
+
+:focus-visible {
+  outline: 2px solid AccentColor;
+  outline-offset: 2px;
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Layout primitives */
+.container {
+  width: min(100% - 2rem, 70rem);
+  margin-inline: auto;
+}
+
+.app-main {
+  min-height: 60vh;
+  padding-block: 2rem;
+}
+
+/* Header / navigation */
+.site-header {
+  border-block-end: 1px solid ButtonBorder;
+  padding-block: 1rem;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand {
+  font-weight: 700;
+  text-decoration: none;
+  color: inherit;
+}
+
+.site-nav {
+  position: relative;
+}
+
+.nav-list {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.nav-list a {
+  color: inherit;
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius);
+}
+
+.nav-list a[aria-current='page'] {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+.nav-toggle {
+  display: none;
+  padding: 0.5rem;
+  border: 1px solid ButtonBorder;
+  background: ButtonFace;
+  color: inherit;
+  cursor: pointer;
+}
+
+@media (max-width: 40rem) {
+  .nav-toggle {
+    display: block;
+  }
+
+  .nav-list {
+    display: none;
+    position: absolute;
+    inset-block-start: calc(100% + 0.5rem);
+    inset-inline-end: 0;
+    flex-direction: column;
+    min-width: 12rem;
+    padding: 0.5rem;
+    border: 1px solid ButtonBorder;
+    background: canvas;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+  }
+
+  .nav-list.open {
+    display: flex;
+  }
+}
+
+/* Footer */
+.site-footer {
+  border-block-start: 1px solid ButtonBorder;
+  padding-block: 1.5rem;
+}
+
+.footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4 {
+  line-height: 1.2;
+  margin-block-start: 0;
+  margin-block-end: 0.75rem;
+}
+
+p {
+  margin-block-start: 0;
+  margin-block-end: 1rem;
+  max-width: var(--measure);
+}
+
+.lead {
+  font-size: 1.125rem;
+  max-width: var(--measure);
+}
+
+.meta {
+  font-size: 0.875rem;
+  color: GrayText;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+/* Components */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  border: 1px solid ButtonBorder;
+  border-radius: var(--radius);
+  background: ButtonFace;
+  color: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: AccentColor;
+  color: AccentColorText;
+}
+
+.cta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-block: 1.5rem;
+}
+
+.section {
+  margin-block-start: 3rem;
+}
+
+.hero {
+  margin-block-end: 3rem;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(18rem, 1fr));
+  gap: 1rem;
+  margin-block-start: 1.5rem;
+}
+
+.card {
+  padding: 1rem;
+  border: 1px solid ButtonBorder;
+  border-radius: var(--radius);
+}
+
+.card h2 {
+  margin-block-end: 0.5rem;
+  font-size: 1.125rem;
+}
+
+.search-input {
+  width: min(100%, 24rem);
+  padding: 0.5rem;
+  border: 1px solid ButtonBorder;
+  border-radius: var(--radius);
+  background: Field;
+  color: FieldText;
+}
+
+.page-header {
+  margin-block-end: 1.5rem;
+}
+
+/* Experience primitives */
+.experience-counter,
+.experience-canvas,
+.experience-docs {
+  margin-block-start: 1rem;
+}
+
+.counter-controls {
+  display: flex;
+  gap: 0.5rem;
+  margin-block-end: 1rem;
+}
+
+.counter-value {
+  display: block;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.experience-canvas canvas {
+  border: 1px solid ButtonBorder;
+  border-radius: var(--radius);
+  background: canvas;
+  cursor: crosshair;
+}
+
+/* Documentation content */
+.prose {
+  max-width: var(--measure);
+}
+
+.prose h1,
+.prose h2,
+.prose h3 {
+  margin-block-start: 2rem;
+}
+
+.prose pre {
+  padding: 1rem;
+  overflow-x: auto;
+  border: 1px solid ButtonBorder;
+  border-radius: var(--radius);
+  background: ButtonFace;
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.875em;
+}
+
+.prose ul,
+.prose ol {
+  padding-inline-start: 1.5rem;
+}
+
+.prose a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

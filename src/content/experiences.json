@@ -1,0 +1,26 @@
+[
+  {
+    "id": "counter",
+    "title": "Sample: Counter",
+    "description": "A minimal interactive utility demonstrating state, events, and analytics integration inside the experience host.",
+    "category": "utility",
+    "module": "counter.ts",
+    "tags": ["sample", "interaction", "state"]
+  },
+  {
+    "id": "canvas-demo",
+    "title": "Sample: Canvas Demo",
+    "description": "A lightweight canvas experiment showing how media and drawing experiences can be mounted by the platform.",
+    "category": "experiment",
+    "module": "canvas-demo.ts",
+    "tags": ["sample", "canvas", "media"]
+  },
+  {
+    "id": "platform-docs",
+    "title": "Platform Documentation",
+    "description": "A documentation experience that renders the project README inside an experience host.",
+    "category": "documentation",
+    "module": "markdown-doc.ts",
+    "tags": ["docs", "markdown"]
+  }
+]

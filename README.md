@@ -1,79 +1,177 @@
-# Two Second Witness — Phase 6 Controlled Launch Activation Layer
+# Platform Foundation
 
-**Can You Trust What You Just Saw?**
+A clean, modular foundation for a creative platform capable of hosting browser games, applications, interactive experiences, utilities, experiments, documentation, and media projects.
 
-A fast-paced visual memory and perception game where every scene lasts only two seconds. One detail changes. Your mind decides what it remembers.
+This repository replaces the previous static website with a modern application shell. It is intentionally unbranded: design decisions such as colors, typography, logos, animations, and product-specific content will be layered on top in later passes.
 
----
+## Purpose
 
-## About This Repository
+- Provide a stable technical base that future experiences can plug into.
+- Keep concerns separated: routing, content, experiences, analytics, and deployment are independent systems.
+- Ship as a Progressive Web App with offline support.
+- Deploy automatically to GitHub Pages with correct deep-link routing.
 
-This repository hosts the **public controlled launch activation layer and acquisition ecosystem** for Two Second Witness.
-
-It integrates our Phase 1 cinematic splash landing page (`/website/index.html`), Phase 2 scalable multi-page SEO architecture (`/website/pages/*.html`), Phase 3 interactive demo engine (`/website/js/demo_engine.js`), Phase 4 content & viral sharing network (`/website/js/share_cards.js`), Phase 5 stability & mobile hardening pass (`/website/js/analytics.js`), and Phase 6 canonical entry routing & traffic source tagging (`/website/js/launch_config.js`).
-
-## Structure
+## Architecture
 
 ```
-/website/
-├── index.html                  — Original Splash Landing Page (intact functionality)
-├── sitemap.xml                 — Full SEO XML sitemap covering 22 indexed URLs
-├── robots.txt                  — Search crawler directives
-├── pages/
-│   ├── home.html               — Architecture Overview & Hub
-│   ├── worlds.html             — Game Biomes Hub
-│   ├── scenarios.html          — Hardened Playable Demo Mount Point (#demo-root) + Analytics & Share Hooks
-│   ├── faq.html                — General & Technical Knowledge Base
-│   ├── press.html              — Press Kit, Fact Sheet & Asset Placeholders
-│   ├── blog.html               — Research & Cognitive Blog Index
-│   ├── legal.html              — Terms of Service, Privacy Policy & WCAG Compliance
-│   ├── worlds/                 — Dedicated SEO Primary Biome Entry Points
-│   │   ├── egypt.html
-│   │   ├── vikings.html
-│   │   ├── mars.html
-│   │   ├── fantasy.html
-│   │   └── cyberpunk.html
-│   ├── scenarios/              — Dedicated SEO Discovery Landing Pages
-│   │   ├── pharaohs-chamber.html
-│   │   ├── shipyard-storm.html
-│   │   └── reactor-core-drift.html
-│   └── blog/                   — Long-Form SEO Indexable Articles
-│       ├── why-your-brain-lies-after-2-seconds.html
-│       ├── what-is-change-blindness.html
-│       ├── can-memory-be-trained-like-a-muscle.html
-│       ├── the-science-behind-visual-attention.html
-│       ├── why-fast-perception-games-improve-focus.html
-│       └── how-two-second-witness-was-designed.html
-├── css/
-│   └── main.css                — Hardware accelerated 60fps layout, typography, onboarding pulse & safe areas
-├── js/
-│   ├── launch_config.js        — Phase 6 Controlled launch configuration, dev HUD & first-visit onboarding
-│   ├── analytics.js            — Static-safe telemetry layer (demo_start, scenario_complete, share_card_generated)
-│   ├── demo_engine.js          — Hardened 11-step playable loop with race condition cleanup and debouncing
-│   ├── scenarios.js            — Extended Data-Driven Database (15 Scenarios across 5 Biomes)
-│   ├── share_cards.js          — Viral share cards, HTML5 Canvas image generator & ghost challenge links
-│   └── main.js                 — Responsive navigation toggle & accessibility handlers
-└── assets/
-    └── images/                 — Favicon SVG and placeholder assets
-README.md
+.
+├── .github/workflows/          # GitHub Pages deployment pipeline
+├── public/                     # Static assets served at root
+│   ├── icons/                  # PWA icons
+│   ├── robots.txt
+│   └── sitemap.xml
+├── scripts/                    # Build helpers (e.g., icon generation)
+├── src/
+│   ├── components/             # Reusable custom elements
+│   │   ├── app-header.ts
+│   │   ├── app-footer.ts
+│   │   ├── experience-host.ts
+│   │   └── skip-link.ts
+│   ├── content/                # Content manifests
+│   │   └── experiences.json    # Experience registry source of truth
+│   ├── experiences/            # Experience modules
+│   │   ├── counter.ts
+│   │   ├── canvas-demo.ts
+│   │   └── markdown-doc.ts
+│   ├── pages/                  # Page-level route handlers
+│   │   ├── home.ts
+│   │   ├── experience-index.ts
+│   │   ├── experience.ts
+│   │   └── docs.ts
+│   ├── platform/               # Core platform services
+│   │   ├── config.ts           # Environment-aware configuration
+│   │   ├── router.ts           # History API router
+│   │   ├── registry.ts         # Experience registry loader
+│   │   ├── analytics.ts        # GA4 + internal event bus bridge
+│   │   ├── events.ts           # Internal event bus
+│   │   ├── pwa.ts              # Service worker registration
+│   │   ├── utils.ts            # DOM helpers
+│   │   └── types.ts            # Shared TypeScript types
+│   ├── style.css               # Neutral, accessible base styles
+│   └── main.ts                 # Application bootstrap
+├── index.html                  # Shell HTML
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+└── README.md
 ```
 
-## Phase 6 Controlled Launch Highlights
+## Development Setup
 
-- **Canonical Entry Consolidation:** Root `/index.html` serves as a unified gateway directing standard traffic to `/website/index.html` while automatically intercepting and forwarding viral challenge and trial deep-links (`?world=...&scenario=...&src=share`) directly into `/website/pages/scenarios.html`.
-- **Launch State Config (`launch_config.js`):** Centralized experiment flags (`demo_ui_variant: "A"`, `onboarding_variant: "minimal"`), first-session friction reduction, and temporary dev HUD (`window.__WITNESS_DEBUG`).
-- **No-Backend Traffic Source Tagging:** Automatically captures query attributes (`?src=reddit`, `?src=twitter`, `?src=direct`) into `sessionStorage.trafficSource` and binds them to all core events (`demo_start`, `scenario_complete`, `share_card_generated`, `challenge_link_opened`).
-- **Hardened Viral Share Loop:** All generated share links resolve directly to the canonical root domain ensuring zero broken challenge states across social platforms.
+Requirements:
 
-## Production Status
+- Node.js 20+
+- npm 10+
 
-- **Phase 1:** Clean Splash Landing Page & Git History Sanitization — **Completed**
-- **Phase 2:** Multi-Page Static Website Architecture & Content Scaffolding — **Completed**
-- **Phase 3:** Unified Browser Playable Demo Integration System — **Completed**
-- **Phase 4:** Content, Viral Loop, Share Cards & SEO Ecosystem Layer — **Completed**
-- **Phase 5:** Production Launch Hardening, Mobile UX Polish & Analytics — **Completed**
-- **Phase 6:** Controlled Launch Activation, Source Tracking & Entry Consolidation — **Completed & Live**
+Install dependencies:
 
-## License
+```bash
+npm install
+```
 
-All rights reserved. © 2026 Two Second Witness
+Start the local dev server:
+
+```bash
+npm run dev
+```
+
+Open `http://localhost:5173`.
+
+## Production Build
+
+```bash
+npm run build
+```
+
+This runs TypeScript, produces a Vite production bundle in `dist/`, and copies `dist/index.html` to `dist/404.html` so GitHub Pages can fall back to the SPA shell for deep links.
+
+Preview the production build:
+
+```bash
+npm run preview
+```
+
+## Deployment
+
+The repository uses GitHub Actions to build and deploy to GitHub Pages on every push to `main`.
+
+Workflow file: `.github/workflows/deploy.yml`
+
+Repository settings required:
+
+1. Go to **Settings > Pages**.
+2. Set **Build and deployment** source to **GitHub Actions**.
+3. Ensure the workflow has `pages: write` and `id-token: write` permissions (already configured in the file).
+
+## Adding an Experience
+
+1. Create a new file in `src/experiences/` that exports `meta`, `mount`, and optionally `unmount`.
+2. Add an entry to `src/content/experiences.json` pointing to the module file.
+3. The experience is now reachable at `/experience/{id}`.
+
+Example module shape:
+
+```ts
+import type { ExperienceContext, ExperienceMeta, ExperienceModule } from '../platform/types';
+
+export const meta: ExperienceMeta = {
+  id: 'my-experience',
+  title: 'My Experience',
+  description: 'What it does.',
+  category: 'game',
+  tags: ['demo'],
+};
+
+export const mount = (container: HTMLElement, context: ExperienceContext): (() => void) => {
+  container.textContent = 'Hello, experience.';
+  return () => {
+    container.innerHTML = '';
+  };
+};
+
+export default { meta, mount };
+```
+
+## Analytics
+
+Google Analytics 4 is loaded once via a centralized service (`src/platform/analytics.ts`).
+
+- Measurement ID: `G-A4541307705`
+- No tracking snippets are duplicated across pages or experiences.
+- Tracking respects `navigator.doNotTrack` and can be disabled with `VITE_DISABLE_ANALYTICS=true`.
+
+Experiences should emit events through the shared service:
+
+```ts
+context.analytics.track('experience_started', { experience_id: context.meta.id });
+```
+
+The internal event bus (`src/platform/events.ts`) also fires these events, so future UI components can subscribe without coupling to GA4.
+
+## Accessibility
+
+- Semantic HTML (`header`, `nav`, `main`, `footer`, `article`).
+- Skip link for keyboard users.
+- Visible focus indicators.
+- Focus management on route changes.
+- `aria-current` for active navigation.
+- `prefers-reduced-motion` disables transitions and animations.
+
+## Contribution Workflow
+
+1. Create a feature branch from `main`.
+2. Make changes in the relevant system (`src/platform/`, `src/experiences/`, etc.).
+3. Run `npm run lint` and `npm run build` locally.
+4. Open a pull request.
+5. Merge when the GitHub Pages deployment succeeds.
+
+## Remaining Work
+
+- Visual design system (colors, typography, spacing, logo).
+- Motion and transition language.
+- Additional route pages (e.g., about, search, project directories).
+- Richer experience templates (games, media players, utilities).
+- Consent-aware analytics UI.
+- Error boundary and loading state components.
+- Automated tests (unit + visual regression).
+- Additional PWA assets (screenshots, richer manifest metadata).

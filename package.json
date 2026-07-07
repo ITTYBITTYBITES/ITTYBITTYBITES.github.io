@@ -1,0 +1,22 @@
+{
+  "name": "ittybittybites-platform",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Modular platform foundation for browser games, applications, interactive experiences, utilities, experiments, documentation, and media.",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build && cp dist/index.html dist/404.html",
+    "preview": "vite preview",
+    "lint": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "marked": "^13.0.3",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.2",
+    "vite-plugin-pwa": "^0.20.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
