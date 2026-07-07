@@ -4,7 +4,7 @@ import { h } from '../platform/utils';
 
 export const meta: ExperienceMeta = {
   id: 'counter',
-  title: 'Sample: Counter',
+  title: 'Counter',
   description: 'A minimal interactive utility demonstrating state, events, and analytics integration.',
   category: 'utility',
   tags: ['sample', 'interaction', 'state'],

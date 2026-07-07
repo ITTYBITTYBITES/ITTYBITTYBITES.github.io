@@ -4,7 +4,7 @@ import { h } from '../platform/utils';
 
 export const meta: ExperienceMeta = {
   id: 'canvas-demo',
-  title: 'Sample: Canvas Demo',
+  title: 'Canvas Sketch',
   description: 'A lightweight canvas experiment showing how media experiences can be mounted by the platform.',
   category: 'experiment',
   tags: ['sample', 'canvas', 'media'],

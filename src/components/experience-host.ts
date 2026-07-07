@@ -7,7 +7,7 @@ import type { ExperienceContext, ExperienceModule } from '../platform/types';
  * Mounts and safely tears down an experience module.
  *
  * Usage:
- *   <experience-host data-id="counter" data-query="?debug=1"></experience-host>
+ *   <experience-host data-id="counter" ></experience-host>
  */
 export class ExperienceHost extends HTMLElement {
   private cleanup?: (() => void) | undefined;
