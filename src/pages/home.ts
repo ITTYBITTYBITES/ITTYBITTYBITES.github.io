@@ -5,21 +5,19 @@ export function renderHome(): HTMLElement {
     h('section', { class: 'hero' }, [
       h('h1', {}, ['Platform']),
       h('p', { class: 'lead' }, [
-        'A modular foundation for browser games, applications, interactive experiences, utilities, experiments, documentation, and media.',
+        'A foundation for creating meaningful digital experiences.',
       ]),
       h('div', { class: 'cta-row' }, [
         h('a', { class: 'btn', href: '/experiences' }, ['Browse experiences']),
-        h('a', { class: 'btn', href: '/docs' }, ['Read the docs']),
       ]),
     ]),
     h('section', { class: 'section' }, [
-      h('h2', {}, ['What this foundation provides']),
+      h('h2', {}, ['What this platform offers']),
       h('ul', {}, [
-        h('li', {}, ['A client-side router and page shell']),
-        h('li', {}, ['A registry for adding experiences without changing the platform']),
-        h('li', {}, ['Centralized analytics and an internal event bus']),
-        h('li', {}, ['Progressive Web App support with offline caching']),
-        h('li', {}, ['Accessibility primitives and responsive layout defaults']),
+        h('li', {}, ['Small, meaningful interactions that combine into rich experiences']),
+        h('li', {}, ['Experiences that connect through collections and stories']),
+        h('li', {}, ['Discovery that feels helpful, not manipulative']),
+        h('li', {}, ['A consistent shell that lets creators focus on what matters']),
       ]),
     ]),
   ]);

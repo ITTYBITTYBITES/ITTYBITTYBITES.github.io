@@ -8,7 +8,6 @@ interface NavItem {
 const navItems: NavItem[] = [
   { label: 'Home', href: '/' },
   { label: 'Experiences', href: '/experiences' },
-  { label: 'Docs', href: '/docs' },
 ];
 
 export class AppHeader extends HTMLElement {

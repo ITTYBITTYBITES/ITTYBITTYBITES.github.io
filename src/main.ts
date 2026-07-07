@@ -5,7 +5,6 @@ import { AppHeader } from './components/app-header';
 import { ExperienceHost } from './components/experience-host';
 import { SkipLink } from './components/skip-link';
 import { initAnalytics } from './platform/analytics';
-import { renderDocs } from './pages/docs';
 import { renderExperience } from './pages/experience';
 import { renderIndex } from './pages/experience-index';
 import { renderHome } from './pages/home';
@@ -35,7 +34,6 @@ if (!main) {
 registerRoute('/', 'Home', async () => renderHome());
 registerRoute('/experiences', 'Experiences', async () => renderIndex());
 registerRoute('/experience/:id', 'Experience', async (args) => renderExperience(args));
-registerRoute('/docs', 'Docs', async () => renderDocs());
 
 initAnalytics();
 initRouter(main);
