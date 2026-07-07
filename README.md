@@ -167,14 +167,34 @@ The internal event bus (`src/platform/events.ts`) also fires these events, so fu
 
 ## Remaining Work
 
-- Visual design system (colors, typography, spacing, logo).
-- Motion and transition language.
-- Additional route pages (e.g., about, search, project directories).
-- Richer experience templates (games, media players, utilities).
-- Consent-aware analytics UI.
-- Error boundary and loading state components.
-- Automated tests (unit + visual regression).
-- Additional PWA assets (screenshots, richer manifest metadata).
+**All design, visual, and UX decisions are now governed by the Platform Blueprint.**
+
+See: [docs/PLATFORM_BLUEPRINT.md](docs/PLATFORM_BLUEPRINT.md)
+
+### Current Phase
+**Phase 2 — Platform Blueprint v1.0** (in progress)
+
+Implementation of visual design, motion, branding, and new experiences **must not begin** until sections of the Blueprint are approved and referenced in future Build Orders.
+
+### High-Level Remaining Areas (per Blueprint)
+- Visual design system (colors, typography, spacing, logo)
+- Motion and transition language
+- Experience-first navigation & information architecture
+- Richer experience content & collections
+- Monetization strategy implementation
+- Enhanced SEO + structured data
+- Consent-aware analytics UI
+- Tests and performance budgets
+
+---
+
+## Authoritative Documents
+
+| Document                    | Purpose                              | Location |
+|-----------------------------|--------------------------------------|----------|
+| Platform Blueprint v1.0     | Master specification (vision, design language, IA, strategy) | `docs/PLATFORM_BLUEPRINT.md` |
+| Handoff Stabilization Report| Engineering baseline after handoff   | `HANDOFF_REPORT.md` |
+| This README                 | Technical setup & contribution guide | `README.md` |
 ## Handoff Stabilization (2026-07-07)
 
 This commit establishes a stable baseline after manual file move + previous agent interruption.
