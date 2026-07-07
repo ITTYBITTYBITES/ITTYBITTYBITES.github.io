@@ -10,6 +10,7 @@ export type ExperienceCategory =
   | 'experiment'
   | 'documentation'
   | 'media'
+  | 'reflection'
   | 'future';
 
 export interface ExperienceMeta {

@@ -1,18 +1,12 @@
 [
   {
-    "id": "counter",
-    "title": "Counter",
-    "description": "A simple interactive counter demonstrating state, events, and basic platform integration.",
-    "category": "utility",
-    "module": "counter.ts",
-    "tags": ["interaction", "state", "utility"]
-  },
-  {
-    "id": "canvas-demo",
-    "title": "Canvas Sketch",
-    "description": "An interactive canvas for creative drawing and visual experiments.",
-    "category": "experiment",
-    "module": "canvas-demo.ts",
-    "tags": ["canvas", "creative", "media"]
+    "id": "echo-chamber",
+    "title": "Echo Chamber",
+    "description": "Speak. Listen. Return. A living mirror that captures your words and returns them with gentle evolution.",
+    "category": "reflection",
+    "module": "echo-chamber.ts",
+    "tags": ["interaction", "reflection", "voice", "memory"],
+    "collection": "foundations",
+    "story": "echo-origin"
   }
 ]

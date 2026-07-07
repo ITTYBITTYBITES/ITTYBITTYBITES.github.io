@@ -1,0 +1,10 @@
+[
+  {
+    "id": "echo-origin",
+    "title": "The Origin of Echo",
+    "description": "A reflection on why the first coherent experience on this platform was built around listening and repetition.",
+    "relatedCollections": ["foundations"],
+    "relatedExperiences": ["echo-chamber"],
+    "narrative": "Every platform begins with a single interaction. Echo Chamber was created to prove that even the simplest act of listening and returning can become something worth coming back to."
+  }
+]
