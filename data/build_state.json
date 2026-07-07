@@ -1,44 +1,20 @@
 {
-  "schema_version": "1.1.0",
-  "run_id": "2026-07-07-003",
-  "pipeline_version": "1.1.0",
-  "timestamp": "2026-07-07T00:49:02.678872Z",
-  "app_commit": "unknown",
-  "app_commit_short": "unknown",
+  "schema_version": "1.0.0",
+  "run_id": "2026-07-07-001",
+  "pipeline_version": "1.0.0",
+  "timestamp": "2026-07-07T07:57:09.111617Z",
+  "app_commit": "f0419c4a5d96821cf404f63b39cbb8c21788940b",
+  "app_commit_short": "f0419c4",
   "website_commit": "unknown",
   "website_commit_short": "unknown",
-  "export_hash": "sha256:f53356353f268f60227b3dee3914b65a75f7cd3a350e52ec033b661778874e3f",
-  "manifest_timestamp": "2026-07-07T00:48:19.234515Z",
+  "export_hash": "sha256:3eb2f9c17c7aa6e46ee73705712a811616cfa9f6de9a66ee8cdddc4e164bd046",
+  "manifest_timestamp": "2026-07-07T07:57:09.044017Z",
   "counts": {
     "observation_banks": 143,
     "observations_exported": 22059,
     "worlds": 61,
     "universes": 7,
-    "characters": 4,
-    "proposals": 17,
-    "approvals": 17,
-    "queue": 0,
-    "executions": 0
-  },
-  "evolution": {
-    "ranking_model": "ranking-v1",
-    "lifecycle_model": "lifecycle-v1",
-    "placement_model": "placement-v1",
-    "proposals_model": "proposals-v1",
-    "approvals_model": "approvals-v1",
-    "queue_model": "queue-v1",
-    "history_model": "history-v1"
-  },
-  "governance": {
-    "approvals_breakdown": {
-      "proposed": 17,
-      "approved": 0,
-      "rejected": 0,
-      "expired": 0,
-      "completed": 0
-    },
-    "queue_depth": 0,
-    "execution_success_rate": null
+    "characters": 4
   },
   "validation": {
     "duplicate_identifiers": 0,
@@ -50,6 +26,6 @@
   "authority_tier": "tier_1_projection",
   "provenance": {
     "generated_by": "generate_build_state.py",
-    "pipeline": "chronicle_export -> evolution_ranker -> evolution_lifecycle -> evolution_placement -> evolution_proposals -> evolution_approvals -> evolution_queue -> build_state -> build_website -> deploy"
+    "pipeline": "chronicle_export -> build_state -> build_website -> deploy"
   }
 }

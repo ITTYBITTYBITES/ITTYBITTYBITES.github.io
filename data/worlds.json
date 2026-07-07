@@ -1,404 +1,10 @@
 {
-  "schema_version": "1.1.0",
+  "schema_version": "1.0.0",
   "source_provenance": "app",
   "authority_tier": "tier_1_projection",
-  "generated_at": "2026-07-07T00:48:19.234515Z",
+  "generated_at": "2026-07-07T07:57:09.034477Z",
   "count": 61,
   "worlds": [
-    {
-      "id": "age_of_exploration",
-      "universe_id": "history",
-      "slug": "age-of-exploration",
-      "display_name": "Age Of Exploration",
-      "taxonomy": {
-        "domain": "history",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.755,
-        "gravity": 0.72,
-        "overlap_regions": [
-          "ancient_china",
-          "ancient_egypt",
-          "ancient_greece"
-        ],
-        "drift_potential": 0.103,
-        "field_coordinates": {
-          "x": 0.18,
-          "y": -0.546,
-          "z": -0.359
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 51,
-        "entity_types": [
-          "Colony",
-          "Conquistador",
-          "Explorer",
-          "Geographic Concept",
-          "Geographic Feature",
-          "Historical Process",
-          "Island",
-          "Map",
-          "Navigation Instrument",
-          "Ship",
-          "Trade Good",
-          "Trade Route",
-          "Trading Company",
-          "Treaty",
-          "Voyage"
-        ],
-        "entity_types_unique": 15,
-        "difficulty_distribution": {
-          "1": 16,
-          "2": 17,
-          "3": 18
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/history/age_of_exploration",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "ai",
-      "universe_id": "science_lab",
-      "slug": "ai",
-      "display_name": "Ai",
-      "taxonomy": {
-        "domain": "science_lab",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.875,
-        "gravity": 0.48,
-        "overlap_regions": [
-          "astronomy",
-          "biotechnology",
-          "chemistry"
-        ],
-        "drift_potential": 0.233,
-        "field_coordinates": {
-          "x": 0.878,
-          "y": 0.716,
-          "z": 0.684
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 52,
-        "entity_types": [
-          "Algorithm",
-          "Application",
-          "Architecture",
-          "Concept",
-          "Field",
-          "Hardware",
-          "Infrastructure",
-          "Issue",
-          "Model",
-          "Person",
-          "Resource",
-          "Structure",
-          "System",
-          "Technique"
-        ],
-        "entity_types_unique": 14,
-        "difficulty_distribution": {
-          "1": 13,
-          "2": 16,
-          "3": 23
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/science_lab/ai",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "ancient_china",
-      "universe_id": "history",
-      "slug": "ancient-china",
-      "display_name": "Ancient China",
-      "taxonomy": {
-        "domain": "history",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.73,
-        "gravity": 0.52,
-        "overlap_regions": [
-          "age_of_exploration",
-          "ancient_egypt",
-          "ancient_greece"
-        ],
-        "drift_potential": 0.257,
-        "field_coordinates": {
-          "x": -0.555,
-          "y": -0.052,
-          "z": -0.77
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 50,
-        "entity_types": [
-          "Art Form",
-          "Calendar System",
-          "City",
-          "Cultural Beverage",
-          "Cultural Event",
-          "Desert",
-          "Dynasty",
-          "Emperor",
-          "Food",
-          "Fortification",
-          "Funerary Art",
-          "Infrastructure",
-          "Invention",
-          "Military Strategist",
-          "Mountain",
-          "Palace Complex",
-          "Philosopher",
-          "Philosophical System",
-          "Religious Site",
-          "River",
-          "Symbol",
-          "Temple",
-          "Text",
-          "Tool",
-          "Trade Route"
-        ],
-        "entity_types_unique": 25,
-        "difficulty_distribution": {
-          "1": 25,
-          "2": 14,
-          "3": 11
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/history/ancient_china",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "ancient_egypt",
-      "universe_id": "history",
-      "slug": "ancient-egypt",
-      "display_name": "Ancient Egypt",
-      "taxonomy": {
-        "domain": "history",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.56,
-        "gravity": 0.52,
-        "overlap_regions": [
-          "age_of_exploration",
-          "ancient_china",
-          "ancient_greece"
-        ],
-        "drift_potential": 0.1,
-        "field_coordinates": {
-          "x": -0.305,
-          "y": -0.278,
-          "z": 0.695
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 50,
-        "entity_types": [
-          "Amulet",
-          "Animal",
-          "Artifact",
-          "City",
-          "Concept",
-          "Desert",
-          "Funerary Object",
-          "Funerary Practice",
-          "Geographic Feature",
-          "God",
-          "Goddess",
-          "Material",
-          "Monument",
-          "Musical Instrument",
-          "Necropolis",
-          "Pharaoh",
-          "Plant",
-          "Pyramid",
-          "Queen",
-          "Regalia",
-          "Ritual",
-          "River",
-          "Sea",
-          "Symbol",
-          "Temple",
-          "Temple Complex",
-          "Text",
-          "Writing System"
-        ],
-        "entity_types_unique": 28,
-        "difficulty_distribution": {
-          "1": 17,
-          "2": 19,
-          "3": 14
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/history/ancient_egypt",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "ancient_greece",
-      "universe_id": "history",
-      "slug": "ancient-greece",
-      "display_name": "Ancient Greece",
-      "taxonomy": {
-        "domain": "history",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.77,
-        "gravity": 0.56,
-        "overlap_regions": [
-          "age_of_exploration",
-          "ancient_china",
-          "ancient_egypt"
-        ],
-        "drift_potential": 0.31,
-        "field_coordinates": {
-          "x": 0.397,
-          "y": -0.137,
-          "z": -0.857
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 53,
-        "entity_types": [
-          "Architectural Element",
-          "Citadel",
-          "City-State",
-          "Civic Building",
-          "Cultural Event",
-          "Epic Poem",
-          "Island",
-          "Kingdom",
-          "Lawmaker",
-          "Lighthouse",
-          "Mathematician",
-          "Military Commander",
-          "Military Engagement",
-          "Military Formation",
-          "Monument",
-          "Mountain",
-          "Naval Engagement",
-          "Olympian God",
-          "Olympian Goddess",
-          "Philosopher",
-          "Public Space",
-          "Religious Institution",
-          "Sanctuary",
-          "Sea",
-          "Statesman",
-          "Temple",
-          "Theater",
-          "Warship",
-          "Weapon"
-        ],
-        "entity_types_unique": 29,
-        "difficulty_distribution": {
-          "1": 22,
-          "2": 17,
-          "3": 14
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/history/ancient_greece",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "ancient_rome",
-      "universe_id": "history",
-      "slug": "ancient-rome",
-      "display_name": "Ancient Rome",
-      "taxonomy": {
-        "domain": "history",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.955,
-        "gravity": 0.48,
-        "overlap_regions": [
-          "age_of_exploration",
-          "ancient_china",
-          "ancient_egypt"
-        ],
-        "drift_potential": 0.267,
-        "field_coordinates": {
-          "x": -0.502,
-          "y": -0.055,
-          "z": 0.03
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 71,
-        "entity_types": [
-          "Concept"
-        ],
-        "entity_types_unique": 1,
-        "difficulty_distribution": {
-          "1": 71,
-          "2": 0,
-          "3": 0
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/history/ancient_rome",
-        "schema_version": "1.1.0"
-      }
-    },
     {
       "id": "animation",
       "universe_id": "creative_arts",
@@ -410,41 +16,36 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.585,
+        "intensity": 0.835,
         "gravity": 0.76,
         "overlap_regions": [
           "architecture",
           "art_history",
           "calligraphy_lettering"
         ],
-        "drift_potential": 0.04,
+        "drift_potential": 0.047,
         "field_coordinates": {
-          "x": 0.457,
-          "y": 0.192,
-          "z": -0.114
+          "x": 0.545,
+          "y": 0.463,
+          "z": 0.184
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 1000,
-        "entity_types": [
-          "Motion Logic"
-        ],
-        "entity_types_unique": 1,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 600,
-          "2": 200,
-          "3": 200
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
         "app_path": "app/data/content/base_bundle/creative_arts/animation",
-        "schema_version": "1.1.0"
+        "schema_version": "1.0.0"
       }
     },
     {
@@ -458,41 +59,36 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.675,
+        "intensity": 0.645,
         "gravity": 0.48,
         "overlap_regions": [
           "animation",
           "art_history",
           "calligraphy_lettering"
         ],
-        "drift_potential": 0.05,
+        "drift_potential": 0.067,
         "field_coordinates": {
-          "x": -0.399,
-          "y": 0.778,
-          "z": 0.184
+          "x": 0.372,
+          "y": -0.069,
+          "z": -0.927
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 1000,
-        "entity_types": [
-          "Structural Element"
-        ],
-        "entity_types_unique": 1,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 600,
-          "2": 200,
-          "3": 200
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
         "app_path": "app/data/content/base_bundle/creative_arts/architecture",
-        "schema_version": "1.1.0"
+        "schema_version": "1.0.0"
       }
     },
     {
@@ -506,175 +102,36 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.67,
+        "intensity": 0.595,
         "gravity": 0.44,
         "overlap_regions": [
           "animation",
           "architecture",
           "calligraphy_lettering"
         ],
-        "drift_potential": 0.29,
+        "drift_potential": 0.293,
         "field_coordinates": {
-          "x": -0.643,
-          "y": -0.004,
-          "z": -0.175
+          "x": -0.951,
+          "y": 0.636,
+          "z": 0.413
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 1000,
-        "entity_types": [
-          "Timeline Node"
-        ],
-        "entity_types_unique": 1,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 600,
-          "2": 200,
-          "3": 200
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
         "app_path": "app/data/content/base_bundle/creative_arts/art_history",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "astronomy",
-      "universe_id": "science_lab",
-      "slug": "astronomy",
-      "display_name": "Astronomy",
-      "taxonomy": {
-        "domain": "science_lab",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.94,
-        "gravity": 0.76,
-        "overlap_regions": [
-          "ai",
-          "biotechnology",
-          "chemistry"
-        ],
-        "drift_potential": 0.323,
-        "field_coordinates": {
-          "x": 0.477,
-          "y": 0.222,
-          "z": -0.477
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 53,
-        "entity_types": [
-          "Boundary",
-          "Celestial Body",
-          "Celestial Object",
-          "Concept",
-          "Constellation",
-          "Distance",
-          "Event",
-          "Field",
-          "Force",
-          "Galaxies",
-          "Galaxy",
-          "Instrument",
-          "Mission",
-          "Object",
-          "Phenomenon",
-          "Process",
-          "Radiation",
-          "Star",
-          "Station",
-          "System",
-          "Theory",
-          "Vehicle"
-        ],
-        "entity_types_unique": 22,
-        "difficulty_distribution": {
-          "1": 22,
-          "2": 14,
-          "3": 17
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/science_lab/astronomy",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "biotechnology",
-      "universe_id": "science_lab",
-      "slug": "biotechnology",
-      "display_name": "Biotechnology",
-      "taxonomy": {
-        "domain": "science_lab",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.985,
-        "gravity": 0.52,
-        "overlap_regions": [
-          "ai",
-          "astronomy",
-          "chemistry"
-        ],
-        "drift_potential": 0.253,
-        "field_coordinates": {
-          "x": -0.878,
-          "y": 0.515,
-          "z": 0.962
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 50,
-        "entity_types": [
-          "Application",
-          "Cell",
-          "Concept",
-          "Device",
-          "Diagnostic",
-          "Element",
-          "Enzyme",
-          "Field",
-          "Issue",
-          "Material",
-          "Molecule",
-          "Organism",
-          "Process",
-          "Product",
-          "System",
-          "Technique",
-          "Tool",
-          "Treatment"
-        ],
-        "entity_types_unique": 18,
-        "difficulty_distribution": {
-          "1": 19,
-          "2": 13,
-          "3": 18
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/science_lab/biotechnology",
-        "schema_version": "1.1.0"
+        "schema_version": "1.0.0"
       }
     },
     {
@@ -688,248 +145,36 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.775,
+        "intensity": 0.98,
         "gravity": 0.44,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.12,
+        "drift_potential": 0.107,
         "field_coordinates": {
-          "x": 0.097,
-          "y": 0.598,
-          "z": -0.011
+          "x": 0.771,
+          "y": 0.346,
+          "z": -0.925
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 1000,
-        "entity_types": [
-          "Calligraphic Unit"
-        ],
-        "entity_types_unique": 1,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 600,
-          "2": 200,
-          "3": 200
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
         "app_path": "app/data/content/base_bundle/creative_arts/calligraphy_lettering",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "chemistry",
-      "universe_id": "science_lab",
-      "slug": "chemistry",
-      "display_name": "Chemistry",
-      "taxonomy": {
-        "domain": "science_lab",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.575,
-        "gravity": 0.76,
-        "overlap_regions": [
-          "ai",
-          "astronomy",
-          "biotechnology"
-        ],
-        "drift_potential": 0.097,
-        "field_coordinates": {
-          "x": -0.458,
-          "y": -0.331,
-          "z": -0.454
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 51,
-        "entity_types": [
-          "Bond",
-          "Class",
-          "Compound",
-          "Concept",
-          "Element",
-          "Field",
-          "Metal",
-          "Process",
-          "Reaction",
-          "State",
-          "Structure",
-          "Tool"
-        ],
-        "entity_types_unique": 12,
-        "difficulty_distribution": {
-          "1": 19,
-          "2": 17,
-          "3": 15
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/science_lab/chemistry",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "cold_war",
-      "universe_id": "history",
-      "slug": "cold-war",
-      "display_name": "Cold War",
-      "taxonomy": {
-        "domain": "history",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.565,
-        "gravity": 0.72,
-        "overlap_regions": [
-          "age_of_exploration",
-          "ancient_china",
-          "ancient_egypt"
-        ],
-        "drift_potential": 0.177,
-        "field_coordinates": {
-          "x": -0.061,
-          "y": 0.541,
-          "z": 0.67
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 58,
-        "entity_types": [
-          "Aircraft",
-          "Alliance",
-          "Astronaut",
-          "Border",
-          "City",
-          "Concept",
-          "Conflict",
-          "Cosmonaut",
-          "Crisis",
-          "Doctrine",
-          "Economic Organization",
-          "Event",
-          "Intelligence Agency",
-          "International Organization",
-          "Island Nation",
-          "Leader",
-          "Location",
-          "Period",
-          "Policy",
-          "Premier",
-          "President",
-          "Prime Minister",
-          "Program",
-          "Proxy War",
-          "Region",
-          "Rocket",
-          "Satellite",
-          "Space Mission",
-          "Space Station",
-          "Weapon",
-          "Weapon System"
-        ],
-        "entity_types_unique": 31,
-        "difficulty_distribution": {
-          "1": 27,
-          "2": 14,
-          "3": 17
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/history/cold_war",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "colonial_america",
-      "universe_id": "history",
-      "slug": "colonial-america",
-      "display_name": "Colonial America",
-      "taxonomy": {
-        "domain": "history",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.665,
-        "gravity": 0.64,
-        "overlap_regions": [
-          "age_of_exploration",
-          "ancient_china",
-          "ancient_egypt"
-        ],
-        "drift_potential": 0.08,
-        "field_coordinates": {
-          "x": 0.47,
-          "y": -0.433,
-          "z": -0.142
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 50,
-        "entity_types": [
-          "Artifact",
-          "Battle",
-          "City",
-          "Collection",
-          "Document",
-          "Event",
-          "Founding Father",
-          "Geographic Group",
-          "Legislation",
-          "Location",
-          "Military Action",
-          "Military Force",
-          "Monarch",
-          "Mountain Range",
-          "Organization",
-          "Pamphlet",
-          "Protest",
-          "Revolutionary",
-          "River",
-          "Settlement",
-          "Soldier",
-          "Trade Route",
-          "Writer"
-        ],
-        "entity_types_unique": 23,
-        "difficulty_distribution": {
-          "1": 16,
-          "2": 17,
-          "3": 17
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/history/colonial_america",
-        "schema_version": "1.1.0"
+        "schema_version": "1.0.0"
       }
     },
     {
@@ -943,41 +188,36 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.91,
+        "intensity": 0.71,
         "gravity": 0.48,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.117,
+        "drift_potential": 0.107,
         "field_coordinates": {
-          "x": -0.781,
-          "y": -0.05,
-          "z": 0.002
+          "x": 0.258,
+          "y": 0.868,
+          "z": -0.466
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 1000,
-        "entity_types": [
-          "Narrative Unit"
-        ],
-        "entity_types_unique": 1,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 600,
-          "2": 200,
-          "3": 200
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
         "app_path": "app/data/content/base_bundle/creative_arts/comics_manga",
-        "schema_version": "1.1.0"
+        "schema_version": "1.0.0"
       }
     },
     {
@@ -991,41 +231,36 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.54,
+        "intensity": 0.725,
         "gravity": 0.4,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.047,
+        "drift_potential": 0.103,
         "field_coordinates": {
-          "x": -0.993,
-          "y": -0.774,
-          "z": -0.24
+          "x": -0.661,
+          "y": -0.567,
+          "z": 0.851
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 1000,
-        "entity_types": [
-          "Handmade Unit"
-        ],
-        "entity_types_unique": 1,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 600,
-          "2": 200,
-          "3": 200
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
         "app_path": "app/data/content/base_bundle/creative_arts/crafts_diy",
-        "schema_version": "1.1.0"
+        "schema_version": "1.0.0"
       }
     },
     {
@@ -1039,41 +274,36 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.585,
+        "intensity": 0.92,
         "gravity": 0.76,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.07,
+        "drift_potential": 0.113,
         "field_coordinates": {
-          "x": 0.938,
-          "y": 0.181,
-          "z": 0.066
+          "x": 0.114,
+          "y": 0.278,
+          "z": 0.658
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 1000,
-        "entity_types": [
-          "Computational Unit"
-        ],
-        "entity_types_unique": 1,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 600,
-          "2": 200,
-          "3": 200
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
         "app_path": "app/data/content/base_bundle/creative_arts/creative_technology",
-        "schema_version": "1.1.0"
+        "schema_version": "1.0.0"
       }
     },
     {
@@ -1087,41 +317,36 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.665,
+        "intensity": 0.95,
         "gravity": 0.44,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.287,
+        "drift_potential": 0.193,
         "field_coordinates": {
-          "x": -0.363,
-          "y": -0.23,
-          "z": 0.93
+          "x": -0.749,
+          "y": 0.812,
+          "z": -0.822
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 1000,
-        "entity_types": [
-          "Concept"
-        ],
-        "entity_types_unique": 1,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 1000,
+          "1": 0,
           "2": 0,
           "3": 0
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
         "app_path": "app/data/content/base_bundle/creative_arts/digital_art",
-        "schema_version": "1.1.0"
+        "schema_version": "1.0.0"
       }
     },
     {
@@ -1135,104 +360,810 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.97,
+        "intensity": 0.72,
         "gravity": 0.68,
         "overlap_regions": [
           "animation",
           "architecture",
           "art_history"
         ],
-        "drift_potential": 0.167,
+        "drift_potential": 0.207,
         "field_coordinates": {
-          "x": 0.934,
-          "y": 0.081,
-          "z": -0.621
+          "x": 0.541,
+          "y": 0.876,
+          "z": 0.864
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 1000,
-        "entity_types": [
-          "Concept"
-        ],
-        "entity_types_unique": 1,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 1000,
+          "1": 0,
           "2": 0,
           "3": 0
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
         "app_path": "app/data/content/base_bundle/creative_arts/drawing",
-        "schema_version": "1.1.0"
+        "schema_version": "1.0.0"
       }
     },
     {
-      "id": "ecology",
-      "universe_id": "science_lab",
-      "slug": "ecology",
-      "display_name": "Ecology",
+      "id": "famous_artists",
+      "universe_id": "creative_arts",
+      "slug": "famous-artists",
+      "display_name": "Famous Artists",
       "taxonomy": {
-        "domain": "science_lab",
+        "domain": "creative_arts",
         "subcategories": []
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.81,
+        "intensity": 0.855,
+        "gravity": 0.56,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.223,
+        "field_coordinates": {
+          "x": -0.868,
+          "y": 0.162,
+          "z": -0.238
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/famous_artists",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "fashion",
+      "universe_id": "creative_arts",
+      "slug": "fashion",
+      "display_name": "Fashion",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.515,
         "gravity": 0.68,
         "overlap_regions": [
-          "ai",
-          "astronomy",
-          "biotechnology"
+          "animation",
+          "architecture",
+          "art_history"
         ],
-        "drift_potential": 0.26,
+        "drift_potential": 0.217,
         "field_coordinates": {
-          "x": 0.359,
-          "y": 0.569,
-          "z": -0.13
+          "x": 0.2,
+          "y": -0.606,
+          "z": 0.198
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/fashion",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "graphic_design",
+      "universe_id": "creative_arts",
+      "slug": "graphic-design",
+      "display_name": "Graphic Design",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.79,
+        "gravity": 0.56,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.293,
+        "field_coordinates": {
+          "x": -0.951,
+          "y": -0.635,
+          "z": 0.073
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/graphic_design",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "interior_design",
+      "universe_id": "creative_arts",
+      "slug": "interior-design",
+      "display_name": "Interior Design",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.525,
+        "gravity": 0.6,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.27,
+        "field_coordinates": {
+          "x": 0.367,
+          "y": -0.491,
+          "z": 0.644
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/interior_design",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "movies_cinematography",
+      "universe_id": "creative_arts",
+      "slug": "movies-cinematography",
+      "display_name": "Movies Cinematography",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.655,
+        "gravity": 0.44,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.013,
+        "field_coordinates": {
+          "x": -0.143,
+          "y": 0.653,
+          "z": 0.706
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/movies_cinematography",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "painting",
+      "universe_id": "creative_arts",
+      "slug": "painting",
+      "display_name": "Painting",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.965,
+        "gravity": 0.72,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.027,
+        "field_coordinates": {
+          "x": 0.772,
+          "y": -0.201,
+          "z": 0.968
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/painting",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "photography",
+      "universe_id": "creative_arts",
+      "slug": "photography",
+      "display_name": "Photography",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.8,
+        "gravity": 0.44,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.327,
+        "field_coordinates": {
+          "x": 0.892,
+          "y": 0.746,
+          "z": -0.196
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/photography",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "pottery_ceramics",
+      "universe_id": "creative_arts",
+      "slug": "pottery-ceramics",
+      "display_name": "Pottery Ceramics",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.87,
+        "gravity": 0.64,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.107,
+        "field_coordinates": {
+          "x": 0.746,
+          "y": 0.075,
+          "z": -0.703
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/pottery_ceramics",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "sculpture",
+      "universe_id": "creative_arts",
+      "slug": "sculpture",
+      "display_name": "Sculpture",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.87,
+        "gravity": 0.76,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.17,
+        "field_coordinates": {
+          "x": 0.35,
+          "y": 0.83,
+          "z": -0.212
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/sculpture",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "street_art",
+      "universe_id": "creative_arts",
+      "slug": "street-art",
+      "display_name": "Street Art",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.575,
+        "gravity": 0.4,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.293,
+        "field_coordinates": {
+          "x": -0.7,
+          "y": 0.678,
+          "z": -0.504
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/street_art",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "tattoos_body_art",
+      "universe_id": "creative_arts",
+      "slug": "tattoos-body-art",
+      "display_name": "Tattoos Body Art",
+      "taxonomy": {
+        "domain": "creative_arts",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.96,
+        "gravity": 0.64,
+        "overlap_regions": [
+          "animation",
+          "architecture",
+          "art_history"
+        ],
+        "drift_potential": 0.277,
+        "field_coordinates": {
+          "x": -0.943,
+          "y": -0.892,
+          "z": -0.675
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 1000,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/creative_arts/tattoos_body_art",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "age_of_exploration",
+      "universe_id": "history",
+      "slug": "age-of-exploration",
+      "display_name": "Age Of Exploration",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.995,
+        "gravity": 0.72,
+        "overlap_regions": [
+          "ancient_china",
+          "ancient_egypt",
+          "ancient_greece"
+        ],
+        "drift_potential": 0.173,
+        "field_coordinates": {
+          "x": -0.368,
+          "y": -0.622,
+          "z": 0.064
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 51,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/age_of_exploration",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "ancient_china",
+      "universe_id": "history",
+      "slug": "ancient-china",
+      "display_name": "Ancient China",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.565,
+        "gravity": 0.52,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_egypt",
+          "ancient_greece"
+        ],
+        "drift_potential": 0.003,
+        "field_coordinates": {
+          "x": 0.523,
+          "y": 0.478,
+          "z": 0.072
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 50,
-        "entity_types": [
-          "Area",
-          "Biome",
-          "Concept",
-          "Cycle",
-          "Event",
-          "Habitat",
-          "Impact",
-          "Level",
-          "Organism",
-          "Practice",
-          "Process",
-          "Relationship",
-          "Resource",
-          "Role",
-          "Status",
-          "System"
-        ],
-        "entity_types_unique": 16,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 12,
-          "2": 24,
-          "3": 14
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/science_lab/ecology",
-        "schema_version": "1.1.0"
+        "app_path": "app/data/content/base_bundle/history/ancient_china",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "ancient_egypt",
+      "universe_id": "history",
+      "slug": "ancient-egypt",
+      "display_name": "Ancient Egypt",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.92,
+        "gravity": 0.52,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_greece"
+        ],
+        "drift_potential": 0.153,
+        "field_coordinates": {
+          "x": -0.941,
+          "y": 0.012,
+          "z": 0.45
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/ancient_egypt",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "ancient_greece",
+      "universe_id": "history",
+      "slug": "ancient-greece",
+      "display_name": "Ancient Greece",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.6,
+        "gravity": 0.56,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_egypt"
+        ],
+        "drift_potential": 0.307,
+        "field_coordinates": {
+          "x": 0.881,
+          "y": 0.299,
+          "z": -0.763
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 53,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/ancient_greece",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "ancient_rome",
+      "universe_id": "history",
+      "slug": "ancient-rome",
+      "display_name": "Ancient Rome",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.945,
+        "gravity": 0.48,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_egypt"
+        ],
+        "drift_potential": 0.153,
+        "field_coordinates": {
+          "x": -0.124,
+          "y": 0.029,
+          "z": 0.777
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 71,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/ancient_rome",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "cold_war",
+      "universe_id": "history",
+      "slug": "cold-war",
+      "display_name": "Cold War",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.78,
+        "gravity": 0.72,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_egypt"
+        ],
+        "drift_potential": 0.02,
+        "field_coordinates": {
+          "x": -0.128,
+          "y": 0.525,
+          "z": -0.361
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 58,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/cold_war",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "colonial_america",
+      "universe_id": "history",
+      "slug": "colonial-america",
+      "display_name": "Colonial America",
+      "taxonomy": {
+        "domain": "history",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.545,
+        "gravity": 0.64,
+        "overlap_regions": [
+          "age_of_exploration",
+          "ancient_china",
+          "ancient_egypt"
+        ],
+        "drift_potential": 0.29,
+        "field_coordinates": {
+          "x": -0.565,
+          "y": 0.811,
+          "z": 0.056
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/history/colonial_america",
+        "schema_version": "1.0.0"
       }
     },
     {
@@ -1253,150 +1184,29 @@
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.077,
+        "drift_potential": 0.33,
         "field_coordinates": {
-          "x": 0.517,
-          "y": -0.687,
-          "z": -0.269
+          "x": 0.566,
+          "y": -0.475,
+          "z": 0.967
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 51,
-        "entity_types": [
-          "Art Movement",
-          "Book",
-          "City",
-          "Device",
-          "Document",
-          "Economic Concept",
-          "Economist",
-          "Event",
-          "Fortress",
-          "Institution",
-          "Monarch",
-          "Novel",
-          "Palace",
-          "Philosopher",
-          "Philosophical Concept",
-          "Political Concept",
-          "Publication",
-          "Queen",
-          "Reformer",
-          "Scientist",
-          "Social Institution"
-        ],
-        "entity_types_unique": 21,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 17,
-          "2": 17,
-          "3": 17
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
         "app_path": "app/data/content/base_bundle/history/enlightenment",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "famous_artists",
-      "universe_id": "creative_arts",
-      "slug": "famous-artists",
-      "display_name": "Famous Artists",
-      "taxonomy": {
-        "domain": "creative_arts",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.645,
-        "gravity": 0.56,
-        "overlap_regions": [
-          "animation",
-          "architecture",
-          "art_history"
-        ],
-        "drift_potential": 0.063,
-        "field_coordinates": {
-          "x": 0.695,
-          "y": -0.387,
-          "z": -0.54
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 1000,
-        "entity_types": [
-          "Creator"
-        ],
-        "entity_types_unique": 1,
-        "difficulty_distribution": {
-          "1": 600,
-          "2": 200,
-          "3": 200
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/creative_arts/famous_artists",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "fashion",
-      "universe_id": "creative_arts",
-      "slug": "fashion",
-      "display_name": "Fashion",
-      "taxonomy": {
-        "domain": "creative_arts",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.8,
-        "gravity": 0.68,
-        "overlap_regions": [
-          "animation",
-          "architecture",
-          "art_history"
-        ],
-        "drift_potential": 0.25,
-        "field_coordinates": {
-          "x": 0.873,
-          "y": 0.348,
-          "z": -0.44
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 1000,
-        "entity_types": [
-          "Aesthetic Unit"
-        ],
-        "entity_types_unique": 1,
-        "difficulty_distribution": {
-          "1": 600,
-          "2": 200,
-          "3": 200
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/creative_arts/fashion",
-        "schema_version": "1.1.0"
+        "schema_version": "1.0.0"
       }
     },
     {
@@ -1410,309 +1220,36 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.63,
+        "intensity": 0.55,
         "gravity": 0.48,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.32,
+        "drift_potential": 0.067,
         "field_coordinates": {
-          "x": 0.96,
-          "y": -0.651,
-          "z": -0.44
+          "x": -0.281,
+          "y": -0.79,
+          "z": 0.971
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 50,
-        "entity_types": [
-          "Architectural Element",
-          "Armor",
-          "Art Form",
-          "Artwork",
-          "Battle",
-          "Castle",
-          "City",
-          "Civil War",
-          "Conflict",
-          "Cultural Practice",
-          "Daimyo",
-          "Emperor",
-          "Historical Period",
-          "Invasion",
-          "Literary Form",
-          "Mountain",
-          "Palace",
-          "Performance Art",
-          "Philosophical Code",
-          "Rebellion",
-          "Regent",
-          "Religion",
-          "Ritual",
-          "Route",
-          "Samurai",
-          "Sea",
-          "Shogun",
-          "Shrine",
-          "Temple",
-          "Weapon"
-        ],
-        "entity_types_unique": 30,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 9,
-          "2": 21,
-          "3": 20
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
         "app_path": "app/data/content/base_bundle/history/feudal_japan",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "forensics",
-      "universe_id": "science_lab",
-      "slug": "forensics",
-      "display_name": "Forensics",
-      "taxonomy": {
-        "domain": "science_lab",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.83,
-        "gravity": 0.76,
-        "overlap_regions": [
-          "ai",
-          "astronomy",
-          "biotechnology"
-        ],
-        "drift_potential": 0.04,
-        "field_coordinates": {
-          "x": 0.855,
-          "y": 0.598,
-          "z": 0.365
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 51,
-        "entity_types": [
-          "Career",
-          "Chemical",
-          "Concept",
-          "Database",
-          "Evidence",
-          "Field",
-          "Principle",
-          "Procedure",
-          "Role",
-          "System",
-          "Technique",
-          "Tool"
-        ],
-        "entity_types_unique": 12,
-        "difficulty_distribution": {
-          "1": 14,
-          "2": 17,
-          "3": 20
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/science_lab/forensics",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "genetics",
-      "universe_id": "science_lab",
-      "slug": "genetics",
-      "display_name": "Genetics",
-      "taxonomy": {
-        "domain": "science_lab",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.505,
-        "gravity": 0.72,
-        "overlap_regions": [
-          "ai",
-          "astronomy",
-          "biotechnology"
-        ],
-        "drift_potential": 0.29,
-        "field_coordinates": {
-          "x": -0.027,
-          "y": -0.03,
-          "z": -0.046
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 50,
-        "entity_types": [
-          "Cell",
-          "Change",
-          "Collection",
-          "Concept",
-          "Disorder",
-          "Field",
-          "Molecule",
-          "People",
-          "Person",
-          "Process",
-          "Product",
-          "Project",
-          "Protein",
-          "Sequence",
-          "State",
-          "Structure",
-          "System",
-          "Technique",
-          "Technology",
-          "Tool",
-          "Treatment",
-          "Unit",
-          "Variant"
-        ],
-        "entity_types_unique": 23,
-        "difficulty_distribution": {
-          "1": 7,
-          "2": 19,
-          "3": 24
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/science_lab/genetics",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "geology",
-      "universe_id": "science_lab",
-      "slug": "geology",
-      "display_name": "Geology",
-      "taxonomy": {
-        "domain": "science_lab",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.915,
-        "gravity": 0.68,
-        "overlap_regions": [
-          "ai",
-          "astronomy",
-          "biotechnology"
-        ],
-        "drift_potential": 0.017,
-        "field_coordinates": {
-          "x": 0.243,
-          "y": 0.432,
-          "z": -0.777
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 52,
-        "entity_types": [
-          "Event",
-          "Evidence",
-          "Feature",
-          "Field",
-          "Landform",
-          "Layer",
-          "Location",
-          "Mineral",
-          "Period",
-          "Process",
-          "Resource",
-          "Rock",
-          "Structure",
-          "System",
-          "Theory"
-        ],
-        "entity_types_unique": 15,
-        "difficulty_distribution": {
-          "1": 14,
-          "2": 26,
-          "3": 12
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/science_lab/geology",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "graphic_design",
-      "universe_id": "creative_arts",
-      "slug": "graphic-design",
-      "display_name": "Graphic Design",
-      "taxonomy": {
-        "domain": "creative_arts",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.73,
-        "gravity": 0.56,
-        "overlap_regions": [
-          "animation",
-          "architecture",
-          "art_history"
-        ],
-        "drift_potential": 0.087,
-        "field_coordinates": {
-          "x": -0.465,
-          "y": 0.092,
-          "z": -0.399
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 1000,
-        "entity_types": [
-          "Design Unit"
-        ],
-        "entity_types_unique": 1,
-        "difficulty_distribution": {
-          "1": 600,
-          "2": 200,
-          "3": 200
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/creative_arts/graphic_design",
-        "schema_version": "1.1.0"
+        "schema_version": "1.0.0"
       }
     },
     {
@@ -1726,111 +1263,36 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.665,
+        "intensity": 0.96,
         "gravity": 0.44,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.227,
+        "drift_potential": 0.063,
         "field_coordinates": {
-          "x": -0.92,
-          "y": -0.105,
-          "z": -0.801
+          "x": 0.328,
+          "y": 0.997,
+          "z": -0.789
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 51,
-        "entity_types": [
-          "City",
-          "Concept",
-          "Device",
-          "Engineer",
-          "Entity",
-          "Industrialist",
-          "Industry",
-          "Infrastructure",
-          "Inventor",
-          "Inventors",
-          "Legislation",
-          "Machine",
-          "Movement",
-          "Organization",
-          "Political Movement",
-          "Region",
-          "Scientist",
-          "Social Change",
-          "Social Class",
-          "Social Issue",
-          "Standard",
-          "System",
-          "Vehicle"
-        ],
-        "entity_types_unique": 23,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 10,
-          "2": 23,
-          "3": 18
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
         "app_path": "app/data/content/base_bundle/history/industrial_revolution",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "interior_design",
-      "universe_id": "creative_arts",
-      "slug": "interior-design",
-      "display_name": "Interior Design",
-      "taxonomy": {
-        "domain": "creative_arts",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.62,
-        "gravity": 0.6,
-        "overlap_regions": [
-          "animation",
-          "architecture",
-          "art_history"
-        ],
-        "drift_potential": 0.01,
-        "field_coordinates": {
-          "x": -0.386,
-          "y": 0.237,
-          "z": 0.208
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 1000,
-        "entity_types": [
-          "Spatial Unit"
-        ],
-        "entity_types_unique": 1,
-        "difficulty_distribution": {
-          "1": 600,
-          "2": 200,
-          "3": 200
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/creative_arts/interior_design",
-        "schema_version": "1.1.0"
+        "schema_version": "1.0.0"
       }
     },
     {
@@ -1844,125 +1306,36 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.665,
+        "intensity": 0.995,
         "gravity": 0.72,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.097,
+        "drift_potential": 0.16,
         "field_coordinates": {
-          "x": 0.453,
-          "y": -0.121,
-          "z": 0.14
+          "x": -0.827,
+          "y": 0.49,
+          "z": 0.788
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 50,
-        "entity_types": [
-          "Architecture",
-          "Art Form",
-          "Artifacts",
-          "Cartographer",
-          "City",
-          "Device",
-          "Explorer",
-          "Institution",
-          "Instrument",
-          "Literature",
-          "Map",
-          "Mathematician",
-          "Mathematics",
-          "Medical Innovation",
-          "Movement",
-          "Mysticism",
-          "Number System",
-          "Philosopher",
-          "Physician",
-          "Polymath",
-          "Science",
-          "Scientist",
-          "Shrine",
-          "Surgeon",
-          "Technique",
-          "Technology",
-          "Text",
-          "Trade Route"
-        ],
-        "entity_types_unique": 28,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 19,
-          "2": 15,
-          "3": 16
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
         "app_path": "app/data/content/base_bundle/history/islamic_golden_age",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "marine_biology",
-      "universe_id": "science_lab",
-      "slug": "marine-biology",
-      "display_name": "Marine Biology",
-      "taxonomy": {
-        "domain": "science_lab",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.94,
-        "gravity": 0.56,
-        "overlap_regions": [
-          "ai",
-          "astronomy",
-          "biotechnology"
-        ],
-        "drift_potential": 0.277,
-        "field_coordinates": {
-          "x": 0.062,
-          "y": 0.693,
-          "z": 0.822
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 50,
-        "entity_types": [
-          "Animal",
-          "Career",
-          "Concept",
-          "Equipment",
-          "Habitat",
-          "Organism",
-          "Process",
-          "Threat",
-          "Tool",
-          "Vehicle"
-        ],
-        "entity_types_unique": 10,
-        "difficulty_distribution": {
-          "1": 9,
-          "2": 27,
-          "3": 14
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/science_lab/marine_biology",
-        "schema_version": "1.1.0"
+        "schema_version": "1.0.0"
       }
     },
     {
@@ -1976,75 +1349,36 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.72,
+        "intensity": 0.63,
         "gravity": 0.6,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.323,
+        "drift_potential": 0.097,
         "field_coordinates": {
-          "x": -0.291,
-          "y": 0.01,
-          "z": -0.641
+          "x": 0.225,
+          "y": -0.839,
+          "z": -0.773
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 51,
-        "entity_types": [
-          "Architecture",
-          "Art",
-          "Artifact",
-          "Building",
-          "Campaigns",
-          "Cathedral",
-          "City",
-          "Code",
-          "Conflict",
-          "Craftsman",
-          "Document",
-          "Emperor",
-          "Event",
-          "Fortification",
-          "Institution",
-          "King",
-          "Leader",
-          "Legendary",
-          "Literature",
-          "Manuscript",
-          "Music",
-          "Musician",
-          "Official",
-          "Order",
-          "Pandemic",
-          "Political Entity",
-          "Practice",
-          "Practitioner",
-          "Queen",
-          "Realm",
-          "Siege Weapon",
-          "Soldier",
-          "Symbol",
-          "System",
-          "Warrior"
-        ],
-        "entity_types_unique": 35,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 16,
-          "2": 20,
-          "3": 15
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
         "app_path": "app/data/content/base_bundle/history/medieval_europe",
-        "schema_version": "1.1.0"
+        "schema_version": "1.0.0"
       }
     },
     {
@@ -2058,61 +1392,36 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.82,
+        "intensity": 0.97,
         "gravity": 0.44,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.293,
+        "drift_potential": 0.26,
         "field_coordinates": {
-          "x": 0.425,
-          "y": 0.189,
-          "z": 0.703
+          "x": 0.134,
+          "y": -0.228,
+          "z": -0.708
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 50,
-        "entity_types": [
-          "Agriculture",
-          "Architecture",
-          "Artifact",
-          "City",
-          "Civilization",
-          "Conquistador",
-          "Currency",
-          "Document",
-          "Emperor",
-          "Empire",
-          "God",
-          "King",
-          "Monument",
-          "Mythology",
-          "Ritual",
-          "Route",
-          "Sport",
-          "Structure",
-          "System",
-          "Temple",
-          "Weapon"
-        ],
-        "entity_types_unique": 21,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 18,
-          "2": 12,
-          "3": 20
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
         "app_path": "app/data/content/base_bundle/history/mesoamerica",
-        "schema_version": "1.1.0"
+        "schema_version": "1.0.0"
       }
     },
     {
@@ -2126,193 +1435,36 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.555,
+        "intensity": 0.645,
         "gravity": 0.44,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.127,
+        "drift_potential": 0.133,
         "field_coordinates": {
-          "x": -0.895,
-          "y": 0.331,
-          "z": 0.405
+          "x": 0.573,
+          "y": -0.337,
+          "z": 0.241
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 51,
-        "entity_types": [
-          "Agriculture",
-          "Art",
-          "Artifact",
-          "Calendar",
-          "City",
-          "Civilization",
-          "Concept",
-          "Craft",
-          "Empire",
-          "God",
-          "Goddess",
-          "Institution",
-          "Invention",
-          "King",
-          "Legend",
-          "Legendary King",
-          "Literature",
-          "Monument",
-          "Mythological Figure",
-          "Mythology",
-          "Political Unit",
-          "Region",
-          "River",
-          "Ruler",
-          "Science",
-          "Sea",
-          "System",
-          "Temple",
-          "Text",
-          "Tool",
-          "Vehicle",
-          "Wonder",
-          "Writing System"
-        ],
-        "entity_types_unique": 33,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 14,
-          "2": 19,
-          "3": 18
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
         "app_path": "app/data/content/base_bundle/history/mesopotamia",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "meteorology",
-      "universe_id": "science_lab",
-      "slug": "meteorology",
-      "display_name": "Meteorology",
-      "taxonomy": {
-        "domain": "science_lab",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.605,
-        "gravity": 0.44,
-        "overlap_regions": [
-          "ai",
-          "astronomy",
-          "biotechnology"
-        ],
-        "drift_potential": 0.31,
-        "field_coordinates": {
-          "x": -0.854,
-          "y": 0.571,
-          "z": -0.776
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 50,
-        "entity_types": [
-          "Cloud Type",
-          "Concept",
-          "Current",
-          "Cycle",
-          "Event",
-          "Instrument",
-          "Layer",
-          "Pattern",
-          "Phenomenon",
-          "Process",
-          "Service",
-          "Tool"
-        ],
-        "entity_types_unique": 12,
-        "difficulty_distribution": {
-          "1": 17,
-          "2": 22,
-          "3": 11
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/science_lab/meteorology",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "microbiology",
-      "universe_id": "science_lab",
-      "slug": "microbiology",
-      "display_name": "Microbiology",
-      "taxonomy": {
-        "domain": "science_lab",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.545,
-        "gravity": 0.48,
-        "overlap_regions": [
-          "ai",
-          "astronomy",
-          "biotechnology"
-        ],
-        "drift_potential": 0.263,
-        "field_coordinates": {
-          "x": 0.39,
-          "y": 0.714,
-          "z": 0.637
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 50,
-        "entity_types": [
-          "Bacterium",
-          "Concept",
-          "Device",
-          "Field",
-          "Fungus",
-          "Medium",
-          "Nutrient",
-          "Process",
-          "Product",
-          "Protist",
-          "Structure",
-          "Technique",
-          "Tool",
-          "Virus"
-        ],
-        "entity_types_unique": 14,
-        "difficulty_distribution": {
-          "1": 15,
-          "2": 17,
-          "3": 18
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/science_lab/microbiology",
-        "schema_version": "1.1.0"
+        "schema_version": "1.0.0"
       }
     },
     {
@@ -2326,314 +1478,36 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.545,
+        "intensity": 0.67,
         "gravity": 0.4,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.117,
+        "drift_potential": 0.237,
         "field_coordinates": {
-          "x": -0.449,
-          "y": 0.012,
-          "z": 0.56
+          "x": 0.99,
+          "y": 0.851,
+          "z": -0.805
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 51,
-        "entity_types": [
-          "Alliance",
-          "Art",
-          "Bloc",
-          "Concept",
-          "Conflict",
-          "Device",
-          "Dictator",
-          "Economic Crisis",
-          "Endeavor",
-          "Energy",
-          "Event",
-          "Genocide",
-          "Institution",
-          "Leader",
-          "Machine",
-          "Medicine",
-          "Monument",
-          "Movement",
-          "Music",
-          "Nation",
-          "Network",
-          "Platform",
-          "President",
-          "Region",
-          "Revolution",
-          "Science",
-          "System",
-          "Technology"
-        ],
-        "entity_types_unique": 28,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 13,
-          "2": 28,
-          "3": 10
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
         "app_path": "app/data/content/base_bundle/history/modern_era",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "movies_cinematography",
-      "universe_id": "creative_arts",
-      "slug": "movies-cinematography",
-      "display_name": "Movies Cinematography",
-      "taxonomy": {
-        "domain": "creative_arts",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.555,
-        "gravity": 0.44,
-        "overlap_regions": [
-          "animation",
-          "architecture",
-          "art_history"
-        ],
-        "drift_potential": 0.23,
-        "field_coordinates": {
-          "x": 0.882,
-          "y": -0.582,
-          "z": -0.55
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 1000,
-        "entity_types": [
-          "Cinematic Rule"
-        ],
-        "entity_types_unique": 1,
-        "difficulty_distribution": {
-          "1": 600,
-          "2": 200,
-          "3": 200
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/creative_arts/movies_cinematography",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "nanotechnology",
-      "universe_id": "science_lab",
-      "slug": "nanotechnology",
-      "display_name": "Nanotechnology",
-      "taxonomy": {
-        "domain": "science_lab",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.53,
-        "gravity": 0.56,
-        "overlap_regions": [
-          "ai",
-          "astronomy",
-          "biotechnology"
-        ],
-        "drift_potential": 0.33,
-        "field_coordinates": {
-          "x": 0.426,
-          "y": -0.566,
-          "z": -0.995
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 50,
-        "entity_types": [
-          "Application",
-          "Concept",
-          "Concern",
-          "Device",
-          "Facility",
-          "Field",
-          "Force",
-          "History",
-          "Invention",
-          "Material",
-          "Molecule",
-          "Particle",
-          "Phenomenon",
-          "Process",
-          "Product",
-          "Property",
-          "Structure",
-          "Tool"
-        ],
-        "entity_types_unique": 18,
-        "difficulty_distribution": {
-          "1": 25,
-          "2": 6,
-          "3": 19
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/science_lab/nanotechnology",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "neuroscience",
-      "universe_id": "science_lab",
-      "slug": "neuroscience",
-      "display_name": "Neuroscience",
-      "taxonomy": {
-        "domain": "science_lab",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.79,
-        "gravity": 0.48,
-        "overlap_regions": [
-          "ai",
-          "astronomy",
-          "biotechnology"
-        ],
-        "drift_potential": 0.017,
-        "field_coordinates": {
-          "x": -0.161,
-          "y": -0.778,
-          "z": 0.403
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 50,
-        "entity_types": [
-          "Barrier",
-          "Cell",
-          "Chemical",
-          "Concept",
-          "Cycle",
-          "Disease",
-          "Disorder",
-          "Event",
-          "Function",
-          "Hormone",
-          "Junction",
-          "Neurotransmitter",
-          "Organ",
-          "Person",
-          "Region",
-          "Sheath",
-          "Signal",
-          "State",
-          "Structure",
-          "System",
-          "Tool"
-        ],
-        "entity_types_unique": 21,
-        "difficulty_distribution": {
-          "1": 12,
-          "2": 21,
-          "3": 17
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/science_lab/neuroscience",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "optics",
-      "universe_id": "science_lab",
-      "slug": "optics",
-      "display_name": "Optics",
-      "taxonomy": {
-        "domain": "science_lab",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.96,
-        "gravity": 0.64,
-        "overlap_regions": [
-          "ai",
-          "astronomy",
-          "biotechnology"
-        ],
-        "drift_potential": 0.123,
-        "field_coordinates": {
-          "x": 0.153,
-          "y": 0.236,
-          "z": 0.172
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 51,
-        "entity_types": [
-          "Cell",
-          "Concept",
-          "Device",
-          "Display",
-          "Experiment",
-          "History",
-          "Instrument",
-          "Invention",
-          "Law",
-          "Opening",
-          "Particle",
-          "Pattern",
-          "Phenomenon",
-          "Principle",
-          "Property",
-          "Spectrum",
-          "Theory",
-          "Tissue"
-        ],
-        "entity_types_unique": 18,
-        "difficulty_distribution": {
-          "1": 28,
-          "2": 12,
-          "3": 11
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/science_lab/optics",
-        "schema_version": "1.1.0"
+        "schema_version": "1.0.0"
       }
     },
     {
@@ -2647,399 +1521,36 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.62,
+        "intensity": 0.735,
         "gravity": 0.56,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.277,
+        "drift_potential": 0.11,
         "field_coordinates": {
-          "x": -0.909,
-          "y": 0.042,
-          "z": 0.798
+          "x": -0.897,
+          "y": 0.156,
+          "z": -0.564
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 50,
-        "entity_types": [
-          "Art",
-          "Atrocity",
-          "Battle",
-          "Cavalry",
-          "Ceramics",
-          "City",
-          "Conflict",
-          "Cuisine",
-          "Era",
-          "Event",
-          "Fleet",
-          "Founder",
-          "Institution",
-          "Landmark",
-          "Market",
-          "Mosque",
-          "Mysticism",
-          "Palace",
-          "Period",
-          "Region",
-          "Soldier",
-          "Sultan",
-          "System",
-          "Title",
-          "Treaty",
-          "Vizier",
-          "Waterway"
-        ],
-        "entity_types_unique": 27,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 17,
-          "2": 14,
-          "3": 19
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
         "app_path": "app/data/content/base_bundle/history/ottoman_empire",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "painting",
-      "universe_id": "creative_arts",
-      "slug": "painting",
-      "display_name": "Painting",
-      "taxonomy": {
-        "domain": "creative_arts",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.955,
-        "gravity": 0.72,
-        "overlap_regions": [
-          "animation",
-          "architecture",
-          "art_history"
-        ],
-        "drift_potential": 0.067,
-        "field_coordinates": {
-          "x": 0.418,
-          "y": 0.183,
-          "z": -0.976
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 1000,
-        "entity_types": [
-          "Concept"
-        ],
-        "entity_types_unique": 1,
-        "difficulty_distribution": {
-          "1": 1000,
-          "2": 0,
-          "3": 0
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/creative_arts/painting",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "paleontology",
-      "universe_id": "science_lab",
-      "slug": "paleontology",
-      "display_name": "Paleontology",
-      "taxonomy": {
-        "domain": "science_lab",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.88,
-        "gravity": 0.48,
-        "overlap_regions": [
-          "ai",
-          "astronomy",
-          "biotechnology"
-        ],
-        "drift_potential": 0.293,
-        "field_coordinates": {
-          "x": 0.058,
-          "y": -0.159,
-          "z": 0.501
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 51,
-        "entity_types": [
-          "Arthropod",
-          "Concept",
-          "Dinosaur",
-          "Era",
-          "Event",
-          "Evidence",
-          "Fossil",
-          "Mammal",
-          "Mollusk",
-          "Period",
-          "Plant",
-          "Reptile",
-          "Shark",
-          "Site",
-          "Technique",
-          "Theory",
-          "Tool"
-        ],
-        "entity_types_unique": 17,
-        "difficulty_distribution": {
-          "1": 14,
-          "2": 15,
-          "3": 22
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/science_lab/paleontology",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "photography",
-      "universe_id": "creative_arts",
-      "slug": "photography",
-      "display_name": "Photography",
-      "taxonomy": {
-        "domain": "creative_arts",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.93,
-        "gravity": 0.44,
-        "overlap_regions": [
-          "animation",
-          "architecture",
-          "art_history"
-        ],
-        "drift_potential": 0.217,
-        "field_coordinates": {
-          "x": 0.568,
-          "y": -0.051,
-          "z": 0.185
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 1000,
-        "entity_types": [
-          "Concept"
-        ],
-        "entity_types_unique": 1,
-        "difficulty_distribution": {
-          "1": 1000,
-          "2": 0,
-          "3": 0
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/creative_arts/photography",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "physics",
-      "universe_id": "science_lab",
-      "slug": "physics",
-      "display_name": "Physics",
-      "taxonomy": {
-        "domain": "science_lab",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.52,
-        "gravity": 0.68,
-        "overlap_regions": [
-          "ai",
-          "astronomy",
-          "biotechnology"
-        ],
-        "drift_potential": 0.19,
-        "field_coordinates": {
-          "x": -0.814,
-          "y": -0.705,
-          "z": 0.292
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 52,
-        "entity_types": [
-          "Circuit",
-          "Component",
-          "Concept",
-          "Device",
-          "Equation",
-          "Force",
-          "Law",
-          "Pattern",
-          "Phenomenon",
-          "Process",
-          "Property",
-          "System",
-          "Theory",
-          "Wave"
-        ],
-        "entity_types_unique": 14,
-        "difficulty_distribution": {
-          "1": 13,
-          "2": 31,
-          "3": 8
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/science_lab/physics",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "pottery_ceramics",
-      "universe_id": "creative_arts",
-      "slug": "pottery-ceramics",
-      "display_name": "Pottery Ceramics",
-      "taxonomy": {
-        "domain": "creative_arts",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.67,
-        "gravity": 0.64,
-        "overlap_regions": [
-          "animation",
-          "architecture",
-          "art_history"
-        ],
-        "drift_potential": 0.22,
-        "field_coordinates": {
-          "x": -0.318,
-          "y": 0.083,
-          "z": -0.518
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 1000,
-        "entity_types": [
-          "Ceramic Unit"
-        ],
-        "entity_types_unique": 1,
-        "difficulty_distribution": {
-          "1": 600,
-          "2": 200,
-          "3": 200
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/creative_arts/pottery_ceramics",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "quantum_mechanics",
-      "universe_id": "science_lab",
-      "slug": "quantum-mechanics",
-      "display_name": "Quantum Mechanics",
-      "taxonomy": {
-        "domain": "science_lab",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.735,
-        "gravity": 0.68,
-        "overlap_regions": [
-          "ai",
-          "astronomy",
-          "biotechnology"
-        ],
-        "drift_potential": 0.043,
-        "field_coordinates": {
-          "x": -0.213,
-          "y": 0.753,
-          "z": 0.816
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 51,
-        "entity_types": [
-          "Application",
-          "Concept",
-          "Constant",
-          "Device",
-          "Equation",
-          "Experiment",
-          "Interpretation",
-          "Law",
-          "Particle",
-          "Person",
-          "Phenomenon",
-          "Property",
-          "Technique",
-          "Theory",
-          "Tool",
-          "Visualization"
-        ],
-        "entity_types_unique": 16,
-        "difficulty_distribution": {
-          "1": 27,
-          "2": 6,
-          "3": 18
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/science_lab/quantum_mechanics",
-        "schema_version": "1.1.0"
+        "schema_version": "1.0.0"
       }
     },
     {
@@ -3053,117 +1564,36 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.97,
+        "intensity": 0.735,
         "gravity": 0.44,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.27,
+        "drift_potential": 0.047,
         "field_coordinates": {
-          "x": 0.644,
-          "y": -0.182,
-          "z": 0.949
+          "x": -0.852,
+          "y": -0.949,
+          "z": -0.647
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 50,
-        "entity_types": [
-          "Alchemist",
-          "Anatomist",
-          "Artist",
-          "Astronomer",
-          "Building",
-          "City",
-          "Concept",
-          "Drawing",
-          "Fresco",
-          "Invention",
-          "Military",
-          "Movement",
-          "Music",
-          "Organization",
-          "Painter",
-          "Painting",
-          "Patron",
-          "Philosophy",
-          "Science",
-          "Scientist",
-          "Sculptor",
-          "Sculpture",
-          "Technique",
-          "Theater"
-        ],
-        "entity_types_unique": 24,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 17,
-          "2": 15,
-          "3": 18
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
         "app_path": "app/data/content/base_bundle/history/renaissance",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "robotics",
-      "universe_id": "science_lab",
-      "slug": "robotics",
-      "display_name": "Robotics",
-      "taxonomy": {
-        "domain": "science_lab",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.665,
-        "gravity": 0.72,
-        "overlap_regions": [
-          "ai",
-          "astronomy",
-          "biotechnology"
-        ],
-        "drift_potential": 0.127,
-        "field_coordinates": {
-          "x": 0.824,
-          "y": -0.687,
-          "z": 0.011
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 50,
-        "entity_types": [
-          "Application",
-          "Component",
-          "Concept",
-          "Field",
-          "Robot",
-          "Structure"
-        ],
-        "entity_types_unique": 6,
-        "difficulty_distribution": {
-          "1": 16,
-          "2": 19,
-          "3": 15
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/science_lab/robotics",
-        "schema_version": "1.1.0"
+        "schema_version": "1.0.0"
       }
     },
     {
@@ -3177,323 +1607,36 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.69,
+        "intensity": 0.805,
         "gravity": 0.56,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.247,
+        "drift_potential": 0.023,
         "field_coordinates": {
-          "x": -0.326,
-          "y": -0.205,
-          "z": -1.0
+          "x": -0.852,
+          "y": 0.326,
+          "z": 0.853
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 50,
-        "entity_types": [
-          "Art",
-          "Artifact",
-          "Ballet",
-          "Beverage",
-          "Book",
-          "Campaign",
-          "Cathedral",
-          "City",
-          "Composer",
-          "Conflict",
-          "Council",
-          "Dictator",
-          "Doctrine",
-          "Empress",
-          "Event",
-          "Fortress",
-          "Ideology",
-          "Infrastructure",
-          "Lake",
-          "Military",
-          "Palace",
-          "Range",
-          "Reform",
-          "Region",
-          "Religion",
-          "Revolution",
-          "Revolutionary",
-          "River",
-          "System",
-          "Tsar",
-          "Warriors"
-        ],
-        "entity_types_unique": 31,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 13,
-          "2": 21,
-          "3": 16
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
         "app_path": "app/data/content/base_bundle/history/russian_empire",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "sculpture",
-      "universe_id": "creative_arts",
-      "slug": "sculpture",
-      "display_name": "Sculpture",
-      "taxonomy": {
-        "domain": "creative_arts",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.535,
-        "gravity": 0.76,
-        "overlap_regions": [
-          "animation",
-          "architecture",
-          "art_history"
-        ],
-        "drift_potential": 0.037,
-        "field_coordinates": {
-          "x": 0.978,
-          "y": 0.709,
-          "z": 0.718
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 1000,
-        "entity_types": [
-          "Core Concept"
-        ],
-        "entity_types_unique": 1,
-        "difficulty_distribution": {
-          "1": 591,
-          "2": 205,
-          "3": 204
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/creative_arts/sculpture",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "solar_system",
-      "universe_id": "space_astronomy",
-      "slug": "solar-system",
-      "display_name": "Solar System",
-      "taxonomy": {
-        "domain": "space_astronomy",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 0.14,
-        "intensity": 0.58,
-        "gravity": 0.48,
-        "overlap_regions": [],
-        "drift_potential": 0.28,
-        "field_coordinates": {
-          "x": -0.886,
-          "y": 0.671,
-          "z": -0.998
-        },
-        "field_radius": 0.57,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 7,
-        "entity_types": [
-          "Atmospheric Moon",
-          "Dwarf Planet",
-          "G-type Main Sequence Star",
-          "Gas Giant",
-          "Icy Moon",
-          "Terrestrial Planet"
-        ],
-        "entity_types_unique": 6,
-        "difficulty_distribution": {
-          "1": 3,
-          "2": 2,
-          "3": 2
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/space_astronomy/solar_system",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "street_art",
-      "universe_id": "creative_arts",
-      "slug": "street-art",
-      "display_name": "Street Art",
-      "taxonomy": {
-        "domain": "creative_arts",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.685,
-        "gravity": 0.4,
-        "overlap_regions": [
-          "animation",
-          "architecture",
-          "art_history"
-        ],
-        "drift_potential": 0.217,
-        "field_coordinates": {
-          "x": -0.745,
-          "y": 0.129,
-          "z": -0.998
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 1000,
-        "entity_types": [
-          "Urban Unit"
-        ],
-        "entity_types_unique": 1,
-        "difficulty_distribution": {
-          "1": 600,
-          "2": 200,
-          "3": 200
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/creative_arts/street_art",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "tattoos_body_art",
-      "universe_id": "creative_arts",
-      "slug": "tattoos-body-art",
-      "display_name": "Tattoos Body Art",
-      "taxonomy": {
-        "domain": "creative_arts",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.82,
-        "gravity": 0.64,
-        "overlap_regions": [
-          "animation",
-          "architecture",
-          "art_history"
-        ],
-        "drift_potential": 0.017,
-        "field_coordinates": {
-          "x": 0.956,
-          "y": 0.671,
-          "z": 0.32
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 1000,
-        "entity_types": [
-          "Dermal Unit"
-        ],
-        "entity_types_unique": 1,
-        "difficulty_distribution": {
-          "1": 600,
-          "2": 200,
-          "3": 200
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/creative_arts/tattoos_body_art",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "thermodynamics",
-      "universe_id": "science_lab",
-      "slug": "thermodynamics",
-      "display_name": "Thermodynamics",
-      "taxonomy": {
-        "domain": "science_lab",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.54,
-        "gravity": 0.56,
-        "overlap_regions": [
-          "ai",
-          "astronomy",
-          "biotechnology"
-        ],
-        "drift_potential": 0.05,
-        "field_coordinates": {
-          "x": 0.041,
-          "y": 0.217,
-          "z": -0.609
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 50,
-        "entity_types": [
-          "Application",
-          "Concept",
-          "Constant",
-          "Cycle",
-          "Device",
-          "Distribution",
-          "Field",
-          "Law",
-          "Process",
-          "Property",
-          "State",
-          "Temperature"
-        ],
-        "entity_types_unique": 12,
-        "difficulty_distribution": {
-          "1": 21,
-          "2": 16,
-          "3": 13
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/science_lab/thermodynamics",
-        "schema_version": "1.1.0"
+        "schema_version": "1.0.0"
       }
     },
     {
@@ -3507,141 +1650,36 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.57,
+        "intensity": 0.965,
         "gravity": 0.4,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.0,
+        "drift_potential": 0.067,
         "field_coordinates": {
-          "x": -0.668,
-          "y": -0.189,
-          "z": -0.139
+          "x": -0.071,
+          "y": 0.69,
+          "z": -0.889
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 50,
-        "entity_types": [
-          "Afterlife",
-          "Armor",
-          "Artifact",
-          "Assembly",
-          "City",
-          "Cosmology",
-          "Economy",
-          "Explorer",
-          "Game",
-          "Geography",
-          "God",
-          "Goddess",
-          "Island",
-          "King",
-          "Leader",
-          "Legendary",
-          "Literature",
-          "Monastery",
-          "Monument",
-          "Myth",
-          "Poet",
-          "Region",
-          "Religion",
-          "Ritual",
-          "Settlement",
-          "Ship",
-          "Ship Decoration",
-          "Site",
-          "System",
-          "Technology",
-          "Territory",
-          "Tool",
-          "Trading Town",
-          "Trickster",
-          "Warrior",
-          "Weapon",
-          "Writing"
-        ],
-        "entity_types_unique": 37,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 9,
-          "2": 21,
-          "3": 20
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
         "app_path": "app/data/content/base_bundle/history/viking_age",
-        "schema_version": "1.1.0"
-      }
-    },
-    {
-      "id": "virology",
-      "universe_id": "science_lab",
-      "slug": "virology",
-      "display_name": "Virology",
-      "taxonomy": {
-        "domain": "science_lab",
-        "subcategories": []
-      },
-      "embodiment": {
-        "density": 1.0,
-        "intensity": 0.925,
-        "gravity": 0.72,
-        "overlap_regions": [
-          "ai",
-          "astronomy",
-          "biotechnology"
-        ],
-        "drift_potential": 0.26,
-        "field_coordinates": {
-          "x": -0.376,
-          "y": 0.974,
-          "z": 0.059
-        },
-        "field_radius": 1.0,
-        "temporal_decay": 0.1
-      },
-      "statistics": {
-        "observation_count": 50,
-        "entity_types": [
-          "Cell",
-          "Concept",
-          "Disease",
-          "Family",
-          "Material",
-          "Organism",
-          "Pathogen",
-          "Process",
-          "Product",
-          "Protein",
-          "Stage",
-          "Structure",
-          "Technique",
-          "Technology",
-          "Therapy",
-          "Tool",
-          "Treatment"
-        ],
-        "entity_types_unique": 17,
-        "difficulty_distribution": {
-          "1": 7,
-          "2": 24,
-          "3": 19
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
-      },
-      "provenance": {
-        "source_provenance": "app",
-        "authority_tier": "tier_1_projection",
-        "app_path": "app/data/content/base_bundle/science_lab/virology",
-        "schema_version": "1.1.0"
+        "schema_version": "1.0.0"
       }
     },
     {
@@ -3655,72 +1693,935 @@
       },
       "embodiment": {
         "density": 1.0,
-        "intensity": 0.68,
+        "intensity": 0.805,
         "gravity": 0.4,
         "overlap_regions": [
           "age_of_exploration",
           "ancient_china",
           "ancient_egypt"
         ],
-        "drift_potential": 0.063,
+        "drift_potential": 0.27,
         "field_coordinates": {
-          "x": 0.235,
-          "y": 0.452,
-          "z": 0.835
+          "x": -0.019,
+          "y": -0.315,
+          "z": 0.115
         },
         "field_radius": 1.0,
         "temporal_decay": 0.1
       },
       "statistics": {
         "observation_count": 50,
-        "entity_types": [
-          "Aircraft",
-          "Attack",
-          "Battle",
-          "Campaign",
-          "City",
-          "Concept",
-          "Device",
-          "Dictator",
-          "Emperor",
-          "Event",
-          "Fortification",
-          "General",
-          "Genocide",
-          "Invasion",
-          "Location",
-          "Media",
-          "Movement",
-          "Naval Base",
-          "Operation",
-          "Organization",
-          "PM",
-          "Policy",
-          "President",
-          "Program",
-          "Symbol",
-          "System",
-          "Tactic",
-          "Technology",
-          "Treaty",
-          "Vehicle",
-          "Vessel",
-          "Weapon"
-        ],
-        "entity_types_unique": 32,
+        "entity_types": [],
         "difficulty_distribution": {
-          "1": 12,
-          "2": 28,
-          "3": 10
-        },
-        "last_activity": "2026-07-06T00:00:00Z",
-        "first_activity": "2026-07-06T00:00:00Z"
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
       },
       "provenance": {
         "source_provenance": "app",
         "authority_tier": "tier_1_projection",
         "app_path": "app/data/content/base_bundle/history/world_wars",
-        "schema_version": "1.1.0"
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "ai",
+      "universe_id": "science_lab",
+      "slug": "ai",
+      "display_name": "Ai",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.71,
+        "gravity": 0.48,
+        "overlap_regions": [
+          "astronomy",
+          "biotechnology",
+          "chemistry"
+        ],
+        "drift_potential": 0.063,
+        "field_coordinates": {
+          "x": 0.854,
+          "y": 0.517,
+          "z": 0.745
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 52,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/ai",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "astronomy",
+      "universe_id": "science_lab",
+      "slug": "astronomy",
+      "display_name": "Astronomy",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.845,
+        "gravity": 0.76,
+        "overlap_regions": [
+          "ai",
+          "biotechnology",
+          "chemistry"
+        ],
+        "drift_potential": 0.067,
+        "field_coordinates": {
+          "x": -0.679,
+          "y": 0.851,
+          "z": 0.324
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 53,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/astronomy",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "biotechnology",
+      "universe_id": "science_lab",
+      "slug": "biotechnology",
+      "display_name": "Biotechnology",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.815,
+        "gravity": 0.52,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "chemistry"
+        ],
+        "drift_potential": 0.307,
+        "field_coordinates": {
+          "x": 0.905,
+          "y": -0.105,
+          "z": -0.849
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/biotechnology",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "chemistry",
+      "universe_id": "science_lab",
+      "slug": "chemistry",
+      "display_name": "Chemistry",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.735,
+        "gravity": 0.76,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.23,
+        "field_coordinates": {
+          "x": -0.164,
+          "y": -0.652,
+          "z": -0.474
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 51,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/chemistry",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "ecology",
+      "universe_id": "science_lab",
+      "slug": "ecology",
+      "display_name": "Ecology",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.66,
+        "gravity": 0.68,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.173,
+        "field_coordinates": {
+          "x": 0.026,
+          "y": 0.832,
+          "z": 0.735
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/ecology",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "forensics",
+      "universe_id": "science_lab",
+      "slug": "forensics",
+      "display_name": "Forensics",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.655,
+        "gravity": 0.76,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.08,
+        "field_coordinates": {
+          "x": -0.797,
+          "y": 0.077,
+          "z": -0.846
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 51,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/forensics",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "genetics",
+      "universe_id": "science_lab",
+      "slug": "genetics",
+      "display_name": "Genetics",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.61,
+        "gravity": 0.72,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.067,
+        "field_coordinates": {
+          "x": -0.368,
+          "y": -0.227,
+          "z": 0.283
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/genetics",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "geology",
+      "universe_id": "science_lab",
+      "slug": "geology",
+      "display_name": "Geology",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.51,
+        "gravity": 0.68,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.03,
+        "field_coordinates": {
+          "x": -0.995,
+          "y": -0.096,
+          "z": -0.236
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 52,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/geology",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "marine_biology",
+      "universe_id": "science_lab",
+      "slug": "marine-biology",
+      "display_name": "Marine Biology",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.625,
+        "gravity": 0.56,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.07,
+        "field_coordinates": {
+          "x": 0.395,
+          "y": 0.783,
+          "z": -0.675
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/marine_biology",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "meteorology",
+      "universe_id": "science_lab",
+      "slug": "meteorology",
+      "display_name": "Meteorology",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.945,
+        "gravity": 0.44,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.113,
+        "field_coordinates": {
+          "x": -0.314,
+          "y": -0.493,
+          "z": 0.169
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/meteorology",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "microbiology",
+      "universe_id": "science_lab",
+      "slug": "microbiology",
+      "display_name": "Microbiology",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.965,
+        "gravity": 0.48,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.25,
+        "field_coordinates": {
+          "x": 0.194,
+          "y": 0.591,
+          "z": 0.345
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/microbiology",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "nanotechnology",
+      "universe_id": "science_lab",
+      "slug": "nanotechnology",
+      "display_name": "Nanotechnology",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.76,
+        "gravity": 0.56,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.09,
+        "field_coordinates": {
+          "x": 0.93,
+          "y": 0.052,
+          "z": -0.693
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/nanotechnology",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "neuroscience",
+      "universe_id": "science_lab",
+      "slug": "neuroscience",
+      "display_name": "Neuroscience",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.735,
+        "gravity": 0.48,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.21,
+        "field_coordinates": {
+          "x": 0.275,
+          "y": 0.232,
+          "z": 0.566
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/neuroscience",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "optics",
+      "universe_id": "science_lab",
+      "slug": "optics",
+      "display_name": "Optics",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.53,
+        "gravity": 0.64,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.067,
+        "field_coordinates": {
+          "x": 0.255,
+          "y": 0.383,
+          "z": -0.242
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 51,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/optics",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "paleontology",
+      "universe_id": "science_lab",
+      "slug": "paleontology",
+      "display_name": "Paleontology",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.855,
+        "gravity": 0.48,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.233,
+        "field_coordinates": {
+          "x": 0.703,
+          "y": -0.748,
+          "z": 0.386
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 51,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/paleontology",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "physics",
+      "universe_id": "science_lab",
+      "slug": "physics",
+      "display_name": "Physics",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.635,
+        "gravity": 0.68,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.227,
+        "field_coordinates": {
+          "x": -0.059,
+          "y": -0.446,
+          "z": -0.199
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 52,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/physics",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "quantum_mechanics",
+      "universe_id": "science_lab",
+      "slug": "quantum-mechanics",
+      "display_name": "Quantum Mechanics",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.535,
+        "gravity": 0.68,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.25,
+        "field_coordinates": {
+          "x": -0.863,
+          "y": 0.149,
+          "z": 0.263
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 51,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/quantum_mechanics",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "robotics",
+      "universe_id": "science_lab",
+      "slug": "robotics",
+      "display_name": "Robotics",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.61,
+        "gravity": 0.72,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.053,
+        "field_coordinates": {
+          "x": -0.389,
+          "y": -0.262,
+          "z": -0.504
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/robotics",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "thermodynamics",
+      "universe_id": "science_lab",
+      "slug": "thermodynamics",
+      "display_name": "Thermodynamics",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.58,
+        "gravity": 0.56,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.053,
+        "field_coordinates": {
+          "x": -0.309,
+          "y": -0.533,
+          "z": 0.719
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/thermodynamics",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "virology",
+      "universe_id": "science_lab",
+      "slug": "virology",
+      "display_name": "Virology",
+      "taxonomy": {
+        "domain": "science_lab",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 1.0,
+        "intensity": 0.845,
+        "gravity": 0.72,
+        "overlap_regions": [
+          "ai",
+          "astronomy",
+          "biotechnology"
+        ],
+        "drift_potential": 0.303,
+        "field_coordinates": {
+          "x": 0.517,
+          "y": 0.245,
+          "z": 0.025
+        },
+        "field_radius": 1.0,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 50,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/science_lab/virology",
+        "schema_version": "1.0.0"
+      }
+    },
+    {
+      "id": "solar_system",
+      "universe_id": "space_astronomy",
+      "slug": "solar-system",
+      "display_name": "Solar System",
+      "taxonomy": {
+        "domain": "space_astronomy",
+        "subcategories": []
+      },
+      "embodiment": {
+        "density": 0.14,
+        "intensity": 0.955,
+        "gravity": 0.48,
+        "overlap_regions": [],
+        "drift_potential": 0.287,
+        "field_coordinates": {
+          "x": -0.743,
+          "y": 0.982,
+          "z": -0.467
+        },
+        "field_radius": 0.57,
+        "temporal_decay": 0.1
+      },
+      "statistics": {
+        "observation_count": 7,
+        "entity_types": [],
+        "difficulty_distribution": {
+          "1": 0,
+          "2": 0,
+          "3": 0
+        }
+      },
+      "provenance": {
+        "source_provenance": "app",
+        "authority_tier": "tier_1_projection",
+        "app_path": "app/data/content/base_bundle/space_astronomy/solar_system",
+        "schema_version": "1.0.0"
       }
     }
   ]
