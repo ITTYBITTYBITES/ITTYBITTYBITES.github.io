@@ -1,13 +1,26 @@
-!.vscode/extensions.json
-!.vscode/settings.json
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+dist-ssr/
+
+# Local files
 *.local
-*.log
-.DS_Store
 .cache
 .eslintcache
 .idea
 .vscode/*
-dist
-dist-ssr
-governing/
-node_modules
+!.vscode/extensions.json
+!.vscode/settings.json
+
+# OS / logs
+.DS_Store
+*.log
+
+# PRIVATE - never deploy, but still tracked in repo for governance
+governing/private/
+governing/CURRENT_MODE.md
+governing/GOVERNANCE.md
+governing/HANDOFF_REPORT.md
+governing/VERSION.md

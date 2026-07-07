@@ -39,6 +39,51 @@ jobs:
           test -f dist/manifest.webmanifest || exit 1
           echo "✓ Build artifacts verified"
 
+      - name: Privacy Boundary Guard
+        run: |
+          echo "=== Running strict public/private boundary enforcement ==="
+          
+          FORBIDDEN=(
+            "PRODUCT_CONSTITUTION"
+            "PLATFORM_BLUEPRINT"
+            "DEVELOPMENT_MANUAL"
+            "ENGINEERING_STANDARDS"
+            "DESIGN_SYSTEM"
+            "CONTENT_SYSTEM"
+            "DECISION_LOG"
+            "diagnostic"
+            "admin"
+            "private"
+            "governing"
+            "\.md$"
+          )
+          
+          FAIL=0
+          
+          for pattern in "${FORBIDDEN[@]}"; do
+            if find dist -type f | grep -iE "$pattern" > /dev/null 2>&1; then
+              echo "❌ PRIVACY VIOLATION: Found forbidden pattern '$pattern' in dist/"
+              find dist -type f | grep -iE "$pattern"
+              FAIL=1
+            fi
+          done
+          
+          # Also block any .md files in dist (no documentation should ship)
+          if find dist -name "*.md" | grep -q .; then
+            echo "❌ PRIVACY VIOLATION: Markdown files found in dist/"
+            find dist -name "*.md"
+            FAIL=1
+          fi
+          
+          if [ $FAIL -eq 1 ]; then
+            echo ""
+            echo "DEPLOYMENT BLOCKED: Private or internal content leaked into public build."
+            echo "Move the offending files to governing/ and ensure they are gitignored."
+            exit 1
+          fi
+          
+          echo "✓ Privacy Boundary Guard passed. dist/ contains only public assets."
+          
       - name: Upload build artifact (for PR review)
         if: github.event_name == 'pull_request'
         uses: actions/upload-artifact@v4
