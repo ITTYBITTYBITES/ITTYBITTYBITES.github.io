@@ -141,8 +141,126 @@ The goal is to learn from it and build something better.
 
 ---
 
-**End of Published Section 1**
+## 7. Identity and Boundaries
 
-This is the first published portion of Product Constitution v1.0.0.
+### What We Are Building
 
-Subsequent sections (Identity and Boundaries, Experience Model, Trust and User Relationship, Growth Philosophy, Governance Rules) will be added in future published updates before any implementation work begins.
+This platform is a foundation for creating and sharing meaningful digital experiences.
+
+It is designed to support many forms of creation, including:
+
+- interactive experiences,
+- games,
+- applications,
+- tools,
+- educational content,
+- stories,
+- experiments,
+- and future formats that do not yet exist.
+
+The platform is not defined by one product.
+
+The platform is defined by the quality of the experiences it enables.
+
+### The Platform Is an Ecosystem
+
+The platform is not a collection of disconnected projects.
+
+Every experience exists within a larger environment where discovery, learning, and interaction can flow naturally between creations.
+
+A person who discovers one experience should be able to find related experiences, ideas, stories, and future developments.
+
+The platform should become more valuable as it grows.
+
+### What We Are Not Building
+
+The platform is not:
+
+**A content factory**
+
+Quantity is not the goal.
+
+Publishing more does not automatically create more value.
+
+Every addition should earn its place.
+
+**An advertising platform**
+
+Revenue is necessary for sustainability.
+
+However, advertising exists to support the platform, not define it.
+
+User trust always outranks short-term monetization.
+
+**A technology showcase**
+
+Technology is not the product.
+
+Frameworks, programming languages, and infrastructure are tools.
+
+The user should experience the result, not the machinery behind it.
+
+**A collection of isolated applications**
+
+Individual experiences may have their own identity, but they should benefit from belonging to the ecosystem.
+
+The platform should prevent fragmentation.
+
+### The Platform Boundary
+
+The platform must remain flexible enough to support future ideas while maintaining a clear identity.
+
+New projects should be evaluated using this question:
+
+> Does this strengthen the ecosystem of meaningful experiences?
+
+If yes, it belongs.
+
+If it only creates isolated value without contributing to the larger platform, it should be reconsidered.
+
+### The Difference Between Growth and Expansion
+
+Growth means becoming better.
+
+Expansion means becoming larger.
+
+The platform should prioritize growth.
+
+Adding features, content, and capabilities only matters when they improve the experience of the people using it.
+
+A smaller, thoughtful platform is more valuable than a larger, confusing one.
+
+### Independence and Portability
+
+The platform should avoid unnecessary dependence on external systems that could limit future control.
+
+External services may be used when they provide clear value, but the platform should maintain ownership of:
+
+- its content,
+- its data structures,
+- its identity,
+- and its ability to evolve.
+
+The platform should remain portable.
+
+### Long-Term Identity
+
+The platform should feel consistent even as it changes.
+
+A visitor returning years later should recognize the principles that guided it.
+
+Technology will change.
+
+Design trends will change.
+
+Individual experiences will change.
+
+The purpose should not.
+
+---
+
+**End of Published Section 2**
+
+This is the second published portion of Product Constitution v1.0.0.
+
+The next published section will be **Experience Model** (defining Interaction, Experience, Collection, Story, Discovery, and Platform Shell). No implementation work should begin until that section is also published.
