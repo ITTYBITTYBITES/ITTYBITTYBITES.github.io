@@ -175,3 +175,10 @@ The internal event bus (`src/platform/events.ts`) also fires these events, so fu
 - Error boundary and loading state components.
 - Automated tests (unit + visual regression).
 - Additional PWA assets (screenshots, richer manifest metadata).
+## Handoff Stabilization (2026-07-07)
+
+This commit establishes a stable baseline after manual file move + previous agent interruption.
+
+See the commit message for full details.
+
+Next agents: Always pull from GitHub first. Use `npm ci && npm run lint && npm run build` before any work.

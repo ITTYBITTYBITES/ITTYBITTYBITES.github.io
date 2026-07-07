@@ -72,12 +72,14 @@ function matchRoute(path: string): { route: Route; params: Record<string, string
 
 function patternToRegex(pattern: string): { regex: RegExp; keys: string[] } {
   const keys: string[] = [];
-  const regexSource = pattern
-    .replace(/\/$/, '')
-    .replace(/:([^/]+)/g, (_, key) => {
-      keys.push(key);
-      return '([^/]+)';
-    });
+  if (pattern === '/' || pattern === '') {
+    return { regex: /^\/?$/, keys: [] };
+  }
+  let regexSource = pattern.replace(/\/$/, '');
+  regexSource = regexSource.replace(/:([^/]+)/g, (_, key) => {
+    keys.push(key);
+    return '([^/]+)';
+  });
   return { regex: new RegExp(`^${regexSource}$`), keys };
 }
 
