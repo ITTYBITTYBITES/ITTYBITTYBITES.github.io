@@ -1,4 +1,19 @@
-# Platform Foundation
+# The Experience Platform
+
+> **v2 — Product Phase** (started 2026-07-07)  
+> The Platform is now in its product architecture phase.  
+> All future work is derived from the governing specifications in `/docs`.
+
+See:
+- `GOVERNANCE.md` — How this project is now run
+- `VERSION.md` — Version history
+- `docs/README.md` — The full governing document library
+
+---
+
+## Historical Foundation (v1)
+
+The section below documents the stable engineering foundation that was completed before v2 began.
 
 A clean, modular foundation for a creative platform capable of hosting browser games, applications, interactive experiences, utilities, experiments, documentation, and media projects.
 

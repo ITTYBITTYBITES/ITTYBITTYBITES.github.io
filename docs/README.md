@@ -1,8 +1,13 @@
 # The Experience Platform — Governing Documents
 
+**Platform v2 — Product Phase**
+
 This directory contains the **authoritative product and engineering specifications** for the platform.
 
-These are not marketing documents. They are **living governing specifications**.
+These are **not** marketing documents.  
+These are **living governing specifications**.
+
+All implementation work (starting with the first Build Orders) must trace back to decisions documented here.
 
 ## Document Hierarchy (Strict Order)
 
