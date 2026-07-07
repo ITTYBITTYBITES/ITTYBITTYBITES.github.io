@@ -1,0 +1,476 @@
+{
+  "schema_version": "1.0.0",
+  "model_version": "proposals-v1",
+  "generated_at": "2026-07-07T00:48:19.234515+00:00",
+  "inputs": {
+    "ranking_model": "ranking-v1",
+    "ranking_generated_at": "2026-07-07T00:48:19.234515+00:00",
+    "lifecycle_model": "lifecycle-v1",
+    "lifecycle_generated_at": "2026-07-07T00:48:19.234515+00:00",
+    "placement_model": "placement-v1",
+    "placement_generated_at": "2026-07-07T00:48:19.234515+00:00",
+    "worlds_count": 61,
+    "universes_count": 7
+  },
+  "scoring": {
+    "deterministic": true,
+    "randomness": false,
+    "external_data": false,
+    "note": "Score is content-derived, reproducible"
+  },
+  "approval_boundary": {
+    "allowed_statuses": [
+      "proposed",
+      "approved",
+      "rejected",
+      "implemented"
+    ],
+    "engine_may_create": [
+      "proposed"
+    ],
+    "engine_may_not": [
+      "approved",
+      "rejected",
+      "implemented"
+    ],
+    "current_status_all": "proposed"
+  },
+  "counts": {
+    "total": 17,
+    "coverage_gap": 5,
+    "expansion": 5,
+    "balance": 4,
+    "seasonal": 3
+  },
+  "proposals": [
+    {
+      "proposal_id": "prop-001",
+      "type": "coverage_gap",
+      "target": "space exploration",
+      "title": "Coverage gap: Frontier Exploration \u2013 space exploration",
+      "reason": "high activity with missing related categories",
+      "score": 0.95,
+      "confidence": 0.75,
+      "evidence": [
+        "universe frontier has 0 worlds",
+        "global average is 15.25 worlds/universe",
+        "max universe size is 20 worlds",
+        "high activity in neighboring universes with missing related categories"
+      ],
+      "related_worlds": [],
+      "related_universe": "frontier",
+      "status": "proposed",
+      "created_at": "2026-07-07T00:48:19.234515+00:00",
+      "tags": [
+        "coverage",
+        "frontier",
+        "gap"
+      ]
+    },
+    {
+      "proposal_id": "prop-002",
+      "type": "coverage_gap",
+      "target": "medical",
+      "title": "Coverage gap: Life Sciences \u2013 medical",
+      "reason": "high activity with missing related categories",
+      "score": 0.95,
+      "confidence": 0.75,
+      "evidence": [
+        "universe life_sciences has 0 worlds",
+        "global average is 15.25 worlds/universe",
+        "max universe size is 20 worlds",
+        "high activity in neighboring universes with missing related categories"
+      ],
+      "related_worlds": [],
+      "related_universe": "life_sciences",
+      "status": "proposed",
+      "created_at": "2026-07-07T00:48:19.234515+00:00",
+      "tags": [
+        "coverage",
+        "life_sciences",
+        "gap"
+      ]
+    },
+    {
+      "proposal_id": "prop-003",
+      "type": "coverage_gap",
+      "target": "behavioral_psychology",
+      "title": "Coverage gap: Society & Mind \u2013 behavioral psychology",
+      "reason": "high activity with missing related categories",
+      "score": 0.95,
+      "confidence": 0.75,
+      "evidence": [
+        "universe society_mind has 0 worlds",
+        "global average is 15.25 worlds/universe",
+        "max universe size is 20 worlds",
+        "high activity in neighboring universes with missing related categories"
+      ],
+      "related_worlds": [],
+      "related_universe": "society_mind",
+      "status": "proposed",
+      "created_at": "2026-07-07T00:48:19.234515+00:00",
+      "tags": [
+        "coverage",
+        "society_mind",
+        "gap"
+      ]
+    },
+    {
+      "proposal_id": "prop-004",
+      "type": "coverage_gap",
+      "target": "systems_engineering",
+      "title": "Coverage gap: Tech Ops \u2013 systems engineering",
+      "reason": "high activity with missing related categories",
+      "score": 0.95,
+      "confidence": 0.75,
+      "evidence": [
+        "universe tech_ops has 0 worlds",
+        "global average is 15.25 worlds/universe",
+        "max universe size is 20 worlds",
+        "high activity in neighboring universes with missing related categories"
+      ],
+      "related_worlds": [],
+      "related_universe": "tech_ops",
+      "status": "proposed",
+      "created_at": "2026-07-07T00:48:19.234515+00:00",
+      "tags": [
+        "coverage",
+        "tech_ops",
+        "gap"
+      ]
+    },
+    {
+      "proposal_id": "prop-011",
+      "type": "balance",
+      "target": "medical",
+      "title": "Balance: Life Sciences \u2013 Medical",
+      "reason": "underrepresented compared with other universes",
+      "score": 0.92,
+      "confidence": 0.7,
+      "evidence": [
+        "universe life_sciences has 0 worlds",
+        "max universe size is 20",
+        "balance_ratio=0.000",
+        "underrepresented compared with other universes",
+        "strong_universes=creative_arts, history, science_lab"
+      ],
+      "related_worlds": [],
+      "related_universe": "life_sciences",
+      "status": "proposed",
+      "created_at": "2026-07-07T00:48:19.234515+00:00",
+      "tags": [
+        "balance",
+        "life_sciences",
+        "underrepresented"
+      ]
+    },
+    {
+      "proposal_id": "prop-012",
+      "type": "balance",
+      "target": "behavioral_psychology",
+      "title": "Balance: Society Mind \u2013 Behavioral Psychology",
+      "reason": "underrepresented compared with other universes",
+      "score": 0.92,
+      "confidence": 0.7,
+      "evidence": [
+        "universe society_mind has 0 worlds",
+        "max universe size is 20",
+        "balance_ratio=0.000",
+        "underrepresented compared with other universes",
+        "strong_universes=creative_arts, history"
+      ],
+      "related_worlds": [],
+      "related_universe": "society_mind",
+      "status": "proposed",
+      "created_at": "2026-07-07T00:48:19.234515+00:00",
+      "tags": [
+        "balance",
+        "society_mind",
+        "underrepresented"
+      ]
+    },
+    {
+      "proposal_id": "prop-013",
+      "type": "balance",
+      "target": "systems_engineering",
+      "title": "Balance: Tech Ops \u2013 Systems Engineering",
+      "reason": "underrepresented compared with other universes",
+      "score": 0.92,
+      "confidence": 0.7,
+      "evidence": [
+        "universe tech_ops has 0 worlds",
+        "max universe size is 20",
+        "balance_ratio=0.000",
+        "underrepresented compared with other universes",
+        "strong_universes=science_lab, creative_arts"
+      ],
+      "related_worlds": [],
+      "related_universe": "tech_ops",
+      "status": "proposed",
+      "created_at": "2026-07-07T00:48:19.234515+00:00",
+      "tags": [
+        "balance",
+        "tech_ops",
+        "underrepresented"
+      ]
+    },
+    {
+      "proposal_id": "prop-014",
+      "type": "balance",
+      "target": "space_exploration",
+      "title": "Balance: Frontier \u2013 Space Exploration",
+      "reason": "underrepresented compared with other universes",
+      "score": 0.92,
+      "confidence": 0.7,
+      "evidence": [
+        "universe frontier has 0 worlds",
+        "max universe size is 20",
+        "balance_ratio=0.000",
+        "underrepresented compared with other universes",
+        "strong_universes=science_lab"
+      ],
+      "related_worlds": [],
+      "related_universe": "frontier",
+      "status": "proposed",
+      "created_at": "2026-07-07T00:48:19.234515+00:00",
+      "tags": [
+        "balance",
+        "frontier",
+        "underrepresented"
+      ]
+    },
+    {
+      "proposal_id": "prop-005",
+      "type": "coverage_gap",
+      "target": "space exploration",
+      "title": "Coverage gap: Space Astronomy \u2013 space exploration",
+      "reason": "high activity with missing related categories",
+      "score": 0.78,
+      "confidence": 0.72,
+      "evidence": [
+        "universe space_astronomy has 1 worlds",
+        "solar_system is active with low entity diversity",
+        "related categories missing"
+      ],
+      "related_worlds": [
+        "solar_system"
+      ],
+      "related_universe": "space_astronomy",
+      "status": "proposed",
+      "created_at": "2026-07-07T00:48:19.234515+00:00",
+      "tags": [
+        "coverage",
+        "space_astronomy",
+        "gap"
+      ]
+    },
+    {
+      "proposal_id": "prop-006",
+      "type": "expansion",
+      "target": "animation_principles_advanced",
+      "title": "Expansion: Animation Principles Advanced",
+      "reason": "high ranking neighboring worlds",
+      "score": 0.6806,
+      "confidence": 0.6527,
+      "evidence": [
+        "high ranking neighboring worlds",
+        "source_world=animation",
+        "rank=1",
+        "score=0.7562"
+      ],
+      "related_worlds": [
+        "animation"
+      ],
+      "related_universe": "creative_arts",
+      "status": "proposed",
+      "created_at": "2026-07-07T00:48:19.234515+00:00",
+      "tags": [
+        "expansion",
+        "creative_arts",
+        "animation"
+      ]
+    },
+    {
+      "proposal_id": "prop-007",
+      "type": "expansion",
+      "target": "architectural_history",
+      "title": "Expansion: Architectural History",
+      "reason": "high ranking neighboring worlds",
+      "score": 0.6806,
+      "confidence": 0.6527,
+      "evidence": [
+        "high ranking neighboring worlds",
+        "source_world=architecture",
+        "rank=2",
+        "score=0.7562"
+      ],
+      "related_worlds": [
+        "architecture"
+      ],
+      "related_universe": "creative_arts",
+      "status": "proposed",
+      "created_at": "2026-07-07T00:48:19.234515+00:00",
+      "tags": [
+        "expansion",
+        "creative_arts",
+        "architecture"
+      ]
+    },
+    {
+      "proposal_id": "prop-008",
+      "type": "expansion",
+      "target": "contemporary_art",
+      "title": "Expansion: Contemporary Art",
+      "reason": "high ranking neighboring worlds",
+      "score": 0.6806,
+      "confidence": 0.6527,
+      "evidence": [
+        "high ranking neighboring worlds",
+        "source_world=art_history",
+        "rank=3",
+        "score=0.7562"
+      ],
+      "related_worlds": [
+        "art_history"
+      ],
+      "related_universe": "creative_arts",
+      "status": "proposed",
+      "created_at": "2026-07-07T00:48:19.234515+00:00",
+      "tags": [
+        "expansion",
+        "creative_arts",
+        "art_history"
+      ]
+    },
+    {
+      "proposal_id": "prop-009",
+      "type": "expansion",
+      "target": "illustration",
+      "title": "Expansion: Illustration",
+      "reason": "high ranking neighboring worlds",
+      "score": 0.6806,
+      "confidence": 0.6527,
+      "evidence": [
+        "high ranking neighboring worlds",
+        "source_world=drawing",
+        "rank=9",
+        "score=0.7562"
+      ],
+      "related_worlds": [
+        "drawing"
+      ],
+      "related_universe": "creative_arts",
+      "status": "proposed",
+      "created_at": "2026-07-07T00:48:19.234515+00:00",
+      "tags": [
+        "expansion",
+        "creative_arts",
+        "drawing"
+      ]
+    },
+    {
+      "proposal_id": "prop-010",
+      "type": "expansion",
+      "target": "cinematography",
+      "title": "Expansion: Cinematography",
+      "reason": "high ranking neighboring worlds",
+      "score": 0.6806,
+      "confidence": 0.6527,
+      "evidence": [
+        "high ranking neighboring worlds",
+        "source_world=photography",
+        "rank=16",
+        "score=0.7562"
+      ],
+      "related_worlds": [
+        "photography"
+      ],
+      "related_universe": "creative_arts",
+      "status": "proposed",
+      "created_at": "2026-07-07T00:48:19.234515+00:00",
+      "tags": [
+        "expansion",
+        "creative_arts",
+        "photography"
+      ]
+    },
+    {
+      "proposal_id": "prop-015",
+      "type": "seasonal",
+      "target": "winter_survival",
+      "title": "Seasonal: Winter Survival",
+      "reason": "existing compatible content",
+      "score": 0.45,
+      "confidence": 0.45,
+      "evidence": [
+        "seasonal placeholder \u2013 no external API",
+        "compatible_content=viking_age, feudal_japan",
+        "existing compatible content"
+      ],
+      "related_worlds": [
+        "viking_age",
+        "feudal_japan"
+      ],
+      "related_universe": "history",
+      "status": "proposed",
+      "created_at": "2026-07-07T00:48:19.234515+00:00",
+      "tags": [
+        "seasonal",
+        "placeholder",
+        "history"
+      ]
+    },
+    {
+      "proposal_id": "prop-016",
+      "type": "seasonal",
+      "target": "harvest_festival",
+      "title": "Seasonal: Harvest Festival",
+      "reason": "existing compatible content",
+      "score": 0.45,
+      "confidence": 0.45,
+      "evidence": [
+        "seasonal placeholder \u2013 no external API",
+        "compatible_content=ancient_china, mesoamerica",
+        "existing compatible content"
+      ],
+      "related_worlds": [
+        "ancient_china",
+        "mesoamerica"
+      ],
+      "related_universe": "history",
+      "status": "proposed",
+      "created_at": "2026-07-07T00:48:19.234515+00:00",
+      "tags": [
+        "seasonal",
+        "placeholder",
+        "history"
+      ]
+    },
+    {
+      "proposal_id": "prop-017",
+      "type": "seasonal",
+      "target": "ocean_exploration",
+      "title": "Seasonal: Ocean Exploration",
+      "reason": "existing compatible content",
+      "score": 0.45,
+      "confidence": 0.45,
+      "evidence": [
+        "seasonal placeholder \u2013 no external API",
+        "compatible_content=marine_biology, ecology",
+        "existing compatible content"
+      ],
+      "related_worlds": [
+        "marine_biology",
+        "ecology"
+      ],
+      "related_universe": "science_lab",
+      "status": "proposed",
+      "created_at": "2026-07-07T00:48:19.234515+00:00",
+      "tags": [
+        "seasonal",
+        "placeholder",
+        "science_lab"
+      ]
+    }
+  ]
+}

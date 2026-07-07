@@ -1,9 +1,14 @@
 {
-  "export_tool": "chronicle_export_v1",
-  "timestamp": "2026-07-06T20:03:50.971716Z",
-  "schema_version": "1.0.0",
+  "export_tool": "chronicle_export_v1_2",
+  "timestamp": "2026-07-07T00:48:19.234515Z",
+  "schema_version": "1.1.0",
   "authority_tier": "tier_1_projection",
   "source_provenance": "app",
+  "storage": {
+    "format": "jsonl_per_world_v1",
+    "observation_files": 61,
+    "observations_exported": 22059
+  },
   "counts": {
     "observation_banks": 143,
     "observations_exported": 22059,

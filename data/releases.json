@@ -1,10 +1,10 @@
 {
-  "release_id": "chronicle-v1.0.0",
+  "release_id": "chronicle-v1.2.0",
   "schema_version": "1.0.0",
-  "contract_bundle_version": "1.0.0",
+  "contract_bundle_version": "1.1.0",
   "authority_tier": "tier_1_projection",
   "source_provenance": "app",
-  "released_at": "2026-07-06T20:03:50.971490Z",
+  "released_at": "2026-07-07T00:48:19.234515Z",
   "content_manifest": {
     "universes": [
       "creative_arts",
@@ -22,7 +22,8 @@
     "observations": {
       "count": 22059,
       "banks": 143,
-      "content_hash": "sha256:placeholder"
+      "content_hash": "sha256:placeholder",
+      "storage_format": "jsonl_per_world_v1"
     },
     "events": {
       "count": 0,
@@ -37,7 +38,7 @@
   },
   "reproducibility": {
     "deterministic": true,
-    "rebuild_command": "chronicle_export --source app --schema v1 --output /shared/export/",
+    "rebuild_command": "chronicle_export --source app --schema v1.2 --output /shared/export/",
     "input_hash": "sha256:placeholder",
     "output_hash": "sha256:placeholder",
     "verified_by": [
@@ -78,7 +79,7 @@
     "app_commit": "HEAD",
     "authority_model": "/workspace/shared/contracts/authority.model.json",
     "ci_lock": "/workspace/shared/contracts/ci.lock.json",
-    "exported_by": "chronicle_export_v1",
+    "exported_by": "chronicle_export_v1_2",
     "released_by": "automated"
   }
 }

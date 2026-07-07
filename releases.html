@@ -1,10 +1,28 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Releases – Chronicle</title><link rel="stylesheet" href="assets/chronicle.css"></head><body><header class="site-header"><div class="nav"><div class="brand">👁 <span>Two Second <span class="accent">Witness</span></span> · <span style="color:#ff00aa;font-size:12px;margin-left:8px">CHRONICLE LIVE</span></div><div class="nav-links"><a href="index.html">Field</a><a href="worlds.html">Worlds</a><a href="characters.html">Characters</a><a href="events.html">Events</a><a href="releases.html" class="active">Releases</a><a href="journal.html">Journal</a></div></div></header><div style="max-width:900px;margin:40px auto;padding:0 20px"><h2>Releases – Deterministic Snapshots</h2><p><strong>chronicle-v1.0.0</strong> · schema 1.0.0</p><pre style="background:#0b1022;padding:16px;border-radius:10px;overflow:auto;font-size:12px">{
-  "release_id": "chronicle-v1.0.0",
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Releases – Two Second Witness</title>
+<link rel="stylesheet" href="assets/chronicle.css">
+
+</head>
+<body>
+<header class="site-header">
+  <div class="nav">
+    <a class="brand" href="index.html">👁 <span>Two Second <strong>Witness</strong></span></a>
+    <nav class="nav-links"><a href="index.html">Home</a><a href="explore.html">Explore</a><a href="evolution.html">Evolution</a><a href="journal.html">Journal</a><a href="about.html">About</a></nav>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+  </div>
+</header>
+<main>
+<div class="container" style="padding:40px 20px"><h2>Releases</h2><p class="meta">This is a legacy JSON dump. See <a href="journal.html">Journal</a> for human-readable release notes.</p><pre>{
+  "release_id": "chronicle-v1.2.0",
   "schema_version": "1.0.0",
-  "contract_bundle_version": "1.0.0",
+  "contract_bundle_version": "1.1.0",
   "authority_tier": "tier_1_projection",
   "source_provenance": "app",
-  "released_at": "2026-07-06T20:03:50.971490Z",
+  "released_at": "2026-07-07T00:48:19.234515Z",
   "content_manifest": {
     "universes": [
       "creative_arts",
@@ -22,7 +40,8 @@
     "observations": {
       "count": 22059,
       "banks": 143,
-      "content_hash": "sha256:placeholder"
+      "content_hash": "sha256:placeholder",
+      "storage_format": "jsonl_per_world_v1"
     },
     "events": {
       "count": 0,
@@ -37,7 +56,7 @@
   },
   "reproducibility": {
     "deterministic": true,
-    "rebuild_command": "chronicle_export --source app --schema v1 --output /shared/export/",
+    "rebuild_command": "chronicle_export --source app --schema v1.2 --output /shared/export/",
     "input_hash": "sha256:placeholder",
     "output_hash": "sha256:placeholder",
     "verified_by": [
@@ -78,7 +97,16 @@
     "app_commit": "HEAD",
     "authority_model": "/workspace/shared/contracts/authority.model.json",
     "ci_lock": "/workspace/shared/contracts/ci.lock.json",
-    "exported_by": "chronicle_export_v1",
+    "exported_by": "chronicle_export_v1_2",
     "released_by": "automated"
   }
-}</pre></div><footer class="footer">Chronicle System v1 · Shared Canonical Truth · App → Shared → Chronicle → Website<br><span style="font-size:11px">Regenerated • No manual edits • source_provenance="app"</span><br>© 2026 Two Second Witness · ITTY BITTY BITES</footer></body></html>
+}</pre></div>
+</main>
+<footer class="footer">
+  <div class="footer-inner">
+    <div><strong>Two Second Witness</strong> · Chronicle System</div>
+    <div class="footer-meta">Deterministic cognitive universe · App → Shared → Chronicle → Website<br>© 2026 ITTY BITTY BITES · source_provenance="app" · authority_tier="tier_1_projection"</div>
+  </div>
+</footer>
+</body>
+</html>

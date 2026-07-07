@@ -1,0 +1,23 @@
+{
+  "schema_version": "1.0.0",
+  "model_version": "queue-v1",
+  "generated_at": "2026-07-07T00:48:19.234515+00:00",
+  "inputs": {
+    "proposals_model": "proposals-v1",
+    "proposals_count": 17,
+    "approvals_model": "approvals-v1",
+    "approved_count": 0
+  },
+  "queue_policy": {
+    "only_approved_enter_queue": true,
+    "ordering": "priority_desc_then_proposal_id_asc",
+    "content_generation": false,
+    "execution_authority": "approval_state"
+  },
+  "checksum": "sha256:e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "counts": {
+    "queued": 0,
+    "total_approved_input": 0
+  },
+  "queue": []
+}
