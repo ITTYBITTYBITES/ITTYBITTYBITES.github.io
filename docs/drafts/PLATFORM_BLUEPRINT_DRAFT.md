@@ -1,15 +1,37 @@
 # The Experience Platform
-## Platform Blueprint v1.0
+## Platform Blueprint — DRAFT v0.1 (Reference Material)
 
-**Version**: 1.0  
+**Status**: Reference Material / Historical Draft  
 **Date**: 2026-07-07  
-**Status**: Draft — Authoritative Specification  
+**Version**: v0.1 (not authoritative)  
 **Owner**: Platform Vision Lead  
 **Repository**: https://github.com/ITTYBITTYBITES/ITTYBITTYBITES.github.io  
 
-> **Core Principle**  
+> **IMPORTANT**  
+> This document was generated during the stabilization phase.  
+> It is preserved as **reference material only**.  
+>  
+> It is **NOT** the governing Product Constitution or Platform Blueprint.  
+>  
+> Do not implement from this document.  
+>  
+> The official Product Constitution and Platform Blueprint will be published separately by the platform architect.
+
+---
+
+## Original Core Principle (for reference)
+
 > Everything is an Experience.  
 > The platform exists to host, discover, and compose experiences — not pages.
+
+**Note from architect (2026-07-07)**:  
+This framing is being reconsidered. The emerging direction explores **Interactions** as the true atomic unit:
+
+> Interactions → Experiences → Collections → The Platform
+
+This draft is retained purely as reference material and engineering observations collected during the handoff stabilization phase. It must not be used as the basis for any design, UX, or visual implementation decisions.
+
+The official Product Constitution will establish the final philosophy.
 
 ---
 

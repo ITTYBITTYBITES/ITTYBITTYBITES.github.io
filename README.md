@@ -165,36 +165,51 @@ The internal event bus (`src/platform/events.ts`) also fires these events, so fu
 4. Open a pull request.
 5. Merge when the GitHub Pages deployment succeeds.
 
-## Remaining Work
+## Design & Vision Governance (Important)
 
-**All design, visual, and UX decisions are now governed by the Platform Blueprint.**
+**Current status (2026-07-07)**
 
-See: [docs/PLATFORM_BLUEPRINT.md](docs/PLATFORM_BLUEPRINT.md)
+A draft reference document exists at:
+`docs/drafts/PLATFORM_BLUEPRINT_DRAFT.md`
 
-### Current Phase
-**Phase 2 — Platform Blueprint v1.0** (in progress)
+This is **reference material only** — it was produced during the stabilization phase.
 
-Implementation of visual design, motion, branding, and new experiences **must not begin** until sections of the Blueprint are approved and referenced in future Build Orders.
+**It is not the governing document.**
 
-### High-Level Remaining Areas (per Blueprint)
-- Visual design system (colors, typography, spacing, logo)
-- Motion and transition language
-- Experience-first navigation & information architecture
-- Richer experience content & collections
-- Monetization strategy implementation
-- Enhanced SEO + structured data
-- Consent-aware analytics UI
-- Tests and performance budgets
+The platform architect is currently authoring the official hierarchy:
+
+1. **Product Constitution** (root philosophy and principles)
+2. **Platform Blueprint**
+3. **Design System**
+4. **Engineering Standards**
+5. **Build Orders**
+
+Until the **Product Constitution** is published, **no implementation of visual design, motion language, branding, navigation philosophy, or new experience surfaces should begin**.
+
+Implementation agents should continue to focus exclusively on:
+- Maintaining the engineering foundation
+- Improving developer experience and tooling
+- Adding new experiences **only** when explicitly requested with a narrow technical scope
+- Bug fixes and stabilization
+
+### High-Level Areas That Will Be Defined
+- Visual design system
+- Motion and interaction language
+- Information architecture and navigation model
+- Content and experience strategy
+- Monetization approach
+- Accessibility and performance standards
 
 ---
 
-## Authoritative Documents
+## Authoritative Documents (Current)
 
-| Document                    | Purpose                              | Location |
-|-----------------------------|--------------------------------------|----------|
-| Platform Blueprint v1.0     | Master specification (vision, design language, IA, strategy) | `docs/PLATFORM_BLUEPRINT.md` |
-| Handoff Stabilization Report| Engineering baseline after handoff   | `HANDOFF_REPORT.md` |
-| This README                 | Technical setup & contribution guide | `README.md` |
+| Document                        | Purpose                                           | Location                              | Status          |
+|---------------------------------|---------------------------------------------------|---------------------------------------|-----------------|
+| Product Constitution            | Root philosophy, principles, and non-negotiables  | `docs/PRODUCT_CONSTITUTION.md`        | To be authored  |
+| Platform Blueprint (Draft)      | Historical reference / engineering observations   | `docs/drafts/PLATFORM_BLUEPRINT_DRAFT.md` | Reference only |
+| Handoff Stabilization Report    | Engineering baseline after agent handoff          | `HANDOFF_REPORT.md`                   | Stable          |
+| This README                     | Technical setup, architecture, and contribution   | `README.md`                           | Current         |
 ## Handoff Stabilization (2026-07-07)
 
 This commit establishes a stable baseline after manual file move + previous agent interruption.
