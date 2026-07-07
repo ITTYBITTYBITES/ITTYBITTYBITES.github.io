@@ -1,0 +1,19 @@
+{
+  "id": "chain-reaction",
+  "title": "Chain Reaction",
+  "description": "One decision opens paths no one fully foresaw. Build chains of consequence and explore how events connect across time.",
+  "summary": "Trace how one event led to another through a branching chain of decisions and outcomes.",
+  "category": "interactive",
+  "module": "chain-reaction.ts",
+  "tags": ["causation", "consequences", "decisions", "connections"],
+  "searchKeywords": ["cause", "effect", "consequence", "chain", "decision"],
+  "estimatedDuration": "7-12 min",
+  "returnValue": "Different choices reveal different paths. Return to explore alternative chains.",
+  "collection": "history",
+  "story": "echoes-of-evidence",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

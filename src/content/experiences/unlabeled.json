@@ -1,0 +1,19 @@
+{
+  "id": "unlabeled",
+  "title": "Unlabeled",
+  "description": "An object arrives with no date, no name, no explanation. What can you infer from material, shape, and wear alone?",
+  "summary": "Examine an artifact without labels. Infer its era, purpose, and origin from physical evidence.",
+  "category": "interactive",
+  "module": "unlabeled.ts",
+  "tags": ["artifacts", "inference", "material culture", "observation"],
+  "searchKeywords": ["artifact", "object", "inference", "material", "evidence"],
+  "estimatedDuration": "5-8 min",
+  "returnValue": "Your inference skills sharpen over time. New artifacts appear on return visits.",
+  "collection": "history",
+  "story": "echoes-of-evidence",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

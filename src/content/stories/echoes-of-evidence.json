@@ -1,0 +1,48 @@
+{
+  "id": "echoes-of-evidence",
+  "title": "Echoes of Evidence",
+  "description": "History is not a list of dates. It is an argument built from fragments — letters, objects, accounts, silences. This collection asks you to build that argument yourself.",
+  "summary": "How evidence, perspective, and interpretation shape what we believe about the past.",
+  "relatedCollections": ["history"],
+  "relatedExperiences": ["dueling-accounts", "unlabeled", "chronology", "chain-reaction", "witness-accounts"],
+  "narrative": "Every historical claim rests on evidence. But evidence does not speak for itself. Someone chose to preserve it. Someone chose to translate it. Someone chose to present it. The Echoes of Evidence collection puts you in each of those roles — collector, interpreter, skeptic, storyteller. The past is not fixed. It is rebuilt every time someone asks a new question of the evidence.",
+  "segments": [
+    {
+      "id": "intro",
+      "title": "The Fragments Remain",
+      "text": "Most of the past is lost. What survives are fragments — a letter, a coin, a wall, a memory passed down. History begins when someone decides those fragments matter. Your first task is to compare two accounts of the same event and ask: what changes when the storyteller changes?",
+      "trigger": "collection_start"
+    },
+    {
+      "id": "accounts-to-artifacts",
+      "title": "Objects Outlast Words",
+      "text": "Written accounts can lie, omit, or forget. But objects often survive with their own stubborn honesty. An unlabeled artifact forces you to ask questions without a narrator's guidance. What can you know from shape, material, and wear alone?",
+      "trigger": "after_dueling-accounts"
+    },
+    {
+      "id": "artifacts-to-chronology",
+      "title": "Order Is an Argument",
+      "text": "Dates are convenient, but they can also mislead. Events do not come with timestamps. Chronology is built from relationships — this must have happened before that, because this caused that. Reconstructing a timeline is an act of reasoning, not recall.",
+      "trigger": "after_unlabeled"
+    },
+    {
+      "id": "chronology-to-causation",
+      "title": "One Thing Leads",
+      "text": "Sequence is not the same as cause. Just because B followed A does not mean A caused B. In this experience you will build chains of consequence — exploring how one decision opened paths that no one fully foresaw.",
+      "trigger": "after_chronology"
+    },
+    {
+      "id": "causation-to-perspective",
+      "title": "No Single View",
+      "text": "The same moment looked different to everyone inside it. A leader saw strategy. A soldier saw survival. A witness saw confusion. No single account captures what happened. The final step is to hold multiple truths at once — not to choose one, but to understand why they differ.",
+      "trigger": "after_chain-reaction"
+    },
+    {
+      "id": "completion",
+      "title": "You Are Now Part of the Chain",
+      "text": "You have compared accounts, interrogated artifacts, rebuilt chronologies, traced consequences, and held competing perspectives. These are the skills historians use. But they are also the skills citizens use — evaluating claims, weighing evidence, understanding that truth is built, not found. Return to any experience and you will notice details you missed before.",
+      "trigger": "collection_complete"
+    }
+  ],
+  "version": "1.0.0"
+}

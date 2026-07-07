@@ -1,0 +1,19 @@
+{
+  "id": "dueling-accounts",
+  "title": "Dueling Accounts",
+  "description": "Two people witnessed the same event. Their accounts differ in ways that matter. Find the differences and ask why.",
+  "summary": "Compare two historical accounts side by side. Identify what changes when the storyteller changes.",
+  "category": "interactive",
+  "module": "dueling-accounts.ts",
+  "tags": ["sources", "comparison", "bias", "interpretation"],
+  "searchKeywords": ["primary source", "accounts", "comparison", "bias", "evidence"],
+  "estimatedDuration": "6-10 min",
+  "returnValue": "Your accuracy improves with practice. Return to test new account pairs.",
+  "collection": "history",
+  "story": "echoes-of-evidence",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

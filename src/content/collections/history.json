@@ -1,0 +1,12 @@
+{
+  "id": "history",
+  "title": "History",
+  "description": "Explore how evidence, perspective, and interpretation shape our understanding of the past. Not dates to memorize — questions to wrestle with.",
+  "summary": "Five experiences that teach historical thinking through observation, evidence, and reasoning.",
+  "experiences": ["dueling-accounts", "unlabeled", "chronology", "chain-reaction", "witness-accounts"],
+  "tags": ["history", "evidence", "interpretation", "reasoning"],
+  "searchKeywords": ["history", "past", "evidence", "sources", "perspective", "causation"],
+  "estimatedDuration": "30-50 min",
+  "story": "echoes-of-evidence",
+  "version": "1.0.0"
+}

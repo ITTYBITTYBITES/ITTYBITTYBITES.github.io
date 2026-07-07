@@ -6,6 +6,13 @@
       "pattern-garden",
       "memory-sequence",
       "perspective-shift"
+    ],
+    "history": [
+      "dueling-accounts",
+      "unlabeled",
+      "chronology",
+      "chain-reaction",
+      "witness-accounts"
     ]
   },
   "experiencesToCollections": {
@@ -23,6 +30,21 @@
     ],
     "perspective-shift": [
       "foundations"
+    ],
+    "dueling-accounts": [
+      "history"
+    ],
+    "unlabeled": [
+      "history"
+    ],
+    "chronology": [
+      "history"
+    ],
+    "chain-reaction": [
+      "history"
+    ],
+    "witness-accounts": [
+      "history"
     ]
   }
 }

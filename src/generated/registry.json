@@ -1,7 +1,97 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-07-07T21:10:44.473Z",
+  "generatedAt": "2026-07-07T21:32:23.359Z",
   "experiences": [
+    {
+      "id": "chain-reaction",
+      "title": "Chain Reaction",
+      "description": "One decision opens paths no one fully foresaw. Build chains of consequence and explore how events connect across time.",
+      "summary": "Trace how one event led to another through a branching chain of decisions and outcomes.",
+      "category": "interactive",
+      "module": "chain-reaction.ts",
+      "tags": [
+        "causation",
+        "consequences",
+        "decisions",
+        "connections"
+      ],
+      "searchKeywords": [
+        "cause",
+        "effect",
+        "consequence",
+        "chain",
+        "decision"
+      ],
+      "estimatedDuration": "7-12 min",
+      "returnValue": "Different choices reveal different paths. Return to explore alternative chains.",
+      "collection": "history",
+      "story": "echoes-of-evidence",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "chronology",
+      "title": "Chronology",
+      "description": "Events do not arrive with timestamps. Rebuild order from relationships, consequences, and logical necessity.",
+      "summary": "Arrange events into sequence using evidence and reasoning rather than memorized dates.",
+      "category": "game",
+      "module": "chronology.ts",
+      "tags": [
+        "sequence",
+        "logic",
+        "causation",
+        "ordering"
+      ],
+      "searchKeywords": [
+        "timeline",
+        "chronology",
+        "sequence",
+        "order",
+        "events"
+      ],
+      "estimatedDuration": "6-10 min",
+      "returnValue": "New event sets challenge your sequencing skills on each return.",
+      "collection": "history",
+      "story": "echoes-of-evidence",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "dueling-accounts",
+      "title": "Dueling Accounts",
+      "description": "Two people witnessed the same event. Their accounts differ in ways that matter. Find the differences and ask why.",
+      "summary": "Compare two historical accounts side by side. Identify what changes when the storyteller changes.",
+      "category": "interactive",
+      "module": "dueling-accounts.ts",
+      "tags": [
+        "sources",
+        "comparison",
+        "bias",
+        "interpretation"
+      ],
+      "searchKeywords": [
+        "primary source",
+        "accounts",
+        "comparison",
+        "bias",
+        "evidence"
+      ],
+      "estimatedDuration": "6-10 min",
+      "returnValue": "Your accuracy improves with practice. Return to test new account pairs.",
+      "collection": "history",
+      "story": "echoes-of-evidence",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
     {
       "id": "echo-chamber",
       "title": "Echo Chamber",
@@ -149,6 +239,66 @@
         "screenReader": true,
         "contrast": true
       }
+    },
+    {
+      "id": "unlabeled",
+      "title": "Unlabeled",
+      "description": "An object arrives with no date, no name, no explanation. What can you infer from material, shape, and wear alone?",
+      "summary": "Examine an artifact without labels. Infer its era, purpose, and origin from physical evidence.",
+      "category": "interactive",
+      "module": "unlabeled.ts",
+      "tags": [
+        "artifacts",
+        "inference",
+        "material culture",
+        "observation"
+      ],
+      "searchKeywords": [
+        "artifact",
+        "object",
+        "inference",
+        "material",
+        "evidence"
+      ],
+      "estimatedDuration": "5-8 min",
+      "returnValue": "Your inference skills sharpen over time. New artifacts appear on return visits.",
+      "collection": "history",
+      "story": "echoes-of-evidence",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "witness-accounts",
+      "title": "Witness Accounts",
+      "description": "The same moment looked different to everyone inside it. Hold multiple truths at once and understand why they differ.",
+      "summary": "View one historical moment through three different participants' eyes.",
+      "category": "reflection",
+      "module": "witness-accounts.ts",
+      "tags": [
+        "perspective",
+        "witness",
+        "multiple viewpoints",
+        "empathy"
+      ],
+      "searchKeywords": [
+        "perspective",
+        "witness",
+        "viewpoint",
+        "multiple",
+        "empathy"
+      ],
+      "estimatedDuration": "5-8 min",
+      "returnValue": "Each perspective reveals details the others conceal. Return to notice what you missed.",
+      "collection": "history",
+      "story": "echoes-of-evidence",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
     }
   ],
   "collections": [
@@ -178,6 +328,36 @@
       "estimatedDuration": "25-50 min",
       "story": "foundations-journey",
       "version": "1.0.0"
+    },
+    {
+      "id": "history",
+      "title": "History",
+      "description": "Explore how evidence, perspective, and interpretation shape our understanding of the past. Not dates to memorize — questions to wrestle with.",
+      "summary": "Five experiences that teach historical thinking through observation, evidence, and reasoning.",
+      "experiences": [
+        "dueling-accounts",
+        "unlabeled",
+        "chronology",
+        "chain-reaction",
+        "witness-accounts"
+      ],
+      "tags": [
+        "history",
+        "evidence",
+        "interpretation",
+        "reasoning"
+      ],
+      "searchKeywords": [
+        "history",
+        "past",
+        "evidence",
+        "sources",
+        "perspective",
+        "causation"
+      ],
+      "estimatedDuration": "30-50 min",
+      "story": "echoes-of-evidence",
+      "version": "1.0.0"
     }
   ],
   "stories": [
@@ -193,6 +373,62 @@
         "echo-chamber"
       ],
       "narrative": "Every platform begins with a single interaction. Echo Chamber was created to prove that even the simplest act of listening and returning can become something worth coming back to."
+    },
+    {
+      "id": "echoes-of-evidence",
+      "title": "Echoes of Evidence",
+      "description": "History is not a list of dates. It is an argument built from fragments — letters, objects, accounts, silences. This collection asks you to build that argument yourself.",
+      "summary": "How evidence, perspective, and interpretation shape what we believe about the past.",
+      "relatedCollections": [
+        "history"
+      ],
+      "relatedExperiences": [
+        "dueling-accounts",
+        "unlabeled",
+        "chronology",
+        "chain-reaction",
+        "witness-accounts"
+      ],
+      "narrative": "Every historical claim rests on evidence. But evidence does not speak for itself. Someone chose to preserve it. Someone chose to translate it. Someone chose to present it. The Echoes of Evidence collection puts you in each of those roles — collector, interpreter, skeptic, storyteller. The past is not fixed. It is rebuilt every time someone asks a new question of the evidence.",
+      "segments": [
+        {
+          "id": "intro",
+          "title": "The Fragments Remain",
+          "text": "Most of the past is lost. What survives are fragments — a letter, a coin, a wall, a memory passed down. History begins when someone decides those fragments matter. Your first task is to compare two accounts of the same event and ask: what changes when the storyteller changes?",
+          "trigger": "collection_start"
+        },
+        {
+          "id": "accounts-to-artifacts",
+          "title": "Objects Outlast Words",
+          "text": "Written accounts can lie, omit, or forget. But objects often survive with their own stubborn honesty. An unlabeled artifact forces you to ask questions without a narrator's guidance. What can you know from shape, material, and wear alone?",
+          "trigger": "after_dueling-accounts"
+        },
+        {
+          "id": "artifacts-to-chronology",
+          "title": "Order Is an Argument",
+          "text": "Dates are convenient, but they can also mislead. Events do not come with timestamps. Chronology is built from relationships — this must have happened before that, because this caused that. Reconstructing a timeline is an act of reasoning, not recall.",
+          "trigger": "after_unlabeled"
+        },
+        {
+          "id": "chronology-to-causation",
+          "title": "One Thing Leads",
+          "text": "Sequence is not the same as cause. Just because B followed A does not mean A caused B. In this experience you will build chains of consequence — exploring how one decision opened paths that no one fully foresaw.",
+          "trigger": "after_chronology"
+        },
+        {
+          "id": "causation-to-perspective",
+          "title": "No Single View",
+          "text": "The same moment looked different to everyone inside it. A leader saw strategy. A soldier saw survival. A witness saw confusion. No single account captures what happened. The final step is to hold multiple truths at once — not to choose one, but to understand why they differ.",
+          "trigger": "after_chain-reaction"
+        },
+        {
+          "id": "completion",
+          "title": "You Are Now Part of the Chain",
+          "text": "You have compared accounts, interrogated artifacts, rebuilt chronologies, traced consequences, and held competing perspectives. These are the skills historians use. But they are also the skills citizens use — evaluating claims, weighing evidence, understanding that truth is built, not found. Return to any experience and you will notice details you missed before.",
+          "trigger": "collection_complete"
+        }
+      ],
+      "version": "1.0.0"
     },
     {
       "id": "foundations-journey",

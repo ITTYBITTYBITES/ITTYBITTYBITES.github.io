@@ -1,5 +1,44 @@
 [
   {
+    "id": "chain-reaction",
+    "type": "experience",
+    "title": "Chain Reaction",
+    "description": "One decision opens paths no one fully foresaw. Build chains of consequence and explore how events connect across time.",
+    "tags": [
+      "causation",
+      "consequences",
+      "decisions",
+      "connections"
+    ],
+    "collection": "history"
+  },
+  {
+    "id": "chronology",
+    "type": "experience",
+    "title": "Chronology",
+    "description": "Events do not arrive with timestamps. Rebuild order from relationships, consequences, and logical necessity.",
+    "tags": [
+      "sequence",
+      "logic",
+      "causation",
+      "ordering"
+    ],
+    "collection": "history"
+  },
+  {
+    "id": "dueling-accounts",
+    "type": "experience",
+    "title": "Dueling Accounts",
+    "description": "Two people witnessed the same event. Their accounts differ in ways that matter. Find the differences and ask why.",
+    "tags": [
+      "sources",
+      "comparison",
+      "bias",
+      "interpretation"
+    ],
+    "collection": "history"
+  },
+  {
     "id": "echo-chamber",
     "type": "experience",
     "title": "Echo Chamber",
@@ -64,6 +103,32 @@
     "collection": "foundations"
   },
   {
+    "id": "unlabeled",
+    "type": "experience",
+    "title": "Unlabeled",
+    "description": "An object arrives with no date, no name, no explanation. What can you infer from material, shape, and wear alone?",
+    "tags": [
+      "artifacts",
+      "inference",
+      "material culture",
+      "observation"
+    ],
+    "collection": "history"
+  },
+  {
+    "id": "witness-accounts",
+    "type": "experience",
+    "title": "Witness Accounts",
+    "description": "The same moment looked different to everyone inside it. Hold multiple truths at once and understand why they differ.",
+    "tags": [
+      "perspective",
+      "witness",
+      "multiple viewpoints",
+      "empathy"
+    ],
+    "collection": "history"
+  },
+  {
     "id": "foundations",
     "type": "collection",
     "title": "Foundations",
@@ -75,10 +140,28 @@
     ]
   },
   {
+    "id": "history",
+    "type": "collection",
+    "title": "History",
+    "description": "Explore how evidence, perspective, and interpretation shape our understanding of the past. Not dates to memorize — questions to wrestle with.",
+    "tags": [
+      "history",
+      "evidence",
+      "interpretation",
+      "reasoning"
+    ]
+  },
+  {
     "id": "echo-origin",
     "type": "story",
     "title": "The Origin of Echo",
     "description": "A reflection on why the first coherent experience was built around listening and repetition."
+  },
+  {
+    "id": "echoes-of-evidence",
+    "type": "story",
+    "title": "Echoes of Evidence",
+    "description": "History is not a list of dates. It is an argument built from fragments — letters, objects, accounts, silences. This collection asks you to build that argument yourself."
   },
   {
     "id": "foundations-journey",

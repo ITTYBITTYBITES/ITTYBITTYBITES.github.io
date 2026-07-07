@@ -1,0 +1,19 @@
+{
+  "id": "chronology",
+  "title": "Chronology",
+  "description": "Events do not arrive with timestamps. Rebuild order from relationships, consequences, and logical necessity.",
+  "summary": "Arrange events into sequence using evidence and reasoning rather than memorized dates.",
+  "category": "game",
+  "module": "chronology.ts",
+  "tags": ["sequence", "logic", "causation", "ordering"],
+  "searchKeywords": ["timeline", "chronology", "sequence", "order", "events"],
+  "estimatedDuration": "6-10 min",
+  "returnValue": "New event sets challenge your sequencing skills on each return.",
+  "collection": "history",
+  "story": "echoes-of-evidence",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

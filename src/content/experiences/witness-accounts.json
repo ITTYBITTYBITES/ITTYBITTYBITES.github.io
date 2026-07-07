@@ -1,0 +1,19 @@
+{
+  "id": "witness-accounts",
+  "title": "Witness Accounts",
+  "description": "The same moment looked different to everyone inside it. Hold multiple truths at once and understand why they differ.",
+  "summary": "View one historical moment through three different participants' eyes.",
+  "category": "reflection",
+  "module": "witness-accounts.ts",
+  "tags": ["perspective", "witness", "multiple viewpoints", "empathy"],
+  "searchKeywords": ["perspective", "witness", "viewpoint", "multiple", "empathy"],
+  "estimatedDuration": "5-8 min",
+  "returnValue": "Each perspective reveals details the others conceal. Return to notice what you missed.",
+  "collection": "history",
+  "story": "echoes-of-evidence",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

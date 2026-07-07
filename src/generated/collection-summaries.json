@@ -25,5 +25,32 @@
         "title": "Perspective Shift"
       }
     ]
+  },
+  {
+    "id": "history",
+    "title": "History",
+    "count": 5,
+    "experiences": [
+      {
+        "id": "dueling-accounts",
+        "title": "Dueling Accounts"
+      },
+      {
+        "id": "unlabeled",
+        "title": "Unlabeled"
+      },
+      {
+        "id": "chronology",
+        "title": "Chronology"
+      },
+      {
+        "id": "chain-reaction",
+        "title": "Chain Reaction"
+      },
+      {
+        "id": "witness-accounts",
+        "title": "Witness Accounts"
+      }
+    ]
   }
 ]
