@@ -9,6 +9,7 @@ const navItems: NavItem[] = [
   { label: 'Home', href: '/' },
   { label: 'Experiences', href: '/experiences' },
   { label: 'Collections', href: '/collections' },
+  { label: 'Library', href: '/library' },
 ];
 
 export class AppHeader extends HTMLElement {

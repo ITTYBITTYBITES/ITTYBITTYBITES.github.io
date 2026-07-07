@@ -2,8 +2,8 @@ import { events } from '../platform/events';
 import { getAllExperiences } from '../platform/registry';
 import type { ExperienceEntry } from '../platform/registry-types';
 import { getReturnSummary } from '../platform/lifecycle';
+import { searchExperiences } from '../platform/search';
 import { debounce, h } from '../platform/utils';
-
 
 export function renderIndex(): HTMLElement {
   const all = getAllExperiences();
@@ -12,38 +12,81 @@ export function renderIndex(): HTMLElement {
   const search = h('input', {
     class: 'search-input',
     type: 'search',
-    placeholder: 'Search experiences…',
+    placeholder: 'Search experiences by title, description, keywords…',
     'aria-label': 'Search experiences',
   });
 
-  const updateGrid = (term: string): void => {
-    const filtered = filterExperiences(all, term);
-    renderGrid(grid, filtered);
-    if (term.trim()) {
-      events.emit('search_used', { term: term.trim(), result_count: filtered.length });
-    }
+  const filterTabs = h('div', { class: 'filter-tabs' }, []);
+  const categories = [...new Set(all.map(e => e.category))].sort();
+  let activeFilter: string | null = null;
+
+  const updateGrid = (entries: ExperienceEntry[]): void => {
+    renderGrid(grid, entries);
   };
 
-  const debouncedUpdate = debounce(updateGrid, 250);
-  search.addEventListener('input', () => debouncedUpdate(search.value));
+  const updateSearch = (term: string): void => {
+    if (!term.trim()) {
+      updateGrid(activeFilter ? all.filter(e => e.category === activeFilter) : all);
+      return;
+    }
+    const results = searchExperiences(term);
+    const matchedIds = new Set(results.map(r => r.id));
+    const filtered = all.filter(e => matchedIds.has(e.id));
+    updateGrid(filtered);
+    events.emit('search_used', { term: term.trim(), result_count: filtered.length });
+  };
 
-  updateGrid('');
+  const debouncedSearch = debounce(updateSearch, 150);
+  search.addEventListener('input', () => debouncedSearch(search.value));
+
+  // Build filter tabs
+  const allTab = h('button', {
+    class: 'filter-tab active',
+    type: 'button',
+    'aria-pressed': 'true',
+  }, ['All']);
+  allTab.addEventListener('click', () => {
+    activeFilter = null;
+    filterTabs.querySelectorAll('.filter-tab').forEach(t => {
+      t.classList.remove('active');
+      t.setAttribute('aria-pressed', 'false');
+    });
+    allTab.classList.add('active');
+    allTab.setAttribute('aria-pressed', 'true');
+    search.value = '';
+    updateGrid(all);
+  });
+  filterTabs.appendChild(allTab);
+
+  categories.forEach(cat => {
+    const tab = h('button', {
+      class: 'filter-tab',
+      type: 'button',
+      'aria-pressed': 'false',
+    }, [cat]);
+    tab.addEventListener('click', () => {
+      activeFilter = cat;
+      filterTabs.querySelectorAll('.filter-tab').forEach(t => {
+        t.classList.remove('active');
+        t.setAttribute('aria-pressed', 'false');
+      });
+      tab.classList.add('active');
+      tab.setAttribute('aria-pressed', 'true');
+      search.value = '';
+      updateGrid(all.filter(e => e.category === cat));
+    });
+    filterTabs.appendChild(tab);
+  });
+
+  updateGrid(all);
 
   return h('div', { class: 'container' }, [
     h('h1', {}, ['Experiences']),
-    h('p', {}, ['Browse the experiences registered on the platform.']),
+    h('p', {}, ['Browse and search all experiences on the platform.']),
     search,
+    filterTabs,
     grid,
   ]);
-}
-
-function filterExperiences(entries: ExperienceEntry[], term: string): ExperienceEntry[] {
-  const normalized = term.trim().toLowerCase();
-  if (!normalized) return entries;
-  return entries.filter((entry) => {
-    const text = `${entry.title} ${entry.description} ${entry.category} ${entry.tags?.join(' ') ?? ''} ${entry.searchKeywords?.join(' ') ?? ''}`;
-    return text.toLowerCase().includes(normalized);
-  });
 }
 
 function renderGrid(container: HTMLElement, entries: ExperienceEntry[]): void {
@@ -51,7 +94,7 @@ function renderGrid(container: HTMLElement, entries: ExperienceEntry[]): void {
   if (entries.length === 0) {
     container.appendChild(h('div', { class: 'empty-state' }, [
       h('p', {}, ['No experiences match your search.']),
-      h('p', { class: 'muted' }, ['Try different keywords or browse all experiences.']),
+      h('p', { class: 'muted' }, ['Try different keywords or browse by category.']),
     ]));
     return;
   }

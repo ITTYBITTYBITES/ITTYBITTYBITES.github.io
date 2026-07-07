@@ -9,6 +9,7 @@ import { renderExperience } from './pages/experience';
 import { renderIndex } from './pages/experience-index';
 import { renderHome } from './pages/home';
 import { renderCollections } from './pages/collections';
+import { renderLibrary } from './pages/library';
 import { registerPWA } from './platform/pwa';
 import { initRouter, registerRoute } from './platform/router';
 
@@ -35,6 +36,7 @@ if (!main) {
 registerRoute('/', 'Home', async () => renderHome());
 registerRoute('/experiences', 'Experiences', async () => renderIndex());
 registerRoute('/collections', 'Collections', async () => renderCollections());
+registerRoute('/library', 'Library', async () => renderLibrary());
 registerRoute('/experience/:id', 'Experience', async (args) => renderExperience(args));
 
 initAnalytics();

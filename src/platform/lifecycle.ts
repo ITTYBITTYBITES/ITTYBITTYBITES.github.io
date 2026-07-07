@@ -17,6 +17,7 @@ export interface ExperienceProgress {
   lastArtifact?: string;
   completed: boolean;
   completionDate?: number;
+  isFavorite?: boolean;
 }
 
 export interface CollectionProgress {
@@ -27,19 +28,23 @@ export interface CollectionProgress {
   completedAt?: number;
 }
 
-export interface PlatformProgress {
+export interface PlatformProfile {
   version: number;
   experiences: Record<string, ExperienceProgress>;
   collections: Record<string, CollectionProgress>;
   lastActiveExperienceId?: string;
   recentlyVisited: string[];
+  completedCollections: string[];
+  preferredCategories: Record<string, number>;
+  lastVisit: number;
+  totalVisits: number;
 }
 
-const PROGRESS_KEY = 'platform-experience-progress-v2';
+const PROGRESS_KEY = 'platform-experience-progress-v3';
 const SESSIONS_KEY = 'platform-experience-sessions';
-const CURRENT_VERSION = 2;
+const CURRENT_VERSION = 3;
 
-function loadProgress(): PlatformProgress {
+function loadProfile(): PlatformProfile {
   try {
     const raw = localStorage.getItem(PROGRESS_KEY);
     if (raw) {
@@ -50,7 +55,11 @@ function loadProgress(): PlatformProgress {
           experiences: parsed.experiences || {},
           collections: parsed.collections || {},
           lastActiveExperienceId: parsed.lastActiveExperienceId,
-          recentlyVisited: parsed.recentlyVisited || []
+          recentlyVisited: parsed.recentlyVisited || [],
+          completedCollections: parsed.completedCollections || [],
+          preferredCategories: parsed.preferredCategories || {},
+          lastVisit: parsed.lastVisit || Date.now(),
+          totalVisits: parsed.totalVisits || 0
         };
       }
     }
@@ -59,11 +68,15 @@ function loadProgress(): PlatformProgress {
     version: CURRENT_VERSION,
     experiences: {},
     collections: {},
-    recentlyVisited: []
+    recentlyVisited: [],
+    completedCollections: [],
+    preferredCategories: {},
+    lastVisit: Date.now(),
+    totalVisits: 0
   };
 }
 
-function saveProgress(p: PlatformProgress): void {
+function saveProfile(p: PlatformProfile): void {
   try { localStorage.setItem(PROGRESS_KEY, JSON.stringify(p)); } catch { /* ignore */ }
 }
 
@@ -87,15 +100,18 @@ export function startSession(experienceId: string): ExperienceSession {
   all.push(s);
   saveSessions(all);
 
-  const prog = loadProgress();
+  const prog = loadProfile();
   prog.lastActiveExperienceId = experienceId;
+  prog.totalVisits += 1;
+  prog.lastVisit = Date.now();
+
   if (!prog.recentlyVisited.includes(experienceId)) {
     prog.recentlyVisited.unshift(experienceId);
     if (prog.recentlyVisited.length > 10) prog.recentlyVisited.pop();
   } else {
     prog.recentlyVisited = [experienceId, ...prog.recentlyVisited.filter(id => id !== experienceId)];
   }
-  saveProgress(prog);
+  saveProfile(prog);
 
   return s;
 }
@@ -109,11 +125,11 @@ export function recordInteraction(experienceId: string): void {
     saveSessions(all);
   }
 
-  const prog = loadProgress();
+  const prog = loadProfile();
   const rec = prog.experiences[experienceId];
   if (rec) {
     rec.totalInteractions = (rec.totalInteractions || 0) + 1;
-    saveProgress(prog);
+    saveProfile(prog);
   }
 }
 
@@ -126,7 +142,7 @@ export function endSession(experienceId: string): ExperienceSession | null {
   open.durationMs = open.endedAt - open.startedAt;
   saveSessions(all);
 
-  const prog = loadProgress();
+  const prog = loadProfile();
   let rec = prog.experiences[experienceId];
   const now = Date.now();
   if (!rec) {
@@ -151,13 +167,13 @@ export function endSession(experienceId: string): ExperienceSession | null {
   }
 
   prog.experiences[experienceId] = rec;
-  saveProgress(prog);
+  saveProfile(prog);
 
   return open;
 }
 
 export function markExperienceCompleted(experienceId: string): void {
-  const prog = loadProgress();
+  const prog = loadProfile();
   let rec = prog.experiences[experienceId];
   const now = Date.now();
   if (!rec) {
@@ -176,11 +192,11 @@ export function markExperienceCompleted(experienceId: string): void {
     rec.completionDate = now;
   }
   prog.experiences[experienceId] = rec;
-  saveProgress(prog);
+  saveProfile(prog);
 }
 
-export function updateCollectionProgress(collectionId: string, experienceId: string): void {
-  const prog = loadProgress();
+export function updateCollectionProgress(collectionId: string, experienceId: string, category?: string): void {
+  const prog = loadProfile();
   let col = prog.collections[collectionId];
   if (!col) {
     col = { collectionId, experiencesCompleted: [], startedAt: Date.now() };
@@ -190,28 +206,125 @@ export function updateCollectionProgress(collectionId: string, experienceId: str
   if (expRec?.completed && !col.experiencesCompleted.includes(experienceId)) {
     col.experiencesCompleted.push(experienceId);
   }
+
+  // Track preferred categories
+  if (category) {
+    prog.preferredCategories[category] = (prog.preferredCategories[category] || 0) + 1;
+  }
+
   prog.collections[collectionId] = col;
-  saveProgress(prog);
+  saveProfile(prog);
+}
+
+export function checkCollectionCompletion(collectionId: string, experienceIds: string[]): boolean {
+  const prog = loadProfile();
+  const allCompleted = experienceIds.length > 0 && experienceIds.every(id =>
+    prog.experiences[id]?.completed
+  );
+  if (allCompleted && !prog.completedCollections.includes(collectionId)) {
+    prog.completedCollections.push(collectionId);
+    const col = prog.collections[collectionId];
+    if (col) col.completedAt = Date.now();
+    saveProfile(prog);
+    return true;
+  }
+  return false;
+}
+
+export function toggleFavorite(experienceId: string): boolean {
+  const prog = loadProfile();
+  const rec = prog.experiences[experienceId];
+  if (!rec) {
+    prog.experiences[experienceId] = {
+      experienceId,
+      totalSessions: 0,
+      totalInteractions: 0,
+      lastVisited: Date.now(),
+      streakDays: 0,
+      personalArtifacts: 0,
+      completed: false,
+      isFavorite: true
+    };
+    saveProfile(prog);
+    return true;
+  }
+  rec.isFavorite = !rec.isFavorite;
+  saveProfile(prog);
+  return rec.isFavorite;
+}
+
+export function isFavorite(experienceId: string): boolean {
+  return !!loadProfile().experiences[experienceId]?.isFavorite;
+}
+
+export function getFavorites(): string[] {
+  const prog = loadProfile();
+  return Object.keys(prog.experiences).filter(id => prog.experiences[id].isFavorite);
+}
+
+export function getCompletedCollections(): string[] {
+  return loadProfile().completedCollections;
+}
+
+export function getPreferredCategories(): Record<string, number> {
+  return loadProfile().preferredCategories;
+}
+
+export function getProfileSummary(): {
+  totalExperiencesPlayed: number;
+  totalCompleted: number;
+  totalFavorites: number;
+  totalCollectionsCompleted: number;
+  currentStreak: number;
+  lastVisit: string;
+  totalVisits: number;
+  topCategory: string | null;
+} {
+  const prog = loadProfile();
+  const expIds = Object.keys(prog.experiences);
+  const completed = expIds.filter(id => prog.experiences[id].completed);
+  const favorites = expIds.filter(id => prog.experiences[id].isFavorite);
+
+  let currentStreak = 0;
+  expIds.forEach(id => {
+    currentStreak = Math.max(currentStreak, prog.experiences[id].streakDays || 0);
+  });
+
+  const cats = prog.preferredCategories;
+  const topCategory = Object.keys(cats).length > 0
+    ? Object.keys(cats).sort((a, b) => cats[b] - cats[a])[0]
+    : null;
+
+  return {
+    totalExperiencesPlayed: expIds.length,
+    totalCompleted: completed.length,
+    totalFavorites: favorites.length,
+    totalCollectionsCompleted: prog.completedCollections.length,
+    currentStreak,
+    lastVisit: prog.lastVisit ? new Date(prog.lastVisit).toLocaleDateString() : 'never',
+    totalVisits: prog.totalVisits,
+    topCategory
+  };
 }
 
 export function getProgress(id: string): ExperienceProgress | null {
-  return loadProgress().experiences[id] || null;
+  return loadProfile().experiences[id] || null;
 }
 
 export function getAllProgress(): Record<string, ExperienceProgress> {
-  return loadProgress().experiences;
+  return loadProfile().experiences;
 }
 
 export function getCollectionProgress(collectionId: string): CollectionProgress | null {
-  return loadProgress().collections[collectionId] || null;
+  return loadProfile().collections[collectionId] || null;
 }
 
 export function getRecentlyVisited(): string[] {
-  return loadProgress().recentlyVisited;
+  return loadProfile().recentlyVisited;
 }
 
 export function getLastActiveExperienceId(): string | undefined {
-  return loadProgress().lastActiveExperienceId;
+  return loadProfile().lastActiveExperienceId;
 }
 
 export function getReturnSummary(id: string): {
@@ -220,17 +333,19 @@ export function getReturnSummary(id: string): {
   totalSessions: number;
   lastVisited: string;
   completed: boolean;
+  isFavorite: boolean;
 } {
   const p = getProgress(id);
   if (!p) {
-    return { hasReturned: false, streak: 0, totalSessions: 0, lastVisited: 'never', completed: false };
+    return { hasReturned: false, streak: 0, totalSessions: 0, lastVisited: 'never', completed: false, isFavorite: false };
   }
   return {
     hasReturned: p.totalSessions > 1 || p.streakDays > 1,
     streak: p.streakDays || 0,
     totalSessions: p.totalSessions || 0,
     lastVisited: new Date(p.lastVisited).toLocaleDateString(),
-    completed: p.completed || false
+    completed: p.completed || false,
+    isFavorite: p.isFavorite || false
   };
 }
 
@@ -242,11 +357,11 @@ export function resetAllProgress(): void {
 }
 
 export function resetExperienceProgress(experienceId: string): void {
-  const prog = loadProgress();
+  const prog = loadProfile();
   delete prog.experiences[experienceId];
   prog.recentlyVisited = prog.recentlyVisited.filter(id => id !== experienceId);
   if (prog.lastActiveExperienceId === experienceId) {
     prog.lastActiveExperienceId = undefined;
   }
-  saveProgress(prog);
+  saveProfile(prog);
 }

@@ -1,7 +1,7 @@
 import { analytics } from '../platform/analytics';
 import { events } from '../platform/events';
-import { getExperienceById, loadExperience } from '../platform/registry';
-import { startSession, endSession, recordInteraction, markExperienceCompleted, updateCollectionProgress } from '../platform/lifecycle';
+import { getExperienceById, loadExperience, getExperiencesInCollection } from '../platform/registry';
+import { startSession, endSession, recordInteraction, markExperienceCompleted, updateCollectionProgress, checkCollectionCompletion } from '../platform/lifecycle';
 import type { ExperienceContext, ExperienceModule } from '../platform/types';
 
 /**
@@ -64,7 +64,13 @@ export class ExperienceHost extends HTMLElement {
           }
         }
         if (entry.collection) {
-          updateCollectionProgress(entry.collection, entry.id);
+          updateCollectionProgress(entry.collection, entry.id, entry.category);
+          // Check if collection is now fully complete
+          const colExps = getExperiencesInCollection(entry.collection);
+          const wasCompleted = checkCollectionCompletion(entry.collection, colExps.map(e => e.id));
+          if (wasCompleted) {
+            events.emit('collection_completed', { collection_id: entry.collection });
+          }
         }
       }
     };

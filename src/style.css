@@ -637,6 +637,390 @@ p {
   margin-block: var(--space-2);
 }
 
+/* ===== DISCOVERY & PERSONALIZATION ===== */
+
+/* Home search */
+.search-wrapper {
+  position: relative;
+  margin-block: var(--space-6);
+  max-width: 32rem;
+}
+
+.home-search {
+  width: 100%;
+  padding: var(--space-3) var(--space-4);
+  font-size: 1.05rem;
+  border-radius: var(--radius-lg);
+}
+
+.search-results {
+  display: none;
+  position: absolute;
+  inset-block-start: calc(100% + var(--space-1));
+  inset-inline: 0;
+  background: canvas;
+  border: 1px solid ButtonBorder;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  z-index: 50;
+  max-height: 24rem;
+  overflow-y: auto;
+  padding: var(--space-2);
+}
+
+.search-result-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3);
+  border-radius: var(--radius);
+  text-decoration: none;
+  color: inherit;
+  transition: background 0.1s;
+}
+
+.search-result-item:hover {
+  background: ButtonFace;
+}
+
+.search-result-type {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: GrayText;
+  font-weight: 600;
+}
+
+.search-result-title {
+  font-weight: 600;
+}
+
+.search-result-desc {
+  font-size: 0.875rem;
+  color: GrayText;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Quick actions */
+.quick-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+  margin-block-start: var(--space-4);
+}
+
+.quick-actions .btn {
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--space-1);
+  padding: var(--space-3) var(--space-4);
+  min-width: 12rem;
+  max-width: 18rem;
+}
+
+.quick-reason {
+  font-size: 0.8rem;
+  color: GrayText;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: normal;
+}
+
+/* Featured section */
+.featured-section {
+  padding: var(--space-6);
+  border: 2px solid AccentColor;
+  border-radius: var(--radius-lg);
+  background: AccentColorText;
+}
+
+.featured-badge {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  background: AccentColor;
+  color: AccentColorText;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-radius: var(--radius);
+  margin-block-end: var(--space-3);
+}
+
+/* Suggestion cards */
+.suggestion-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: var(--space-4);
+  margin-block-start: var(--space-4);
+}
+
+.suggestion-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid ButtonBorder;
+  border-radius: var(--radius-lg);
+  background: canvas;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.15s, transform 0.1s;
+}
+
+.suggestion-card:hover {
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.suggestion-card h3 {
+  font-size: 1.05rem;
+  margin: 0;
+}
+
+.suggestion-card p {
+  font-size: 0.9rem;
+  color: GrayText;
+  margin: 0;
+  flex: 1;
+}
+
+.suggestion-reason {
+  font-size: 0.8rem;
+  color: GrayText;
+  font-style: italic;
+}
+
+/* Mini grid & cards */
+.mini-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(14rem, 1fr));
+  gap: var(--space-3);
+  margin-block-start: var(--space-4);
+}
+
+.mini-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-3);
+  border: 1px solid ButtonBorder;
+  border-radius: var(--radius);
+  background: canvas;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.15s;
+}
+
+.mini-card:hover {
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.08);
+}
+
+.mini-card strong {
+  font-size: 1rem;
+}
+
+.mini-card p {
+  font-size: 0.85rem;
+  color: GrayText;
+  margin: 0;
+  flex: 1;
+}
+
+.mini-card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-block-start: auto;
+}
+
+/* Browse grid */
+.browse-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(16rem, 1fr));
+  gap: var(--space-4);
+  margin-block-start: var(--space-4);
+}
+
+.browse-card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4);
+  border: 1px solid ButtonBorder;
+  border-radius: var(--radius-lg);
+  background: canvas;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.15s, transform 0.1s;
+}
+
+.browse-card:hover {
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.browse-card h3 {
+  font-size: 1.1rem;
+  margin: 0;
+  text-transform: capitalize;
+}
+
+.browse-card p {
+  font-size: 0.9rem;
+  color: GrayText;
+  margin: 0;
+  flex: 1;
+}
+
+.browse-meta {
+  display: flex;
+  gap: var(--space-3);
+  margin-block-start: auto;
+  font-size: 0.8rem;
+}
+
+.theme-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1);
+  margin-block-start: var(--space-2);
+}
+
+.tag {
+  padding: 0.15rem 0.5rem;
+  background: ButtonFace;
+  border: 1px solid ButtonBorder;
+  border-radius: var(--radius);
+  font-size: 0.75rem;
+}
+
+/* Filter tabs */
+.filter-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-block: var(--space-4);
+}
+
+.filter-tab {
+  padding: var(--space-1) var(--space-3);
+  border: 1px solid ButtonBorder;
+  border-radius: 999px;
+  background: ButtonFace;
+  color: inherit;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background 0.15s;
+}
+
+.filter-tab:hover {
+  background: AccentColor;
+  color: AccentColorText;
+}
+
+.filter-tab.active {
+  background: canvastext;
+  color: canvas;
+  border-color: canvastext;
+}
+
+/* ===== LIBRARY ===== */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr));
+  gap: var(--space-3);
+  margin-block: var(--space-6);
+}
+
+.stat-card {
+  padding: var(--space-4);
+  border: 1px solid ButtonBorder;
+  border-radius: var(--radius-lg);
+  background: canvas;
+  text-align: center;
+}
+
+.stat-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 0.8rem;
+  color: GrayText;
+  margin-block-start: var(--space-1);
+}
+
+.library-section {
+  margin-block-start: var(--space-8);
+}
+
+.library-section h2 {
+  font-size: 1.25rem;
+}
+
+.collection-progress-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  margin-block-start: var(--space-4);
+}
+
+.collection-progress-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3);
+  border: 1px solid ButtonBorder;
+  border-radius: var(--radius);
+  background: canvas;
+}
+
+.collection-progress-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  min-width: 8rem;
+}
+
+.collection-progress-item .progress-track {
+  flex: 1;
+  margin: 0;
+}
+
+.reset-section {
+  padding-block-start: var(--space-6);
+  border-block-start: 1px solid ButtonBorder;
+}
+
+.library-empty {
+  margin-block: var(--space-8);
+}
+
+/* Favorite button */
+.favorite-btn {
+  padding: var(--space-1);
+  border: none;
+  background: transparent;
+  color: inherit;
+  cursor: pointer;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.favorite-btn:hover {
+  transform: scale(1.2);
+}
+
+.favorite-btn[aria-pressed='true'] {
+  color: #eab308;
+}
+
 /* Experience primitives */
 .experience-counter,
 .experience-canvas,
@@ -807,7 +1191,39 @@ textarea:focus-visible {
   .collection-experience-item,
   .echo-entry,
   .next-step,
-  .completion-banner {
+  .completion-banner,
+  .suggestion-card,
+  .mini-card,
+  .browse-card,
+  .stat-card {
     border-width: 2px;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 40rem) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .quick-actions .btn {
+    min-width: 100%;
+  }
+
+  .suggestion-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .browse-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .collection-progress-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .collection-progress-item .progress-track {
+    width: 100%;
   }
 }
