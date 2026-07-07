@@ -259,8 +259,201 @@ The purpose should not.
 
 ---
 
-**End of Published Section 2**
+## 8. The Foundation of the Platform
 
-This is the second published portion of Product Constitution v1.0.0.
+The platform is built around a simple hierarchy:
 
-The next published section will be **Experience Model** (defining Interaction, Experience, Collection, Story, Discovery, and Platform Shell). No implementation work should begin until that section is also published.
+**Interactions create Experiences.**  
+**Experiences create Collections.**  
+**Collections create Discovery.**  
+**Discovery creates the Platform.**
+
+This hierarchy defines how the platform understands value.
+
+The platform does not begin with pages, screens, files, or applications.
+
+It begins with meaningful interactions between a person and a system.
+
+## 9. Interaction
+
+An interaction is the smallest meaningful exchange between a person and the platform.
+
+An interaction may be:
+
+- solving a challenge,
+- exploring information,
+- creating something,
+- making a choice,
+- discovering a connection,
+- learning a concept,
+- using a tool,
+- or participating in a system.
+
+An interaction must have purpose.
+
+A visual effect, animation, or technical capability is not automatically an interaction.
+
+The question is:
+
+Did something meaningful happen between the person and the platform?
+
+If not, it is decoration.
+
+## 10. Experience
+
+An experience is a complete user-facing journey created from connected interactions.
+
+Examples include:
+
+- a game,
+- a learning module,
+- a creative tool,
+- an interactive story,
+- an application,
+- an experiment.
+
+An experience has:
+
+- an identity,
+- a purpose,
+- a beginning,
+- meaningful interactions,
+- and a reason for existing.
+
+Experiences are the primary units of creation within the platform.
+
+However, experiences do not exist independently.
+
+They are designed to connect with the larger ecosystem.
+
+## 11. Collection
+
+A collection is a meaningful grouping of experiences.
+
+Collections are not simply categories.
+
+Categories organize.
+
+Collections create relationships.
+
+A collection may be based on:
+
+- a shared theme,
+- a shared audience,
+- a shared purpose,
+- a shared journey,
+- or a larger idea.
+
+The purpose of a collection is to help people discover connections they may not have found individually.
+
+## 12. Story
+
+A story provides context.
+
+Stories explain:
+
+- why something exists,
+- how it was created,
+- what was learned,
+- what changed,
+- and where it may go next.
+
+Stories may include:
+
+- development updates,
+- behind-the-scenes information,
+- educational explanations,
+- creator notes,
+- historical context.
+
+Stories transform isolated creations into meaningful journeys.
+
+## 13. Discovery
+
+Discovery is the process by which people find value within the platform.
+
+Discovery should not rely only on search.
+
+The platform should support multiple discovery paths:
+
+- intentional search,
+- related experiences,
+- collections,
+- stories,
+- recommendations,
+- exploration,
+- and unexpected connections.
+
+Discovery should feel helpful, not manipulative.
+
+The platform should guide curiosity without manufacturing engagement.
+
+## 14. The Platform Shell
+
+The Platform Shell is the persistent environment surrounding all experiences.
+
+It provides consistency across the ecosystem.
+
+The Platform Shell includes:
+
+- navigation,
+- identity,
+- accessibility systems,
+- discovery mechanisms,
+- account or profile systems when appropriate,
+- shared services,
+- and platform-level interactions.
+
+Experiences should not need to rebuild these foundations.
+
+The Shell allows individual experiences to focus on their unique value while benefiting from the strength of the ecosystem.
+
+## 15. Relationship Between Elements
+
+The platform hierarchy is:
+
+```
+Interaction
+    ↓
+Experience
+    ↓
+Collection
+    ↓
+Discovery
+    ↓
+Platform
+```
+
+Each level provides additional context.
+
+An interaction creates value.
+
+An experience organizes interactions into a meaningful journey.
+
+A collection connects experiences.
+
+Discovery helps people find those connections.
+
+The platform provides the environment where everything evolves.
+
+## 16. Design Implications
+
+Every future feature should be evaluated through this model.
+
+Questions to ask:
+
+- Does this improve an interaction?
+- Does this strengthen an experience?
+- Does this create useful connections?
+- Does this improve discovery?
+- Does this strengthen the platform?
+
+Features that cannot answer these questions should be reconsidered.
+
+---
+
+**End of Published Section 3**
+
+This is the third published portion of Product Constitution v1.0.0.
+
+The next published section will be **Section 4: Trust and User Relationship** (defining privacy philosophy, analytics philosophy, monetization boundaries, user respect, and why sustainable revenue must coexist with trust). No implementation work should begin until that section is also published.
