@@ -187,5 +187,32 @@
         "title": "Uncertainty"
       }
     ]
+  },
+  {
+    "id": "society-mind",
+    "title": "Society & Mind",
+    "count": 5,
+    "experiences": [
+      {
+        "id": "attention",
+        "title": "Attention"
+      },
+      {
+        "id": "bias",
+        "title": "Bias"
+      },
+      {
+        "id": "memory",
+        "title": "Memory"
+      },
+      {
+        "id": "cooperation",
+        "title": "Cooperation"
+      },
+      {
+        "id": "decision-making",
+        "title": "Decision Making"
+      }
+    ]
   }
 ]

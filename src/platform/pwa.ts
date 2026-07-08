@@ -18,12 +18,26 @@ export async function registerPWA(): Promise<void> {
       onNeedRefresh() {
         // Automatically and silently update and hot-reload the page
         // to prevent old hashed assets from causing white screens.
-        void updateSW(true);
+        // We use a timeout fallback in case the SW controller fails to reload.
+        const reloadFallback = window.setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+
+        updateSW(true)
+          .then(() => {
+            window.clearTimeout(reloadFallback);
+          })
+          .catch(() => {
+            window.location.reload();
+          });
       },
       onRegisteredSW(swUrl, registration) {
         // eslint-disable-next-line no-console
         console.log('Service worker registered:', swUrl);
         if (registration) {
+          // Check for updates immediately on registration.
+          void registration.update();
+
           // Periodically check for updates while the app is open.
           window.setInterval(() => {
             void registration.update();

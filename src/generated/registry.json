@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-07-08T12:56:03.908Z",
+  "generatedAt": "2026-07-08T13:36:17.661Z",
   "experiences": [
     {
       "id": "adaptation",
@@ -26,6 +26,67 @@
       "returnValue": "New environmental pressures challenge your understanding of adaptation on each return.",
       "collection": "nature",
       "story": "the-living-web",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "attention",
+      "title": "Attention",
+      "description": "Focus on one pattern in a busy field and discover how much slips past while your mind is filtering for what matters.",
+      "summary": "Click the target cards, then answer what changed outside your focus. Attention is selective, not infinite.",
+      "category": "interactive",
+      "module": "attention.ts",
+      "tags": [
+        "attention",
+        "focus",
+        "filtering",
+        "perception"
+      ],
+      "searchKeywords": [
+        "attention",
+        "focus",
+        "selective attention",
+        "change blindness",
+        "perception"
+      ],
+      "estimatedDuration": "4-7 min",
+      "returnValue": "New focus rounds let you test how attention changes what you notice and what you miss.",
+      "collection": "society-mind",
+      "story": "bridges-within-and-between",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "bias",
+      "title": "Bias",
+      "description": "Make fast judgments from framed, partial, or ambiguous information and notice the shortcuts your mind uses to keep up.",
+      "summary": "Choose quickly, then see how framing, anchors, and assumptions tilt interpretation.",
+      "category": "reflection",
+      "module": "bias.ts",
+      "tags": [
+        "bias",
+        "framing",
+        "assumptions",
+        "shortcuts"
+      ],
+      "searchKeywords": [
+        "bias",
+        "framing",
+        "anchor",
+        "assumption",
+        "mental shortcut",
+        "fast thinking"
+      ],
+      "estimatedDuration": "5-8 min",
+      "returnValue": "Different scenarios keep revealing the shortcuts that feel natural to you. Return and compare your instincts.",
+      "collection": "society-mind",
+      "story": "bridges-within-and-between",
       "accessibility": {
         "keyboard": true,
         "screenReader": true,
@@ -208,6 +269,67 @@
       "returnValue": "New experimental setups test your ability to isolate cause on each return.",
       "collection": "science",
       "story": "ways-of-knowing",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "cooperation",
+      "title": "Cooperation",
+      "description": "Contribute or keep your tokens across changing group rules and watch how trust and incentives reshape the outcome for everyone.",
+      "summary": "Choose how much to share, see how others respond, and learn why cooperation is difficult and valuable.",
+      "category": "game",
+      "module": "cooperation.ts",
+      "tags": [
+        "cooperation",
+        "trust",
+        "incentives",
+        "group"
+      ],
+      "searchKeywords": [
+        "cooperation",
+        "trust",
+        "incentives",
+        "public goods",
+        "group decisions"
+      ],
+      "estimatedDuration": "6-10 min",
+      "returnValue": "Different contribution choices create different trust loops. Return to explore how rules change group behavior.",
+      "collection": "society-mind",
+      "story": "bridges-within-and-between",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "decision-making",
+      "title": "Decision Making",
+      "description": "Reveal only part of the picture, choose anyway, and feel how information limits and competing priorities shape human decisions.",
+      "summary": "Uncover two briefing cards, make the call, then see what hidden information you never had.",
+      "category": "reflection",
+      "module": "decision-making.ts",
+      "tags": [
+        "decisions",
+        "trade-offs",
+        "uncertainty",
+        "priorities"
+      ],
+      "searchKeywords": [
+        "decision",
+        "trade-off",
+        "risk",
+        "uncertainty",
+        "priorities",
+        "information"
+      ],
+      "estimatedDuration": "5-9 min",
+      "returnValue": "New dilemmas and hidden briefings keep testing how you balance consequences when certainty is unavailable.",
+      "collection": "society-mind",
+      "story": "bridges-within-and-between",
       "accessibility": {
         "keyboard": true,
         "screenReader": true,
@@ -512,6 +634,37 @@
       "returnValue": "Your highest streak is saved. Return to push past your personal record.",
       "collection": "foundations",
       "story": "foundations-journey",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "memory",
+      "title": "Memory",
+      "description": "Study a scene, recall its details, and compare your confidence with your accuracy to see memory as reconstruction.",
+      "summary": "Observe carefully, answer from memory, and discover how recall changes when details are rebuilt instead of replayed.",
+      "category": "interactive",
+      "module": "memory.ts",
+      "tags": [
+        "memory",
+        "recall",
+        "confidence",
+        "eyewitness"
+      ],
+      "searchKeywords": [
+        "memory",
+        "recall",
+        "confidence",
+        "accuracy",
+        "eyewitness",
+        "reconstruction"
+      ],
+      "estimatedDuration": "5-9 min",
+      "returnValue": "Different scenes and lure questions sharpen your observation while reminding you that confidence is not proof.",
+      "collection": "society-mind",
+      "story": "bridges-within-and-between",
       "accessibility": {
         "keyboard": true,
         "screenReader": true,
@@ -1295,9 +1448,98 @@
       "estimatedDuration": "30-50 min",
       "story": "ways-of-knowing",
       "version": "1.0.0"
+    },
+    {
+      "id": "society-mind",
+      "title": "Society & Mind",
+      "description": "Explore how attention, interpretation, memory, cooperation, and choice connect private thought to shared human systems.",
+      "summary": "Five experiences that teach attention, bias, memory, cooperation, and decision-making through interaction.",
+      "experiences": [
+        "attention",
+        "bias",
+        "memory",
+        "cooperation",
+        "decision-making"
+      ],
+      "tags": [
+        "society",
+        "mind",
+        "cognition",
+        "cooperation",
+        "decision-making"
+      ],
+      "searchKeywords": [
+        "society",
+        "mind",
+        "attention",
+        "bias",
+        "memory",
+        "cooperation",
+        "decisions",
+        "cognition"
+      ],
+      "estimatedDuration": "30-50 min",
+      "story": "bridges-within-and-between",
+      "version": "1.0.0"
     }
   ],
   "stories": [
+    {
+      "id": "bridges-within-and-between",
+      "title": "Bridges Within and Between",
+      "description": "Human systems begin in perception, grow through interpretation and memory, and become society when minds coordinate around rules and choices.",
+      "summary": "How perception becomes interpretation, memory, cooperation, and collective decisions.",
+      "relatedCollections": [
+        "society-mind"
+      ],
+      "relatedExperiences": [
+        "attention",
+        "bias",
+        "memory",
+        "cooperation",
+        "decision-making"
+      ],
+      "narrative": "Every society is built twice. First it is built inside individual minds — through attention, interpretation, memory, and judgment. Then it is built between people — through trust, incentives, rules, and decisions made together. The Society & Mind collection follows that expansion from the private filters of perception to the public systems we inhabit every day.",
+      "segments": [
+        {
+          "id": "intro",
+          "title": "What You Notice Comes First",
+          "text": "Before a person can interpret the world, they must notice part of it. Attention is the first gate. It decides what enters awareness and what stays in the background. Your first task is to focus on one signal and feel how easily the rest of the scene slips away.",
+          "trigger": "collection_start"
+        },
+        {
+          "id": "attention-to-bias",
+          "title": "From Perception to Interpretation",
+          "text": "Once something enters awareness, the mind does not leave it untouched. It frames, predicts, labels, and simplifies. Bias is not proof of failure. It is the mind moving quickly through uncertainty. The next experience asks you to watch those shortcuts in action.",
+          "trigger": "after_attention"
+        },
+        {
+          "id": "bias-to-memory",
+          "title": "The Story You Keep",
+          "text": "Interpretation does not end in the moment. It becomes memory. But memory is not a vault that stores reality exactly as it was. It is a reconstruction shaped by what mattered, what was suggested, and what the mind expects to be true. The next step is to observe carefully and then test what remains.",
+          "trigger": "after_bias"
+        },
+        {
+          "id": "memory-to-cooperation",
+          "title": "Many Minds, One System",
+          "text": "Individual minds do not stay isolated for long. They enter groups. They build norms. They decide whether to trust. Cooperation begins when people believe others will carry weight too — and it breaks when the incentives point elsewhere. The next experience shifts from the private mind to the shared system.",
+          "trigger": "after_memory"
+        },
+        {
+          "id": "cooperation-to-decisions",
+          "title": "Rules Become Choices",
+          "text": "Once a group exists, decisions follow. Someone must choose under incomplete information, uncertainty, and competing priorities. The final step asks you to make those choices directly and feel how values, consequences, and missing facts shape the path forward.",
+          "trigger": "after_cooperation"
+        },
+        {
+          "id": "completion",
+          "title": "The Bridge Is Visible Now",
+          "text": "You have traced the path from perception to interpretation, from interpretation to memory, from memory to cooperation, and from cooperation to decisions. Human systems do not appear from nowhere. They grow out of minds that notice, infer, remember, trust, and choose. Return to any experience and the bridge between inner thought and social life will look clearer.",
+          "trigger": "collection_complete"
+        }
+      ],
+      "version": "1.0.0"
+    },
     {
       "id": "echo-origin",
       "title": "The Origin of Echo",
