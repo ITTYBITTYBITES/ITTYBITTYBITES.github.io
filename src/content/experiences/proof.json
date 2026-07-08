@@ -1,0 +1,19 @@
+{
+  "id": "proof",
+  "title": "Proof",
+  "description": "Test examples, find counterexamples, and build a short logical argument to feel the difference between seems true and must be true.",
+  "summary": "Move from examples to certainty by testing claims and assembling a simple proof.",
+  "category": "reflection",
+  "module": "proof.ts",
+  "tags": ["proof", "logic", "evidence", "reasoning", "certainty"],
+  "searchKeywords": ["proof", "logic", "reasoning", "evidence", "counterexample", "truth", "certainty"],
+  "estimatedDuration": "6-10 min",
+  "returnValue": "Return to practice the shift from seeing a pattern to explaining why it must be true.",
+  "collection": "mathematics",
+  "story": "the-language-of-patterns",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

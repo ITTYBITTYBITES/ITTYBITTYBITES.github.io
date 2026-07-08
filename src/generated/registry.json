@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-07-08T11:13:02.582Z",
+  "generatedAt": "2026-07-08T12:56:03.908Z",
   "experiences": [
     {
       "id": "adaptation",
@@ -336,6 +336,39 @@
       }
     },
     {
+      "id": "estimation",
+      "title": "Estimation",
+      "description": "Make quick approximate guesses before exact measurement. Discover how magnitude and scale guide good mathematical thinking.",
+      "summary": "Estimate real quantities, compare guesses with reality, and build intuition for magnitude and scale.",
+      "category": "game",
+      "module": "estimation.ts",
+      "tags": [
+        "estimation",
+        "approximation",
+        "scale",
+        "magnitude",
+        "mental models"
+      ],
+      "searchKeywords": [
+        "estimation",
+        "estimate",
+        "approximation",
+        "scale",
+        "magnitude",
+        "guess",
+        "quantity"
+      ],
+      "estimatedDuration": "5-8 min",
+      "returnValue": "Return to practice judging quantities before calculating exactly.",
+      "collection": "mathematics",
+      "story": "the-language-of-patterns",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
       "id": "failure-analysis",
       "title": "Failure Analysis",
       "description": "Something broke. Multiple causes compete. Examine the evidence, eliminate what cannot be, and find the root cause.",
@@ -544,6 +577,39 @@
       }
     },
     {
+      "id": "patterns",
+      "title": "Patterns",
+      "description": "Continue sequences, test hidden rules, and see that math begins with noticing structure: what comes next, and why?",
+      "summary": "Discover hidden rules in sequences and learn that mathematics begins by noticing structure.",
+      "category": "interactive",
+      "module": "patterns.ts",
+      "tags": [
+        "patterns",
+        "sequence",
+        "rules",
+        "prediction",
+        "abstraction"
+      ],
+      "searchKeywords": [
+        "patterns",
+        "sequence",
+        "rule",
+        "predict",
+        "next",
+        "structure",
+        "abstraction"
+      ],
+      "estimatedDuration": "5-8 min",
+      "returnValue": "New sequences invite you to test different rules and sharpen your sense for what comes next.",
+      "collection": "mathematics",
+      "story": "the-language-of-patterns",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
       "id": "perspective-shift",
       "title": "Perspective Shift",
       "description": "The same scene holds different truths. Switch lenses to uncover what hides in plain sight.",
@@ -567,6 +633,72 @@
       "returnValue": "Collect all perspectives to see the complete picture. New insights emerge on return visits.",
       "collection": "foundations",
       "story": "foundations-journey",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "probability",
+      "title": "Probability",
+      "description": "Predict uncertain outcomes, run chance experiments, and compare intuition with what happens over many trials.",
+      "summary": "Explore randomness by making predictions, running experiments, and comparing results with expected outcomes.",
+      "category": "experiment",
+      "module": "probability.ts",
+      "tags": [
+        "probability",
+        "chance",
+        "randomness",
+        "prediction",
+        "uncertainty"
+      ],
+      "searchKeywords": [
+        "probability",
+        "chance",
+        "random",
+        "uncertainty",
+        "prediction",
+        "expected outcome",
+        "experiment"
+      ],
+      "estimatedDuration": "6-10 min",
+      "returnValue": "Return to see how repeated trials can turn randomness into clearer expectations.",
+      "collection": "mathematics",
+      "story": "the-language-of-patterns",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "proof",
+      "title": "Proof",
+      "description": "Test examples, find counterexamples, and build a short logical argument to feel the difference between seems true and must be true.",
+      "summary": "Move from examples to certainty by testing claims and assembling a simple proof.",
+      "category": "reflection",
+      "module": "proof.ts",
+      "tags": [
+        "proof",
+        "logic",
+        "evidence",
+        "reasoning",
+        "certainty"
+      ],
+      "searchKeywords": [
+        "proof",
+        "logic",
+        "reasoning",
+        "evidence",
+        "counterexample",
+        "truth",
+        "certainty"
+      ],
+      "estimatedDuration": "6-10 min",
+      "returnValue": "Return to practice the shift from seeing a pattern to explaining why it must be true.",
+      "collection": "mathematics",
+      "story": "the-language-of-patterns",
       "accessibility": {
         "keyboard": true,
         "screenReader": true,
@@ -751,6 +883,40 @@
       "returnValue": "New organism pairs challenge your ability to classify relationships. Accuracy improves with practice.",
       "collection": "nature",
       "story": "the-living-web",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "symmetry",
+      "title": "Symmetry",
+      "description": "Complete balanced patterns and discover what stays unchanged when shapes flip, turn, or repeat.",
+      "summary": "Create balanced structures and see how symmetry reveals hidden order in nature, art, and design.",
+      "category": "interactive",
+      "module": "symmetry.ts",
+      "tags": [
+        "symmetry",
+        "balance",
+        "transformation",
+        "invariance",
+        "structure"
+      ],
+      "searchKeywords": [
+        "symmetry",
+        "mirror",
+        "balance",
+        "pattern",
+        "transform",
+        "invariance",
+        "art",
+        "nature"
+      ],
+      "estimatedDuration": "6-10 min",
+      "returnValue": "Return to complete new patterns and notice symmetry in the world around you.",
+      "collection": "mathematics",
+      "story": "the-language-of-patterns",
       "accessibility": {
         "keyboard": true,
         "screenReader": true,
@@ -1033,6 +1199,39 @@
       "version": "1.0.0"
     },
     {
+      "id": "mathematics",
+      "title": "Mathematics",
+      "description": "Math is a language for understanding patterns. These experiences turn mathematics into a way of seeing relationships, uncertainty, structure, reasoning, and proof.",
+      "summary": "Five experiences that teach mathematical thinking through patterns, estimation, symmetry, probability, and proof.",
+      "experiences": [
+        "patterns",
+        "estimation",
+        "symmetry",
+        "probability",
+        "proof"
+      ],
+      "tags": [
+        "mathematics",
+        "patterns",
+        "reasoning",
+        "probability",
+        "proof"
+      ],
+      "searchKeywords": [
+        "mathematics",
+        "math",
+        "patterns",
+        "estimation",
+        "symmetry",
+        "probability",
+        "proof",
+        "reasoning"
+      ],
+      "estimatedDuration": "30-50 min",
+      "story": "the-language-of-patterns",
+      "version": "1.0.0"
+    },
+    {
       "id": "nature",
       "title": "Nature",
       "description": "Nature is not scenery. It is systems, cycles, relationships, and patterns playing out across time. These experiences teach ecological thinking through observation, connection, and consequence.",
@@ -1275,6 +1474,62 @@
           "id": "completion",
           "title": "You Think Like an Engineer Now",
           "text": "You have built bridges and felt the weight of compromise. You have tuned feedback and watched correction create new problems. You have optimized systems and discovered that the best solution hides in non-obvious places. You have investigated failures and learned to follow evidence. You have made trade-offs and accepted that every gain costs something. These are not just engineering skills. They are thinking skills. Every complex problem — in business, in policy, in life — requires the same wisdom: knowing what to optimize, what to sacrifice, and why. Return to any experience and you will see the compromises more clearly. You are now thinking like an engineer.",
+          "trigger": "collection_complete"
+        }
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "id": "the-language-of-patterns",
+      "title": "The Language of Patterns",
+      "description": "A journey through mathematics as a way of seeing: patterns, measurement, hidden structure, uncertainty, and proof.",
+      "summary": "Mathematics becomes a tool for understanding reality by moving from noticed patterns to justified truth.",
+      "relatedCollections": [
+        "mathematics"
+      ],
+      "relatedExperiences": [
+        "patterns",
+        "estimation",
+        "symmetry",
+        "probability",
+        "proof"
+      ],
+      "narrative": "Mathematics begins before symbols. It begins when the mind notices structure: a rhythm, a sequence, a balance, a prediction that keeps working. From there, math becomes a language for understanding reality. It lets us estimate a world too large to count exactly. It reveals hidden order in symmetry and transformation. It helps us reason when the future is uncertain. And finally, it gives us proof — the discipline of showing not merely that something appears true, but why it must be true. This collection is not a classroom replacement. It is a way of seeing. Each experience gives the intuition first, then names the idea after the meaning is already felt.",
+      "segments": [
+        {
+          "id": "intro",
+          "title": "Begin by Noticing",
+          "text": "Mathematics begins with a question simple enough for anyone to ask: what comes next, and why? Before formulas, before notation, before calculation, there is pattern. A repeated beat. A growing row. A rule you can feel before you can name. Start by continuing sequences and looking for the hidden structure that makes prediction possible.",
+          "trigger": "collection_start"
+        },
+        {
+          "id": "patterns-to-estimation",
+          "title": "Measuring Before Counting",
+          "text": "You have seen that a rule can describe many cases at once. Now turn that power toward the world. Exact answers are useful, but good mathematical thinking often begins earlier, with estimation. To estimate is to build a mental model of size, distance, quantity, and scale. You are not guessing blindly. You are measuring with understanding before calculating with precision.",
+          "trigger": "after_patterns"
+        },
+        {
+          "id": "estimation-to-symmetry",
+          "title": "Hidden Structure Appears",
+          "text": "Estimation helps you measure the world. Symmetry helps you see its hidden order. A leaf, a tile floor, a face, a bridge, and a melody can all hold balance across change. Something flips, turns, or repeats, and something important remains the same. This is structure you can see before you give it a formal name.",
+          "trigger": "after_estimation"
+        },
+        {
+          "id": "symmetry-to-probability",
+          "title": "When Order Meets Chance",
+          "text": "Not everything is fixed. Some systems have structure without certainty. A coin toss, a spinner, a weather forecast, or a medical study cannot promise what happens next, but mathematics can still help. Probability turns uncertainty into something reasoned. It lets you compare intuition with repeated experience and make better decisions without pretending the future is known.",
+          "trigger": "after_symmetry"
+        },
+        {
+          "id": "probability-to-proof",
+          "title": "From Seems True to Must Be True",
+          "text": "Patterns can suggest. Estimates can guide. Symmetry can reveal. Probability can prepare. But mathematics also asks for something stronger: proof. Examples may make an idea believable, but examples alone cannot cover every possible case. The final step is learning how a logical argument turns a pattern into certainty.",
+          "trigger": "after_probability"
+        },
+        {
+          "id": "completion",
+          "title": "You See Mathematically Now",
+          "text": "You have followed mathematics from noticed patterns to measured scale, from hidden symmetry to uncertain futures, from examples to proof. Mathematics is not a pile of formulas. It is a language for seeing relationships and structures that ordinary attention misses. Return to any experience and the world will look a little more patterned, a little more connected, and a little more understandable.",
           "trigger": "collection_complete"
         }
       ],

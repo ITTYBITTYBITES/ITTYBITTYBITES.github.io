@@ -1,0 +1,19 @@
+{
+  "id": "patterns",
+  "title": "Patterns",
+  "description": "Continue sequences, test hidden rules, and see that math begins with noticing structure: what comes next, and why?",
+  "summary": "Discover hidden rules in sequences and learn that mathematics begins by noticing structure.",
+  "category": "interactive",
+  "module": "patterns.ts",
+  "tags": ["patterns", "sequence", "rules", "prediction", "abstraction"],
+  "searchKeywords": ["patterns", "sequence", "rule", "predict", "next", "structure", "abstraction"],
+  "estimatedDuration": "5-8 min",
+  "returnValue": "New sequences invite you to test different rules and sharpen your sense for what comes next.",
+  "collection": "mathematics",
+  "story": "the-language-of-patterns",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

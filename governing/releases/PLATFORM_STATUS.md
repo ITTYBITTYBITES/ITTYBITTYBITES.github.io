@@ -25,7 +25,7 @@ With the foundation solid, we move from building the *platform* to building the 
 
 ### Phase 2: Core Library (CURRENT)
 The focus is now exclusively on content depth. No new platform features.
-- [ ] **Mathematics Collection** (5 experiences + Story)
+- [x] **Mathematics Collection** (5 experiences + Story)
 - [ ] **Society & Mind Collection** (5 experiences + Story)
 
 ### Phase 3: Launch Preparation
@@ -47,6 +47,7 @@ The Platform Foundation is frozen at `v1.0.0-foundation`. The Library evolves in
 | Version | Milestone | Date |
 |---------|-----------|------|
 | **Foundation v1.0** | Platform architecture complete and frozen. | 2026-07-08 |
+| **Library v0.7** | Mathematics Collection added; seven collections complete. | 2026-07-08 |
 | **Library v0.6** | Six core collections (Foundations, History, Science, Nature, Creativity, Engineering) complete. | 2026-07-08 |
 
 ---
@@ -64,7 +65,7 @@ Every collection is guided by the **Library Compass**.
 | Nature | Everything is connected. | Systems thinking through organic forms. | Complete |
 | Creativity | Constraints can produce originality. | The art of working within boundaries. | Complete |
 | Engineering | Every solution involves trade-offs. | The reality of technical compromise. | Complete |
-| Mathematics | Math is a language for understanding patterns. | Unlocking patterns, probability, symmetry, and logic. | Not Started |
+| Mathematics | Math is a language for understanding patterns. | A creative framework for recognizing patterns, relationships, uncertainty, structure, reasoning, and proof. | Complete |
 | Society & Mind | Cooperation, cognition, and communication are the bridges that connect all human systems. | Flagship collection connecting minds and societies. | Not Started |
 
 ---

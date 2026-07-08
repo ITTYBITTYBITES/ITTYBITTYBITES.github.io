@@ -1,12 +1,18 @@
 # ITTYBITTYBITES Library Version History
 
-**Library Version**: v0.6.1 (6 Collections)  
+**Library Version**: v0.7.0 (7 Collections)  
 **Status**: Active Content Development  
 **Date**: 2026-07-08  
 
 ---
 
 ## Library Releases
+
+### Library v0.7.0 (Release 0.7) — 2026-07-08
+- **Mathematics Collection** added (5 experiences: Patterns, Estimation, Symmetry, Probability, Proof).
+- "The Language of Patterns" story added.
+- Content-only release completed without platform architecture changes.
+- Registry totals increased to 7 collections, 35 experiences, and 8 stories.
 
 ### Library v0.6.1 — 2026-07-08
 - Adopted the "Library Compass" for all existing collections.

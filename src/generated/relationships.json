@@ -28,6 +28,13 @@
       "chain-reaction",
       "witness-accounts"
     ],
+    "mathematics": [
+      "patterns",
+      "estimation",
+      "symmetry",
+      "probability",
+      "proof"
+    ],
     "nature": [
       "ecosystem",
       "seasons",
@@ -103,6 +110,21 @@
     ],
     "witness-accounts": [
       "history"
+    ],
+    "patterns": [
+      "mathematics"
+    ],
+    "estimation": [
+      "mathematics"
+    ],
+    "symmetry": [
+      "mathematics"
+    ],
+    "probability": [
+      "mathematics"
+    ],
+    "proof": [
+      "mathematics"
     ],
     "ecosystem": [
       "nature"

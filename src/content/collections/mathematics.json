@@ -1,0 +1,12 @@
+{
+  "id": "mathematics",
+  "title": "Mathematics",
+  "description": "Math is a language for understanding patterns. These experiences turn mathematics into a way of seeing relationships, uncertainty, structure, reasoning, and proof.",
+  "summary": "Five experiences that teach mathematical thinking through patterns, estimation, symmetry, probability, and proof.",
+  "experiences": ["patterns", "estimation", "symmetry", "probability", "proof"],
+  "tags": ["mathematics", "patterns", "reasoning", "probability", "proof"],
+  "searchKeywords": ["mathematics", "math", "patterns", "estimation", "symmetry", "probability", "proof", "reasoning"],
+  "estimatedDuration": "30-50 min",
+  "story": "the-language-of-patterns",
+  "version": "1.0.0"
+}

@@ -76,15 +76,14 @@ Here is the authoritative mapping of all active and upcoming collections.
 
 ### 7. Mathematics (`M`)
 - **The Compass**: Math is a language for understanding patterns.
-- **Editor's Note**: Mathematics is not about mechanical arithmetic, solving dry equations, or memorizing formulas. It is about ways of thinking. When a user completes this collection, they should realize that math is the ultimate tool for recognizing symmetry, predicting probability, navigating infinity, and uncovering the deep structures of our world.
-- **Target Themes**:
-  - **Estimation**: Developing the cognitive muscle of approximating high-order scale.
-  - **Patterns**: Finding repeating logical and visual structures in noise.
-  - **Symmetry**: Exploring balance, transformations, and invariants.
-  - **Probability**: Building a strong intuition for chance, expectation, and risk.
-  - **Proof**: Understanding how we verify truth through logical deduction and counterexamples.
-  - **Infinity**: Wrangling with limits, boundaries, and things that grow without end.
-- **Status**: Planned (Release 0.7)
+- **Editor's Note**: Mathematics is not about memorizing formulas or completing mechanical calculations. It is a creative framework for recognizing patterns, exploring relationships, predicting possibilities, and discovering the hidden structures that shape our world.
+- **Experience Themes**:
+  - **Patterns**: Noticing repetition, sequences, rules, prediction, and abstraction.
+  - **Estimation**: Developing approximate reasoning through magnitude, scale, and mental models.
+  - **Symmetry**: Exploring balance, transformations, repetition, and invariance.
+  - **Probability**: Building intuition for chance, expected outcomes, and decisions under uncertainty.
+  - **Proof**: Understanding how examples, counterexamples, and logic differ from certainty.
+- **Status**: Complete (Release 0.7 / v1.0.0)
 
 ### 8. Society & Mind (`X`)
 - **The Compass**: Cooperation, cognition, and communication are the bridges that connect all human systems.
