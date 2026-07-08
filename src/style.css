@@ -19,6 +19,18 @@
   --space-6: 1.5rem;
   --space-8: 2rem;
   --space-12: 3rem;
+
+  /* Elevation */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+  /* Motion */
+  --duration-fast: 100ms;
+  --duration-mid: 150ms;
+  --duration-base: 200ms;
+  --duration-slow: 300ms;
+  --easing-standard: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 *,
@@ -144,7 +156,7 @@ select {
     padding: var(--space-2);
     border: 1px solid ButtonBorder;
     background: canvas;
-    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    box-shadow: var(--shadow-md);
     border-radius: var(--radius-lg);
     z-index: 100;
   }
@@ -216,7 +228,7 @@ p {
   font-size: 1rem;
   line-height: 1.5;
   min-height: 2.5rem;
-  transition: background 0.15s, color 0.15s, transform 0.05s;
+  transition: background var(--duration-mid), color var(--duration-mid), transform var(--duration-fast);
 }
 
 .btn:hover {
@@ -285,11 +297,11 @@ p {
   background: canvas;
   display: flex;
   flex-direction: column;
-  transition: box-shadow 0.15s, transform 0.1s;
+  transition: box-shadow var(--duration-mid), transform var(--duration-fast);
 }
 
 .card:hover {
-  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-sm);
 }
 
 .card h2 {
@@ -663,7 +675,7 @@ p {
   background: canvas;
   border: 1px solid ButtonBorder;
   border-radius: var(--radius-lg);
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-lg);
   z-index: 50;
   max-height: 24rem;
   overflow-y: auto;
@@ -769,11 +781,11 @@ p {
   background: canvas;
   text-decoration: none;
   color: inherit;
-  transition: box-shadow 0.15s, transform 0.1s;
+  transition: box-shadow var(--duration-mid), transform var(--duration-fast);
 }
 
 .suggestion-card:hover {
-  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
 
@@ -813,11 +825,11 @@ p {
   background: canvas;
   text-decoration: none;
   color: inherit;
-  transition: box-shadow 0.15s;
+  transition: box-shadow var(--duration-mid);
 }
 
 .mini-card:hover {
-  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.08);
+  box-shadow: var(--shadow-sm);
 }
 
 .mini-card strong {
@@ -856,11 +868,11 @@ p {
   background: canvas;
   text-decoration: none;
   color: inherit;
-  transition: box-shadow 0.15s, transform 0.1s;
+  transition: box-shadow var(--duration-mid), transform var(--duration-fast);
 }
 
 .browse-card:hover {
-  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
   transform: translateY(-2px);
 }
 
