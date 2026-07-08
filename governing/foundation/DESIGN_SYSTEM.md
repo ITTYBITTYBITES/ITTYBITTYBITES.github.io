@@ -53,7 +53,7 @@ We use an 8px base spacing scale.
 
 ---
 
-## 2. Color & Branding
+## Color & Branding
 
 ### Platform Shell
 The shell is intentionally neutral and respectful of content.

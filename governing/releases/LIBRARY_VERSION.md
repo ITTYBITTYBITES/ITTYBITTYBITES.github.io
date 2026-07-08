@@ -1,20 +1,8 @@
-# ITTYBITTYBITES Version History
+# ITTYBITTYBITES Library Version History
 
-**Platform Version**: v1.0.0 (Foundation Frozen)  
-**Library Version**: v0.6.1 (6 Collections)
-
----
-
-## The Foundation / Library Split
-
-As of 2026-07-08, ITTYBITTYBITES has reached its first major milestone. The platform architecture is frozen, and the library has taken center stage.
-
-### [v1.0.0-foundation] — 2026-07-08
-**Status: Frozen**
-- All core infrastructure (Registry, Router, PWA, Search, Personalization) complete.
-- Governance system (Constitution, Blueprint, Vision, Design System) published.
-- Branding (ITTYBITTYBITES) fully integrated.
-- Platform transition from "Engineering" to "Maintenance" mode.
+**Library Version**: v0.6.1 (6 Collections)  
+**Status**: Active Content Development  
+**Date**: 2026-07-08  
 
 ---
 
@@ -24,6 +12,8 @@ As of 2026-07-08, ITTYBITTYBITES has reached its first major milestone. The plat
 - Adopted the "Library Compass" for all existing collections.
 - Defined permanent Editorial Principles in `CONTENT_SYSTEM.md`.
 - Formalized the Foundation/Library versioning split.
+- Renamed "Curator's Note" to "Editor's Note" to reflect the interactive reading identity of the library.
+- Restructured `governing/` directory to cleanly separate platform governance from editorial philosophy.
 
 ### Library v0.6.0 (Release 0.6) — 2026-07-08
 - **Engineering Collection** added (5 experiences: Bridge Builder, Feedback Loop, Optimization, Failure Analysis, Trade-offs).
@@ -45,5 +35,4 @@ As of 2026-07-08, ITTYBITTYBITES has reached its first major milestone. The plat
 - **Science Collection** (5 experiences).
 
 ---
-
 **Last Updated:** 2026-07-08

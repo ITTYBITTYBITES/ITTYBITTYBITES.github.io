@@ -56,16 +56,16 @@ The Platform Foundation is frozen at `v1.0.0-foundation`. The Library evolves in
 ### The Library Compass
 Every collection is guided by the **Library Compass**.
 
-| Collection | The Compass (Outcome) | Curator's Note | Status |
+| Collection | The Compass (Outcome) | Editor's Note | Status |
 |------------|-----------------------|----------------|--------|
 | Foundations | Meaningful interactions are the bedrock of understanding. | Establishing the language of the platform. | Complete |
-| History | Evidence is stronger than certainty. | Exploring how we know what we know. | Complete |
+| History | Evidence is stronger than certainty. | History isn't about memorizing dates. It's about learning how evidence changes what we believe happened. | Complete |
 | Science | Good questions change with new evidence. | The iterative nature of discovery. | Complete |
 | Nature | Everything is connected. | Systems thinking through organic forms. | Complete |
 | Creativity | Constraints can produce originality. | The art of working within boundaries. | Complete |
 | Engineering | Every solution involves trade-offs. | The reality of technical compromise. | Complete |
-| Mathematics | *To be authored* | *To be authored* | Not Started |
-| Society & Mind | *To be authored* | *To be authored* | Not Started |
+| Mathematics | Math is a language for understanding patterns. | Unlocking patterns, probability, symmetry, and logic. | Not Started |
+| Society & Mind | Cooperation, cognition, and communication are the bridges that connect all human systems. | Flagship collection connecting minds and societies. | Not Started |
 
 ---
 
@@ -81,11 +81,11 @@ Every collection is guided by the **Library Compass**.
 
 ## Quick Links
 
-- [Product Constitution](PRODUCT_CONSTITUTION.md)
-- [Platform Blueprint](PLATFORM_BLUEPRINT.md)
-- [Release Readiness Checklist](RELEASE_READINESS_CHECKLIST.md)
-- [Engineering Standards](ENGINEERING_STANDARDS.md)
-- [Development Manual](DEVELOPMENT_MANUAL.md)
+- [Product Constitution](../foundation/PRODUCT_CONSTITUTION.md)
+- [Platform Blueprint](../foundation/PLATFORM_BLUEPRINT.md)
+- [Release Readiness Checklist](../foundation/RELEASE_READINESS_CHECKLIST.md)
+- [Engineering Standards](../foundation/ENGINEERING_STANDARDS.md)
+- [Development Manual](../foundation/DEVELOPMENT_MANUAL.md)
 
 ---
 
