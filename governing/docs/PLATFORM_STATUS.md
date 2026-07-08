@@ -42,6 +42,20 @@ Public launch of the complete library.
 
 ## Current Collection Status
 
+### The Library Compass
+Every collection is guided by a single outcome-focused question: **"When someone finishes this Collection, what should they see differently?"**
+
+| Collection | The Compass | Status |
+|------------|-------------|--------|
+| Foundations | Meaningful interactions are the bedrock of understanding. | Complete |
+| History | Evidence is stronger than certainty. | Complete |
+| Science | Good questions change with new evidence. | Complete |
+| Nature | Everything is connected. | Complete |
+| Creativity | Constraints can produce originality. | Complete |
+| Engineering | Every solution involves trade-offs. | Complete |
+| Mathematics | *To be authored* | Not Started |
+| Society & Mind | *To be authored* | Not Started |
+
 ---
 
 ## Platform Principles

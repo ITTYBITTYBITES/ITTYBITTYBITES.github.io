@@ -1,17 +1,20 @@
-# The Experience Platform
+# ITTYBITTYBITES — Interactive collections worth returning to.
 
-> **v2 — Product Phase** (started 2026-07-07)  
-> The Platform is now in its product architecture phase.  
-> All future work is derived from the governing specifications in `/docs`.
-
-See:
-- `GOVERNANCE.md` — How this project is now run
-- `VERSION.md` — Version history
-- `docs/README.md` — The full governing document library
+> **ITTYBITTYBITES is a growing library of interactive experiences designed to help people understand the world a little better, one bite at a time.**
 
 ---
 
-## Historical Foundation (v1)
+## Foundation v1.0 (Frozen)
+The Platform Foundation is complete and frozen. All future work focuses on the growth of the **Core Library**.
+
+See:
+- `governing/docs/VISION.md` — Why we exist
+- `governing/docs/PRODUCT_CONSTITUTION.md` — Our laws
+- `governing/docs/PLATFORM_STATUS.md` — Current library progress
+
+---
+
+## Technical Overview
 
 The section below documents the stable engineering foundation that was completed before v2 began.
 
