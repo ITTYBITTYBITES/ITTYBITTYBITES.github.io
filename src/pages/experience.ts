@@ -3,6 +3,7 @@ import { getExperienceById, getStoryById } from '../platform/registry';
 import { getNextSteps } from '../platform/discovery';
 import { getReturnSummary, markExperienceCompleted } from '../platform/lifecycle';
 import { h } from '../platform/utils';
+import { feedback } from '../platform/feedback';
 
 export function renderExperience({ params, query }: { params: Record<string, string>; query: URLSearchParams }): HTMLElement {
   const id = params.id;
@@ -80,15 +81,29 @@ export function renderExperience({ params, query }: { params: Record<string, str
   }
 
   // Mark complete button for experiences that don't self-report
-  const completeBtn = h('button', { class: 'btn subtle', type: 'button' }, ['Mark as complete']);
+  const completeBtn = h('button', { class: 'btn subtle complete-signal', type: 'button', 'aria-describedby': 'complete-help' }, ['Mark complete — I explored this']);
+  const completeHelp = h('p', { id: 'complete-help', class: 'meta', style: 'font-size:0.8rem;margin-top:0.25rem;' },
+    ['Completing is a quiet acknowledgement, not a score.']);
   completeBtn.addEventListener('click', () => {
     markExperienceCompleted(entry.id);
-    completeBtn.textContent = 'Completed';
+    feedback.complete(completeBtn as HTMLElement, 'Experience marked complete. Thank you for your attention.');
+    completeBtn.textContent = 'Completed — noted';
     completeBtn.setAttribute('disabled', 'true');
-    completeBtn.classList.add('celebration-element');
-    setTimeout(() => { completeBtn.classList.remove('celebration-element'); }, 500);
+    completeBtn.classList.add('completion-acknowledged');
+    // show reflective completion moment inline
+    const reflect = h('div', { class: 'completion-reflection animate-in', role: 'status', 'aria-live': 'polite' }, [
+      h('h3', {}, ['Complete']),
+      h('p', {}, ['You took time with this. What will you carry forward?']),
+      h('p', { class: 'meta' }, ['Return any time — the experience will remember your progress.'])
+    ]);
+    (completeBtn.parentElement || elements[elements.length-1].parentElement)?.insertBefore?.(reflect, completeBtn.nextSibling);
+    // fallback append
+    const container = completeBtn.closest('.complete-action') || completeBtn.parentElement;
+    if (container && !container.querySelector('.completion-reflection')) {
+      container.appendChild(reflect);
+    }
   });
-  elements.push(completeBtn);
+  elements.push(h('div', { class: 'complete-action' }, [completeBtn, completeHelp]));
 
   if (next.nextInCollection) {
     elements.push(
@@ -110,10 +125,17 @@ export function renderExperience({ params, query }: { params: Record<string, str
     );
   } else if (returnSummary.completed) {
     elements.push(
-      h('div', { class: 'completion-banner celebration-pulse' }, [
-        h('h3', {}, ['Experience Completed! 🎉']),
-        h('p', {}, ['You have completed this experience. Explore more to continue your journey.']),
-        h('a', { class: 'btn', href: '/collections' }, ['Explore Collections'])
+      h('div', { class: 'completion-banner completion-reflection', role: 'status' }, [
+        h('h3', {}, ['Complete']),
+        h('p', {}, ['You explored this thoroughly. Take a moment — what stood out?']),
+        h('p', { class: 'meta' }, [
+          `Visited ${returnSummary.totalSessions} time${returnSummary.totalSessions === 1 ? '' : 's'}.`,
+          ' Your progress is saved locally.'
+        ]),
+        h('div', { class: 'cta-row', style: 'margin-top:1rem;' }, [
+          h('a', { class: 'btn subtle', href: '/library' }, ['Return to Library']),
+          h('a', { class: 'btn', href: '/collections' }, ['Continue exploring'])
+        ])
       ])
     );
   }

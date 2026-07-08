@@ -113,9 +113,10 @@ export function renderCollections(): HTMLElement {
     let completionBanner: HTMLElement | null = null;
     if (isCompleted) {
       const completionSegment = story?.segments?.find(s => s.trigger === 'collection_complete');
-      completionBanner = h('div', { class: 'completion-banner celebration-element celebration-pulse' }, [
-        h('h3', {}, ['Collection Complete 🎉']),
+      completionBanner = h('div', { class: 'completion-banner completion-reflection', role: 'status' }, [
+        h('h3', {}, ['Collection complete']),
         h('p', {}, [completionSegment?.text || 'You have experienced the full journey. Return to any experience and you will find it deeper than before.']),
+        h('p', { class: 'meta' }, ['A quiet acknowledgement — no points, no rush.']),
       ]);
     }
 
@@ -125,7 +126,7 @@ export function renderCollections(): HTMLElement {
       ? `background: ${identity.theme.backgroundGradient}; border-left: 4px solid ${identity.theme.primaryColor};`
       : '';
 
-    const card = h('article', { class: 'collection-card', style: cardStyle }, [
+    const card = h('article', { class: 'collection-card', 'data-collection': collection.id, style: cardStyle }, [
       h('header', { class: 'collection-header' }, [
         h('h2', {}, [identity ? `${identity.theme.icon} ${collection.title}` : collection.title]),
         h('p', {}, [collection.description]),
