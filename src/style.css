@@ -1612,3 +1612,701 @@ experience-host .btn:disabled {
   opacity: 0.72;
   filter: saturate(0.85);
 }
+  outline: none;
+}
+
+/* ===== COLLECTION IDENTITY SYSTEM ===== */
+
+/* Base collection theme application */
+[data-collection] {
+  --collection-primary: #6B7280;
+  --collection-secondary: #9CA3AF;
+  --collection-accent: #D1D5DB;
+  --collection-border: #6B7280;
+  --collection-hover: #F3F4F6;
+  --collection-text: #1F2937;
+}
+
+/* Collection-specific background tints */
+[data-collection="foundations"] {
+  --collection-primary: #6B7280;
+  --collection-secondary: #9CA3AF;
+  --collection-accent: #D1D5DB;
+  --collection-border: #6B7280;
+  --collection-hover: #F3F4F6;
+  --collection-text: #1F2937;
+}
+
+[data-collection="history"] {
+  --collection-primary: #92400E;
+  --collection-secondary: #B45309;
+  --collection-accent: #D97706;
+  --collection-border: #92400E;
+  --collection-hover: #FFFBEB;
+  --collection-text: #78350F;
+}
+
+[data-collection="science"] {
+  --collection-primary: #1E40AF;
+  --collection-secondary: #3B82F6;
+  --collection-accent: #60A5FA;
+  --collection-border: #1E40AF;
+  --collection-hover: #EFF6FF;
+  --collection-text: #1E3A8A;
+}
+
+[data-collection="nature"] {
+  --collection-primary: #065F46;
+  --collection-secondary: #059669;
+  --collection-accent: #10B981;
+  --collection-border: #065F46;
+  --collection-hover: #ECFDF5;
+  --collection-text: #064E3B;
+}
+
+[data-collection="creativity"] {
+  --collection-primary: #7C2D12;
+  --collection-secondary: #DC2626;
+  --collection-accent: #F59E0B;
+  --collection-border: #7C2D12;
+  --collection-hover: #FFF7ED;
+  --collection-text: #7C2D12;
+}
+
+[data-collection="engineering"] {
+  --collection-primary: #1E3A8A;
+  --collection-secondary: #1E40AF;
+  --collection-accent: #3B82F6;
+  --collection-border: #1E3A8A;
+  --collection-hover: #EFF6FF;
+  --collection-text: #1E3A8A;
+}
+
+[data-collection="mathematics"] {
+  --collection-primary: #7C3AED;
+  --collection-secondary: #8B5CF6;
+  --collection-accent: #A78BFA;
+  --collection-border: #7C3AED;
+  --collection-hover: #F5F3FF;
+  --collection-text: #5B21B6;
+}
+
+[data-collection="society-mind"] {
+  --collection-primary: #BE185D;
+  --collection-secondary: #DB2777;
+  --collection-accent: #EC4899;
+  --collection-border: #BE185D;
+  --collection-hover: #FDF2F8;
+  --collection-text: #9D174D;
+}
+
+/* Collection-themed cards */
+[data-collection] .card,
+[data-collection] .browse-card,
+[data-collection] .suggestion-card {
+  border-left: 3px solid var(--collection-border);
+  transition: box-shadow var(--duration-mid), transform var(--duration-fast), border-color var(--duration-mid);
+}
+
+[data-collection] .card:hover,
+[data-collection] .browse-card:hover,
+[data-collection] .suggestion-card:hover {
+  border-left-color: var(--collection-accent);
+  box-shadow: var(--shadow-md);
+}
+
+/* Collection-themed buttons */
+[data-collection] .btn.primary {
+  background: var(--collection-primary);
+  border-color: var(--collection-primary);
+  color: var(--collection-text);
+}
+
+[data-collection] .btn.primary:hover {
+  background: var(--collection-accent);
+  border-color: var(--collection-accent);
+  color: var(--collection-text);
+}
+
+/* Collection header styles */
+.collection-header-themed {
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--collection-border);
+  margin-bottom: var(--space-6);
+  position: relative;
+  overflow: hidden;
+}
+
+.collection-header-themed::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.05;
+  pointer-events: none;
+}
+
+[data-collection="foundations"] .collection-header-themed::before {
+  background: linear-gradient(135deg, #6B7280 0%, transparent 70%);
+}
+
+[data-collection="history"] .collection-header-themed::before {
+  background: linear-gradient(135deg, #92400E 0%, transparent 70%);
+}
+
+[data-collection="science"] .collection-header-themed::before {
+  background: linear-gradient(135deg, #1E40AF 0%, transparent 70%);
+}
+
+[data-collection="nature"] .collection-header-themed::before {
+  background: linear-gradient(135deg, #065F46 0%, transparent 70%);
+}
+
+[data-collection="creativity"] .collection-header-themed::before {
+  background: linear-gradient(135deg, #7C2D12 0%, transparent 70%);
+}
+
+[data-collection="engineering"] .collection-header-themed::before {
+  background: linear-gradient(135deg, #1E3A8A 0%, transparent 70%);
+}
+
+[data-collection="mathematics"] .collection-header-themed::before {
+  background: linear-gradient(135deg, #7C3AED 0%, transparent 70%);
+}
+
+[data-collection="society-mind"] .collection-header-themed::before {
+  background: linear-gradient(135deg, #BE185D 0%, transparent 70%);
+}
+
+/* Collection icon container */
+.collection-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: var(--radius);
+  background: var(--collection-hover);
+  color: var(--collection-primary);
+  margin-right: var(--space-3);
+}
+
+.collection-icon svg {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+/* Enhanced experience cards */
+.experience-card-themed {
+  position: relative;
+  padding-left: var(--space-6);
+}
+
+.experience-card-themed::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background: var(--collection-border);
+  border-radius: 999px;
+  transition: background var(--duration-mid);
+}
+
+.experience-card-themed:hover::before {
+  background: var(--collection-accent);
+}
+
+/* Completion badge themed */
+[data-collection] .badge.completed {
+  background: var(--collection-accent);
+  color: var(--collection-text);
+}
+
+/* Progress track themed */
+[data-collection] .progress-fill {
+  background: var(--collection-primary);
+}
+
+/* Story transition themed */
+[data-collection] .story-transition {
+  border-left-color: var(--collection-border);
+}
+
+[data-collection] .collection-story {
+  border-left-color: var(--collection-border);
+}
+
+/* Completion banner themed */
+[data-collection] .completion-banner {
+  border-color: var(--collection-accent);
+  background: color-mix(in srgb, var(--collection-accent) 8%, transparent);
+}
+
+[data-collection] .completion-banner h3 {
+  color: var(--collection-primary);
+}
+
+@media (prefers-color-scheme: dark) {
+  [data-collection] .completion-banner {
+    background: color-mix(in srgb, var(--collection-accent) 15%, transparent);
+  }
+  
+  [data-collection] .completion-banner h3 {
+    color: var(--collection-accent);
+  }
+}
+
+/* Book-like hover effect for cards */
+.card-book {
+  transition: transform var(--duration-mid), box-shadow var(--duration-mid);
+  transform-style: preserve-3d;
+}
+
+.card-book:hover {
+  transform: translateY(-2px) rotateX(2deg);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-book:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* Collection-themed section dividers */
+.section-divider {
+  height: 2px;
+  background: linear-gradient(to right, var(--collection-border), transparent);
+  margin: var(--space-8) 0;
+}
+
+/* Enhanced focus states with collection colors */
+[data-collection] *:focus-visible {
+  outline-color: var(--collection-accent);
+}
+
+/* Print styles for collection theming */
+@media print {
+  [data-collection] {
+    --collection-primary: #000;
+    --collection-secondary: #333;
+    --collection-accent: #666;
+    --collection-border: #000;
+    --collection-hover: transparent;
+    --collection-text: #000;
+  }
+}
+
+/* ===== ENHANCED CARD STYLES ===== */
+
+/* Book-like card design */
+.card,
+.browse-card,
+.suggestion-card,
+.mini-card {
+  transition: transform var(--duration-mid), box-shadow var(--duration-mid), border-color var(--duration-mid);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Subtle top border accent */
+.card::before,
+.browse-card::before,
+.suggestion-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--collection-border, ButtonBorder);
+  opacity: 0;
+  transition: opacity var(--duration-mid);
+}
+
+.card:hover::before,
+.browse-card:hover::before,
+.suggestion-card:hover::before {
+  opacity: 1;
+}
+
+/* Enhanced hover state - like opening a book */
+.card:hover,
+.browse-card:hover,
+.suggestion-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  border-color: var(--collection-border, ButtonBorder);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card:hover,
+  .browse-card:hover,
+  .suggestion-card:hover {
+    transform: translateY(-1px);
+  }
+}
+
+/* Card content spacing */
+.card h2,
+.card h3,
+.browse-card h3,
+.suggestion-card h3 {
+  margin-top: 0;
+  line-height: 1.3;
+}
+
+.card p,
+.browse-card p,
+.suggestion-card p,
+.mini-card p {
+  color: GrayText;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+/* Experience grid enhancements */
+.grid {
+  gap: var(--space-6);
+}
+
+@media (max-width: 40rem) {
+  .grid {
+    gap: var(--space-4);
+  }
+}
+
+/* ===== TYPOGRAPHY ENHANCEMENTS ===== */
+
+/* Enhanced heading styles */
+h1 {
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  letter-spacing: -0.01em;
+}
+
+/* Prose enhancements for long-form content */
+.prose p {
+  line-height: 1.75;
+  margin-bottom: 1.25em;
+}
+
+.prose h2 {
+  margin-top: 2em;
+  margin-bottom: 0.75em;
+}
+
+.prose h3 {
+  margin-top: 1.5em;
+  margin-bottom: 0.5em;
+}
+
+/* Lead paragraph enhancements */
+.lead {
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: canvastext;
+  opacity: 0.85;
+}
+
+/* ===== BUTTON ENHANCEMENTS ===== */
+
+.btn {
+  font-weight: 500;
+  letter-spacing: 0.01em;
+  transition: all var(--duration-mid);
+}
+
+.btn.primary {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.btn.primary:hover {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(-1px);
+}
+
+.btn:active {
+  transform: translateY(0);
+}
+
+/* ===== COLLECTION PAGE ENHANCEMENTS ===== */
+
+.collection-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.collection-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, transparent 0%, rgba(255, 255, 255, 0.1) 100%);
+  pointer-events: none;
+}
+
+@media (prefers-color-scheme: dark) {
+  .collection-card::after {
+    background: linear-gradient(135deg, transparent 0%, rgba(0, 0, 0, 0.1) 100%);
+  }
+}
+
+/* Experience list item enhancements */
+.collection-experience-item {
+  transition: all var(--duration-mid);
+  border-left: 3px solid transparent;
+}
+
+.collection-experience-item:hover {
+  border-left-color: var(--collection-border, AccentColor);
+  background: var(--collection-hover, ButtonFace);
+}
+
+.collection-experience-item.is-active {
+  border-left-color: var(--collection-border, AccentColor);
+  background: color-mix(in srgb, var(--collection-accent, AccentColor) 5%, canvas);
+}
+
+/* ===== SEARCH ENHANCEMENTS ===== */
+
+.search-input:focus {
+  outline: 2px solid var(--collection-border, AccentColor);
+  outline-offset: -1px;
+  border-color: var(--collection-border, AccentColor);
+}
+
+.search-result-item:hover {
+  background: color-mix(in srgb, var(--collection-accent, AccentColor) 8%, canvas);
+}
+
+/* ===== PROGRESS INDICATOR ENHANCEMENTS ===== */
+
+.progress-track {
+  background: color-mix(in srgb, var(--collection-primary, ButtonFace) 15%, ButtonFace);
+}
+
+.progress-fill {
+  background: var(--collection-primary, AccentColor);
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    transparent 100%
+  );
+  animation: progressShine 2s ease-in-out infinite;
+}
+
+@keyframes progressShine {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-fill::after {
+    animation: none;
+  }
+}
+
+/* ===== COMPLETION CELEBRATION ENHANCEMENTS ===== */
+
+.completion-banner {
+  position: relative;
+  overflow: hidden;
+}
+
+.completion-banner::before {
+  content: '✓';
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  font-size: 6rem;
+  opacity: 0.05;
+  font-weight: 700;
+  pointer-events: none;
+}
+
+/* ===== EMPTY STATE ENHANCEMENTS ===== */
+
+.empty-state {
+  background: color-mix(in srgb, var(--collection-primary, GrayText) 3%, canvas);
+  border: 2px dashed color-mix(in srgb, var(--collection-primary, GrayText) 20%, ButtonBorder);
+}
+
+.empty-state h3 {
+  color: var(--collection-primary, canvastext);
+}
+
+/* ===== HERO SECTION ENHANCEMENTS ===== */
+
+.hero {
+  position: relative;
+  padding: var(--space-12) var(--space-4);
+}
+
+.hero h1 {
+  background: linear-gradient(
+    135deg,
+    canvastext 0%,
+    var(--collection-primary, canvastext) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== RESPONSIVE ENHANCEMENTS ===== */
+
+@media (max-width: 40rem) {
+  .collection-icon {
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .collection-icon svg {
+    width: 1.25rem;
+    height: 1.25rem;
+  }
+  
+  .hero {
+    padding: var(--space-6) var(--space-2);
+  }
+}
+
+/* ===== ACCESSIBILITY ENHANCEMENTS ===== */
+
+/* Ensure focus states are visible in collection-themed elements */
+[data-collection] *:focus-visible {
+  outline: 2px solid var(--collection-accent, AccentColor);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: more) {
+  [data-collection] .card,
+  [data-collection] .browse-card,
+  [data-collection] .suggestion-card {
+    border-width: 2px;
+    border-color: var(--collection-border, ButtonBorder);
+  }
+  
+  [data-collection] .btn.primary {
+    border-width: 2px;
+  }
+}
+
+/* ===== SUBTLE PATTERNS FOR COLLECTIONS ===== */
+
+/* Optional: Uncomment to add subtle background patterns */
+
+/*
+[data-collection="foundations"] .collection-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.03;
+  background-image: 
+    linear-gradient(30deg, var(--collection-primary) 12%, transparent 12.5%, transparent 87%, var(--collection-primary) 87.5%, var(--collection-primary)),
+    linear-gradient(150deg, var(--collection-primary) 12%, transparent 12.5%, transparent 87%, var(--collection-primary) 87.5%, var(--collection-primary)),
+    linear-gradient(30deg, var(--collection-primary) 12%, transparent 12.5%, transparent 87%, var(--collection-primary) 87.5%, var(--collection-primary)),
+    linear-gradient(150deg, var(--collection-primary) 12%, transparent 12.5%, transparent 87%, var(--collection-primary) 87.5%, var(--collection-primary)),
+    linear-gradient(60deg, var(--collection-secondary) 25%, transparent 25.5%, transparent 75%, var(--collection-secondary) 75%, var(--collection-secondary)),
+    linear-gradient(60deg, var(--collection-secondary) 25%, transparent 25.5%, transparent 75%, var(--collection-secondary) 75%, var(--collection-secondary));
+  background-size: 80px 140px;
+  background-position: 0 0, 0 0, 40px 70px, 40px 70px, 0 0, 40px 70px;
+  pointer-events: none;
+}
+*/
+
+/* ===== LOADING & TRANSITION ENHANCEMENTS ===== */
+
+/* Skeleton loading state */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    ButtonFace 25%,
+    ButtonFace 37%,
+    ButtonFace 63%
+  );
+  background-size: 400% 100%;
+  animation: skeleton-loading 1.4s ease-in-out infinite;
+  border-radius: var(--radius);
+}
+
+@keyframes skeleton-loading {
+  0% { background-position: 100% 50%; }
+  100% { background-position: 0 50%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skeleton {
+    animation: none;
+    background: ButtonFace;
+  }
+}
+
+/* Page transition effects */
+.page-enter {
+  animation: slideUpFade 0.3s ease-out forwards;
+}
+
+.page-exit {
+  animation: fadeOut 0.2s ease-out forwards;
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* ===== SCROLLBAR STYLING ===== */
+
+/* Enhanced scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: canvas;
+}
+
+::-webkit-scrollbar-thumb {
+  background: GrayText;
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: canvastext;
+}
+
+/* ===== SELECTION COLORS ===== */
+
+::selection {
+  background: color-mix(in srgb, var(--collection-accent, AccentColor) 30%, transparent);
+  color: canvastext;
+}
+
