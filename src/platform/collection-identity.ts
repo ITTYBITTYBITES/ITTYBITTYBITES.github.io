@@ -97,6 +97,32 @@ export const COLLECTION_IDENTITIES: Record<string, CollectionIdentity> = {
       pattern: 'blueprint',
       mood: 'Precision lines, blueprints, technical accuracy'
     }
+  },
+  mathematics: {
+    id: 'mathematics',
+    name: 'Mathematics',
+    theme: {
+      primaryColor: '#4C1D95',
+      secondaryColor: '#6D28D9',
+      accentColor: '#A78BFA',
+      backgroundGradient: 'linear-gradient(135deg, #EDE9FE 0%, #DDD6FE 100%)',
+      icon: '📐',
+      pattern: 'grid',
+      mood: 'Geometric precision, violet hues, abstract structure'
+    }
+  },
+  'society-mind': {
+    id: 'society-mind',
+    name: 'Society & Mind',
+    theme: {
+      primaryColor: '#831843',
+      secondaryColor: '#BE185D',
+      accentColor: '#F472B6',
+      backgroundGradient: 'linear-gradient(135deg, #FCE7F3 0%, #FBCFE8 50%, #E0E7FF 100%)',
+      icon: '🧠',
+      pattern: 'network',
+      mood: 'Warm pinks and indigo, connected nodes, bridges between minds'
+    }
   }
 };
 
