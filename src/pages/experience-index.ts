@@ -7,7 +7,9 @@ import { debounce, h } from '../platform/utils';
 import { getCollectionCSSVariables, getCollectionIdentity, renderCollectionBadge } from '../platform/collection-identity';
 import { renderExperienceArtwork } from '../platform/illustration-system';
 
-export function renderIndex(): HTMLElement {
+import type { RouteParams } from '../platform/router';
+
+export function renderIndex(args?: RouteParams): HTMLElement {
   const all = getAllExperiences();
 
   const grid = h('div', { class: 'grid publication-grid' }, []);
@@ -20,7 +22,14 @@ export function renderIndex(): HTMLElement {
 
   const filterTabs = h('div', { class: 'filter-tabs' }, []);
   const categories = [...new Set(all.map((entry) => entry.category))].sort();
-  let activeFilter: string | null = null;
+  
+  let activeFilter: any = null;
+  if (args?.query) {
+    const qCategory = args.query.get('category');
+    if (qCategory && categories.includes(qCategory as any)) {
+      activeFilter = qCategory;
+    }
+  }
 
   const updateGrid = (entries: ExperienceEntry[]): void => {
     renderGrid(grid, entries);
@@ -43,9 +52,9 @@ export function renderIndex(): HTMLElement {
   search.addEventListener('input', () => debouncedSearch(search.value));
 
   const allTab = h('button', {
-    class: 'filter-tab active',
+    class: `filter-tab${activeFilter === null ? ' active' : ''}`,
     type: 'button',
-    'aria-pressed': 'true',
+    'aria-pressed': activeFilter === null ? 'true' : 'false',
   }, ['All']);
 
   allTab.addEventListener('click', () => {
@@ -58,14 +67,16 @@ export function renderIndex(): HTMLElement {
     allTab.setAttribute('aria-pressed', 'true');
     search.value = '';
     updateGrid(all);
+    try { window.history.replaceState({}, '', '/experiences'); } catch (e) {}
   });
   filterTabs.appendChild(allTab);
 
   categories.forEach((category) => {
+    const isActive = activeFilter === category;
     const tab = h('button', {
-      class: 'filter-tab',
+      class: `filter-tab${isActive ? ' active' : ''}`,
       type: 'button',
-      'aria-pressed': 'false',
+      'aria-pressed': isActive ? 'true' : 'false',
     }, [category]);
 
     tab.addEventListener('click', () => {
@@ -78,12 +89,17 @@ export function renderIndex(): HTMLElement {
       tab.setAttribute('aria-pressed', 'true');
       search.value = '';
       updateGrid(all.filter((entry) => entry.category === category));
+      try { window.history.replaceState({}, '', `/experiences?category=${encodeURIComponent(category)}`); } catch (e) {}
     });
 
     filterTabs.appendChild(tab);
   });
 
-  updateGrid(all);
+  if (activeFilter) {
+    updateGrid(all.filter((entry) => entry.category === activeFilter));
+  } else {
+    updateGrid(all);
+  }
 
   return h('div', { class: 'container' }, [
     h('section', { class: 'hero hero-subpage hero-subpage--index' }, [

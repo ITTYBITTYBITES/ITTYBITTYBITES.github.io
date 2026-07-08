@@ -82,7 +82,7 @@ export function navigate(path: string): void {
 }
 
 function matchRoute(path: string): { route: Route; params: Record<string, string> } | null {
-  const cleanPath = path.replace(/\/$/, '') || '/';
+  const cleanPath = path.split('?')[0].split('#')[0].replace(/\/$/, '') || '/';
   for (const route of routes) {
     const { regex, keys } = patternToRegex(route.pattern);
     const match = cleanPath.match(regex);
@@ -133,13 +133,23 @@ function replaceOutlet(page: HTMLElement, title: string, replaceState: boolean):
   outlet.appendChild(page);
   if (replaceState) {
     try {
-      window.history.replaceState({}, '', window.location.pathname + window.location.search);
+      window.history.replaceState({}, '', window.location.pathname + window.location.search + window.location.hash);
     } catch (e) {
       // Ignore replaceState errors in file:// protocol
     }
   }
   analytics.pageView(title);
   focusMainContent(outlet);
+
+  // If there's a hash, scroll to it after a brief layout yield
+  if (window.location.hash) {
+    setTimeout(() => {
+      const target = document.getElementById(window.location.hash.slice(1));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 50);
+  }
 }
 
 function notFoundPage(): HTMLElement {

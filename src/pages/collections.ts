@@ -140,6 +140,7 @@ export function renderCollections(): HTMLElement {
 
     const card = h('article', {
       class: 'collection-card publication-panel',
+      id: collection.id,
       style: getCollectionCSSVariables(collection.id),
       'data-collection': collection.id,
     }, []);

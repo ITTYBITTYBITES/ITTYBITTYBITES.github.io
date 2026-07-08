@@ -38,7 +38,7 @@ if (!main) {
 }
 
 registerRoute('/', 'Home', async () => renderHome());
-registerRoute('/experiences', 'Experiences', async () => renderIndex());
+registerRoute('/experiences', 'Experiences', async (args) => renderIndex(args));
 registerRoute('/collections', 'Collections', async () => renderCollections());
 registerRoute('/library', 'Library', async () => renderLibrary());
 registerRoute('/experience/:id', 'Experience', async (args) => renderExperience(args));

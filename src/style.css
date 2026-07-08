@@ -535,6 +535,14 @@ p {
     linear-gradient(180deg, color-mix(in srgb, var(--collection-surface) 72%, white 28%), color-mix(in srgb, var(--collection-surface-alt) 88%, white 12%));
   border: 1px solid color-mix(in srgb, var(--collection-secondary) 34%, var(--line) 66%);
   box-shadow: var(--shadow-sm);
+  color: inherit;
+  text-decoration: none;
+  transition: transform var(--duration-mid) var(--easing), box-shadow var(--duration-mid) var(--easing);
+}
+
+.hero-shelf-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
 }
 
 .hero-shelf-card strong {

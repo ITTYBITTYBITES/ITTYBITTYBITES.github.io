@@ -55,8 +55,8 @@ export function renderHome(): HTMLElement {
       const link = result.type === 'experience'
         ? `/experience/${result.id}`
         : result.type === 'collection'
-          ? '/collections'
-          : '#';
+          ? `/collections#${result.id}`
+          : '/library';
 
       grouped.appendChild(h('a', { class: 'search-result-item', href: link }, [
         h('span', { class: 'search-result-type' }, [result.type]),
@@ -74,8 +74,9 @@ export function renderHome(): HTMLElement {
   const heroCollectionShelf = h('div', { class: 'hero-shelf' }, collections.map((collection, index) => {
     const identity = getCollectionIdentity(collection.id);
     const badge = renderCollectionBadge(collection.id, 80, 'hero-shelf-badge');
-    const card = h('div', {
+    const card = h('a', {
       class: `hero-shelf-card animate-in stagger-${Math.min(index + 1, 3)}`,
+      href: '/collections',
       style: `${getCollectionCSSVariables(collection.id)};`,
       'data-collection': collection.id,
     }, []);
@@ -221,7 +222,7 @@ export function renderHome(): HTMLElement {
   const browseThemesSection = h('section', { class: 'section' }, [
     renderSectionHeading('Browse by Theme', 'Themes cut across collections and help new pathways appear.'),
     h('div', { class: 'browse-grid' }, categories.map((category) =>
-      h('a', { class: 'browse-card theme-card', href: '/experiences' }, [
+      h('a', { class: 'browse-card theme-card', href: `/experiences?category=${encodeURIComponent(category.category)}` }, [
         h('h3', {}, [category.category]),
         h('p', {}, [`${category.count} experience${category.count === 1 ? '' : 's'}`]),
         h('div', { class: 'theme-tags' }, category.experiences.slice(0, 3).map((entry) =>
