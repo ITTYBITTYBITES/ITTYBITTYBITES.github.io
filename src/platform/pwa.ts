@@ -16,10 +16,9 @@ export async function registerPWA(): Promise<void> {
         console.log('ITTYBITTYBITES is ready for offline use.');
       },
       onNeedRefresh() {
-        // Future UI: replace with a non-blocking toast.
-        if (window.confirm('A new version of the platform is available. Reload to update?')) {
-          void updateSW(true);
-        }
+        // Automatically and silently update and hot-reload the page
+        // to prevent old hashed assets from causing white screens.
+        void updateSW(true);
       },
       onRegisteredSW(swUrl, registration) {
         // eslint-disable-next-line no-console
