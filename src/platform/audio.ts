@@ -242,7 +242,6 @@ class AudioEngine {
       type,
       gain = 0.7,
       attack = 0.008,
-      release = 0.14,
       filterHz,
       detune = 0
     }: {
@@ -250,7 +249,6 @@ class AudioEngine {
       type?: OscillatorType;
       gain?: number;
       attack?: number;
-      release?: number;
       filterHz?: number;
       detune?: number;
     } = {}
@@ -307,7 +305,7 @@ class AudioEngine {
     switch (tone) {
       case 'select': {
         // gentle confirmation tap
-        this.playTone(s(2), { duration: 0.07, gain: 0.45, attack: 0.004, release: 0.06 });
+        this.playTone(s(2), { duration: 0.07, gain: 0.45, attack: 0.004 });
         break;
       }
       case 'confirm': {
@@ -320,7 +318,7 @@ class AudioEngine {
         this.playChord(
           [v.scale[0], v.scale[2], v.scale[4]],
           0.05,
-          { duration: 0.22, gain: 0.48, attack: 0.01, release: 0.18 }
+          { duration: 0.22, gain: 0.48, attack: 0.01 }
         );
         break;
       }
@@ -342,15 +340,13 @@ class AudioEngine {
             this.playTone(this.semitone(v.baseHz, st), {
               duration: 0.55,
               gain: 0.38,
-              attack: 0.025,
-              release: 0.4
+              attack: 0.025
             });
             // warm octave below, very quiet
             this.playTone(this.semitone(v.baseHz / 2, st), {
               duration: 0.6,
               gain: 0.16,
               attack: 0.04,
-              release: 0.45,
               type: 'triangle'
             });
           }, i * 70);
@@ -369,7 +365,7 @@ class AudioEngine {
       }
       case 'return': {
         // returning to a collection — welcoming, quiet
-        this.playTone(s(0), { duration: 0.24, gain: 0.33, attack: 0.018, release: 0.22 });
+        this.playTone(s(0), { duration: 0.24, gain: 0.33, attack: 0.018 });
         setTimeout(() => this.playTone(s(4), { duration: 0.28, gain: 0.26 }), 110);
         break;
       }

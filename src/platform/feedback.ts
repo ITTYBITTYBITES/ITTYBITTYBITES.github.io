@@ -188,7 +188,6 @@ export function initFeedback() {
   function checkRoute() {
     const path = location.pathname;
     if (path === lastPath) return;
-    const wasBack = false; // could compare history length — keep simple
     lastPath = path;
 
     // collection return feeling
