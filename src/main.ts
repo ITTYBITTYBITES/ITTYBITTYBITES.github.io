@@ -4,6 +4,7 @@ import { AppFooter } from './components/app-footer';
 import { AppHeader } from './components/app-header';
 import { ExperienceHost } from './components/experience-host';
 import { SkipLink } from './components/skip-link';
+import { AudioToggle } from './components/audio-toggle';
 import { initAnalytics } from './platform/analytics';
 import { renderExperience } from './pages/experience';
 import { renderIndex } from './pages/experience-index';
@@ -12,11 +13,14 @@ import { renderCollections } from './pages/collections';
 import { renderLibrary } from './pages/library';
 import { registerPWA } from './platform/pwa';
 import { initRouter, registerRoute } from './platform/router';
+import { initFeedback } from './platform/feedback';
+import { audio } from './platform/audio';
 
 customElements.define('skip-link', SkipLink);
 customElements.define('app-header', AppHeader);
 customElements.define('app-footer', AppFooter);
 customElements.define('experience-host', ExperienceHost);
+customElements.define('audio-toggle', AudioToggle);
 
 const app = document.querySelector<HTMLDivElement>('#app');
 if (app) {
@@ -40,5 +44,8 @@ registerRoute('/library', 'Library', async () => renderLibrary());
 registerRoute('/experience/:id', 'Experience', async (args) => renderExperience(args));
 
 initAnalytics();
+initFeedback();
+// Ensure audio engine is ready for first gesture — do not autoplay
+void audio.unlock().catch(() => {});
 initRouter(main);
 void registerPWA();
