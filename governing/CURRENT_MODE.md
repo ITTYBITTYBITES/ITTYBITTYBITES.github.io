@@ -1,59 +1,53 @@
-# CURRENT MODE
+# Current Mode
 
-**Platform v2.2 — Library Building Phase**
+**Platform v2.2 — Release 0.6 Complete**
 
-**Date**: 2026-07-08
+**Date:** 2026-07-08
 
-## Current Directive
+## Current State
 
-**Release 0.5: Creativity Collection + Branding — COMPLETE**
+Release 0.6 is complete and ready for deployment:
+- ✅ Engineering Collection (5 experiences)
+- ✅ "The Art of Compromise" story
+- ✅ Collection Identity System (visual themes for all 6 collections)
+- ✅ 56 regression tests passing
+- ✅ Zero platform architecture changes
+- ✅ All quality gates passed
 
-The Creativity Collection has been built and passes all quality gates:
-- 5 experiences (Diverge, Constraint, Remix, Compose, Iterate)
-- "The Making Process" story
-- Branding pass applied across all public surfaces
-- 50 regression tests passing
-- Zero platform modifications
+## Next Steps
 
-## Platform Status
+The platform now has 6 collections with 30 experiences. According to the product roadmap, the next phase is:
 
-The platform now contains:
-- 5 Collections (Foundations, History, Science, Nature, Creativity)
-- 25 experiences
-- 6 stories
-- Full discovery, search, and personalization
-- Cohesive ITTYBITTYBITES branding
+**Release 0.7: Mathematics Collection**
+- Focus on reasoning rather than arithmetic
+- Experiences: pattern discovery, estimation, proof by example/counterexample, symmetry, probability intuition
 
-## Next Planned Release
+After that:
+- **Release 0.8: Society & Mind** (communication, perspective, decision-making, cognition)
+- **Version 1.0 preparation** (artwork, audio, animations, performance tuning, accessibility review, mobile refinement, final copywriting)
 
-**Release 0.6: Engineering Collection**
+## Platform Totals
 
-Following the same rules as all previous releases:
-- 5 experiences with unique interaction patterns
-- 1 story with narrative segments
-- No platform modifications
-- All quality gates pass
-- All accessibility metadata required
+| Metric | Count |
+|--------|-------|
+| Collections | 6 |
+| Experiences | 30 |
+| Stories | 7 |
+| Tests | 56 |
+| Platform Changes (v2.0 → v2.2) | 0 |
 
-## Implementation Rules
+## Architecture Status
 
-1. No platform changes unless they benefit every Collection.
-2. Every experience must follow the established content schemas.
-3. Every experience must emit platform events.
-4. Every experience must use ExperienceModule and ExperienceContext types.
-5. All tests must pass.
-6. Build must succeed.
-7. All branding must use ITTYBITTYBITES.
+The platform architecture remains stable and unchanged since v2.0. All new collections have been added without modifying:
+- Registry system
+- Router
+- Discovery/recommendation engine
+- Progress tracking
+- Event system
+- Build pipeline
 
-## Forbidden (without explicit new Build Order from the architect)
-
-- Changes to platform architecture
-- Visual design or theming changes outside of experience content
-- Navigation or information architecture changes
-- Removal of existing content
-- Any work that breaks the "zero platform changes" rule
-- Generic naming in public-facing surfaces
+This validates the content-first, platform-stable design philosophy.
 
 ---
 
-This file tracks the current implementation phase and will be updated with each release.
+**Last Updated:** 2026-07-08

@@ -1,0 +1,19 @@
+{
+  "id": "optimization",
+  "title": "Optimization",
+  "description": "Reach the goal. But how efficiently? Every parameter you adjust brings you closer — or takes you further. Find the sweet spot.",
+  "summary": "Optimize a system under multiple constraints. Discover that the best solution is rarely the obvious one.",
+  "category": "game",
+  "module": "optimization.ts",
+  "tags": ["optimization", "constraints", "efficiency", "search"],
+  "searchKeywords": ["optimize", "constraint", "efficient", "parameter", "search"],
+  "estimatedDuration": "8-15 min",
+  "returnValue": "New optimization problems test your ability to navigate complex parameter spaces. Return and find better solutions.",
+  "collection": "engineering",
+  "story": "the-art-of-compromise",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

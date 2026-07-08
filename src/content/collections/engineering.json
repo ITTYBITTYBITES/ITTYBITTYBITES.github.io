@@ -1,0 +1,12 @@
+{
+  "id": "engineering",
+  "title": "Engineering",
+  "description": "Engineering is not about perfection. It is the art of making thoughtful compromises — balancing competing demands until something works well enough.",
+  "summary": "Five experiences that teach engineering thinking through trade-offs, constraints, feedback, optimization, and failure.",
+  "experiences": ["bridge-builder", "feedback-loop", "optimization", "failure-analysis", "trade-offs"],
+  "tags": ["engineering", "systems", "trade-offs", "constraints", "optimization"],
+  "searchKeywords": ["engineering", "design", "build", "system", "trade-off", "constraint", "optimize"],
+  "estimatedDuration": "35-55 min",
+  "story": "the-art-of-compromise",
+  "version": "1.0.0"
+}

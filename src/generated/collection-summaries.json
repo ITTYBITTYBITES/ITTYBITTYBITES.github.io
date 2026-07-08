@@ -27,6 +27,33 @@
     ]
   },
   {
+    "id": "engineering",
+    "title": "Engineering",
+    "count": 5,
+    "experiences": [
+      {
+        "id": "bridge-builder",
+        "title": "Bridge Builder"
+      },
+      {
+        "id": "feedback-loop",
+        "title": "Feedback Loop"
+      },
+      {
+        "id": "optimization",
+        "title": "Optimization"
+      },
+      {
+        "id": "failure-analysis",
+        "title": "Failure Analysis"
+      },
+      {
+        "id": "trade-offs",
+        "title": "Trade-offs"
+      }
+    ]
+  },
+  {
     "id": "foundations",
     "title": "Foundations",
     "count": 5,

@@ -1,0 +1,19 @@
+{
+  "id": "trade-offs",
+  "title": "Trade-offs",
+  "description": "Improve one metric. Sacrifice another. There is no free lunch. Learn to see what every gain costs.",
+  "summary": "Make sequential trade-off decisions where improving one dimension degrades another. Discover the frontier of possibility.",
+  "category": "reflection",
+  "module": "trade-offs.ts",
+  "tags": ["trade-offs", "sacrifice", "metrics", "pareto"],
+  "searchKeywords": ["trade-off", "sacrifice", "metric", "pareto", "frontier"],
+  "estimatedDuration": "6-10 min",
+  "returnValue": "New scenarios reveal different trade-off landscapes. Return and develop intuition for where compromises matter most.",
+  "collection": "engineering",
+  "story": "the-art-of-compromise",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

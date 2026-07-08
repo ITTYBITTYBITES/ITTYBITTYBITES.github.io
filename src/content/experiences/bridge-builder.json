@@ -1,0 +1,19 @@
+{
+  "id": "bridge-builder",
+  "title": "Bridge Builder",
+  "description": "Span a gap. Balance strength, cost, and materials. Every bridge is a negotiation between what you want and what you can afford.",
+  "summary": "Design bridges that meet strength requirements while staying within budget. Choose materials and structure to find the right balance.",
+  "category": "interactive",
+  "module": "bridge-builder.ts",
+  "tags": ["bridge", "materials", "cost", "strength", "design"],
+  "searchKeywords": ["bridge", "build", "structure", "material", "cost", "strength"],
+  "estimatedDuration": "8-12 min",
+  "returnValue": "Different challenges test your ability to balance competing demands. Return and discover more efficient solutions.",
+  "collection": "engineering",
+  "story": "the-art-of-compromise",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

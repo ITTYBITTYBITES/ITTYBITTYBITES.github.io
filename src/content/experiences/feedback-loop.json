@@ -1,0 +1,19 @@
+{
+  "id": "feedback-loop",
+  "title": "Feedback Loop",
+  "description": "A system oscillates out of control. Tune the feedback to stabilize it. Too much correction causes new problems. Too little lets drift grow.",
+  "summary": "Stabilize a dynamic system by tuning feedback parameters. Learn how correction creates its own problems.",
+  "category": "interactive",
+  "module": "feedback-loop.ts",
+  "tags": ["feedback", "control", "stability", "system"],
+  "searchKeywords": ["feedback", "control", "stabilize", "system", "oscillation"],
+  "estimatedDuration": "7-12 min",
+  "returnValue": "Different systems challenge your intuition about feedback and control. Return and refine your approach.",
+  "collection": "engineering",
+  "story": "the-art-of-compromise",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

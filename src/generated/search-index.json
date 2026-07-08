@@ -13,6 +13,20 @@
     "collection": "nature"
   },
   {
+    "id": "bridge-builder",
+    "type": "experience",
+    "title": "Bridge Builder",
+    "description": "Span a gap. Balance strength, cost, and materials. Every bridge is a negotiation between what you want and what you can afford.",
+    "tags": [
+      "bridge",
+      "materials",
+      "cost",
+      "strength",
+      "design"
+    ],
+    "collection": "engineering"
+  },
+  {
     "id": "chain-reaction",
     "type": "experience",
     "title": "Chain Reaction",
@@ -130,6 +144,32 @@
     "collection": "nature"
   },
   {
+    "id": "failure-analysis",
+    "type": "experience",
+    "title": "Failure Analysis",
+    "description": "Something broke. Multiple causes compete. Examine the evidence, eliminate what cannot be, and find the root cause.",
+    "tags": [
+      "failure",
+      "analysis",
+      "root-cause",
+      "investigation"
+    ],
+    "collection": "engineering"
+  },
+  {
+    "id": "feedback-loop",
+    "type": "experience",
+    "title": "Feedback Loop",
+    "description": "A system oscillates out of control. Tune the feedback to stabilize it. Too much correction causes new problems. Too little lets drift grow.",
+    "tags": [
+      "feedback",
+      "control",
+      "stability",
+      "system"
+    ],
+    "collection": "engineering"
+  },
+  {
     "id": "hypothesis",
     "type": "experience",
     "title": "Hypothesis",
@@ -167,6 +207,19 @@
       "rhythm"
     ],
     "collection": "foundations"
+  },
+  {
+    "id": "optimization",
+    "type": "experience",
+    "title": "Optimization",
+    "description": "Reach the goal. But how efficiently? Every parameter you adjust brings you closer — or takes you further. Find the sweet spot.",
+    "tags": [
+      "optimization",
+      "constraints",
+      "efficiency",
+      "search"
+    ],
+    "collection": "engineering"
   },
   {
     "id": "pattern-garden",
@@ -274,6 +327,19 @@
     "collection": "nature"
   },
   {
+    "id": "trade-offs",
+    "type": "experience",
+    "title": "Trade-offs",
+    "description": "Improve one metric. Sacrifice another. There is no free lunch. Learn to see what every gain costs.",
+    "tags": [
+      "trade-offs",
+      "sacrifice",
+      "metrics",
+      "pareto"
+    ],
+    "collection": "engineering"
+  },
+  {
     "id": "uncertainty",
     "type": "experience",
     "title": "Uncertainty",
@@ -337,6 +403,19 @@
       "innovation",
       "process",
       "making"
+    ]
+  },
+  {
+    "id": "engineering",
+    "type": "collection",
+    "title": "Engineering",
+    "description": "Engineering is not about perfection. It is the art of making thoughtful compromises — balancing competing demands until something works well enough.",
+    "tags": [
+      "engineering",
+      "systems",
+      "trade-offs",
+      "constraints",
+      "optimization"
     ]
   },
   {
@@ -405,6 +484,12 @@
     "type": "story",
     "title": "The Foundations Journey",
     "description": "A guided path through five core experiences that build upon each other — from listening to seeing."
+  },
+  {
+    "id": "the-art-of-compromise",
+    "type": "story",
+    "title": "The Art of Compromise",
+    "description": "Engineering is not about finding the perfect solution. Perfect does not exist. Engineering is the discipline of making thoughtful compromises — knowing what to optimize, what to sacrifice, and why."
   },
   {
     "id": "the-living-web",
