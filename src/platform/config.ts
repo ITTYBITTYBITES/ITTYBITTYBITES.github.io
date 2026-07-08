@@ -21,6 +21,20 @@ function shouldDisableAnalytics(): boolean {
   if (import.meta.env.VITE_DISABLE_ANALYTICS === 'true') return true;
   if (window.navigator.doNotTrack === '1') return true;
   if (window.navigator.doNotTrack === 'yes') return true;
+
+  // Do not track local development, testing, loopback, or file environments
+  const hostname = window.location.hostname;
+  if (
+    hostname === 'localhost' ||
+    hostname === '127.0.0.1' ||
+    hostname === '[::1]' ||
+    hostname.startsWith('192.168.') ||
+    hostname.startsWith('10.') ||
+    window.location.protocol === 'file:'
+  ) {
+    return true;
+  }
+
   return false;
 }
 
