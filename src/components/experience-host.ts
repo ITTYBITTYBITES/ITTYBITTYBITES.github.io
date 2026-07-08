@@ -50,7 +50,13 @@ export class ExperienceHost extends HTMLElement {
     this.sessionStarted = true;
 
     // Notify the rest of the platform that an experience is opening.
-    events.emit('experience_opened', { experience_id: entry.id, category: entry.category });
+    events.emit('experience_opened', { experience_id: entry.id, category: entry.category, collection_id: entry.collection });
+
+    // Set audio collection context early
+    try {
+      const { audio } = await import('../platform/audio');
+      if (entry.collection) audio.setCollection(entry.collection);
+    } catch { /* ignore */ }
 
     // Bridge interaction events to lifecycle
     const interactionHandler = (e: CustomEvent) => {

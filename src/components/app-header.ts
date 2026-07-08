@@ -44,8 +44,16 @@ export class AppHeader extends HTMLElement {
 
     const home = h('a', { class: 'brand', href: '/' }, ['ITTYBITTYBITES']);
 
+    const audioToggle = document.createElement('audio-toggle');
+    audioToggle.setAttribute('aria-label', 'Interaction sound settings');
+
+    const headerRight = h('div', { class: 'header-actions', style: 'display:flex;align-items:center;gap:1rem;' }, [
+      nav,
+      audioToggle
+    ]);
+
     this.appendChild(h('header', { class: 'site-header' }, [
-      h('div', { class: 'container header-inner' }, [home, nav]),
+      h('div', { class: 'container header-inner' }, [home, headerRight]),
     ]));
   }
 }

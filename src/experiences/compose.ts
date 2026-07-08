@@ -150,7 +150,7 @@ const compose: ExperienceModule = {
 
       const instruction = document.createElement('p');
       instruction.style.cssText = 'font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;';
-      instruction.textContent = 'Drag or tap to reorder:';
+      instruction.textContent = 'Use the ↑ ↓ buttons (or arrow keys) to reorder:';
       compositionArea.appendChild(instruction);
 
       const list = document.createElement('div');
@@ -179,11 +179,11 @@ const compose: ExperienceModule = {
         text.textContent = elem.text;
 
         const moveBtns = document.createElement('div');
-        moveBtns.style.cssText = 'display: flex; flex-direction: column; gap: 0.1rem;';
+        moveBtns.style.cssText = 'display: flex; flex-direction: column; gap: 0.2rem; margin-left: auto;';
 
         const upBtn = document.createElement('button');
         upBtn.textContent = '↑';
-        upBtn.style.cssText = 'padding: 0 0.3rem; font-size: 0.8rem; border: 1px solid ButtonBorder; border-radius: 0.2rem; background: ButtonFace; cursor: pointer;';
+        upBtn.style.cssText = 'padding: 0.4rem 0.6rem; font-size: 1rem; min-width: 2.5rem; min-height: 2rem; border: 1px solid ButtonBorder; border-radius: 0.25rem; background: ButtonFace; cursor: pointer;';
         upBtn.setAttribute('aria-label', `Move ${elem.text} up`);
         upBtn.disabled = idx === 0;
         upBtn.addEventListener('click', (e) => {
@@ -196,7 +196,7 @@ const compose: ExperienceModule = {
 
         const downBtn = document.createElement('button');
         downBtn.textContent = '↓';
-        downBtn.style.cssText = 'padding: 0 0.3rem; font-size: 0.8rem; border: 1px solid ButtonBorder; border-radius: 0.2rem; background: ButtonFace; cursor: pointer;';
+        downBtn.style.cssText = 'padding: 0.4rem 0.6rem; font-size: 1rem; min-width: 2.5rem; min-height: 2rem; border: 1px solid ButtonBorder; border-radius: 0.25rem; background: ButtonFace; cursor: pointer;';
         downBtn.setAttribute('aria-label', `Move ${elem.text} down`);
         downBtn.disabled = idx === currentOrder.length - 1;
         downBtn.addEventListener('click', (e) => {
