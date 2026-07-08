@@ -4,7 +4,6 @@ import { AppFooter } from './components/app-footer';
 import { AppHeader } from './components/app-header';
 import { ExperienceHost } from './components/experience-host';
 import { SkipLink } from './components/skip-link';
-import { AudioToggle } from './components/audio-toggle';
 import { initAnalytics } from './platform/analytics';
 import { renderExperience } from './pages/experience';
 import { renderIndex } from './pages/experience-index';
