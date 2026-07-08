@@ -43,6 +43,7 @@ Before contributing to the library, please orient yourself with our specificatio
 *   **The outcomes & permanent citations of all books**: Read the [Library Compass](governing/editorial/LIBRARY_COMPASS.md).
 *   **Step-by-step authoring workflows & checklists**: Read the [Curation Guide](governing/editorial/CURATION_GUIDE.md).
 *   **The platform's technical architecture**: Read the [Platform Blueprint](governing/foundation/PLATFORM_BLUEPRINT.md) and [Product Constitution](governing/foundation/PRODUCT_CONSTITUTION.md).
+*   **Analytics and Privacy**: Read the [GA4 & Privacy Configuration](docs/ANALYTICS.md) to understand configuration points and privacy safeguards.
 
 ---
 
