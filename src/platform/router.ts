@@ -33,11 +33,22 @@ export function initRouter(target: HTMLElement): void {
   outlet = target;
 
   document.body.addEventListener('click', (event) => {
-    const anchor = (event.target as HTMLElement).closest<HTMLAnchorElement>('a[href]');
+    let target = event.target as Node | null;
+    if (target && target.nodeType === Node.TEXT_NODE) {
+      target = target.parentNode;
+    }
+    const element = target as Element;
+    if (!element || typeof element.closest !== 'function') return;
+
+    const anchor = element.closest<HTMLAnchorElement>('a[href]');
     if (!anchor) return;
     const href = anchor.getAttribute('href');
     if (!href || href.startsWith('http') || href.startsWith('//') || href.startsWith('#')) return;
     if (anchor.target === '_blank') return;
+
+    // Allow native behavior for modifier keys (e.g. open in new tab)
+    if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    if (event.defaultPrevented) return;
 
     event.preventDefault();
     navigate(href);
@@ -51,8 +62,23 @@ export function initRouter(target: HTMLElement): void {
 }
 
 export function navigate(path: string): void {
-  window.history.pushState({}, '', path);
-  render(window.location.pathname, false);
+  try {
+    window.history.pushState({}, '', path);
+  } catch (e) {
+    // If pushState fails (e.g., file:// protocol), just update the pathname directly
+    // or fallback to window.location.assign if completely failing
+    if (window.location.protocol === 'file:') {
+      // In local file testing, we might want to just render directly to simulate SPA
+      // But we can't change the URL easily without hash. We'll just render the new path.
+      // This allows the UI to work locally.
+    } else {
+      console.error(e);
+    }
+  }
+  // If we are on file://, window.location.pathname won't match the new path,
+  // so we must pass the explicitly requested path to render!
+  const targetPath = window.location.protocol === 'file:' ? path : window.location.pathname;
+  render(targetPath, false);
 }
 
 function matchRoute(path: string): { route: Route; params: Record<string, string> } | null {
@@ -106,7 +132,11 @@ function replaceOutlet(page: HTMLElement, title: string, replaceState: boolean):
   clearElement(outlet);
   outlet.appendChild(page);
   if (replaceState) {
-    window.history.replaceState({}, '', window.location.pathname + window.location.search);
+    try {
+      window.history.replaceState({}, '', window.location.pathname + window.location.search);
+    } catch (e) {
+      // Ignore replaceState errors in file:// protocol
+    }
   }
   analytics.pageView(title);
   focusMainContent(outlet);
