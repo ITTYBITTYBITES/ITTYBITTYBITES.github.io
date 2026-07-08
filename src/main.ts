@@ -20,9 +20,9 @@ customElements.define('skip-link', SkipLink);
 customElements.define('app-header', AppHeader);
 customElements.define('app-footer', AppFooter);
 customElements.define('experience-host', ExperienceHost);
-customElements.define('audio-toggle', AudioToggle);
 
 const app = document.querySelector<HTMLDivElement>('#app');
+
 if (app) {
   app.innerHTML = `
     <skip-link></skip-link>
@@ -33,6 +33,7 @@ if (app) {
 }
 
 const main = document.getElementById('main');
+
 if (!main) {
   throw new Error('Application outlet (#main) is missing.');
 }
@@ -45,7 +46,9 @@ registerRoute('/experience/:id', 'Experience', async (args) => renderExperience(
 
 initAnalytics();
 initFeedback();
+
 // Ensure audio engine is ready for first gesture — do not autoplay
 void audio.unlock().catch(() => {});
+
 initRouter(main);
 void registerPWA();
