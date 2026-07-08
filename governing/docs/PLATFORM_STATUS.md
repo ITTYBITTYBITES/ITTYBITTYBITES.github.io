@@ -40,21 +40,32 @@ Public launch of the complete library.
 
 ---
 
+## Library Changelog
+
+The Platform Foundation is frozen at `v1.0.0-foundation`. The Library evolves independently.
+
+| Version | Milestone | Date |
+|---------|-----------|------|
+| **Foundation v1.0** | Platform architecture complete and frozen. | 2026-07-08 |
+| **Library v0.6** | Six core collections (Foundations, History, Science, Nature, Creativity, Engineering) complete. | 2026-07-08 |
+
+---
+
 ## Current Collection Status
 
 ### The Library Compass
-Every collection is guided by a single outcome-focused question: **"When someone finishes this Collection, what should they see differently?"**
+Every collection is guided by the **Library Compass**.
 
-| Collection | The Compass | Status |
-|------------|-------------|--------|
-| Foundations | Meaningful interactions are the bedrock of understanding. | Complete |
-| History | Evidence is stronger than certainty. | Complete |
-| Science | Good questions change with new evidence. | Complete |
-| Nature | Everything is connected. | Complete |
-| Creativity | Constraints can produce originality. | Complete |
-| Engineering | Every solution involves trade-offs. | Complete |
-| Mathematics | *To be authored* | Not Started |
-| Society & Mind | *To be authored* | Not Started |
+| Collection | The Compass (Outcome) | Curator's Note | Status |
+|------------|-----------------------|----------------|--------|
+| Foundations | Meaningful interactions are the bedrock of understanding. | Establishing the language of the platform. | Complete |
+| History | Evidence is stronger than certainty. | Exploring how we know what we know. | Complete |
+| Science | Good questions change with new evidence. | The iterative nature of discovery. | Complete |
+| Nature | Everything is connected. | Systems thinking through organic forms. | Complete |
+| Creativity | Constraints can produce originality. | The art of working within boundaries. | Complete |
+| Engineering | Every solution involves trade-offs. | The reality of technical compromise. | Complete |
+| Mathematics | *To be authored* | *To be authored* | Not Started |
+| Society & Mind | *To be authored* | *To be authored* | Not Started |
 
 ---
 
