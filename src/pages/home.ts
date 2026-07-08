@@ -38,7 +38,10 @@ export function renderHome(): HTMLElement {
     searchResults.style.display = 'block';
 
     if (results.length === 0) {
-      searchResults.appendChild(h('p', { class: 'muted' }, ['No results found.']));
+      searchResults.appendChild(h('div', { class: 'empty-state animate-in', style: 'padding: var(--space-4); margin: 0;' }, [
+        h('p', {}, ['No results found for "', h('strong', {}, [term]), '".']),
+        h('span', { class: 'muted', style: 'font-size: 0.85rem;' }, ['Try different keywords.']),
+      ]));
       return;
     }
 
@@ -69,32 +72,32 @@ export function renderHome(): HTMLElement {
     const recommendations = getRecommendations(2);
     const allSuggestions = [...continueSuggestions, ...recommendations].slice(0, 3);
 
-    hero = h('section', { class: 'hero discovery-hero' }, [
+    hero = h('section', { class: 'hero discovery-hero animate-in' }, [
       h('h1', {}, ['Welcome back']),
       h('p', { class: 'lead' }, [`You've explored ${profile.totalExperiencesPlayed} experience${profile.totalExperiencesPlayed === 1 ? '' : 's'}. Keep going.`]),
-      h('div', { class: 'search-wrapper' }, [searchInput, searchResults]),
+      h('div', { class: 'search-wrapper animate-in stagger-1' }, [searchInput, searchResults]),
       allSuggestions.length > 0
-        ? h('div', { class: 'quick-actions' }, allSuggestions.map(s =>
+        ? h('div', { class: 'quick-actions animate-in stagger-2' }, allSuggestions.map(s =>
             h('a', { class: 'btn', href: `/experience/${s.experience.id}` }, [
               s.experience.title,
               h('span', { class: 'quick-reason' }, [s.reason]),
             ])
           ))
-        : h('div', { class: 'cta-row' }, [
+        : h('div', { class: 'cta-row animate-in stagger-2' }, [
             h('a', { class: 'btn', href: '/collections' }, ['Explore Foundations']),
           ]),
     ]);
   } else {
-    hero = h('section', { class: 'hero' }, [
+    hero = h('section', { class: 'hero animate-in' }, [
       h('h1', {}, ['ITTYBITTYBITES']),
       h('p', { class: 'lead' }, ['Interactive collections worth returning to.']),
-      h('p', {}, [
+      h('p', { class: 'animate-in stagger-1', style: 'color: GrayText; font-size: 1.125rem;' }, [
         'Small, meaningful interactions create lasting experiences. ',
         'Explore collections across science, nature, history, and more.'
       ]),
-      h('div', { class: 'search-wrapper' }, [searchInput, searchResults]),
-      h('div', { class: 'cta-row' }, [
-        h('a', { class: 'btn', href: '/collections' }, ['Begin with Foundations']),
+      h('div', { class: 'search-wrapper animate-in stagger-2' }, [searchInput, searchResults]),
+      h('div', { class: 'cta-row animate-in stagger-3' }, [
+        h('a', { class: 'btn primary', href: '/collections' }, ['Begin with Foundations']),
         h('a', { class: 'btn subtle', href: '/experiences' }, ['Browse all experiences']),
       ]),
     ]);
@@ -103,7 +106,7 @@ export function renderHome(): HTMLElement {
   // Featured Collection
   const featured = getFeatured();
   const featuredSection = featured && featured.type === 'collection'
-    ? h('section', { class: 'section featured-section' }, [
+    ? h('section', { class: 'section featured-section animate-in' }, [
         h('div', { class: 'featured-badge' }, [featured.reason]),
         h('h2', {}, [(featured.item as any).title]),
         h('p', {}, [(featured.item as any).description]),
@@ -114,7 +117,7 @@ export function renderHome(): HTMLElement {
   // Continue Playing
   const continueSuggestions = getContinueExploringSuggestions(3);
   const continueSection = continueSuggestions.length > 0
-    ? h('section', { class: 'section' }, [
+    ? h('section', { class: 'section animate-in' }, [
         h('h2', {}, ['Continue Playing']),
         h('div', { class: 'suggestion-cards' }, continueSuggestions.map(s =>
           h('a', { class: 'suggestion-card', href: `/experience/${s.experience.id}` }, [
@@ -129,7 +132,7 @@ export function renderHome(): HTMLElement {
   // Recently Visited
   const recent = getRecentlyVisitedExperiences(4);
   const recentSection = recent.length > 0
-    ? h('section', { class: 'section' }, [
+    ? h('section', { class: 'section animate-in stagger-1' }, [
         h('h2', {}, ['Recently Visited']),
         h('div', { class: 'mini-grid' }, recent.map(e =>
           h('a', { class: 'mini-card', href: `/experience/${e.id}` }, [
@@ -144,7 +147,7 @@ export function renderHome(): HTMLElement {
   // Recommendations
   const recommendations = getRecommendations(3);
   const recommendationsSection = recommendations.length > 0
-    ? h('section', { class: 'section' }, [
+    ? h('section', { class: 'section animate-in stagger-2' }, [
         h('h2', {}, ['Recommended for You']),
         h('div', { class: 'suggestion-cards' }, recommendations.map(r =>
           h('a', { class: 'suggestion-card', href: `/experience/${r.experience.id}` }, [
@@ -175,7 +178,7 @@ export function renderHome(): HTMLElement {
     ]);
   });
 
-  const browseCollectionsSection = h('section', { class: 'section' }, [
+  const browseCollectionsSection = h('section', { class: 'section animate-in stagger-3' }, [
     h('h2', {}, ['Browse by Collection']),
     h('div', { class: 'browse-grid' }, collectionCards),
   ]);
@@ -192,7 +195,7 @@ export function renderHome(): HTMLElement {
     ])
   );
 
-  const browseThemesSection = h('section', { class: 'section' }, [
+  const browseThemesSection = h('section', { class: 'section animate-in stagger-3' }, [
     h('h2', {}, ['Browse by Theme']),
     h('div', { class: 'browse-grid' }, categoryCards),
   ]);

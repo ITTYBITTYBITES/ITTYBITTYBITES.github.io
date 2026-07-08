@@ -92,8 +92,9 @@ export function renderIndex(): HTMLElement {
 function renderGrid(container: HTMLElement, entries: ExperienceEntry[]): void {
   container.innerHTML = '';
   if (entries.length === 0) {
-    container.appendChild(h('div', { class: 'empty-state' }, [
-      h('p', {}, ['No experiences match your search.']),
+    container.appendChild(h('div', { class: 'empty-state animate-in' }, [
+      h('h3', {}, ['No experiences found']),
+      h('p', {}, ['No experiences match your current search and filters.']),
       h('p', { class: 'muted' }, ['Try different keywords or browse by category.']),
     ]));
     return;
@@ -124,7 +125,7 @@ function renderGrid(container: HTMLElement, entries: ExperienceEntry[]): void {
       ]),
     ];
 
-    const card = h('article', { class: 'card' }, cardChildren);
+    const card = h('article', { class: 'card animate-in' }, cardChildren);
     container.appendChild(card);
   }
 }

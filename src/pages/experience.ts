@@ -85,25 +85,35 @@ export function renderExperience({ params, query }: { params: Record<string, str
     markExperienceCompleted(entry.id);
     completeBtn.textContent = 'Completed';
     completeBtn.setAttribute('disabled', 'true');
+    completeBtn.classList.add('celebration-element');
+    setTimeout(() => { completeBtn.classList.remove('celebration-element'); }, 500);
   });
   elements.push(completeBtn);
 
   if (next.nextInCollection) {
     elements.push(
-      h('div', { class: 'next-step' }, [
+      h('div', { class: 'next-step animate-in' }, [
         h('h4', {}, ['Next in this collection']),
-        h('a', { class: 'btn', href: `/experience/${next.nextInCollection.id}` }, [
+        h('a', { class: 'btn primary', href: `/experience/${next.nextInCollection.id}` }, [
           `Continue to ${next.nextInCollection.title}`
         ]),
       ])
     );
   } else if (next.related && next.related.length > 0) {
     elements.push(
-      h('div', { class: 'next-step' }, [
+      h('div', { class: 'next-step animate-in' }, [
         h('h4', {}, ['Related in this collection']),
         h('ul', {}, next.related.map((r: any) =>
           h('li', {}, [h('a', { href: `/experience/${r.id}` }, [r.title])])
         ))
+      ])
+    );
+  } else if (returnSummary.completed) {
+    elements.push(
+      h('div', { class: 'completion-banner celebration-pulse' }, [
+        h('h3', {}, ['Experience Completed! 🎉']),
+        h('p', {}, ['You have completed this experience. Explore more to continue your journey.']),
+        h('a', { class: 'btn', href: '/collections' }, ['Explore Collections'])
       ])
     );
   }
