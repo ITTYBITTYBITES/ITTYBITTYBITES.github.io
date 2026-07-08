@@ -41,6 +41,13 @@
       "signal-in-data",
       "scale",
       "uncertainty"
+    ],
+    "society-mind": [
+      "attention",
+      "bias",
+      "memory",
+      "cooperation",
+      "decision-making"
     ]
   },
   "experiencesToCollections": {
@@ -133,6 +140,21 @@
     ],
     "uncertainty": [
       "science"
+    ],
+    "attention": [
+      "society-mind"
+    ],
+    "bias": [
+      "society-mind"
+    ],
+    "memory": [
+      "society-mind"
+    ],
+    "cooperation": [
+      "society-mind"
+    ],
+    "decision-making": [
+      "society-mind"
     ]
   }
 }

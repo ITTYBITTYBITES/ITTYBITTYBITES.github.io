@@ -1,0 +1,19 @@
+{
+  "id": "attention",
+  "title": "Attention",
+  "description": "Focus on one pattern in a busy field and discover how much slips past while your mind is filtering for what matters.",
+  "summary": "Click the target cards, then answer what changed outside your focus. Attention is selective, not infinite.",
+  "category": "interactive",
+  "module": "attention.ts",
+  "tags": ["attention", "focus", "filtering", "perception"],
+  "searchKeywords": ["attention", "focus", "selective attention", "change blindness", "perception"],
+  "estimatedDuration": "4-7 min",
+  "returnValue": "New focus rounds let you test how attention changes what you notice and what you miss.",
+  "collection": "society-mind",
+  "story": "bridges-within-and-between",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

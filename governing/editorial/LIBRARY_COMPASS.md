@@ -87,18 +87,15 @@ Here is the authoritative mapping of all active and upcoming collections.
 - **Status**: Planned (Release 0.7)
 
 ### 8. Society & Mind (`X`)
-- **The Compass**: Cooperation, cognition, and communication are the bridges that connect all human systems.
-- **Editor's Note**: This is the flagship collection of the ITTYBITTYBITES library. It naturally connects history, science, nature, creativity, and engineering. By exploring how individual minds communicate, cooperate, and decide, we can begin to understand the complex societal systems we navigate every day.
-- **Target Themes**:
-  - **Attention**: Understanding the limits of focus and how sensory environments capture attention.
-  - **Bias**: Learning how our minds filter and distort truth to keep things simple.
-  - **Cooperation**: Deep diving into trust, game theory, and how rules shape collective outcomes.
-  - **Perspective**: Experiencing how different information states change how different observers see the same event.
-  - **Memory**: Exploring how we record, recall, and reconstruct stories over time.
-  - **Communication**: Seeing how signals survive noise, coding, and translation.
-  - **Incentives**: Analyzing how systemic rules dictate human actions, often leading to unintended results.
-  - **Decision Making**: How individuals weigh trade-offs and reason under deep uncertainty.
-- **Status**: Planned (Release 0.8)
+- **The Compass**: Cooperation, cognition, and communication are the bridges that connect human systems.
+- **Editor's Note**: Every human system begins with individuals trying to understand the world, each other, and themselves. By exploring how minds perceive, remember, decide, and cooperate, we begin to understand the invisible systems that shape everyday life.
+- **Active Themes**:
+  - **Attention**: What we notice shapes what we experience.
+  - **Bias**: The mind uses shortcuts because it must make decisions quickly.
+  - **Memory**: Memory is a reconstruction, not a perfect recording.
+  - **Cooperation**: Groups create systems through trust, incentives, and shared rules.
+  - **Decision Making**: Choices are shaped by information, uncertainty, and consequences.
+- **Status**: Complete (Release 0.8)
 
 ---
 
