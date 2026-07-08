@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" role="img" aria-labelledby="titlewlzcts desczwt40q">
+  <title id="titlewlzcts">History icon</title>
+  <desc id="desczwt40q">Maps, paper, archives, and timelines.</desc>
+  
+  <rect width="64" height="64" rx="16" fill="#F7F0E1"/>
+        <rect x="12" y="9" width="40" height="46" rx="10" fill="#F7F0E1" stroke="#7A4A2A" stroke-width="3"/>
+        <path d="M20 18 C28 14 36 14 44 18" stroke="#B88453" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <line x1="20" y1="28" x2="44" y2="28" stroke="#B88453" stroke-width="2" stroke-linecap="round" />
+        <line x1="20" y1="36" x2="44" y2="36" stroke="#B88453" stroke-width="2" stroke-linecap="round" />
+        <circle cx="20" cy="46" r="3" fill="#B94F3C" stroke="none" stroke-width="0" />
+        <circle cx="32" cy="46" r="3" fill="#B88453" stroke="none" stroke-width="0" />
+        <circle cx="44" cy="46" r="3" fill="#7A4A2A" stroke="none" stroke-width="0" />
+      
+</svg>

@@ -4,14 +4,12 @@ import { events } from '../platform/events';
 interface Observation {
   id: string;
   category: 'light' | 'temperature' | 'life' | 'sound' | 'water';
-  icon: string;
   text: string;
 }
 
 interface Season {
   id: string;
   name: string;
-  icon: string;
   color: string;
   overview: string;
   observations: Observation[];
@@ -21,57 +19,53 @@ const SEASONS: Season[] = [
   {
     id: 'spring',
     name: 'Spring',
-    icon: '🌱',
     color: '#22c55e',
     overview: 'The landscape wakes. Sap rises. Seeds germinate. Birds return from the south. Days lengthen and the world tilts toward warmth.',
     observations: [
-      { id: 'spr-sun', category: 'light', icon: '☀️', text: 'Sunrise occurs earlier each day. By late spring, dawn arrives almost two hours sooner than at the solstice.' },
-      { id: 'spr-rain', category: 'water', icon: '💧', text: 'Rain is frequent but gentle. The soil, still cool, absorbs water slowly. Streams run high with snowmelt.' },
-      { id: 'spr-bird', category: 'sound', icon: '🐦', text: 'Songbirds return at dawn. Their chorus peaks in early morning — territorial calls and mating displays.' },
-      { id: 'spr-bloom', category: 'life', icon: '🌸', text: 'Wildflowers bloom in sequence: first snowdrops, then crocuses, then daffodils. Each species waits for the right temperature.' },
-      { id: 'spr-insect', category: 'life', icon: '🐝', text: 'First bees emerge when early flowers open. The pollinator calendar begins — each insect timed to its plant.' }
+      { id: 'spr-sun', category: 'light', text: 'Sunrise occurs earlier each day. By late spring, dawn arrives almost two hours sooner than at the solstice.' },
+      { id: 'spr-rain', category: 'water', text: 'Rain is frequent but gentle. The soil, still cool, absorbs water slowly. Streams run high with snowmelt.' },
+      { id: 'spr-bird', category: 'sound', text: 'Songbirds return at dawn. Their chorus peaks in early morning — territorial calls and mating displays.' },
+      { id: 'spr-bloom', category: 'life', text: 'Wildflowers bloom in sequence: first snowdrops, then crocuses, then daffodils. Each species waits for the right temperature.' },
+      { id: 'spr-insect', category: 'life', text: 'First bees emerge when early flowers open. The pollinator calendar begins — each insect timed to its plant.' }
     ]
   },
   {
     id: 'summer',
     name: 'Summer',
-    icon: '☀️',
     color: '#eab308',
     overview: 'Full light. Maximum growth. Every organism races to build reserves before the year turns. The landscape hums with energy.',
     observations: [
-      { id: 'sum-sun', category: 'light', icon: '🌅', text: 'The longest day. Sunlight pours in for over sixteen hours. Shadows at noon are at their shortest.' },
-      { id: 'sum-heat', category: 'temperature', icon: '🌡️', text: 'Peak temperatures lag behind peak sunlight by weeks. The ground stores heat, releasing it slowly.' },
-      { id: 'sum-canopy', category: 'life', icon: '🌳', text: 'The tree canopy closes overhead. On the forest floor, shade-tolerant plants survive on dappled light.' },
-      { id: 'sum-cicada', category: 'sound', icon: '🦗', text: 'Cicadas sing in the afternoon heat. Their chorus intensifies with temperature — a living thermometer.' },
-      { id: 'sum-water', category: 'water', icon: '🏞️', text: 'Streams slow as snowmelt ends. Pools warm. Fish seek deeper, cooler water. The water cycle shifts from runoff to evaporation.' }
+      { id: 'sum-sun', category: 'light', text: 'The longest day. Sunlight pours in for over sixteen hours. Shadows at noon are at their shortest.' },
+      { id: 'sum-heat', category: 'temperature', text: 'Peak temperatures lag behind peak sunlight by weeks. The ground stores heat, releasing it slowly.' },
+      { id: 'sum-canopy', category: 'life', text: 'The tree canopy closes overhead. On the forest floor, shade-tolerant plants survive on dappled light.' },
+      { id: 'sum-cicada', category: 'sound', text: 'Cicadas sing in the afternoon heat. Their chorus intensifies with temperature — a living thermometer.' },
+      { id: 'sum-water', category: 'water', text: 'Streams slow as snowmelt ends. Pools warm. Fish seek deeper, cooler water. The water cycle shifts from runoff to evaporation.' }
     ]
   },
   {
     id: 'autumn',
     name: 'Autumn',
-    icon: '🍂',
     color: '#f97316',
     overview: 'The landscape begins to withdraw. Chlorophyll breaks down, revealing hidden pigments. Seeds scatter. Animals prepare for scarcity.',
     observations: [
-      { id: 'aut-leaf', category: 'life', icon: '🍁', text: 'Leaves change color as chlorophyll degrades. Carotenoids reveal yellow and orange. Anthocyanins create red — a sunscreen for falling leaves.' },
-      { id: 'aut-seed', category: 'life', icon: '🌰', text: 'Acorns, nuts, and seeds fall. Squirrels cache thousands. Those forgotten become next year\'s forest.' },
-      { id: 'aut-bird', category: 'sound', icon: '🦆', text: 'Migrating birds gather in V-formations. Some species have traveled thousands of miles. Others only hundreds.' },
-      { id: 'aut-frost', category: 'temperature', icon: '❄️', text: 'First frost arrives overnight. Delicate plants wilt. Hardy grasses and evergreens remain.' },
-      { id: 'aut-day', category: 'light', icon: '🌙', text: 'Days shorten rapidly. By late autumn, light retreats almost as fast as it advanced in spring.' }
+      { id: 'aut-leaf', category: 'life', text: 'Leaves change color as chlorophyll degrades. Carotenoids reveal yellow and orange. Anthocyanins create red — a sunscreen for falling leaves.' },
+      { id: 'aut-seed', category: 'life', text: 'Acorns, nuts, and seeds fall. Squirrels cache thousands. Those forgotten become next year\'s forest.' },
+      { id: 'aut-bird', category: 'sound', text: 'Migrating birds gather in V-formations. Some species have traveled thousands of miles. Others only hundreds.' },
+      { id: 'aut-frost', category: 'temperature', text: 'First frost arrives overnight. Delicate plants wilt. Hardy grasses and evergreens remain.' },
+      { id: 'aut-day', category: 'light', text: 'Days shorten rapidly. By late autumn, light retreats almost as fast as it advanced in spring.' }
     ]
   },
   {
     id: 'winter',
     name: 'Winter',
-    icon: '❄️',
     color: '#3b82f6',
     overview: 'The landscape conserves. Life retreats underground, into bark, into stored energy. Silence is not absence — it is patience.',
     observations: [
-      { id: 'win-dormant', category: 'life', icon: '🌲', text: 'Deciduous trees are bare but alive. Buds hold next spring\'s leaves, sealed against the cold. Evergreens photosynthesize slowly.' },
-      { id: 'win-track', category: 'life', icon: '🐾', text: 'Animal tracks in snow reveal hidden activity. Deer, rabbit, and fox all remain active, conserving energy through reduced movement.' },
-      { id: 'win-water', category: 'water', icon: '🧊', text: 'Streams slow under ice. Water beneath remains at 4°C — the temperature of maximum density. Fish survive in liquid layers below.' },
-      { id: 'win-sound', category: 'sound', icon: '🔇', text: 'Snow absorbs sound. The landscape feels silent, but chickadees and nuthatches call. Owls hunt in the quiet.' },
-      { id: 'win-sun', category: 'light', icon: '🌑', text: 'The shortest day. Sunlight arrives at a low angle, casting long shadows. The earth tilts away, storing its warmth deep.' }
+      { id: 'win-dormant', category: 'life', text: 'Deciduous trees are bare but alive. Buds hold next spring\'s leaves, sealed against the cold. Evergreens photosynthesize slowly.' },
+      { id: 'win-track', category: 'life', text: 'Animal tracks in snow reveal hidden activity. Deer, rabbit, and fox all remain active, conserving energy through reduced movement.' },
+      { id: 'win-water', category: 'water', text: 'Streams slow under ice. Water beneath remains at 4°C — the temperature of maximum density. Fish survive in liquid layers below.' },
+      { id: 'win-sound', category: 'sound', text: 'Snow absorbs sound. The landscape feels silent, but chickadees and nuthatches call. Owls hunt in the quiet.' },
+      { id: 'win-sun', category: 'light', text: 'The shortest day. Sunlight arrives at a low angle, casting long shadows. The earth tilts away, storing its warmth deep.' }
     ]
   }
 ];
@@ -91,11 +85,11 @@ function saveProgress(p: { observed: string[]; seasonsViewed: string[] }): void 
 }
 
 const categories = [
-  { id: 'light', label: 'Light', icon: '💡' },
-  { id: 'temperature', label: 'Temperature', icon: '🌡️' },
-  { id: 'life', label: 'Living Things', icon: '🌿' },
-  { id: 'sound', label: 'Sound', icon: '🔊' },
-  { id: 'water', label: 'Water', icon: '💧' }
+  { id: 'light', label: 'Light' },
+  { id: 'temperature', label: 'Temperature' },
+  { id: 'life', label: 'Living Things' },
+  { id: 'sound', label: 'Sound' },
+  { id: 'water', label: 'Water' }
 ];
 
 const seasons: ExperienceModule = {
@@ -143,7 +137,7 @@ const seasons: ExperienceModule = {
       SEASONS.forEach((s, idx) => {
         const btn = document.createElement('button');
         btn.className = 'btn';
-        btn.textContent = `${s.icon} ${s.name}`;
+        btn.textContent = s.name;
         btn.setAttribute('role', 'tab');
         btn.setAttribute('aria-selected', String(idx === activeSeasonIdx));
         const viewed = progress.seasonsViewed.includes(s.id);
@@ -169,7 +163,7 @@ const seasons: ExperienceModule = {
 
       const heading = document.createElement('h3');
       heading.style.marginTop = '0';
-      heading.textContent = `${s.icon} ${s.name}`;
+      heading.textContent = s.name;
 
       const text = document.createElement('p');
       text.style.cssText = 'line-height: 1.6; margin-bottom: 0;';
@@ -209,12 +203,12 @@ const seasons: ExperienceModule = {
         if (isObserved) {
           const textEl = document.createElement('p');
           textEl.style.cssText = 'margin-bottom: 0; line-height: 1.5; font-size: 0.9rem;';
-          textEl.textContent = `${obs.icon} ${obs.text}`;
+          textEl.textContent = obs.text;
           card.appendChild(textEl);
         } else {
           const hint = document.createElement('p');
           hint.style.cssText = 'margin-bottom: 0; color: GrayText; font-style: italic; font-size: 0.9rem;';
-          hint.textContent = `${obs.icon} Tap to observe...`;
+          hint.textContent = `Tap to observe ${cat.label.toLowerCase()}...`;
           card.appendChild(hint);
         }
 

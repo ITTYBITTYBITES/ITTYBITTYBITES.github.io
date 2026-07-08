@@ -4,7 +4,6 @@ import { events } from '../platform/events';
 interface LandscapeZone {
   id: string;
   name: string;
-  icon: string;
   elevation: string;
   description: string;
   waterState: string;
@@ -15,10 +14,9 @@ const ZONES: LandscapeZone[] = [
   {
     id: 'mountain',
     name: 'Mountain Summit',
-    icon: '🏔️',
     elevation: '3,000m',
     description: 'Snow accumulates in winter, melts in spring. This is where the river begins — as trickles joining in rocky channels.',
-    waterState: 'Snow and ice → meltwater streams',
+    waterState: 'Snow and ice become meltwater streams',
     actions: [
       { label: 'Forest logging at the tree line', consequence: 'Without tree roots, rain hits bare soil. Erosion increases.', downstream: 'Sediment enters the stream, making it turbid.' },
       { label: 'Protected watershed area', consequence: 'Old-growth forest holds soil and filters water.', downstream: 'Clean water flows downhill slowly, recharged by roots.' },
@@ -28,7 +26,6 @@ const ZONES: LandscapeZone[] = [
   {
     id: 'highland',
     name: 'Highland Valley',
-    icon: '🏞️',
     elevation: '1,500m',
     description: 'The stream has become a river. It cuts through rock, creating rapids and pools. Towns cluster near its banks.',
     waterState: 'Fast-flowing river with rocky substrate',
@@ -41,7 +38,6 @@ const ZONES: LandscapeZone[] = [
   {
     id: 'farmland',
     name: 'Agricultural Plains',
-    icon: '🌾',
     elevation: '300m',
     description: 'The river slows. It meanders across flat land used for farming. Irrigation channels divert water into fields.',
     waterState: 'Slow meandering river through flat terrain',
@@ -54,7 +50,6 @@ const ZONES: LandscapeZone[] = [
   {
     id: 'delta',
     name: 'River Delta',
-    icon: '🏖️',
     elevation: '5m',
     description: 'The river splits into channels as it reaches the sea. Sediment builds new land. This is where the water\'s journey ends — and begins again.',
     waterState: 'Fresh water meets salt water in branching channels',
@@ -153,7 +148,7 @@ const watershed: ExperienceModule = {
 
     const nextBtn = document.createElement('button');
     nextBtn.className = 'btn primary';
-    nextBtn.textContent = 'Follow the water →';
+    nextBtn.textContent = 'Follow the water';
     nextBtn.style.display = 'none';
     nextBtn.addEventListener('click', () => {
       currentZoneIdx += 1;
@@ -173,13 +168,13 @@ const watershed: ExperienceModule = {
         const isCurrent = idx === currentZoneIdx;
         const el = document.createElement('span');
         el.style.cssText = `padding: 0.25rem 0.5rem; border-radius: 999px; font-size: 0.8rem; border: 1px solid ${isCurrent ? 'AccentColor' : visited ? '#22c55e' : 'ButtonBorder'}; background: ${isCurrent ? 'AccentColor' : visited ? '#22c55e22' : 'ButtonFace'}; color: ${isCurrent ? 'AccentColorText' : 'inherit'};`;
-        el.textContent = `${z.icon} ${z.name}`;
+        el.textContent = z.name;
         flowTracker.appendChild(el);
 
         if (idx < ZONES.length - 1) {
           const arrow = document.createElement('span');
           arrow.style.cssText = `color: ${visited ? '#22c55e' : 'GrayText'};`;
-          arrow.textContent = '→';
+          arrow.textContent = 'then';
           flowTracker.appendChild(arrow);
         }
       });
@@ -200,11 +195,11 @@ const watershed: ExperienceModule = {
 
       const nameEl = document.createElement('h3');
       nameEl.style.margin = '0';
-      nameEl.textContent = `${zone.icon} ${zone.name}`;
+      nameEl.textContent = zone.name;
 
       const elevation = document.createElement('span');
       elevation.style.cssText = 'font-family: monospace; font-size: 0.85rem; color: GrayText;';
-      elevation.textContent = `↑ ${zone.elevation}`;
+      elevation.textContent = `Elevation: ${zone.elevation}`;
 
       header.append(nameEl, elevation);
 
@@ -225,7 +220,7 @@ const watershed: ExperienceModule = {
 
       const nameEl = document.createElement('h3');
       nameEl.style.marginTop = '0';
-      nameEl.textContent = `${zone.icon} ${zone.name}`;
+      nameEl.textContent = zone.name;
 
       const descP = document.createElement('p');
       descP.style.cssText = 'line-height: 1.6; margin-bottom: 0.5rem;';
@@ -258,7 +253,7 @@ const watershed: ExperienceModule = {
           if (action) {
             const li = document.createElement('li');
             li.style.cssText = 'margin-bottom: 0.35rem; font-size: 0.9rem;';
-            li.innerHTML = `<strong>${zone.icon} ${zone.name}:</strong> ${action.label} — ${action.downstream}`;
+            li.innerHTML = `<strong>${zone.name}:</strong> ${action.label} — ${action.downstream}`;
             list.appendChild(li);
           }
         });

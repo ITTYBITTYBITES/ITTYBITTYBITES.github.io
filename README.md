@@ -44,6 +44,7 @@ Before contributing to the library, please orient yourself with our specificatio
 *   **Step-by-step authoring workflows & checklists**: Read the [Curation Guide](governing/editorial/CURATION_GUIDE.md).
 *   **The platform's technical architecture**: Read the [Platform Blueprint](governing/foundation/PLATFORM_BLUEPRINT.md) and [Product Constitution](governing/foundation/PRODUCT_CONSTITUTION.md).
 *   **Analytics and Privacy**: Read the [GA4 & Privacy Configuration](docs/ANALYTICS.md) to understand configuration points and privacy safeguards.
+*   **Library Season 1 visual system**: Read the [Visual Asset Audit](docs/LIBRARY_SEASON_1_VISUAL_AUDIT.md) and [Illustration System](docs/ILLUSTRATION_SYSTEM.md) before extending collection artwork.
 
 ---
 

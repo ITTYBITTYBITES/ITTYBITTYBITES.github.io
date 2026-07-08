@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="420" viewBox="0 0 640 420" fill="none" role="img" aria-labelledby="titledcnc34 desc6o8b9h">
+  <title id="titledcnc34">Nature illustration</title>
+  <desc id="desc6o8b9h">Ecosystems, flows, branching systems, and living cycles.</desc>
+  
+  
+      <rect width="640" height="420" rx="32" fill="#EEF5EC"/>
+      <rect x="20" y="20" width="600" height="380" rx="28" fill="#D8E6D2" opacity="0.34"/>
+      
+        <rect x="48" y="48" width="544" height="300" rx="28" fill="#ffffff" stroke="#78A67C" stroke-width="2.5" opacity="0.76"/>
+        <path d="M 118 88 C 138 156 176 180 228 216 C 292 260 330 284 350 330" stroke="#78A67C" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.8"/>
+        <path d="M 278 86 C 262 132 278 180 336 214 C 408 254 468 268 520 322" stroke="#4A8CC7" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.7"/>
+        <path d="M 228 216 C 194 218 166 244 142 282" stroke="#245B45" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M 336 214 C 374 212 408 188 448 144" stroke="#245B45" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <circle cx="142" cy="282" r="11" fill="#245B45" stroke="none" stroke-width="0" />
+        <circle cx="448" cy="144" r="11" fill="#78A67C" stroke="none" stroke-width="0" />
+        <circle cx="350" cy="330" r="11" fill="#4A8CC7" stroke="none" stroke-width="0" />
+      
+    
+</svg>

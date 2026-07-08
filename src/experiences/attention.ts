@@ -30,13 +30,6 @@ interface AttentionProgress {
   surprisesNoticed: number;
 }
 
-const SHAPE_SYMBOLS: Record<Shape, string> = {
-  circle: '●',
-  triangle: '▲',
-  square: '■',
-  star: '★',
-};
-
 const COLOR_VALUES: Record<Color, string> = {
   red: '#dc2626',
   blue: '#2563eb',
@@ -166,6 +159,27 @@ function getVisibleCard(round: RoundDefinition, card: CardState, mutationApplied
   };
 }
 
+function createShapeSwatch(shape: Shape, color: string): HTMLSpanElement {
+  const swatch = document.createElement('span');
+  swatch.setAttribute('aria-hidden', 'true');
+  swatch.style.display = 'inline-block';
+  swatch.style.width = '1.8rem';
+  swatch.style.height = '1.8rem';
+  swatch.style.background = color;
+
+  if (shape === 'circle') {
+    swatch.style.borderRadius = '999px';
+  } else if (shape === 'square') {
+    swatch.style.borderRadius = '0.3rem';
+  } else if (shape === 'triangle') {
+    swatch.style.clipPath = 'polygon(50% 6%, 94% 88%, 6% 88%)';
+  } else {
+    swatch.style.clipPath = 'polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 92%, 50% 71%, 21% 92%, 32% 57%, 2% 35%, 39% 35%)';
+  }
+
+  return swatch;
+}
+
 const attention: ExperienceModule = {
   mount(container: HTMLElement, context: ExperienceContext) {
     container.innerHTML = '';
@@ -258,9 +272,7 @@ const attention: ExperienceModule = {
         button.style.cssText = 'min-height: 5.5rem; padding: 0.75rem; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 0.35rem;';
         button.setAttribute('aria-label', describeCard(visible));
 
-        const symbol = document.createElement('span');
-        symbol.textContent = SHAPE_SYMBOLS[visible.shape];
-        symbol.style.cssText = `font-size: 1.75rem; line-height: 1; color: ${COLOR_VALUES[visible.color]};`;
+        const symbol = createShapeSwatch(visible.shape, COLOR_VALUES[visible.color]);
 
         const label = document.createElement('span');
         label.textContent = describeCard(visible);
@@ -373,7 +385,7 @@ const attention: ExperienceModule = {
       nextButton.type = 'button';
       nextButton.className = 'btn primary';
       nextButton.style.marginTop = '0.75rem';
-      nextButton.textContent = roundIndex < ROUNDS.length - 1 ? 'Next Round →' : 'See What This Means';
+      nextButton.textContent = roundIndex < ROUNDS.length - 1 ? 'Next Round' : 'See What This Means';
       nextButton.addEventListener('click', () => {
         if (roundIndex < ROUNDS.length - 1) {
           roundIndex += 1;

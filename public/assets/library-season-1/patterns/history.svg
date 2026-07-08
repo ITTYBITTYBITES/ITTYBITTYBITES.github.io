@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" fill="none" role="img" aria-labelledby="titlegz0yow desc24rlbc">
+  <title id="titlegz0yow">History pattern</title>
+  <desc id="desc24rlbc">Maps, paper, archives, and timelines.</desc>
+  
+  <rect width="240" height="240" fill="#F7F0E1"/>
+        <path d="M20 60 C60 30 110 30 140 70 C170 110 200 120 220 100" stroke="#B88453" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.4"/>
+        <line x1="50" y1="30" x2="50" y2="210" stroke="#7A4A2A" stroke-width="1.5" stroke-linecap="round" opacity="0.2" stroke-dasharray="6 8"/>
+        <line x1="120" y1="30" x2="120" y2="210" stroke="#7A4A2A" stroke-width="1.5" stroke-linecap="round" opacity="0.2" stroke-dasharray="6 8"/>
+        <line x1="190" y1="30" x2="190" y2="210" stroke="#7A4A2A" stroke-width="1.5" stroke-linecap="round" opacity="0.2" stroke-dasharray="6 8"/>
+        <circle cx="50" cy="170" r="5" fill="#B94F3C" stroke="none" stroke-width="0" opacity="0.55"/>
+        <circle cx="120" cy="110" r="5" fill="#B88453" stroke="none" stroke-width="0" opacity="0.55"/>
+        <circle cx="190" cy="150" r="5" fill="#7A4A2A" stroke="none" stroke-width="0" opacity="0.55"/>
+      
+</svg>

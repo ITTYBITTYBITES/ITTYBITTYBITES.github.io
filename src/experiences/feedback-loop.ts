@@ -288,7 +288,7 @@ const feedbackLoop: ExperienceModule = {
     function showStabilized() {
       const challenge = CHALLENGES[currentChallengeIdx];
       statusArea.style.cssText = 'margin: 1rem 0; padding: 0.75rem; border-radius: 0.5rem; font-weight: 600; text-align: center; background: #22c55e11; color: #16a34a; border: 2px solid #22c55e;';
-      statusArea.textContent = `✓ System stabilized at ${challenge.target}`;
+      statusArea.textContent = `System stabilized at ${challenge.target}`;
 
       if (!progress.stabilized.includes(challenge.id)) {
         progress.stabilized.push(challenge.id);
@@ -308,7 +308,7 @@ const feedbackLoop: ExperienceModule = {
       if (progress.stabilized.length < CHALLENGES.length) {
         const nextBtn = document.createElement('button');
         nextBtn.className = 'btn';
-        nextBtn.textContent = 'Next System →';
+        nextBtn.textContent = 'Next System';
         nextBtn.addEventListener('click', () => {
           currentChallengeIdx = (currentChallengeIdx + 1) % CHALLENGES.length;
           statusArea.style.cssText = 'margin: 1rem 0; padding: 0.75rem; border-radius: 0.5rem; font-weight: 600; text-align: center;';

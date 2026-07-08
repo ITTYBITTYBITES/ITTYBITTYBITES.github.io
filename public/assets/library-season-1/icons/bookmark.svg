@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" role="img" aria-labelledby="titlezguzn4 descen4vrx">
+  <title id="titlezguzn4">Bookmark icon</title>
+  <desc id="descen4vrx">A slim editorial bookmark used for saved items.</desc>
+  
+  
+    <rect width="64" height="64" rx="16" fill="#F4F1EA"/>
+    <path d="M22 14 H42 A4 4 0 0 1 46 18 V50 L32 40 L18 50 V18 A4 4 0 0 1 22 14 Z" fill="#ffffff" stroke="#2E3F57" stroke-width="3" stroke-linejoin="round"/>
+    <path d="M22 24 H42" stroke="#D48A3A" stroke-width="3" stroke-linecap="round"/>
+  
+</svg>

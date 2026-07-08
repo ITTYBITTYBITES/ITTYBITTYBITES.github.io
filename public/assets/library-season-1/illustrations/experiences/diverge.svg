@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" fill="none" role="img" aria-labelledby="titlegr7lx1 desc0x8vli">
+  <title id="titlegr7lx1">diverge</title>
+  <desc id="desc0x8vli">One prompt splits into many paths as options spread outward from a shared start.</desc>
+  
+  
+    <rect width="320" height="220" rx="24" fill="#FBF0E8"/>
+    <rect x="12" y="12" width="296" height="196" rx="18" fill="#F1D8C7" opacity="0.34"/>
+    <rect x="24" y="26" width="272" height="168" rx="20" fill="#ffffff" opacity="0.72" stroke="#D38552" stroke-width="2"/>
+    <path d="M28 188 C92 172 136 178 188 186 C234 194 266 194 292 184" stroke="#7F66D9" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+    
+        <path d="M160 158 C160 130 160 108 160 76" stroke="#8A3C3B" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M160 104 C132 92 112 72 96 50" stroke="#D38552" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M160 104 C190 90 214 74 236 48" stroke="#D38552" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M160 134 C132 146 112 164 98 186" stroke="#7F66D9" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M160 134 C190 148 214 162 236 182" stroke="#7F66D9" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <circle cx="96" cy="50" r="10" fill="#D38552" stroke="none" stroke-width="0" />
+        <circle cx="236" cy="48" r="10" fill="#D38552" stroke="none" stroke-width="0" />
+        <circle cx="98" cy="186" r="10" fill="#7F66D9" stroke="none" stroke-width="0" />
+        <circle cx="236" cy="182" r="10" fill="#7F66D9" stroke="none" stroke-width="0" />
+      
+  
+</svg>

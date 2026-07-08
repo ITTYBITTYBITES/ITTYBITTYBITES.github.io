@@ -4,7 +4,6 @@ import { events } from '../platform/events';
 interface Element {
   id: string;
   name: string;
-  icon: string;
   domain: string;
 }
 
@@ -22,12 +21,12 @@ const SCENARIOS: RemixScenario[] = [
     title: 'Sound Collision',
     prompt: 'Combine elements from different musical traditions to discover new genres.',
     elements: [
-      { id: 'blues', name: 'Blues Scale', icon: '🎸', domain: 'African-American' },
-      { id: 'classical', name: 'Orchestra', icon: '🎻', domain: 'European Classical' },
-      { id: 'electronic', name: 'Synthesizer', icon: '🎹', domain: 'Electronic' },
-      { id: 'tablas', name: 'Tabla Rhythm', icon: '🥁', domain: 'Indian' },
-      { id: 'jazz', name: 'Jazz Improvisation', icon: '🎷', domain: 'African-American' },
-      { id: 'folk', name: 'Folk Melody', icon: '🪕', domain: 'Celtic' }
+      { id: 'blues', name: 'Blues Scale', domain: 'African-American' },
+      { id: 'classical', name: 'Orchestra', domain: 'European Classical' },
+      { id: 'electronic', name: 'Synthesizer', domain: 'Electronic' },
+      { id: 'tablas', name: 'Tabla Rhythm', domain: 'Indian' },
+      { id: 'jazz', name: 'Jazz Improvisation', domain: 'African-American' },
+      { id: 'folk', name: 'Folk Melody', domain: 'Celtic' }
     ],
     validCombos: [
       { a: 'blues', b: 'classical', result: 'Third Stream', explanation: 'Blues harmony meets orchestral texture — George Gershwin, Duke Ellington.' },
@@ -43,12 +42,12 @@ const SCENARIOS: RemixScenario[] = [
     title: 'Tool Hybrid',
     prompt: 'Combine tools from different fields to invent something new.',
     elements: [
-      { id: 'lens', name: 'Magnifying Lens', icon: '🔍', domain: 'Science' },
-      { id: 'brush', name: 'Paintbrush', icon: '🖌️', domain: 'Art' },
-      { id: 'code', name: 'Algorithm', icon: '💻', domain: 'Computing' },
-      { id: 'map', name: 'Map', icon: '🗺️', domain: 'Navigation' },
-      { id: 'body', name: 'Human Body', icon: '🏃', domain: 'Biology' },
-      { id: 'story', name: 'Narrative', icon: '📖', domain: 'Literature' }
+      { id: 'lens', name: 'Magnifying Lens', domain: 'Science' },
+      { id: 'brush', name: 'Paintbrush', domain: 'Art' },
+      { id: 'code', name: 'Algorithm', domain: 'Computing' },
+      { id: 'map', name: 'Map', domain: 'Navigation' },
+      { id: 'body', name: 'Human Body', domain: 'Biology' },
+      { id: 'story', name: 'Narrative', domain: 'Literature' }
     ],
     validCombos: [
       { a: 'lens', b: 'body', result: 'Medical Imaging', explanation: 'Looking inside the human body — MRI, X-ray, endoscopy.' },
@@ -64,12 +63,12 @@ const SCENARIOS: RemixScenario[] = [
     title: 'Form Mashup',
     prompt: 'Combine structural patterns from different domains to create new forms.',
     elements: [
-      { id: 'spiral', name: 'Spiral', icon: '🌀', domain: 'Nature' },
-      { id: 'grid', name: 'Grid', icon: '▦', domain: 'Urban Planning' },
-      { id: 'branch', name: 'Branching Tree', icon: '🌳', domain: 'Nature' },
-      { id: 'arch', name: 'Arch', icon: '🌉', domain: 'Architecture' },
-      { id: 'wave', name: 'Wave', icon: '🌊', domain: 'Physics' },
-      { id: 'web', name: 'Web/Network', icon: '🕸️', domain: 'Technology' }
+      { id: 'spiral', name: 'Spiral', domain: 'Nature' },
+      { id: 'grid', name: 'Grid', domain: 'Urban Planning' },
+      { id: 'branch', name: 'Branching Tree', domain: 'Nature' },
+      { id: 'arch', name: 'Arch', domain: 'Architecture' },
+      { id: 'wave', name: 'Wave', domain: 'Physics' },
+      { id: 'web', name: 'Web/Network', domain: 'Technology' }
     ],
     validCombos: [
       { a: 'spiral', b: 'arch', result: 'Spiral Architecture', explanation: 'Buildings that coil — Guggenheim Museum, spiral ramps in parking structures.' },
@@ -130,7 +129,7 @@ const remix: ExperienceModule = {
 
     const combineBtn = document.createElement('button');
     combineBtn.className = 'btn primary';
-    combineBtn.textContent = 'Combine →';
+    combineBtn.textContent = 'Combine';
     combineBtn.style.display = 'none';
     combineBtn.style.marginTop = '0.5rem';
 
@@ -205,7 +204,7 @@ const remix: ExperienceModule = {
         btn.className = 'btn';
         const isSelected = selectedElements.includes(el.id);
         btn.style.cssText = `padding: 0.75rem 0.5rem; text-align: center; border: 2px solid ${isSelected ? 'AccentColor' : 'ButtonBorder'}; background: ${isSelected ? 'AccentColor' + '22' : 'ButtonFace'};`;
-        btn.innerHTML = `<div style="font-size: 1.5rem;">${el.icon}</div><div style="font-size: 0.85rem; margin-top: 0.25rem;">${el.name}</div><div style="font-size: 0.7rem; color: GrayText;">${el.domain}</div>`;
+        btn.innerHTML = `<div style="font-size: 0.95rem; font-weight: 600;">${el.name}</div><div style="font-size: 0.7rem; color: GrayText; margin-top: 0.25rem;">${el.domain}</div>`;
         btn.setAttribute('aria-label', `${el.name} from ${el.domain}${isSelected ? ' (selected)' : ''}`);
 
         btn.addEventListener('click', () => {
@@ -319,7 +318,7 @@ const remix: ExperienceModule = {
           const el2 = scenario.elements.find(e => e.id === combo.b)!;
           const tag = document.createElement('span');
           tag.style.cssText = 'display: inline-block; padding: 0.25rem 0.5rem; margin: 0.15rem; border: 1px solid #22c55e; border-radius: 999px; font-size: 0.8rem; color: #22c55e;';
-          tag.textContent = `${el1.icon} + ${el2.icon} → ${combo.result}`;
+          tag.textContent = `${el1.name} + ${el2.name} → ${combo.result}`;
           allResultsArea.appendChild(tag);
         }
       });

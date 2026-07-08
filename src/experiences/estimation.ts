@@ -255,7 +255,7 @@ const estimation: ExperienceModule = {
 
       const nextButton = document.createElement('button');
       nextButton.className = 'btn primary';
-      nextButton.textContent = progress.completed.length === PROMPTS.length ? 'Review Estimates' : 'Next Estimate →';
+      nextButton.textContent = progress.completed.length === PROMPTS.length ? 'Review Estimates' : 'Next Estimate';
       nextButton.addEventListener('click', () => {
         currentIndex = progress.completed.length === PROMPTS.length
           ? 0

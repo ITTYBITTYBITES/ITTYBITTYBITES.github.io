@@ -6,9 +6,7 @@ type RelationshipType = 'mutualism' | 'commensalism' | 'parasitism';
 interface SymbiosisPair {
   id: string;
   organism1: string;
-  icon1: string;
   organism2: string;
-  icon2: string;
   type: RelationshipType;
   description: string;
   explanation: string;
@@ -18,9 +16,7 @@ const PAIRS: SymbiosisPair[] = [
   {
     id: 'clownfish-anemone',
     organism1: 'Clownfish',
-    icon1: '🐠',
     organism2: 'Sea Anemone',
-    icon2: '🪸',
     type: 'mutualism',
     description: 'The clownfish lives among the anemone\'s stinging tentacles. Both benefit.',
     explanation: 'The clownfish gains protection from predators (anemone stings do not affect it). The anemone gains nutrients from clownfish waste and gets cleaned of parasites.'
@@ -28,9 +24,7 @@ const PAIRS: SymbiosisPair[] = [
   {
     id: 'bee-flower',
     organism1: 'Bee',
-    icon1: '🐝',
     organism2: 'Flowering Plant',
-    icon2: '🌸',
     type: 'mutualism',
     description: 'The bee visits the flower, collecting nectar. The flower is pollinated.',
     explanation: 'The bee receives food (nectar and pollen). The flower receives pollination — its pollen transferred to other flowers, enabling reproduction. Neither could thrive without the other.'
@@ -38,9 +32,7 @@ const PAIRS: SymbiosisPair[] = [
   {
     id: 'remora-shark',
     organism1: 'Remora',
-    icon1: '🐟',
     organism2: 'Shark',
-    icon2: '🦈',
     type: 'commensalism',
     description: 'The remora attaches to the shark and feeds on scraps. The shark is unaffected.',
     explanation: 'The remora gets free transportation and leftover food. The shark neither benefits nor is harmed. It barely notices the remora\'s presence.'
@@ -48,9 +40,7 @@ const PAIRS: SymbiosisPair[] = [
   {
     id: 'tick-deer',
     organism1: 'Tick',
-    icon1: '🪲',
     organism2: 'Deer',
-    icon2: '🦌',
     type: 'parasitism',
     description: 'The tick feeds on the deer\'s blood. The deer loses nutrients and may contract disease.',
     explanation: 'The tick benefits by receiving a blood meal. The deer is harmed — losing nutrients, suffering irritation, and risking disease transmission. This is parasitism: one benefits at the other\'s expense.'
@@ -58,9 +48,7 @@ const PAIRS: SymbiosisPair[] = [
   {
     id: 'bird-nest-tree',
     organism1: 'Bird',
-    icon1: '🐦',
     organism2: 'Tree',
-    icon2: '🌳',
     type: 'commensalism',
     description: 'A bird builds its nest in a tree branch. The tree is not affected.',
     explanation: 'The bird gains shelter and a safe place to raise young. The tree is neither helped nor harmed by the nest. The tree would stand the same whether the bird nested there or not.'
@@ -68,9 +56,7 @@ const PAIRS: SymbiosisPair[] = [
   {
     id: 'tapeworm-human',
     organism1: 'Tapeworm',
-    icon1: '🪱',
     organism2: 'Human',
-    icon2: '🧑',
     type: 'parasitism',
     description: 'The tapeworm lives inside the human intestine, absorbing nutrients.',
     explanation: 'The tapeworm benefits by receiving a constant food supply and a protected environment. The human is harmed — losing nutrients, suffering digestive problems, and risking long-term damage.'
@@ -78,9 +64,7 @@ const PAIRS: SymbiosisPair[] = [
   {
     id: 'lichen',
     organism1: 'Fungus',
-    icon1: '🍄',
     organism2: 'Alga',
-    icon2: '🟢',
     type: 'mutualism',
     description: 'Fungus and alga grow together as lichen on rocks and bark. They form a single visible organism.',
     explanation: 'The fungus provides structure, water retention, and protection. The alga provides food through photosynthesis. Together they survive in places neither could alone.'
@@ -88,9 +72,7 @@ const PAIRS: SymbiosisPair[] = [
   {
     id: 'barnacle-whale',
     organism1: 'Barnacle',
-    icon1: '🐚',
     organism2: 'Whale',
-    icon2: '🐋',
     type: 'commensalism',
     description: 'Barnacles attach to a whale\'s skin, filtering food from water as the whale swims.',
     explanation: 'The barnacle gains transport through nutrient-rich waters. The whale is largely unaffected — the barnacles cause minor drag but no significant harm.'
@@ -98,9 +80,7 @@ const PAIRS: SymbiosisPair[] = [
   {
     id: 'cordyceps-ant',
     organism1: 'Cordyceps Fungus',
-    icon1: '🍄',
     organism2: 'Ant',
-    icon2: '🐜',
     type: 'parasitism',
     description: 'The fungus infects an ant, takes over its behavior, and grows a fruiting body from its body.',
     explanation: 'The fungus benefits by using the ant as a host to reproduce. The ant is killed — manipulated into climbing to a high point before the fungus consumes it from within.'
@@ -108,9 +88,7 @@ const PAIRS: SymbiosisPair[] = [
   {
     id: 'oxpecker-zebra',
     organism1: 'Oxpecker',
-    icon1: '🐦',
     organism2: 'Zebra',
-    icon2: '🦓',
     type: 'mutualism',
     description: 'The oxpecker bird rides on the zebra, eating ticks and other parasites.',
     explanation: 'The oxpecker gets food. The zebra gets parasites removed. Both benefit from the arrangement — though some studies suggest the oxpecker may also drink blood from wounds, making it slightly parasitic.'
@@ -131,10 +109,10 @@ function saveProgress(p: { completed: string[]; correct: number; total: number }
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(p)); } catch { /* ignore */ }
 }
 
-const relationshipInfo: Record<RelationshipType, { label: string; icon: string; color: string; definition: string }> = {
-  mutualism: { label: 'Mutualism', icon: '🤝', color: '#22c55e', definition: 'Both species benefit from the relationship.' },
-  commensalism: { label: 'Commensalism', icon: '🔄', color: '#3b82f6', definition: 'One species benefits; the other is unaffected.' },
-  parasitism: { label: 'Parasitism', icon: '⚠️', color: '#ef4444', definition: 'One species benefits at the expense of the other.' }
+const relationshipInfo: Record<RelationshipType, { label: string; color: string; definition: string }> = {
+  mutualism: { label: 'Mutualism', color: '#22c55e', definition: 'Both species benefit from the relationship.' },
+  commensalism: { label: 'Commensalism', color: '#3b82f6', definition: 'One species benefits; the other is unaffected.' },
+  parasitism: { label: 'Parasitism', color: '#ef4444', definition: 'One species benefits at the expense of the other.' }
 };
 
 const symbiosis: ExperienceModule = {
@@ -184,7 +162,7 @@ const symbiosis: ExperienceModule = {
 
     const nextBtn = document.createElement('button');
     nextBtn.className = 'btn primary';
-    nextBtn.textContent = 'Next Pair →';
+    nextBtn.textContent = 'Next Pair';
     nextBtn.style.display = 'none';
     nextBtn.addEventListener('click', () => {
       currentIdx = (currentIdx + 1) % PAIRS.length;
@@ -203,7 +181,7 @@ const symbiosis: ExperienceModule = {
       (Object.entries(relationshipInfo) as [RelationshipType, typeof relationshipInfo[RelationshipType]][]).forEach(([, info]) => {
         const el = document.createElement('span');
         el.style.cssText = `padding: 0.25rem 0.5rem; border: 1px solid ${info.color}; border-radius: 0.25rem; color: ${info.color}; font-size: 0.8rem;`;
-        el.textContent = `${info.icon} ${info.label}`;
+        el.textContent = info.label;
         legend.appendChild(el);
       });
     }
@@ -213,19 +191,19 @@ const symbiosis: ExperienceModule = {
       pairCard.innerHTML = '';
 
       const organisms = document.createElement('div');
-      organisms.style.cssText = 'display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; margin-bottom: 1rem;';
+      organisms.style.cssText = 'display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem;';
 
       const org1 = document.createElement('span');
-      org1.style.cssText = 'font-size: 2rem;';
-      org1.textContent = pair.icon1;
+      org1.style.cssText = 'padding: 0.35rem 0.6rem; border: 1px solid ButtonBorder; border-radius: 999px; background: canvas; font-size: 0.85rem;';
+      org1.textContent = pair.organism1;
 
       const vs = document.createElement('span');
       vs.style.cssText = 'font-weight: 600; color: GrayText;';
       vs.textContent = '&';
 
       const org2 = document.createElement('span');
-      org2.style.cssText = 'font-size: 2rem;';
-      org2.textContent = pair.icon2;
+      org2.style.cssText = 'padding: 0.35rem 0.6rem; border: 1px solid ButtonBorder; border-radius: 999px; background: canvas; font-size: 0.85rem;';
+      org2.textContent = pair.organism2;
 
       organisms.append(org1, vs, org2);
 
@@ -246,7 +224,7 @@ const symbiosis: ExperienceModule = {
         const btn = document.createElement('button');
         btn.className = 'btn';
         btn.style.cssText = `padding: 0.5rem 1rem; border: 2px solid ${revealed && type === PAIRS[currentIdx].type ? info.color : 'ButtonBorder'};`;
-        btn.textContent = `${info.icon} ${info.label}`;
+        btn.textContent = info.label;
 
         if (revealed) {
           if (type === PAIRS[currentIdx].type) {

@@ -316,7 +316,7 @@ const decisionMaking: ExperienceModule = {
       next.type = 'button';
       next.className = 'btn primary';
       next.style.marginTop = '0.75rem';
-      next.textContent = scenarioIndex < SCENARIOS.length - 1 ? 'Next Decision →' : 'What this teaches';
+      next.textContent = scenarioIndex < SCENARIOS.length - 1 ? 'Next Decision' : 'What this teaches';
       next.addEventListener('click', () => {
         if (scenarioIndex < SCENARIOS.length - 1) {
           scenarioIndex += 1;

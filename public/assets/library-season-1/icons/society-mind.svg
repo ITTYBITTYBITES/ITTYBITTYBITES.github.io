@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" role="img" aria-labelledby="title7tn7f3 descnyws49">
+  <title id="title7tn7f3">Society &amp; Mind icon</title>
+  <desc id="descnyws49">Conversation, networks, relationships, and shifting perspective.</desc>
+  
+  <rect width="64" height="64" rx="16" fill="#FBF1F6"/>
+        <circle cx="18" cy="22" r="7" fill="#D38DAE" stroke="none" stroke-width="0" />
+        <circle cx="46" cy="22" r="7" fill="#5B83C8" stroke="none" stroke-width="0" />
+        <circle cx="32" cy="42" r="7" fill="#8A3E67" stroke="none" stroke-width="0" />
+        <path d="M25 22 L39 22 M23 27 L29 36 M41 27 L35 36" stroke="#4A2138" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M12 14 h10 l4 4 h-10 z" stroke="#8A3E67" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="#FBF1F6" />
+      
+</svg>

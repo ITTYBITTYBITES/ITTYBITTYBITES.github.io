@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" fill="none" role="img" aria-labelledby="titlexhzexi descych4mr">
+  <title id="titlexhzexi">Nature pattern</title>
+  <desc id="descych4mr">Ecosystems, flows, branching systems, and living cycles.</desc>
+  
+  <rect width="240" height="240" fill="#EEF5EC"/>
+        <path d="M20 30 C40 70 60 90 90 110 C130 140 150 170 160 210" stroke="#78A67C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.35"/>
+        <path d="M120 20 C110 70 130 110 170 140 C200 160 215 190 220 220" stroke="#4A8CC7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.35"/>
+        <path d="M90 110 C70 120 55 135 40 160" stroke="#245B45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.35"/>
+        <path d="M170 140 C190 130 205 115 220 90" stroke="#245B45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.35"/>
+      
+</svg>

@@ -417,7 +417,7 @@ const tradeOffs: ExperienceModule = {
 
       const heading = document.createElement('h4');
       heading.style.cssText = `margin-top: 0; color: ${score >= 70 ? '#16a34a' : '#ca8a04'};`;
-      heading.textContent = score >= 70 ? '✓ Balanced Outcome' : 'Trade-offs Made';
+      heading.textContent = score >= 70 ? 'Balanced Outcome' : 'Trade-offs Made';
 
       const message = document.createElement('p');
       message.style.cssText = 'margin-bottom: 0.5rem;';
@@ -446,7 +446,7 @@ const tradeOffs: ExperienceModule = {
       if (progress.completed.length < SCENARIOS.length) {
         const nextBtn = document.createElement('button');
         nextBtn.className = 'btn primary';
-        nextBtn.textContent = 'Next Scenario →';
+        nextBtn.textContent = 'Next Scenario';
         nextBtn.addEventListener('click', () => {
           currentScenarioIdx = (currentScenarioIdx + 1) % SCENARIOS.length;
           resultArea.innerHTML = '';

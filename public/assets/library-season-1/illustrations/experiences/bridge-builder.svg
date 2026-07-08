@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" fill="none" role="img" aria-labelledby="titleszsl0w descqyn3jh">
+  <title id="titleszsl0w">bridge-builder</title>
+  <desc id="descqyn3jh">A span carries load by distributing force through supports and joints.</desc>
+  
+  
+    <rect width="320" height="220" rx="24" fill="#EFF4FB"/>
+    <rect x="12" y="12" width="296" height="196" rx="18" fill="#D8E2F3" opacity="0.34"/>
+    <rect x="24" y="26" width="272" height="168" rx="20" fill="#ffffff" opacity="0.72" stroke="#7AA2D8" stroke-width="2"/>
+    <path d="M28 188 C92 172 136 178 188 186 C234 194 266 194 292 184" stroke="#D88A4C" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+    
+        <line x1="46" y1="154" x2="274" y2="154" stroke="#234A83" stroke-width="5" stroke-linecap="round" />
+        <line x1="80" y1="154" x2="116" y2="88" stroke="#7AA2D8" stroke-width="5" stroke-linecap="round" />
+        <line x1="204" y1="154" x2="240" y2="88" stroke="#7AA2D8" stroke-width="5" stroke-linecap="round" />
+        <line x1="116" y1="88" x2="204" y2="88" stroke="#D88A4C" stroke-width="5" stroke-linecap="round" />
+        <line x1="116" y1="88" x2="160" y2="126" stroke="#234A83" stroke-width="3" stroke-linecap="round" />
+        <line x1="160" y1="126" x2="204" y2="88" stroke="#234A83" stroke-width="3" stroke-linecap="round" />
+      
+  
+</svg>

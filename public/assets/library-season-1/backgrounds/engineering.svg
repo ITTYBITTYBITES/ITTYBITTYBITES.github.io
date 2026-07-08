@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none" role="img" aria-labelledby="title55bzvq desc24g05q">
+  <title id="title55bzvq">Engineering background</title>
+  <desc id="desc24g05q">Blueprint language, construction, load paths, and mechanical precision.</desc>
+  
+  
+    <rect width="1600" height="900" fill="#EFF4FB"/>
+    <rect x="30" y="30" width="1540" height="840" rx="48" fill="#D8E2F3" opacity="0.3"/>
+    <g transform="translate(140 120)">
+        <line x1="20" y1="180" x2="220" y2="180" stroke="#7AA2D8" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+        <line x1="40" y1="180" x2="90" y2="70" stroke="#234A83" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+        <line x1="140" y1="180" x2="190" y2="70" stroke="#234A83" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+        <line x1="90" y1="70" x2="140" y2="70" stroke="#D88A4C" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+        <line x1="20" y1="40" x2="220" y2="40" stroke="#7AA2D8" stroke-width="1" stroke-linecap="round" opacity="0.18" stroke-dasharray="6 8"/>
+        <line x1="20" y1="110" x2="220" y2="110" stroke="#7AA2D8" stroke-width="1" stroke-linecap="round" opacity="0.18" stroke-dasharray="6 8"/>
+        <line x1="80" y1="20" x2="80" y2="220" stroke="#7AA2D8" stroke-width="1" stroke-linecap="round" opacity="0.18" stroke-dasharray="6 8"/>
+        <line x1="160" y1="20" x2="160" y2="220" stroke="#7AA2D8" stroke-width="1" stroke-linecap="round" opacity="0.18" stroke-dasharray="6 8"/>
+      </g>
+    <rect x="980" y="120" width="460" height="300" rx="36" fill="#ffffff" opacity="0.68" stroke="#7AA2D8" stroke-width="2"/>
+    
+        <rect x="1041.25" y="173.57142857142856" width="337.5" height="178.57142857142858" rx="17.5" fill="#ffffff" stroke="#7AA2D8" stroke-width="2.5" opacity="0.78"/>
+        <line x1="1070" y1="323.57142857142856" x2="1350" y2="323.57142857142856" stroke="#234A83" stroke-width="4.375" stroke-linecap="round" />
+        <line x1="1095" y1="323.57142857142856" x2="1143.75" y2="222.38095238095238" stroke="#7AA2D8" stroke-width="4.375" stroke-linecap="round" />
+        <line x1="1215" y1="323.57142857142856" x2="1262.5" y2="222.38095238095238" stroke="#7AA2D8" stroke-width="4.375" stroke-linecap="round" />
+        <line x1="1143.75" y1="222.38095238095238" x2="1262.5" y2="222.38095238095238" stroke="#D88A4C" stroke-width="4.375" stroke-linecap="round" />
+        <line x1="1095" y1="283.0952380952381" x2="1143.75" y2="222.38095238095238" stroke="#234A83" stroke-width="1.875" stroke-linecap="round" />
+        <line x1="1143.75" y1="222.38095238095238" x2="1191.25" y2="283.0952380952381" stroke="#234A83" stroke-width="1.875" stroke-linecap="round" />
+        <line x1="1191.25" y1="283.0952380952381" x2="1262.5" y2="222.38095238095238" stroke="#234A83" stroke-width="1.875" stroke-linecap="round" />
+        <line x1="1262.5" y1="222.38095238095238" x2="1316.25" y2="283.0952380952381" stroke="#234A83" stroke-width="1.875" stroke-linecap="round" />
+        <line x1="1063.75" y1="203.33333333333334" x2="1356.25" y2="203.33333333333334" stroke="#7AA2D8" stroke-width="0.9375" stroke-linecap="round" opacity="0.28" stroke-dasharray="8 10"/>
+        <line x1="1063.75" y1="253.33333333333331" x2="1356.25" y2="253.33333333333331" stroke="#7AA2D8" stroke-width="0.9375" stroke-linecap="round" opacity="0.28" stroke-dasharray="8 10"/>
+      
+    <path d="M90 720 C300 620 530 640 730 700 C930 760 1170 790 1510 650" stroke="#D88A4C" stroke-width="10" opacity="0.55" stroke-linecap="round"/>
+    <path d="M90 770 C330 690 570 720 760 760 C990 810 1210 820 1480 730" stroke="#234A83" stroke-width="4" opacity="0.35" stroke-linecap="round"/>
+  
+</svg>

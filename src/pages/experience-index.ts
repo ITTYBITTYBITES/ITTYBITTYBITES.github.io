@@ -4,11 +4,13 @@ import type { ExperienceEntry } from '../platform/registry-types';
 import { getReturnSummary } from '../platform/lifecycle';
 import { searchExperiences } from '../platform/search';
 import { debounce, h } from '../platform/utils';
+import { getCollectionCSSVariables, getCollectionIdentity, renderCollectionBadge } from '../platform/collection-identity';
+import { renderExperienceArtwork } from '../platform/illustration-system';
 
 export function renderIndex(): HTMLElement {
   const all = getAllExperiences();
 
-  const grid = h('div', { class: 'grid' }, []);
+  const grid = h('div', { class: 'grid publication-grid' }, []);
   const search = h('input', {
     class: 'search-input',
     type: 'search',
@@ -17,7 +19,7 @@ export function renderIndex(): HTMLElement {
   });
 
   const filterTabs = h('div', { class: 'filter-tabs' }, []);
-  const categories = [...new Set(all.map(e => e.category))].sort();
+  const categories = [...new Set(all.map((entry) => entry.category))].sort();
   let activeFilter: string | null = null;
 
   const updateGrid = (entries: ExperienceEntry[]): void => {
@@ -26,12 +28,13 @@ export function renderIndex(): HTMLElement {
 
   const updateSearch = (term: string): void => {
     if (!term.trim()) {
-      updateGrid(activeFilter ? all.filter(e => e.category === activeFilter) : all);
+      updateGrid(activeFilter ? all.filter((entry) => entry.category === activeFilter) : all);
       return;
     }
+
     const results = searchExperiences(term);
-    const matchedIds = new Set(results.map(r => r.id));
-    const filtered = all.filter(e => matchedIds.has(e.id));
+    const matchedIds = new Set(results.map((result) => result.id));
+    const filtered = all.filter((entry) => matchedIds.has(entry.id));
     updateGrid(filtered);
     events.emit('search_used', { term: term.trim(), result_count: filtered.length });
   };
@@ -39,17 +42,17 @@ export function renderIndex(): HTMLElement {
   const debouncedSearch = debounce(updateSearch, 150);
   search.addEventListener('input', () => debouncedSearch(search.value));
 
-  // Build filter tabs
   const allTab = h('button', {
     class: 'filter-tab active',
     type: 'button',
     'aria-pressed': 'true',
   }, ['All']);
+
   allTab.addEventListener('click', () => {
     activeFilter = null;
-    filterTabs.querySelectorAll('.filter-tab').forEach(t => {
-      t.classList.remove('active');
-      t.setAttribute('aria-pressed', 'false');
+    filterTabs.querySelectorAll('.filter-tab').forEach((tab) => {
+      tab.classList.remove('active');
+      tab.setAttribute('aria-pressed', 'false');
     });
     allTab.classList.add('active');
     allTab.setAttribute('aria-pressed', 'true');
@@ -58,31 +61,39 @@ export function renderIndex(): HTMLElement {
   });
   filterTabs.appendChild(allTab);
 
-  categories.forEach(cat => {
+  categories.forEach((category) => {
     const tab = h('button', {
       class: 'filter-tab',
       type: 'button',
       'aria-pressed': 'false',
-    }, [cat]);
+    }, [category]);
+
     tab.addEventListener('click', () => {
-      activeFilter = cat;
-      filterTabs.querySelectorAll('.filter-tab').forEach(t => {
-        t.classList.remove('active');
-        t.setAttribute('aria-pressed', 'false');
+      activeFilter = category;
+      filterTabs.querySelectorAll('.filter-tab').forEach((item) => {
+        item.classList.remove('active');
+        item.setAttribute('aria-pressed', 'false');
       });
       tab.classList.add('active');
       tab.setAttribute('aria-pressed', 'true');
       search.value = '';
-      updateGrid(all.filter(e => e.category === cat));
+      updateGrid(all.filter((entry) => entry.category === category));
     });
+
     filterTabs.appendChild(tab);
   });
 
   updateGrid(all);
 
   return h('div', { class: 'container' }, [
-    h('h1', {}, ['Experiences']),
-    h('p', {}, ['Browse and search all experiences on the platform.']),
+    h('section', { class: 'hero hero-subpage hero-subpage--index' }, [
+      h('div', { class: 'hero-copy' }, [
+        h('p', { class: 'eyebrow' }, ['All experiences']),
+        h('h1', {}, ['Experiences']),
+        h('p', { class: 'lead' }, ['Browse the full library as a shelf of small illustrated ideas.']),
+        h('p', { class: 'hero-supporting' }, ['Each card now carries the collection language it belongs to, so browsing feels more like reading across a publication than sorting through an app.']),
+      ]),
+    ]),
     search,
     filterTabs,
     grid,
@@ -91,14 +102,16 @@ export function renderIndex(): HTMLElement {
 
 function renderGrid(container: HTMLElement, entries: ExperienceEntry[]): void {
   container.innerHTML = '';
+
   if (entries.length === 0) {
-    container.appendChild(h('div', { class: 'empty-state animate-in' }, [
+    container.appendChild(h('div', { class: 'empty-state' }, [
       h('h3', {}, ['No experiences found']),
       h('p', {}, ['No experiences match your current search and filters.']),
       h('p', { class: 'muted' }, ['Try different keywords or browse by category.']),
     ]));
     return;
   }
+
   for (const entry of entries) {
     const summary = getReturnSummary(entry.id);
     const progressBadge = summary.completed
@@ -110,22 +123,47 @@ function renderGrid(container: HTMLElement, entries: ExperienceEntry[]): void {
     const metaItems: string[] = [entry.category];
     if (entry.estimatedDuration) metaItems.push(entry.estimatedDuration);
 
-    const cardChildren: (string | Node)[] = [
-      h('div', { class: 'card-header' }, [
-        h('div', { class: 'meta' }, [metaItems.join(' • ')]),
-        progressBadge || '',
-      ]),
-      h('h2', {}, [h('a', { href: `/experience/${entry.id}` }, [entry.title])]),
-      h('p', {}, [entry.summary || entry.description]),
-      h('div', { class: 'card-footer' }, [
-        h('p', { class: 'meta' }, [entry.tags?.join(', ') ?? '']),
-        summary.totalSessions > 0
-          ? h('p', { class: 'meta' }, [`Visited ${summary.totalSessions} time${summary.totalSessions === 1 ? '' : 's'}`])
-          : '',
-      ]),
-    ];
+    const artwork = renderExperienceArtwork(entry.id, {
+      className: 'experience-thumb',
+      decorative: true,
+      width: 320,
+      height: 220,
+    });
+    const badge = entry.collection ? renderCollectionBadge(entry.collection, 44, 'card-badge-image') : null;
+    const identity = entry.collection ? getCollectionIdentity(entry.collection) : null;
 
-    const card = h('article', { class: 'card animate-in' }, cardChildren);
+    const card = h('article', {
+      class: 'card card--experience animate-in',
+      style: entry.collection ? getCollectionCSSVariables(entry.collection) : undefined,
+      'data-collection': entry.collection,
+    }, []);
+
+    if (artwork) {
+      card.appendChild(h('div', { class: 'card-figure-wrap' }, [artwork]));
+    }
+
+    const headingRow = h('div', { class: 'card-heading-row' }, []);
+    if (badge) {
+      headingRow.appendChild(badge);
+    }
+    headingRow.appendChild(h('div', { class: 'card-heading-copy' }, [
+      h('div', { class: 'meta' }, [metaItems.join(' • ')]),
+      h('h2', {}, [h('a', { href: `/experience/${entry.id}` }, [entry.title])]),
+      h('p', { class: 'meta collection-direction' }, [identity?.title || '']),
+    ]));
+    if (progressBadge) {
+      headingRow.appendChild(progressBadge);
+    }
+
+    card.appendChild(headingRow);
+    card.appendChild(h('p', {}, [entry.summary || entry.description]));
+    card.appendChild(h('div', { class: 'card-footer' }, [
+      h('p', { class: 'meta' }, [entry.tags?.join(', ') ?? '']),
+      summary.totalSessions > 0
+        ? h('p', { class: 'meta' }, [`Visited ${summary.totalSessions} time${summary.totalSessions === 1 ? '' : 's'}`])
+        : '',
+    ]));
+
     container.appendChild(card);
   }
 }

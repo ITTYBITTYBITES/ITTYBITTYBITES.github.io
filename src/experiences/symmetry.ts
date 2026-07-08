@@ -202,11 +202,10 @@ const symmetry: ExperienceModule = {
             `border: 2px solid ${locked ? '#64748b' : 'ButtonBorder'}`,
             `background: ${active ? (locked ? '#64748b' : 'AccentColor') : 'ButtonFace'}`,
             `color: ${active ? (locked ? '#ffffff' : 'AccentColorText') : 'ButtonText'}`,
-            'font-weight: 700',
             `opacity: ${locked && !target.has(id) ? 0.45 : 1}`,
             `cursor: ${locked ? 'not-allowed' : 'pointer'}`
           ].join(';');
-          button.textContent = active ? '●' : '·';
+          button.textContent = '';
           if (!locked) {
             button.addEventListener('click', () => {
               if (activeCells.has(id)) {
@@ -296,7 +295,7 @@ const symmetry: ExperienceModule = {
         controls.innerHTML = '';
         const nextButton = document.createElement('button');
         nextButton.className = 'btn primary';
-        nextButton.textContent = progress.completed.length === PUZZLES.length ? 'Review Symmetry' : 'Next Symmetry →';
+        nextButton.textContent = progress.completed.length === PUZZLES.length ? 'Review Symmetry' : 'Next Symmetry';
         nextButton.addEventListener('click', () => {
           currentIndex = progress.completed.length === PUZZLES.length
             ? 0

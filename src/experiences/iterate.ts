@@ -260,7 +260,7 @@ const iterate: ExperienceModule = {
       if (isEditing) {
         const iterateBtn = document.createElement('button');
         iterateBtn.className = 'btn primary';
-        iterateBtn.textContent = 'Begin iteration →';
+        iterateBtn.textContent = 'Begin iteration';
         iterateBtn.addEventListener('click', () => {
           isEditing = false;
           round = 0;
@@ -300,7 +300,7 @@ const iterate: ExperienceModule = {
 
         const editBtn = document.createElement('button');
         editBtn.className = 'btn';
-        editBtn.textContent = '← Edit initial state';
+        editBtn.textContent = 'Edit initial state';
         editBtn.addEventListener('click', () => {
           currentGrid = scenario.initialGrid.map(row => [...row]);
           isEditing = true;
@@ -327,7 +327,7 @@ const iterate: ExperienceModule = {
 
         const nextBtn = document.createElement('button');
         nextBtn.className = 'btn primary';
-        nextBtn.textContent = currentIdx < SCENARIOS.length - 1 ? 'Next Pattern →' : 'Try Again';
+        nextBtn.textContent = currentIdx < SCENARIOS.length - 1 ? 'Next Pattern' : 'Try Again';
         nextBtn.addEventListener('click', () => {
           currentIdx = (currentIdx + 1) % SCENARIOS.length;
           currentGrid = [];

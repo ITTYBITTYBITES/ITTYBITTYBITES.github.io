@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" fill="none" role="img" aria-labelledby="titlegr9qhs descfmjt8z">
+  <title id="titlegr9qhs">memory</title>
+  <desc id="descfmjt8z">A recollection is rebuilt from layered traces, not retrieved as a perfect recording.</desc>
+  
+  
+    <rect width="320" height="220" rx="24" fill="#FBF1F6"/>
+    <rect x="12" y="12" width="296" height="196" rx="18" fill="#EFD9E5" opacity="0.34"/>
+    <rect x="24" y="26" width="272" height="168" rx="20" fill="#ffffff" opacity="0.72" stroke="#D38DAE" stroke-width="2"/>
+    <path d="M28 188 C92 172 136 178 188 186 C234 194 266 194 292 184" stroke="#5B83C8" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+    
+        <rect x="60" y="64" width="80" height="92" rx="18" fill="#ffffff" stroke="#D38DAE" stroke-width="2.5" opacity="0.46"/>
+        <rect x="104" y="52" width="92" height="104" rx="18" fill="#ffffff" stroke="#D38DAE" stroke-width="2.5" opacity="0.68"/>
+        <rect x="152" y="40" width="108" height="116" rx="18" fill="#ffffff" stroke="#8A3E67" stroke-width="2.5" opacity="0.9"/>
+        <path d="M82 150 C112 122 136 110 164 110 C196 110 218 122 244 150" stroke="#5B83C8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      
+  
+</svg>

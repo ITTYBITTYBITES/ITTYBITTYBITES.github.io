@@ -1,0 +1,310 @@
+{
+  "collections": {
+    "foundations": {
+      "title": "Foundations",
+      "direction": "Geometry, grids, structure, and precision.",
+      "motif": "grid-frame",
+      "palette": {
+        "primary": "#2E3F57",
+        "secondary": "#7A8CA5",
+        "accent": "#D48A3A",
+        "surface": "#F4F1EA",
+        "surfaceAlt": "#E5E0D7",
+        "ink": "#182231"
+      }
+    },
+    "history": {
+      "title": "History",
+      "direction": "Maps, paper, archives, and timelines.",
+      "motif": "archive-sheet",
+      "palette": {
+        "primary": "#7A4A2A",
+        "secondary": "#B88453",
+        "accent": "#B94F3C",
+        "surface": "#F7F0E1",
+        "surfaceAlt": "#E7D8BE",
+        "ink": "#402515"
+      }
+    },
+    "science": {
+      "title": "Science",
+      "direction": "Observation, instruments, experiment, and measured uncertainty.",
+      "motif": "instrument-grid",
+      "palette": {
+        "primary": "#1F4E79",
+        "secondary": "#65A3C8",
+        "accent": "#E59A41",
+        "surface": "#EDF6FB",
+        "surfaceAlt": "#D4E8F2",
+        "ink": "#15344F"
+      }
+    },
+    "nature": {
+      "title": "Nature",
+      "direction": "Ecosystems, flows, branching systems, and living cycles.",
+      "motif": "branch-current",
+      "palette": {
+        "primary": "#245B45",
+        "secondary": "#78A67C",
+        "accent": "#4A8CC7",
+        "surface": "#EEF5EC",
+        "surfaceAlt": "#D8E6D2",
+        "ink": "#183627"
+      }
+    },
+    "creativity": {
+      "title": "Creativity",
+      "direction": "Layered composition, sketch marks, and expressive assembly.",
+      "motif": "collage-studio",
+      "palette": {
+        "primary": "#8A3C3B",
+        "secondary": "#D38552",
+        "accent": "#7F66D9",
+        "surface": "#FBF0E8",
+        "surfaceAlt": "#F1D8C7",
+        "ink": "#4A2324"
+      }
+    },
+    "engineering": {
+      "title": "Engineering",
+      "direction": "Blueprint language, construction, load paths, and mechanical precision.",
+      "motif": "blueprint-span",
+      "palette": {
+        "primary": "#234A83",
+        "secondary": "#7AA2D8",
+        "accent": "#D88A4C",
+        "surface": "#EFF4FB",
+        "surfaceAlt": "#D8E2F3",
+        "ink": "#173157"
+      }
+    },
+    "mathematics": {
+      "title": "Mathematics",
+      "direction": "Elegant abstraction, symmetry, proof, and curves.",
+      "motif": "curve-proof",
+      "palette": {
+        "primary": "#5A46A6",
+        "secondary": "#9E93DB",
+        "accent": "#D59248",
+        "surface": "#F2F1FB",
+        "surfaceAlt": "#DEDBF3",
+        "ink": "#2F265A"
+      }
+    },
+    "society-mind": {
+      "title": "Society & Mind",
+      "direction": "Conversation, networks, relationships, and shifting perspective.",
+      "motif": "network-dialogue",
+      "palette": {
+        "primary": "#8A3E67",
+        "secondary": "#D38DAE",
+        "accent": "#5B83C8",
+        "surface": "#FBF1F6",
+        "surfaceAlt": "#EFD9E5",
+        "ink": "#4A2138"
+      }
+    }
+  },
+  "experiences": {
+    "echo-chamber": {
+      "collection": "foundations",
+      "motif": "echo",
+      "caption": "A thought rebounds between mirrored walls until the strongest echoes remain."
+    },
+    "signal-detection": {
+      "collection": "foundations",
+      "motif": "signal",
+      "caption": "A weak pattern rises through noise as a threshold line separates notice from miss."
+    },
+    "pattern-garden": {
+      "collection": "foundations",
+      "motif": "pattern-garden",
+      "caption": "Repeated forms grow into a larger arrangement, like a garden built from simple rules."
+    },
+    "memory-sequence": {
+      "collection": "foundations",
+      "motif": "memory-sequence",
+      "caption": "A short sequence appears, fades, and asks the mind to rebuild order from fragments."
+    },
+    "perspective-shift": {
+      "collection": "foundations",
+      "motif": "perspective",
+      "caption": "The same structure is framed from two positions, changing what feels central."
+    },
+    "dueling-accounts": {
+      "collection": "history",
+      "motif": "dueling-accounts",
+      "caption": "Two archival accounts describe one event from different angles and with different omissions."
+    },
+    "unlabeled": {
+      "collection": "history",
+      "motif": "unlabeled",
+      "caption": "Artifacts sit without labels, asking the viewer to infer category and context."
+    },
+    "chronology": {
+      "collection": "history",
+      "motif": "chronology",
+      "caption": "Events line up on a timeline where order changes interpretation."
+    },
+    "chain-reaction": {
+      "collection": "history",
+      "motif": "chain-reaction",
+      "caption": "A linked sequence of causes shows how one event pushes the next into motion."
+    },
+    "witness-accounts": {
+      "collection": "history",
+      "motif": "witness",
+      "caption": "Several witnesses circle a shared incident, each preserving only part of the scene."
+    },
+    "controlled": {
+      "collection": "science",
+      "motif": "controlled",
+      "caption": "A controlled comparison holds one condition steady so a single difference can be tested."
+    },
+    "hypothesis": {
+      "collection": "science",
+      "motif": "hypothesis",
+      "caption": "A prediction branches forward from an idea and meets observation on the other side."
+    },
+    "scale": {
+      "collection": "science",
+      "motif": "scale",
+      "caption": "Nested frames reveal how the same object looks different across magnitudes."
+    },
+    "signal-in-data": {
+      "collection": "science",
+      "motif": "signal-data",
+      "caption": "Scattered points begin to align as a meaningful pattern emerges from variation."
+    },
+    "uncertainty": {
+      "collection": "science",
+      "motif": "uncertainty",
+      "caption": "A measured result is surrounded by a range that widens as certainty falls away."
+    },
+    "ecosystem": {
+      "collection": "nature",
+      "motif": "ecosystem",
+      "caption": "Species connect through a food web where each removal shifts the whole system."
+    },
+    "symbiosis": {
+      "collection": "nature",
+      "motif": "symbiosis",
+      "caption": "Two living forms interlock, each changing shape because of the other."
+    },
+    "seasons": {
+      "collection": "nature",
+      "motif": "seasons",
+      "caption": "One landscape cycles through a year as light, growth, and water turn together."
+    },
+    "watershed": {
+      "collection": "nature",
+      "motif": "watershed",
+      "caption": "Streams gather from ridge to river mouth, carrying every upstream decision downstream."
+    },
+    "adaptation": {
+      "collection": "nature",
+      "motif": "adaptation",
+      "caption": "Variation meets pressure and only some forms fit the changed conditions."
+    },
+    "compose": {
+      "collection": "creativity",
+      "motif": "compose",
+      "caption": "Separate fragments become a unified arrangement through balance, rhythm, and placement."
+    },
+    "constraint": {
+      "collection": "creativity",
+      "motif": "constraint",
+      "caption": "A limited frame creates pressure that shapes new possibilities inside the boundary."
+    },
+    "diverge": {
+      "collection": "creativity",
+      "motif": "diverge",
+      "caption": "One prompt splits into many paths as options spread outward from a shared start."
+    },
+    "iterate": {
+      "collection": "creativity",
+      "motif": "iterate",
+      "caption": "Each pass leaves a trace and nudges the work toward a stronger form."
+    },
+    "remix": {
+      "collection": "creativity",
+      "motif": "remix",
+      "caption": "Existing parts are cut apart and recombined into a new composition."
+    },
+    "bridge-builder": {
+      "collection": "engineering",
+      "motif": "bridge",
+      "caption": "A span carries load by distributing force through supports and joints."
+    },
+    "failure-analysis": {
+      "collection": "engineering",
+      "motif": "failure",
+      "caption": "A breakdown is traced backward through the points where stress overcame design."
+    },
+    "trade-offs": {
+      "collection": "engineering",
+      "motif": "trade-offs",
+      "caption": "Improving one quality shifts weight away from another, so choices must be balanced."
+    },
+    "optimization": {
+      "collection": "engineering",
+      "motif": "optimization",
+      "caption": "A path moves across constraints toward a better solution without ever being perfect."
+    },
+    "feedback-loop": {
+      "collection": "engineering",
+      "motif": "feedback-loop",
+      "caption": "Output returns to the system as information, changing the next adjustment."
+    },
+    "patterns": {
+      "collection": "mathematics",
+      "motif": "patterns-math",
+      "caption": "A repeating structure reveals order that can be extended, transformed, and predicted."
+    },
+    "symmetry": {
+      "collection": "mathematics",
+      "motif": "symmetry",
+      "caption": "A form reflects across an axis and keeps its balance under transformation."
+    },
+    "proof": {
+      "collection": "mathematics",
+      "motif": "proof",
+      "caption": "Statements connect step by step until a conclusion becomes unavoidable."
+    },
+    "probability": {
+      "collection": "mathematics",
+      "motif": "probability",
+      "caption": "Many outcomes scatter across a field while expected tendencies become visible over time."
+    },
+    "estimation": {
+      "collection": "mathematics",
+      "motif": "estimation",
+      "caption": "A rough measure brackets the unknown before precision arrives."
+    },
+    "attention": {
+      "collection": "society-mind",
+      "motif": "attention",
+      "caption": "A spotlight of focus brightens one target while nearby changes fall into the margins."
+    },
+    "bias": {
+      "collection": "society-mind",
+      "motif": "bias",
+      "caption": "A tilted filter weights some evidence more heavily than the rest."
+    },
+    "cooperation": {
+      "collection": "society-mind",
+      "motif": "cooperation",
+      "caption": "Separate participants connect around a shared structure that none can complete alone."
+    },
+    "memory": {
+      "collection": "society-mind",
+      "motif": "memory",
+      "caption": "A recollection is rebuilt from layered traces, not retrieved as a perfect recording."
+    },
+    "decision-making": {
+      "collection": "society-mind",
+      "motif": "decision",
+      "caption": "Choices branch into consequences, each path carrying different risks and rewards."
+    }
+  }
+}

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="420" viewBox="0 0 640 420" fill="none" role="img" aria-labelledby="titlevop4e1 deschux2zw">
+  <title id="titlevop4e1">Mathematics illustration</title>
+  <desc id="deschux2zw">Elegant abstraction, symmetry, proof, and curves.</desc>
+  
+  
+      <rect width="640" height="420" rx="32" fill="#F2F1FB"/>
+      <rect x="20" y="20" width="600" height="380" rx="28" fill="#DEDBF3" opacity="0.34"/>
+      
+        <rect x="50" y="48" width="540" height="300" rx="28" fill="#ffffff" stroke="#9E93DB" stroke-width="2.5" opacity="0.78"/>
+        <path d="M 128 292 C 128 174 228 98 316 98 C 394 98 454 150 454 214 C 454 262 416 300 362 300 C 306 300 266 258 266 214 C 266 168 302 138 344 138" stroke="#5A46A6" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <line x1="86" y1="214" x2="554" y2="214" stroke="#9E93DB" stroke-width="2" stroke-linecap="round" opacity="0.28"/>
+        <line x1="320" y1="86" x2="320" y2="324" stroke="#9E93DB" stroke-width="2" stroke-linecap="round" opacity="0.28"/>
+        <circle cx="344" cy="138" r="11" fill="#D59248" stroke="none" stroke-width="0" />
+        <rect x="402" y="126" width="106" height="78" rx="16" fill="#fffaf6" stroke="#5A46A6" stroke-width="2" opacity="0.86"/>
+        <text x="422" y="158" fill="#5A46A6" font-size="24" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="700" >A</text>
+        <text x="462" y="184" fill="#D59248" font-size="20" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="700" >→</text>
+      
+    
+</svg>

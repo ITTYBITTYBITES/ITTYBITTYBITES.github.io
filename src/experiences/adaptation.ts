@@ -4,7 +4,6 @@ import { events } from '../platform/events';
 interface Trait {
   id: string;
   name: string;
-  icon: string;
   description: string;
 }
 
@@ -15,20 +14,19 @@ interface Environment {
   favors: string[];
   neutral: string[];
   penalizes: string[];
-  icon: string;
 }
 
 const TRAITS: Trait[] = [
-  { id: 'thick-fur', name: 'Thick Fur', icon: '🧥', description: 'Insulation against cold' },
-  { id: 'thin-fur', name: 'Thin Fur', icon: '👕', description: 'Allows heat to escape' },
-  { id: 'long-legs', name: 'Long Legs', icon: '🦵', description: 'Speed and stride' },
-  { id: 'short-legs', name: 'Short Legs', icon: '🦶', description: 'Low center of gravity' },
-  { id: 'sharp-teeth', name: 'Sharp Teeth', icon: '🦷', description: 'Carnivorous diet' },
-  { id: 'flat-teeth', name: 'Flat Teeth', icon: '🫦', description: 'Can grind plants' },
-  { id: 'keen-eyes', name: 'Keen Eyes', icon: '👁️', description: 'Long-distance vision' },
-  { id: 'camouflage', name: 'Camouflage', icon: '🎭', description: 'Blends with surroundings' },
-  { id: 'burrowing', name: 'Burrowing', icon: '🕳️', description: 'Can dig and shelter underground' },
-  { id: 'climbing', name: 'Climbing', icon: '🧗', description: 'Can scale trees and rocks' }
+  { id: 'thick-fur', name: 'Thick Fur', description: 'Insulation against cold' },
+  { id: 'thin-fur', name: 'Thin Fur', description: 'Allows heat to escape' },
+  { id: 'long-legs', name: 'Long Legs', description: 'Speed and stride' },
+  { id: 'short-legs', name: 'Short Legs', description: 'Low center of gravity' },
+  { id: 'sharp-teeth', name: 'Sharp Teeth', description: 'Carnivorous diet' },
+  { id: 'flat-teeth', name: 'Flat Teeth', description: 'Can grind plants' },
+  { id: 'keen-eyes', name: 'Keen Eyes', description: 'Long-distance vision' },
+  { id: 'camouflage', name: 'Camouflage', description: 'Blends with surroundings' },
+  { id: 'burrowing', name: 'Burrowing', description: 'Can dig and shelter underground' },
+  { id: 'climbing', name: 'Climbing', description: 'Can scale trees and rocks' }
 ];
 
 const ENVIRONMENTS: Environment[] = [
@@ -38,8 +36,7 @@ const ENVIRONMENTS: Environment[] = [
     pressure: 'Extreme cold, limited food, open terrain with no cover.',
     favors: ['thick-fur', 'burrowing', 'short-legs'],
     neutral: ['camouflage', 'flat-teeth'],
-    penalizes: ['thin-fur', 'climbing', 'long-legs'],
-    icon: '🧊'
+    penalizes: ['thin-fur', 'climbing', 'long-legs']
   },
   {
     id: 'desert',
@@ -47,8 +44,7 @@ const ENVIRONMENTS: Environment[] = [
     pressure: 'Scorching heat, scarce water, exposed terrain.',
     favors: ['thin-fur', 'burrowing', 'keen-eyes'],
     neutral: ['short-legs', 'long-legs'],
-    penalizes: ['thick-fur', 'camouflage', 'climbing'],
-    icon: '🏜️'
+    penalizes: ['thick-fur', 'camouflage', 'climbing']
   },
   {
     id: 'forest',
@@ -56,8 +52,7 @@ const ENVIRONMENTS: Environment[] = [
     pressure: 'Competition for food, predators above and below, complex terrain.',
     favors: ['climbing', 'keen-eyes', 'camouflage'],
     neutral: ['flat-teeth', 'sharp-teeth'],
-    penalizes: ['long-legs', 'thin-fur', 'short-legs'],
-    icon: '🌲'
+    penalizes: ['long-legs', 'thin-fur', 'short-legs']
   },
   {
     id: 'grassland',
@@ -65,8 +60,7 @@ const ENVIRONMENTS: Environment[] = [
     pressure: 'Predators can see you from far away. Speed is essential.',
     favors: ['long-legs', 'camouflage', 'keen-eyes'],
     neutral: ['flat-teeth', 'thick-fur'],
-    penalizes: ['climbing', 'burrowing', 'short-legs'],
-    icon: '🌾'
+    penalizes: ['climbing', 'burrowing', 'short-legs']
   },
   {
     id: 'volcanic',
@@ -74,8 +68,7 @@ const ENVIRONMENTS: Environment[] = [
     pressure: 'New terrain. No established food chains. Only generalists survive.',
     favors: ['sharp-teeth', 'flat-teeth', 'burrowing'],
     neutral: ['camouflage', 'short-legs'],
-    penalizes: ['thick-fur', 'thin-fur', 'long-legs'],
-    icon: '🌋'
+    penalizes: ['thick-fur', 'thin-fur', 'long-legs']
   }
 ];
 
@@ -102,13 +95,13 @@ function scoreCreature(selectedTraits: string[], env: Environment): { score: num
     const trait = TRAITS.find(t => t.id === tid)!;
     if (env.favors.includes(tid)) {
       score += 1;
-      details.push(`${trait.icon} ${trait.name}: well-adapted to ${env.name}`);
+      details.push(`${trait.name}: well-adapted to ${env.name}`);
     } else if (env.neutral.includes(tid)) {
       score += 0.5;
-      details.push(`${trait.icon} ${trait.name}: neither helps nor hurts`);
+      details.push(`${trait.name}: neither helps nor hurts`);
     } else {
       score += 0;
-      details.push(`${trait.icon} ${trait.name}: poorly suited to ${env.name}`);
+      details.push(`${trait.name}: poorly suited to ${env.name}`);
     }
   });
 
@@ -192,7 +185,7 @@ const adaptation: ExperienceModule = {
 
       const envTitle = document.createElement('h3');
       envTitle.style.marginTop = '0';
-      envTitle.textContent = `${env.icon} ${env.name}`;
+      envTitle.textContent = env.name;
 
       const envPressure = document.createElement('p');
       envPressure.style.cssText = 'line-height: 1.5; margin-bottom: 0;';
@@ -214,7 +207,7 @@ const adaptation: ExperienceModule = {
         const btn = document.createElement('button');
         btn.className = 'btn';
         btn.style.cssText = 'text-align: left; padding: 0.5rem 0.75rem;';
-        btn.innerHTML = `<strong>${trait.icon} ${trait.name}</strong><br><span style="font-size: 0.8rem; color: GrayText;">${trait.description}</span>`;
+        btn.innerHTML = `<strong>${trait.name}</strong><br><span style="font-size: 0.8rem; color: GrayText;">${trait.description}</span>`;
         btn.addEventListener('click', () => {
           if (selectedTraits.includes(trait.id)) {
             selectedTraits = selectedTraits.filter(t => t !== trait.id);
@@ -306,7 +299,7 @@ const adaptation: ExperienceModule = {
 
       const nextBtn = document.createElement('button');
       nextBtn.className = 'btn primary';
-      nextBtn.textContent = currentRound < 4 ? 'Next Environment →' : 'See Results';
+      nextBtn.textContent = currentRound < 4 ? 'Next Environment' : 'See Results';
       nextBtn.addEventListener('click', () => {
         currentRound += 1;
         if (currentRound >= 5) {

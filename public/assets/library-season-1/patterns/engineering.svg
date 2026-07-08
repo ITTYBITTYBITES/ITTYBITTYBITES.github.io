@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" fill="none" role="img" aria-labelledby="titlerv80vi desc8mqeki">
+  <title id="titlerv80vi">Engineering pattern</title>
+  <desc id="desc8mqeki">Blueprint language, construction, load paths, and mechanical precision.</desc>
+  
+  <rect width="240" height="240" fill="#EFF4FB"/>
+        <line x1="20" y1="180" x2="220" y2="180" stroke="#7AA2D8" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+        <line x1="40" y1="180" x2="90" y2="70" stroke="#234A83" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+        <line x1="140" y1="180" x2="190" y2="70" stroke="#234A83" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+        <line x1="90" y1="70" x2="140" y2="70" stroke="#D88A4C" stroke-width="2" stroke-linecap="round" opacity="0.55"/>
+        <line x1="20" y1="40" x2="220" y2="40" stroke="#7AA2D8" stroke-width="1" stroke-linecap="round" opacity="0.18" stroke-dasharray="6 8"/>
+        <line x1="20" y1="110" x2="220" y2="110" stroke="#7AA2D8" stroke-width="1" stroke-linecap="round" opacity="0.18" stroke-dasharray="6 8"/>
+        <line x1="80" y1="20" x2="80" y2="220" stroke="#7AA2D8" stroke-width="1" stroke-linecap="round" opacity="0.18" stroke-dasharray="6 8"/>
+        <line x1="160" y1="20" x2="160" y2="220" stroke="#7AA2D8" stroke-width="1" stroke-linecap="round" opacity="0.18" stroke-dasharray="6 8"/>
+      
+</svg>

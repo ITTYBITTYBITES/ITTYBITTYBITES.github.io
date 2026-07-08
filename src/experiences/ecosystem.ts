@@ -5,7 +5,6 @@ interface Species {
   id: string;
   name: string;
   type: 'producer' | 'herbivore' | 'predator' | 'apex';
-  icon: string;
   eats: string[];
 }
 
@@ -24,13 +23,13 @@ const SCENARIOS: EcosystemScenario[] = [
     description: 'A grassland ecosystem with grasses, insects, small mammals, and a raptor.',
     challenge: 'Remove one species and observe how the food web responds.',
     species: [
-      { id: 'grass', name: 'Wild Grass', type: 'producer', icon: '🌾', eats: [] },
-      { id: 'wildflowers', name: 'Wildflowers', type: 'producer', icon: '🌻', eats: [] },
-      { id: 'grasshopper', name: 'Grasshopper', type: 'herbivore', icon: '🦗', eats: ['grass', 'wildflowers'] },
-      { id: 'rabbit', name: 'Rabbit', type: 'herbivore', icon: '🐇', eats: ['grass', 'wildflowers'] },
-      { id: 'mouse', name: 'Field Mouse', type: 'herbivore', icon: '🐭', eats: ['grass', 'wildflowers'] },
-      { id: 'snake', name: 'Garter Snake', type: 'predator', icon: '🐍', eats: ['mouse', 'grasshopper'] },
-      { id: 'hawk', name: 'Red-tailed Hawk', type: 'apex', icon: '🦅', eats: ['rabbit', 'mouse', 'snake'] }
+      { id: 'grass', name: 'Wild Grass', type: 'producer', eats: [] },
+      { id: 'wildflowers', name: 'Wildflowers', type: 'producer', eats: [] },
+      { id: 'grasshopper', name: 'Grasshopper', type: 'herbivore', eats: ['grass', 'wildflowers'] },
+      { id: 'rabbit', name: 'Rabbit', type: 'herbivore', eats: ['grass', 'wildflowers'] },
+      { id: 'mouse', name: 'Field Mouse', type: 'herbivore', eats: ['grass', 'wildflowers'] },
+      { id: 'snake', name: 'Garter Snake', type: 'predator', eats: ['mouse', 'grasshopper'] },
+      { id: 'hawk', name: 'Red-tailed Hawk', type: 'apex', eats: ['rabbit', 'mouse', 'snake'] }
     ]
   },
   {
@@ -39,13 +38,13 @@ const SCENARIOS: EcosystemScenario[] = [
     description: 'A freshwater pond with algae, insects, fish, and a heron.',
     challenge: 'Remove one species and observe how the food web responds.',
     species: [
-      { id: 'algae', name: 'Algae', type: 'producer', icon: '🟢', eats: [] },
-      { id: 'lily', name: 'Water Lily', type: 'producer', icon: '🪷', eats: [] },
-      { id: 'snail', name: 'Pond Snail', type: 'herbivore', icon: '🐌', eats: ['algae', 'lily'] },
-      { id: 'dragonfly', name: 'Dragonfly', type: 'herbivore', icon: '🪰', eats: ['algae'] },
-      { id: 'frog', name: 'Frog', type: 'predator', icon: '🐸', eats: ['snail', 'dragonfly'] },
-      { id: 'fish', name: 'Bluegill', type: 'predator', icon: '🐟', eats: ['snail', 'dragonfly', 'frog'] },
-      { id: 'heron', name: 'Great Blue Heron', type: 'apex', icon: '🦩', eats: ['fish', 'frog'] }
+      { id: 'algae', name: 'Algae', type: 'producer', eats: [] },
+      { id: 'lily', name: 'Water Lily', type: 'producer', eats: [] },
+      { id: 'snail', name: 'Pond Snail', type: 'herbivore', eats: ['algae', 'lily'] },
+      { id: 'dragonfly', name: 'Dragonfly', type: 'herbivore', eats: ['algae'] },
+      { id: 'frog', name: 'Frog', type: 'predator', eats: ['snail', 'dragonfly'] },
+      { id: 'fish', name: 'Bluegill', type: 'predator', eats: ['snail', 'dragonfly', 'frog'] },
+      { id: 'heron', name: 'Great Blue Heron', type: 'apex', eats: ['fish', 'frog'] }
     ]
   },
   {
@@ -54,14 +53,14 @@ const SCENARIOS: EcosystemScenario[] = [
     description: 'A temperate forest with trees, fungi, deer, and a wolf pack.',
     challenge: 'Remove one species and observe how the food web responds.',
     species: [
-      { id: 'oak', name: 'Oak Tree', type: 'producer', icon: '🌳', eats: [] },
-      { id: 'fern', name: 'Ferns', type: 'producer', icon: '🌿', eats: [] },
-      { id: 'fungi', name: 'Mushrooms', type: 'producer', icon: '🍄', eats: [] },
-      { id: 'caterpillar', name: 'Caterpillar', type: 'herbivore', icon: '🐛', eats: ['oak', 'fern'] },
-      { id: 'deer', name: 'White-tailed Deer', type: 'herbivore', icon: '🦌', eats: ['oak', 'fern'] },
-      { id: 'songbird', name: 'Songbird', type: 'predator', icon: '🐦', eats: ['caterpillar', 'fungi'] },
-      { id: 'fox', name: 'Red Fox', type: 'predator', icon: '🦊', eats: ['songbird', 'caterpillar'] },
-      { id: 'wolf', name: 'Gray Wolf', type: 'apex', icon: '🐺', eats: ['deer', 'fox'] }
+      { id: 'oak', name: 'Oak Tree', type: 'producer', eats: [] },
+      { id: 'fern', name: 'Ferns', type: 'producer', eats: [] },
+      { id: 'fungi', name: 'Mushrooms', type: 'producer', eats: [] },
+      { id: 'caterpillar', name: 'Caterpillar', type: 'herbivore', eats: ['oak', 'fern'] },
+      { id: 'deer', name: 'White-tailed Deer', type: 'herbivore', eats: ['oak', 'fern'] },
+      { id: 'songbird', name: 'Songbird', type: 'predator', eats: ['caterpillar', 'fungi'] },
+      { id: 'fox', name: 'Red Fox', type: 'predator', eats: ['songbird', 'caterpillar'] },
+      { id: 'wolf', name: 'Gray Wolf', type: 'apex', eats: ['deer', 'fox'] }
     ]
   }
 ];
@@ -198,7 +197,7 @@ const ecosystem: ExperienceModule = {
 
     const nextBtn = document.createElement('button');
     nextBtn.className = 'btn primary';
-    nextBtn.textContent = 'Next Ecosystem →';
+    nextBtn.textContent = 'Next Ecosystem';
     nextBtn.style.display = 'none';
     nextBtn.addEventListener('click', () => {
       currentScenarioIdx = (currentScenarioIdx + 1) % SCENARIOS.length;
@@ -271,7 +270,7 @@ const ecosystem: ExperienceModule = {
           const isRemoved = removedId === sp.id;
           const isAffected = effects && effects.affected.includes(sp.id);
           btn.style.cssText = `padding: 0.5rem 0.75rem; border: 2px solid ${isRemoved ? '#ef4444' : isAffected ? '#eab308' : 'ButtonBorder'}; border-radius: 0.5rem; background: ${isRemoved ? '#ef444422' : isAffected ? '#eab30822' : 'ButtonFace'}; cursor: pointer; font-size: 0.9rem; opacity: ${isRemoved ? 0.5 : 1};`;
-          btn.textContent = `${sp.icon} ${sp.name}`;
+          btn.textContent = sp.name;
           btn.setAttribute('aria-label', `${sp.name} (${group.label})${isRemoved ? ' - removed' : isAffected ? ' - affected' : ''}`);
           if (!isRemoved) {
             btn.addEventListener('click', () => {
@@ -325,7 +324,7 @@ const ecosystem: ExperienceModule = {
 
       const heading = document.createElement('h4');
       heading.style.marginTop = '0';
-      heading.textContent = `${removed.icon} ${removed.name} removed`;
+      heading.textContent = `${removed.name} removed`;
 
       const expl = document.createElement('p');
       expl.textContent = effects.explanation;
@@ -333,7 +332,7 @@ const ecosystem: ExperienceModule = {
 
       const affectedNames = effects.affected.map(id => {
         const sp = scenario.species.find(s => s.id === id);
-        return sp ? `${sp.icon} ${sp.name}` : id;
+        return sp ? sp.name : id;
       });
 
       const affectedList = document.createElement('p');

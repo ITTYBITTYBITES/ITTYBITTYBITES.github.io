@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none" role="img" aria-labelledby="titlem9hdnd desci32tyo">
+  <title id="titlem9hdnd">Mathematics background</title>
+  <desc id="desci32tyo">Elegant abstraction, symmetry, proof, and curves.</desc>
+  
+  
+    <rect width="1600" height="900" fill="#F2F1FB"/>
+    <rect x="30" y="30" width="1540" height="840" rx="48" fill="#DEDBF3" opacity="0.3"/>
+    <g transform="translate(140 120)">
+        <path d="M30 170 C30 90 90 36 152 36 C192 36 210 70 210 96 C210 130 182 152 150 152 C122 152 98 132 98 104 C98 76 120 56 146 56" stroke="#5A46A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.45"/>
+        <line x1="20" y1="120" x2="220" y2="120" stroke="#9E93DB" stroke-width="1.5" stroke-linecap="round" opacity="0.22"/>
+        <line x1="120" y1="20" x2="120" y2="220" stroke="#9E93DB" stroke-width="1.5" stroke-linecap="round" opacity="0.22"/>
+        <circle cx="146" cy="56" r="5" fill="#D59248" stroke="none" stroke-width="0" opacity="0.7"/>
+      </g>
+    <rect x="980" y="120" width="460" height="300" rx="36" fill="#ffffff" opacity="0.68" stroke="#9E93DB" stroke-width="2"/>
+    
+        <rect x="1041.25" y="173.57142857142856" width="337.5" height="178.57142857142858" rx="17.5" fill="#ffffff" stroke="#9E93DB" stroke-width="2.5" opacity="0.78"/>
+        <path d="M 1090 318.8095238095238 C 1090 248.57142857142856 1152.5 203.33333333333334 1207.5 203.33333333333334 C 1256.25 203.33333333333334 1293.75 234.28571428571428 1293.75 272.3809523809524 C 1293.75 300.95238095238096 1270 323.57142857142856 1236.25 323.57142857142856 C 1201.25 323.57142857142856 1176.25 298.57142857142856 1176.25 272.3809523809524 C 1176.25 245 1198.75 227.14285714285714 1225 227.14285714285714" stroke="#5A46A6" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <line x1="1063.75" y1="272.3809523809524" x2="1356.25" y2="272.3809523809524" stroke="#9E93DB" stroke-width="1.25" stroke-linecap="round" opacity="0.28"/>
+        <line x1="1210" y1="196.1904761904762" x2="1210" y2="337.8571428571429" stroke="#9E93DB" stroke-width="1.25" stroke-linecap="round" opacity="0.28"/>
+        <circle cx="1225" cy="227.14285714285714" r="6.875" fill="#D59248" stroke="none" stroke-width="0" />
+        <rect x="1261.25" y="220" width="66.25" height="46.42857142857143" rx="10" fill="#fffaf6" stroke="#5A46A6" stroke-width="2" opacity="0.86"/>
+        <text x="1273.75" y="239.04761904761904" fill="#5A46A6" font-size="24" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="700" >A</text>
+        <text x="1298.75" y="254.52380952380952" fill="#D59248" font-size="20" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="700" >→</text>
+      
+    <path d="M90 720 C300 620 530 640 730 700 C930 760 1170 790 1510 650" stroke="#D59248" stroke-width="10" opacity="0.55" stroke-linecap="round"/>
+    <path d="M90 770 C330 690 570 720 760 760 C990 810 1210 820 1480 730" stroke="#5A46A6" stroke-width="4" opacity="0.35" stroke-linecap="round"/>
+  
+</svg>
