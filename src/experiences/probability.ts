@@ -331,7 +331,7 @@ const probability: ExperienceModule = {
 
       const nextButton = document.createElement('button');
       nextButton.className = 'btn primary';
-      nextButton.textContent = progress.completed.length === EXPERIMENTS.length ? 'Review Experiments' : 'Next Experiment →';
+      nextButton.textContent = progress.completed.length === EXPERIMENTS.length ? 'Review Experiments' : 'Next Experiment';
       nextButton.addEventListener('click', () => {
         currentIndex = progress.completed.length === EXPERIMENTS.length
           ? 0

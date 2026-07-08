@@ -233,7 +233,7 @@ const failureAnalysis: ExperienceModule = {
         if (isCollected) {
           const badge = document.createElement('span');
           badge.style.cssText = 'display: inline-block; margin-top: 0.25rem; font-size: 0.75rem; color: #3b82f6; font-weight: 600;';
-          badge.textContent = '✓ Collected';
+          badge.textContent = 'Collected';
           evidenceItem.append(text, badge);
         } else {
           evidenceItem.appendChild(text);
@@ -322,7 +322,7 @@ const failureAnalysis: ExperienceModule = {
 
         const heading = document.createElement('h4');
         heading.style.cssText = 'margin-top: 0; color: #16a34a;';
-        heading.textContent = '✓ Root Cause Identified';
+        heading.textContent = 'Root Cause Identified';
 
         const message = document.createElement('p');
         message.style.cssText = 'margin-bottom: 0.5rem;';
@@ -352,7 +352,7 @@ const failureAnalysis: ExperienceModule = {
         if (progress.solved.length < CASES.length) {
           const nextBtn = document.createElement('button');
           nextBtn.className = 'btn primary';
-          nextBtn.textContent = 'Next Case →';
+          nextBtn.textContent = 'Next Case';
           nextBtn.addEventListener('click', () => {
             currentCaseIdx = (currentCaseIdx + 1) % CASES.length;
             collectedEvidence = [];
@@ -369,7 +369,7 @@ const failureAnalysis: ExperienceModule = {
 
         const heading = document.createElement('h4');
         heading.style.cssText = 'margin-top: 0; color: #dc2626;';
-        heading.textContent = '✗ Incorrect Root Cause';
+        heading.textContent = 'Incorrect Root Cause';
 
         const message = document.createElement('p');
         message.style.cssText = 'margin-bottom: 0;';

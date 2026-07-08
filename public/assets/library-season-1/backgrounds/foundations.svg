@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none" role="img" aria-labelledby="titlevov53w descvkwo6y">
+  <title id="titlevov53w">Foundations background</title>
+  <desc id="descvkwo6y">Geometry, grids, structure, and precision.</desc>
+  
+  
+    <rect width="1600" height="900" fill="#F4F1EA"/>
+    <rect x="30" y="30" width="1540" height="840" rx="48" fill="#E5E0D7" opacity="0.3"/>
+    <g transform="translate(140 120)">
+        <line x1="0" y1="40" x2="240" y2="40" stroke="#7A8CA5" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <line x1="0" y1="120" x2="240" y2="120" stroke="#7A8CA5" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <line x1="0" y1="200" x2="240" y2="200" stroke="#7A8CA5" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <line x1="40" y1="0" x2="40" y2="240" stroke="#7A8CA5" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <line x1="120" y1="0" x2="120" y2="240" stroke="#7A8CA5" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <line x1="200" y1="0" x2="200" y2="240" stroke="#7A8CA5" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <path d="M40 200 L120 40 L200 200" stroke="#D48A3A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5"/>
+      </g>
+    <rect x="980" y="120" width="460" height="300" rx="36" fill="#ffffff" opacity="0.68" stroke="#7A8CA5" stroke-width="2"/>
+    
+        <rect x="1037.5" y="166.42857142857142" width="345" height="197.61904761904762" rx="16.25" fill="#ffffff" stroke="#7A8CA5" stroke-width="2.5" opacity="0.76"/>
+        <line x1="1085" y1="189.04761904761904" x2="1085" y2="341.42857142857144" stroke="#7A8CA5" stroke-width="1.25" stroke-linecap="round" opacity="0.4"/>
+        <line x1="1166.25" y1="189.04761904761904" x2="1166.25" y2="341.42857142857144" stroke="#7A8CA5" stroke-width="1.25" stroke-linecap="round" opacity="0.4"/>
+        <line x1="1247.5" y1="189.04761904761904" x2="1247.5" y2="341.42857142857144" stroke="#7A8CA5" stroke-width="1.25" stroke-linecap="round" opacity="0.4"/>
+        <line x1="1328.75" y1="189.04761904761904" x2="1328.75" y2="341.42857142857144" stroke="#7A8CA5" stroke-width="1.25" stroke-linecap="round" opacity="0.4"/>
+        <line x1="1056.25" y1="225.95238095238096" x2="1363.75" y2="225.95238095238096" stroke="#7A8CA5" stroke-width="1.25" stroke-linecap="round" opacity="0.4"/>
+        <line x1="1056.25" y1="275.95238095238096" x2="1363.75" y2="275.95238095238096" stroke="#7A8CA5" stroke-width="1.25" stroke-linecap="round" opacity="0.4"/>
+        <line x1="1056.25" y1="325.95238095238096" x2="1363.75" y2="325.95238095238096" stroke="#7A8CA5" stroke-width="1.25" stroke-linecap="round" opacity="0.4"/>
+        <path d="M 1073.75 323.57142857142856 L 1157.5 210.47619047619048 L 1235 323.57142857142856 L 1317.5 242.61904761904762 L 1363.75 286.66666666666663" stroke="#2E3F57" stroke-width="6.25" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-linejoin="round"/>
+        <circle cx="1157.5" cy="210.47619047619048" r="7.5" fill="#D48A3A" stroke="none" stroke-width="0" />
+        <circle cx="1317.5" cy="242.61904761904762" r="7.5" fill="#D48A3A" stroke="none" stroke-width="0" />
+      
+    <path d="M90 720 C300 620 530 640 730 700 C930 760 1170 790 1510 650" stroke="#D48A3A" stroke-width="10" opacity="0.55" stroke-linecap="round"/>
+    <path d="M90 770 C330 690 570 720 760 760 C990 810 1210 820 1480 730" stroke="#2E3F57" stroke-width="4" opacity="0.35" stroke-linecap="round"/>
+  
+</svg>

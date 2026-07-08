@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" fill="none" role="img" aria-labelledby="titlewnvguz descvyo4wl">
+  <title id="titlewnvguz">symmetry</title>
+  <desc id="descvyo4wl">A form reflects across an axis and keeps its balance under transformation.</desc>
+  
+  
+    <rect width="320" height="220" rx="24" fill="#F2F1FB"/>
+    <rect x="12" y="12" width="296" height="196" rx="18" fill="#DEDBF3" opacity="0.34"/>
+    <rect x="24" y="26" width="272" height="168" rx="20" fill="#ffffff" opacity="0.72" stroke="#9E93DB" stroke-width="2"/>
+    <path d="M28 188 C92 172 136 178 188 186 C234 194 266 194 292 184" stroke="#D59248" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+    
+        <line x1="160" y1="46" x2="160" y2="174" stroke="#9E93DB" stroke-width="3" stroke-linecap="round" stroke-dasharray="6 8"/>
+        <path d="M94 154 C84 126 88 88 118 74 C138 64 150 74 154 94 C158 114 148 136 128 146 C118 152 106 154 94 154 Z" stroke="#5A46A6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M226 154 C236 126 232 88 202 74 C182 64 170 74 166 94 C162 114 172 136 192 146 C202 152 214 154 226 154 Z" stroke="#5A46A6" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <circle cx="160" cy="110" r="8" fill="#D59248" stroke="none" stroke-width="0" />
+      
+  
+</svg>

@@ -91,7 +91,7 @@ const PatternGarden: ExperienceModule = {
 
     const runBtn = document.createElement('button');
     runBtn.className = 'btn primary';
-    runBtn.textContent = '▶ Run';
+    runBtn.textContent = 'Run';
 
     const stepBtn = document.createElement('button');
     stepBtn.className = 'btn';
@@ -233,14 +233,14 @@ const PatternGarden: ExperienceModule = {
     function start() {
       if (running) return;
       running = true;
-      runBtn.textContent = '⏸ Pause';
+      runBtn.textContent = 'Pause';
       intervalId = window.setInterval(tick, lastSpeed);
       updateStatus();
     }
 
     function stop() {
       running = false;
-      runBtn.textContent = '▶ Run';
+      runBtn.textContent = 'Run';
       if (intervalId) {
         clearInterval(intervalId);
         intervalId = null;

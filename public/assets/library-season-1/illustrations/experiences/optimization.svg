@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" fill="none" role="img" aria-labelledby="titledr1ds1 desciota1r">
+  <title id="titledr1ds1">optimization</title>
+  <desc id="desciota1r">A path moves across constraints toward a better solution without ever being perfect.</desc>
+  
+  
+    <rect width="320" height="220" rx="24" fill="#EFF4FB"/>
+    <rect x="12" y="12" width="296" height="196" rx="18" fill="#D8E2F3" opacity="0.34"/>
+    <rect x="24" y="26" width="272" height="168" rx="20" fill="#ffffff" opacity="0.72" stroke="#7AA2D8" stroke-width="2"/>
+    <path d="M28 188 C92 172 136 178 188 186 C234 194 266 194 292 184" stroke="#D88A4C" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+    
+        <path d="M60 162 C82 130 108 108 138 96 C172 82 210 80 252 92" stroke="#7AA2D8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M74 174 C96 142 122 120 150 108 C182 96 214 96 244 108" stroke="#7AA2D8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M92 188 C112 160 136 140 162 130 C190 120 214 120 234 128" stroke="#7AA2D8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M68 170 L116 146 L154 126 L204 112 L246 116" stroke="#234A83" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <circle cx="246" cy="116" r="8" fill="#D88A4C" stroke="none" stroke-width="0" />
+      
+  
+</svg>

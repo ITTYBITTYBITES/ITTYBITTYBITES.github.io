@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" fill="none" role="img" aria-labelledby="titleojyg9h descb0l62m">
+  <title id="titleojyg9h">Mathematics pattern</title>
+  <desc id="descb0l62m">Elegant abstraction, symmetry, proof, and curves.</desc>
+  
+  <rect width="240" height="240" fill="#F2F1FB"/>
+        <path d="M30 170 C30 90 90 36 152 36 C192 36 210 70 210 96 C210 130 182 152 150 152 C122 152 98 132 98 104 C98 76 120 56 146 56" stroke="#5A46A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.45"/>
+        <line x1="20" y1="120" x2="220" y2="120" stroke="#9E93DB" stroke-width="1.5" stroke-linecap="round" opacity="0.22"/>
+        <line x1="120" y1="20" x2="120" y2="220" stroke="#9E93DB" stroke-width="1.5" stroke-linecap="round" opacity="0.22"/>
+        <circle cx="146" cy="56" r="5" fill="#D59248" stroke="none" stroke-width="0" opacity="0.7"/>
+      
+</svg>

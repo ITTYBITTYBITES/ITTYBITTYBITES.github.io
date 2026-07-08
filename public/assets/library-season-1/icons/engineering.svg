@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" role="img" aria-labelledby="titlee5s191 desc85a12o">
+  <title id="titlee5s191">Engineering icon</title>
+  <desc id="desc85a12o">Blueprint language, construction, load paths, and mechanical precision.</desc>
+  
+  <rect width="64" height="64" rx="16" fill="#EFF4FB"/>
+        <line x1="10" y1="46" x2="54" y2="46" stroke="#234A83" stroke-width="3" stroke-linecap="round" />
+        <line x1="16" y1="46" x2="24" y2="20" stroke="#7AA2D8" stroke-width="3" stroke-linecap="round" />
+        <line x1="32" y1="46" x2="32" y2="18" stroke="#7AA2D8" stroke-width="3" stroke-linecap="round" />
+        <line x1="48" y1="46" x2="40" y2="20" stroke="#7AA2D8" stroke-width="3" stroke-linecap="round" />
+        <line x1="24" y1="20" x2="40" y2="20" stroke="#D88A4C" stroke-width="3" stroke-linecap="round" />
+        <line x1="16" y1="36" x2="32" y2="18" stroke="#234A83" stroke-width="2" stroke-linecap="round" />
+        <line x1="32" y1="18" x2="48" y2="36" stroke="#234A83" stroke-width="2" stroke-linecap="round" />
+      
+</svg>

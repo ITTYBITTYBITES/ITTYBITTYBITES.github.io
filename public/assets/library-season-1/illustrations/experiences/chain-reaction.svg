@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" fill="none" role="img" aria-labelledby="titleuvs5qd desc3hi9qe">
+  <title id="titleuvs5qd">chain-reaction</title>
+  <desc id="desc3hi9qe">A linked sequence of causes shows how one event pushes the next into motion.</desc>
+  
+  
+    <rect width="320" height="220" rx="24" fill="#F7F0E1"/>
+    <rect x="12" y="12" width="296" height="196" rx="18" fill="#E7D8BE" opacity="0.34"/>
+    <rect x="24" y="26" width="272" height="168" rx="20" fill="#ffffff" opacity="0.72" stroke="#B88453" stroke-width="2"/>
+    <path d="M28 188 C92 172 136 178 188 186 C234 194 266 194 292 184" stroke="#B94F3C" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+    
+        <rect x="58" y="122" width="22" height="46" rx="6" fill="#B88453" stroke="#7A4A2A" stroke-width="2.5" transform="rotate(-14 69 145)"/>
+        <rect x="106" y="110" width="22" height="58" rx="6" fill="#B88453" stroke="#7A4A2A" stroke-width="2.5" transform="rotate(-8 117 139)"/>
+        <rect x="154" y="94" width="22" height="74" rx="6" fill="#B94F3C" stroke="#7A4A2A" stroke-width="2.5" transform="rotate(0 165 131)"/>
+        <rect x="202" y="74" width="22" height="94" rx="6" fill="#B88453" stroke="#7A4A2A" stroke-width="2.5" transform="rotate(10 213 121)"/>
+        <path d="M52 176 C88 168 122 152 162 136 C198 122 230 96 266 56" stroke="#7A4A2A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      
+  
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" fill="none" role="img" aria-labelledby="titleygacaq descf4wtnr">
+  <title id="titleygacaq">dueling-accounts</title>
+  <desc id="descf4wtnr">Two archival accounts describe one event from different angles and with different omissions.</desc>
+  
+  
+    <rect width="320" height="220" rx="24" fill="#F7F0E1"/>
+    <rect x="12" y="12" width="296" height="196" rx="18" fill="#E7D8BE" opacity="0.34"/>
+    <rect x="24" y="26" width="272" height="168" rx="20" fill="#ffffff" opacity="0.72" stroke="#B88453" stroke-width="2"/>
+    <path d="M28 188 C92 172 136 178 188 186 C234 194 266 194 292 184" stroke="#B94F3C" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+    
+        <rect x="54" y="40" width="92" height="136" rx="18" fill="#fffaf1" stroke="#7A4A2A" stroke-width="2.5" transform="rotate(-6 100 108)"/>
+        <rect x="176" y="40" width="92" height="136" rx="18" fill="#ffffff" stroke="#B88453" stroke-width="2.5" transform="rotate(6 222 108)"/>
+        <line x1="74" y1="78" x2="126" y2="78" stroke="#B88453" stroke-width="2" stroke-linecap="round" />
+        <line x1="74" y1="98" x2="128" y2="98" stroke="#B88453" stroke-width="2" stroke-linecap="round" />
+        <line x1="194" y1="74" x2="246" y2="74" stroke="#7A4A2A" stroke-width="2" stroke-linecap="round" />
+        <line x1="194" y1="94" x2="248" y2="94" stroke="#7A4A2A" stroke-width="2" stroke-linecap="round" />
+        <circle cx="160" cy="114" r="12" fill="#B94F3C" stroke="none" stroke-width="0" />
+      
+  
+</svg>

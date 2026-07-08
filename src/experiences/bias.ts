@@ -203,7 +203,7 @@ const bias: ExperienceModule = {
       next.type = 'button';
       next.className = 'btn primary';
       next.style.marginTop = '0.75rem';
-      next.textContent = scenarioIndex < SCENARIOS.length - 1 ? 'Next Shortcut →' : 'See the Pattern';
+      next.textContent = scenarioIndex < SCENARIOS.length - 1 ? 'Next Shortcut' : 'See the Pattern';
       next.addEventListener('click', () => {
         if (scenarioIndex < SCENARIOS.length - 1) {
           scenarioIndex += 1;

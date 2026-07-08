@@ -210,7 +210,7 @@ const patterns: ExperienceModule = {
 
       const nextButton = document.createElement('button');
       nextButton.className = 'btn primary';
-      nextButton.textContent = progress.solved.length === CHALLENGES.length ? 'Review Patterns' : 'Next Pattern →';
+      nextButton.textContent = progress.solved.length === CHALLENGES.length ? 'Review Patterns' : 'Next Pattern';
       nextButton.addEventListener('click', () => {
         currentIndex = progress.solved.length === CHALLENGES.length
           ? 0

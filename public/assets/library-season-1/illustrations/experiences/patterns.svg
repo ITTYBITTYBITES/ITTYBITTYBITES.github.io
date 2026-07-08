@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" fill="none" role="img" aria-labelledby="title2ek6ph descqef510">
+  <title id="title2ek6ph">patterns</title>
+  <desc id="descqef510">A repeating structure reveals order that can be extended, transformed, and predicted.</desc>
+  
+  
+    <rect width="320" height="220" rx="24" fill="#F2F1FB"/>
+    <rect x="12" y="12" width="296" height="196" rx="18" fill="#DEDBF3" opacity="0.34"/>
+    <rect x="24" y="26" width="272" height="168" rx="20" fill="#ffffff" opacity="0.72" stroke="#9E93DB" stroke-width="2"/>
+    <path d="M28 188 C92 172 136 178 188 186 C234 194 266 194 292 184" stroke="#D59248" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+    
+        <rect x="54" y="52" width="212" height="116" rx="18" fill="#ffffff" stroke="#9E93DB" stroke-width="2.5"/>
+        <path d="M74 72 L114 72 L134 110 L114 148 L74 148 L54 110 Z" stroke="#5A46A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M134 72 L174 72 L194 110 L174 148 L134 148 L114 110 Z" stroke="#5A46A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M194 72 L234 72 L254 110 L234 148 L194 148 L174 110 Z" stroke="#D59248" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      
+  
+</svg>

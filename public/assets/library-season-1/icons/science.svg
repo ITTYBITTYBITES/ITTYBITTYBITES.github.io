@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" role="img" aria-labelledby="titlevh0tk0 desc8qsda5">
+  <title id="titlevh0tk0">Science icon</title>
+  <desc id="desc8qsda5">Observation, instruments, experiment, and measured uncertainty.</desc>
+  
+  <rect width="64" height="64" rx="16" fill="#EDF6FB"/>
+        <circle cx="24" cy="24" r="12" fill="none" stroke="#1F4E79" stroke-width="3" />
+        <circle cx="24" cy="24" r="4" fill="#E59A41" stroke="none" stroke-width="0" />
+        <line x1="36" y1="36" x2="50" y2="50" stroke="#1F4E79" stroke-width="4" stroke-linecap="round" />
+        <rect x="12" y="12" width="40" height="40" rx="12" fill="none" stroke="#65A3C8" stroke-width="1.5" opacity="0.45" stroke-dasharray="4 5"/>
+      
+</svg>

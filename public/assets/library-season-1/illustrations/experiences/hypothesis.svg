@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" fill="none" role="img" aria-labelledby="titlefktini descev6i84">
+  <title id="titlefktini">hypothesis</title>
+  <desc id="descev6i84">A prediction branches forward from an idea and meets observation on the other side.</desc>
+  
+  
+    <rect width="320" height="220" rx="24" fill="#EDF6FB"/>
+    <rect x="12" y="12" width="296" height="196" rx="18" fill="#D4E8F2" opacity="0.34"/>
+    <rect x="24" y="26" width="272" height="168" rx="20" fill="#ffffff" opacity="0.72" stroke="#65A3C8" stroke-width="2"/>
+    <path d="M28 188 C92 172 136 178 188 186 C234 194 266 194 292 184" stroke="#E59A41" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+    
+        <rect x="38" y="84" width="64" height="52" rx="14" fill="#ffffff" stroke="#1F4E79" stroke-width="2.5"/>
+        <rect x="128" y="50" width="64" height="52" rx="14" fill="#ffffff" stroke="#65A3C8" stroke-width="2.5"/>
+        <rect x="128" y="118" width="64" height="52" rx="14" fill="#ffffff" stroke="#65A3C8" stroke-width="2.5"/>
+        <rect x="220" y="84" width="64" height="52" rx="14" fill="#ffffff" stroke="#E59A41" stroke-width="2.5"/>
+        <path d="M 102 110 L 128 76 M 127.1121883043196 85.39211320167155 L 128 76 L 119.16860997454765 79.31761212596359" stroke="#1F4E79" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M 102 110 L 128 144 M 119.16860997454765 140.68238787403644 L 128 144 L 127.1121883043196 134.60788679832845" stroke="#1F4E79" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M 192 76 L 220 110 M 211.05469079902596 107.0030943793691 L 220 110 L 218.77399315519645 100.64602185075812" stroke="#65A3C8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M 192 144 L 220 110 M 218.77399315519645 119.35397814924188 L 220 110 L 211.05469079902596 112.9969056206309" stroke="#65A3C8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      
+  
+</svg>

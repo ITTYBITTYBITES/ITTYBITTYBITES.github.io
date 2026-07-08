@@ -4,7 +4,6 @@ import { events } from '../platform/events';
 interface ComposableElement {
   id: string;
   text: string;
-  icon: string;
 }
 
 interface CompositionScenario {
@@ -22,11 +21,11 @@ const SCENARIOS: CompositionScenario[] = [
     title: 'The Story Order',
     instruction: 'Arrange these sentences into a story that makes sense.',
     elements: [
-      { id: 's5', text: 'She found what she was looking for — not the answer, but a better question.', icon: '💡' },
-      { id: 's1', text: 'The letter arrived on a Tuesday, smelling of woodsmoke.', icon: '✉️' },
-      { id: 's4', text: 'The last house on the road had its lights on.', icon: '🏠' },
-      { id: 's2', text: 'She read it once, then folded it into her coat pocket without telling anyone.', icon: '📃' },
-      { id: 's3', text: 'Three weeks later, she drove north until the road ran out.', icon: '🚗' }
+      { id: 's5', text: 'She found what she was looking for — not the answer, but a better question.' },
+      { id: 's1', text: 'The letter arrived on a Tuesday, smelling of woodsmoke.' },
+      { id: 's4', text: 'The last house on the road had its lights on.' },
+      { id: 's2', text: 'She read it once, then folded it into her coat pocket without telling anyone.' },
+      { id: 's3', text: 'Three weeks later, she drove north until the road ran out.' }
     ],
     correctOrder: ['s1', 's2', 's3', 's4', 's5'],
     principle: 'Narrative follows causation and time. Each event creates the conditions for the next. The question at the end only matters because of everything that came before it.'
@@ -36,10 +35,10 @@ const SCENARIOS: CompositionScenario[] = [
     title: 'The Logical Case',
     instruction: 'Arrange these statements into a coherent argument.',
     elements: [
-      { id: 'a1', text: 'All complex systems are vulnerable to cascading failure.', icon: '🔗' },
-      { id: 'a4', text: 'Therefore, resilient systems need redundancy at every level.', icon: '✅' },
-      { id: 'a3', text: 'The internet survives because it routes around damage — no single point of failure.', icon: '🌐' },
-      { id: 'a2', text: 'Power grids, supply chains, and financial networks are all complex systems.', icon: '⚡' }
+      { id: 'a1', text: 'All complex systems are vulnerable to cascading failure.' },
+      { id: 'a4', text: 'Therefore, resilient systems need redundancy at every level.' },
+      { id: 'a3', text: 'The internet survives because it routes around damage — no single point of failure.' },
+      { id: 'a2', text: 'Power grids, supply chains, and financial networks are all complex systems.' }
     ],
     correctOrder: ['a1', 'a2', 'a3', 'a4'],
     principle: 'Arguments move from general to specific to conclusion. The premise establishes the rule. The examples show the rule applies. The solution follows from the pattern.'
@@ -49,10 +48,10 @@ const SCENARIOS: CompositionScenario[] = [
     title: 'The Musical Phrase',
     instruction: 'Arrange these musical moments into a phrase that resolves.',
     elements: [
-      { id: 'm1', text: 'A single note, held. The ear waits.', icon: '🎵' },
-      { id: 'm2', text: 'A second note joins, creating tension. A minor third.', icon: '🎶' },
-      { id: 'm4', text: 'Resolution. The first note returns, but changed by what came between.', icon: '🎼' },
-      { id: 'm3', text: 'A rising motion. The phrase climbs toward something unresolved.', icon: '📈' }
+      { id: 'm1', text: 'A single note, held. The ear waits.' },
+      { id: 'm2', text: 'A second note joins, creating tension. A minor third.' },
+      { id: 'm4', text: 'Resolution. The first note returns, but changed by what came between.' },
+      { id: 'm3', text: 'A rising motion. The phrase climbs toward something unresolved.' }
     ],
     correctOrder: ['m1', 'm2', 'm3', 'm4'],
     principle: 'Music creates meaning through tension and release. A phrase establishes, develops, intensifies, and resolves. The ending feels inevitable because of the journey.'
@@ -62,11 +61,11 @@ const SCENARIOS: CompositionScenario[] = [
     title: 'The Process',
     instruction: 'Arrange these steps into the order a chef would follow.',
     elements: [
-      { id: 'r1', text: 'Read the recipe completely. Gather every ingredient and tool.', icon: '📋' },
-      { id: 'r2', text: 'Preheat the oven. Prep vegetables. Measure spices.', icon: '🔪' },
-      { id: 'r3', text: 'Sear the protein. Build the sauce in the same pan.', icon: '🍳' },
-      { id: 'r4', text: 'Combine and transfer to the oven. Set the timer.', icon: '⏲️' },
-      { id: 'r5', text: 'Rest before serving. Taste and adjust seasoning.', icon: '🍽️' }
+      { id: 'r1', text: 'Read the recipe completely. Gather every ingredient and tool.' },
+      { id: 'r2', text: 'Preheat the oven. Prep vegetables. Measure spices.' },
+      { id: 'r3', text: 'Sear the protein. Build the sauce in the same pan.' },
+      { id: 'r4', text: 'Combine and transfer to the oven. Set the timer.' },
+      { id: 'r5', text: 'Rest before serving. Taste and adjust seasoning.' }
     ],
     correctOrder: ['r1', 'r2', 'r3', 'r4', 'r5'],
     principle: 'Processes follow dependency. Each step enables the next. Preparation before action. Action before refinement. A chef who skips prep pays for it later.'
@@ -150,7 +149,7 @@ const compose: ExperienceModule = {
 
       const instruction = document.createElement('p');
       instruction.style.cssText = 'font-weight: 600; font-size: 0.9rem; margin-bottom: 0.5rem;';
-      instruction.textContent = 'Use the ↑ ↓ buttons (or arrow keys) to reorder:';
+      instruction.textContent = 'Use the move buttons or arrow keys to reorder:';
       compositionArea.appendChild(instruction);
 
       const list = document.createElement('div');
@@ -170,10 +169,6 @@ const compose: ExperienceModule = {
         num.style.cssText = 'font-weight: 600; color: GrayText; min-width: 1.5rem;';
         num.textContent = `${idx + 1}.`;
 
-        const icon = document.createElement('span');
-        icon.style.fontSize = '1.1rem';
-        icon.textContent = elem.icon;
-
         const text = document.createElement('span');
         text.style.cssText = 'flex: 1; line-height: 1.4;';
         text.textContent = elem.text;
@@ -182,7 +177,7 @@ const compose: ExperienceModule = {
         moveBtns.style.cssText = 'display: flex; flex-direction: column; gap: 0.2rem; margin-left: auto;';
 
         const upBtn = document.createElement('button');
-        upBtn.textContent = '↑';
+        upBtn.textContent = 'Earlier';
         upBtn.style.cssText = 'padding: 0.4rem 0.6rem; font-size: 1rem; min-width: 2.5rem; min-height: 2rem; border: 1px solid ButtonBorder; border-radius: 0.25rem; background: ButtonFace; cursor: pointer;';
         upBtn.setAttribute('aria-label', `Move ${elem.text} up`);
         upBtn.disabled = idx === 0;
@@ -195,7 +190,7 @@ const compose: ExperienceModule = {
         });
 
         const downBtn = document.createElement('button');
-        downBtn.textContent = '↓';
+        downBtn.textContent = 'Later';
         downBtn.style.cssText = 'padding: 0.4rem 0.6rem; font-size: 1rem; min-width: 2.5rem; min-height: 2rem; border: 1px solid ButtonBorder; border-radius: 0.25rem; background: ButtonFace; cursor: pointer;';
         downBtn.setAttribute('aria-label', `Move ${elem.text} down`);
         downBtn.disabled = idx === currentOrder.length - 1;
@@ -208,7 +203,7 @@ const compose: ExperienceModule = {
         });
 
         moveBtns.append(upBtn, downBtn);
-        item.append(num, icon, text, moveBtns);
+        item.append(num, text, moveBtns);
 
         // Keyboard reordering
         item.setAttribute('tabindex', '0');
@@ -290,7 +285,7 @@ const compose: ExperienceModule = {
           const elem = s.elements.find(e => e.id === elemId)!;
           const line = document.createElement('div');
           line.style.cssText = 'font-size: 0.85rem; margin-bottom: 0.25rem;';
-          line.textContent = `${idx + 1}. ${elem.icon} ${elem.text}`;
+          line.textContent = `${idx + 1}. ${elem.text}`;
           correctOrder.appendChild(line);
         });
         feedbackArea.appendChild(correctOrder);
@@ -299,7 +294,7 @@ const compose: ExperienceModule = {
       controls.innerHTML = '';
       const nextBtn = document.createElement('button');
       nextBtn.className = 'btn primary';
-      nextBtn.textContent = currentIdx < SCENARIOS.length - 1 ? 'Next Composition →' : 'Review';
+      nextBtn.textContent = currentIdx < SCENARIOS.length - 1 ? 'Next Composition' : 'Review';
       nextBtn.addEventListener('click', () => {
         currentIdx = (currentIdx + 1) % SCENARIOS.length;
         currentOrder = [];

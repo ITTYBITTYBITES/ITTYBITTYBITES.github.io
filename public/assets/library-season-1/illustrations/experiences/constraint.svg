@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" fill="none" role="img" aria-labelledby="titlews11yl descfwr7b4">
+  <title id="titlews11yl">constraint</title>
+  <desc id="descfwr7b4">A limited frame creates pressure that shapes new possibilities inside the boundary.</desc>
+  
+  
+    <rect width="320" height="220" rx="24" fill="#FBF0E8"/>
+    <rect x="12" y="12" width="296" height="196" rx="18" fill="#F1D8C7" opacity="0.34"/>
+    <rect x="24" y="26" width="272" height="168" rx="20" fill="#ffffff" opacity="0.72" stroke="#D38552" stroke-width="2"/>
+    <path d="M28 188 C92 172 136 178 188 186 C234 194 266 194 292 184" stroke="#7F66D9" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+    
+        <rect x="52" y="46" width="216" height="128" rx="18" fill="none" stroke="#8A3C3B" stroke-width="3"/>
+        <line x1="124" y1="46" x2="124" y2="174" stroke="#D38552" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+        <line x1="196" y1="46" x2="196" y2="174" stroke="#D38552" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+        <line x1="52" y1="110" x2="268" y2="110" stroke="#D38552" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+        <circle cx="88" cy="82" r="10" fill="#7F66D9" stroke="none" stroke-width="0" />
+        <circle cx="160" cy="138" r="10" fill="#8A3C3B" stroke="none" stroke-width="0" />
+        <circle cx="232" cy="82" r="10" fill="#7F66D9" stroke="none" stroke-width="0" />
+      
+  
+</svg>

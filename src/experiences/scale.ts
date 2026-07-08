@@ -151,14 +151,14 @@ const scale: ExperienceModule = {
 
     const prevBtn = document.createElement('button');
     prevBtn.className = 'btn subtle';
-    prevBtn.textContent = '← Smaller';
+    prevBtn.textContent = 'Smaller scale';
     prevBtn.addEventListener('click', () => {
       if (currentIndex > 0) renderLevel(currentIndex - 1);
     });
 
     const nextBtn = document.createElement('button');
     nextBtn.className = 'btn subtle';
-    nextBtn.textContent = 'Larger →';
+    nextBtn.textContent = 'Larger scale';
     nextBtn.addEventListener('click', () => {
       if (currentIndex < LEVELS.length - 1) renderLevel(currentIndex + 1);
     });

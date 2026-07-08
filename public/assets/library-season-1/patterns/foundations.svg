@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" fill="none" role="img" aria-labelledby="title1g0yeh descpoptal">
+  <title id="title1g0yeh">Foundations pattern</title>
+  <desc id="descpoptal">Geometry, grids, structure, and precision.</desc>
+  
+  <rect width="240" height="240" fill="#F4F1EA"/>
+        <line x1="0" y1="40" x2="240" y2="40" stroke="#7A8CA5" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <line x1="0" y1="120" x2="240" y2="120" stroke="#7A8CA5" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <line x1="0" y1="200" x2="240" y2="200" stroke="#7A8CA5" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <line x1="40" y1="0" x2="40" y2="240" stroke="#7A8CA5" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <line x1="120" y1="0" x2="120" y2="240" stroke="#7A8CA5" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <line x1="200" y1="0" x2="200" y2="240" stroke="#7A8CA5" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <path d="M40 200 L120 40 L200 200" stroke="#D48A3A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5"/>
+      
+</svg>

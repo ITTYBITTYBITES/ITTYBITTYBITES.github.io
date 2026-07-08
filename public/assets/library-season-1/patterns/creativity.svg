@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240" fill="none" role="img" aria-labelledby="title55mxlt descqbzjk5">
+  <title id="title55mxlt">Creativity pattern</title>
+  <desc id="descqbzjk5">Layered composition, sketch marks, and expressive assembly.</desc>
+  
+  <rect width="240" height="240" fill="#FBF0E8"/>
+        <rect x="20" y="28" width="90" height="58" rx="18" fill="#D38552" stroke="#8A3C3B" opacity="0.3" stroke-width="1.5"/>
+        <rect x="84" y="62" width="102" height="70" rx="18" fill="#7F66D9" stroke="#8A3C3B" opacity="0.28" stroke-width="1.5"/>
+        <rect x="150" y="28" width="70" height="110" rx="18" fill="#F1D8C7" stroke="#8A3C3B" opacity="0.45" stroke-width="1.5"/>
+        <path d="M26 178 C54 152 84 188 118 156 C144 132 168 162 208 144" stroke="#8A3C3B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.45"/>
+      
+</svg>

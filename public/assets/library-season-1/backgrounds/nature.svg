@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none" role="img" aria-labelledby="title6f8jne desczzk6l5">
+  <title id="title6f8jne">Nature background</title>
+  <desc id="desczzk6l5">Ecosystems, flows, branching systems, and living cycles.</desc>
+  
+  
+    <rect width="1600" height="900" fill="#EEF5EC"/>
+    <rect x="30" y="30" width="1540" height="840" rx="48" fill="#D8E6D2" opacity="0.3"/>
+    <g transform="translate(140 120)">
+        <path d="M20 30 C40 70 60 90 90 110 C130 140 150 170 160 210" stroke="#78A67C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.35"/>
+        <path d="M120 20 C110 70 130 110 170 140 C200 160 215 190 220 220" stroke="#4A8CC7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.35"/>
+        <path d="M90 110 C70 120 55 135 40 160" stroke="#245B45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.35"/>
+        <path d="M170 140 C190 130 205 115 220 90" stroke="#245B45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.35"/>
+      </g>
+    <rect x="980" y="120" width="460" height="300" rx="36" fill="#ffffff" opacity="0.68" stroke="#78A67C" stroke-width="2"/>
+    
+        <rect x="1040" y="173.57142857142856" width="340" height="178.57142857142858" rx="17.5" fill="#ffffff" stroke="#78A67C" stroke-width="2.5" opacity="0.76"/>
+        <path d="M 1083.75 197.38095238095238 C 1096.25 237.85714285714286 1120 252.14285714285714 1152.5 273.57142857142856 C 1192.5 299.76190476190476 1216.25 314.04761904761904 1228.75 341.42857142857144" stroke="#78A67C" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.8"/>
+        <path d="M 1183.75 196.1904761904762 C 1173.75 223.57142857142856 1183.75 252.14285714285714 1220 272.3809523809524 C 1265 296.19047619047615 1302.5 304.5238095238095 1335 336.66666666666663" stroke="#4A8CC7" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.7"/>
+        <path d="M 1152.5 273.57142857142856 C 1131.25 274.76190476190476 1113.75 290.23809523809524 1098.75 312.8571428571429" stroke="#245B45" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M 1220 272.3809523809524 C 1243.75 271.1904761904762 1265 256.9047619047619 1290 230.71428571428572" stroke="#245B45" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <circle cx="1098.75" cy="312.8571428571429" r="6.875" fill="#245B45" stroke="none" stroke-width="0" />
+        <circle cx="1290" cy="230.71428571428572" r="6.875" fill="#78A67C" stroke="none" stroke-width="0" />
+        <circle cx="1228.75" cy="341.42857142857144" r="6.875" fill="#4A8CC7" stroke="none" stroke-width="0" />
+      
+    <path d="M90 720 C300 620 530 640 730 700 C930 760 1170 790 1510 650" stroke="#4A8CC7" stroke-width="10" opacity="0.55" stroke-linecap="round"/>
+    <path d="M90 770 C330 690 570 720 760 760 C990 810 1210 820 1480 730" stroke="#245B45" stroke-width="4" opacity="0.35" stroke-linecap="round"/>
+  
+</svg>

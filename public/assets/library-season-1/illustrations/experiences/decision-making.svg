@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" fill="none" role="img" aria-labelledby="title9l69mf descop1zgl">
+  <title id="title9l69mf">decision-making</title>
+  <desc id="descop1zgl">Choices branch into consequences, each path carrying different risks and rewards.</desc>
+  
+  
+    <rect width="320" height="220" rx="24" fill="#FBF1F6"/>
+    <rect x="12" y="12" width="296" height="196" rx="18" fill="#EFD9E5" opacity="0.34"/>
+    <rect x="24" y="26" width="272" height="168" rx="20" fill="#ffffff" opacity="0.72" stroke="#D38DAE" stroke-width="2"/>
+    <path d="M28 188 C92 172 136 178 188 186 C234 194 266 194 292 184" stroke="#5B83C8" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+    
+        <rect x="132" y="46" width="56" height="38" rx="12" fill="#ffffff" stroke="#8A3E67" stroke-width="2.5"/>
+        <rect x="60" y="120" width="56" height="38" rx="12" fill="#ffffff" stroke="#D38DAE" stroke-width="2.5"/>
+        <rect x="132" y="120" width="56" height="38" rx="12" fill="#ffffff" stroke="#5B83C8" stroke-width="2.5"/>
+        <rect x="204" y="120" width="56" height="38" rx="12" fill="#ffffff" stroke="#D38DAE" stroke-width="2.5"/>
+        <path d="M 160 84 L 88 120 M 92.91934955049955 111.95015528100075 L 88 120 L 97.39148550549912 120.89442719099992" stroke="#8A3E67" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M 160 84 L 160 120 M 155 112 L 160 120 L 165 112" stroke="#8A3E67" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M 160 84 L 232 120 M 222.60851449450087 120.89442719099992 L 232 120 L 227.08065044950047 111.95015528100075" stroke="#8A3E67" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      
+  
+</svg>

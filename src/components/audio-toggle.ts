@@ -73,9 +73,7 @@ export class AudioToggle extends HTMLElement {
     const enabled = prefs.enabled;
     this.button.setAttribute('aria-pressed', String(enabled));
     this.button.setAttribute('aria-label', enabled ? 'Sound on — toggle to mute interaction tones' : 'Sound off — toggle to enable interaction tones');
-    this.button.innerHTML = enabled
-      ? `<span aria-hidden="true">🔊</span> <span>Sound on</span>`
-      : `<span aria-hidden="true">🔇</span> <span>Sound</span>`;
+    this.button.textContent = enabled ? 'Sound on' : 'Sound off';
 
     const meta = audio.getCollectionMeta();
     this.statusEl.textContent = enabled ? meta.mood : '';

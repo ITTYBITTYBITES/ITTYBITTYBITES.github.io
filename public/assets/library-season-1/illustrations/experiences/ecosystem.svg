@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" fill="none" role="img" aria-labelledby="title8mimvn descgs6fjs">
+  <title id="title8mimvn">ecosystem</title>
+  <desc id="descgs6fjs">Species connect through a food web where each removal shifts the whole system.</desc>
+  
+  
+    <rect width="320" height="220" rx="24" fill="#EEF5EC"/>
+    <rect x="12" y="12" width="296" height="196" rx="18" fill="#D8E6D2" opacity="0.34"/>
+    <rect x="24" y="26" width="272" height="168" rx="20" fill="#ffffff" opacity="0.72" stroke="#78A67C" stroke-width="2"/>
+    <path d="M28 188 C92 172 136 178 188 186 C234 194 266 194 292 184" stroke="#4A8CC7" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+    
+        <circle cx="66" cy="146" r="10" fill="#78A67C" stroke="none" stroke-width="0" />
+        <circle cx="110" cy="82" r="10" fill="#78A67C" stroke="none" stroke-width="0" />
+        <circle cx="154" cy="140" r="10" fill="#4A8CC7" stroke="none" stroke-width="0" />
+        <circle cx="214" cy="90" r="10" fill="#245B45" stroke="none" stroke-width="0" />
+        <circle cx="256" cy="150" r="10" fill="#245B45" stroke="none" stroke-width="0" />
+        <path d="M76 146 L102 88 L146 136 L206 96 L246 146 M110 82 L214 90 M154 140 L256 150" stroke="#183627" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      
+  
+</svg>

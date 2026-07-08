@@ -354,7 +354,7 @@ const bridgeBuilder: ExperienceModule = {
 
       const heading = document.createElement('h4');
       heading.style.cssText = `margin-top: 0; color: ${perf.success ? '#16a34a' : '#dc2626'};`;
-      heading.textContent = perf.success ? '✓ Bridge Holds' : '✗ Bridge Fails';
+      heading.textContent = perf.success ? 'Bridge holds' : 'Bridge fails';
 
       const message = document.createElement('p');
       message.style.cssText = 'margin-bottom: 0;';
@@ -382,7 +382,7 @@ const bridgeBuilder: ExperienceModule = {
       if (progress.completed.length < CHALLENGES.length) {
         const nextBtn = document.createElement('button');
         nextBtn.className = 'btn';
-        nextBtn.textContent = 'Next Challenge →';
+        nextBtn.textContent = 'Next Challenge';
         nextBtn.addEventListener('click', () => {
           currentChallengeIdx = (currentChallengeIdx + 1) % CHALLENGES.length;
           resultArea.innerHTML = '';
