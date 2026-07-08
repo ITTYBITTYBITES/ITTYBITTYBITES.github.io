@@ -11,6 +11,32 @@
     <title>ITTYBITTYBITES</title>
     <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
     <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <script>
+      /**
+       * Bulletproof Self-Healing Recovery Script
+       * Detects critical asset failures (e.g. ChunkLoadError) and force-clears
+       * the Service Worker to recover from white screens caused by stale caches.
+       */
+      window.addEventListener('error', function(e) {
+        const isChunkError = e.message && (
+          e.message.includes('ChunkLoadError') || 
+          e.message.includes('Loading chunk') || 
+          e.message.includes('Failed to fetch dynamically imported module')
+        );
+        if (isChunkError) {
+          console.warn('ITTYBITTYBITES: Asset mismatch detected. Self-healing...');
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+              return Promise.all(registrations.map(r => r.unregister()));
+            }).then(function() {
+              window.location.reload(true);
+            });
+          } else {
+            window.location.reload(true);
+          }
+        }
+      }, true);
+    </script>
   </head>
   <body>
     <div id="app"></div>
