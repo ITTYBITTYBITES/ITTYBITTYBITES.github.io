@@ -38,6 +38,7 @@
 | Science | 5 | Ways of Knowing | Complete |
 | Nature | 5 | The Living Web | Complete |
 | Creativity | 5 | The Making Process | Complete |
+| Engineering | 5 | The Art of Compromise | Complete |
 
 ### Platform Shell
 - Header navigation (Home, Experiences, Collections, Library)
@@ -64,10 +65,11 @@
 
 ## Current Release Goals
 
-**Release 0.5** — Foundations + History + Science + Nature + Creativity (current)
-- Five complete Collections
+**Release 0.6** — Foundations + History + Science + Nature + Creativity (current)
+- Six complete Collections
 - Full discovery and personalization
 - Cohesive ITTYBITTYBITES branding
+- Collection Identity System with visual themes
 - Production-ready, deployable
 
 ---
@@ -76,7 +78,7 @@
 
 | Release | Content | Status |
 |---------|---------|--------|
-| 0.6 | Engineering Collection | Not started |
+
 | 0.7 | Mathematics Collection | Not started |
 | 0.8 | Society & Mind Collection | Not started |
 

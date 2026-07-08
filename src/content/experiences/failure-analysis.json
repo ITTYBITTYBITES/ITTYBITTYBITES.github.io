@@ -1,0 +1,19 @@
+{
+  "id": "failure-analysis",
+  "title": "Failure Analysis",
+  "description": "Something broke. Multiple causes compete. Examine the evidence, eliminate what cannot be, and find the root cause.",
+  "summary": "Investigate failures by examining evidence and eliminating impossible causes. Discover that root causes are rarely obvious.",
+  "category": "reflection",
+  "module": "failure-analysis.ts",
+  "tags": ["failure", "analysis", "root-cause", "investigation"],
+  "searchKeywords": ["failure", "analysis", "root cause", "investigate", "evidence"],
+  "estimatedDuration": "6-10 min",
+  "returnValue": "New failures test your ability to distinguish correlation from causation. Return and sharpen your diagnostic skills.",
+  "collection": "engineering",
+  "story": "the-art-of-compromise",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

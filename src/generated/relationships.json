@@ -7,6 +7,13 @@
       "compose",
       "iterate"
     ],
+    "engineering": [
+      "bridge-builder",
+      "feedback-loop",
+      "optimization",
+      "failure-analysis",
+      "trade-offs"
+    ],
     "foundations": [
       "echo-chamber",
       "signal-detection",
@@ -51,6 +58,21 @@
     ],
     "iterate": [
       "creativity"
+    ],
+    "bridge-builder": [
+      "engineering"
+    ],
+    "feedback-loop": [
+      "engineering"
+    ],
+    "optimization": [
+      "engineering"
+    ],
+    "failure-analysis": [
+      "engineering"
+    ],
+    "trade-offs": [
+      "engineering"
     ],
     "echo-chamber": [
       "foundations"

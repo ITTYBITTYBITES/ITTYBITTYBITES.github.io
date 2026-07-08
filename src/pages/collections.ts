@@ -1,6 +1,7 @@
 import { getAllCollections, getExperiencesInCollection, getStoryById } from '../platform/registry';
 import { getCollectionCompletion, getSuggestedNextExperience } from '../platform/discovery';
 import { getProgress, resetAllProgress } from '../platform/lifecycle';
+import { getCollectionIdentity } from '../platform/collection-identity';
 import { h } from '../platform/utils';
 
 export function renderCollections(): HTMLElement {
@@ -118,9 +119,15 @@ export function renderCollections(): HTMLElement {
       ]);
     }
 
-    const card = h('article', { class: 'collection-card' }, [
+    // Apply collection identity theme
+    const identity = getCollectionIdentity(collection.id);
+    const cardStyle = identity 
+      ? `background: ${identity.theme.backgroundGradient}; border-left: 4px solid ${identity.theme.primaryColor};`
+      : '';
+
+    const card = h('article', { class: 'collection-card', style: cardStyle }, [
       h('header', { class: 'collection-header' }, [
-        h('h2', {}, [collection.title]),
+        h('h2', {}, [identity ? `${identity.theme.icon} ${collection.title}` : collection.title]),
         h('p', {}, [collection.description]),
         h('div', { class: 'collection-meta' }, [
           h('span', {}, [`${experiences.length} experiences`]),

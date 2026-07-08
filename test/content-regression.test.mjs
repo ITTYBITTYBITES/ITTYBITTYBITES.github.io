@@ -5,7 +5,7 @@ import path from 'path';
 
 const ROOT = path.resolve('.');
 
-describe('Release 0.5 Regression Suite', () => {
+describe('Release 0.6 Regression Suite', () => {
   // Schema validation
   it('experience schema validates required fields', () => {
     const schema = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/content/schemas/experience.schema.json'), 'utf-8'));
@@ -37,7 +37,7 @@ describe('Release 0.5 Regression Suite', () => {
     const reg = JSON.parse(fs.readFileSync(regPath, 'utf-8'));
     assert.ok(reg.version);
     assert.ok(Array.isArray(reg.experiences));
-    assert.ok(reg.experiences.length >= 25, 'Platform has 25+ experiences across 5 collections');
+    assert.ok(reg.experiences.length >= 30, 'Platform has 30+ experiences across 6 collections');
     assert.ok(reg.experiences.every(e => e.id && e.title && e.module));
   });
 
@@ -62,6 +62,7 @@ describe('Release 0.5 Regression Suite', () => {
     assert.ok(rel.collectionsToExperiences.science);
     assert.ok(rel.collectionsToExperiences.nature);
     assert.ok(rel.collectionsToExperiences.creativity);
+    assert.ok(rel.collectionsToExperiences.engineering);
     assert.ok(rel.experiencesToCollections['echo-chamber']);
     assert.ok(rel.experiencesToCollections['dueling-accounts']);
     assert.ok(rel.experiencesToCollections['hypothesis']);
@@ -112,6 +113,12 @@ describe('Release 0.5 Regression Suite', () => {
     assert.ok(expIds.has('remix'));
     assert.ok(expIds.has('compose'));
     assert.ok(expIds.has('iterate'));
+    // Engineering
+    assert.ok(expIds.has('bridge-builder'));
+    assert.ok(expIds.has('feedback-loop'));
+    assert.ok(expIds.has('optimization'));
+    assert.ok(expIds.has('failure-analysis'));
+    assert.ok(expIds.has('trade-offs'));
 
     reg.experiences.forEach(e => {
       if (e.collection) {
@@ -171,6 +178,15 @@ describe('Release 0.5 Regression Suite', () => {
     assert.strictEqual(creativity.experiences.length, 5);
     assert.ok(creativity.story, 'creativity has a story');
     assert.ok(creativity.estimatedDuration, 'creativity has estimatedDuration');
+  });
+
+  it('engineering collection contains 5 experiences', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const engineering = reg.collections.find(c => c.id === 'engineering');
+    assert.ok(engineering, 'engineering collection exists');
+    assert.strictEqual(engineering.experiences.length, 5);
+    assert.ok(engineering.story, 'engineering has a story');
+    assert.ok(engineering.estimatedDuration, 'engineering has estimatedDuration');
   });
 
   // Story segments exist
@@ -524,12 +540,72 @@ describe('Release 0.5 Regression Suite', () => {
     assert.ok(triggers.includes('collection_complete'), 'story has collection_complete trigger');
   });
 
-  // Fifth collection scalability — platform unchanged
-  it('platform scaled to 5 collections without modification', () => {
+  // Engineering collection tests
+  it('engineering content is consistent with source', () => {
     const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
-    assert.ok(reg.collections.length >= 5, 'Registry has 5+ collections');
-    assert.ok(reg.experiences.length >= 25, 'Registry has 25+ experiences');
-    assert.ok(reg.stories.length >= 6, 'Registry has 6+ stories');
+    const srcExp = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/content/experiences/bridge-builder.json'), 'utf-8'));
+    const regExp = reg.experiences.find(e => e.id === 'bridge-builder');
+    assert.strictEqual(regExp.title, srcExp.title);
+    assert.strictEqual(regExp.summary, srcExp.summary);
+    assert.ok(regExp.accessibility);
+    assert.strictEqual(regExp.collection, 'engineering');
+  });
+
+  it('all engineering experience modules export valid ExperienceModule', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const engineeringExps = reg.experiences.filter(e => e.collection === 'engineering');
+    engineeringExps.forEach(exp => {
+      const modPath = path.join(ROOT, 'src/experiences', exp.module);
+      assert.ok(fs.existsSync(modPath), `Engineering module exists: ${exp.module}`);
+      const content = fs.readFileSync(modPath, 'utf-8');
+      assert.ok(content.includes('export default'), `${exp.module} exports a default`);
+      assert.ok(content.includes('mount'), `${exp.module} has mount function`);
+      assert.ok(content.includes('ExperienceModule'), `${exp.module} uses ExperienceModule type`);
+      assert.ok(content.includes('ExperienceContext'), `${exp.module} uses ExperienceContext type`);
+      assert.ok(content.includes('events'), `${exp.module} emits platform events`);
+    });
+  });
+
+  it('engineering collection story references all its experiences', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const story = reg.stories.find(s => s.id === 'the-art-of-compromise');
+    assert.ok(story, 'the-art-of-compromise story exists');
+    assert.ok(story.relatedExperiences, 'story has relatedExperiences');
+    assert.strictEqual(story.relatedExperiences.length, 5);
+    const engineering = reg.collections.find(c => c.id === 'engineering');
+    engineering.experiences.forEach(expId => {
+      assert.ok(story.relatedExperiences.includes(expId), `story references ${expId}`);
+    });
+  });
+
+  it('engineering collection story segments cover all experiences', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const story = reg.stories.find(s => s.id === 'the-art-of-compromise');
+    assert.ok(story, 'the-art-of-compromise story exists');
+    const triggers = story.segments.map(s => s.trigger);
+    assert.ok(triggers.includes('collection_start'), 'story has collection_start trigger');
+    assert.ok(triggers.includes('after_bridge-builder'), 'story has after_bridge-builder trigger');
+    assert.ok(triggers.includes('after_feedback-loop'), 'story has after_feedback-loop trigger');
+    assert.ok(triggers.includes('after_optimization'), 'story has after_optimization trigger');
+    assert.ok(triggers.includes('after_failure-analysis'), 'story has after_failure-analysis trigger');
+    assert.ok(triggers.includes('collection_complete'), 'story has collection_complete trigger');
+  });
+
+  it('engineering collection experiences have unique interaction patterns', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const engineeringExps = reg.experiences.filter(e => e.collection === 'engineering');
+    assert.strictEqual(engineeringExps.length, 5);
+
+    const categories = new Set(engineeringExps.map(e => e.category));
+    assert.ok(categories.size >= 2, 'Engineering experiences span multiple categories');
+  });
+
+  // Fifth collection scalability — platform unchanged
+  it('platform scaled to 6 collections without modification', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    assert.ok(reg.collections.length >= 6, 'Registry has 6+ collections');
+    assert.ok(reg.experiences.length >= 30, 'Registry has 25+ experiences');
+    assert.ok(reg.stories.length >= 7, 'Registry has 7+ stories');
   });
 
   // Branding consistency tests

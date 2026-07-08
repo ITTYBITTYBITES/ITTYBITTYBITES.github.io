@@ -9,6 +9,7 @@ import {
   getCollectionCompletion,
 } from '../platform/discovery';
 import { getProfileSummary } from '../platform/lifecycle';
+import { getCollectionIdentity } from '../platform/collection-identity';
 import { search } from '../platform/search';
 import { debounce } from '../platform/utils';
 
@@ -165,7 +166,10 @@ export function renderHome(): HTMLElement {
       metaChildren.push(h('span', { class: 'meta' }, [`${completion.percentage}% complete`]));
     }
     return h('a', { class: 'browse-card', href: '/collections' }, [
-      h('h3', {}, [c.title]),
+      (() => {
+      const identity = getCollectionIdentity(c.id);
+      return h('h3', {}, [identity ? `${identity.theme.icon} ${c.title}` : c.title]);
+    })(),
       h('p', {}, [c.description]),
       h('div', { class: 'browse-meta' }, metaChildren),
     ]);
