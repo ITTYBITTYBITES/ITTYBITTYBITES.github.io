@@ -1,0 +1,12 @@
+{
+  "id": "society-mind",
+  "title": "Society & Mind",
+  "description": "Explore how attention, interpretation, memory, cooperation, and choice connect private thought to shared human systems.",
+  "summary": "Five experiences that teach attention, bias, memory, cooperation, and decision-making through interaction.",
+  "experiences": ["attention", "bias", "memory", "cooperation", "decision-making"],
+  "tags": ["society", "mind", "cognition", "cooperation", "decision-making"],
+  "searchKeywords": ["society", "mind", "attention", "bias", "memory", "cooperation", "decisions", "cognition"],
+  "estimatedDuration": "30-50 min",
+  "story": "bridges-within-and-between",
+  "version": "1.0.0"
+}

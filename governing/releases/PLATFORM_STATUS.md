@@ -26,7 +26,7 @@ With the foundation solid, we move from building the *platform* to building the 
 ### Phase 2: Core Library (CURRENT)
 The focus is now exclusively on content depth. No new platform features.
 - [ ] **Mathematics Collection** (5 experiences + Story)
-- [ ] **Society & Mind Collection** (5 experiences + Story)
+- [x] **Society & Mind Collection** (5 experiences + Story)
 
 ### Phase 3: Launch Preparation
 Preparing the world for ITTYBITTYBITES.
@@ -47,6 +47,7 @@ The Platform Foundation is frozen at `v1.0.0-foundation`. The Library evolves in
 | Version | Milestone | Date |
 |---------|-----------|------|
 | **Foundation v1.0** | Platform architecture complete and frozen. | 2026-07-08 |
+| **Library v0.8** | Seven collections complete, including Society & Mind. | 2026-07-08 |
 | **Library v0.6** | Six core collections (Foundations, History, Science, Nature, Creativity, Engineering) complete. | 2026-07-08 |
 
 ---
@@ -65,7 +66,7 @@ Every collection is guided by the **Library Compass**.
 | Creativity | Constraints can produce originality. | The art of working within boundaries. | Complete |
 | Engineering | Every solution involves trade-offs. | The reality of technical compromise. | Complete |
 | Mathematics | Math is a language for understanding patterns. | Unlocking patterns, probability, symmetry, and logic. | Not Started |
-| Society & Mind | Cooperation, cognition, and communication are the bridges that connect all human systems. | Flagship collection connecting minds and societies. | Not Started |
+| Society & Mind | Cooperation, cognition, and communication are the bridges that connect human systems. | Every human system begins with individuals trying to understand the world, each other, and themselves. By exploring how minds perceive, remember, decide, and cooperate, we begin to understand the invisible systems that shape everyday life. | Complete |
 
 ---
 

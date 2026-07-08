@@ -1,12 +1,18 @@
 # ITTYBITTYBITES Library Version History
 
-**Library Version**: v0.6.1 (6 Collections)  
+**Library Version**: v0.8.0 (7 Collections)  
 **Status**: Active Content Development  
 **Date**: 2026-07-08  
 
 ---
 
 ## Library Releases
+
+### Library v0.8.0 (Release 0.8) — 2026-07-08
+- **Society & Mind Collection** added (5 experiences: Attention, Bias, Memory, Cooperation, Decision Making).
+- "Bridges Within and Between" story added.
+- Expanded the library from 30 to 35 experiences and from 6 to 7 collections.
+- Completed Release 0.8 as a content-only expansion with the frozen Platform Foundation v1.0 unchanged.
 
 ### Library v0.6.1 — 2026-07-08
 - Adopted the "Library Compass" for all existing collections.

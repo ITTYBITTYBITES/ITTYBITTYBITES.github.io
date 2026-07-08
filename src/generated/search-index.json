@@ -13,6 +13,32 @@
     "collection": "nature"
   },
   {
+    "id": "attention",
+    "type": "experience",
+    "title": "Attention",
+    "description": "Focus on one pattern in a busy field and discover how much slips past while your mind is filtering for what matters.",
+    "tags": [
+      "attention",
+      "focus",
+      "filtering",
+      "perception"
+    ],
+    "collection": "society-mind"
+  },
+  {
+    "id": "bias",
+    "type": "experience",
+    "title": "Bias",
+    "description": "Make fast judgments from framed, partial, or ambiguous information and notice the shortcuts your mind uses to keep up.",
+    "tags": [
+      "bias",
+      "framing",
+      "assumptions",
+      "shortcuts"
+    ],
+    "collection": "society-mind"
+  },
+  {
     "id": "bridge-builder",
     "type": "experience",
     "title": "Bridge Builder",
@@ -90,6 +116,32 @@
       "experiment"
     ],
     "collection": "science"
+  },
+  {
+    "id": "cooperation",
+    "type": "experience",
+    "title": "Cooperation",
+    "description": "Contribute or keep your tokens across changing group rules and watch how trust and incentives reshape the outcome for everyone.",
+    "tags": [
+      "cooperation",
+      "trust",
+      "incentives",
+      "group"
+    ],
+    "collection": "society-mind"
+  },
+  {
+    "id": "decision-making",
+    "type": "experience",
+    "title": "Decision Making",
+    "description": "Reveal only part of the picture, choose anyway, and feel how information limits and competing priorities shape human decisions.",
+    "tags": [
+      "decisions",
+      "trade-offs",
+      "uncertainty",
+      "priorities"
+    ],
+    "collection": "society-mind"
   },
   {
     "id": "diverge",
@@ -207,6 +259,19 @@
       "rhythm"
     ],
     "collection": "foundations"
+  },
+  {
+    "id": "memory",
+    "type": "experience",
+    "title": "Memory",
+    "description": "Study a scene, recall its details, and compare your confidence with your accuracy to see memory as reconstruction.",
+    "tags": [
+      "memory",
+      "recall",
+      "confidence",
+      "eyewitness"
+    ],
+    "collection": "society-mind"
   },
   {
     "id": "optimization",
@@ -466,6 +531,25 @@
       "evidence",
       "inquiry"
     ]
+  },
+  {
+    "id": "society-mind",
+    "type": "collection",
+    "title": "Society & Mind",
+    "description": "Explore how attention, interpretation, memory, cooperation, and choice connect private thought to shared human systems.",
+    "tags": [
+      "society",
+      "mind",
+      "cognition",
+      "cooperation",
+      "decision-making"
+    ]
+  },
+  {
+    "id": "bridges-within-and-between",
+    "type": "story",
+    "title": "Bridges Within and Between",
+    "description": "Human systems begin in perception, grow through interpretation and memory, and become society when minds coordinate around rules and choices."
   },
   {
     "id": "echo-origin",
