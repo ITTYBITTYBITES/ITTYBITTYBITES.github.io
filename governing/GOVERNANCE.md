@@ -36,10 +36,22 @@ Every Build Order must:
 - Reference the exact governing document section(s)
 - Include measurable acceptance criteria
 - List expected files
-- End with the standard completion checklist (see `docs/BUILD_ORDERS/README.md`)
+- End with the standard completion checklist (see `private/drafts/BUILD_ORDERS-README.md`)
+
+## The Foundation Stability Rule
+
+To protect the frozen Platform Foundation documents from gradually becoming unstable "living" documents that shift weekly, they are subject to a strict stability rule.
+
+A Platform Foundation document (anything under `governing/foundation/`) may only be changed if the change:
+1.  **Fixes an error** (technical, typographical, or logistical).
+2.  **Clarifies existing intent** without altering the underlying platform promise or architectural limits.
+3.  **Addresses a security, accessibility, or legal requirement** to keep the platform safe, accessible, and compliant.
+4.  **Is approved as a Foundation v2 decision** by the Chief Product Architect during a formal platform-wide upgrade cycle.
+
+This ensures that the engineering bedrock remains stable, trusted, and durable so that the editorial content library can safely grow on top of it.
 
 ## Versioning
 
-See `VERSION.md`
+See `releases/FOUNDATION_VERSION.md` and `releases/LIBRARY_VERSION.md`
 
 This governance model is intended to produce durable, consistent product decisions that will still make sense years from now.

@@ -8,7 +8,7 @@
 
 ## 1. Editorial Principles
 
-The value of ITTYBITTYBITES is in its curation. We follow four permanent principles for every experience added to the library:
+The value of ITTYBITTYBITES is in its curation and focus. We follow four permanent principles for every experience added to the library:
 
 1.  **Understandable in 30 Seconds**: A person should grasp the interaction model and the purpose of the experience almost immediately. Complexity should live in the ideas, not the interface.
 2.  **One Memorable Idea**: Every experience should leave the user with exactly one clear, durable insight. We prioritize depth over breadth.
@@ -22,14 +22,14 @@ The value of ITTYBITTYBITES is in its curation. We follow four permanent princip
 Every Collection is defined by three narrative elements:
 
 -   **The Compass**: A one-sentence outcome. ("When someone finishes this, what should they see differently?")
--   **Curator's Note**: A brief explanation of why this collection exists and the context of its creation.
+-   **Editor's Note**: A brief explanation of why this collection exists and the context of its creation.
 -   **Closing Reflection**: A final thought provided to the user once the collection is complete to solidify the experience.
 
 ---
 
 ## 3. Experience Quality Framework (EQF)
 
-Before an experience is promoted from "Draft" to "Library," it must answer:
+Before an experience is promoted from "Draft" to "Active Library," it must answer:
 
 -   **Purpose**: Why does this exist?
 -   **Interaction**: What meaningful action does the person take?
@@ -39,13 +39,13 @@ Before an experience is promoted from "Draft" to "Library," it must answer:
 
 ---
 
-## 4. Curation Workflow
+## 4. Editorial Workflow
 
-1.  **Definition**: Author the Compass and Curator's Note.
-2.  **Implementation**: Build the five interactions/experiences.
+1.  **Definition**: Author the Compass and Editor's Note.
+2.  **Implementation**: Build the five interactions/experiences using the frozen platform primitives.
 3.  **Validation**: Run through the EQF and Editorial Principles.
 4.  **Review**: Final accessibility and performance pass.
-5.  **Release**: Add to the Library Changelog and tag the release.
+5.  **Release**: Add to the Library Version history and assign a permanent citation identifier.
 
 ---
 

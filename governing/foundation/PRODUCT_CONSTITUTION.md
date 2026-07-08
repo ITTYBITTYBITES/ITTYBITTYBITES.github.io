@@ -659,6 +659,16 @@ Implementation follows decisions.
 
 Implementation does not create decisions.
 
+The Foundation Stability Rule
+
+To protect the frozen Platform Foundation documents from gradually shifting weekly, they are subject to a strict stability rule.
+
+A Platform Foundation document (anything under `governing/foundation/`) may only be changed if the change:
+1.  Fixes an error (technical, typographical, or logistical).
+2.  Clarifies existing intent without altering the underlying platform promise or architectural limits.
+3.  Addresses a security, accessibility, or legal requirement.
+4.  Is approved as a Foundation v2 decision by the Chief Product Architect.
+
 Build Orders Are the Bridge Between Vision and Code
 
 A Build Order is the formal translation from product intent into engineering work.
