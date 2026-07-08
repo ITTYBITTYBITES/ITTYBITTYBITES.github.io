@@ -114,10 +114,10 @@ export function renderLibrary(): HTMLElement {
 
   // Empty state
   const emptyState = !hasProgress
-    ? h('div', { class: 'empty-state library-empty' }, [
+    ? h('div', { class: 'empty-state library-empty animate-in' }, [
         h('h3', {}, ['Your journey is just beginning']),
         h('p', {}, ['Explore experiences and your progress will appear here.']),
-        h('a', { class: 'btn', href: '/collections' }, ['Start Exploring']),
+        h('a', { class: 'btn primary', href: '/collections' }, ['Start Exploring']),
       ])
     : null;
 

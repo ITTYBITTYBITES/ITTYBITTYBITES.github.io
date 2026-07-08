@@ -113,8 +113,8 @@ export function renderCollections(): HTMLElement {
     let completionBanner: HTMLElement | null = null;
     if (isCompleted) {
       const completionSegment = story?.segments?.find(s => s.trigger === 'collection_complete');
-      completionBanner = h('div', { class: 'completion-banner' }, [
-        h('h3', {}, ['Collection Complete']),
+      completionBanner = h('div', { class: 'completion-banner celebration-element celebration-pulse' }, [
+        h('h3', {}, ['Collection Complete 🎉']),
         h('p', {}, [completionSegment?.text || 'You have experienced the full journey. Return to any experience and you will find it deeper than before.']),
       ]);
     }
