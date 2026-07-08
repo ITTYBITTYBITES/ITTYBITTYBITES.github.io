@@ -1,0 +1,48 @@
+{
+  "id": "the-living-web",
+  "title": "The Living Web",
+  "description": "Nature does not present itself as a lesson. It simply exists — full of patterns, relationships, and quiet rules that anyone can learn to read. This collection walks the path from observation to systems thinking.",
+  "summary": "How ecological thinking moves from seeing to understanding through ecosystems, seasons, adaptation, symbiosis, and watersheds.",
+  "relatedCollections": ["nature"],
+  "relatedExperiences": ["ecosystem", "seasons", "adaptation", "symbiosis", "watershed"],
+  "narrative": "Most people look at nature and see a picture. A forest, a river, a bird on a branch. But nature is not a picture. It is a process — a living system of connections, cycles, feedback loops, and consequences playing out across every scale of time and space. The Living Web collection teaches you to see the process behind the picture. You will build food webs and watch them ripple. You will observe a single place through the year and discover that nothing stays the same and nothing is ever truly lost. You will play the ancient game of adaptation, where traits are chosen by pressure and the environment does not negotiate. You will classify the intimate partnerships between species and discover that not all closeness is kindness. And you will follow water from mountain to sea, learning that every landscape is a story written in flow. These are the skills of ecological thinking: noticing patterns, tracing connections, respecting scale, and understanding that everything is connected to everything else.",
+  "segments": [
+    {
+      "id": "intro",
+      "title": "Begin by Watching",
+      "text": "Before you can understand a system, you must learn to see it. Nature does not explain itself. It simply behaves — and the behavior follows rules. Your first task is to build a living food web, adding and removing species, and watch how every change ripples through the whole. Nothing in an ecosystem stands alone.",
+      "trigger": "collection_start"
+    },
+    {
+      "id": "ecosystem-to-seasons",
+      "title": "Time Reveals What Space Conceals",
+      "text": "An ecosystem is a snapshot of relationships at one moment. But nature is not static. The same place in January is not the same place in July. The next skill is patience — observing one location through an entire year and learning to see what changes, what persists, and what cycles back. The rhythm of seasons is the rhythm of the living world.",
+      "trigger": "after_ecosystem"
+    },
+    {
+      "id": "seasons-to-adaptation",
+      "title": "The Environment Does Not Negotiate",
+      "text": "Seasons change, and the creatures within them must change too. The next skill is understanding pressure — the forces that shape which traits survive and which vanish. You will play a game where the environment shifts and creatures must shift with it. Those that adapt endure. Those that do not disappear.",
+      "trigger": "after_seasons"
+    },
+    {
+      "id": "adaptation-to-symbiosis",
+      "title": "No One Survives Alone",
+      "text": "Adaptation is not a solo act. Every species exists in relationship with others. Some partnerships benefit both sides. Some benefit one while the other barely notices. Some benefit one at the expense of the other. The next skill is seeing these relationships clearly — naming the spectrum from mutualism to parasitism.",
+      "trigger": "after_adaptation"
+    },
+    {
+      "id": "symbiosis-to-watershed",
+      "title": "Everything Flows Downhill",
+      "text": "Relationships between species are intimate and local. But there is a larger pattern: everything in a landscape connects through flow. Water carries the consequences of every decision made upstream. The final skill is systems thinking — following the flow from mountain to sea and understanding that nothing you do happens in isolation.",
+      "trigger": "after_symbiosis"
+    },
+    {
+      "id": "completion",
+      "title": "You See the Web Now",
+      "text": "You have built food webs and watched them ripple. You have observed seasonal change with patient eyes. You have played the game of adaptation and felt environmental pressure. You have named the partnerships between species. And you have followed water through a landscape, learning that every action has consequences downstream. These are the skills of ecological thinking. They are also the skills of clear thinking about any complex system — in business, in society, in your own life. Return to any experience and you will notice connections you missed before. The web is always there, waiting to be seen.",
+      "trigger": "collection_complete"
+    }
+  ],
+  "version": "1.0.0"
+}
