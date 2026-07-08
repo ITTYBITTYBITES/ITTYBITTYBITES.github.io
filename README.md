@@ -2,7 +2,7 @@
 
 > **ITTYBITTYBITES is a growing library of interactive experiences that help people understand the world, one bite at a time.**
 
-Explore history, science, nature, creativity, engineering, and more through short, hands-on experiences designed to make complex ideas approachable.
+Explore history, science, nature, creativity, engineering, mathematics, society and mind, and more through short, hands-on experiences designed to make complex ideas approachable.
 
 Every collection is built around a simple belief:  
 *Understanding grows through interaction.*
@@ -57,7 +57,7 @@ Before contributing to the library, please orient yourself with our specificatio
     ```bash
     npm test
     ```
-    Runs our automated suite of 56 quality gates to verify schema validity, lazy loading, and asset integrity.
+    Runs our automated suite of 73 quality gates to verify schema validity, lazy loading, and asset integrity.
 
 ---
 

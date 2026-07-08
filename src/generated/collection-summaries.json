@@ -108,6 +108,33 @@
     ]
   },
   {
+    "id": "mathematics",
+    "title": "Mathematics",
+    "count": 5,
+    "experiences": [
+      {
+        "id": "patterns",
+        "title": "Patterns"
+      },
+      {
+        "id": "estimation",
+        "title": "Estimation"
+      },
+      {
+        "id": "symmetry",
+        "title": "Symmetry"
+      },
+      {
+        "id": "probability",
+        "title": "Probability"
+      },
+      {
+        "id": "proof",
+        "title": "Proof"
+      }
+    ]
+  },
+  {
     "id": "nature",
     "title": "Nature",
     "count": 5,

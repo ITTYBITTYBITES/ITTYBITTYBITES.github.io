@@ -5,7 +5,7 @@ import path from 'path';
 
 const ROOT = path.resolve('.');
 
-describe('Release 0.6 Regression Suite', () => {
+describe('Release 0.7 Regression Suite', () => {
   // Schema validation
   it('experience schema validates required fields', () => {
     const schema = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/content/schemas/experience.schema.json'), 'utf-8'));
@@ -37,7 +37,7 @@ describe('Release 0.6 Regression Suite', () => {
     const reg = JSON.parse(fs.readFileSync(regPath, 'utf-8'));
     assert.ok(reg.version);
     assert.ok(Array.isArray(reg.experiences));
-    assert.ok(reg.experiences.length >= 30, 'Platform has 30+ experiences across 6 collections');
+    assert.ok(reg.experiences.length >= 35, 'Platform has 35+ experiences across 7 collections');
     assert.ok(reg.experiences.every(e => e.id && e.title && e.module));
   });
 
@@ -63,11 +63,14 @@ describe('Release 0.6 Regression Suite', () => {
     assert.ok(rel.collectionsToExperiences.nature);
     assert.ok(rel.collectionsToExperiences.creativity);
     assert.ok(rel.collectionsToExperiences.engineering);
+    assert.ok(rel.collectionsToExperiences.mathematics);
     assert.ok(rel.experiencesToCollections['echo-chamber']);
     assert.ok(rel.experiencesToCollections['dueling-accounts']);
     assert.ok(rel.experiencesToCollections['hypothesis']);
     assert.ok(rel.experiencesToCollections['ecosystem']);
     assert.ok(rel.experiencesToCollections['diverge']);
+    assert.ok(rel.experiencesToCollections['patterns']);
+    assert.ok(rel.experiencesToCollections['proof']);
   });
 
   // Lazy-loading & route generation
@@ -119,6 +122,12 @@ describe('Release 0.6 Regression Suite', () => {
     assert.ok(expIds.has('optimization'));
     assert.ok(expIds.has('failure-analysis'));
     assert.ok(expIds.has('trade-offs'));
+    // Mathematics
+    assert.ok(expIds.has('patterns'));
+    assert.ok(expIds.has('estimation'));
+    assert.ok(expIds.has('symmetry'));
+    assert.ok(expIds.has('probability'));
+    assert.ok(expIds.has('proof'));
 
     reg.experiences.forEach(e => {
       if (e.collection) {
@@ -187,6 +196,16 @@ describe('Release 0.6 Regression Suite', () => {
     assert.strictEqual(engineering.experiences.length, 5);
     assert.ok(engineering.story, 'engineering has a story');
     assert.ok(engineering.estimatedDuration, 'engineering has estimatedDuration');
+  });
+
+  it('mathematics collection contains 5 experiences', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const mathematics = reg.collections.find(c => c.id === 'mathematics');
+    assert.ok(mathematics, 'mathematics collection exists');
+    assert.strictEqual(mathematics.experiences.length, 5);
+    assert.deepStrictEqual(mathematics.experiences, ['patterns', 'estimation', 'symmetry', 'probability', 'proof']);
+    assert.ok(mathematics.story, 'mathematics has a story');
+    assert.ok(mathematics.estimatedDuration, 'mathematics has estimatedDuration');
   });
 
   // Story segments exist
@@ -600,12 +619,72 @@ describe('Release 0.6 Regression Suite', () => {
     assert.ok(categories.size >= 2, 'Engineering experiences span multiple categories');
   });
 
-  // Fifth collection scalability — platform unchanged
-  it('platform scaled to 6 collections without modification', () => {
+  // Mathematics collection tests
+  it('mathematics content is consistent with source', () => {
     const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
-    assert.ok(reg.collections.length >= 6, 'Registry has 6+ collections');
-    assert.ok(reg.experiences.length >= 30, 'Registry has 25+ experiences');
-    assert.ok(reg.stories.length >= 7, 'Registry has 7+ stories');
+    const srcExp = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/content/experiences/patterns.json'), 'utf-8'));
+    const regExp = reg.experiences.find(e => e.id === 'patterns');
+    assert.strictEqual(regExp.title, srcExp.title);
+    assert.strictEqual(regExp.summary, srcExp.summary);
+    assert.ok(regExp.accessibility);
+    assert.strictEqual(regExp.collection, 'mathematics');
+  });
+
+  it('all mathematics experience modules export valid ExperienceModule', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const mathematicsExps = reg.experiences.filter(e => e.collection === 'mathematics');
+    mathematicsExps.forEach(exp => {
+      const modPath = path.join(ROOT, 'src/experiences', exp.module);
+      assert.ok(fs.existsSync(modPath), `Mathematics module exists: ${exp.module}`);
+      const content = fs.readFileSync(modPath, 'utf-8');
+      assert.ok(content.includes('export default'), `${exp.module} exports a default`);
+      assert.ok(content.includes('mount'), `${exp.module} has mount function`);
+      assert.ok(content.includes('ExperienceModule'), `${exp.module} uses ExperienceModule type`);
+      assert.ok(content.includes('ExperienceContext'), `${exp.module} uses ExperienceContext type`);
+      assert.ok(content.includes('events'), `${exp.module} emits platform events`);
+    });
+  });
+
+  it('mathematics collection story references all its experiences', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const story = reg.stories.find(s => s.id === 'the-language-of-patterns');
+    assert.ok(story, 'the-language-of-patterns story exists');
+    assert.ok(story.relatedExperiences, 'story has relatedExperiences');
+    assert.strictEqual(story.relatedExperiences.length, 5);
+    const mathematics = reg.collections.find(c => c.id === 'mathematics');
+    mathematics.experiences.forEach(expId => {
+      assert.ok(story.relatedExperiences.includes(expId), `story references ${expId}`);
+    });
+  });
+
+  it('mathematics collection story segments cover all experiences', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const story = reg.stories.find(s => s.id === 'the-language-of-patterns');
+    assert.ok(story, 'the-language-of-patterns story exists');
+    const triggers = story.segments.map(s => s.trigger);
+    assert.ok(triggers.includes('collection_start'), 'story has collection_start trigger');
+    assert.ok(triggers.includes('after_patterns'), 'story has after_patterns trigger');
+    assert.ok(triggers.includes('after_estimation'), 'story has after_estimation trigger');
+    assert.ok(triggers.includes('after_symmetry'), 'story has after_symmetry trigger');
+    assert.ok(triggers.includes('after_probability'), 'story has after_probability trigger');
+    assert.ok(triggers.includes('collection_complete'), 'story has collection_complete trigger');
+  });
+
+  it('mathematics collection experiences have unique interaction patterns', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const mathematicsExps = reg.experiences.filter(e => e.collection === 'mathematics');
+    assert.strictEqual(mathematicsExps.length, 5);
+
+    const categories = new Set(mathematicsExps.map(e => e.category));
+    assert.ok(categories.size >= 3, 'Mathematics experiences span multiple categories');
+  });
+
+  // Seventh collection scalability — platform unchanged
+  it('platform scaled to 7 collections without modification', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    assert.ok(reg.collections.length >= 7, 'Registry has 7+ collections');
+    assert.ok(reg.experiences.length >= 35, 'Registry has 35+ experiences');
+    assert.ok(reg.stories.length >= 8, 'Registry has 8+ stories');
   });
 
   // Branding consistency tests

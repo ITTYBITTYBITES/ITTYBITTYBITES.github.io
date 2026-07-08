@@ -1,52 +1,52 @@
 # Current Mode
 
-**Platform v2.2 — Release 0.6 Complete**
+**Platform v2.2 — Core Library Complete through Release 0.8**
 
 **Date:** 2026-07-08
 
 ## Current State
 
-Release 0.6 is complete and ready for deployment:
-- ✅ Engineering Collection (5 experiences)
-- ✅ "The Art of Compromise" story
-- ✅ Collection Identity System (visual themes for all 6 collections)
-- ✅ 56 regression tests passing
-- ✅ Zero platform architecture changes
-- ✅ All quality gates passed
+The core library is complete through Release 0.8:
+- ✅ Mathematics Collection (5 experiences)
+- ✅ "The Language of Patterns" story
+- ✅ Society & Mind Collection (5 experiences)
+- ✅ "Bridges Within and Between" story
+- ✅ Content-only collection additions using the existing framework
+- ✅ Zero additional platform architecture changes for the Mathematics conflict resolution
+- ✅ All quality gates passing after merge resolution
 
 ## Next Steps
 
-The platform now has 6 collections with 30 experiences. According to the product roadmap, the next phase is:
+The platform now has 8 collections with 40 experiences. According to the product roadmap, the next phase is:
 
-**Release 0.7: Mathematics Collection**
-- Focus on reasoning rather than arithmetic
-- Experiences: pattern discovery, estimation, proof by example/counterexample, symmetry, probability intuition
+**Version 1.0 preparation**
+- Artwork, audio, animations, performance tuning, accessibility review, mobile refinement, and final copywriting
 
-After that:
-- **Release 0.8: Society & Mind** (communication, perspective, decision-making, cognition)
-- **Version 1.0 preparation** (artwork, audio, animations, performance tuning, accessibility review, mobile refinement, final copywriting)
+No Release 0.9 work has started here.
 
 ## Platform Totals
 
 | Metric | Count |
 |--------|-------|
-| Collections | 6 |
-| Experiences | 30 |
-| Stories | 7 |
-| Tests | 56 |
-| Platform Changes (v2.0 → v2.2) | 0 |
+| Collections | 8 |
+| Experiences | 40 |
+| Stories | 9 |
+| Tests | 73 |
+| Platform Changes Introduced by Mathematics Conflict Resolution | 0 |
 
 ## Architecture Status
 
-The platform architecture remains stable and unchanged since v2.0. All new collections have been added without modifying:
+The Platform Foundation v1.0 remains frozen. The Mathematics Collection was merged with the current `main` branch without modifying:
 - Registry system
 - Router
 - Discovery/recommendation engine
 - Progress tracking
 - Event system
+- Design system tokens
+- Shared platform components
 - Build pipeline
 
-This validates the content-first, platform-stable design philosophy.
+This validates the content-first, platform-stable design philosophy through eight collections.
 
 ---
 

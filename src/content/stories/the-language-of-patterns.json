@@ -1,0 +1,48 @@
+{
+  "id": "the-language-of-patterns",
+  "title": "The Language of Patterns",
+  "description": "A journey through mathematics as a way of seeing: patterns, measurement, hidden structure, uncertainty, and proof.",
+  "summary": "Mathematics becomes a tool for understanding reality by moving from noticed patterns to justified truth.",
+  "relatedCollections": ["mathematics"],
+  "relatedExperiences": ["patterns", "estimation", "symmetry", "probability", "proof"],
+  "narrative": "Mathematics begins before symbols. It begins when the mind notices structure: a rhythm, a sequence, a balance, a prediction that keeps working. From there, math becomes a language for understanding reality. It lets us estimate a world too large to count exactly. It reveals hidden order in symmetry and transformation. It helps us reason when the future is uncertain. And finally, it gives us proof — the discipline of showing not merely that something appears true, but why it must be true. This collection is not a classroom replacement. It is a way of seeing. Each experience gives the intuition first, then names the idea after the meaning is already felt.",
+  "segments": [
+    {
+      "id": "intro",
+      "title": "Begin by Noticing",
+      "text": "Mathematics begins with a question simple enough for anyone to ask: what comes next, and why? Before formulas, before notation, before calculation, there is pattern. A repeated beat. A growing row. A rule you can feel before you can name. Start by continuing sequences and looking for the hidden structure that makes prediction possible.",
+      "trigger": "collection_start"
+    },
+    {
+      "id": "patterns-to-estimation",
+      "title": "Measuring Before Counting",
+      "text": "You have seen that a rule can describe many cases at once. Now turn that power toward the world. Exact answers are useful, but good mathematical thinking often begins earlier, with estimation. To estimate is to build a mental model of size, distance, quantity, and scale. You are not guessing blindly. You are measuring with understanding before calculating with precision.",
+      "trigger": "after_patterns"
+    },
+    {
+      "id": "estimation-to-symmetry",
+      "title": "Hidden Structure Appears",
+      "text": "Estimation helps you measure the world. Symmetry helps you see its hidden order. A leaf, a tile floor, a face, a bridge, and a melody can all hold balance across change. Something flips, turns, or repeats, and something important remains the same. This is structure you can see before you give it a formal name.",
+      "trigger": "after_estimation"
+    },
+    {
+      "id": "symmetry-to-probability",
+      "title": "When Order Meets Chance",
+      "text": "Not everything is fixed. Some systems have structure without certainty. A coin toss, a spinner, a weather forecast, or a medical study cannot promise what happens next, but mathematics can still help. Probability turns uncertainty into something reasoned. It lets you compare intuition with repeated experience and make better decisions without pretending the future is known.",
+      "trigger": "after_symmetry"
+    },
+    {
+      "id": "probability-to-proof",
+      "title": "From Seems True to Must Be True",
+      "text": "Patterns can suggest. Estimates can guide. Symmetry can reveal. Probability can prepare. But mathematics also asks for something stronger: proof. Examples may make an idea believable, but examples alone cannot cover every possible case. The final step is learning how a logical argument turns a pattern into certainty.",
+      "trigger": "after_probability"
+    },
+    {
+      "id": "completion",
+      "title": "You See Mathematically Now",
+      "text": "You have followed mathematics from noticed patterns to measured scale, from hidden symmetry to uncertain futures, from examples to proof. Mathematics is not a pile of formulas. It is a language for seeing relationships and structures that ordinary attention misses. Return to any experience and the world will look a little more patterned, a little more connected, and a little more understandable.",
+      "trigger": "collection_complete"
+    }
+  ],
+  "version": "1.0.0"
+}

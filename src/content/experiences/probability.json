@@ -1,0 +1,19 @@
+{
+  "id": "probability",
+  "title": "Probability",
+  "description": "Predict uncertain outcomes, run chance experiments, and compare intuition with what happens over many trials.",
+  "summary": "Explore randomness by making predictions, running experiments, and comparing results with expected outcomes.",
+  "category": "experiment",
+  "module": "probability.ts",
+  "tags": ["probability", "chance", "randomness", "prediction", "uncertainty"],
+  "searchKeywords": ["probability", "chance", "random", "uncertainty", "prediction", "expected outcome", "experiment"],
+  "estimatedDuration": "6-10 min",
+  "returnValue": "Return to see how repeated trials can turn randomness into clearer expectations.",
+  "collection": "mathematics",
+  "story": "the-language-of-patterns",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

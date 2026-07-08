@@ -196,6 +196,20 @@
     "collection": "nature"
   },
   {
+    "id": "estimation",
+    "type": "experience",
+    "title": "Estimation",
+    "description": "Make quick approximate guesses before exact measurement. Discover how magnitude and scale guide good mathematical thinking.",
+    "tags": [
+      "estimation",
+      "approximation",
+      "scale",
+      "magnitude",
+      "mental models"
+    ],
+    "collection": "mathematics"
+  },
+  {
     "id": "failure-analysis",
     "type": "experience",
     "title": "Failure Analysis",
@@ -299,6 +313,20 @@
     "collection": "foundations"
   },
   {
+    "id": "patterns",
+    "type": "experience",
+    "title": "Patterns",
+    "description": "Continue sequences, test hidden rules, and see that math begins with noticing structure: what comes next, and why?",
+    "tags": [
+      "patterns",
+      "sequence",
+      "rules",
+      "prediction",
+      "abstraction"
+    ],
+    "collection": "mathematics"
+  },
+  {
     "id": "perspective-shift",
     "type": "experience",
     "title": "Perspective Shift",
@@ -310,6 +338,34 @@
       "observation"
     ],
     "collection": "foundations"
+  },
+  {
+    "id": "probability",
+    "type": "experience",
+    "title": "Probability",
+    "description": "Predict uncertain outcomes, run chance experiments, and compare intuition with what happens over many trials.",
+    "tags": [
+      "probability",
+      "chance",
+      "randomness",
+      "prediction",
+      "uncertainty"
+    ],
+    "collection": "mathematics"
+  },
+  {
+    "id": "proof",
+    "type": "experience",
+    "title": "Proof",
+    "description": "Test examples, find counterexamples, and build a short logical argument to feel the difference between seems true and must be true.",
+    "tags": [
+      "proof",
+      "logic",
+      "evidence",
+      "reasoning",
+      "certainty"
+    ],
+    "collection": "mathematics"
   },
   {
     "id": "remix",
@@ -390,6 +446,20 @@
       "parasitism"
     ],
     "collection": "nature"
+  },
+  {
+    "id": "symmetry",
+    "type": "experience",
+    "title": "Symmetry",
+    "description": "Complete balanced patterns and discover what stays unchanged when shapes flip, turn, or repeat.",
+    "tags": [
+      "symmetry",
+      "balance",
+      "transformation",
+      "invariance",
+      "structure"
+    ],
+    "collection": "mathematics"
   },
   {
     "id": "trade-offs",
@@ -507,6 +577,19 @@
     ]
   },
   {
+    "id": "mathematics",
+    "type": "collection",
+    "title": "Mathematics",
+    "description": "Math is a language for understanding patterns. These experiences turn mathematics into a way of seeing relationships, uncertainty, structure, reasoning, and proof.",
+    "tags": [
+      "mathematics",
+      "patterns",
+      "reasoning",
+      "probability",
+      "proof"
+    ]
+  },
+  {
     "id": "nature",
     "type": "collection",
     "title": "Nature",
@@ -574,6 +657,12 @@
     "type": "story",
     "title": "The Art of Compromise",
     "description": "Engineering is not about finding the perfect solution. Perfect does not exist. Engineering is the discipline of making thoughtful compromises — knowing what to optimize, what to sacrifice, and why."
+  },
+  {
+    "id": "the-language-of-patterns",
+    "type": "story",
+    "title": "The Language of Patterns",
+    "description": "A journey through mathematics as a way of seeing: patterns, measurement, hidden structure, uncertainty, and proof."
   },
   {
     "id": "the-living-web",
