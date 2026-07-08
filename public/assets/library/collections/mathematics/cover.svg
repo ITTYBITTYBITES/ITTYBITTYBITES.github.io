@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1600" viewBox="0 0 2400 1600" fill="none" role="img" aria-labelledby="titleo52yo0 descl1xqj5">
+  <title id="titleo52yo0">Mathematics collection cover</title>
+  <desc id="descl1xqj5">Elegant abstraction, symmetry, proof, and curves. Collection cover artwork at master resolution.</desc>
+  
+  
+    <rect width="2400" height="1600" fill="#F2F1FB"/>
+    <rect x="48" y="48" width="2304" height="1504" rx="64" fill="#DEDBF3" opacity="0.34"/>
+    
+        <rect x="397.71428571428567" y="238.62857142857143" width="1604.5714285714287" height="891.4285714285714" rx="83.2" fill="#ffffff" stroke="#9E93DB" stroke-width="2.5" opacity="0.78"/>
+        <path d="M 629.4857142857143 963.6571428571428 C 629.4857142857143 613.0285714285715 926.6285714285714 387.2 1188.1142857142859 387.2 C 1419.8857142857144 387.2 1598.1714285714286 541.7142857142858 1598.1714285714286 731.8857142857144 C 1598.1714285714286 874.5142857142857 1485.257142857143 987.4285714285714 1324.8 987.4285714285714 C 1158.4 987.4285714285714 1039.542857142857 862.6285714285715 1039.542857142857 731.8857142857144 C 1039.542857142857 595.2 1146.5142857142857 506.0571428571429 1271.3142857142857 506.0571428571429" stroke="#5A46A6" stroke-width="23.771428571428572" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <line x1="504.68571428571425" y1="731.8857142857144" x2="1895.3142857142857" y2="731.8857142857144" stroke="#9E93DB" stroke-width="5.942857142857143" stroke-linecap="round" opacity="0.28"/>
+        <line x1="1200" y1="351.54285714285714" x2="1200" y2="1058.7428571428572" stroke="#9E93DB" stroke-width="5.942857142857143" stroke-linecap="round" opacity="0.28"/>
+        <circle cx="1271.3142857142857" cy="506.0571428571429" r="32.68571428571428" fill="#D59248" stroke="none" stroke-width="0" />
+        <rect x="1443.6571428571428" y="470.40000000000003" width="314.9714285714286" height="231.77142857142857" rx="47.542857142857144" fill="#fffaf6" stroke="#5A46A6" stroke-width="2" opacity="0.86"/>
+        
+        
+      
+    <g transform="translate(1129.6 1421) scale(0.5866666666666667)" opacity="0.5">
+        <path d="M30 170 C30 90 90 36 152 36 C192 36 210 70 210 96 C210 130 182 152 150 152 C122 152 98 132 98 104 C98 76 120 56 146 56" stroke="#5A46A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.45"/>
+        <line x1="20" y1="120" x2="220" y2="120" stroke="#9E93DB" stroke-width="1.5" stroke-linecap="round" opacity="0.22"/>
+        <line x1="120" y1="20" x2="120" y2="220" stroke="#9E93DB" stroke-width="1.5" stroke-linecap="round" opacity="0.22"/>
+        <circle cx="146" cy="56" r="5" fill="#D59248" stroke="none" stroke-width="0" opacity="0.7"/>
+      </g>
+    <line x1="96" y1="1421" x2="2304" y2="1421" stroke="#9E93DB" stroke-width="1" opacity="0.35"/>
+    <g transform="translate(102 1350) scale(2.3125)">
+      <rect width="64" height="64" rx="16" fill="#F2F1FB"/>
+      
+        <path d="M16 44 C18 22 30 14 42 20 C50 24 48 38 38 42 C28 46 20 40 20 32 C20 22 30 18 38 24" stroke="#5A46A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <line x1="12" y1="32" x2="52" y2="32" stroke="#9E93DB" stroke-width="2" stroke-linecap="round" opacity="0.6"/>
+        <circle cx="38" cy="24" r="3" fill="#D59248" stroke="none" stroke-width="0" />
+        <circle cx="20" cy="32" r="3" fill="#D59248" stroke="none" stroke-width="0" />
+      
+    </g>
+  
+</svg>

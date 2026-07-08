@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none" role="img" aria-labelledby="titlequf9et desc22kh6g">
+  <title id="titlequf9et">Pattern Garden experience hero</title>
+  <desc id="desc22kh6g">Repeated forms grow into a larger arrangement, like a garden built from simple rules.</desc>
+  
+  
+    <rect width="1600" height="900" fill="#F4F1EA"/>
+    <rect x="36" y="36" width="1528" height="828" rx="45" fill="#E5E0D7" opacity="0.34"/>
+    <rect x="784" y="72" width="736" height="756" rx="44" fill="#ffffff" opacity="0.72" stroke="#7A8CA5" stroke-width="2"/>
+    <g transform="translate(843 237.5625) scale(1.93125)">
+        <rect x="40" y="46" width="240" height="128" rx="22" fill="#ffffff" stroke="#7A8CA5" stroke-width="2.5" opacity="0.82"/>
+        <circle cx="90" cy="92" r="10" fill="#7A8CA5" stroke="none" stroke-width="0" />
+        <circle cx="128" cy="92" r="10" fill="#7A8CA5" stroke="none" stroke-width="0" />
+        <circle cx="166" cy="92" r="10" fill="#7A8CA5" stroke="none" stroke-width="0" />
+        <circle cx="90" cy="128" r="10" fill="#7A8CA5" stroke="none" stroke-width="0" />
+        <circle cx="128" cy="128" r="10" fill="#D48A3A" stroke="none" stroke-width="0" />
+        <circle cx="166" cy="128" r="10" fill="#7A8CA5" stroke="none" stroke-width="0" />
+        <path d="M192 146 C214 136 228 120 240 98 C248 84 260 78 278 74" stroke="#2E3F57" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      </g>
+    <path d="M72 828 C 448 756 672 828 752 799.2" stroke="#D48A3A" stroke-width="3" opacity="0.5" stroke-linecap="round" fill="none"/>
+    <line x1="72" y1="828" x2="640" y2="828" stroke="#7A8CA5" stroke-width="1" opacity="0.3"/>
+  
+</svg>

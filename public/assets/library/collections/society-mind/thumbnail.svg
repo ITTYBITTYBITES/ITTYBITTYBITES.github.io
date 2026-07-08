@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400" fill="none" role="img" aria-labelledby="title4tswa7 descbgoklr">
+  <title id="title4tswa7">Society &amp; Mind collection thumbnail</title>
+  <desc id="descbgoklr">Conversation, networks, relationships, and shifting perspective. Collection thumbnail artwork.</desc>
+  
+  
+    <rect width="600" height="400" fill="#FBF1F6"/>
+    <rect x="12" y="12" width="576" height="376" rx="16" fill="#EFD9E5" opacity="0.34"/>
+    
+        <rect x="102.39999999999999" y="56.68571428571428" width="395.2" height="228.8" rx="19.314285714285717" fill="#ffffff" stroke="#D38DAE" stroke-width="2.5" opacity="0.78"/>
+        <circle cx="172.22857142857143" cy="119.08571428571429" r="13.371428571428572" fill="#D38DAE" stroke="none" stroke-width="0" />
+        <circle cx="402.51428571428573" cy="113.14285714285714" r="13.371428571428572" fill="#5B83C8" stroke="none" stroke-width="0" />
+        <circle cx="297.02857142857147" cy="229.02857142857144" r="13.371428571428572" fill="#8A3E67" stroke="none" stroke-width="0" />
+        <path d="M 185.6 119.08571428571429 C 239.0857142857143 101.25714285714287 259.88571428571424 142.85714285714286 295.54285714285714 215.65714285714287" stroke="#8A3E67" stroke-width="5.942857142857143" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.8"/>
+        <path d="M 389.14285714285717 113.14285714285714 C 353.48571428571427 133.94285714285715 331.2 163.65714285714287 308.9142857142857 215.65714285714287" stroke="#5B83C8" stroke-width="5.942857142857143" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.7"/>
+        <path d="M 196 113.14285714285714 C 245.02857142857144 84.91428571428571 325.25714285714287 86.4 377.25714285714287 111.65714285714286" stroke="#D38DAE" stroke-width="2.9714285714285715" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M 135.0857142857143 78.97142857142858 h 81.71428571428572 l 17.82857142857143 17.82857142857143 h -81.71428571428572 z" stroke="#8A3E67" stroke-width="1.4857142857142858" stroke-linecap="round" stroke-linejoin="round" fill="#EFD9E5" opacity="0.7"/>
+        <path d="M 353.48571428571427 168.11428571428573 h 75.77142857142857 l 13.371428571428572 13.371428571428572 h -75.77142857142857 z" stroke="#5B83C8" stroke-width="1.4857142857142858" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff" opacity="0.72"/>
+      
+    <g transform="translate(282.4 355) scale(0.14666666666666667)" opacity="0.5">
+        <circle cx="60" cy="70" r="8" fill="#D38DAE" stroke="none" stroke-width="0" opacity="0.65"/>
+        <circle cx="180" cy="60" r="8" fill="#5B83C8" stroke="none" stroke-width="0" opacity="0.65"/>
+        <circle cx="120" cy="170" r="8" fill="#8A3E67" stroke="none" stroke-width="0" opacity="0.65"/>
+        <path d="M68 70 C90 60 110 70 120 90 C130 110 145 120 172 120" stroke="#8A3E67" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.4"/>
+        <path d="M72 80 C84 120 94 134 114 162" stroke="#5B83C8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.45"/>
+        <path d="M170 68 C152 88 144 110 132 164" stroke="#D38DAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.45"/>
+        <path d="M24 26 h46 l12 12 h-46 z" stroke="#8A3E67" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="#EFD9E5" opacity="0.7"/>
+      </g>
+    <line x1="24" y1="355" x2="576" y2="355" stroke="#D38DAE" stroke-width="1" opacity="0.35"/>
+    <g transform="translate(30 342) scale(0.4375)">
+      <rect width="64" height="64" rx="16" fill="#FBF1F6"/>
+      
+        <circle cx="18" cy="22" r="7" fill="#D38DAE" stroke="none" stroke-width="0" />
+        <circle cx="46" cy="22" r="7" fill="#5B83C8" stroke="none" stroke-width="0" />
+        <circle cx="32" cy="42" r="7" fill="#8A3E67" stroke="none" stroke-width="0" />
+        <path d="M25 22 L39 22 M23 27 L29 36 M41 27 L35 36" stroke="#4A2138" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M12 14 h10 l4 4 h-10 z" stroke="#8A3E67" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="#FBF1F6" />
+      
+    </g>
+  
+</svg>
