@@ -1,0 +1,19 @@
+{
+  "id": "watershed",
+  "title": "Watershed",
+  "description": "Every drop of rain finds its way downhill. Trace water through a landscape and see how every action upstream shapes what arrives at the river mouth.",
+  "summary": "Follow water from mountain to sea. Discover how land use, weather, and decisions ripple downstream.",
+  "category": "reflection",
+  "module": "watershed.ts",
+  "tags": ["watershed", "water", "systems", "consequences"],
+  "searchKeywords": ["watershed", "water cycle", "river", "downstream", "landscape"],
+  "estimatedDuration": "6-10 min",
+  "returnValue": "Different scenarios reveal new connections between upstream actions and downstream consequences.",
+  "collection": "nature",
+  "story": "the-living-web",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

@@ -22,7 +22,7 @@ export function renderHome(): HTMLElement {
     class: 'search-input home-search',
     type: 'search',
     placeholder: 'Search experiences, collections, stories…',
-    'aria-label': 'Search the platform',
+    'aria-label': 'Search ITTYBITTYBITES',
   });
 
   const searchResults = h('div', { class: 'search-results' }, []);
@@ -85,11 +85,11 @@ export function renderHome(): HTMLElement {
     ]);
   } else {
     hero = h('section', { class: 'hero' }, [
-      h('h1', {}, ['The Experience Platform']),
-      h('p', { class: 'lead' }, ['We build things worth returning to.']),
+      h('h1', {}, ['ITTYBITTYBITES']),
+      h('p', { class: 'lead' }, ['Interactive collections worth returning to.']),
       h('p', {}, [
         'Small, meaningful interactions create lasting experiences. ',
-        'Experiences create Collections. Collections create Discovery. Discovery creates the Platform.'
+        'Explore collections across science, nature, history, and more.'
       ]),
       h('div', { class: 'search-wrapper' }, [searchInput, searchResults]),
       h('div', { class: 'cta-row' }, [

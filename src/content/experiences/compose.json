@@ -1,0 +1,19 @@
+{
+  "id": "compose",
+  "title": "Compose",
+  "description": "Elements alone are not a work. Arrangement is what creates meaning. Place, order, and relationship transform raw materials into something coherent.",
+  "summary": "Arrange given elements into a coherent whole. Discover how placement, order, and relationship create meaning.",
+  "category": "interactive",
+  "module": "compose.ts",
+  "tags": ["composition", "arrangement", "order", "structure"],
+  "searchKeywords": ["compose", "arrange", "structure", "order", "organize"],
+  "estimatedDuration": "6-10 min",
+  "returnValue": "New element sets test your eye for arrangement. Return and discover how different orders create different meanings.",
+  "collection": "creativity",
+  "story": "the-making-process",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "nature",
+  "title": "Nature",
+  "description": "Nature is not scenery. It is systems, cycles, relationships, and patterns playing out across time. These experiences teach ecological thinking through observation, connection, and consequence.",
+  "summary": "Five experiences that teach ecological thinking through ecosystems, seasons, adaptation, symbiosis, and watersheds.",
+  "experiences": ["ecosystem", "seasons", "adaptation", "symbiosis", "watershed"],
+  "tags": ["nature", "ecology", "systems", "observation", "environment"],
+  "searchKeywords": ["nature", "ecology", "ecosystem", "seasons", "adaptation", "symbiosis", "watershed", "environment"],
+  "estimatedDuration": "30-50 min",
+  "story": "the-living-web",
+  "version": "1.0.0"
+}

@@ -1,0 +1,19 @@
+{
+  "id": "symbiosis",
+  "title": "Symbiosis",
+  "description": "Two species. One relationship. Not all partnerships are equal. Discover the spectrum from mutual benefit to quiet exploitation.",
+  "summary": "Match organisms with their partners and classify the relationship: mutualism, commensalism, or parasitism.",
+  "category": "interactive",
+  "module": "symbiosis.ts",
+  "tags": ["symbiosis", "relationships", "mutualism", "parasitism"],
+  "searchKeywords": ["symbiosis", "mutualism", "commensalism", "parasitism", "partnership"],
+  "estimatedDuration": "6-10 min",
+  "returnValue": "New organism pairs challenge your ability to classify relationships. Accuracy improves with practice.",
+  "collection": "nature",
+  "story": "the-living-web",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

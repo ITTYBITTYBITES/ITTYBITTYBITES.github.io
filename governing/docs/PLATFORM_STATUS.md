@@ -1,8 +1,8 @@
 # Platform Status
 
 **Version:** 1.0.0  
-**Status:** Platform Foundation Complete  
-**Date:** 2026-07-07  
+**Status:** Release 0.5 Complete — Creativity Collection + Branding  
+**Date:** 2026-07-08  
 **Repository:** https://github.com/ITTYBITTYBITES/ITTYBITTYBITES.github.io  
 
 ---
@@ -36,6 +36,8 @@
 | Foundations | 5 | The Foundations Journey | Complete |
 | History | 5 | Echoes of Evidence | Complete |
 | Science | 5 | Ways of Knowing | Complete |
+| Nature | 5 | The Living Web | Complete |
+| Creativity | 5 | The Making Process | Complete |
 
 ### Platform Shell
 - Header navigation (Home, Experiences, Collections, Library)
@@ -50,7 +52,7 @@
 ## What Is Intentionally Deferred
 
 - Creator tools / scaffolding scripts
-- Additional Collections (Nature, Creativity, Engineering, Mathematics)
+- Additional Collections (Engineering, Mathematics, Society & Mind)
 - User testing and feedback integration
 - Analytics dashboard or reporting
 - Cloud sync or cross-device progress
@@ -62,9 +64,10 @@
 
 ## Current Release Goals
 
-**Release 0.3** — Foundations + History + Science (current)
-- Three complete Collections
+**Release 0.5** — Foundations + History + Science + Nature + Creativity (current)
+- Five complete Collections
 - Full discovery and personalization
+- Cohesive ITTYBITTYBITES branding
 - Production-ready, deployable
 
 ---
@@ -73,10 +76,9 @@
 
 | Release | Content | Status |
 |---------|---------|--------|
-| 0.4 | Nature Collection | Not started |
-| 0.5 | Creativity Collection | Not started |
 | 0.6 | Engineering Collection | Not started |
 | 0.7 | Mathematics Collection | Not started |
+| 0.8 | Society & Mind Collection | Not started |
 
 ---
 

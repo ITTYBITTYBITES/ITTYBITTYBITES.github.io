@@ -13,7 +13,7 @@ export async function registerPWA(): Promise<void> {
       onOfflineReady() {
         // Future UI: surface offline-ready notice.
         // eslint-disable-next-line no-console
-        console.log('Platform is ready for offline use.');
+        console.log('ITTYBITTYBITES is ready for offline use.');
       },
       onNeedRefresh() {
         // Future UI: replace with a non-blocking toast.

@@ -1,0 +1,19 @@
+{
+  "id": "iterate",
+  "title": "Iterate",
+  "description": "The first version is never the final version. Refinement is where craft begins. Start rough, improve through rounds, and watch the work reveal itself.",
+  "summary": "Begin with something rough. Refine through repeated cycles. Watch each pass transform the work.",
+  "category": "reflection",
+  "module": "iterate.ts",
+  "tags": ["iteration", "refinement", "craft", "improvement"],
+  "searchKeywords": ["iterate", "refine", "improve", "revise", "craft"],
+  "estimatedDuration": "6-10 min",
+  "returnValue": "New starting points challenge your ability to see what needs changing. Return and practice the art of revision.",
+  "collection": "creativity",
+  "story": "the-making-process",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

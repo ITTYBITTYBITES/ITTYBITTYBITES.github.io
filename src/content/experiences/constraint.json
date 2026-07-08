@@ -1,0 +1,19 @@
+{
+  "id": "constraint",
+  "title": "Constraint",
+  "description": "Limits do not kill creativity. They focus it. Build something meaningful when most options are closed and discover what the restriction reveals.",
+  "summary": "Create within strict limitations. Discover how rules become the engine of invention.",
+  "category": "game",
+  "module": "constraint.ts",
+  "tags": ["constraint", "limits", "rules", "invention"],
+  "searchKeywords": ["constraint", "limit", "restriction", "rules", "challenge"],
+  "estimatedDuration": "7-12 min",
+  "returnValue": "New constraints test your ability to work within limits. Each round teaches something different about the relationship between freedom and form.",
+  "collection": "creativity",
+  "story": "the-making-process",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}
