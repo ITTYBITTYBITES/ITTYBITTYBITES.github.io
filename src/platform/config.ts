@@ -28,6 +28,6 @@ export const config: PlatformConfig = {
   gaId: 'G-A4541307705',
   baseUrl: import.meta.env.BASE_URL ?? '/',
   isProduction: import.meta.env.PROD ?? false,
-  siteTitle: 'Platform',
+  siteTitle: 'ITTYBITTYBITES',
   disableAnalytics: shouldDisableAnalytics() || !import.meta.env.PROD,
 };

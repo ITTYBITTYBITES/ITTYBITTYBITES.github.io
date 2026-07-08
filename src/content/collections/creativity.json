@@ -1,0 +1,12 @@
+{
+  "id": "creativity",
+  "title": "Creativity",
+  "description": "Creativity is not a talent. It is a set of practices — branching, constraining, combining, arranging, refining. These experiences teach creative thinking by making you do it.",
+  "summary": "Five experiences that teach creative thinking through divergence, constraint, remix, composition, and iteration.",
+  "experiences": ["diverge", "constraint", "remix", "compose", "iterate"],
+  "tags": ["creativity", "thinking", "innovation", "process", "making"],
+  "searchKeywords": ["creativity", "creative", "divergent", "constraint", "remix", "compose", "iterate", "innovation"],
+  "estimatedDuration": "30-50 min",
+  "story": "the-making-process",
+  "version": "1.0.0"
+}

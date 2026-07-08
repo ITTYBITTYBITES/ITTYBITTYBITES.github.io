@@ -1,5 +1,18 @@
 [
   {
+    "id": "adaptation",
+    "type": "experience",
+    "title": "Adaptation",
+    "description": "The environment shifts. Creatures must shift with it. Select traits for each generation and watch which lineages survive and which vanish.",
+    "tags": [
+      "adaptation",
+      "evolution",
+      "survival",
+      "traits"
+    ],
+    "collection": "nature"
+  },
+  {
     "id": "chain-reaction",
     "type": "experience",
     "title": "Chain Reaction",
@@ -26,6 +39,32 @@
     "collection": "history"
   },
   {
+    "id": "compose",
+    "type": "experience",
+    "title": "Compose",
+    "description": "Elements alone are not a work. Arrangement is what creates meaning. Place, order, and relationship transform raw materials into something coherent.",
+    "tags": [
+      "composition",
+      "arrangement",
+      "order",
+      "structure"
+    ],
+    "collection": "creativity"
+  },
+  {
+    "id": "constraint",
+    "type": "experience",
+    "title": "Constraint",
+    "description": "Limits do not kill creativity. They focus it. Build something meaningful when most options are closed and discover what the restriction reveals.",
+    "tags": [
+      "constraint",
+      "limits",
+      "rules",
+      "invention"
+    ],
+    "collection": "creativity"
+  },
+  {
     "id": "controlled",
     "type": "experience",
     "title": "Controlled",
@@ -37,6 +76,19 @@
       "experiment"
     ],
     "collection": "science"
+  },
+  {
+    "id": "diverge",
+    "type": "experience",
+    "title": "Diverge",
+    "description": "Start from one point. Explore many directions. The ability to generate possibilities is the first act of creation — and the one most people skip.",
+    "tags": [
+      "divergent",
+      "brainstorming",
+      "possibilities",
+      "thinking"
+    ],
+    "collection": "creativity"
   },
   {
     "id": "dueling-accounts",
@@ -65,6 +117,19 @@
     "collection": "foundations"
   },
   {
+    "id": "ecosystem",
+    "type": "experience",
+    "title": "Ecosystem",
+    "description": "Every species depends on others. Add a predator, remove a plant, and watch the ripple effects spread through the entire web of life.",
+    "tags": [
+      "ecosystem",
+      "food-web",
+      "interdependence",
+      "ecology"
+    ],
+    "collection": "nature"
+  },
+  {
     "id": "hypothesis",
     "type": "experience",
     "title": "Hypothesis",
@@ -76,6 +141,19 @@
       "evidence"
     ],
     "collection": "science"
+  },
+  {
+    "id": "iterate",
+    "type": "experience",
+    "title": "Iterate",
+    "description": "The first version is never the final version. Refinement is where craft begins. Start rough, improve through rounds, and watch the work reveal itself.",
+    "tags": [
+      "iteration",
+      "refinement",
+      "craft",
+      "improvement"
+    ],
+    "collection": "creativity"
   },
   {
     "id": "memory-sequence",
@@ -116,6 +194,19 @@
     "collection": "foundations"
   },
   {
+    "id": "remix",
+    "type": "experience",
+    "title": "Remix",
+    "description": "Nothing comes from nothing. Every new thing is a new combination of old things. Learn to see the raw material around you and rearrange it into something unexpected.",
+    "tags": [
+      "remix",
+      "combination",
+      "recombination",
+      "innovation"
+    ],
+    "collection": "creativity"
+  },
+  {
     "id": "scale",
     "type": "experience",
     "title": "Scale",
@@ -128,6 +219,19 @@
       "orders"
     ],
     "collection": "science"
+  },
+  {
+    "id": "seasons",
+    "type": "experience",
+    "title": "Seasons",
+    "description": "A single landscape transforms through the year. What changes? What stays? Train your eye to notice the rhythms that most people walk past.",
+    "tags": [
+      "seasons",
+      "cycles",
+      "observation",
+      "patterns"
+    ],
+    "collection": "nature"
   },
   {
     "id": "signal-detection",
@@ -157,6 +261,19 @@
     "collection": "science"
   },
   {
+    "id": "symbiosis",
+    "type": "experience",
+    "title": "Symbiosis",
+    "description": "Two species. One relationship. Not all partnerships are equal. Discover the spectrum from mutual benefit to quiet exploitation.",
+    "tags": [
+      "symbiosis",
+      "relationships",
+      "mutualism",
+      "parasitism"
+    ],
+    "collection": "nature"
+  },
+  {
     "id": "uncertainty",
     "type": "experience",
     "title": "Uncertainty",
@@ -184,6 +301,19 @@
     "collection": "history"
   },
   {
+    "id": "watershed",
+    "type": "experience",
+    "title": "Watershed",
+    "description": "Every drop of rain finds its way downhill. Trace water through a landscape and see how every action upstream shapes what arrives at the river mouth.",
+    "tags": [
+      "watershed",
+      "water",
+      "systems",
+      "consequences"
+    ],
+    "collection": "nature"
+  },
+  {
     "id": "witness-accounts",
     "type": "experience",
     "title": "Witness Accounts",
@@ -195,6 +325,19 @@
       "empathy"
     ],
     "collection": "history"
+  },
+  {
+    "id": "creativity",
+    "type": "collection",
+    "title": "Creativity",
+    "description": "Creativity is not a talent. It is a set of practices — branching, constraining, combining, arranging, refining. These experiences teach creative thinking by making you do it.",
+    "tags": [
+      "creativity",
+      "thinking",
+      "innovation",
+      "process",
+      "making"
+    ]
   },
   {
     "id": "foundations",
@@ -217,6 +360,19 @@
       "evidence",
       "interpretation",
       "reasoning"
+    ]
+  },
+  {
+    "id": "nature",
+    "type": "collection",
+    "title": "Nature",
+    "description": "Nature is not scenery. It is systems, cycles, relationships, and patterns playing out across time. These experiences teach ecological thinking through observation, connection, and consequence.",
+    "tags": [
+      "nature",
+      "ecology",
+      "systems",
+      "observation",
+      "environment"
     ]
   },
   {
@@ -249,6 +405,18 @@
     "type": "story",
     "title": "The Foundations Journey",
     "description": "A guided path through five core experiences that build upon each other — from listening to seeing."
+  },
+  {
+    "id": "the-living-web",
+    "type": "story",
+    "title": "The Living Web",
+    "description": "Nature does not present itself as a lesson. It simply exists — full of patterns, relationships, and quiet rules that anyone can learn to read. This collection walks the path from observation to systems thinking."
+  },
+  {
+    "id": "the-making-process",
+    "type": "story",
+    "title": "The Making Process",
+    "description": "Creativity is not inspiration striking from nowhere. It is a process — branching, constraining, combining, arranging, refining. These experiences walk the path from blank page to finished work."
   },
   {
     "id": "ways-of-knowing",

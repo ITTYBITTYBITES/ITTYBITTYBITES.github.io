@@ -5,7 +5,7 @@ import path from 'path';
 
 const ROOT = path.resolve('.');
 
-describe('Release 0.3 Regression Suite', () => {
+describe('Release 0.5 Regression Suite', () => {
   // Schema validation
   it('experience schema validates required fields', () => {
     const schema = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/content/schemas/experience.schema.json'), 'utf-8'));
@@ -37,7 +37,7 @@ describe('Release 0.3 Regression Suite', () => {
     const reg = JSON.parse(fs.readFileSync(regPath, 'utf-8'));
     assert.ok(reg.version);
     assert.ok(Array.isArray(reg.experiences));
-    assert.ok(reg.experiences.length >= 15, 'Platform has 15+ experiences across 3 collections');
+    assert.ok(reg.experiences.length >= 25, 'Platform has 25+ experiences across 5 collections');
     assert.ok(reg.experiences.every(e => e.id && e.title && e.module));
   });
 
@@ -60,9 +60,13 @@ describe('Release 0.3 Regression Suite', () => {
     assert.ok(rel.collectionsToExperiences.foundations);
     assert.ok(rel.collectionsToExperiences.history);
     assert.ok(rel.collectionsToExperiences.science);
+    assert.ok(rel.collectionsToExperiences.nature);
+    assert.ok(rel.collectionsToExperiences.creativity);
     assert.ok(rel.experiencesToCollections['echo-chamber']);
     assert.ok(rel.experiencesToCollections['dueling-accounts']);
     assert.ok(rel.experiencesToCollections['hypothesis']);
+    assert.ok(rel.experiencesToCollections['ecosystem']);
+    assert.ok(rel.experiencesToCollections['diverge']);
   });
 
   // Lazy-loading & route generation
@@ -96,6 +100,18 @@ describe('Release 0.3 Regression Suite', () => {
     assert.ok(expIds.has('signal-in-data'));
     assert.ok(expIds.has('scale'));
     assert.ok(expIds.has('uncertainty'));
+    // Nature
+    assert.ok(expIds.has('ecosystem'));
+    assert.ok(expIds.has('seasons'));
+    assert.ok(expIds.has('adaptation'));
+    assert.ok(expIds.has('symbiosis'));
+    assert.ok(expIds.has('watershed'));
+    // Creativity
+    assert.ok(expIds.has('diverge'));
+    assert.ok(expIds.has('constraint'));
+    assert.ok(expIds.has('remix'));
+    assert.ok(expIds.has('compose'));
+    assert.ok(expIds.has('iterate'));
 
     reg.experiences.forEach(e => {
       if (e.collection) {
@@ -137,12 +153,52 @@ describe('Release 0.3 Regression Suite', () => {
     assert.ok(science.estimatedDuration, 'science has estimatedDuration');
   });
 
+  // Nature collection completeness
+  it('nature collection contains 5 experiences', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const nature = reg.collections.find(c => c.id === 'nature');
+    assert.ok(nature, 'nature collection exists');
+    assert.strictEqual(nature.experiences.length, 5);
+    assert.ok(nature.story, 'nature has a story');
+    assert.ok(nature.estimatedDuration, 'nature has estimatedDuration');
+  });
+
+  // Creativity collection completeness
+  it('creativity collection contains 5 experiences', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const creativity = reg.collections.find(c => c.id === 'creativity');
+    assert.ok(creativity, 'creativity collection exists');
+    assert.strictEqual(creativity.experiences.length, 5);
+    assert.ok(creativity.story, 'creativity has a story');
+    assert.ok(creativity.estimatedDuration, 'creativity has estimatedDuration');
+  });
+
   // Story segments exist
   it('ways of knowing story has segments', () => {
     const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
     const story = reg.stories.find(s => s.id === 'ways-of-knowing');
     assert.ok(story, 'ways-of-knowing story exists');
     assert.ok(story.segments && story.segments.length >= 6, 'story has segments for each phase');
+  });
+
+  // The Living Web story segments
+  it('the living web story has segments', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const story = reg.stories.find(s => s.id === 'the-living-web');
+    assert.ok(story, 'the-living-web story exists');
+    assert.ok(story.segments && story.segments.length >= 6, 'story has segments for each phase');
+    assert.ok(story.relatedExperiences, 'story has relatedExperiences');
+    assert.strictEqual(story.relatedExperiences.length, 5);
+  });
+
+  // The Making Process story segments
+  it('the making process story has segments', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const story = reg.stories.find(s => s.id === 'the-making-process');
+    assert.ok(story, 'the-making-process story exists');
+    assert.ok(story.segments && story.segments.length >= 6, 'story has segments for each phase');
+    assert.ok(story.relatedExperiences, 'story has relatedExperiences');
+    assert.strictEqual(story.relatedExperiences.length, 5);
   });
 
   // Privacy boundary verification
@@ -161,6 +217,28 @@ describe('Release 0.3 Regression Suite', () => {
     assert.strictEqual(regExp.title, srcExp.title);
     assert.strictEqual(regExp.summary, srcExp.summary);
     assert.ok(regExp.accessibility);
+  });
+
+  // Nature content consistency
+  it('nature content is consistent with source', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const srcExp = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/content/experiences/ecosystem.json'), 'utf-8'));
+    const regExp = reg.experiences.find(e => e.id === 'ecosystem');
+    assert.strictEqual(regExp.title, srcExp.title);
+    assert.strictEqual(regExp.summary, srcExp.summary);
+    assert.ok(regExp.accessibility);
+    assert.strictEqual(regExp.collection, 'nature');
+  });
+
+  // Creativity content consistency
+  it('creativity content is consistent with source', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const srcExp = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/content/experiences/diverge.json'), 'utf-8'));
+    const regExp = reg.experiences.find(e => e.id === 'diverge');
+    assert.strictEqual(regExp.title, srcExp.title);
+    assert.strictEqual(regExp.summary, srcExp.summary);
+    assert.ok(regExp.accessibility);
+    assert.strictEqual(regExp.collection, 'creativity');
   });
 
   // Performance reports
@@ -287,8 +365,8 @@ describe('Release 0.3 Regression Suite', () => {
     assert.ok(header.includes("/library"));
   });
 
-  // === SCALABILITY TEST ===
-  // Third collection drops in with zero platform changes
+  // === SCALABILITY TESTS ===
+  // Collections drop in with zero platform changes
 
   it('science collection experiences have unique interaction patterns', () => {
     const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
@@ -299,7 +377,25 @@ describe('Release 0.3 Regression Suite', () => {
     assert.ok(categories.size >= 2, 'Science experiences span multiple categories');
   });
 
-  it('no platform files were modified solely for third collection', () => {
+  it('nature collection experiences have unique interaction patterns', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const natureExps = reg.experiences.filter(e => e.collection === 'nature');
+    assert.strictEqual(natureExps.length, 5);
+
+    const categories = new Set(natureExps.map(e => e.category));
+    assert.ok(categories.size >= 2, 'Nature experiences span multiple categories');
+  });
+
+  it('creativity collection experiences have unique interaction patterns', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const creativityExps = reg.experiences.filter(e => e.collection === 'creativity');
+    assert.strictEqual(creativityExps.length, 5);
+
+    const categories = new Set(creativityExps.map(e => e.category));
+    assert.ok(categories.size >= 2, 'Creativity experiences span multiple categories');
+  });
+
+  it('no platform files were modified solely for collections', () => {
     const platformFiles = [
       'src/platform/registry.ts',
       'src/platform/router.ts',
@@ -336,6 +432,36 @@ describe('Release 0.3 Regression Suite', () => {
     });
   });
 
+  it('all nature experience modules export valid ExperienceModule', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const natureExps = reg.experiences.filter(e => e.collection === 'nature');
+    natureExps.forEach(exp => {
+      const modPath = path.join(ROOT, 'src/experiences', exp.module);
+      assert.ok(fs.existsSync(modPath), `Nature module exists: ${exp.module}`);
+      const content = fs.readFileSync(modPath, 'utf-8');
+      assert.ok(content.includes('export default'), `${exp.module} exports a default`);
+      assert.ok(content.includes('mount'), `${exp.module} has mount function`);
+      assert.ok(content.includes('ExperienceModule'), `${exp.module} uses ExperienceModule type`);
+      assert.ok(content.includes('ExperienceContext'), `${exp.module} uses ExperienceContext type`);
+      assert.ok(content.includes('events'), `${exp.module} emits platform events`);
+    });
+  });
+
+  it('all creativity experience modules export valid ExperienceModule', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const creativityExps = reg.experiences.filter(e => e.collection === 'creativity');
+    creativityExps.forEach(exp => {
+      const modPath = path.join(ROOT, 'src/experiences', exp.module);
+      assert.ok(fs.existsSync(modPath), `Creativity module exists: ${exp.module}`);
+      const content = fs.readFileSync(modPath, 'utf-8');
+      assert.ok(content.includes('export default'), `${exp.module} exports a default`);
+      assert.ok(content.includes('mount'), `${exp.module} has mount function`);
+      assert.ok(content.includes('ExperienceModule'), `${exp.module} uses ExperienceModule type`);
+      assert.ok(content.includes('ExperienceContext'), `${exp.module} uses ExperienceContext type`);
+      assert.ok(content.includes('events'), `${exp.module} emits platform events`);
+    });
+  });
+
   it('science collection story references all its experiences', () => {
     const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
     const story = reg.stories.find(s => s.id === 'ways-of-knowing');
@@ -346,5 +472,101 @@ describe('Release 0.3 Regression Suite', () => {
     science.experiences.forEach(expId => {
       assert.ok(story.relatedExperiences.includes(expId), `story references ${expId}`);
     });
+  });
+
+  it('nature collection story references all its experiences', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const story = reg.stories.find(s => s.id === 'the-living-web');
+    assert.ok(story, 'the-living-web story exists');
+    assert.ok(story.relatedExperiences, 'story has relatedExperiences');
+    assert.strictEqual(story.relatedExperiences.length, 5);
+    const nature = reg.collections.find(c => c.id === 'nature');
+    nature.experiences.forEach(expId => {
+      assert.ok(story.relatedExperiences.includes(expId), `story references ${expId}`);
+    });
+  });
+
+  it('nature collection story segments cover all experiences', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const story = reg.stories.find(s => s.id === 'the-living-web');
+    assert.ok(story, 'the-living-web story exists');
+    const triggers = story.segments.map(s => s.trigger);
+    assert.ok(triggers.includes('collection_start'), 'story has collection_start trigger');
+    assert.ok(triggers.includes('after_ecosystem'), 'story has after_ecosystem trigger');
+    assert.ok(triggers.includes('after_seasons'), 'story has after_seasons trigger');
+    assert.ok(triggers.includes('after_adaptation'), 'story has after_adaptation trigger');
+    assert.ok(triggers.includes('after_symbiosis'), 'story has after_symbiosis trigger');
+    assert.ok(triggers.includes('collection_complete'), 'story has collection_complete trigger');
+  });
+
+  it('creativity collection story references all its experiences', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const story = reg.stories.find(s => s.id === 'the-making-process');
+    assert.ok(story, 'the-making-process story exists');
+    assert.ok(story.relatedExperiences, 'story has relatedExperiences');
+    assert.strictEqual(story.relatedExperiences.length, 5);
+    const creativity = reg.collections.find(c => c.id === 'creativity');
+    creativity.experiences.forEach(expId => {
+      assert.ok(story.relatedExperiences.includes(expId), `story references ${expId}`);
+    });
+  });
+
+  it('creativity collection story segments cover all experiences', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    const story = reg.stories.find(s => s.id === 'the-making-process');
+    assert.ok(story, 'the-making-process story exists');
+    const triggers = story.segments.map(s => s.trigger);
+    assert.ok(triggers.includes('collection_start'), 'story has collection_start trigger');
+    assert.ok(triggers.includes('after_diverge'), 'story has after_diverge trigger');
+    assert.ok(triggers.includes('after_constraint'), 'story has after_constraint trigger');
+    assert.ok(triggers.includes('after_remix'), 'story has after_remix trigger');
+    assert.ok(triggers.includes('after_compose'), 'story has after_compose trigger');
+    assert.ok(triggers.includes('collection_complete'), 'story has collection_complete trigger');
+  });
+
+  // Fifth collection scalability — platform unchanged
+  it('platform scaled to 5 collections without modification', () => {
+    const reg = JSON.parse(fs.readFileSync(path.join(ROOT, 'src/generated/registry.json'), 'utf-8'));
+    assert.ok(reg.collections.length >= 5, 'Registry has 5+ collections');
+    assert.ok(reg.experiences.length >= 25, 'Registry has 25+ experiences');
+    assert.ok(reg.stories.length >= 6, 'Registry has 6+ stories');
+  });
+
+  // Branding consistency tests
+  it('branding uses ITTYBITTYBITES consistently', () => {
+    const headerPath = path.join(ROOT, 'src/components/app-header.ts');
+    const header = fs.readFileSync(headerPath, 'utf-8');
+    assert.ok(header.includes('ITTYBITTYBITES'), 'header contains brand name');
+
+    const footerPath = path.join(ROOT, 'src/components/app-footer.ts');
+    const footer = fs.readFileSync(footerPath, 'utf-8');
+    assert.ok(footer.includes('ITTYBITTYBITES'), 'footer contains brand name');
+
+    const configPath = path.join(ROOT, 'src/platform/config.ts');
+    const config = fs.readFileSync(configPath, 'utf-8');
+    assert.ok(config.includes("siteTitle: 'ITTYBITTYBITES'"), 'config has correct site title');
+  });
+
+  it('homepage uses branded messaging', () => {
+    const homePath = path.join(ROOT, 'src/pages/home.ts');
+    const home = fs.readFileSync(homePath, 'utf-8');
+    assert.ok(home.includes('ITTYBITTYBITES'), 'homepage hero has brand name');
+    assert.ok(home.includes('Interactive collections worth returning to'), 'homepage has branded lead text');
+    assert.ok(!home.includes('The Experience Platform'), 'homepage does not use generic platform name');
+  });
+
+  it('PWA manifest uses branded name', () => {
+    const vitePath = path.join(ROOT, 'vite.config.ts');
+    const vite = fs.readFileSync(vitePath, 'utf-8');
+    assert.ok(vite.includes("name: 'ITTYBITTYBITES'"), 'PWA manifest has branded name');
+    assert.ok(vite.includes("short_name: 'ITTYBITTYBITES'"), 'PWA manifest has branded short name');
+    assert.ok(!vite.includes('experiments'), 'PWA manifest does not reference experiments');
+  });
+
+  it('index.html uses branded title', () => {
+    const htmlPath = path.join(ROOT, 'index.html');
+    const html = fs.readFileSync(htmlPath, 'utf-8');
+    assert.ok(html.includes('<title>ITTYBITTYBITES</title>'), 'HTML title is branded');
+    assert.ok(html.includes('ITTYBITTYBITES'), 'meta description contains brand name');
   });
 });

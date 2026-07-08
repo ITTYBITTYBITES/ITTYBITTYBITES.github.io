@@ -42,7 +42,7 @@ export class AppHeader extends HTMLElement {
 
     const nav = h('nav', { class: 'site-nav', 'aria-label': 'Primary' }, [toggle, navList]);
 
-    const home = h('a', { class: 'brand', href: '/' }, ['Platform']);
+    const home = h('a', { class: 'brand', href: '/' }, ['ITTYBITTYBITES']);
 
     this.appendChild(h('header', { class: 'site-header' }, [
       h('div', { class: 'container header-inner' }, [home, nav]),

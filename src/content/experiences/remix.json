@@ -1,0 +1,19 @@
+{
+  "id": "remix",
+  "title": "Remix",
+  "description": "Nothing comes from nothing. Every new thing is a new combination of old things. Learn to see the raw material around you and rearrange it into something unexpected.",
+  "summary": "Combine existing elements in novel ways. Discover that innovation often means recombination, not invention from scratch.",
+  "category": "interactive",
+  "module": "remix.ts",
+  "tags": ["remix", "combination", "recombination", "innovation"],
+  "searchKeywords": ["remix", "combine", "recombine", "innovate", "mashup"],
+  "estimatedDuration": "6-10 min",
+  "returnValue": "New element sets challenge your ability to see unexpected combinations. Return and find connections you missed before.",
+  "collection": "creativity",
+  "story": "the-making-process",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

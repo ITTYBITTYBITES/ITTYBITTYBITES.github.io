@@ -1,0 +1,19 @@
+{
+  "id": "diverge",
+  "title": "Diverge",
+  "description": "Start from one point. Explore many directions. The ability to generate possibilities is the first act of creation — and the one most people skip.",
+  "summary": "Given a seed, branch in as many directions as possible. Discover how thinking expands when you allow it.",
+  "category": "reflection",
+  "module": "diverge.ts",
+  "tags": ["divergent", "brainstorming", "possibilities", "thinking"],
+  "searchKeywords": ["diverge", "branch", "brainstorm", "possibilities", "ideas"],
+  "estimatedDuration": "5-10 min",
+  "returnValue": "Different seeds challenge your ability to branch. Return and explore paths you might not have considered.",
+  "collection": "creativity",
+  "story": "the-making-process",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

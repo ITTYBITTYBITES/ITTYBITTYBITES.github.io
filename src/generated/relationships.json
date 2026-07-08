@@ -1,5 +1,12 @@
 {
   "collectionsToExperiences": {
+    "creativity": [
+      "diverge",
+      "constraint",
+      "remix",
+      "compose",
+      "iterate"
+    ],
     "foundations": [
       "echo-chamber",
       "signal-detection",
@@ -14,6 +21,13 @@
       "chain-reaction",
       "witness-accounts"
     ],
+    "nature": [
+      "ecosystem",
+      "seasons",
+      "adaptation",
+      "symbiosis",
+      "watershed"
+    ],
     "science": [
       "hypothesis",
       "controlled",
@@ -23,6 +37,21 @@
     ]
   },
   "experiencesToCollections": {
+    "diverge": [
+      "creativity"
+    ],
+    "constraint": [
+      "creativity"
+    ],
+    "remix": [
+      "creativity"
+    ],
+    "compose": [
+      "creativity"
+    ],
+    "iterate": [
+      "creativity"
+    ],
     "echo-chamber": [
       "foundations"
     ],
@@ -52,6 +81,21 @@
     ],
     "witness-accounts": [
       "history"
+    ],
+    "ecosystem": [
+      "nature"
+    ],
+    "seasons": [
+      "nature"
+    ],
+    "adaptation": [
+      "nature"
+    ],
+    "symbiosis": [
+      "nature"
+    ],
+    "watershed": [
+      "nature"
     ],
     "hypothesis": [
       "science"

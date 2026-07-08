@@ -1,5 +1,32 @@
 [
   {
+    "id": "creativity",
+    "title": "Creativity",
+    "count": 5,
+    "experiences": [
+      {
+        "id": "diverge",
+        "title": "Diverge"
+      },
+      {
+        "id": "constraint",
+        "title": "Constraint"
+      },
+      {
+        "id": "remix",
+        "title": "Remix"
+      },
+      {
+        "id": "compose",
+        "title": "Compose"
+      },
+      {
+        "id": "iterate",
+        "title": "Iterate"
+      }
+    ]
+  },
+  {
     "id": "foundations",
     "title": "Foundations",
     "count": 5,
@@ -50,6 +77,33 @@
       {
         "id": "witness-accounts",
         "title": "Witness Accounts"
+      }
+    ]
+  },
+  {
+    "id": "nature",
+    "title": "Nature",
+    "count": 5,
+    "experiences": [
+      {
+        "id": "ecosystem",
+        "title": "Ecosystem"
+      },
+      {
+        "id": "seasons",
+        "title": "Seasons"
+      },
+      {
+        "id": "adaptation",
+        "title": "Adaptation"
+      },
+      {
+        "id": "symbiosis",
+        "title": "Symbiosis"
+      },
+      {
+        "id": "watershed",
+        "title": "Watershed"
       }
     ]
   },

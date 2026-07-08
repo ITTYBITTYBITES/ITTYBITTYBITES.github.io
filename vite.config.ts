@@ -13,10 +13,10 @@ export default defineConfig({
       registerType: 'autoUpdate',
       injectRegister: 'auto',
       manifest: {
-        name: 'Creative Platform',
-        short_name: 'Platform',
+        name: 'ITTYBITTYBITES',
+        short_name: 'ITTYBITTYBITES',
         description:
-          'A modular foundation for browser games, applications, interactive experiences, utilities, experiments, documentation, and media.',
+          'Interactive collections worth returning to. Explore meaningful experiences across science, nature, history, and more.',
         theme_color: '#ffffff',
         background_color: '#ffffff',
         display: 'standalone',
