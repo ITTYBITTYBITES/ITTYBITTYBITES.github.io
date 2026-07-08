@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import fs from 'fs';
 import path from 'path';
-import { fileURLToPath } from 'url';
+import { fileURLToPath, pathToFileURL } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, '..');
@@ -36,7 +36,7 @@ function write(relPath, content) {
   fs.writeFileSync(path.join(ASSET_ROOT, relPath), content.trim() + '\n');
 }
 
-function svg({ width, height, viewBox, title, desc, defs = '', body }) {
+export function svg({ width, height, viewBox, title, desc, defs = '', body }) {
   const titleId = title ? 'title' + Math.random().toString(36).slice(2, 8) : '';
   const descId = desc ? 'desc' + Math.random().toString(36).slice(2, 8) : '';
   const labelledby = [titleId, descId].filter(Boolean).join(' ');
@@ -49,27 +49,27 @@ function svg({ width, height, viewBox, title, desc, defs = '', body }) {
 </svg>`;
 }
 
-function panel(x, y, w, h, fill, stroke, rx = 16, extra = '') {
+export function panel(x, y, w, h, fill, stroke, rx = 16, extra = '') {
   return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="${rx}" fill="${fill}" stroke="${stroke}" ${extra}/>`;
 }
 
-function line(x1, y1, x2, y2, stroke, width = 3, extra = '') {
+export function line(x1, y1, x2, y2, stroke, width = 3, extra = '') {
   return `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${stroke}" stroke-width="${width}" stroke-linecap="round" ${extra}/>`;
 }
 
-function circle(cx, cy, r, fill, stroke = 'none', width = 0, extra = '') {
+export function circle(cx, cy, r, fill, stroke = 'none', width = 0, extra = '') {
   return `<circle cx="${cx}" cy="${cy}" r="${r}" fill="${fill}" stroke="${stroke}" stroke-width="${width}" ${extra}/>`;
 }
 
-function pathEl(d, stroke, width = 3, fill = 'none', extra = '') {
+export function pathEl(d, stroke, width = 3, fill = 'none', extra = '') {
   return `<path d="${d}" stroke="${stroke}" stroke-width="${width}" stroke-linecap="round" stroke-linejoin="round" fill="${fill}" ${extra}/>`;
 }
 
-function textEl(x, y, value, fill, size = 12, weight = 600, extra = '') {
+export function textEl(x, y, value, fill, size = 12, weight = 600, extra = '') {
   return `<text x="${x}" y="${y}" fill="${fill}" font-size="${size}" font-family="system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-weight="${weight}" ${extra}>${esc(value)}</text>`;
 }
 
-function arrowPath(x1, y1, x2, y2) {
+export function arrowPath(x1, y1, x2, y2) {
   const dx = x2 - x1;
   const dy = y2 - y1;
   const len = Math.hypot(dx, dy) || 1;
@@ -84,11 +84,11 @@ function arrowPath(x1, y1, x2, y2) {
   return `M ${x1} ${y1} L ${x2} ${y2} M ${lx} ${ly} L ${x2} ${y2} L ${rx} ${ry}`;
 }
 
-function collectionVars(id) {
+export function collectionVars(id) {
   return collections[id];
 }
 
-function iconBody(id, p) {
+export function iconBody(id, p) {
   switch (id) {
     case 'foundations':
       return `
@@ -160,7 +160,7 @@ function iconBody(id, p) {
   }
 }
 
-function patternBody(id, p) {
+export function patternBody(id, p) {
   switch (id) {
     case 'foundations':
       return `
@@ -240,7 +240,7 @@ function patternBody(id, p) {
   }
 }
 
-function backgroundBody(id, p) {
+export function backgroundBody(id, p) {
   return `
     <rect width="1600" height="900" fill="${p.surface}"/>
     <rect x="30" y="30" width="1540" height="840" rx="48" fill="${p.surfaceAlt}" opacity="0.3"/>
@@ -252,7 +252,7 @@ function backgroundBody(id, p) {
   `;
 }
 
-function collectionIllustrationBody(id, p, ox = 0, oy = 0, width = 640, height = 420) {
+export function collectionIllustrationBody(id, p, ox = 0, oy = 0, width = 640, height = 420) {
   const tx = (x) => ox + x * (width / 640);
   const ty = (y) => oy + y * (height / 420);
   const sw = (v) => v * (width / 640);
@@ -370,7 +370,7 @@ function collectionIllustrationBody(id, p, ox = 0, oy = 0, width = 640, height =
   }
 }
 
-function experienceMotifBody(id, p) {
+export function experienceMotifBody(id, p) {
   switch (id) {
     case 'echo':
       return `
@@ -730,7 +730,7 @@ function experienceMotifBody(id, p) {
   }
 }
 
-function experienceSvg(experienceId, meta, p) {
+export function experienceSvg(experienceId, meta, p) {
   const body = `
     <rect width="320" height="220" rx="24" fill="${p.surface}"/>
     <rect x="12" y="12" width="296" height="196" rx="18" fill="${p.surfaceAlt}" opacity="0.34"/>
@@ -811,32 +811,38 @@ function writeExperienceAssets(id, meta) {
   write(`illustrations/experiences/${id}.svg`, experienceSvg(id, { ...meta, title: id }, collection.palette));
 }
 
-for (const [id, meta] of Object.entries(collections)) {
-  writeCollectionAssets(id, meta);
+// Only run the base-asset build when invoked directly (not when imported as a
+// reusable module by other generators). This keeps the existing `node scripts/...`
+// behavior identical while letting the production-asset generator reuse the
+// parametric motif functions without re-writing the base assets.
+if (import.meta.url === pathToFileURL(process.argv[1] || '').href) {
+  for (const [id, meta] of Object.entries(collections)) {
+    writeCollectionAssets(id, meta);
+  }
+
+  for (const [id, meta] of Object.entries(experiences)) {
+    writeExperienceAssets(id, meta);
+  }
+
+  write('icons/bookmark.svg', svg({
+    width: 64,
+    height: 64,
+    viewBox: '0 0 64 64',
+    title: 'Bookmark icon',
+    desc: 'A slim editorial bookmark used for saved items.',
+    body: `
+      <rect width="64" height="64" rx="16" fill="#F4F1EA"/>
+      <path d="M22 14 H42 A4 4 0 0 1 46 18 V50 L32 40 L18 50 V18 A4 4 0 0 1 22 14 Z" fill="#ffffff" stroke="#2E3F57" stroke-width="3" stroke-linejoin="round"/>
+      <path d="M22 24 H42" stroke="#D48A3A" stroke-width="3" stroke-linecap="round"/>
+    `,
+  }));
+
+  write('asset-index.json', JSON.stringify({
+    generatedAt: new Date().toISOString(),
+    collections: Object.keys(collections),
+    experiences: Object.keys(experiences),
+    folders: dirs,
+  }, null, 2));
+
+  console.log(`✅ Generated Library Season 1 visual assets in ${path.relative(ROOT, ASSET_ROOT)}`);
 }
-
-for (const [id, meta] of Object.entries(experiences)) {
-  writeExperienceAssets(id, meta);
-}
-
-write('icons/bookmark.svg', svg({
-  width: 64,
-  height: 64,
-  viewBox: '0 0 64 64',
-  title: 'Bookmark icon',
-  desc: 'A slim editorial bookmark used for saved items.',
-  body: `
-    <rect width="64" height="64" rx="16" fill="#F4F1EA"/>
-    <path d="M22 14 H42 A4 4 0 0 1 46 18 V50 L32 40 L18 50 V18 A4 4 0 0 1 22 14 Z" fill="#ffffff" stroke="#2E3F57" stroke-width="3" stroke-linejoin="round"/>
-    <path d="M22 24 H42" stroke="#D48A3A" stroke-width="3" stroke-linecap="round"/>
-  `,
-}));
-
-write('asset-index.json', JSON.stringify({
-  generatedAt: new Date().toISOString(),
-  collections: Object.keys(collections),
-  experiences: Object.keys(experiences),
-  folders: dirs,
-}, null, 2));
-
-console.log(`✅ Generated Library Season 1 visual assets in ${path.relative(ROOT, ASSET_ROOT)}`);

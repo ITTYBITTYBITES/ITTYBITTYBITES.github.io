@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" fill="none" role="img" aria-labelledby="titleyswhai descyw3ht7">
+  <title id="titleyswhai">Proof experience thumbnail</title>
+  <desc id="descyw3ht7">Statements connect step by step until a conclusion becomes unavoidable.</desc>
+  
+  
+    <rect width="1200" height="900" fill="#F2F1FB"/>
+    <rect x="36" y="36" width="1128" height="828" rx="45" fill="#DEDBF3" opacity="0.34"/>
+    <rect x="588" y="72" width="552" height="756" rx="33" fill="#ffffff" opacity="0.72" stroke="#9E93DB" stroke-width="2"/>
+    <g transform="translate(632 290.5) scale(1.45)">
+        <rect x="40" y="78" width="58" height="40" rx="12" fill="#ffffff" stroke="#5A46A6" stroke-width="2.5"/>
+        <rect x="130" y="52" width="58" height="40" rx="12" fill="#ffffff" stroke="#9E93DB" stroke-width="2.5"/>
+        <rect x="130" y="124" width="58" height="40" rx="12" fill="#ffffff" stroke="#9E93DB" stroke-width="2.5"/>
+        <rect x="222" y="88" width="58" height="40" rx="12" fill="#ffffff" stroke="#D59248" stroke-width="2.5"/>
+        <path d="M 98 98 L 130 72 M 126.9440511245422 80.92531100133705 L 130 72 L 120.63812487359755 73.16417100017439" stroke="#5A46A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M 98 98 L 130 144 M 121.32695808548377 140.28808082670912 L 130 144 L 129.53601010333864 134.5774359447231" stroke="#5A46A6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M 188 72 L 222 108 M 212.8719459735412 105.61701244442004 L 222 108 L 220.14207749903937 98.75077711478288" stroke="#9E93DB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M 188 144 L 222 108 M 220.14207749903937 117.24922288521712 L 222 108 L 212.8719459735412 110.38298755557996" stroke="#9E93DB" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      </g>
+    <path d="M72 828 C 336 756 504 828 564 799.2" stroke="#D59248" stroke-width="3" opacity="0.5" stroke-linecap="round" fill="none"/>
+    <line x1="72" y1="828" x2="480" y2="828" stroke="#9E93DB" stroke-width="1" opacity="0.3"/>
+  
+</svg>

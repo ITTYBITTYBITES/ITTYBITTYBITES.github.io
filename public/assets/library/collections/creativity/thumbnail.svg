@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="400" viewBox="0 0 600 400" fill="none" role="img" aria-labelledby="titlek9hysp descgt71yi">
+  <title id="titlek9hysp">Creativity collection thumbnail</title>
+  <desc id="descgt71yi">Layered composition, sketch marks, and expressive assembly. Collection thumbnail artwork.</desc>
+  
+  
+    <rect width="600" height="400" fill="#FBF0E8"/>
+    <rect x="12" y="12" width="576" height="376" rx="16" fill="#F1D8C7" opacity="0.34"/>
+    
+        <rect x="102.39999999999999" y="56.68571428571428" width="395.2" height="228.8" rx="19.314285714285717" fill="#ffffff" stroke="#D38552" stroke-width="2.5" opacity="0.72"/>
+        <rect x="139.54285714285714" y="87.88571428571429" width="115.88571428571429" height="83.2" rx="17.82857142857143" fill="#D38552" stroke="#8A3C3B" opacity="0.45" stroke-width="2.5"/>
+        <rect x="230.17142857142858" y="73.02857142857144" width="154.51428571428573" height="98.05714285714286" rx="17.82857142857143" fill="#7F66D9" stroke="#8A3C3B" opacity="0.34" stroke-width="2.5"/>
+        <rect x="291.0857142857143" y="135.42857142857144" width="135.20000000000002" height="95.08571428571429" rx="17.82857142857143" fill="#F1D8C7" stroke="#8A3C3B" opacity="0.82" stroke-width="2.5"/>
+        <path d="M 148.45714285714286 232 C 193.0285714285714 193.37142857142857 222.74285714285713 254.2857142857143 271.7714285714286 211.20000000000002 C 310.4 177.02857142857144 352 211.20000000000002 448.57142857142856 163.65714285714287" stroke="#8A3C3B" stroke-width="6.685714285714286" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <circle cx="200.45714285714286" cy="126.51428571428572" r="8.914285714285715" fill="#8A3C3B" stroke="none" stroke-width="0" />
+        <circle cx="322.2857142857143" cy="181.4857142857143" r="8.914285714285715" fill="#7F66D9" stroke="none" stroke-width="0" />
+      
+    <g transform="translate(282.4 355) scale(0.14666666666666667)" opacity="0.5">
+        <rect x="20" y="28" width="90" height="58" rx="18" fill="#D38552" stroke="#8A3C3B" opacity="0.3" stroke-width="1.5"/>
+        <rect x="84" y="62" width="102" height="70" rx="18" fill="#7F66D9" stroke="#8A3C3B" opacity="0.28" stroke-width="1.5"/>
+        <rect x="150" y="28" width="70" height="110" rx="18" fill="#F1D8C7" stroke="#8A3C3B" opacity="0.45" stroke-width="1.5"/>
+        <path d="M26 178 C54 152 84 188 118 156 C144 132 168 162 208 144" stroke="#8A3C3B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.45"/>
+      </g>
+    <line x1="24" y1="355" x2="576" y2="355" stroke="#D38552" stroke-width="1" opacity="0.35"/>
+    <g transform="translate(30 342) scale(0.4375)">
+      <rect width="64" height="64" rx="16" fill="#FBF0E8"/>
+      
+        <rect x="10" y="16" width="24" height="24" rx="8" fill="#D38552" stroke="#8A3C3B" opacity="0.8" stroke-width="2"/>
+        <rect x="24" y="10" width="24" height="24" rx="8" fill="#7F66D9" stroke="#8A3C3B" opacity="0.8" stroke-width="2"/>
+        <rect x="30" y="24" width="24" height="24" rx="8" fill="#F1D8C7" stroke="#8A3C3B" stroke-width="2"/>
+        <path d="M16 48 C22 40 28 44 34 36 C38 30 44 28 50 32" stroke="#8A3C3B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      
+    </g>
+  
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none" role="img" aria-labelledby="title7a3lrl desc09i2ui">
+  <title id="title7a3lrl">Watershed experience hero</title>
+  <desc id="desc09i2ui">Streams gather from ridge to river mouth, carrying every upstream decision downstream.</desc>
+  
+  
+    <rect width="1600" height="900" fill="#EEF5EC"/>
+    <rect x="36" y="36" width="1528" height="828" rx="45" fill="#D8E6D2" opacity="0.34"/>
+    <rect x="784" y="72" width="736" height="756" rx="44" fill="#ffffff" opacity="0.72" stroke="#78A67C" stroke-width="2"/>
+    <g transform="translate(843 237.5625) scale(1.93125)">
+        <path d="M68 56 C88 90 100 110 112 130 C126 154 140 168 160 184" stroke="#245B45" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M160 184 C184 168 198 154 210 130 C222 110 234 92 252 56" stroke="#4A8CC7" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M112 130 C96 126 82 132 68 144" stroke="#78A67C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M210 130 C226 126 240 132 252 144" stroke="#78A67C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <line x1="60" y1="48" x2="260" y2="48" stroke="#78A67C" stroke-width="2" stroke-linecap="round" opacity="0.35" stroke-dasharray="6 8"/>
+        <line x1="160" y1="184" x2="160" y2="204" stroke="#245B45" stroke-width="4" stroke-linecap="round" />
+      </g>
+    <path d="M72 828 C 448 756 672 828 752 799.2" stroke="#4A8CC7" stroke-width="3" opacity="0.5" stroke-linecap="round" fill="none"/>
+    <line x1="72" y1="828" x2="640" y2="828" stroke="#78A67C" stroke-width="1" opacity="0.3"/>
+  
+</svg>

@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1600" viewBox="0 0 2400 1600" fill="none" role="img" aria-labelledby="title3mj4yw descju4twy">
+  <title id="title3mj4yw">Nature collection cover</title>
+  <desc id="descju4twy">Ecosystems, flows, branching systems, and living cycles. Collection cover artwork at master resolution.</desc>
+  
+  
+    <rect width="2400" height="1600" fill="#EEF5EC"/>
+    <rect x="48" y="48" width="2304" height="1504" rx="64" fill="#D8E6D2" opacity="0.34"/>
+    
+        <rect x="391.77142857142854" y="238.62857142857143" width="1616.457142857143" height="891.4285714285714" rx="83.2" fill="#ffffff" stroke="#78A67C" stroke-width="2.5" opacity="0.76"/>
+        <path d="M 599.7714285714285 357.48571428571427 C 659.2 559.5428571428572 772.1142857142856 630.8571428571429 926.6285714285714 737.8285714285714 C 1116.8 868.5714285714286 1229.7142857142858 939.8857142857144 1289.142857142857 1076.5714285714284" stroke="#78A67C" stroke-width="23.771428571428572" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.8"/>
+        <path d="M 1075.2 351.54285714285714 C 1027.6571428571428 488.22857142857146 1075.2 630.8571428571429 1247.5428571428572 731.8857142857144 C 1461.4857142857143 850.7428571428571 1639.7714285714285 892.3428571428572 1794.2857142857142 1052.8000000000002" stroke="#4A8CC7" stroke-width="23.771428571428572" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.7"/>
+        <path d="M 926.6285714285714 737.8285714285714 C 825.6 743.7714285714286 742.4 821.0285714285715 671.0857142857143 933.9428571428572" stroke="#245B45" stroke-width="11.885714285714286" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M 1247.5428571428572 731.8857142857144 C 1360.4571428571428 725.9428571428572 1461.4857142857143 654.6285714285715 1580.3428571428572 523.8857142857144" stroke="#245B45" stroke-width="11.885714285714286" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <circle cx="671.0857142857143" cy="933.9428571428572" r="32.68571428571428" fill="#245B45" stroke="none" stroke-width="0" />
+        <circle cx="1580.3428571428572" cy="523.8857142857144" r="32.68571428571428" fill="#78A67C" stroke="none" stroke-width="0" />
+        <circle cx="1289.142857142857" cy="1076.5714285714284" r="32.68571428571428" fill="#4A8CC7" stroke="none" stroke-width="0" />
+      
+    <g transform="translate(1129.6 1421) scale(0.5866666666666667)" opacity="0.5">
+        <path d="M20 30 C40 70 60 90 90 110 C130 140 150 170 160 210" stroke="#78A67C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.35"/>
+        <path d="M120 20 C110 70 130 110 170 140 C200 160 215 190 220 220" stroke="#4A8CC7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.35"/>
+        <path d="M90 110 C70 120 55 135 40 160" stroke="#245B45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.35"/>
+        <path d="M170 140 C190 130 205 115 220 90" stroke="#245B45" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.35"/>
+      </g>
+    <line x1="96" y1="1421" x2="2304" y2="1421" stroke="#78A67C" stroke-width="1" opacity="0.35"/>
+    <g transform="translate(102 1350) scale(2.3125)">
+      <rect width="64" height="64" rx="16" fill="#EEF5EC"/>
+      
+        <path d="M18 48 C18 34 24 24 32 16 C40 24 46 34 46 48" stroke="#245B45" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M32 16 L32 50" stroke="#78A67C" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M32 28 C26 28 22 32 20 38" stroke="#4A8CC7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M32 34 C38 34 42 38 44 44" stroke="#4A8CC7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      
+    </g>
+  
+</svg>
