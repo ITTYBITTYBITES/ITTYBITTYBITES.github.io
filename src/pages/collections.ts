@@ -1,7 +1,7 @@
 import { getAllCollections, getExperiencesInCollection, getStoryById } from '../platform/registry';
 import { getCollectionCompletion, getSuggestedNextExperience } from '../platform/discovery';
 import { getProgress, resetAllProgress } from '../platform/lifecycle';
-import { getCollectionIdentity } from '../platform/collection-identity';
+import { getCollectionIdentity, renderCollectionIcon } from '../platform/collection-identity';
 import { h } from '../platform/utils';
 
 export function renderCollections(): HTMLElement {
@@ -125,9 +125,25 @@ export function renderCollections(): HTMLElement {
       ? `background: ${identity.theme.backgroundGradient}; border-left: 4px solid ${identity.theme.primaryColor};`
       : '';
 
-    const card = h('article', { class: 'collection-card', style: cardStyle }, [
+    const card = h('article', { 
+      class: 'collection-card collection-header-themed', 
+      style: cardStyle,
+      'data-collection': collection.id
+    }, [
       h('header', { class: 'collection-header' }, [
-        h('h2', {}, [identity ? `${identity.theme.icon} ${collection.title}` : collection.title]),
+        h('div', { style: 'display: flex; align-items: center; gap: var(--space-3); margin-bottom: var(--space-3);' }, [
+          (() => {
+            const iconContainer = h('span', { class: 'collection-icon' }, []);
+            const svgIcon = renderCollectionIcon(collection.id, 24, 'collection-icon-svg');
+            if (svgIcon) {
+              iconContainer.appendChild(svgIcon);
+            } else {
+              iconContainer.textContent = identity ? identity.theme.icon : '📚';
+            }
+            return iconContainer;
+          })(),
+          h('h2', {}, [collection.title])
+        ]),
         h('p', {}, [collection.description]),
         h('div', { class: 'collection-meta' }, [
           h('span', {}, [`${experiences.length} experiences`]),

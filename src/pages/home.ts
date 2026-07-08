@@ -9,7 +9,7 @@ import {
   getCollectionCompletion,
 } from '../platform/discovery';
 import { getProfileSummary } from '../platform/lifecycle';
-import { getCollectionIdentity } from '../platform/collection-identity';
+import { getCollectionIdentity, renderCollectionIcon } from '../platform/collection-identity';
 import { search } from '../platform/search';
 import { debounce } from '../platform/utils';
 
@@ -168,11 +168,29 @@ export function renderHome(): HTMLElement {
     if (completion.percentage > 0) {
       metaChildren.push(h('span', { class: 'meta' }, [`${completion.percentage}% complete`]));
     }
-    return h('a', { class: 'browse-card', href: '/collections' }, [
-      (() => {
-      const identity = getCollectionIdentity(c.id);
-      return h('h3', {}, [identity ? `${identity.theme.icon} ${c.title}` : c.title]);
-    })(),
+    
+    // Create collection icon (SVG if available, emoji fallback)
+    const identity = getCollectionIdentity(c.id);
+    const iconContainer = h('span', { class: 'collection-icon' }, []);
+    
+    // Try to render SVG icon
+    const svgIcon = renderCollectionIcon(c.id, 20, 'collection-icon-svg');
+    if (svgIcon) {
+      iconContainer.appendChild(svgIcon);
+    } else {
+      // Fallback to emoji
+      iconContainer.textContent = identity ? identity.theme.icon : '📚';
+    }
+    
+    return h('a', { 
+      class: 'browse-card', 
+      href: '/collections',
+      'data-collection': c.id
+    }, [
+      h('div', { style: 'display: flex; align-items: center; margin-bottom: var(--space-2);' }, [
+        iconContainer,
+        h('h3', {}, [c.title])
+      ]),
       h('p', {}, [c.description]),
       h('div', { class: 'browse-meta' }, metaChildren),
     ]);

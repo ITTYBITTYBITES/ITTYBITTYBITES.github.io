@@ -1,7 +1,8 @@
 import { ExperienceHost } from '../components/experience-host';
-import { getExperienceById, getStoryById } from '../platform/registry';
+import { getExperienceById, getStoryById, getCollectionById } from '../platform/registry';
 import { getNextSteps } from '../platform/discovery';
 import { getReturnSummary, markExperienceCompleted } from '../platform/lifecycle';
+import { getCollectionIdentity, renderCollectionIcon } from '../platform/collection-identity';
 import { h } from '../platform/utils';
 
 export function renderExperience({ params, query }: { params: Record<string, string>; query: URLSearchParams }): HTMLElement {
@@ -26,6 +27,10 @@ export function renderExperience({ params, query }: { params: Record<string, str
 
   const next = getNextSteps(entry.id);
   const returnSummary = getReturnSummary(entry.id);
+  
+  // Get collection context
+  const collection = entry.collection ? getCollectionById(entry.collection) : null;
+  const collectionIdentity = collection ? getCollectionIdentity(collection.id) : null;
 
   // Story transition
   let storyTransition: HTMLElement | null = null;
@@ -45,6 +50,24 @@ export function renderExperience({ params, query }: { params: Record<string, str
 
   const headerChildren: (string | Node)[] = [
     h('div', { class: 'meta' }, [entry.category]),
+    (() => {
+      if (collection && collectionIdentity) {
+        const iconContainer = h('span', { class: 'collection-icon', style: 'margin-right: var(--space-2);' }, []);
+        const svgIcon = renderCollectionIcon(collection.id, 16);
+        if (svgIcon) {
+          iconContainer.appendChild(svgIcon);
+        }
+        return h('div', { 
+          class: 'collection-context',
+          'data-collection': collection.id,
+          style: 'display: flex; align-items: center; margin-bottom: var(--space-2);'
+        }, [
+          iconContainer,
+          h('span', {}, [`Part of ${collection.title}`])
+        ]);
+      }
+      return h('div');
+    })(),
     h('h1', {}, [entry.title]),
     h('p', {}, [entry.description]),
   ];
@@ -77,6 +100,12 @@ export function renderExperience({ params, query }: { params: Record<string, str
     elements.push(
       h('p', { class: 'return-context' }, [returnText])
     );
+  }
+
+  // Apply collection theming to the container
+  const containerAttrs: Record<string, string> = { class: 'container' };
+  if (collection && collection.id) {
+    containerAttrs['data-collection'] = collection.id;
   }
 
   // Mark complete button for experiences that don't self-report
@@ -118,5 +147,5 @@ export function renderExperience({ params, query }: { params: Record<string, str
     );
   }
 
-  return h('div', { class: 'container' }, elements);
+  return h('div', containerAttrs, elements);
 }
