@@ -33,14 +33,28 @@ const twoSecondWitness: ExperienceModule = {
         ])
       ]),
 
-      h('section', { class: 'section app-connection-section', style: 'text-align: center; margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid color-mix(in srgb, var(--line-strong) 24%, var(--line) 76%);' }, [
-        h('h3', {}, ['Coming Soon to Mobile']),
-        h('p', { class: 'meta' }, ['Two Second Witness will be available as a standalone app.']),
-        h('div', { style: 'margin-top: var(--space-4);' }, [
-          h('button', { class: 'btn primary disabled', disabled: true }, ['Download App (Coming Soon)'])
-        ]),
-        h('div', { class: 'placeholder-app-store', style: 'margin-top: var(--space-4); background: color-mix(in srgb, var(--line-strong) 40%, transparent); height: 100px; display: flex; align-items: center; justify-content: center; border-radius: var(--radius-md);' }, [
-          h('p', { class: 'meta' }, ['[ App Store Badges / Trailer ]'])
+      h('section', { class: 'section play-download-section', style: 'margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid color-mix(in srgb, var(--line-strong) 24%, var(--line) 76%);' }, [
+        h('h3', {}, ['Play & Download']),
+        h('p', { class: 'lead', style: 'margin-top: var(--space-2);' }, ['Two Second Witness lives on the ITTYBITTYBITES platform — both as a browser preview and as a native mobile app.']),
+        h('div', { class: 'play-download-grid', style: 'display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--space-6); margin-top: var(--space-6);' }, [
+          h('div', { class: 'play-card', style: 'border: 1px solid color-mix(in srgb, var(--line-strong) 24%, var(--line) 76%); border-radius: var(--radius-md); padding: var(--space-6);' }, [
+            h('h4', { style: 'margin-top: 0;' }, ['Play in Your Browser']),
+            h('p', {}, ['A lightweight browser edition of Two Second Witness is planned for the ITTYBITTYBITES platform. It will offer a quick way to experience the core observation challenge directly from your browser.']),
+            h('div', { style: 'margin-top: var(--space-4);' }, [
+              h('button', { class: 'btn primary disabled', disabled: true }, ['Coming Soon'])
+            ])
+          ]),
+          h('div', { class: 'play-card', style: 'border: 1px solid color-mix(in srgb, var(--line-strong) 24%, var(--line) 76%); border-radius: var(--radius-md); padding: var(--space-6);' }, [
+            h('h4', { style: 'margin-top: 0;' }, ['Mobile App']),
+            h('p', {}, ['Experience the full native version of Two Second Witness on your mobile device. The Android release is currently being prepared, with additional platforms planned for the future.']),
+            h('div', { style: 'margin-top: var(--space-4);' }, [
+              h('button', { class: 'btn primary disabled', disabled: true, title: 'Disabled until the app is published.' }, ['Google Play'])
+            ]),
+            h('p', { class: 'meta', style: 'margin-top: var(--space-2);' }, ['Disabled until the app is published.']),
+            h('div', { class: 'store-badges', style: 'margin-top: var(--space-4); min-height: 56px; display: flex; align-items: center; gap: var(--space-3);' }, [
+              h('p', { class: 'meta' }, ['Google Play and App Store badges coming soon.'])
+            ])
+          ])
         ])
       ])
     ]);
