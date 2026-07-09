@@ -1,0 +1,59 @@
+/**
+ * Progressive Web App registration and update handling.
+ */
+
+let pwaRegistered = false;
+
+export async function registerPWA(): Promise<void> {
+  if (import.meta.env.DEV) return;
+  if (!('serviceWorker' in navigator)) return;
+  if (pwaRegistered) return;
+  pwaRegistered = true;
+
+  try {
+    const { registerSW } = await import('virtual:pwa-register');
+    const updateSW = registerSW({
+      immediate: true,
+      onOfflineReady() {
+        // Future UI: surface offline-ready notice.
+        // eslint-disable-next-line no-console
+        console.log('ITTYBITTYBITES is ready for offline use.');
+      },
+      onNeedRefresh() {
+        // Automatically and silently update and hot-reload the page
+        // to prevent old hashed assets from causing white screens.
+        // We use a timeout fallback in case the SW controller fails to reload.
+        const reloadFallback = window.setTimeout(() => {
+          window.location.reload();
+        }, 2000);
+
+        updateSW(true)
+          .then(() => {
+            window.clearTimeout(reloadFallback);
+          })
+          .catch(() => {
+            window.location.reload();
+          });
+      },
+      onRegisteredSW(swUrl, registration) {
+        // eslint-disable-next-line no-console
+        console.log('Service worker registered:', swUrl);
+        if (registration) {
+          // Check for updates immediately on registration.
+          void registration.update();
+
+          // Periodically check for updates while the app is open.
+          window.setInterval(() => {
+            void registration.update();
+          }, 60 * 60 * 1000);
+        }
+      },
+      onRegisterError(error) {
+        // eslint-disable-next-line no-console
+        console.error('Service worker registration failed:', error);
+      },
+    });
+  } catch {
+    // PWA support is best-effort; failures must not break the app.
+  }
+}

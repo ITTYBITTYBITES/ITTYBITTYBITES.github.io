@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" fill="none" role="img" aria-labelledby="titlemarh00 desc7wbke7">
+  <title id="titlemarh00">seasons</title>
+  <desc id="desc7wbke7">One landscape cycles through a year as light, growth, and water turn together.</desc>
+  
+  
+    <rect width="320" height="220" rx="24" fill="#EEF5EC"/>
+    <rect x="12" y="12" width="296" height="196" rx="18" fill="#D8E6D2" opacity="0.34"/>
+    <rect x="24" y="26" width="272" height="168" rx="20" fill="#ffffff" opacity="0.72" stroke="#78A67C" stroke-width="2"/>
+    <path d="M28 188 C92 172 136 178 188 186 C234 194 266 194 292 184" stroke="#4A8CC7" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+    
+        <circle cx="160" cy="110" r="62" fill="none" stroke="#245B45" stroke-width="4" />
+        <line x1="160" y1="48" x2="160" y2="172" stroke="#78A67C" stroke-width="2" stroke-linecap="round" />
+        <line x1="98" y1="110" x2="222" y2="110" stroke="#78A67C" stroke-width="2" stroke-linecap="round" />
+        <circle cx="160" cy="58" r="10" fill="#4A8CC7" stroke="none" stroke-width="0" />
+        <circle cx="212" cy="110" r="10" fill="#78A67C" stroke="none" stroke-width="0" />
+        <circle cx="160" cy="162" r="10" fill="#245B45" stroke="none" stroke-width="0" />
+        <circle cx="108" cy="110" r="10" fill="#4A8CC7" stroke="none" stroke-width="0" />
+      
+  
+</svg>

@@ -1,0 +1,19 @@
+{
+  "id": "adaptation",
+  "title": "Adaptation",
+  "description": "The environment shifts. Creatures must shift with it. Select traits for each generation and watch which lineages survive and which vanish.",
+  "summary": "Given environmental pressures, choose traits for creatures across generations. Adaptation is not optional.",
+  "category": "game",
+  "module": "adaptation.ts",
+  "tags": ["adaptation", "evolution", "survival", "traits"],
+  "searchKeywords": ["adaptation", "evolution", "natural selection", "traits", "survival"],
+  "estimatedDuration": "7-12 min",
+  "returnValue": "New environmental pressures challenge your understanding of adaptation on each return.",
+  "collection": "nature",
+  "story": "the-living-web",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

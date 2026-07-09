@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" fill="none" role="img" aria-labelledby="titletpe98h desctnzxky">
+  <title id="titletpe98h">bias</title>
+  <desc id="desctnzxky">A tilted filter weights some evidence more heavily than the rest.</desc>
+  
+  
+    <rect width="320" height="220" rx="24" fill="#FBF1F6"/>
+    <rect x="12" y="12" width="296" height="196" rx="18" fill="#EFD9E5" opacity="0.34"/>
+    <rect x="24" y="26" width="272" height="168" rx="20" fill="#ffffff" opacity="0.72" stroke="#D38DAE" stroke-width="2"/>
+    <path d="M28 188 C92 172 136 178 188 186 C234 194 266 194 292 184" stroke="#5B83C8" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+    
+        <rect x="56" y="60" width="208" height="108" rx="20" fill="#ffffff" stroke="#D38DAE" stroke-width="2.5"/>
+        <path d="M78 84 L152 84 L196 144 L120 144 Z" stroke="#8A3E67" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="rgba(91,131,200,0.16)" />
+        <line x1="120" y1="84" x2="196" y2="144" stroke="#5B83C8" stroke-width="4" stroke-linecap="round" />
+        <circle cx="220" cy="94" r="10" fill="#D38DAE" stroke="none" stroke-width="0" />
+        <circle cx="228" cy="136" r="10" fill="#D38DAE" stroke="none" stroke-width="0" />
+      
+  
+</svg>

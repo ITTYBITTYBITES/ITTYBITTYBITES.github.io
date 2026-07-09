@@ -1,0 +1,19 @@
+{
+  "id": "ecosystem",
+  "title": "Ecosystem",
+  "description": "Every species depends on others. Add a predator, remove a plant, and watch the ripple effects spread through the entire web of life.",
+  "summary": "Build a food web and discover how every species connects to every other through chains of dependence.",
+  "category": "interactive",
+  "module": "ecosystem.ts",
+  "tags": ["ecosystem", "food-web", "interdependence", "ecology"],
+  "searchKeywords": ["ecosystem", "food web", "food chain", "predator", "prey", "interdependence"],
+  "estimatedDuration": "8-12 min",
+  "returnValue": "Different ecosystems test your understanding of interconnection. Return to see how removing one species changes everything.",
+  "collection": "nature",
+  "story": "the-living-web",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

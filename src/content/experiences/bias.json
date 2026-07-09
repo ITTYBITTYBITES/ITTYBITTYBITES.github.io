@@ -1,0 +1,19 @@
+{
+  "id": "bias",
+  "title": "Bias",
+  "description": "Make fast judgments from framed, partial, or ambiguous information and notice the shortcuts your mind uses to keep up.",
+  "summary": "Choose quickly, then see how framing, anchors, and assumptions tilt interpretation.",
+  "category": "reflection",
+  "module": "bias.ts",
+  "tags": ["bias", "framing", "assumptions", "shortcuts"],
+  "searchKeywords": ["bias", "framing", "anchor", "assumption", "mental shortcut", "fast thinking"],
+  "estimatedDuration": "5-8 min",
+  "returnValue": "Different scenarios keep revealing the shortcuts that feel natural to you. Return and compare your instincts.",
+  "collection": "society-mind",
+  "story": "bridges-within-and-between",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

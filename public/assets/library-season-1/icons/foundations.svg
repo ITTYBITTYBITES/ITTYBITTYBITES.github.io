@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" role="img" aria-labelledby="titlekz9bjq desc7yy5o5">
+  <title id="titlekz9bjq">Foundations icon</title>
+  <desc id="desc7yy5o5">Geometry, grids, structure, and precision.</desc>
+  
+  <rect width="64" height="64" rx="16" fill="#F4F1EA"/>
+        <rect x="10" y="10" width="44" height="44" rx="12" fill="none" stroke="#2E3F57" stroke-width="3"/>
+        <line x1="22" y1="10" x2="22" y2="54" stroke="#7A8CA5" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+        <line x1="42" y1="10" x2="42" y2="54" stroke="#7A8CA5" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+        <line x1="10" y1="22" x2="54" y2="22" stroke="#7A8CA5" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+        <line x1="10" y1="42" x2="54" y2="42" stroke="#7A8CA5" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+        <path d="M18 46 L32 18 L46 46" stroke="#D48A3A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      
+</svg>

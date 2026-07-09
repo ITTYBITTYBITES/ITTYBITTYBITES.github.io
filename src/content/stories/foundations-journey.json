@@ -1,0 +1,48 @@
+{
+  "id": "foundations-journey",
+  "title": "The Foundations Journey",
+  "description": "A guided path through five core experiences that build upon each other — from listening to seeing.",
+  "summary": "How the first collection teaches the platform's philosophy through play.",
+  "relatedCollections": ["foundations"],
+  "relatedExperiences": ["echo-chamber", "signal-detection", "pattern-garden", "memory-sequence", "perspective-shift"],
+  "narrative": "Every platform begins with a single interaction. The Foundations collection asks: what if five simple experiences could teach someone to listen more carefully, observe more closely, remember more clearly, and see more fully? Each experience stands alone. Together, they form a journey from voice to vision.",
+  "segments": [
+    {
+      "id": "intro",
+      "title": "Where It Begins",
+      "text": "Before you can understand a system, you must first learn to listen. Echo Chamber invites you to speak and hear your words return — changed, echoed, remembered. This is where the journey begins.",
+      "trigger": "collection_start"
+    },
+    {
+      "id": "echo-to-signal",
+      "title": "From Voice to Signal",
+      "text": "Once you have spoken, the next challenge is to hear what matters. Signal Detection asks you to find meaning drifting through noise. The skill you built in Echo Chamber — patience, attention — becomes your advantage here.",
+      "trigger": "after_echo-chamber"
+    },
+    {
+      "id": "signal-to-pattern",
+      "title": "Patterns Emerge",
+      "text": "Signals do not exist alone. They connect. They repeat. They form structures. In Pattern Garden, the rules you discover are your own. What begins as randomness becomes order through your attention.",
+      "trigger": "after_signal-detection"
+    },
+    {
+      "id": "pattern-to-memory",
+      "title": "What You Keep",
+      "text": "Patterns that matter become memories. Memory Sequence tests how much you can hold — and how far you can grow. Each round builds on the last. Your mind is the garden now.",
+      "trigger": "after_pattern-garden"
+    },
+    {
+      "id": "memory-to-perspective",
+      "title": "How You See",
+      "text": "With memory comes the ability to compare. To contrast. To shift your view. Perspective Shift reveals that the same scene holds different truths depending on where you stand. This is the final foundation: not one truth, but many.",
+      "trigger": "after_memory-sequence"
+    },
+    {
+      "id": "completion",
+      "title": "The Foundation Holds",
+      "text": "You have walked the full path: from speaking to listening, from noise to signal, from signal to pattern, from pattern to memory, and from memory to perspective. These five foundations will support everything that comes next. Return to any experience and you will find it deeper than before.",
+      "trigger": "collection_complete"
+    }
+  ],
+  "version": "1.0.0"
+}

@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1600" viewBox="0 0 2400 1600" fill="none" role="img" aria-labelledby="titler7d9w4 desc6xcv6x">
+  <title id="titler7d9w4">Foundations collection cover</title>
+  <desc id="desc6xcv6x">Geometry, grids, structure, and precision. Collection cover artwork at master resolution.</desc>
+  
+  
+    <rect width="2400" height="1600" fill="#F4F1EA"/>
+    <rect x="48" y="48" width="2304" height="1504" rx="64" fill="#E5E0D7" opacity="0.34"/>
+    
+        <rect x="379.88571428571424" y="202.9714285714286" width="1640.2285714285715" height="986.5142857142857" rx="77.25714285714287" fill="#ffffff" stroke="#7A8CA5" stroke-width="2.5" opacity="0.76"/>
+        <line x1="605.7142857142857" y1="315.8857142857143" x2="605.7142857142857" y2="1076.5714285714284" stroke="#7A8CA5" stroke-width="5.942857142857143" stroke-linecap="round" opacity="0.4"/>
+        <line x1="992" y1="315.8857142857143" x2="992" y2="1076.5714285714284" stroke="#7A8CA5" stroke-width="5.942857142857143" stroke-linecap="round" opacity="0.4"/>
+        <line x1="1378.2857142857142" y1="315.8857142857143" x2="1378.2857142857142" y2="1076.5714285714284" stroke="#7A8CA5" stroke-width="5.942857142857143" stroke-linecap="round" opacity="0.4"/>
+        <line x1="1764.5714285714287" y1="315.8857142857143" x2="1764.5714285714287" y2="1076.5714285714284" stroke="#7A8CA5" stroke-width="5.942857142857143" stroke-linecap="round" opacity="0.4"/>
+        <line x1="469.0285714285714" y1="500.11428571428576" x2="1930.9714285714285" y2="500.11428571428576" stroke="#7A8CA5" stroke-width="5.942857142857143" stroke-linecap="round" opacity="0.4"/>
+        <line x1="469.0285714285714" y1="749.7142857142858" x2="1930.9714285714285" y2="749.7142857142858" stroke="#7A8CA5" stroke-width="5.942857142857143" stroke-linecap="round" opacity="0.4"/>
+        <line x1="469.0285714285714" y1="999.3142857142857" x2="1930.9714285714285" y2="999.3142857142857" stroke="#7A8CA5" stroke-width="5.942857142857143" stroke-linecap="round" opacity="0.4"/>
+        <path d="M 552.2285714285714 987.4285714285714 L 950.4 422.8571428571429 L 1318.857142857143 987.4285714285714 L 1711.0857142857144 583.3142857142857 L 1930.9714285714285 803.2" stroke="#2E3F57" stroke-width="29.714285714285715" stroke-linecap="round" stroke-linejoin="round" fill="none" stroke-linejoin="round"/>
+        <circle cx="950.4" cy="422.8571428571429" r="35.65714285714286" fill="#D48A3A" stroke="none" stroke-width="0" />
+        <circle cx="1711.0857142857144" cy="583.3142857142857" r="35.65714285714286" fill="#D48A3A" stroke="none" stroke-width="0" />
+      
+    <g transform="translate(1129.6 1421) scale(0.5866666666666667)" opacity="0.5">
+        <line x1="0" y1="40" x2="240" y2="40" stroke="#7A8CA5" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <line x1="0" y1="120" x2="240" y2="120" stroke="#7A8CA5" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <line x1="0" y1="200" x2="240" y2="200" stroke="#7A8CA5" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <line x1="40" y1="0" x2="40" y2="240" stroke="#7A8CA5" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <line x1="120" y1="0" x2="120" y2="240" stroke="#7A8CA5" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <line x1="200" y1="0" x2="200" y2="240" stroke="#7A8CA5" stroke-width="1.5" stroke-linecap="round" opacity="0.35"/>
+        <path d="M40 200 L120 40 L200 200" stroke="#D48A3A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.5"/>
+      </g>
+    <line x1="96" y1="1421" x2="2304" y2="1421" stroke="#7A8CA5" stroke-width="1" opacity="0.35"/>
+    <g transform="translate(102 1350) scale(2.3125)">
+      <rect width="64" height="64" rx="16" fill="#F4F1EA"/>
+      
+        <rect x="10" y="10" width="44" height="44" rx="12" fill="none" stroke="#2E3F57" stroke-width="3"/>
+        <line x1="22" y1="10" x2="22" y2="54" stroke="#7A8CA5" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+        <line x1="42" y1="10" x2="42" y2="54" stroke="#7A8CA5" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+        <line x1="10" y1="22" x2="54" y2="22" stroke="#7A8CA5" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+        <line x1="10" y1="42" x2="54" y2="42" stroke="#7A8CA5" stroke-width="2" stroke-linecap="round" opacity="0.7"/>
+        <path d="M18 46 L32 18 L46 46" stroke="#D48A3A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      
+    </g>
+  
+</svg>

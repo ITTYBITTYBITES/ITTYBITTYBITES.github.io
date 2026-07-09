@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1600" viewBox="0 0 2400 1600" fill="none" role="img" aria-labelledby="titleihgabz desc9s82q2">
+  <title id="titleihgabz">Creativity collection cover</title>
+  <desc id="desc9s82q2">Layered composition, sketch marks, and expressive assembly. Collection cover artwork at master resolution.</desc>
+  
+  
+    <rect width="2400" height="1600" fill="#FBF0E8"/>
+    <rect x="48" y="48" width="2304" height="1504" rx="64" fill="#F1D8C7" opacity="0.34"/>
+    
+        <rect x="409.59999999999997" y="226.74285714285713" width="1580.8" height="915.2" rx="77.25714285714287" fill="#ffffff" stroke="#D38552" stroke-width="2.5" opacity="0.72"/>
+        <rect x="558.1714285714286" y="351.54285714285714" width="463.54285714285714" height="332.8" rx="71.31428571428572" fill="#D38552" stroke="#8A3C3B" opacity="0.45" stroke-width="2.5"/>
+        <rect x="920.6857142857143" y="292.11428571428576" width="618.0571428571429" height="392.22857142857146" rx="71.31428571428572" fill="#7F66D9" stroke="#8A3C3B" opacity="0.34" stroke-width="2.5"/>
+        <rect x="1164.3428571428572" y="541.7142857142858" width="540.8000000000001" height="380.34285714285716" rx="71.31428571428572" fill="#F1D8C7" stroke="#8A3C3B" opacity="0.82" stroke-width="2.5"/>
+        <path d="M 593.8285714285714 928 C 772.1142857142856 773.4857142857143 890.9714285714285 1017.1428571428572 1087.0857142857144 844.8000000000001 C 1241.6 708.1142857142858 1408 844.8000000000001 1794.2857142857142 654.6285714285715" stroke="#8A3C3B" stroke-width="26.742857142857144" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <circle cx="801.8285714285714" cy="506.0571428571429" r="35.65714285714286" fill="#8A3C3B" stroke="none" stroke-width="0" />
+        <circle cx="1289.142857142857" cy="725.9428571428572" r="35.65714285714286" fill="#7F66D9" stroke="none" stroke-width="0" />
+      
+    <g transform="translate(1129.6 1421) scale(0.5866666666666667)" opacity="0.5">
+        <rect x="20" y="28" width="90" height="58" rx="18" fill="#D38552" stroke="#8A3C3B" opacity="0.3" stroke-width="1.5"/>
+        <rect x="84" y="62" width="102" height="70" rx="18" fill="#7F66D9" stroke="#8A3C3B" opacity="0.28" stroke-width="1.5"/>
+        <rect x="150" y="28" width="70" height="110" rx="18" fill="#F1D8C7" stroke="#8A3C3B" opacity="0.45" stroke-width="1.5"/>
+        <path d="M26 178 C54 152 84 188 118 156 C144 132 168 162 208 144" stroke="#8A3C3B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.45"/>
+      </g>
+    <line x1="96" y1="1421" x2="2304" y2="1421" stroke="#D38552" stroke-width="1" opacity="0.35"/>
+    <g transform="translate(102 1350) scale(2.3125)">
+      <rect width="64" height="64" rx="16" fill="#FBF0E8"/>
+      
+        <rect x="10" y="16" width="24" height="24" rx="8" fill="#D38552" stroke="#8A3C3B" opacity="0.8" stroke-width="2"/>
+        <rect x="24" y="10" width="24" height="24" rx="8" fill="#7F66D9" stroke="#8A3C3B" opacity="0.8" stroke-width="2"/>
+        <rect x="30" y="24" width="24" height="24" rx="8" fill="#F1D8C7" stroke="#8A3C3B" stroke-width="2"/>
+        <path d="M16 48 C22 40 28 44 34 36 C38 30 44 28 50 32" stroke="#8A3C3B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      
+    </g>
+  
+</svg>

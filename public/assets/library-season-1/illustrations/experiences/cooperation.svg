@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" fill="none" role="img" aria-labelledby="titlesfnoo3 descv2q00r">
+  <title id="titlesfnoo3">cooperation</title>
+  <desc id="descv2q00r">Separate participants connect around a shared structure that none can complete alone.</desc>
+  
+  
+    <rect width="320" height="220" rx="24" fill="#FBF1F6"/>
+    <rect x="12" y="12" width="296" height="196" rx="18" fill="#EFD9E5" opacity="0.34"/>
+    <rect x="24" y="26" width="272" height="168" rx="20" fill="#ffffff" opacity="0.72" stroke="#D38DAE" stroke-width="2"/>
+    <path d="M28 188 C92 172 136 178 188 186 C234 194 266 194 292 184" stroke="#5B83C8" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+    
+        <circle cx="88" cy="136" r="12" fill="#D38DAE" stroke="none" stroke-width="0" />
+        <circle cx="160" cy="76" r="12" fill="#5B83C8" stroke="none" stroke-width="0" />
+        <circle cx="232" cy="136" r="12" fill="#8A3E67" stroke="none" stroke-width="0" />
+        <path d="M100 136 C120 116 138 98 160 88 C182 98 200 116 220 136" stroke="#8A3E67" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <line x1="100" y1="136" x2="132" y2="154" stroke="#D38DAE" stroke-width="3" stroke-linecap="round" />
+        <line x1="220" y1="136" x2="188" y2="154" stroke="#D38DAE" stroke-width="3" stroke-linecap="round" />
+        <line x1="132" y1="154" x2="188" y2="154" stroke="#5B83C8" stroke-width="3" stroke-linecap="round" />
+      
+  
+</svg>

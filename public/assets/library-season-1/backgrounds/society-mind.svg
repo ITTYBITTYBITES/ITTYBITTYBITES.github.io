@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none" role="img" aria-labelledby="titlec1yxmk desch4fssl">
+  <title id="titlec1yxmk">Society &amp; Mind background</title>
+  <desc id="desch4fssl">Conversation, networks, relationships, and shifting perspective.</desc>
+  
+  
+    <rect width="1600" height="900" fill="#FBF1F6"/>
+    <rect x="30" y="30" width="1540" height="840" rx="48" fill="#EFD9E5" opacity="0.3"/>
+    <g transform="translate(140 120)">
+        <circle cx="60" cy="70" r="8" fill="#D38DAE" stroke="none" stroke-width="0" opacity="0.65"/>
+        <circle cx="180" cy="60" r="8" fill="#5B83C8" stroke="none" stroke-width="0" opacity="0.65"/>
+        <circle cx="120" cy="170" r="8" fill="#8A3E67" stroke="none" stroke-width="0" opacity="0.65"/>
+        <path d="M68 70 C90 60 110 70 120 90 C130 110 145 120 172 120" stroke="#8A3E67" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.4"/>
+        <path d="M72 80 C84 120 94 134 114 162" stroke="#5B83C8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.45"/>
+        <path d="M170 68 C152 88 144 110 132 164" stroke="#D38DAE" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.45"/>
+        <path d="M24 26 h46 l12 12 h-46 z" stroke="#8A3E67" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="#EFD9E5" opacity="0.7"/>
+      </g>
+    <rect x="980" y="120" width="460" height="300" rx="36" fill="#ffffff" opacity="0.68" stroke="#D38DAE" stroke-width="2"/>
+    
+        <rect x="1043.75" y="171.1904761904762" width="332.5" height="183.33333333333334" rx="16.25" fill="#ffffff" stroke="#D38DAE" stroke-width="2.5" opacity="0.78"/>
+        <circle cx="1102.5" cy="221.1904761904762" r="11.25" fill="#D38DAE" stroke="none" stroke-width="0" />
+        <circle cx="1296.25" cy="216.42857142857144" r="11.25" fill="#5B83C8" stroke="none" stroke-width="0" />
+        <circle cx="1207.5" cy="309.2857142857143" r="11.25" fill="#8A3E67" stroke="none" stroke-width="0" />
+        <path d="M 1113.75 221.1904761904762 C 1158.75 206.9047619047619 1176.25 240.23809523809524 1206.25 298.57142857142856" stroke="#8A3E67" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.8"/>
+        <path d="M 1285 216.42857142857144 C 1255 233.09523809523807 1236.25 256.9047619047619 1217.5 298.57142857142856" stroke="#5B83C8" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.7"/>
+        <path d="M 1122.5 216.42857142857144 C 1163.75 193.8095238095238 1231.25 195 1275 215.23809523809524" stroke="#D38DAE" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M 1071.25 189.04761904761904 h 68.75 l 15 15 h -68.75 z" stroke="#8A3E67" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" fill="#EFD9E5" opacity="0.7"/>
+        <path d="M 1255 260.4761904761905 h 63.75 l 11.25 11.25 h -63.75 z" stroke="#5B83C8" stroke-width="1.25" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff" opacity="0.72"/>
+      
+    <path d="M90 720 C300 620 530 640 730 700 C930 760 1170 790 1510 650" stroke="#5B83C8" stroke-width="10" opacity="0.55" stroke-linecap="round"/>
+    <path d="M90 770 C330 690 570 720 760 760 C990 810 1210 820 1480 730" stroke="#8A3E67" stroke-width="4" opacity="0.35" stroke-linecap="round"/>
+  
+</svg>

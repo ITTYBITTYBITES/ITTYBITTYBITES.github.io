@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    
+    <!-- Primary Meta Tags -->
+    <title>ITTYBITTYBITES</title>
+    <meta name="title" content="ITTYBITTYBITES — Interactive collections worth returning to." />
+    <meta name="description" content="Explore meaningful, interactive experiences across science, nature, history, and more. A library of authored digital ideas." />
+    <meta name="author" content="ITTYBITTYBITES" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://ittybittybites.github.io/" />
+    <meta property="og:title" content="ITTYBITTYBITES" />
+    <meta property="og:description" content="Explore meaningful, interactive experiences across science, nature, history, and more. A library of authored digital ideas." />
+    <meta property="og:image" content="https://ittybittybites.github.io/assets/library/hero/library-season-1/library-hero.svg" />
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://ittybittybites.github.io/" />
+    <meta property="twitter:title" content="ITTYBITTYBITES" />
+    <meta property="twitter:description" content="Explore meaningful, interactive experiences across science, nature, history, and more. A library of authored digital ideas." />
+    <meta property="twitter:image" content="https://ittybittybites.github.io/assets/library/hero/library-season-1/library-hero.svg" />
+
+    <!-- PWA & Apple specific -->
+    <link rel="icon" type="image/svg+xml" href="/icons/icon.svg" />
+    <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="ITTYBITTYBITES" />
+    
+    <link rel="canonical" href="https://ittybittybites.github.io/" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "ITTYBITTYBITES",
+        "url": "https://ittybittybites.github.io/",
+        "description": "Interactive collections worth returning to. Explore meaningful experiences across science, nature, history, and more.",
+        "publisher": {
+          "@type": "Organization",
+          "name": "ITTYBITTYBITES",
+          "logo": "https://ittybittybites.github.io/icons/icon-512.png"
+        }
+      }
+    </script>
+
+    <script>
+      /**
+       * Bulletproof Self-Healing Recovery Script
+       * Detects critical asset failures (e.g. ChunkLoadError) and force-clears
+       * the Service Worker to recover from white screens caused by stale caches.
+       */
+      window.addEventListener('error', function(e) {
+        const isChunkError = e.message && (
+          e.message.includes('ChunkLoadError') || 
+          e.message.includes('Loading chunk') || 
+          e.message.includes('Failed to fetch dynamically imported module')
+        );
+        if (isChunkError) {
+          console.warn('ITTYBITTYBITES: Asset mismatch detected. Self-healing...');
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(registrations) {
+              return Promise.all(registrations.map(r => r.unregister()));
+            }).then(function() {
+              window.location.reload(true);
+            });
+          } else {
+            window.location.reload(true);
+          }
+        }
+      }, true);
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

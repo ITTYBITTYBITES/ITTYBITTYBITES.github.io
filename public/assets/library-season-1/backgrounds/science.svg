@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none" role="img" aria-labelledby="titlezw7a3q descgrg5jm">
+  <title id="titlezw7a3q">Science background</title>
+  <desc id="descgrg5jm">Observation, instruments, experiment, and measured uncertainty.</desc>
+  
+  
+    <rect width="1600" height="900" fill="#EDF6FB"/>
+    <rect x="30" y="30" width="1540" height="840" rx="48" fill="#D4E8F2" opacity="0.3"/>
+    <g transform="translate(140 120)">
+        <line x1="0" y1="60" x2="240" y2="60" stroke="#65A3C8" stroke-width="1" stroke-linecap="round" opacity="0.25"/>
+        <line x1="0" y1="120" x2="240" y2="120" stroke="#65A3C8" stroke-width="1" stroke-linecap="round" opacity="0.25"/>
+        <line x1="0" y1="180" x2="240" y2="180" stroke="#65A3C8" stroke-width="1" stroke-linecap="round" opacity="0.25"/>
+        <line x1="60" y1="0" x2="60" y2="240" stroke="#65A3C8" stroke-width="1" stroke-linecap="round" opacity="0.25"/>
+        <line x1="120" y1="0" x2="120" y2="240" stroke="#65A3C8" stroke-width="1" stroke-linecap="round" opacity="0.25"/>
+        <line x1="180" y1="0" x2="180" y2="240" stroke="#65A3C8" stroke-width="1" stroke-linecap="round" opacity="0.25"/>
+        <path d="M20 170 C60 150 80 100 120 110 C160 120 170 70 220 60" stroke="#1F4E79" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.55"/>
+        <circle cx="80" cy="100" r="5" fill="#E59A41" stroke="none" stroke-width="0" opacity="0.7"/>
+      </g>
+    <rect x="980" y="120" width="460" height="300" rx="36" fill="#ffffff" opacity="0.68" stroke="#65A3C8" stroke-width="2"/>
+    
+        <rect x="1043.75" y="171.1904761904762" width="332.5" height="183.33333333333334" rx="16.25" fill="#ffffff" stroke="#65A3C8" stroke-width="2.5" opacity="0.8"/>
+        <line x1="1070" y1="195" x2="1070" y2="334.2857142857143" stroke="#65A3C8" stroke-width="0.9375" stroke-linecap="round" opacity="0.28"/>
+        <line x1="1132.5" y1="195" x2="1132.5" y2="334.2857142857143" stroke="#65A3C8" stroke-width="0.9375" stroke-linecap="round" opacity="0.28"/>
+        <line x1="1195" y1="195" x2="1195" y2="334.2857142857143" stroke="#65A3C8" stroke-width="0.9375" stroke-linecap="round" opacity="0.28"/>
+        <line x1="1257.5" y1="195" x2="1257.5" y2="334.2857142857143" stroke="#65A3C8" stroke-width="0.9375" stroke-linecap="round" opacity="0.28"/>
+        <line x1="1320" y1="195" x2="1320" y2="334.2857142857143" stroke="#65A3C8" stroke-width="0.9375" stroke-linecap="round" opacity="0.28"/>
+        <line x1="1063.75" y1="221.1904761904762" x2="1356.25" y2="221.1904761904762" stroke="#65A3C8" stroke-width="0.9375" stroke-linecap="round" opacity="0.28"/>
+        <line x1="1063.75" y1="268.8095238095238" x2="1356.25" y2="268.8095238095238" stroke="#65A3C8" stroke-width="0.9375" stroke-linecap="round" opacity="0.28"/>
+        <line x1="1063.75" y1="316.42857142857144" x2="1356.25" y2="316.42857142857144" stroke="#65A3C8" stroke-width="0.9375" stroke-linecap="round" opacity="0.28"/>
+        <path d="M 1075 312.8571428571429 C 1110 302.1428571428571 1135 248.57142857142856 1176.25 260.4761904761905 C 1225 272.3809523809524 1253.75 225.95238095238096 1342.5 212.85714285714286" stroke="#1F4E79" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <circle cx="1176.25" cy="260.4761904761905" r="7.5" fill="#E59A41" stroke="none" stroke-width="0" />
+        <circle cx="1253.75" cy="225.95238095238096" r="7.5" fill="#E59A41" stroke="none" stroke-width="0" />
+        <circle cx="1302.5" cy="310.4761904761905" r="23.75" fill="none" stroke="#1F4E79" stroke-width="3.75" />
+        <line x1="1318.75" y1="327.1428571428571" x2="1347.5" y2="352.1428571428571" stroke="#1F4E79" stroke-width="5" stroke-linecap="round" />
+      
+    <path d="M90 720 C300 620 530 640 730 700 C930 760 1170 790 1510 650" stroke="#E59A41" stroke-width="10" opacity="0.55" stroke-linecap="round"/>
+    <path d="M90 770 C330 690 570 720 760 760 C990 810 1210 820 1480 730" stroke="#1F4E79" stroke-width="4" opacity="0.35" stroke-linecap="round"/>
+  
+</svg>

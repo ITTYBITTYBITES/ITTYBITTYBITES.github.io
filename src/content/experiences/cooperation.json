@@ -1,0 +1,19 @@
+{
+  "id": "cooperation",
+  "title": "Cooperation",
+  "description": "Contribute or keep your tokens across changing group rules and watch how trust and incentives reshape the outcome for everyone.",
+  "summary": "Choose how much to share, see how others respond, and learn why cooperation is difficult and valuable.",
+  "category": "game",
+  "module": "cooperation.ts",
+  "tags": ["cooperation", "trust", "incentives", "group"],
+  "searchKeywords": ["cooperation", "trust", "incentives", "public goods", "group decisions"],
+  "estimatedDuration": "6-10 min",
+  "returnValue": "Different contribution choices create different trust loops. Return to explore how rules change group behavior.",
+  "collection": "society-mind",
+  "story": "bridges-within-and-between",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

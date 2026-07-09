@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" fill="none" role="img" aria-labelledby="titlej014b2 desc00ygit">
+  <title id="titlej014b2">signal-in-data</title>
+  <desc id="desc00ygit">Scattered points begin to align as a meaningful pattern emerges from variation.</desc>
+  
+  
+    <rect width="320" height="220" rx="24" fill="#EDF6FB"/>
+    <rect x="12" y="12" width="296" height="196" rx="18" fill="#D4E8F2" opacity="0.34"/>
+    <rect x="24" y="26" width="272" height="168" rx="20" fill="#ffffff" opacity="0.72" stroke="#65A3C8" stroke-width="2"/>
+    <path d="M28 188 C92 172 136 178 188 186 C234 194 266 194 292 184" stroke="#E59A41" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+    
+        <line x1="52" y1="164" x2="52" y2="56" stroke="#65A3C8" stroke-width="3" stroke-linecap="round" />
+        <line x1="52" y1="164" x2="272" y2="164" stroke="#65A3C8" stroke-width="3" stroke-linecap="round" />
+        <circle cx="88" cy="142" r="6" fill="#1F4E79" stroke="none" stroke-width="0" />
+        <circle cx="116" cy="132" r="6" fill="#1F4E79" stroke="none" stroke-width="0" />
+        <circle cx="150" cy="118" r="6" fill="#1F4E79" stroke="none" stroke-width="0" />
+        <circle cx="182" cy="106" r="6" fill="#1F4E79" stroke="none" stroke-width="0" />
+        <circle cx="224" cy="88" r="6" fill="#E59A41" stroke="none" stroke-width="0" />
+        <circle cx="246" cy="82" r="6" fill="#E59A41" stroke="none" stroke-width="0" />
+        <path d="M74 150 C118 136 158 120 202 100 C220 90 238 84 260 76" stroke="#E59A41" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      
+  
+</svg>

@@ -1,0 +1,57 @@
+name: CI Build & Quality Gates
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - run: npm ci
+
+      - name: Type check
+        run: npm run lint
+
+      - name: Full Build + Quality Gates
+        run: npm run build
+
+      - name: Run tests
+        run: npm test
+
+      - name: Verify dist
+        run: |
+          ls -la dist/
+          test -f dist/index.html
+          test -f dist/manifest.webmanifest
+
+      - name: Privacy Boundary Guard
+        run: |
+          echo "=== Privacy Boundary Guard ==="
+          FORBIDDEN=("PRODUCT_CONSTITUTION" "PLATFORM_BLUEPRINT" "DEVELOPMENT_MANUAL" "ENGINEERING_STANDARDS" "DESIGN_SYSTEM" "CONTENT_SYSTEM" "DECISION_LOG" "diagnostic" "admin" "private" "governing" "\.md$")
+          FAIL=0
+          for p in "${FORBIDDEN[@]}"; do
+            if find dist -type f | grep -iE "$p" > /dev/null 2>&1; then
+              echo "❌ PRIVACY: $p"
+              FAIL=1
+            fi
+          done
+          if find dist -name "*.md" | grep -q .; then FAIL=1; fi
+          if [ $FAIL -eq 1 ]; then exit 1; fi
+          echo "✅ Privacy Boundary Guard passed"
+
+      - name: Upload build reports (artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: build-reports
+          path: .build-reports/
+          retention-days: 14

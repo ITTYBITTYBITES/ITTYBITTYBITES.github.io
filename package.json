@@ -1,0 +1,27 @@
+{
+  "name": "ittybittybites-platform",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "node scripts/validate-content.mjs && node scripts/validate-assets.mjs && node scripts/generate-content.mjs && node scripts/generate-sitemap.mjs && node scripts/check-performance.mjs && tsc && vite build && cp dist/index.html dist/404.html && node scripts/generate-diagnostics.mjs && node scripts/generate-reports.mjs",
+    "validate": "node scripts/validate-content.mjs",
+    "test": "node --test test/*.test.mjs",
+    "generate": "node scripts/generate-content.mjs",
+    "diagnostics": "node scripts/generate-diagnostics.mjs",
+    "preview": "vite preview",
+    "lint": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "jsdom": "^29.1.1",
+    "marked": "^13.0.3",
+    "playwright": "^1.61.1",
+    "typescript": "^5.5.4",
+    "vite": "^5.4.2",
+    "vite-plugin-pwa": "^0.20.1"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}

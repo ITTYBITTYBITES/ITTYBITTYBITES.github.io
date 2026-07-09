@@ -1,0 +1,12 @@
+{
+  "id": "foundations",
+  "title": "Foundations",
+  "description": "Core interactive building blocks that demonstrate how small meaningful interactions create lasting value.",
+  "summary": "The first experiences proving the platform model works.",
+  "experiences": ["echo-chamber", "signal-detection", "pattern-garden", "memory-sequence", "perspective-shift"],
+  "tags": ["core", "interaction", "foundation"],
+  "searchKeywords": ["foundation", "core", "basics", "journey"],
+  "estimatedDuration": "25-50 min",
+  "story": "foundations-journey",
+  "version": "1.0.0"
+}

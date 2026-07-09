@@ -1,0 +1,1071 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-07-08T17:02:23.966Z",
+  "season": "library-season-1",
+  "description": "Per-asset registry for the ITTYBITTYBITES Library Season 1 visual asset system. Query this file before creating any new asset to avoid duplicates and to follow the established naming, dimensions, and placement conventions.",
+  "namingConvention": "category-purpose-variant — e.g. collection-foundations-cover, experience-e003-optimization-thumbnail, pattern-mathematics-symmetry, icon-discovery. Production assets realize this logical name as a path: assets/library/{category}/{id}/{purpose}.svg. Legacy base assets keep their flat {id}.svg names under assets/library-season-1/ and remain referenced by live code.",
+  "roots": {
+    "production": "public/assets/library",
+    "base": "public/assets/library-season-1"
+  },
+  "counts": {
+    "total": 116,
+    "production": 34,
+    "base": 82
+  },
+  "fields": [
+    "asset",
+    "type",
+    "collection",
+    "purpose",
+    "dimensions",
+    "format",
+    "usage"
+  ],
+  "assets": [
+    {
+      "asset": "public/assets/library-season-1/asset-index.json",
+      "type": "index",
+      "collection": "library-season-1",
+      "purpose": "folder-index",
+      "dimensions": "n/a",
+      "format": "json",
+      "usage": "Folder-level index of the base asset set (collections, experiences, folders)."
+    },
+    {
+      "asset": "public/assets/library-season-1/backgrounds/creativity.svg",
+      "type": "background",
+      "collection": "creativity",
+      "purpose": "background",
+      "dimensions": "1600x900",
+      "format": "svg",
+      "usage": "Large-format collection backdrop for seasonal reuse."
+    },
+    {
+      "asset": "public/assets/library-season-1/backgrounds/engineering.svg",
+      "type": "background",
+      "collection": "engineering",
+      "purpose": "background",
+      "dimensions": "1600x900",
+      "format": "svg",
+      "usage": "Large-format collection backdrop for seasonal reuse."
+    },
+    {
+      "asset": "public/assets/library-season-1/backgrounds/foundations.svg",
+      "type": "background",
+      "collection": "foundations",
+      "purpose": "background",
+      "dimensions": "1600x900",
+      "format": "svg",
+      "usage": "Large-format collection backdrop for seasonal reuse."
+    },
+    {
+      "asset": "public/assets/library-season-1/backgrounds/history.svg",
+      "type": "background",
+      "collection": "history",
+      "purpose": "background",
+      "dimensions": "1600x900",
+      "format": "svg",
+      "usage": "Large-format collection backdrop for seasonal reuse."
+    },
+    {
+      "asset": "public/assets/library-season-1/backgrounds/mathematics.svg",
+      "type": "background",
+      "collection": "mathematics",
+      "purpose": "background",
+      "dimensions": "1600x900",
+      "format": "svg",
+      "usage": "Large-format collection backdrop for seasonal reuse."
+    },
+    {
+      "asset": "public/assets/library-season-1/backgrounds/nature.svg",
+      "type": "background",
+      "collection": "nature",
+      "purpose": "background",
+      "dimensions": "1600x900",
+      "format": "svg",
+      "usage": "Large-format collection backdrop for seasonal reuse."
+    },
+    {
+      "asset": "public/assets/library-season-1/backgrounds/science.svg",
+      "type": "background",
+      "collection": "science",
+      "purpose": "background",
+      "dimensions": "1600x900",
+      "format": "svg",
+      "usage": "Large-format collection backdrop for seasonal reuse."
+    },
+    {
+      "asset": "public/assets/library-season-1/backgrounds/society-mind.svg",
+      "type": "background",
+      "collection": "society-mind",
+      "purpose": "background",
+      "dimensions": "1600x900",
+      "format": "svg",
+      "usage": "Large-format collection backdrop for seasonal reuse."
+    },
+    {
+      "asset": "public/assets/library-season-1/collection-badges/creativity.svg",
+      "type": "badge",
+      "collection": "creativity",
+      "purpose": "badge",
+      "dimensions": "128x128",
+      "format": "svg",
+      "usage": "Compact collection emblem for lists, context markers, and progress surfaces."
+    },
+    {
+      "asset": "public/assets/library-season-1/collection-badges/engineering.svg",
+      "type": "badge",
+      "collection": "engineering",
+      "purpose": "badge",
+      "dimensions": "128x128",
+      "format": "svg",
+      "usage": "Compact collection emblem for lists, context markers, and progress surfaces."
+    },
+    {
+      "asset": "public/assets/library-season-1/collection-badges/foundations.svg",
+      "type": "badge",
+      "collection": "foundations",
+      "purpose": "badge",
+      "dimensions": "128x128",
+      "format": "svg",
+      "usage": "Compact collection emblem for lists, context markers, and progress surfaces."
+    },
+    {
+      "asset": "public/assets/library-season-1/collection-badges/history.svg",
+      "type": "badge",
+      "collection": "history",
+      "purpose": "badge",
+      "dimensions": "128x128",
+      "format": "svg",
+      "usage": "Compact collection emblem for lists, context markers, and progress surfaces."
+    },
+    {
+      "asset": "public/assets/library-season-1/collection-badges/mathematics.svg",
+      "type": "badge",
+      "collection": "mathematics",
+      "purpose": "badge",
+      "dimensions": "128x128",
+      "format": "svg",
+      "usage": "Compact collection emblem for lists, context markers, and progress surfaces."
+    },
+    {
+      "asset": "public/assets/library-season-1/collection-badges/nature.svg",
+      "type": "badge",
+      "collection": "nature",
+      "purpose": "badge",
+      "dimensions": "128x128",
+      "format": "svg",
+      "usage": "Compact collection emblem for lists, context markers, and progress surfaces."
+    },
+    {
+      "asset": "public/assets/library-season-1/collection-badges/science.svg",
+      "type": "badge",
+      "collection": "science",
+      "purpose": "badge",
+      "dimensions": "128x128",
+      "format": "svg",
+      "usage": "Compact collection emblem for lists, context markers, and progress surfaces."
+    },
+    {
+      "asset": "public/assets/library-season-1/collection-badges/society-mind.svg",
+      "type": "badge",
+      "collection": "society-mind",
+      "purpose": "badge",
+      "dimensions": "128x128",
+      "format": "svg",
+      "usage": "Compact collection emblem for lists, context markers, and progress surfaces."
+    },
+    {
+      "asset": "public/assets/library-season-1/icons/bookmark.svg",
+      "type": "icon",
+      "collection": "shared",
+      "purpose": "bookmark-icon",
+      "dimensions": "64x64",
+      "format": "svg",
+      "usage": "Editorial bookmark icon used for saved items across the platform."
+    },
+    {
+      "asset": "public/assets/library-season-1/icons/creativity.svg",
+      "type": "icon",
+      "collection": "creativity",
+      "purpose": "icon",
+      "dimensions": "64x64",
+      "format": "svg",
+      "usage": "Reusable monochrome collection icon (colored via CSS at runtime)."
+    },
+    {
+      "asset": "public/assets/library-season-1/icons/engineering.svg",
+      "type": "icon",
+      "collection": "engineering",
+      "purpose": "icon",
+      "dimensions": "64x64",
+      "format": "svg",
+      "usage": "Reusable monochrome collection icon (colored via CSS at runtime)."
+    },
+    {
+      "asset": "public/assets/library-season-1/icons/foundations.svg",
+      "type": "icon",
+      "collection": "foundations",
+      "purpose": "icon",
+      "dimensions": "64x64",
+      "format": "svg",
+      "usage": "Reusable monochrome collection icon (colored via CSS at runtime)."
+    },
+    {
+      "asset": "public/assets/library-season-1/icons/history.svg",
+      "type": "icon",
+      "collection": "history",
+      "purpose": "icon",
+      "dimensions": "64x64",
+      "format": "svg",
+      "usage": "Reusable monochrome collection icon (colored via CSS at runtime)."
+    },
+    {
+      "asset": "public/assets/library-season-1/icons/mathematics.svg",
+      "type": "icon",
+      "collection": "mathematics",
+      "purpose": "icon",
+      "dimensions": "64x64",
+      "format": "svg",
+      "usage": "Reusable monochrome collection icon (colored via CSS at runtime)."
+    },
+    {
+      "asset": "public/assets/library-season-1/icons/nature.svg",
+      "type": "icon",
+      "collection": "nature",
+      "purpose": "icon",
+      "dimensions": "64x64",
+      "format": "svg",
+      "usage": "Reusable monochrome collection icon (colored via CSS at runtime)."
+    },
+    {
+      "asset": "public/assets/library-season-1/icons/science.svg",
+      "type": "icon",
+      "collection": "science",
+      "purpose": "icon",
+      "dimensions": "64x64",
+      "format": "svg",
+      "usage": "Reusable monochrome collection icon (colored via CSS at runtime)."
+    },
+    {
+      "asset": "public/assets/library-season-1/icons/society-mind.svg",
+      "type": "icon",
+      "collection": "society-mind",
+      "purpose": "icon",
+      "dimensions": "64x64",
+      "format": "svg",
+      "usage": "Reusable monochrome collection icon (colored via CSS at runtime)."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/collections/creativity.svg",
+      "type": "illustration",
+      "collection": "creativity",
+      "purpose": "collection-illustration",
+      "dimensions": "640x420",
+      "format": "svg",
+      "usage": "Wide-format illustration for the Creativity collection. Used in collection cards and featured sections (referenced by renderCollectionIllustration)."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/collections/engineering.svg",
+      "type": "illustration",
+      "collection": "engineering",
+      "purpose": "collection-illustration",
+      "dimensions": "640x420",
+      "format": "svg",
+      "usage": "Wide-format illustration for the Engineering collection. Used in collection cards and featured sections (referenced by renderCollectionIllustration)."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/collections/foundations.svg",
+      "type": "illustration",
+      "collection": "foundations",
+      "purpose": "collection-illustration",
+      "dimensions": "640x420",
+      "format": "svg",
+      "usage": "Wide-format illustration for the Foundations collection. Used in collection cards and featured sections (referenced by renderCollectionIllustration)."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/collections/history.svg",
+      "type": "illustration",
+      "collection": "history",
+      "purpose": "collection-illustration",
+      "dimensions": "640x420",
+      "format": "svg",
+      "usage": "Wide-format illustration for the History collection. Used in collection cards and featured sections (referenced by renderCollectionIllustration)."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/collections/mathematics.svg",
+      "type": "illustration",
+      "collection": "mathematics",
+      "purpose": "collection-illustration",
+      "dimensions": "640x420",
+      "format": "svg",
+      "usage": "Wide-format illustration for the Mathematics collection. Used in collection cards and featured sections (referenced by renderCollectionIllustration)."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/collections/nature.svg",
+      "type": "illustration",
+      "collection": "nature",
+      "purpose": "collection-illustration",
+      "dimensions": "640x420",
+      "format": "svg",
+      "usage": "Wide-format illustration for the Nature collection. Used in collection cards and featured sections (referenced by renderCollectionIllustration)."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/collections/science.svg",
+      "type": "illustration",
+      "collection": "science",
+      "purpose": "collection-illustration",
+      "dimensions": "640x420",
+      "format": "svg",
+      "usage": "Wide-format illustration for the Science collection. Used in collection cards and featured sections (referenced by renderCollectionIllustration)."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/collections/society-mind.svg",
+      "type": "illustration",
+      "collection": "society-mind",
+      "purpose": "collection-illustration",
+      "dimensions": "640x420",
+      "format": "svg",
+      "usage": "Wide-format illustration for the Society & Mind collection. Used in collection cards and featured sections (referenced by renderCollectionIllustration)."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/adaptation.svg",
+      "type": "illustration",
+      "collection": "nature",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Adaptation experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/attention.svg",
+      "type": "illustration",
+      "collection": "society-mind",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Attention experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/bias.svg",
+      "type": "illustration",
+      "collection": "society-mind",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Bias experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/bridge-builder.svg",
+      "type": "illustration",
+      "collection": "engineering",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Bridge Builder experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/chain-reaction.svg",
+      "type": "illustration",
+      "collection": "history",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Chain Reaction experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/chronology.svg",
+      "type": "illustration",
+      "collection": "history",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Chronology experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/compose.svg",
+      "type": "illustration",
+      "collection": "creativity",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Compose experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/constraint.svg",
+      "type": "illustration",
+      "collection": "creativity",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Constraint experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/controlled.svg",
+      "type": "illustration",
+      "collection": "science",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Controlled experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/cooperation.svg",
+      "type": "illustration",
+      "collection": "society-mind",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Cooperation experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/decision-making.svg",
+      "type": "illustration",
+      "collection": "society-mind",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Decision Making experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/diverge.svg",
+      "type": "illustration",
+      "collection": "creativity",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Diverge experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/dueling-accounts.svg",
+      "type": "illustration",
+      "collection": "history",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Dueling Accounts experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/echo-chamber.svg",
+      "type": "illustration",
+      "collection": "foundations",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Echo Chamber experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/ecosystem.svg",
+      "type": "illustration",
+      "collection": "nature",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Ecosystem experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/estimation.svg",
+      "type": "illustration",
+      "collection": "mathematics",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Estimation experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/failure-analysis.svg",
+      "type": "illustration",
+      "collection": "engineering",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Failure Analysis experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/feedback-loop.svg",
+      "type": "illustration",
+      "collection": "engineering",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Feedback Loop experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/hypothesis.svg",
+      "type": "illustration",
+      "collection": "science",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Hypothesis experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/iterate.svg",
+      "type": "illustration",
+      "collection": "creativity",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Iterate experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/memory-sequence.svg",
+      "type": "illustration",
+      "collection": "foundations",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Memory Sequence experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/memory.svg",
+      "type": "illustration",
+      "collection": "society-mind",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Memory experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/optimization.svg",
+      "type": "illustration",
+      "collection": "engineering",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Optimization experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/pattern-garden.svg",
+      "type": "illustration",
+      "collection": "foundations",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Pattern Garden experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/patterns.svg",
+      "type": "illustration",
+      "collection": "mathematics",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Patterns experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/perspective-shift.svg",
+      "type": "illustration",
+      "collection": "foundations",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Perspective Shift experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/probability.svg",
+      "type": "illustration",
+      "collection": "mathematics",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Probability experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/proof.svg",
+      "type": "illustration",
+      "collection": "mathematics",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Proof experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/remix.svg",
+      "type": "illustration",
+      "collection": "creativity",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Remix experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/scale.svg",
+      "type": "illustration",
+      "collection": "science",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Scale experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/seasons.svg",
+      "type": "illustration",
+      "collection": "nature",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Seasons experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/signal-detection.svg",
+      "type": "illustration",
+      "collection": "foundations",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Signal Detection experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/signal-in-data.svg",
+      "type": "illustration",
+      "collection": "science",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Signal In Data experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/symbiosis.svg",
+      "type": "illustration",
+      "collection": "nature",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Symbiosis experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/symmetry.svg",
+      "type": "illustration",
+      "collection": "mathematics",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Symmetry experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/trade-offs.svg",
+      "type": "illustration",
+      "collection": "engineering",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Trade Offs experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/uncertainty.svg",
+      "type": "illustration",
+      "collection": "science",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Uncertainty experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/unlabeled.svg",
+      "type": "illustration",
+      "collection": "history",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Unlabeled experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/watershed.svg",
+      "type": "illustration",
+      "collection": "nature",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Watershed experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/illustrations/experiences/witness-accounts.svg",
+      "type": "illustration",
+      "collection": "history",
+      "purpose": "experience-illustration",
+      "dimensions": "320x220",
+      "format": "svg",
+      "usage": "Diagrammatic illustration for the Witness Accounts experience. Referenced by renderExperienceArtwork/renderExperienceFigure."
+    },
+    {
+      "asset": "public/assets/library-season-1/patterns/creativity.svg",
+      "type": "pattern",
+      "collection": "creativity",
+      "purpose": "pattern",
+      "dimensions": "240x240",
+      "format": "svg",
+      "usage": "Low-contrast SVG pattern field used to add atmosphere without overwhelming content."
+    },
+    {
+      "asset": "public/assets/library-season-1/patterns/engineering.svg",
+      "type": "pattern",
+      "collection": "engineering",
+      "purpose": "pattern",
+      "dimensions": "240x240",
+      "format": "svg",
+      "usage": "Low-contrast SVG pattern field used to add atmosphere without overwhelming content."
+    },
+    {
+      "asset": "public/assets/library-season-1/patterns/foundations.svg",
+      "type": "pattern",
+      "collection": "foundations",
+      "purpose": "pattern",
+      "dimensions": "240x240",
+      "format": "svg",
+      "usage": "Low-contrast SVG pattern field used to add atmosphere without overwhelming content."
+    },
+    {
+      "asset": "public/assets/library-season-1/patterns/history.svg",
+      "type": "pattern",
+      "collection": "history",
+      "purpose": "pattern",
+      "dimensions": "240x240",
+      "format": "svg",
+      "usage": "Low-contrast SVG pattern field used to add atmosphere without overwhelming content."
+    },
+    {
+      "asset": "public/assets/library-season-1/patterns/mathematics.svg",
+      "type": "pattern",
+      "collection": "mathematics",
+      "purpose": "pattern",
+      "dimensions": "240x240",
+      "format": "svg",
+      "usage": "Low-contrast SVG pattern field used to add atmosphere without overwhelming content."
+    },
+    {
+      "asset": "public/assets/library-season-1/patterns/nature.svg",
+      "type": "pattern",
+      "collection": "nature",
+      "purpose": "pattern",
+      "dimensions": "240x240",
+      "format": "svg",
+      "usage": "Low-contrast SVG pattern field used to add atmosphere without overwhelming content."
+    },
+    {
+      "asset": "public/assets/library-season-1/patterns/science.svg",
+      "type": "pattern",
+      "collection": "science",
+      "purpose": "pattern",
+      "dimensions": "240x240",
+      "format": "svg",
+      "usage": "Low-contrast SVG pattern field used to add atmosphere without overwhelming content."
+    },
+    {
+      "asset": "public/assets/library-season-1/patterns/society-mind.svg",
+      "type": "pattern",
+      "collection": "society-mind",
+      "purpose": "pattern",
+      "dimensions": "240x240",
+      "format": "svg",
+      "usage": "Low-contrast SVG pattern field used to add atmosphere without overwhelming content."
+    },
+    {
+      "asset": "public/assets/library/ASSET_MANIFEST.json",
+      "type": "manifest",
+      "collection": "library-season-1",
+      "purpose": "asset-registry",
+      "dimensions": "n/a",
+      "format": "json",
+      "usage": "This file. The canonical registry of every visual asset in the system."
+    },
+    {
+      "asset": "public/assets/library/collections/creativity/cover.svg",
+      "type": "cover",
+      "collection": "creativity",
+      "purpose": "collection-cover",
+      "dimensions": "2400x1600",
+      "format": "svg",
+      "usage": "Master cover artwork for the Creativity collection. Use for collection detail headers and feature placements."
+    },
+    {
+      "asset": "public/assets/library/collections/creativity/thumbnail.svg",
+      "type": "thumbnail",
+      "collection": "creativity",
+      "purpose": "collection-thumbnail",
+      "dimensions": "600x400",
+      "format": "svg",
+      "usage": "Compact thumbnail for the Creativity collection. Use in collection cards, shelves, and list previews."
+    },
+    {
+      "asset": "public/assets/library/collections/engineering/cover.svg",
+      "type": "cover",
+      "collection": "engineering",
+      "purpose": "collection-cover",
+      "dimensions": "2400x1600",
+      "format": "svg",
+      "usage": "Master cover artwork for the Engineering collection. Use for collection detail headers and feature placements."
+    },
+    {
+      "asset": "public/assets/library/collections/engineering/thumbnail.svg",
+      "type": "thumbnail",
+      "collection": "engineering",
+      "purpose": "collection-thumbnail",
+      "dimensions": "600x400",
+      "format": "svg",
+      "usage": "Compact thumbnail for the Engineering collection. Use in collection cards, shelves, and list previews."
+    },
+    {
+      "asset": "public/assets/library/collections/foundations/cover.svg",
+      "type": "cover",
+      "collection": "foundations",
+      "purpose": "collection-cover",
+      "dimensions": "2400x1600",
+      "format": "svg",
+      "usage": "Master cover artwork for the Foundations collection. Use for collection detail headers and feature placements."
+    },
+    {
+      "asset": "public/assets/library/collections/foundations/thumbnail.svg",
+      "type": "thumbnail",
+      "collection": "foundations",
+      "purpose": "collection-thumbnail",
+      "dimensions": "600x400",
+      "format": "svg",
+      "usage": "Compact thumbnail for the Foundations collection. Use in collection cards, shelves, and list previews."
+    },
+    {
+      "asset": "public/assets/library/collections/history/cover.svg",
+      "type": "cover",
+      "collection": "history",
+      "purpose": "collection-cover",
+      "dimensions": "2400x1600",
+      "format": "svg",
+      "usage": "Master cover artwork for the History collection. Use for collection detail headers and feature placements."
+    },
+    {
+      "asset": "public/assets/library/collections/history/thumbnail.svg",
+      "type": "thumbnail",
+      "collection": "history",
+      "purpose": "collection-thumbnail",
+      "dimensions": "600x400",
+      "format": "svg",
+      "usage": "Compact thumbnail for the History collection. Use in collection cards, shelves, and list previews."
+    },
+    {
+      "asset": "public/assets/library/collections/mathematics/cover.svg",
+      "type": "cover",
+      "collection": "mathematics",
+      "purpose": "collection-cover",
+      "dimensions": "2400x1600",
+      "format": "svg",
+      "usage": "Master cover artwork for the Mathematics collection. Use for collection detail headers and feature placements."
+    },
+    {
+      "asset": "public/assets/library/collections/mathematics/thumbnail.svg",
+      "type": "thumbnail",
+      "collection": "mathematics",
+      "purpose": "collection-thumbnail",
+      "dimensions": "600x400",
+      "format": "svg",
+      "usage": "Compact thumbnail for the Mathematics collection. Use in collection cards, shelves, and list previews."
+    },
+    {
+      "asset": "public/assets/library/collections/nature/cover.svg",
+      "type": "cover",
+      "collection": "nature",
+      "purpose": "collection-cover",
+      "dimensions": "2400x1600",
+      "format": "svg",
+      "usage": "Master cover artwork for the Nature collection. Use for collection detail headers and feature placements."
+    },
+    {
+      "asset": "public/assets/library/collections/nature/thumbnail.svg",
+      "type": "thumbnail",
+      "collection": "nature",
+      "purpose": "collection-thumbnail",
+      "dimensions": "600x400",
+      "format": "svg",
+      "usage": "Compact thumbnail for the Nature collection. Use in collection cards, shelves, and list previews."
+    },
+    {
+      "asset": "public/assets/library/collections/science/cover.svg",
+      "type": "cover",
+      "collection": "science",
+      "purpose": "collection-cover",
+      "dimensions": "2400x1600",
+      "format": "svg",
+      "usage": "Master cover artwork for the Science collection. Use for collection detail headers and feature placements."
+    },
+    {
+      "asset": "public/assets/library/collections/science/thumbnail.svg",
+      "type": "thumbnail",
+      "collection": "science",
+      "purpose": "collection-thumbnail",
+      "dimensions": "600x400",
+      "format": "svg",
+      "usage": "Compact thumbnail for the Science collection. Use in collection cards, shelves, and list previews."
+    },
+    {
+      "asset": "public/assets/library/collections/society-mind/cover.svg",
+      "type": "cover",
+      "collection": "society-mind",
+      "purpose": "collection-cover",
+      "dimensions": "2400x1600",
+      "format": "svg",
+      "usage": "Master cover artwork for the Society & Mind collection. Use for collection detail headers and feature placements."
+    },
+    {
+      "asset": "public/assets/library/collections/society-mind/thumbnail.svg",
+      "type": "thumbnail",
+      "collection": "society-mind",
+      "purpose": "collection-thumbnail",
+      "dimensions": "600x400",
+      "format": "svg",
+      "usage": "Compact thumbnail for the Society & Mind collection. Use in collection cards, shelves, and list previews."
+    },
+    {
+      "asset": "public/assets/library/experiences/c002-constraint/hero.svg",
+      "type": "hero",
+      "collection": "creativity",
+      "purpose": "experience-hero",
+      "dimensions": "1600x900",
+      "format": "svg",
+      "usage": "Hero artwork for the Constraint experience (constraint). Open left zone reserved for title/caption overlay."
+    },
+    {
+      "asset": "public/assets/library/experiences/c002-constraint/thumbnail.svg",
+      "type": "thumbnail",
+      "collection": "creativity",
+      "purpose": "experience-thumbnail",
+      "dimensions": "1200x900",
+      "format": "svg",
+      "usage": "Thumbnail artwork for the Constraint experience (constraint). Use in experience cards and index grids."
+    },
+    {
+      "asset": "public/assets/library/experiences/e001-bridge-builder/hero.svg",
+      "type": "hero",
+      "collection": "engineering",
+      "purpose": "experience-hero",
+      "dimensions": "1600x900",
+      "format": "svg",
+      "usage": "Hero artwork for the Bridge Builder experience (bridge-builder). Open left zone reserved for title/caption overlay."
+    },
+    {
+      "asset": "public/assets/library/experiences/e001-bridge-builder/thumbnail.svg",
+      "type": "thumbnail",
+      "collection": "engineering",
+      "purpose": "experience-thumbnail",
+      "dimensions": "1200x900",
+      "format": "svg",
+      "usage": "Thumbnail artwork for the Bridge Builder experience (bridge-builder). Use in experience cards and index grids."
+    },
+    {
+      "asset": "public/assets/library/experiences/e003-optimization/hero.svg",
+      "type": "hero",
+      "collection": "engineering",
+      "purpose": "experience-hero",
+      "dimensions": "1600x900",
+      "format": "svg",
+      "usage": "Hero artwork for the Optimization experience (optimization). Open left zone reserved for title/caption overlay."
+    },
+    {
+      "asset": "public/assets/library/experiences/e003-optimization/thumbnail.svg",
+      "type": "thumbnail",
+      "collection": "engineering",
+      "purpose": "experience-thumbnail",
+      "dimensions": "1200x900",
+      "format": "svg",
+      "usage": "Thumbnail artwork for the Optimization experience (optimization). Use in experience cards and index grids."
+    },
+    {
+      "asset": "public/assets/library/experiences/f003-pattern-garden/hero.svg",
+      "type": "hero",
+      "collection": "foundations",
+      "purpose": "experience-hero",
+      "dimensions": "1600x900",
+      "format": "svg",
+      "usage": "Hero artwork for the Pattern Garden experience (pattern-garden). Open left zone reserved for title/caption overlay."
+    },
+    {
+      "asset": "public/assets/library/experiences/f003-pattern-garden/thumbnail.svg",
+      "type": "thumbnail",
+      "collection": "foundations",
+      "purpose": "experience-thumbnail",
+      "dimensions": "1200x900",
+      "format": "svg",
+      "usage": "Thumbnail artwork for the Pattern Garden experience (pattern-garden). Use in experience cards and index grids."
+    },
+    {
+      "asset": "public/assets/library/experiences/h001-dueling-accounts/hero.svg",
+      "type": "hero",
+      "collection": "history",
+      "purpose": "experience-hero",
+      "dimensions": "1600x900",
+      "format": "svg",
+      "usage": "Hero artwork for the Dueling Accounts experience (dueling-accounts). Open left zone reserved for title/caption overlay."
+    },
+    {
+      "asset": "public/assets/library/experiences/h001-dueling-accounts/thumbnail.svg",
+      "type": "thumbnail",
+      "collection": "history",
+      "purpose": "experience-thumbnail",
+      "dimensions": "1200x900",
+      "format": "svg",
+      "usage": "Thumbnail artwork for the Dueling Accounts experience (dueling-accounts). Use in experience cards and index grids."
+    },
+    {
+      "asset": "public/assets/library/experiences/m005-proof/hero.svg",
+      "type": "hero",
+      "collection": "mathematics",
+      "purpose": "experience-hero",
+      "dimensions": "1600x900",
+      "format": "svg",
+      "usage": "Hero artwork for the Proof experience (proof). Open left zone reserved for title/caption overlay."
+    },
+    {
+      "asset": "public/assets/library/experiences/m005-proof/thumbnail.svg",
+      "type": "thumbnail",
+      "collection": "mathematics",
+      "purpose": "experience-thumbnail",
+      "dimensions": "1200x900",
+      "format": "svg",
+      "usage": "Thumbnail artwork for the Proof experience (proof). Use in experience cards and index grids."
+    },
+    {
+      "asset": "public/assets/library/experiences/n005-watershed/hero.svg",
+      "type": "hero",
+      "collection": "nature",
+      "purpose": "experience-hero",
+      "dimensions": "1600x900",
+      "format": "svg",
+      "usage": "Hero artwork for the Watershed experience (watershed). Open left zone reserved for title/caption overlay."
+    },
+    {
+      "asset": "public/assets/library/experiences/n005-watershed/thumbnail.svg",
+      "type": "thumbnail",
+      "collection": "nature",
+      "purpose": "experience-thumbnail",
+      "dimensions": "1200x900",
+      "format": "svg",
+      "usage": "Thumbnail artwork for the Watershed experience (watershed). Use in experience cards and index grids."
+    },
+    {
+      "asset": "public/assets/library/experiences/x001-attention/hero.svg",
+      "type": "hero",
+      "collection": "society-mind",
+      "purpose": "experience-hero",
+      "dimensions": "1600x900",
+      "format": "svg",
+      "usage": "Hero artwork for the Attention experience (attention). Open left zone reserved for title/caption overlay."
+    },
+    {
+      "asset": "public/assets/library/experiences/x001-attention/thumbnail.svg",
+      "type": "thumbnail",
+      "collection": "society-mind",
+      "purpose": "experience-thumbnail",
+      "dimensions": "1200x900",
+      "format": "svg",
+      "usage": "Thumbnail artwork for the Attention experience (attention). Use in experience cards and index grids."
+    },
+    {
+      "asset": "public/assets/library/hero/library-season-1/library-hero.svg",
+      "type": "hero",
+      "collection": "library-season-1",
+      "purpose": "library-hero",
+      "dimensions": "3840x1600",
+      "format": "svg",
+      "usage": "Main website hero. Left ~45% intentionally left open for headline text overlay."
+    }
+  ]
+}

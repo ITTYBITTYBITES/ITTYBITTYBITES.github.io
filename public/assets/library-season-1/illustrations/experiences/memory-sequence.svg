@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" fill="none" role="img" aria-labelledby="titlet1c8ae descrxy9h6">
+  <title id="titlet1c8ae">memory-sequence</title>
+  <desc id="descrxy9h6">A short sequence appears, fades, and asks the mind to rebuild order from fragments.</desc>
+  
+  
+    <rect width="320" height="220" rx="24" fill="#F4F1EA"/>
+    <rect x="12" y="12" width="296" height="196" rx="18" fill="#E5E0D7" opacity="0.34"/>
+    <rect x="24" y="26" width="272" height="168" rx="20" fill="#ffffff" opacity="0.72" stroke="#7A8CA5" stroke-width="2"/>
+    <path d="M28 188 C92 172 136 178 188 186 C234 194 266 194 292 184" stroke="#D48A3A" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+    
+        <rect x="48" y="72" width="48" height="76" rx="14" fill="#ffffff" stroke="#7A8CA5" stroke-width="2.5" opacity="0.55"/>
+        <rect x="108" y="60" width="48" height="88" rx="14" fill="#ffffff" stroke="#2E3F57" stroke-width="2.5" opacity="0.8"/>
+        <rect x="168" y="48" width="48" height="100" rx="14" fill="#ffffff" stroke="#2E3F57" stroke-width="2.5" opacity="0.95"/>
+        <rect x="228" y="60" width="48" height="88" rx="14" fill="#ffffff" stroke="#7A8CA5" stroke-width="2.5" opacity="0.7"/>
+        <path d="M74 168 C112 194 154 194 194 168 C214 154 234 154 250 162" stroke="#D48A3A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      
+  
+</svg>

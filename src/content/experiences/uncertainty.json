@@ -1,0 +1,19 @@
+{
+  "id": "uncertainty",
+  "title": "Uncertainty",
+  "description": "Make decisions when the answer is not yet known. Science lives in the space between what we know and what we are still figuring out.",
+  "summary": "Work with probability, confidence, and the limits of knowledge to make reasoned decisions under uncertainty.",
+  "category": "reflection",
+  "module": "uncertainty.ts",
+  "tags": ["uncertainty", "probability", "confidence", "decision", "limits"],
+  "searchKeywords": ["uncertainty", "probability", "confidence", "decision", "unknown"],
+  "estimatedDuration": "5-8 min",
+  "returnValue": "Different scenarios reveal how comfort with uncertainty changes your choices. Return to explore alternative paths.",
+  "collection": "science",
+  "story": "ways-of-knowing",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

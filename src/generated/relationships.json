@@ -1,0 +1,182 @@
+{
+  "collectionsToExperiences": {
+    "creativity": [
+      "diverge",
+      "constraint",
+      "remix",
+      "compose",
+      "iterate"
+    ],
+    "engineering": [
+      "bridge-builder",
+      "feedback-loop",
+      "optimization",
+      "failure-analysis",
+      "trade-offs"
+    ],
+    "foundations": [
+      "echo-chamber",
+      "signal-detection",
+      "pattern-garden",
+      "memory-sequence",
+      "perspective-shift"
+    ],
+    "history": [
+      "dueling-accounts",
+      "unlabeled",
+      "chronology",
+      "chain-reaction",
+      "witness-accounts"
+    ],
+    "mathematics": [
+      "patterns",
+      "estimation",
+      "symmetry",
+      "probability",
+      "proof"
+    ],
+    "nature": [
+      "ecosystem",
+      "seasons",
+      "adaptation",
+      "symbiosis",
+      "watershed"
+    ],
+    "science": [
+      "hypothesis",
+      "controlled",
+      "signal-in-data",
+      "scale",
+      "uncertainty"
+    ],
+    "society-mind": [
+      "attention",
+      "bias",
+      "memory",
+      "cooperation",
+      "decision-making"
+    ]
+  },
+  "experiencesToCollections": {
+    "diverge": [
+      "creativity"
+    ],
+    "constraint": [
+      "creativity"
+    ],
+    "remix": [
+      "creativity"
+    ],
+    "compose": [
+      "creativity"
+    ],
+    "iterate": [
+      "creativity"
+    ],
+    "bridge-builder": [
+      "engineering"
+    ],
+    "feedback-loop": [
+      "engineering"
+    ],
+    "optimization": [
+      "engineering"
+    ],
+    "failure-analysis": [
+      "engineering"
+    ],
+    "trade-offs": [
+      "engineering"
+    ],
+    "echo-chamber": [
+      "foundations"
+    ],
+    "signal-detection": [
+      "foundations"
+    ],
+    "pattern-garden": [
+      "foundations"
+    ],
+    "memory-sequence": [
+      "foundations"
+    ],
+    "perspective-shift": [
+      "foundations"
+    ],
+    "dueling-accounts": [
+      "history"
+    ],
+    "unlabeled": [
+      "history"
+    ],
+    "chronology": [
+      "history"
+    ],
+    "chain-reaction": [
+      "history"
+    ],
+    "witness-accounts": [
+      "history"
+    ],
+    "patterns": [
+      "mathematics"
+    ],
+    "estimation": [
+      "mathematics"
+    ],
+    "symmetry": [
+      "mathematics"
+    ],
+    "probability": [
+      "mathematics"
+    ],
+    "proof": [
+      "mathematics"
+    ],
+    "ecosystem": [
+      "nature"
+    ],
+    "seasons": [
+      "nature"
+    ],
+    "adaptation": [
+      "nature"
+    ],
+    "symbiosis": [
+      "nature"
+    ],
+    "watershed": [
+      "nature"
+    ],
+    "hypothesis": [
+      "science"
+    ],
+    "controlled": [
+      "science"
+    ],
+    "signal-in-data": [
+      "science"
+    ],
+    "scale": [
+      "science"
+    ],
+    "uncertainty": [
+      "science"
+    ],
+    "attention": [
+      "society-mind"
+    ],
+    "bias": [
+      "society-mind"
+    ],
+    "memory": [
+      "society-mind"
+    ],
+    "cooperation": [
+      "society-mind"
+    ],
+    "decision-making": [
+      "society-mind"
+    ]
+  }
+}

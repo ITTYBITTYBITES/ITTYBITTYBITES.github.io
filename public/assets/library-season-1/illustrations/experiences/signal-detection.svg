@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" fill="none" role="img" aria-labelledby="titled3n8m6 descic040y">
+  <title id="titled3n8m6">signal-detection</title>
+  <desc id="descic040y">A weak pattern rises through noise as a threshold line separates notice from miss.</desc>
+  
+  
+    <rect width="320" height="220" rx="24" fill="#F4F1EA"/>
+    <rect x="12" y="12" width="296" height="196" rx="18" fill="#E5E0D7" opacity="0.34"/>
+    <rect x="24" y="26" width="272" height="168" rx="20" fill="#ffffff" opacity="0.72" stroke="#7A8CA5" stroke-width="2"/>
+    <path d="M28 188 C92 172 136 178 188 186 C234 194 266 194 292 184" stroke="#D48A3A" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+    
+        <line x1="46" y1="150" x2="274" y2="150" stroke="#7A8CA5" stroke-width="2" stroke-linecap="round" opacity="0.45"/>
+        <line x1="226" y1="52" x2="226" y2="170" stroke="#D48A3A" stroke-width="3" stroke-linecap="round" opacity="0.8" stroke-dasharray="6 8"/>
+        <path d="M46 132 C66 152 80 108 100 132 C120 156 136 102 156 128 C176 154 192 76 214 74 C232 74 246 96 274 92" stroke="#2E3F57" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <circle cx="226" cy="74" r="8" fill="#D48A3A" stroke="none" stroke-width="0" />
+      
+  
+</svg>

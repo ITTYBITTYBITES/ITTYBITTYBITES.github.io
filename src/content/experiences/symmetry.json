@@ -1,0 +1,19 @@
+{
+  "id": "symmetry",
+  "title": "Symmetry",
+  "description": "Complete balanced patterns and discover what stays unchanged when shapes flip, turn, or repeat.",
+  "summary": "Create balanced structures and see how symmetry reveals hidden order in nature, art, and design.",
+  "category": "interactive",
+  "module": "symmetry.ts",
+  "tags": ["symmetry", "balance", "transformation", "invariance", "structure"],
+  "searchKeywords": ["symmetry", "mirror", "balance", "pattern", "transform", "invariance", "art", "nature"],
+  "estimatedDuration": "6-10 min",
+  "returnValue": "Return to complete new patterns and notice symmetry in the world around you.",
+  "collection": "mathematics",
+  "story": "the-language-of-patterns",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

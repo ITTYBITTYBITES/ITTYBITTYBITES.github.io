@@ -1,0 +1,1979 @@
+{
+  "version": "1.0.0",
+  "generatedAt": "2026-07-09T11:30:55.613Z",
+  "experiences": [
+    {
+      "id": "adaptation",
+      "title": "Adaptation",
+      "description": "The environment shifts. Creatures must shift with it. Select traits for each generation and watch which lineages survive and which vanish.",
+      "summary": "Given environmental pressures, choose traits for creatures across generations. Adaptation is not optional.",
+      "category": "game",
+      "module": "adaptation.ts",
+      "tags": [
+        "adaptation",
+        "evolution",
+        "survival",
+        "traits"
+      ],
+      "searchKeywords": [
+        "adaptation",
+        "evolution",
+        "natural selection",
+        "traits",
+        "survival"
+      ],
+      "estimatedDuration": "7-12 min",
+      "returnValue": "New environmental pressures challenge your understanding of adaptation on each return.",
+      "collection": "nature",
+      "story": "the-living-web",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "attention",
+      "title": "Attention",
+      "description": "Focus on one pattern in a busy field and discover how much slips past while your mind is filtering for what matters.",
+      "summary": "Click the target cards, then answer what changed outside your focus. Attention is selective, not infinite.",
+      "category": "interactive",
+      "module": "attention.ts",
+      "tags": [
+        "attention",
+        "focus",
+        "filtering",
+        "perception"
+      ],
+      "searchKeywords": [
+        "attention",
+        "focus",
+        "selective attention",
+        "change blindness",
+        "perception"
+      ],
+      "estimatedDuration": "4-7 min",
+      "returnValue": "New focus rounds let you test how attention changes what you notice and what you miss.",
+      "collection": "society-mind",
+      "story": "bridges-within-and-between",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "bias",
+      "title": "Bias",
+      "description": "Make fast judgments from framed, partial, or ambiguous information and notice the shortcuts your mind uses to keep up.",
+      "summary": "Choose quickly, then see how framing, anchors, and assumptions tilt interpretation.",
+      "category": "reflection",
+      "module": "bias.ts",
+      "tags": [
+        "bias",
+        "framing",
+        "assumptions",
+        "shortcuts"
+      ],
+      "searchKeywords": [
+        "bias",
+        "framing",
+        "anchor",
+        "assumption",
+        "mental shortcut",
+        "fast thinking"
+      ],
+      "estimatedDuration": "5-8 min",
+      "returnValue": "Different scenarios keep revealing the shortcuts that feel natural to you. Return and compare your instincts.",
+      "collection": "society-mind",
+      "story": "bridges-within-and-between",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "bridge-builder",
+      "title": "Bridge Builder",
+      "description": "Span a gap. Balance strength, cost, and materials. Every bridge is a negotiation between what you want and what you can afford.",
+      "summary": "Design bridges that meet strength requirements while staying within budget. Choose materials and structure to find the right balance.",
+      "category": "interactive",
+      "module": "bridge-builder.ts",
+      "tags": [
+        "bridge",
+        "materials",
+        "cost",
+        "strength",
+        "design"
+      ],
+      "searchKeywords": [
+        "bridge",
+        "build",
+        "structure",
+        "material",
+        "cost",
+        "strength"
+      ],
+      "estimatedDuration": "8-12 min",
+      "returnValue": "Different challenges test your ability to balance competing demands. Return and discover more efficient solutions.",
+      "collection": "engineering",
+      "story": "the-art-of-compromise",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "chain-reaction",
+      "title": "Chain Reaction",
+      "description": "One decision opens paths no one fully foresaw. Build chains of consequence and explore how events connect across time.",
+      "summary": "Trace how one event led to another through a branching chain of decisions and outcomes.",
+      "category": "interactive",
+      "module": "chain-reaction.ts",
+      "tags": [
+        "causation",
+        "consequences",
+        "decisions",
+        "connections"
+      ],
+      "searchKeywords": [
+        "cause",
+        "effect",
+        "consequence",
+        "chain",
+        "decision"
+      ],
+      "estimatedDuration": "7-12 min",
+      "returnValue": "Different choices reveal different paths. Return to explore alternative chains.",
+      "collection": "history",
+      "story": "echoes-of-evidence",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "chronology",
+      "title": "Chronology",
+      "description": "Events do not arrive with timestamps. Rebuild order from relationships, consequences, and logical necessity.",
+      "summary": "Arrange events into sequence using evidence and reasoning rather than memorized dates.",
+      "category": "game",
+      "module": "chronology.ts",
+      "tags": [
+        "sequence",
+        "logic",
+        "causation",
+        "ordering"
+      ],
+      "searchKeywords": [
+        "timeline",
+        "chronology",
+        "sequence",
+        "order",
+        "events"
+      ],
+      "estimatedDuration": "6-10 min",
+      "returnValue": "New event sets challenge your sequencing skills on each return.",
+      "collection": "history",
+      "story": "echoes-of-evidence",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "compose",
+      "title": "Compose",
+      "description": "Elements alone are not a work. Arrangement is what creates meaning. Place, order, and relationship transform raw materials into something coherent.",
+      "summary": "Arrange given elements into a coherent whole. Discover how placement, order, and relationship create meaning.",
+      "category": "interactive",
+      "module": "compose.ts",
+      "tags": [
+        "composition",
+        "arrangement",
+        "order",
+        "structure"
+      ],
+      "searchKeywords": [
+        "compose",
+        "arrange",
+        "structure",
+        "order",
+        "organize"
+      ],
+      "estimatedDuration": "6-10 min",
+      "returnValue": "New element sets test your eye for arrangement. Return and discover how different orders create different meanings.",
+      "collection": "creativity",
+      "story": "the-making-process",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "constraint",
+      "title": "Constraint",
+      "description": "Limits do not kill creativity. They focus it. Build something meaningful when most options are closed and discover what the restriction reveals.",
+      "summary": "Create within strict limitations. Discover how rules become the engine of invention.",
+      "category": "game",
+      "module": "constraint.ts",
+      "tags": [
+        "constraint",
+        "limits",
+        "rules",
+        "invention"
+      ],
+      "searchKeywords": [
+        "constraint",
+        "limit",
+        "restriction",
+        "rules",
+        "challenge"
+      ],
+      "estimatedDuration": "7-12 min",
+      "returnValue": "New constraints test your ability to work within limits. Each round teaches something different about the relationship between freedom and form.",
+      "collection": "creativity",
+      "story": "the-making-process",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "controlled",
+      "title": "Controlled",
+      "description": "Change one thing at a time. Everything else must stay constant. Only then can you know what caused what.",
+      "summary": "Isolate variables in an experiment to find true cause and eliminate false leads.",
+      "category": "interactive",
+      "module": "controlled.ts",
+      "tags": [
+        "variables",
+        "control",
+        "causation",
+        "experiment"
+      ],
+      "searchKeywords": [
+        "control",
+        "variables",
+        "experiment",
+        "isolation",
+        "cause"
+      ],
+      "estimatedDuration": "6-10 min",
+      "returnValue": "New experimental setups test your ability to isolate cause on each return.",
+      "collection": "science",
+      "story": "ways-of-knowing",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "cooperation",
+      "title": "Cooperation",
+      "description": "Contribute or keep your tokens across changing group rules and watch how trust and incentives reshape the outcome for everyone.",
+      "summary": "Choose how much to share, see how others respond, and learn why cooperation is difficult and valuable.",
+      "category": "game",
+      "module": "cooperation.ts",
+      "tags": [
+        "cooperation",
+        "trust",
+        "incentives",
+        "group"
+      ],
+      "searchKeywords": [
+        "cooperation",
+        "trust",
+        "incentives",
+        "public goods",
+        "group decisions"
+      ],
+      "estimatedDuration": "6-10 min",
+      "returnValue": "Different contribution choices create different trust loops. Return to explore how rules change group behavior.",
+      "collection": "society-mind",
+      "story": "bridges-within-and-between",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "decision-making",
+      "title": "Decision Making",
+      "description": "Reveal only part of the picture, choose anyway, and feel how information limits and competing priorities shape human decisions.",
+      "summary": "Uncover two briefing cards, make the call, then see what hidden information you never had.",
+      "category": "reflection",
+      "module": "decision-making.ts",
+      "tags": [
+        "decisions",
+        "trade-offs",
+        "uncertainty",
+        "priorities"
+      ],
+      "searchKeywords": [
+        "decision",
+        "trade-off",
+        "risk",
+        "uncertainty",
+        "priorities",
+        "information"
+      ],
+      "estimatedDuration": "5-9 min",
+      "returnValue": "New dilemmas and hidden briefings keep testing how you balance consequences when certainty is unavailable.",
+      "collection": "society-mind",
+      "story": "bridges-within-and-between",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "diverge",
+      "title": "Diverge",
+      "description": "Start from one point. Explore many directions. The ability to generate possibilities is the first act of creation — and the one most people skip.",
+      "summary": "Given a seed, branch in as many directions as possible. Discover how thinking expands when you allow it.",
+      "category": "reflection",
+      "module": "diverge.ts",
+      "tags": [
+        "divergent",
+        "brainstorming",
+        "possibilities",
+        "thinking"
+      ],
+      "searchKeywords": [
+        "diverge",
+        "branch",
+        "brainstorm",
+        "possibilities",
+        "ideas"
+      ],
+      "estimatedDuration": "5-10 min",
+      "returnValue": "Different seeds challenge your ability to branch. Return and explore paths you might not have considered.",
+      "collection": "creativity",
+      "story": "the-making-process",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "dueling-accounts",
+      "title": "Dueling Accounts",
+      "description": "Two people witnessed the same event. Their accounts differ in ways that matter. Find the differences and ask why.",
+      "summary": "Compare two historical accounts side by side. Identify what changes when the storyteller changes.",
+      "category": "interactive",
+      "module": "dueling-accounts.ts",
+      "tags": [
+        "sources",
+        "comparison",
+        "bias",
+        "interpretation"
+      ],
+      "searchKeywords": [
+        "primary source",
+        "accounts",
+        "comparison",
+        "bias",
+        "evidence"
+      ],
+      "estimatedDuration": "6-10 min",
+      "returnValue": "Your accuracy improves with practice. Return to test new account pairs.",
+      "collection": "history",
+      "story": "echoes-of-evidence",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "echo-chamber",
+      "title": "Echo Chamber",
+      "description": "Speak. Listen. Return. A living mirror that captures your words and returns them with gentle evolution.",
+      "summary": "Type something. Watch it come back changed. Build a personal archive of evolving echoes.",
+      "category": "reflection",
+      "module": "echo-chamber.ts",
+      "tags": [
+        "interaction",
+        "reflection",
+        "voice",
+        "memory"
+      ],
+      "searchKeywords": [
+        "echo",
+        "reflection",
+        "memory",
+        "return",
+        "voice"
+      ],
+      "estimatedDuration": "3-8 min",
+      "returnValue": "Your echoes persist and become more meaningful over time. You build a personal archive worth returning to.",
+      "collection": "foundations",
+      "story": "foundations-journey",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "ecosystem",
+      "title": "Ecosystem",
+      "description": "Every species depends on others. Add a predator, remove a plant, and watch the ripple effects spread through the entire web of life.",
+      "summary": "Build a food web and discover how every species connects to every other through chains of dependence.",
+      "category": "interactive",
+      "module": "ecosystem.ts",
+      "tags": [
+        "ecosystem",
+        "food-web",
+        "interdependence",
+        "ecology"
+      ],
+      "searchKeywords": [
+        "ecosystem",
+        "food web",
+        "food chain",
+        "predator",
+        "prey",
+        "interdependence"
+      ],
+      "estimatedDuration": "8-12 min",
+      "returnValue": "Different ecosystems test your understanding of interconnection. Return to see how removing one species changes everything.",
+      "collection": "nature",
+      "story": "the-living-web",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "estimation",
+      "title": "Estimation",
+      "description": "Make quick approximate guesses before exact measurement. Discover how magnitude and scale guide good mathematical thinking.",
+      "summary": "Estimate real quantities, compare guesses with reality, and build intuition for magnitude and scale.",
+      "category": "game",
+      "module": "estimation.ts",
+      "tags": [
+        "estimation",
+        "approximation",
+        "scale",
+        "magnitude",
+        "mental models"
+      ],
+      "searchKeywords": [
+        "estimation",
+        "estimate",
+        "approximation",
+        "scale",
+        "magnitude",
+        "guess",
+        "quantity"
+      ],
+      "estimatedDuration": "5-8 min",
+      "returnValue": "Return to practice judging quantities before calculating exactly.",
+      "collection": "mathematics",
+      "story": "the-language-of-patterns",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "failure-analysis",
+      "title": "Failure Analysis",
+      "description": "Something broke. Multiple causes compete. Examine the evidence, eliminate what cannot be, and find the root cause.",
+      "summary": "Investigate failures by examining evidence and eliminating impossible causes. Discover that root causes are rarely obvious.",
+      "category": "reflection",
+      "module": "failure-analysis.ts",
+      "tags": [
+        "failure",
+        "analysis",
+        "root-cause",
+        "investigation"
+      ],
+      "searchKeywords": [
+        "failure",
+        "analysis",
+        "root cause",
+        "investigate",
+        "evidence"
+      ],
+      "estimatedDuration": "6-10 min",
+      "returnValue": "New failures test your ability to distinguish correlation from causation. Return and sharpen your diagnostic skills.",
+      "collection": "engineering",
+      "story": "the-art-of-compromise",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "feedback-loop",
+      "title": "Feedback Loop",
+      "description": "A system oscillates out of control. Tune the feedback to stabilize it. Too much correction causes new problems. Too little lets drift grow.",
+      "summary": "Stabilize a dynamic system by tuning feedback parameters. Learn how correction creates its own problems.",
+      "category": "interactive",
+      "module": "feedback-loop.ts",
+      "tags": [
+        "feedback",
+        "control",
+        "stability",
+        "system"
+      ],
+      "searchKeywords": [
+        "feedback",
+        "control",
+        "stabilize",
+        "system",
+        "oscillation"
+      ],
+      "estimatedDuration": "7-12 min",
+      "returnValue": "Different systems challenge your intuition about feedback and control. Return and refine your approach.",
+      "collection": "engineering",
+      "story": "the-art-of-compromise",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "hypothesis",
+      "title": "Hypothesis",
+      "description": "Form a guess from limited observations. Test it. Revise when the evidence contradicts you. That is the rhythm of science.",
+      "summary": "Observe, guess, test, revise. Form hypotheses and watch how evidence strengthens or breaks them.",
+      "category": "interactive",
+      "module": "hypothesis.ts",
+      "tags": [
+        "hypothesis",
+        "experiment",
+        "revision",
+        "evidence"
+      ],
+      "searchKeywords": [
+        "hypothesis",
+        "guess",
+        "test",
+        "evidence",
+        "observation"
+      ],
+      "estimatedDuration": "6-10 min",
+      "returnValue": "Your hypothesis accuracy improves with practice. New scenarios challenge your guessing on return visits.",
+      "collection": "science",
+      "story": "ways-of-knowing",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "iterate",
+      "title": "Iterate",
+      "description": "The first version is never the final version. Refinement is where craft begins. Start rough, improve through rounds, and watch the work reveal itself.",
+      "summary": "Begin with something rough. Refine through repeated cycles. Watch each pass transform the work.",
+      "category": "reflection",
+      "module": "iterate.ts",
+      "tags": [
+        "iteration",
+        "refinement",
+        "craft",
+        "improvement"
+      ],
+      "searchKeywords": [
+        "iterate",
+        "refine",
+        "improve",
+        "revise",
+        "craft"
+      ],
+      "estimatedDuration": "6-10 min",
+      "returnValue": "New starting points challenge your ability to see what needs changing. Return and practice the art of revision.",
+      "collection": "creativity",
+      "story": "the-making-process",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "memory-sequence",
+      "title": "Memory Sequence",
+      "description": "Build and repeat growing sequences. Strengthen recall through rhythmic challenge.",
+      "summary": "Watch the pattern. Repeat it. Each round adds one more step. How far can you go?",
+      "category": "game",
+      "module": "memory-sequence.ts",
+      "tags": [
+        "memory",
+        "sequence",
+        "recall",
+        "rhythm"
+      ],
+      "searchKeywords": [
+        "memory",
+        "sequence",
+        "pattern",
+        "recall",
+        "game"
+      ],
+      "estimatedDuration": "5-10 min",
+      "returnValue": "Your highest streak is saved. Return to push past your personal record.",
+      "collection": "foundations",
+      "story": "foundations-journey",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "memory",
+      "title": "Memory",
+      "description": "Study a scene, recall its details, and compare your confidence with your accuracy to see memory as reconstruction.",
+      "summary": "Observe carefully, answer from memory, and discover how recall changes when details are rebuilt instead of replayed.",
+      "category": "interactive",
+      "module": "memory.ts",
+      "tags": [
+        "memory",
+        "recall",
+        "confidence",
+        "eyewitness"
+      ],
+      "searchKeywords": [
+        "memory",
+        "recall",
+        "confidence",
+        "accuracy",
+        "eyewitness",
+        "reconstruction"
+      ],
+      "estimatedDuration": "5-9 min",
+      "returnValue": "Different scenes and lure questions sharpen your observation while reminding you that confidence is not proof.",
+      "collection": "society-mind",
+      "story": "bridges-within-and-between",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "optimization",
+      "title": "Optimization",
+      "description": "Reach the goal. But how efficiently? Every parameter you adjust brings you closer — or takes you further. Find the sweet spot.",
+      "summary": "Optimize a system under multiple constraints. Discover that the best solution is rarely the obvious one.",
+      "category": "game",
+      "module": "optimization.ts",
+      "tags": [
+        "optimization",
+        "constraints",
+        "efficiency",
+        "search"
+      ],
+      "searchKeywords": [
+        "optimize",
+        "constraint",
+        "efficient",
+        "parameter",
+        "search"
+      ],
+      "estimatedDuration": "8-15 min",
+      "returnValue": "New optimization problems test your ability to navigate complex parameter spaces. Return and find better solutions.",
+      "collection": "engineering",
+      "story": "the-art-of-compromise",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "pattern-garden",
+      "title": "Pattern Garden",
+      "description": "Plant simple rules. Watch patterns grow. Discover how small changes create surprising order.",
+      "summary": "Draw rules. Run time. Watch beautiful emergent behavior appear from simple systems.",
+      "category": "reflection",
+      "module": "pattern-garden.ts",
+      "tags": [
+        "pattern",
+        "emergence",
+        "rules"
+      ],
+      "searchKeywords": [
+        "pattern",
+        "garden",
+        "emergence",
+        "rules"
+      ],
+      "estimatedDuration": "5-15 min",
+      "returnValue": "Save and revisit your patterns. They grow more interesting the more you tend them.",
+      "collection": "foundations",
+      "story": "foundations-journey",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "patterns",
+      "title": "Patterns",
+      "description": "Continue sequences, test hidden rules, and see that math begins with noticing structure: what comes next, and why?",
+      "summary": "Discover hidden rules in sequences and learn that mathematics begins by noticing structure.",
+      "category": "interactive",
+      "module": "patterns.ts",
+      "tags": [
+        "patterns",
+        "sequence",
+        "rules",
+        "prediction",
+        "abstraction"
+      ],
+      "searchKeywords": [
+        "patterns",
+        "sequence",
+        "rule",
+        "predict",
+        "next",
+        "structure",
+        "abstraction"
+      ],
+      "estimatedDuration": "5-8 min",
+      "returnValue": "New sequences invite you to test different rules and sharpen your sense for what comes next.",
+      "collection": "mathematics",
+      "story": "the-language-of-patterns",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "perspective-shift",
+      "title": "Perspective Shift",
+      "description": "The same scene holds different truths. Switch lenses to uncover what hides in plain sight.",
+      "summary": "Three perspectives. One scene. Each view reveals details the others conceal.",
+      "category": "reflection",
+      "module": "perspective-shift.ts",
+      "tags": [
+        "perspective",
+        "insight",
+        "reflection",
+        "observation"
+      ],
+      "searchKeywords": [
+        "perspective",
+        "shift",
+        "viewpoint",
+        "insight",
+        "reflection"
+      ],
+      "estimatedDuration": "4-8 min",
+      "returnValue": "Collect all perspectives to see the complete picture. New insights emerge on return visits.",
+      "collection": "foundations",
+      "story": "foundations-journey",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "probability",
+      "title": "Probability",
+      "description": "Predict uncertain outcomes, run chance experiments, and compare intuition with what happens over many trials.",
+      "summary": "Explore randomness by making predictions, running experiments, and comparing results with expected outcomes.",
+      "category": "experiment",
+      "module": "probability.ts",
+      "tags": [
+        "probability",
+        "chance",
+        "randomness",
+        "prediction",
+        "uncertainty"
+      ],
+      "searchKeywords": [
+        "probability",
+        "chance",
+        "random",
+        "uncertainty",
+        "prediction",
+        "expected outcome",
+        "experiment"
+      ],
+      "estimatedDuration": "6-10 min",
+      "returnValue": "Return to see how repeated trials can turn randomness into clearer expectations.",
+      "collection": "mathematics",
+      "story": "the-language-of-patterns",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "proof",
+      "title": "Proof",
+      "description": "Test examples, find counterexamples, and build a short logical argument to feel the difference between seems true and must be true.",
+      "summary": "Move from examples to certainty by testing claims and assembling a simple proof.",
+      "category": "reflection",
+      "module": "proof.ts",
+      "tags": [
+        "proof",
+        "logic",
+        "evidence",
+        "reasoning",
+        "certainty"
+      ],
+      "searchKeywords": [
+        "proof",
+        "logic",
+        "reasoning",
+        "evidence",
+        "counterexample",
+        "truth",
+        "certainty"
+      ],
+      "estimatedDuration": "6-10 min",
+      "returnValue": "Return to practice the shift from seeing a pattern to explaining why it must be true.",
+      "collection": "mathematics",
+      "story": "the-language-of-patterns",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "remix",
+      "title": "Remix",
+      "description": "Nothing comes from nothing. Every new thing is a new combination of old things. Learn to see the raw material around you and rearrange it into something unexpected.",
+      "summary": "Combine existing elements in novel ways. Discover that innovation often means recombination, not invention from scratch.",
+      "category": "interactive",
+      "module": "remix.ts",
+      "tags": [
+        "remix",
+        "combination",
+        "recombination",
+        "innovation"
+      ],
+      "searchKeywords": [
+        "remix",
+        "combine",
+        "recombine",
+        "innovate",
+        "mashup"
+      ],
+      "estimatedDuration": "6-10 min",
+      "returnValue": "New element sets challenge your ability to see unexpected combinations. Return and find connections you missed before.",
+      "collection": "creativity",
+      "story": "the-making-process",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "scale",
+      "title": "Scale",
+      "description": "Navigate from the quantum to the cosmic. The same laws behave differently at different magnitudes. Perspective changes everything.",
+      "summary": "Explore how physical phenomena change across vastly different scales of size and time.",
+      "category": "interactive",
+      "module": "scale.ts",
+      "tags": [
+        "scale",
+        "magnitude",
+        "perspective",
+        "physics",
+        "orders"
+      ],
+      "searchKeywords": [
+        "scale",
+        "size",
+        "magnitude",
+        "orders",
+        "perspective"
+      ],
+      "estimatedDuration": "5-8 min",
+      "returnValue": "Unlock all scale levels to see how the same concept transforms across magnitudes.",
+      "collection": "science",
+      "story": "ways-of-knowing",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "seasons",
+      "title": "Seasons",
+      "description": "A single landscape transforms through the year. What changes? What stays? Train your eye to notice the rhythms that most people walk past.",
+      "summary": "Observe one place through four seasons. Discover patterns hidden in plain sight.",
+      "category": "reflection",
+      "module": "seasons.ts",
+      "tags": [
+        "seasons",
+        "cycles",
+        "observation",
+        "patterns"
+      ],
+      "searchKeywords": [
+        "seasons",
+        "spring",
+        "summer",
+        "autumn",
+        "winter",
+        "cycles",
+        "observation"
+      ],
+      "estimatedDuration": "5-10 min",
+      "returnValue": "Each season reveals details you may have missed. Return and you will see the landscape differently.",
+      "collection": "nature",
+      "story": "the-living-web",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "signal-detection",
+      "title": "Signal Detection",
+      "description": "Find meaning in noise. Train your eye to spot hidden patterns among random motion.",
+      "summary": "Particles move. Some drift with purpose. Identify the signals before they fade.",
+      "category": "interactive",
+      "module": "signal-detection.ts",
+      "tags": [
+        "attention",
+        "pattern",
+        "focus",
+        "observation"
+      ],
+      "searchKeywords": [
+        "signal",
+        "noise",
+        "detection",
+        "focus",
+        "attention"
+      ],
+      "estimatedDuration": "5-10 min",
+      "returnValue": "Your accuracy and streak improve with practice. Return to beat your detection time.",
+      "collection": "foundations",
+      "story": "foundations-journey",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "signal-in-data",
+      "title": "Signal in Data",
+      "description": "Data is noisy. The pattern you see might be real, or it might be a trick of randomness. Learn to tell the difference.",
+      "summary": "Find meaningful patterns in noisy datasets and learn to distinguish signal from noise.",
+      "category": "interactive",
+      "module": "signal-in-data.ts",
+      "tags": [
+        "data",
+        "pattern",
+        "noise",
+        "statistics",
+        "inference"
+      ],
+      "searchKeywords": [
+        "data",
+        "pattern",
+        "noise",
+        "signal",
+        "statistics"
+      ],
+      "estimatedDuration": "6-10 min",
+      "returnValue": "Your accuracy at spotting real patterns improves with practice. New datasets appear on return.",
+      "collection": "science",
+      "story": "ways-of-knowing",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "symbiosis",
+      "title": "Symbiosis",
+      "description": "Two species. One relationship. Not all partnerships are equal. Discover the spectrum from mutual benefit to quiet exploitation.",
+      "summary": "Match organisms with their partners and classify the relationship: mutualism, commensalism, or parasitism.",
+      "category": "interactive",
+      "module": "symbiosis.ts",
+      "tags": [
+        "symbiosis",
+        "relationships",
+        "mutualism",
+        "parasitism"
+      ],
+      "searchKeywords": [
+        "symbiosis",
+        "mutualism",
+        "commensalism",
+        "parasitism",
+        "partnership"
+      ],
+      "estimatedDuration": "6-10 min",
+      "returnValue": "New organism pairs challenge your ability to classify relationships. Accuracy improves with practice.",
+      "collection": "nature",
+      "story": "the-living-web",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "symmetry",
+      "title": "Symmetry",
+      "description": "Complete balanced patterns and discover what stays unchanged when shapes flip, turn, or repeat.",
+      "summary": "Create balanced structures and see how symmetry reveals hidden order in nature, art, and design.",
+      "category": "interactive",
+      "module": "symmetry.ts",
+      "tags": [
+        "symmetry",
+        "balance",
+        "transformation",
+        "invariance",
+        "structure"
+      ],
+      "searchKeywords": [
+        "symmetry",
+        "mirror",
+        "balance",
+        "pattern",
+        "transform",
+        "invariance",
+        "art",
+        "nature"
+      ],
+      "estimatedDuration": "6-10 min",
+      "returnValue": "Return to complete new patterns and notice symmetry in the world around you.",
+      "collection": "mathematics",
+      "story": "the-language-of-patterns",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "trade-offs",
+      "title": "Trade-offs",
+      "description": "Improve one metric. Sacrifice another. There is no free lunch. Learn to see what every gain costs.",
+      "summary": "Make sequential trade-off decisions where improving one dimension degrades another. Discover the frontier of possibility.",
+      "category": "reflection",
+      "module": "trade-offs.ts",
+      "tags": [
+        "trade-offs",
+        "sacrifice",
+        "metrics",
+        "pareto"
+      ],
+      "searchKeywords": [
+        "trade-off",
+        "sacrifice",
+        "metric",
+        "pareto",
+        "frontier"
+      ],
+      "estimatedDuration": "6-10 min",
+      "returnValue": "New scenarios reveal different trade-off landscapes. Return and develop intuition for where compromises matter most.",
+      "collection": "engineering",
+      "story": "the-art-of-compromise",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "two-second-witness",
+      "title": "Two Second Witness",
+      "description": "Your memory is not a recording. It is a reconstruction.",
+      "summary": "Challenge your attention, perception, and memory through rapid visual experiments designed to reveal what your mind captures, misses, and rebuilds.",
+      "category": "interactive",
+      "module": "two-second-witness.ts",
+      "tags": [
+        "observation",
+        "memory",
+        "recognition",
+        "fast",
+        "fun"
+      ],
+      "searchKeywords": [
+        "witness",
+        "two second",
+        "observation",
+        "memory",
+        "game",
+        "perception"
+      ],
+      "estimatedDuration": "2 min",
+      "returnValue": "Short, replayable challenges designed for entertainment and curiosity.",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "uncertainty",
+      "title": "Uncertainty",
+      "description": "Make decisions when the answer is not yet known. Science lives in the space between what we know and what we are still figuring out.",
+      "summary": "Work with probability, confidence, and the limits of knowledge to make reasoned decisions under uncertainty.",
+      "category": "reflection",
+      "module": "uncertainty.ts",
+      "tags": [
+        "uncertainty",
+        "probability",
+        "confidence",
+        "decision",
+        "limits"
+      ],
+      "searchKeywords": [
+        "uncertainty",
+        "probability",
+        "confidence",
+        "decision",
+        "unknown"
+      ],
+      "estimatedDuration": "5-8 min",
+      "returnValue": "Different scenarios reveal how comfort with uncertainty changes your choices. Return to explore alternative paths.",
+      "collection": "science",
+      "story": "ways-of-knowing",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "unlabeled",
+      "title": "Unlabeled",
+      "description": "An object arrives with no date, no name, no explanation. What can you infer from material, shape, and wear alone?",
+      "summary": "Examine an artifact without labels. Infer its era, purpose, and origin from physical evidence.",
+      "category": "interactive",
+      "module": "unlabeled.ts",
+      "tags": [
+        "artifacts",
+        "inference",
+        "material culture",
+        "observation"
+      ],
+      "searchKeywords": [
+        "artifact",
+        "object",
+        "inference",
+        "material",
+        "evidence"
+      ],
+      "estimatedDuration": "5-8 min",
+      "returnValue": "Your inference skills sharpen over time. New artifacts appear on return visits.",
+      "collection": "history",
+      "story": "echoes-of-evidence",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "watershed",
+      "title": "Watershed",
+      "description": "Every drop of rain finds its way downhill. Trace water through a landscape and see how every action upstream shapes what arrives at the river mouth.",
+      "summary": "Follow water from mountain to sea. Discover how land use, weather, and decisions ripple downstream.",
+      "category": "reflection",
+      "module": "watershed.ts",
+      "tags": [
+        "watershed",
+        "water",
+        "systems",
+        "consequences"
+      ],
+      "searchKeywords": [
+        "watershed",
+        "water cycle",
+        "river",
+        "downstream",
+        "landscape"
+      ],
+      "estimatedDuration": "6-10 min",
+      "returnValue": "Different scenarios reveal new connections between upstream actions and downstream consequences.",
+      "collection": "nature",
+      "story": "the-living-web",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "witness-accounts",
+      "title": "Witness Accounts",
+      "description": "The same moment looked different to everyone inside it. Hold multiple truths at once and understand why they differ.",
+      "summary": "View one historical moment through three different participants' eyes.",
+      "category": "reflection",
+      "module": "witness-accounts.ts",
+      "tags": [
+        "perspective",
+        "witness",
+        "multiple viewpoints",
+        "empathy"
+      ],
+      "searchKeywords": [
+        "perspective",
+        "witness",
+        "viewpoint",
+        "multiple",
+        "empathy"
+      ],
+      "estimatedDuration": "5-8 min",
+      "returnValue": "Each perspective reveals details the others conceal. Return to notice what you missed.",
+      "collection": "history",
+      "story": "echoes-of-evidence",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": true,
+        "contrast": true
+      }
+    }
+  ],
+  "collections": [
+    {
+      "id": "creativity",
+      "title": "Creativity",
+      "description": "Creativity is not a talent. It is a set of practices — branching, constraining, combining, arranging, refining. These experiences teach creative thinking by making you do it.",
+      "summary": "Five experiences that teach creative thinking through divergence, constraint, remix, composition, and iteration.",
+      "experiences": [
+        "diverge",
+        "constraint",
+        "remix",
+        "compose",
+        "iterate"
+      ],
+      "tags": [
+        "creativity",
+        "thinking",
+        "innovation",
+        "process",
+        "making"
+      ],
+      "searchKeywords": [
+        "creativity",
+        "creative",
+        "divergent",
+        "constraint",
+        "remix",
+        "compose",
+        "iterate",
+        "innovation"
+      ],
+      "estimatedDuration": "30-50 min",
+      "story": "the-making-process",
+      "version": "1.0.0"
+    },
+    {
+      "id": "engineering",
+      "title": "Engineering",
+      "description": "Engineering is not about perfection. It is the art of making thoughtful compromises — balancing competing demands until something works well enough.",
+      "summary": "Five experiences that teach engineering thinking through trade-offs, constraints, feedback, optimization, and failure.",
+      "experiences": [
+        "bridge-builder",
+        "feedback-loop",
+        "optimization",
+        "failure-analysis",
+        "trade-offs"
+      ],
+      "tags": [
+        "engineering",
+        "systems",
+        "trade-offs",
+        "constraints",
+        "optimization"
+      ],
+      "searchKeywords": [
+        "engineering",
+        "design",
+        "build",
+        "system",
+        "trade-off",
+        "constraint",
+        "optimize"
+      ],
+      "estimatedDuration": "35-55 min",
+      "story": "the-art-of-compromise",
+      "version": "1.0.0"
+    },
+    {
+      "id": "foundations",
+      "title": "Foundations",
+      "description": "Core interactive building blocks that demonstrate how small meaningful interactions create lasting value.",
+      "summary": "The first experiences proving the platform model works.",
+      "experiences": [
+        "echo-chamber",
+        "signal-detection",
+        "pattern-garden",
+        "memory-sequence",
+        "perspective-shift"
+      ],
+      "tags": [
+        "core",
+        "interaction",
+        "foundation"
+      ],
+      "searchKeywords": [
+        "foundation",
+        "core",
+        "basics",
+        "journey"
+      ],
+      "estimatedDuration": "25-50 min",
+      "story": "foundations-journey",
+      "version": "1.0.0"
+    },
+    {
+      "id": "history",
+      "title": "History",
+      "description": "Explore how evidence, perspective, and interpretation shape our understanding of the past. Not dates to memorize — questions to wrestle with.",
+      "summary": "Five experiences that teach historical thinking through observation, evidence, and reasoning.",
+      "experiences": [
+        "dueling-accounts",
+        "unlabeled",
+        "chronology",
+        "chain-reaction",
+        "witness-accounts"
+      ],
+      "tags": [
+        "history",
+        "evidence",
+        "interpretation",
+        "reasoning"
+      ],
+      "searchKeywords": [
+        "history",
+        "past",
+        "evidence",
+        "sources",
+        "perspective",
+        "causation"
+      ],
+      "estimatedDuration": "30-50 min",
+      "story": "echoes-of-evidence",
+      "version": "1.0.0"
+    },
+    {
+      "id": "mathematics",
+      "title": "Mathematics",
+      "description": "Math is a language for understanding patterns. These experiences turn mathematics into a way of seeing relationships, uncertainty, structure, reasoning, and proof.",
+      "summary": "Five experiences that teach mathematical thinking through patterns, estimation, symmetry, probability, and proof.",
+      "experiences": [
+        "patterns",
+        "estimation",
+        "symmetry",
+        "probability",
+        "proof"
+      ],
+      "tags": [
+        "mathematics",
+        "patterns",
+        "reasoning",
+        "probability",
+        "proof"
+      ],
+      "searchKeywords": [
+        "mathematics",
+        "math",
+        "patterns",
+        "estimation",
+        "symmetry",
+        "probability",
+        "proof",
+        "reasoning"
+      ],
+      "estimatedDuration": "30-50 min",
+      "story": "the-language-of-patterns",
+      "version": "1.0.0"
+    },
+    {
+      "id": "nature",
+      "title": "Nature",
+      "description": "Nature is not scenery. It is systems, cycles, relationships, and patterns playing out across time. These experiences teach ecological thinking through observation, connection, and consequence.",
+      "summary": "Five experiences that teach ecological thinking through ecosystems, seasons, adaptation, symbiosis, and watersheds.",
+      "experiences": [
+        "ecosystem",
+        "seasons",
+        "adaptation",
+        "symbiosis",
+        "watershed"
+      ],
+      "tags": [
+        "nature",
+        "ecology",
+        "systems",
+        "observation",
+        "environment"
+      ],
+      "searchKeywords": [
+        "nature",
+        "ecology",
+        "ecosystem",
+        "seasons",
+        "adaptation",
+        "symbiosis",
+        "watershed",
+        "environment"
+      ],
+      "estimatedDuration": "30-50 min",
+      "story": "the-living-web",
+      "version": "1.0.0"
+    },
+    {
+      "id": "science",
+      "title": "Science",
+      "description": "Science is not a body of facts. It is a way of asking questions, testing guesses, and holding conclusions lightly. These experiences teach scientific thinking through doing.",
+      "summary": "Five experiences that teach scientific reasoning through hypothesis, experiment, pattern, scale, and uncertainty.",
+      "experiences": [
+        "hypothesis",
+        "controlled",
+        "signal-in-data",
+        "scale",
+        "uncertainty"
+      ],
+      "tags": [
+        "science",
+        "experiment",
+        "reasoning",
+        "evidence",
+        "inquiry"
+      ],
+      "searchKeywords": [
+        "science",
+        "experiment",
+        "hypothesis",
+        "data",
+        "pattern",
+        "scale",
+        "uncertainty"
+      ],
+      "estimatedDuration": "30-50 min",
+      "story": "ways-of-knowing",
+      "version": "1.0.0"
+    },
+    {
+      "id": "society-mind",
+      "title": "Society & Mind",
+      "description": "Explore how attention, interpretation, memory, cooperation, and choice connect private thought to shared human systems.",
+      "summary": "Five experiences that teach attention, bias, memory, cooperation, and decision-making through interaction.",
+      "experiences": [
+        "attention",
+        "bias",
+        "memory",
+        "cooperation",
+        "decision-making"
+      ],
+      "tags": [
+        "society",
+        "mind",
+        "cognition",
+        "cooperation",
+        "decision-making"
+      ],
+      "searchKeywords": [
+        "society",
+        "mind",
+        "attention",
+        "bias",
+        "memory",
+        "cooperation",
+        "decisions",
+        "cognition"
+      ],
+      "estimatedDuration": "30-50 min",
+      "story": "bridges-within-and-between",
+      "version": "1.0.0"
+    }
+  ],
+  "stories": [
+    {
+      "id": "bridges-within-and-between",
+      "title": "Bridges Within and Between",
+      "description": "Human systems begin in perception, grow through interpretation and memory, and become society when minds coordinate around rules and choices.",
+      "summary": "How perception becomes interpretation, memory, cooperation, and collective decisions.",
+      "relatedCollections": [
+        "society-mind"
+      ],
+      "relatedExperiences": [
+        "attention",
+        "bias",
+        "memory",
+        "cooperation",
+        "decision-making"
+      ],
+      "narrative": "Every society is built twice. First it is built inside individual minds — through attention, interpretation, memory, and judgment. Then it is built between people — through trust, incentives, rules, and decisions made together. The Society & Mind collection follows that expansion from the private filters of perception to the public systems we inhabit every day.",
+      "segments": [
+        {
+          "id": "intro",
+          "title": "What You Notice Comes First",
+          "text": "Before a person can interpret the world, they must notice part of it. Attention is the first gate. It decides what enters awareness and what stays in the background. Your first task is to focus on one signal and feel how easily the rest of the scene slips away.",
+          "trigger": "collection_start"
+        },
+        {
+          "id": "attention-to-bias",
+          "title": "From Perception to Interpretation",
+          "text": "Once something enters awareness, the mind does not leave it untouched. It frames, predicts, labels, and simplifies. Bias is not proof of failure. It is the mind moving quickly through uncertainty. The next experience asks you to watch those shortcuts in action.",
+          "trigger": "after_attention"
+        },
+        {
+          "id": "bias-to-memory",
+          "title": "The Story You Keep",
+          "text": "Interpretation does not end in the moment. It becomes memory. But memory is not a vault that stores reality exactly as it was. It is a reconstruction shaped by what mattered, what was suggested, and what the mind expects to be true. The next step is to observe carefully and then test what remains.",
+          "trigger": "after_bias"
+        },
+        {
+          "id": "memory-to-cooperation",
+          "title": "Many Minds, One System",
+          "text": "Individual minds do not stay isolated for long. They enter groups. They build norms. They decide whether to trust. Cooperation begins when people believe others will carry weight too — and it breaks when the incentives point elsewhere. The next experience shifts from the private mind to the shared system.",
+          "trigger": "after_memory"
+        },
+        {
+          "id": "cooperation-to-decisions",
+          "title": "Rules Become Choices",
+          "text": "Once a group exists, decisions follow. Someone must choose under incomplete information, uncertainty, and competing priorities. The final step asks you to make those choices directly and feel how values, consequences, and missing facts shape the path forward.",
+          "trigger": "after_cooperation"
+        },
+        {
+          "id": "completion",
+          "title": "The Bridge Is Visible Now",
+          "text": "You have traced the path from perception to interpretation, from interpretation to memory, from memory to cooperation, and from cooperation to decisions. Human systems do not appear from nowhere. They grow out of minds that notice, infer, remember, trust, and choose. Return to any experience and the bridge between inner thought and social life will look clearer.",
+          "trigger": "collection_complete"
+        }
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "id": "echo-origin",
+      "title": "The Origin of Echo",
+      "description": "A reflection on why the first coherent experience was built around listening and repetition.",
+      "summary": "How listening became the first test of the platform.",
+      "relatedCollections": [
+        "foundations"
+      ],
+      "relatedExperiences": [
+        "echo-chamber"
+      ],
+      "narrative": "Every platform begins with a single interaction. Echo Chamber was created to prove that even the simplest act of listening and returning can become something worth coming back to."
+    },
+    {
+      "id": "echoes-of-evidence",
+      "title": "Echoes of Evidence",
+      "description": "History is not a list of dates. It is an argument built from fragments — letters, objects, accounts, silences. This collection asks you to build that argument yourself.",
+      "summary": "How evidence, perspective, and interpretation shape what we believe about the past.",
+      "relatedCollections": [
+        "history"
+      ],
+      "relatedExperiences": [
+        "dueling-accounts",
+        "unlabeled",
+        "chronology",
+        "chain-reaction",
+        "witness-accounts"
+      ],
+      "narrative": "Every historical claim rests on evidence. But evidence does not speak for itself. Someone chose to preserve it. Someone chose to translate it. Someone chose to present it. The Echoes of Evidence collection puts you in each of those roles — collector, interpreter, skeptic, storyteller. The past is not fixed. It is rebuilt every time someone asks a new question of the evidence.",
+      "segments": [
+        {
+          "id": "intro",
+          "title": "The Fragments Remain",
+          "text": "Most of the past is lost. What survives are fragments — a letter, a coin, a wall, a memory passed down. History begins when someone decides those fragments matter. Your first task is to compare two accounts of the same event and ask: what changes when the storyteller changes?",
+          "trigger": "collection_start"
+        },
+        {
+          "id": "accounts-to-artifacts",
+          "title": "Objects Outlast Words",
+          "text": "Written accounts can lie, omit, or forget. But objects often survive with their own stubborn honesty. An unlabeled artifact forces you to ask questions without a narrator's guidance. What can you know from shape, material, and wear alone?",
+          "trigger": "after_dueling-accounts"
+        },
+        {
+          "id": "artifacts-to-chronology",
+          "title": "Order Is an Argument",
+          "text": "Dates are convenient, but they can also mislead. Events do not come with timestamps. Chronology is built from relationships — this must have happened before that, because this caused that. Reconstructing a timeline is an act of reasoning, not recall.",
+          "trigger": "after_unlabeled"
+        },
+        {
+          "id": "chronology-to-causation",
+          "title": "One Thing Leads",
+          "text": "Sequence is not the same as cause. Just because B followed A does not mean A caused B. In this experience you will build chains of consequence — exploring how one decision opened paths that no one fully foresaw.",
+          "trigger": "after_chronology"
+        },
+        {
+          "id": "causation-to-perspective",
+          "title": "No Single View",
+          "text": "The same moment looked different to everyone inside it. A leader saw strategy. A soldier saw survival. A witness saw confusion. No single account captures what happened. The final step is to hold multiple truths at once — not to choose one, but to understand why they differ.",
+          "trigger": "after_chain-reaction"
+        },
+        {
+          "id": "completion",
+          "title": "You Are Now Part of the Chain",
+          "text": "You have compared accounts, interrogated artifacts, rebuilt chronologies, traced consequences, and held competing perspectives. These are the skills historians use. But they are also the skills citizens use — evaluating claims, weighing evidence, understanding that truth is built, not found. Return to any experience and you will notice details you missed before.",
+          "trigger": "collection_complete"
+        }
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "id": "foundations-journey",
+      "title": "The Foundations Journey",
+      "description": "A guided path through five core experiences that build upon each other — from listening to seeing.",
+      "summary": "How the first collection teaches the platform's philosophy through play.",
+      "relatedCollections": [
+        "foundations"
+      ],
+      "relatedExperiences": [
+        "echo-chamber",
+        "signal-detection",
+        "pattern-garden",
+        "memory-sequence",
+        "perspective-shift"
+      ],
+      "narrative": "Every platform begins with a single interaction. The Foundations collection asks: what if five simple experiences could teach someone to listen more carefully, observe more closely, remember more clearly, and see more fully? Each experience stands alone. Together, they form a journey from voice to vision.",
+      "segments": [
+        {
+          "id": "intro",
+          "title": "Where It Begins",
+          "text": "Before you can understand a system, you must first learn to listen. Echo Chamber invites you to speak and hear your words return — changed, echoed, remembered. This is where the journey begins.",
+          "trigger": "collection_start"
+        },
+        {
+          "id": "echo-to-signal",
+          "title": "From Voice to Signal",
+          "text": "Once you have spoken, the next challenge is to hear what matters. Signal Detection asks you to find meaning drifting through noise. The skill you built in Echo Chamber — patience, attention — becomes your advantage here.",
+          "trigger": "after_echo-chamber"
+        },
+        {
+          "id": "signal-to-pattern",
+          "title": "Patterns Emerge",
+          "text": "Signals do not exist alone. They connect. They repeat. They form structures. In Pattern Garden, the rules you discover are your own. What begins as randomness becomes order through your attention.",
+          "trigger": "after_signal-detection"
+        },
+        {
+          "id": "pattern-to-memory",
+          "title": "What You Keep",
+          "text": "Patterns that matter become memories. Memory Sequence tests how much you can hold — and how far you can grow. Each round builds on the last. Your mind is the garden now.",
+          "trigger": "after_pattern-garden"
+        },
+        {
+          "id": "memory-to-perspective",
+          "title": "How You See",
+          "text": "With memory comes the ability to compare. To contrast. To shift your view. Perspective Shift reveals that the same scene holds different truths depending on where you stand. This is the final foundation: not one truth, but many.",
+          "trigger": "after_memory-sequence"
+        },
+        {
+          "id": "completion",
+          "title": "The Foundation Holds",
+          "text": "You have walked the full path: from speaking to listening, from noise to signal, from signal to pattern, from pattern to memory, and from memory to perspective. These five foundations will support everything that comes next. Return to any experience and you will find it deeper than before.",
+          "trigger": "collection_complete"
+        }
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "id": "the-art-of-compromise",
+      "title": "The Art of Compromise",
+      "description": "Engineering is not about finding the perfect solution. Perfect does not exist. Engineering is the discipline of making thoughtful compromises — knowing what to optimize, what to sacrifice, and why.",
+      "summary": "How engineering thinking moves from structure to systems through trade-offs, feedback, optimization, failure, and balance.",
+      "relatedCollections": [
+        "engineering"
+      ],
+      "relatedExperiences": [
+        "bridge-builder",
+        "feedback-loop",
+        "optimization",
+        "failure-analysis",
+        "trade-offs"
+      ],
+      "narrative": "Every bridge ever built is a compromise. Between strength and cost. Between materials available and materials desired. Between what the engineer wants and what the budget allows. The engineer does not search for perfection — perfection is impossible. The engineer searches for the solution that satisfies enough constraints to be good enough, safe enough, and affordable enough. This is not a failure of ambition. It is the highest form of practical wisdom. The Art of Compromise collection teaches this wisdom through doing. You will build bridges and learn that every material has a price and every structure has a limit. You will tune feedback loops and discover that correction creates its own problems. You will optimize systems and find that the best solution is rarely the obvious one. You will investigate failures and learn that root causes are rarely where they first appear. And you will make trade-offs, watching every gain cost something else. These are the skills of engineering — not as a profession, but as a way of thinking about any complex problem where multiple constraints compete.",
+      "segments": [
+        {
+          "id": "intro",
+          "title": "Everything Is a Compromise",
+          "text": "Before you can engineer anything, you must understand that perfection is not the goal. A bridge that costs nothing does not exist. A system with zero failure rate is imaginary. The first skill is accepting that every solution is a compromise — and then learning to make that compromise thoughtful rather than accidental. Your first task is to build a bridge. You will discover that the strongest bridge is also the most expensive, and the cheapest bridge may not hold.",
+          "trigger": "collection_start"
+        },
+        {
+          "id": "bridge-to-feedback",
+          "title": "Systems Fight Back",
+          "text": "A bridge is static — it sits and holds weight. But most engineering problems are dynamic. The system changes while you are trying to control it. The next skill is feedback — learning how to correct a system without overcorrecting and creating new problems. A thermostat that responds too aggressively oscillates. One that responds too slowly lets the room freeze. The right correction is always a compromise between responsiveness and stability.",
+          "trigger": "after_bridge-builder"
+        },
+        {
+          "id": "feedback-to-optimization",
+          "title": "The Best Solution Is Rarely Obvious",
+          "text": "You have stabilized a system through feedback. Now you must find the best settings — not just good enough, but optimal. The next skill is optimization — navigating a landscape of possibilities where multiple parameters interact in non-obvious ways. The obvious solution is rarely the best one. Engineering requires patience to explore the space of possibilities and find the sweet spot that balances competing demands.",
+          "trigger": "after_feedback-loop"
+        },
+        {
+          "id": "optimization-to-failure",
+          "title": "When Things Break",
+          "text": "You have optimized a system. But systems fail. The next skill is diagnosis — looking at the evidence after something goes wrong and finding the root cause. This is harder than it sounds, because failures have multiple possible explanations, and the obvious cause is rarely the real one. Engineering requires the humility to follow evidence where it leads, not where you wish it would go.",
+          "trigger": "after_optimization"
+        },
+        {
+          "id": "failure-to-tradeoffs",
+          "title": "Every Gain Costs Something",
+          "text": "You have built, stabilized, optimized, and diagnosed. But every improvement comes at a cost. The final skill is seeing trade-offs clearly — understanding that improving one metric always degrades another. Speed sacrifices accuracy. Cost sacrifices quality. Complexity sacrifices maintainability. The engineer does not pretend these trade-offs away. The engineer makes them explicit and chooses deliberately.",
+          "trigger": "after_failure-analysis"
+        },
+        {
+          "id": "completion",
+          "title": "You Think Like an Engineer Now",
+          "text": "You have built bridges and felt the weight of compromise. You have tuned feedback and watched correction create new problems. You have optimized systems and discovered that the best solution hides in non-obvious places. You have investigated failures and learned to follow evidence. You have made trade-offs and accepted that every gain costs something. These are not just engineering skills. They are thinking skills. Every complex problem — in business, in policy, in life — requires the same wisdom: knowing what to optimize, what to sacrifice, and why. Return to any experience and you will see the compromises more clearly. You are now thinking like an engineer.",
+          "trigger": "collection_complete"
+        }
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "id": "the-language-of-patterns",
+      "title": "The Language of Patterns",
+      "description": "A journey through mathematics as a way of seeing: patterns, measurement, hidden structure, uncertainty, and proof.",
+      "summary": "Mathematics becomes a tool for understanding reality by moving from noticed patterns to justified truth.",
+      "relatedCollections": [
+        "mathematics"
+      ],
+      "relatedExperiences": [
+        "patterns",
+        "estimation",
+        "symmetry",
+        "probability",
+        "proof"
+      ],
+      "narrative": "Mathematics begins before symbols. It begins when the mind notices structure: a rhythm, a sequence, a balance, a prediction that keeps working. From there, math becomes a language for understanding reality. It lets us estimate a world too large to count exactly. It reveals hidden order in symmetry and transformation. It helps us reason when the future is uncertain. And finally, it gives us proof — the discipline of showing not merely that something appears true, but why it must be true. This collection is not a classroom replacement. It is a way of seeing. Each experience gives the intuition first, then names the idea after the meaning is already felt.",
+      "segments": [
+        {
+          "id": "intro",
+          "title": "Begin by Noticing",
+          "text": "Mathematics begins with a question simple enough for anyone to ask: what comes next, and why? Before formulas, before notation, before calculation, there is pattern. A repeated beat. A growing row. A rule you can feel before you can name. Start by continuing sequences and looking for the hidden structure that makes prediction possible.",
+          "trigger": "collection_start"
+        },
+        {
+          "id": "patterns-to-estimation",
+          "title": "Measuring Before Counting",
+          "text": "You have seen that a rule can describe many cases at once. Now turn that power toward the world. Exact answers are useful, but good mathematical thinking often begins earlier, with estimation. To estimate is to build a mental model of size, distance, quantity, and scale. You are not guessing blindly. You are measuring with understanding before calculating with precision.",
+          "trigger": "after_patterns"
+        },
+        {
+          "id": "estimation-to-symmetry",
+          "title": "Hidden Structure Appears",
+          "text": "Estimation helps you measure the world. Symmetry helps you see its hidden order. A leaf, a tile floor, a face, a bridge, and a melody can all hold balance across change. Something flips, turns, or repeats, and something important remains the same. This is structure you can see before you give it a formal name.",
+          "trigger": "after_estimation"
+        },
+        {
+          "id": "symmetry-to-probability",
+          "title": "When Order Meets Chance",
+          "text": "Not everything is fixed. Some systems have structure without certainty. A coin toss, a spinner, a weather forecast, or a medical study cannot promise what happens next, but mathematics can still help. Probability turns uncertainty into something reasoned. It lets you compare intuition with repeated experience and make better decisions without pretending the future is known.",
+          "trigger": "after_symmetry"
+        },
+        {
+          "id": "probability-to-proof",
+          "title": "From Seems True to Must Be True",
+          "text": "Patterns can suggest. Estimates can guide. Symmetry can reveal. Probability can prepare. But mathematics also asks for something stronger: proof. Examples may make an idea believable, but examples alone cannot cover every possible case. The final step is learning how a logical argument turns a pattern into certainty.",
+          "trigger": "after_probability"
+        },
+        {
+          "id": "completion",
+          "title": "You See Mathematically Now",
+          "text": "You have followed mathematics from noticed patterns to measured scale, from hidden symmetry to uncertain futures, from examples to proof. Mathematics is not a pile of formulas. It is a language for seeing relationships and structures that ordinary attention misses. Return to any experience and the world will look a little more patterned, a little more connected, and a little more understandable.",
+          "trigger": "collection_complete"
+        }
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "id": "the-living-web",
+      "title": "The Living Web",
+      "description": "Nature does not present itself as a lesson. It simply exists — full of patterns, relationships, and quiet rules that anyone can learn to read. This collection walks the path from observation to systems thinking.",
+      "summary": "How ecological thinking moves from seeing to understanding through ecosystems, seasons, adaptation, symbiosis, and watersheds.",
+      "relatedCollections": [
+        "nature"
+      ],
+      "relatedExperiences": [
+        "ecosystem",
+        "seasons",
+        "adaptation",
+        "symbiosis",
+        "watershed"
+      ],
+      "narrative": "Most people look at nature and see a picture. A forest, a river, a bird on a branch. But nature is not a picture. It is a process — a living system of connections, cycles, feedback loops, and consequences playing out across every scale of time and space. The Living Web collection teaches you to see the process behind the picture. You will build food webs and watch them ripple. You will observe a single place through the year and discover that nothing stays the same and nothing is ever truly lost. You will play the ancient game of adaptation, where traits are chosen by pressure and the environment does not negotiate. You will classify the intimate partnerships between species and discover that not all closeness is kindness. And you will follow water from mountain to sea, learning that every landscape is a story written in flow. These are the skills of ecological thinking: noticing patterns, tracing connections, respecting scale, and understanding that everything is connected to everything else.",
+      "segments": [
+        {
+          "id": "intro",
+          "title": "Begin by Watching",
+          "text": "Before you can understand a system, you must learn to see it. Nature does not explain itself. It simply behaves — and the behavior follows rules. Your first task is to build a living food web, adding and removing species, and watch how every change ripples through the whole. Nothing in an ecosystem stands alone.",
+          "trigger": "collection_start"
+        },
+        {
+          "id": "ecosystem-to-seasons",
+          "title": "Time Reveals What Space Conceals",
+          "text": "An ecosystem is a snapshot of relationships at one moment. But nature is not static. The same place in January is not the same place in July. The next skill is patience — observing one location through an entire year and learning to see what changes, what persists, and what cycles back. The rhythm of seasons is the rhythm of the living world.",
+          "trigger": "after_ecosystem"
+        },
+        {
+          "id": "seasons-to-adaptation",
+          "title": "The Environment Does Not Negotiate",
+          "text": "Seasons change, and the creatures within them must change too. The next skill is understanding pressure — the forces that shape which traits survive and which vanish. You will play a game where the environment shifts and creatures must shift with it. Those that adapt endure. Those that do not disappear.",
+          "trigger": "after_seasons"
+        },
+        {
+          "id": "adaptation-to-symbiosis",
+          "title": "No One Survives Alone",
+          "text": "Adaptation is not a solo act. Every species exists in relationship with others. Some partnerships benefit both sides. Some benefit one while the other barely notices. Some benefit one at the expense of the other. The next skill is seeing these relationships clearly — naming the spectrum from mutualism to parasitism.",
+          "trigger": "after_adaptation"
+        },
+        {
+          "id": "symbiosis-to-watershed",
+          "title": "Everything Flows Downhill",
+          "text": "Relationships between species are intimate and local. But there is a larger pattern: everything in a landscape connects through flow. Water carries the consequences of every decision made upstream. The final skill is systems thinking — following the flow from mountain to sea and understanding that nothing you do happens in isolation.",
+          "trigger": "after_symbiosis"
+        },
+        {
+          "id": "completion",
+          "title": "You See the Web Now",
+          "text": "You have built food webs and watched them ripple. You have observed seasonal change with patient eyes. You have played the game of adaptation and felt environmental pressure. You have named the partnerships between species. And you have followed water through a landscape, learning that every action has consequences downstream. These are the skills of ecological thinking. They are also the skills of clear thinking about any complex system — in business, in society, in your own life. Return to any experience and you will notice connections you missed before. The web is always there, waiting to be seen.",
+          "trigger": "collection_complete"
+        }
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "id": "the-making-process",
+      "title": "The Making Process",
+      "description": "Creativity is not inspiration striking from nowhere. It is a process — branching, constraining, combining, arranging, refining. These experiences walk the path from blank page to finished work.",
+      "summary": "How creative thinking moves from possibility to form through divergence, constraint, remix, composition, and iteration.",
+      "relatedCollections": [
+        "creativity"
+      ],
+      "relatedExperiences": [
+        "diverge",
+        "constraint",
+        "remix",
+        "compose",
+        "iterate"
+      ],
+      "narrative": "Most people believe creativity is a gift — something some have and others lack. This is a misunderstanding. Creativity is a process, and like any process, it can be learned, practiced, and improved. The Making Process collection teaches this process by putting you through it. You will begin by branching — exploring many possibilities from a single seed. Then you will work within constraints, discovering that limits are not the enemy of creativity but its engine. You will remix existing elements into new combinations, learning that nothing comes from nothing. You will compose, arranging elements into coherent wholes. And finally, you will iterate — refining through repeated rounds until the work reveals itself. These are the practices that artists, engineers, writers, scientists, and makers use every day. They are also the practices that anyone can use to think more creatively about any problem.",
+      "segments": [
+        {
+          "id": "intro",
+          "title": "Begin with Possibility",
+          "text": "Every creative act begins with a blank space and a question: what could exist here? The first skill is not knowing the answer. It is generating possibilities without judging them. Your first task is to take a single seed — a word, a concept, a shape — and branch in as many directions as you can. The goal is not quality. The goal is quantity. Judgment comes later.",
+          "trigger": "collection_start"
+        },
+        {
+          "id": "diverge-to-constraint",
+          "title": "Freedom Needs Form",
+          "text": "Infinite possibility is paralyzing. The second skill is learning to work within limits. A poet who can use any word struggles to write. A poet restricted to six words must make every syllable count. Constraints are not restrictions — they are the structure that makes creation possible. The next experience gives you strict limits and asks you to build something meaningful within them.",
+          "trigger": "after_diverge"
+        },
+        {
+          "id": "constraint-to-remix",
+          "title": "Nothing Comes from Nothing",
+          "text": "You have branched and you have constrained. Now you will combine. Every new thing is a new combination of old things. The saxophone combined the clarinet with new materials and a new mouthpiece. Jazz combined European harmony with African rhythm. The next skill is seeing the raw material around you — existing ideas, forms, patterns — and recombining them into something that did not exist before.",
+          "trigger": "after_constraint"
+        },
+        {
+          "id": "remix-to-compose",
+          "title": "Elements Alone Are Not a Work",
+          "text": "You have generated, constrained, and combined. But raw materials are not a finished work. A pile of words is not a poem. A set of notes is not a song. The next skill is arrangement — placing elements in the right order, in the right relationships, to create coherence. Composition is the art of making parts serve the whole.",
+          "trigger": "after_remix"
+        },
+        {
+          "id": "compose-to-iterate",
+          "title": "The Work Reveals Itself Through Revision",
+          "text": "You have composed a first version. Now comes the hardest skill: revision. The first draft is never the final draft. Every iteration reveals something new — a flaw to fix, an opportunity to exploit, a detail to refine. The final experience asks you to start rough and improve through repeated rounds. Watch how each pass transforms the work.",
+          "trigger": "after_compose"
+        },
+        {
+          "id": "completion",
+          "title": "You Are Now a Maker",
+          "text": "You have branched into possibility. You have worked within constraints. You have recombined existing elements into new forms. You have arranged parts into coherent wholes. You have refined through iteration. These are the practices of creativity — not a gift, but a process. Artists, engineers, writers, scientists, and makers use these practices every day. Now you do too. Return to any experience and you will see the process more clearly. The blank page is no longer paralyzing. You know how to begin.",
+          "trigger": "collection_complete"
+        }
+      ],
+      "version": "1.0.0"
+    },
+    {
+      "id": "ways-of-knowing",
+      "title": "Ways of Knowing",
+      "description": "Science does not begin with answers. It begins with noticing something strange and refusing to look away. This collection walks the path from curiosity to understanding — through guesses, tests, patterns, perspective, and humility.",
+      "summary": "How scientific thinking moves from observation to understanding through hypothesis, experiment, pattern, scale, and uncertainty.",
+      "relatedCollections": [
+        "science"
+      ],
+      "relatedExperiences": [
+        "hypothesis",
+        "controlled",
+        "signal-in-data",
+        "scale",
+        "uncertainty"
+      ],
+      "narrative": "Every scientific discovery begins with a person who noticed something that did not fit. The scientific method is not a rigid sequence — it is a set of habits. Notice. Guess. Test. Revise. Notice again. The Ways of Knowing collection puts you in the role of the noticer, the guesser, the tester, and the reviser. You will form hypotheses, control variables, find patterns in noise, navigate impossible scales, and sit with uncertainty. These are the habits that built modern science. They are also the habits that help anyone think more clearly.",
+      "segments": [
+        {
+          "id": "intro",
+          "title": "The Question Comes First",
+          "text": "Before there is an experiment, there is a noticing. Something does not fit. Something behaves differently than expected. The first skill of science is to hold that discomfort without rushing to explain it away. Your first task is to form a hypothesis — a guess that can be tested — and then see how the evidence treats it.",
+          "trigger": "collection_start"
+        },
+        {
+          "id": "hypothesis-to-controlled",
+          "title": "Isolating the Cause",
+          "text": "A good guess is not enough. The world is full of variables, and most of them hide behind the one you are looking at. The next skill is control — changing one thing at a time so you know what actually caused what. This is harder than it sounds, because everything is connected.",
+          "trigger": "after_hypothesis"
+        },
+        {
+          "id": "controlled-to-signal",
+          "title": "Finding the Pattern",
+          "text": "Once you can control variables, you collect data. But data is noisy. The signal you seek is buried in randomness, in measurement error, in things you did not think to control. The next skill is pattern recognition — knowing when a pattern is real and when it is a trick of the noise.",
+          "trigger": "after_controlled"
+        },
+        {
+          "id": "signal-to-scale",
+          "title": "The Size of Understanding",
+          "text": "Patterns exist at every scale, but our intuition fails at the extremes. What is true for a drop of water may not be true for an ocean. What is true for a planet may not be true for a galaxy. The next skill is scale — holding the same idea across magnitudes that our senses were never designed to grasp.",
+          "trigger": "after_signal-in-data"
+        },
+        {
+          "id": "scale-to-uncertainty",
+          "title": "What We Do Not Know",
+          "text": "The final skill is the hardest: knowing the limits of your own knowledge. Science does not claim certainty. It claims the best current explanation, held with the humility to revise it. The last experience asks you to sit with uncertainty — to make decisions when the answer is not yet known, and may never be.",
+          "trigger": "after_scale"
+        },
+        {
+          "id": "completion",
+          "title": "You Are Now a Practitioner",
+          "text": "You have guessed and revised. You have controlled variables and found patterns. You have stretched your mind across scales and sat with uncertainty. These are not just scientific skills. They are thinking skills. Return to any experience and you will notice details that escaped you before. That is the sign of a mind that has learned to learn.",
+          "trigger": "collection_complete"
+        }
+      ],
+      "version": "1.0.0"
+    }
+  ]
+}

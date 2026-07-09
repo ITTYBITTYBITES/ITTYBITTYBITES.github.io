@@ -1,0 +1,19 @@
+{
+  "id": "decision-making",
+  "title": "Decision Making",
+  "description": "Reveal only part of the picture, choose anyway, and feel how information limits and competing priorities shape human decisions.",
+  "summary": "Uncover two briefing cards, make the call, then see what hidden information you never had.",
+  "category": "reflection",
+  "module": "decision-making.ts",
+  "tags": ["decisions", "trade-offs", "uncertainty", "priorities"],
+  "searchKeywords": ["decision", "trade-off", "risk", "uncertainty", "priorities", "information"],
+  "estimatedDuration": "5-9 min",
+  "returnValue": "New dilemmas and hidden briefings keep testing how you balance consequences when certainty is unavailable.",
+  "collection": "society-mind",
+  "story": "bridges-within-and-between",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" fill="none" role="img" aria-labelledby="titleo3wuex desc3bcuiw">
+  <title id="titleo3wuex">probability</title>
+  <desc id="desc3bcuiw">Many outcomes scatter across a field while expected tendencies become visible over time.</desc>
+  
+  
+    <rect width="320" height="220" rx="24" fill="#F2F1FB"/>
+    <rect x="12" y="12" width="296" height="196" rx="18" fill="#DEDBF3" opacity="0.34"/>
+    <rect x="24" y="26" width="272" height="168" rx="20" fill="#ffffff" opacity="0.72" stroke="#9E93DB" stroke-width="2"/>
+    <path d="M28 188 C92 172 136 178 188 186 C234 194 266 194 292 184" stroke="#D59248" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+    
+        <line x1="52" y1="164" x2="268" y2="164" stroke="#9E93DB" stroke-width="3" stroke-linecap="round" />
+        <circle cx="86" cy="144" r="5" fill="#5A46A6" stroke="none" stroke-width="0" /><circle cx="98" cy="136" r="5" fill="#5A46A6" stroke="none" stroke-width="0" /><circle cx="112" cy="142" r="5" fill="#5A46A6" stroke="none" stroke-width="0" />
+        <circle cx="130" cy="126" r="5" fill="#5A46A6" stroke="none" stroke-width="0" /><circle cx="144" cy="116" r="5" fill="#5A46A6" stroke="none" stroke-width="0" /><circle cx="160" cy="110" r="5" fill="#D59248" stroke="none" stroke-width="0" />
+        <circle cx="178" cy="116" r="5" fill="#5A46A6" stroke="none" stroke-width="0" /><circle cx="194" cy="126" r="5" fill="#5A46A6" stroke="none" stroke-width="0" /><circle cx="208" cy="140" r="5" fill="#5A46A6" stroke="none" stroke-width="0" />
+        <circle cx="224" cy="148" r="5" fill="#5A46A6" stroke="none" stroke-width="0" /><circle cx="238" cy="142" r="5" fill="#5A46A6" stroke="none" stroke-width="0" />
+        <path d="M74 156 C112 130 132 98 160 98 C188 98 210 130 246 156" stroke="#D59248" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      
+  
+</svg>

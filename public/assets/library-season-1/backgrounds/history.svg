@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900" fill="none" role="img" aria-labelledby="titleiri26t desccz3j4y">
+  <title id="titleiri26t">History background</title>
+  <desc id="desccz3j4y">Maps, paper, archives, and timelines.</desc>
+  
+  
+    <rect width="1600" height="900" fill="#F7F0E1"/>
+    <rect x="30" y="30" width="1540" height="840" rx="48" fill="#E7D8BE" opacity="0.3"/>
+    <g transform="translate(140 120)">
+        <path d="M20 60 C60 30 110 30 140 70 C170 110 200 120 220 100" stroke="#B88453" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.4"/>
+        <line x1="50" y1="30" x2="50" y2="210" stroke="#7A4A2A" stroke-width="1.5" stroke-linecap="round" opacity="0.2" stroke-dasharray="6 8"/>
+        <line x1="120" y1="30" x2="120" y2="210" stroke="#7A4A2A" stroke-width="1.5" stroke-linecap="round" opacity="0.2" stroke-dasharray="6 8"/>
+        <line x1="190" y1="30" x2="190" y2="210" stroke="#7A4A2A" stroke-width="1.5" stroke-linecap="round" opacity="0.2" stroke-dasharray="6 8"/>
+        <circle cx="50" cy="170" r="5" fill="#B94F3C" stroke="none" stroke-width="0" opacity="0.55"/>
+        <circle cx="120" cy="110" r="5" fill="#B88453" stroke="none" stroke-width="0" opacity="0.55"/>
+        <circle cx="190" cy="150" r="5" fill="#7A4A2A" stroke="none" stroke-width="0" opacity="0.55"/>
+      </g>
+    <rect x="980" y="120" width="460" height="300" rx="36" fill="#ffffff" opacity="0.68" stroke="#B88453" stroke-width="2"/>
+    
+        <rect x="1045" y="171.1904761904762" width="330" height="183.33333333333334" rx="16.25" fill="#fffaf1" stroke="#B88453" stroke-width="2.5" opacity="0.82"/>
+        <path d="M 1081.25 212.85714285714286 C 1122.5 192.61904761904762 1172.5 199.76190476190476 1200 229.52380952380952 C 1232.5 261.6666666666667 1285 261.6666666666667 1341.25 230.71428571428572" stroke="#7A4A2A" stroke-width="4.375" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.55"/>
+        <line x1="1092.5" y1="195" x2="1092.5" y2="325.95238095238096" stroke="#B88453" stroke-width="1.25" stroke-linecap="round" opacity="0.35" stroke-dasharray="8 10"/>
+        <line x1="1176.25" y1="195" x2="1176.25" y2="325.95238095238096" stroke="#B88453" stroke-width="1.25" stroke-linecap="round" opacity="0.35" stroke-dasharray="8 10"/>
+        <line x1="1260" y1="195" x2="1260" y2="325.95238095238096" stroke="#B88453" stroke-width="1.25" stroke-linecap="round" opacity="0.35" stroke-dasharray="8 10"/>
+        <circle cx="1092.5" cy="285.4761904761905" r="8.125" fill="#B94F3C" stroke="none" stroke-width="0" />
+        <circle cx="1176.25" cy="246.1904761904762" r="8.125" fill="#B88453" stroke="none" stroke-width="0" />
+        <circle cx="1260" cy="272.3809523809524" r="8.125" fill="#7A4A2A" stroke="none" stroke-width="0" />
+        <rect x="1278.75" y="195" width="67.5" height="54.76190476190476" rx="10" fill="#ffffff" stroke="#7A4A2A" stroke-width="2" opacity="0.8"/>
+        <line x1="1290" y1="206.9047619047619" x2="1335" y2="206.9047619047619" stroke="#B88453" stroke-width="1.25" stroke-linecap="round" />
+        <line x1="1290" y1="220" x2="1335" y2="220" stroke="#B88453" stroke-width="1.25" stroke-linecap="round" />
+        <line x1="1290" y1="233.09523809523807" x2="1316.25" y2="233.09523809523807" stroke="#B88453" stroke-width="1.25" stroke-linecap="round" />
+      
+    <path d="M90 720 C300 620 530 640 730 700 C930 760 1170 790 1510 650" stroke="#B94F3C" stroke-width="10" opacity="0.55" stroke-linecap="round"/>
+    <path d="M90 770 C330 690 570 720 760 760 C990 810 1210 820 1480 730" stroke="#7A4A2A" stroke-width="4" opacity="0.35" stroke-linecap="round"/>
+  
+</svg>

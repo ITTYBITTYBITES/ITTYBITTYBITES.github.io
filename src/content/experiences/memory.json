@@ -1,0 +1,19 @@
+{
+  "id": "memory",
+  "title": "Memory",
+  "description": "Study a scene, recall its details, and compare your confidence with your accuracy to see memory as reconstruction.",
+  "summary": "Observe carefully, answer from memory, and discover how recall changes when details are rebuilt instead of replayed.",
+  "category": "interactive",
+  "module": "memory.ts",
+  "tags": ["memory", "recall", "confidence", "eyewitness"],
+  "searchKeywords": ["memory", "recall", "confidence", "accuracy", "eyewitness", "reconstruction"],
+  "estimatedDuration": "5-9 min",
+  "returnValue": "Different scenes and lure questions sharpen your observation while reminding you that confidence is not proof.",
+  "collection": "society-mind",
+  "story": "bridges-within-and-between",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

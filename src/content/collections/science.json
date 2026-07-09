@@ -1,0 +1,12 @@
+{
+  "id": "science",
+  "title": "Science",
+  "description": "Science is not a body of facts. It is a way of asking questions, testing guesses, and holding conclusions lightly. These experiences teach scientific thinking through doing.",
+  "summary": "Five experiences that teach scientific reasoning through hypothesis, experiment, pattern, scale, and uncertainty.",
+  "experiences": ["hypothesis", "controlled", "signal-in-data", "scale", "uncertainty"],
+  "tags": ["science", "experiment", "reasoning", "evidence", "inquiry"],
+  "searchKeywords": ["science", "experiment", "hypothesis", "data", "pattern", "scale", "uncertainty"],
+  "estimatedDuration": "30-50 min",
+  "story": "ways-of-knowing",
+  "version": "1.0.0"
+}

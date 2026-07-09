@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64" fill="none" role="img" aria-labelledby="title3hzcfl descf9m422">
+  <title id="title3hzcfl">Creativity icon</title>
+  <desc id="descf9m422">Layered composition, sketch marks, and expressive assembly.</desc>
+  
+  <rect width="64" height="64" rx="16" fill="#FBF0E8"/>
+        <rect x="10" y="16" width="24" height="24" rx="8" fill="#D38552" stroke="#8A3C3B" opacity="0.8" stroke-width="2"/>
+        <rect x="24" y="10" width="24" height="24" rx="8" fill="#7F66D9" stroke="#8A3C3B" opacity="0.8" stroke-width="2"/>
+        <rect x="30" y="24" width="24" height="24" rx="8" fill="#F1D8C7" stroke="#8A3C3B" stroke-width="2"/>
+        <path d="M16 48 C22 40 28 44 34 36 C38 30 44 28 50 32" stroke="#8A3C3B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      
+</svg>

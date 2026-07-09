@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" role="img" aria-labelledby="titlewi9lm8 descokucw6">
+  <title id="titlewi9lm8">Science badge</title>
+  <desc id="descokucw6">Observation, instruments, experiment, and measured uncertainty.</desc>
+  
+  
+      <rect width="128" height="128" rx="28" fill="#EDF6FB"/>
+      <rect x="12" y="12" width="104" height="104" rx="22" fill="#ffffff" opacity="0.76" stroke="#65A3C8" stroke-width="2"/>
+      <g transform="translate(32 28)">
+        <circle cx="24" cy="24" r="12" fill="none" stroke="#1F4E79" stroke-width="3" />
+        <circle cx="24" cy="24" r="4" fill="#E59A41" stroke="none" stroke-width="0" />
+        <line x1="36" y1="36" x2="50" y2="50" stroke="#1F4E79" stroke-width="4" stroke-linecap="round" />
+        <rect x="12" y="12" width="40" height="40" rx="12" fill="none" stroke="#65A3C8" stroke-width="1.5" opacity="0.45" stroke-dasharray="4 5"/>
+      </g>
+      <path d="M24 100 H104" stroke="#E59A41" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+    
+</svg>

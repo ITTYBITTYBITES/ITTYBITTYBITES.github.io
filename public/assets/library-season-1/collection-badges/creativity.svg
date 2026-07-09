@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128" fill="none" role="img" aria-labelledby="titlep03fnd desctohe1k">
+  <title id="titlep03fnd">Creativity badge</title>
+  <desc id="desctohe1k">Layered composition, sketch marks, and expressive assembly.</desc>
+  
+  
+      <rect width="128" height="128" rx="28" fill="#FBF0E8"/>
+      <rect x="12" y="12" width="104" height="104" rx="22" fill="#ffffff" opacity="0.76" stroke="#D38552" stroke-width="2"/>
+      <g transform="translate(32 28)">
+        <rect x="10" y="16" width="24" height="24" rx="8" fill="#D38552" stroke="#8A3C3B" opacity="0.8" stroke-width="2"/>
+        <rect x="24" y="10" width="24" height="24" rx="8" fill="#7F66D9" stroke="#8A3C3B" opacity="0.8" stroke-width="2"/>
+        <rect x="30" y="24" width="24" height="24" rx="8" fill="#F1D8C7" stroke="#8A3C3B" stroke-width="2"/>
+        <path d="M16 48 C22 40 28 44 34 36 C38 30 44 28 50 32" stroke="#8A3C3B" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      </g>
+      <path d="M24 100 H104" stroke="#7F66D9" stroke-width="4" stroke-linecap="round" opacity="0.8"/>
+    
+</svg>

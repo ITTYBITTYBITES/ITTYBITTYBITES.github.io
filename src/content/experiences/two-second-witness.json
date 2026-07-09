@@ -1,0 +1,17 @@
+{
+  "id": "two-second-witness",
+  "title": "Two Second Witness",
+  "description": "Your memory is not a recording. It is a reconstruction.",
+  "summary": "Challenge your attention, perception, and memory through rapid visual experiments designed to reveal what your mind captures, misses, and rebuilds.",
+  "category": "interactive",
+  "module": "two-second-witness.ts",
+  "tags": ["observation", "memory", "recognition", "fast", "fun"],
+  "searchKeywords": ["witness", "two second", "observation", "memory", "game", "perception"],
+  "estimatedDuration": "2 min",
+  "returnValue": "Short, replayable challenges designed for entertainment and curiosity.",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

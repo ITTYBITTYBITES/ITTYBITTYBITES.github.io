@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Collection",
+  "version": "1.0.0",
+  "type": "object",
+  "required": ["id", "title", "description", "experiences"],
+  "properties": {
+    "id": { "type": "string", "pattern": "^[a-z0-9-]{3,32}$" },
+    "title": { "type": "string", "minLength": 3, "maxLength": 80 },
+    "description": { "type": "string", "minLength": 10, "maxLength": 300 },
+    "summary": { "type": "string", "minLength": 10, "maxLength": 200 },
+    "experiences": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^[a-z0-9-]{3,32}$" },
+      "minItems": 1
+    },
+    "tags": { "type": "array", "items": { "type": "string" } },
+    "searchKeywords": { "type": "array", "items": { "type": "string" } },
+    "estimatedDuration": { "type": "string", "maxLength": 30 },
+    "story": { "type": "string" },
+    "version": { "type": "string", "default": "1.0.0" }
+  },
+  "additionalProperties": false
+}

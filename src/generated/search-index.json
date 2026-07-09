@@ -1,0 +1,698 @@
+[
+  {
+    "id": "adaptation",
+    "type": "experience",
+    "title": "Adaptation",
+    "description": "The environment shifts. Creatures must shift with it. Select traits for each generation and watch which lineages survive and which vanish.",
+    "tags": [
+      "adaptation",
+      "evolution",
+      "survival",
+      "traits"
+    ],
+    "collection": "nature"
+  },
+  {
+    "id": "attention",
+    "type": "experience",
+    "title": "Attention",
+    "description": "Focus on one pattern in a busy field and discover how much slips past while your mind is filtering for what matters.",
+    "tags": [
+      "attention",
+      "focus",
+      "filtering",
+      "perception"
+    ],
+    "collection": "society-mind"
+  },
+  {
+    "id": "bias",
+    "type": "experience",
+    "title": "Bias",
+    "description": "Make fast judgments from framed, partial, or ambiguous information and notice the shortcuts your mind uses to keep up.",
+    "tags": [
+      "bias",
+      "framing",
+      "assumptions",
+      "shortcuts"
+    ],
+    "collection": "society-mind"
+  },
+  {
+    "id": "bridge-builder",
+    "type": "experience",
+    "title": "Bridge Builder",
+    "description": "Span a gap. Balance strength, cost, and materials. Every bridge is a negotiation between what you want and what you can afford.",
+    "tags": [
+      "bridge",
+      "materials",
+      "cost",
+      "strength",
+      "design"
+    ],
+    "collection": "engineering"
+  },
+  {
+    "id": "chain-reaction",
+    "type": "experience",
+    "title": "Chain Reaction",
+    "description": "One decision opens paths no one fully foresaw. Build chains of consequence and explore how events connect across time.",
+    "tags": [
+      "causation",
+      "consequences",
+      "decisions",
+      "connections"
+    ],
+    "collection": "history"
+  },
+  {
+    "id": "chronology",
+    "type": "experience",
+    "title": "Chronology",
+    "description": "Events do not arrive with timestamps. Rebuild order from relationships, consequences, and logical necessity.",
+    "tags": [
+      "sequence",
+      "logic",
+      "causation",
+      "ordering"
+    ],
+    "collection": "history"
+  },
+  {
+    "id": "compose",
+    "type": "experience",
+    "title": "Compose",
+    "description": "Elements alone are not a work. Arrangement is what creates meaning. Place, order, and relationship transform raw materials into something coherent.",
+    "tags": [
+      "composition",
+      "arrangement",
+      "order",
+      "structure"
+    ],
+    "collection": "creativity"
+  },
+  {
+    "id": "constraint",
+    "type": "experience",
+    "title": "Constraint",
+    "description": "Limits do not kill creativity. They focus it. Build something meaningful when most options are closed and discover what the restriction reveals.",
+    "tags": [
+      "constraint",
+      "limits",
+      "rules",
+      "invention"
+    ],
+    "collection": "creativity"
+  },
+  {
+    "id": "controlled",
+    "type": "experience",
+    "title": "Controlled",
+    "description": "Change one thing at a time. Everything else must stay constant. Only then can you know what caused what.",
+    "tags": [
+      "variables",
+      "control",
+      "causation",
+      "experiment"
+    ],
+    "collection": "science"
+  },
+  {
+    "id": "cooperation",
+    "type": "experience",
+    "title": "Cooperation",
+    "description": "Contribute or keep your tokens across changing group rules and watch how trust and incentives reshape the outcome for everyone.",
+    "tags": [
+      "cooperation",
+      "trust",
+      "incentives",
+      "group"
+    ],
+    "collection": "society-mind"
+  },
+  {
+    "id": "decision-making",
+    "type": "experience",
+    "title": "Decision Making",
+    "description": "Reveal only part of the picture, choose anyway, and feel how information limits and competing priorities shape human decisions.",
+    "tags": [
+      "decisions",
+      "trade-offs",
+      "uncertainty",
+      "priorities"
+    ],
+    "collection": "society-mind"
+  },
+  {
+    "id": "diverge",
+    "type": "experience",
+    "title": "Diverge",
+    "description": "Start from one point. Explore many directions. The ability to generate possibilities is the first act of creation — and the one most people skip.",
+    "tags": [
+      "divergent",
+      "brainstorming",
+      "possibilities",
+      "thinking"
+    ],
+    "collection": "creativity"
+  },
+  {
+    "id": "dueling-accounts",
+    "type": "experience",
+    "title": "Dueling Accounts",
+    "description": "Two people witnessed the same event. Their accounts differ in ways that matter. Find the differences and ask why.",
+    "tags": [
+      "sources",
+      "comparison",
+      "bias",
+      "interpretation"
+    ],
+    "collection": "history"
+  },
+  {
+    "id": "echo-chamber",
+    "type": "experience",
+    "title": "Echo Chamber",
+    "description": "Speak. Listen. Return. A living mirror that captures your words and returns them with gentle evolution.",
+    "tags": [
+      "interaction",
+      "reflection",
+      "voice",
+      "memory"
+    ],
+    "collection": "foundations"
+  },
+  {
+    "id": "ecosystem",
+    "type": "experience",
+    "title": "Ecosystem",
+    "description": "Every species depends on others. Add a predator, remove a plant, and watch the ripple effects spread through the entire web of life.",
+    "tags": [
+      "ecosystem",
+      "food-web",
+      "interdependence",
+      "ecology"
+    ],
+    "collection": "nature"
+  },
+  {
+    "id": "estimation",
+    "type": "experience",
+    "title": "Estimation",
+    "description": "Make quick approximate guesses before exact measurement. Discover how magnitude and scale guide good mathematical thinking.",
+    "tags": [
+      "estimation",
+      "approximation",
+      "scale",
+      "magnitude",
+      "mental models"
+    ],
+    "collection": "mathematics"
+  },
+  {
+    "id": "failure-analysis",
+    "type": "experience",
+    "title": "Failure Analysis",
+    "description": "Something broke. Multiple causes compete. Examine the evidence, eliminate what cannot be, and find the root cause.",
+    "tags": [
+      "failure",
+      "analysis",
+      "root-cause",
+      "investigation"
+    ],
+    "collection": "engineering"
+  },
+  {
+    "id": "feedback-loop",
+    "type": "experience",
+    "title": "Feedback Loop",
+    "description": "A system oscillates out of control. Tune the feedback to stabilize it. Too much correction causes new problems. Too little lets drift grow.",
+    "tags": [
+      "feedback",
+      "control",
+      "stability",
+      "system"
+    ],
+    "collection": "engineering"
+  },
+  {
+    "id": "hypothesis",
+    "type": "experience",
+    "title": "Hypothesis",
+    "description": "Form a guess from limited observations. Test it. Revise when the evidence contradicts you. That is the rhythm of science.",
+    "tags": [
+      "hypothesis",
+      "experiment",
+      "revision",
+      "evidence"
+    ],
+    "collection": "science"
+  },
+  {
+    "id": "iterate",
+    "type": "experience",
+    "title": "Iterate",
+    "description": "The first version is never the final version. Refinement is where craft begins. Start rough, improve through rounds, and watch the work reveal itself.",
+    "tags": [
+      "iteration",
+      "refinement",
+      "craft",
+      "improvement"
+    ],
+    "collection": "creativity"
+  },
+  {
+    "id": "memory-sequence",
+    "type": "experience",
+    "title": "Memory Sequence",
+    "description": "Build and repeat growing sequences. Strengthen recall through rhythmic challenge.",
+    "tags": [
+      "memory",
+      "sequence",
+      "recall",
+      "rhythm"
+    ],
+    "collection": "foundations"
+  },
+  {
+    "id": "memory",
+    "type": "experience",
+    "title": "Memory",
+    "description": "Study a scene, recall its details, and compare your confidence with your accuracy to see memory as reconstruction.",
+    "tags": [
+      "memory",
+      "recall",
+      "confidence",
+      "eyewitness"
+    ],
+    "collection": "society-mind"
+  },
+  {
+    "id": "optimization",
+    "type": "experience",
+    "title": "Optimization",
+    "description": "Reach the goal. But how efficiently? Every parameter you adjust brings you closer — or takes you further. Find the sweet spot.",
+    "tags": [
+      "optimization",
+      "constraints",
+      "efficiency",
+      "search"
+    ],
+    "collection": "engineering"
+  },
+  {
+    "id": "pattern-garden",
+    "type": "experience",
+    "title": "Pattern Garden",
+    "description": "Plant simple rules. Watch patterns grow. Discover how small changes create surprising order.",
+    "tags": [
+      "pattern",
+      "emergence",
+      "rules"
+    ],
+    "collection": "foundations"
+  },
+  {
+    "id": "patterns",
+    "type": "experience",
+    "title": "Patterns",
+    "description": "Continue sequences, test hidden rules, and see that math begins with noticing structure: what comes next, and why?",
+    "tags": [
+      "patterns",
+      "sequence",
+      "rules",
+      "prediction",
+      "abstraction"
+    ],
+    "collection": "mathematics"
+  },
+  {
+    "id": "perspective-shift",
+    "type": "experience",
+    "title": "Perspective Shift",
+    "description": "The same scene holds different truths. Switch lenses to uncover what hides in plain sight.",
+    "tags": [
+      "perspective",
+      "insight",
+      "reflection",
+      "observation"
+    ],
+    "collection": "foundations"
+  },
+  {
+    "id": "probability",
+    "type": "experience",
+    "title": "Probability",
+    "description": "Predict uncertain outcomes, run chance experiments, and compare intuition with what happens over many trials.",
+    "tags": [
+      "probability",
+      "chance",
+      "randomness",
+      "prediction",
+      "uncertainty"
+    ],
+    "collection": "mathematics"
+  },
+  {
+    "id": "proof",
+    "type": "experience",
+    "title": "Proof",
+    "description": "Test examples, find counterexamples, and build a short logical argument to feel the difference between seems true and must be true.",
+    "tags": [
+      "proof",
+      "logic",
+      "evidence",
+      "reasoning",
+      "certainty"
+    ],
+    "collection": "mathematics"
+  },
+  {
+    "id": "remix",
+    "type": "experience",
+    "title": "Remix",
+    "description": "Nothing comes from nothing. Every new thing is a new combination of old things. Learn to see the raw material around you and rearrange it into something unexpected.",
+    "tags": [
+      "remix",
+      "combination",
+      "recombination",
+      "innovation"
+    ],
+    "collection": "creativity"
+  },
+  {
+    "id": "scale",
+    "type": "experience",
+    "title": "Scale",
+    "description": "Navigate from the quantum to the cosmic. The same laws behave differently at different magnitudes. Perspective changes everything.",
+    "tags": [
+      "scale",
+      "magnitude",
+      "perspective",
+      "physics",
+      "orders"
+    ],
+    "collection": "science"
+  },
+  {
+    "id": "seasons",
+    "type": "experience",
+    "title": "Seasons",
+    "description": "A single landscape transforms through the year. What changes? What stays? Train your eye to notice the rhythms that most people walk past.",
+    "tags": [
+      "seasons",
+      "cycles",
+      "observation",
+      "patterns"
+    ],
+    "collection": "nature"
+  },
+  {
+    "id": "signal-detection",
+    "type": "experience",
+    "title": "Signal Detection",
+    "description": "Find meaning in noise. Train your eye to spot hidden patterns among random motion.",
+    "tags": [
+      "attention",
+      "pattern",
+      "focus",
+      "observation"
+    ],
+    "collection": "foundations"
+  },
+  {
+    "id": "signal-in-data",
+    "type": "experience",
+    "title": "Signal in Data",
+    "description": "Data is noisy. The pattern you see might be real, or it might be a trick of randomness. Learn to tell the difference.",
+    "tags": [
+      "data",
+      "pattern",
+      "noise",
+      "statistics",
+      "inference"
+    ],
+    "collection": "science"
+  },
+  {
+    "id": "symbiosis",
+    "type": "experience",
+    "title": "Symbiosis",
+    "description": "Two species. One relationship. Not all partnerships are equal. Discover the spectrum from mutual benefit to quiet exploitation.",
+    "tags": [
+      "symbiosis",
+      "relationships",
+      "mutualism",
+      "parasitism"
+    ],
+    "collection": "nature"
+  },
+  {
+    "id": "symmetry",
+    "type": "experience",
+    "title": "Symmetry",
+    "description": "Complete balanced patterns and discover what stays unchanged when shapes flip, turn, or repeat.",
+    "tags": [
+      "symmetry",
+      "balance",
+      "transformation",
+      "invariance",
+      "structure"
+    ],
+    "collection": "mathematics"
+  },
+  {
+    "id": "trade-offs",
+    "type": "experience",
+    "title": "Trade-offs",
+    "description": "Improve one metric. Sacrifice another. There is no free lunch. Learn to see what every gain costs.",
+    "tags": [
+      "trade-offs",
+      "sacrifice",
+      "metrics",
+      "pareto"
+    ],
+    "collection": "engineering"
+  },
+  {
+    "id": "two-second-witness",
+    "type": "experience",
+    "title": "Two Second Witness",
+    "description": "Your memory is not a recording. It is a reconstruction.",
+    "tags": [
+      "observation",
+      "memory",
+      "recognition",
+      "fast",
+      "fun"
+    ]
+  },
+  {
+    "id": "uncertainty",
+    "type": "experience",
+    "title": "Uncertainty",
+    "description": "Make decisions when the answer is not yet known. Science lives in the space between what we know and what we are still figuring out.",
+    "tags": [
+      "uncertainty",
+      "probability",
+      "confidence",
+      "decision",
+      "limits"
+    ],
+    "collection": "science"
+  },
+  {
+    "id": "unlabeled",
+    "type": "experience",
+    "title": "Unlabeled",
+    "description": "An object arrives with no date, no name, no explanation. What can you infer from material, shape, and wear alone?",
+    "tags": [
+      "artifacts",
+      "inference",
+      "material culture",
+      "observation"
+    ],
+    "collection": "history"
+  },
+  {
+    "id": "watershed",
+    "type": "experience",
+    "title": "Watershed",
+    "description": "Every drop of rain finds its way downhill. Trace water through a landscape and see how every action upstream shapes what arrives at the river mouth.",
+    "tags": [
+      "watershed",
+      "water",
+      "systems",
+      "consequences"
+    ],
+    "collection": "nature"
+  },
+  {
+    "id": "witness-accounts",
+    "type": "experience",
+    "title": "Witness Accounts",
+    "description": "The same moment looked different to everyone inside it. Hold multiple truths at once and understand why they differ.",
+    "tags": [
+      "perspective",
+      "witness",
+      "multiple viewpoints",
+      "empathy"
+    ],
+    "collection": "history"
+  },
+  {
+    "id": "creativity",
+    "type": "collection",
+    "title": "Creativity",
+    "description": "Creativity is not a talent. It is a set of practices — branching, constraining, combining, arranging, refining. These experiences teach creative thinking by making you do it.",
+    "tags": [
+      "creativity",
+      "thinking",
+      "innovation",
+      "process",
+      "making"
+    ]
+  },
+  {
+    "id": "engineering",
+    "type": "collection",
+    "title": "Engineering",
+    "description": "Engineering is not about perfection. It is the art of making thoughtful compromises — balancing competing demands until something works well enough.",
+    "tags": [
+      "engineering",
+      "systems",
+      "trade-offs",
+      "constraints",
+      "optimization"
+    ]
+  },
+  {
+    "id": "foundations",
+    "type": "collection",
+    "title": "Foundations",
+    "description": "Core interactive building blocks that demonstrate how small meaningful interactions create lasting value.",
+    "tags": [
+      "core",
+      "interaction",
+      "foundation"
+    ]
+  },
+  {
+    "id": "history",
+    "type": "collection",
+    "title": "History",
+    "description": "Explore how evidence, perspective, and interpretation shape our understanding of the past. Not dates to memorize — questions to wrestle with.",
+    "tags": [
+      "history",
+      "evidence",
+      "interpretation",
+      "reasoning"
+    ]
+  },
+  {
+    "id": "mathematics",
+    "type": "collection",
+    "title": "Mathematics",
+    "description": "Math is a language for understanding patterns. These experiences turn mathematics into a way of seeing relationships, uncertainty, structure, reasoning, and proof.",
+    "tags": [
+      "mathematics",
+      "patterns",
+      "reasoning",
+      "probability",
+      "proof"
+    ]
+  },
+  {
+    "id": "nature",
+    "type": "collection",
+    "title": "Nature",
+    "description": "Nature is not scenery. It is systems, cycles, relationships, and patterns playing out across time. These experiences teach ecological thinking through observation, connection, and consequence.",
+    "tags": [
+      "nature",
+      "ecology",
+      "systems",
+      "observation",
+      "environment"
+    ]
+  },
+  {
+    "id": "science",
+    "type": "collection",
+    "title": "Science",
+    "description": "Science is not a body of facts. It is a way of asking questions, testing guesses, and holding conclusions lightly. These experiences teach scientific thinking through doing.",
+    "tags": [
+      "science",
+      "experiment",
+      "reasoning",
+      "evidence",
+      "inquiry"
+    ]
+  },
+  {
+    "id": "society-mind",
+    "type": "collection",
+    "title": "Society & Mind",
+    "description": "Explore how attention, interpretation, memory, cooperation, and choice connect private thought to shared human systems.",
+    "tags": [
+      "society",
+      "mind",
+      "cognition",
+      "cooperation",
+      "decision-making"
+    ]
+  },
+  {
+    "id": "bridges-within-and-between",
+    "type": "story",
+    "title": "Bridges Within and Between",
+    "description": "Human systems begin in perception, grow through interpretation and memory, and become society when minds coordinate around rules and choices."
+  },
+  {
+    "id": "echo-origin",
+    "type": "story",
+    "title": "The Origin of Echo",
+    "description": "A reflection on why the first coherent experience was built around listening and repetition."
+  },
+  {
+    "id": "echoes-of-evidence",
+    "type": "story",
+    "title": "Echoes of Evidence",
+    "description": "History is not a list of dates. It is an argument built from fragments — letters, objects, accounts, silences. This collection asks you to build that argument yourself."
+  },
+  {
+    "id": "foundations-journey",
+    "type": "story",
+    "title": "The Foundations Journey",
+    "description": "A guided path through five core experiences that build upon each other — from listening to seeing."
+  },
+  {
+    "id": "the-art-of-compromise",
+    "type": "story",
+    "title": "The Art of Compromise",
+    "description": "Engineering is not about finding the perfect solution. Perfect does not exist. Engineering is the discipline of making thoughtful compromises — knowing what to optimize, what to sacrifice, and why."
+  },
+  {
+    "id": "the-language-of-patterns",
+    "type": "story",
+    "title": "The Language of Patterns",
+    "description": "A journey through mathematics as a way of seeing: patterns, measurement, hidden structure, uncertainty, and proof."
+  },
+  {
+    "id": "the-living-web",
+    "type": "story",
+    "title": "The Living Web",
+    "description": "Nature does not present itself as a lesson. It simply exists — full of patterns, relationships, and quiet rules that anyone can learn to read. This collection walks the path from observation to systems thinking."
+  },
+  {
+    "id": "the-making-process",
+    "type": "story",
+    "title": "The Making Process",
+    "description": "Creativity is not inspiration striking from nowhere. It is a process — branching, constraining, combining, arranging, refining. These experiences walk the path from blank page to finished work."
+  },
+  {
+    "id": "ways-of-knowing",
+    "type": "story",
+    "title": "Ways of Knowing",
+    "description": "Science does not begin with answers. It begins with noticing something strange and refusing to look away. This collection walks the path from curiosity to understanding — through guesses, tests, patterns, perspective, and humility."
+  }
+]

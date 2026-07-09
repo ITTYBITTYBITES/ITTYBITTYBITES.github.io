@@ -1,0 +1,19 @@
+{
+  "id": "seasons",
+  "title": "Seasons",
+  "description": "A single landscape transforms through the year. What changes? What stays? Train your eye to notice the rhythms that most people walk past.",
+  "summary": "Observe one place through four seasons. Discover patterns hidden in plain sight.",
+  "category": "reflection",
+  "module": "seasons.ts",
+  "tags": ["seasons", "cycles", "observation", "patterns"],
+  "searchKeywords": ["seasons", "spring", "summer", "autumn", "winter", "cycles", "observation"],
+  "estimatedDuration": "5-10 min",
+  "returnValue": "Each season reveals details you may have missed. Return and you will see the landscape differently.",
+  "collection": "nature",
+  "story": "the-living-web",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

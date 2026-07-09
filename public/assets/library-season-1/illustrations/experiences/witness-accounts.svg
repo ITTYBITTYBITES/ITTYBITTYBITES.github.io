@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" fill="none" role="img" aria-labelledby="titledxx3zu desc8bcblv">
+  <title id="titledxx3zu">witness-accounts</title>
+  <desc id="desc8bcblv">Several witnesses circle a shared incident, each preserving only part of the scene.</desc>
+  
+  
+    <rect width="320" height="220" rx="24" fill="#F7F0E1"/>
+    <rect x="12" y="12" width="296" height="196" rx="18" fill="#E7D8BE" opacity="0.34"/>
+    <rect x="24" y="26" width="272" height="168" rx="20" fill="#ffffff" opacity="0.72" stroke="#B88453" stroke-width="2"/>
+    <path d="M28 188 C92 172 136 178 188 186 C234 194 266 194 292 184" stroke="#B94F3C" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+    
+        <circle cx="160" cy="112" r="18" fill="#B94F3C" stroke="none" stroke-width="0" />
+        <path d="M56 56 h72 l14 14 h-72 z" stroke="#7A4A2A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff" />
+        <path d="M200 48 h64 l12 12 h-64 z" stroke="#B88453" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff" />
+        <path d="M84 154 h64 l12 12 h-64 z" stroke="#B88453" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" fill="#ffffff" />
+        <line x1="128" y1="78" x2="148" y2="98" stroke="#7A4A2A" stroke-width="3" stroke-linecap="round" />
+        <line x1="212" y1="70" x2="176" y2="98" stroke="#B88453" stroke-width="3" stroke-linecap="round" />
+        <line x1="132" y1="166" x2="148" y2="126" stroke="#B88453" stroke-width="3" stroke-linecap="round" />
+      
+  
+</svg>

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" fill="none" role="img" aria-labelledby="title5314fe descdgkuj6">
+  <title id="title5314fe">symbiosis</title>
+  <desc id="descdgkuj6">Two living forms interlock, each changing shape because of the other.</desc>
+  
+  
+    <rect width="320" height="220" rx="24" fill="#EEF5EC"/>
+    <rect x="12" y="12" width="296" height="196" rx="18" fill="#D8E6D2" opacity="0.34"/>
+    <rect x="24" y="26" width="272" height="168" rx="20" fill="#ffffff" opacity="0.72" stroke="#78A67C" stroke-width="2"/>
+    <path d="M28 188 C92 172 136 178 188 186 C234 194 266 194 292 184" stroke="#4A8CC7" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+    
+        <path d="M102 84 C122 54 164 54 182 84 C194 104 192 132 168 150 C148 166 124 164 106 148 C82 128 82 102 102 84 Z" stroke="#245B45" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+        <path d="M138 72 C158 42 200 42 218 72 C230 92 228 120 204 138 C184 154 160 152 142 136 C118 116 118 90 138 72 Z" stroke="#4A8CC7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity="0.75"/>
+      
+  
+</svg>

@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="220" viewBox="0 0 320 220" fill="none" role="img" aria-labelledby="titleobxxiu desc3jyuml">
+  <title id="titleobxxiu">scale</title>
+  <desc id="desc3jyuml">Nested frames reveal how the same object looks different across magnitudes.</desc>
+  
+  
+    <rect width="320" height="220" rx="24" fill="#EDF6FB"/>
+    <rect x="12" y="12" width="296" height="196" rx="18" fill="#D4E8F2" opacity="0.34"/>
+    <rect x="24" y="26" width="272" height="168" rx="20" fill="#ffffff" opacity="0.72" stroke="#65A3C8" stroke-width="2"/>
+    <path d="M28 188 C92 172 136 178 188 186 C234 194 266 194 292 184" stroke="#E59A41" stroke-width="4" opacity="0.45" stroke-linecap="round"/>
+    
+        <rect x="42" y="42" width="236" height="136" rx="24" fill="#ffffff" stroke="#65A3C8" stroke-width="2.5"/>
+        <rect x="84" y="68" width="152" height="84" rx="18" fill="none" stroke="#1F4E79" stroke-width="3"/>
+        <rect x="118" y="86" width="84" height="48" rx="14" fill="none" stroke="#E59A41" stroke-width="3"/>
+        <circle cx="160" cy="110" r="10" fill="#1F4E79" stroke="none" stroke-width="0" />
+      
+  
+</svg>

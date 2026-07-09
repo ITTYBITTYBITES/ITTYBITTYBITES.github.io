@@ -1,0 +1,19 @@
+{
+  "id": "estimation",
+  "title": "Estimation",
+  "description": "Make quick approximate guesses before exact measurement. Discover how magnitude and scale guide good mathematical thinking.",
+  "summary": "Estimate real quantities, compare guesses with reality, and build intuition for magnitude and scale.",
+  "category": "game",
+  "module": "estimation.ts",
+  "tags": ["estimation", "approximation", "scale", "magnitude", "mental models"],
+  "searchKeywords": ["estimation", "estimate", "approximation", "scale", "magnitude", "guess", "quantity"],
+  "estimatedDuration": "5-8 min",
+  "returnValue": "Return to practice judging quantities before calculating exactly.",
+  "collection": "mathematics",
+  "story": "the-language-of-patterns",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

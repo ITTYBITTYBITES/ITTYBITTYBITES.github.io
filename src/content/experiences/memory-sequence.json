@@ -1,0 +1,19 @@
+{
+  "id": "memory-sequence",
+  "title": "Memory Sequence",
+  "description": "Build and repeat growing sequences. Strengthen recall through rhythmic challenge.",
+  "summary": "Watch the pattern. Repeat it. Each round adds one more step. How far can you go?",
+  "category": "game",
+  "module": "memory-sequence.ts",
+  "tags": ["memory", "sequence", "recall", "rhythm"],
+  "searchKeywords": ["memory", "sequence", "pattern", "recall", "game"],
+  "estimatedDuration": "5-10 min",
+  "returnValue": "Your highest streak is saved. Return to push past your personal record.",
+  "collection": "foundations",
+  "story": "foundations-journey",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true
+  }
+}

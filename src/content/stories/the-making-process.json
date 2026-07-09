@@ -1,0 +1,48 @@
+{
+  "id": "the-making-process",
+  "title": "The Making Process",
+  "description": "Creativity is not inspiration striking from nowhere. It is a process — branching, constraining, combining, arranging, refining. These experiences walk the path from blank page to finished work.",
+  "summary": "How creative thinking moves from possibility to form through divergence, constraint, remix, composition, and iteration.",
+  "relatedCollections": ["creativity"],
+  "relatedExperiences": ["diverge", "constraint", "remix", "compose", "iterate"],
+  "narrative": "Most people believe creativity is a gift — something some have and others lack. This is a misunderstanding. Creativity is a process, and like any process, it can be learned, practiced, and improved. The Making Process collection teaches this process by putting you through it. You will begin by branching — exploring many possibilities from a single seed. Then you will work within constraints, discovering that limits are not the enemy of creativity but its engine. You will remix existing elements into new combinations, learning that nothing comes from nothing. You will compose, arranging elements into coherent wholes. And finally, you will iterate — refining through repeated rounds until the work reveals itself. These are the practices that artists, engineers, writers, scientists, and makers use every day. They are also the practices that anyone can use to think more creatively about any problem.",
+  "segments": [
+    {
+      "id": "intro",
+      "title": "Begin with Possibility",
+      "text": "Every creative act begins with a blank space and a question: what could exist here? The first skill is not knowing the answer. It is generating possibilities without judging them. Your first task is to take a single seed — a word, a concept, a shape — and branch in as many directions as you can. The goal is not quality. The goal is quantity. Judgment comes later.",
+      "trigger": "collection_start"
+    },
+    {
+      "id": "diverge-to-constraint",
+      "title": "Freedom Needs Form",
+      "text": "Infinite possibility is paralyzing. The second skill is learning to work within limits. A poet who can use any word struggles to write. A poet restricted to six words must make every syllable count. Constraints are not restrictions — they are the structure that makes creation possible. The next experience gives you strict limits and asks you to build something meaningful within them.",
+      "trigger": "after_diverge"
+    },
+    {
+      "id": "constraint-to-remix",
+      "title": "Nothing Comes from Nothing",
+      "text": "You have branched and you have constrained. Now you will combine. Every new thing is a new combination of old things. The saxophone combined the clarinet with new materials and a new mouthpiece. Jazz combined European harmony with African rhythm. The next skill is seeing the raw material around you — existing ideas, forms, patterns — and recombining them into something that did not exist before.",
+      "trigger": "after_constraint"
+    },
+    {
+      "id": "remix-to-compose",
+      "title": "Elements Alone Are Not a Work",
+      "text": "You have generated, constrained, and combined. But raw materials are not a finished work. A pile of words is not a poem. A set of notes is not a song. The next skill is arrangement — placing elements in the right order, in the right relationships, to create coherence. Composition is the art of making parts serve the whole.",
+      "trigger": "after_remix"
+    },
+    {
+      "id": "compose-to-iterate",
+      "title": "The Work Reveals Itself Through Revision",
+      "text": "You have composed a first version. Now comes the hardest skill: revision. The first draft is never the final draft. Every iteration reveals something new — a flaw to fix, an opportunity to exploit, a detail to refine. The final experience asks you to start rough and improve through repeated rounds. Watch how each pass transforms the work.",
+      "trigger": "after_compose"
+    },
+    {
+      "id": "completion",
+      "title": "You Are Now a Maker",
+      "text": "You have branched into possibility. You have worked within constraints. You have recombined existing elements into new forms. You have arranged parts into coherent wholes. You have refined through iteration. These are the practices of creativity — not a gift, but a process. Artists, engineers, writers, scientists, and makers use these practices every day. Now you do too. Return to any experience and you will see the process more clearly. The blank page is no longer paralyzing. You know how to begin.",
+      "trigger": "collection_complete"
+    }
+  ],
+  "version": "1.0.0"
+}
