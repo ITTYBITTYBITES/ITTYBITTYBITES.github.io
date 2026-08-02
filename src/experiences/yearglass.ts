@@ -8,7 +8,7 @@ const yearglass: ExperienceModule = {
         h('p', { class: 'eyebrow' }, ['Ambient / Sanctuary']),
         h('h2', {}, ['YearGlass']),
         h('p', { class: 'lead' }, ['A cozy ambient terrarium companion where users nurture a living sanctuary through time, simulation, and observation.']),
-        h('p', {}, ['Watch your sanctuary change with daylight, weather, and the quiet presence of small creatures. A calm space designed to return to.'])
+        h('p', {}, ['Watch your sanctuary change with daylight, weather, and the quiet presence of small creatures. A calm space you can always return to.'])
       ]),
       h('section', { class: 'section overview-section' }, [
         h('h3', {}, ['Experience Overview']),
