@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-08-02T22:00:42.355Z",
+  "generatedAt": "2026-08-02T22:09:41.919Z",
   "experiences": [
     {
       "id": "adaptation",
@@ -1254,6 +1254,38 @@
       "accessibility": {
         "keyboard": true,
         "screenReader": true,
+        "contrast": true
+      }
+    },
+    {
+      "id": "yearglass",
+      "title": "YearGlass",
+      "description": "A cozy ambient terrarium companion where users nurture a living sanctuary through time, simulation, and observation.",
+      "summary": "A living digital sanctuary. Nurture plants, observe creatures, and watch your sanctuary grow through day, night, and weather.",
+      "category": "ambient",
+      "module": "yearglass.ts",
+      "tags": [
+        "ambient",
+        "sanctuary",
+        "terrarium",
+        "relaxation",
+        "nature",
+        "time"
+      ],
+      "searchKeywords": [
+        "yearglass",
+        "terrarium",
+        "ambient",
+        "sanctuary",
+        "relax",
+        "garden",
+        "slow"
+      ],
+      "estimatedDuration": "long",
+      "returnValue": "A calm, long-term companion experience that deepens with observation and time.",
+      "accessibility": {
+        "keyboard": true,
+        "screenReader": false,
         "contrast": true
       }
     }

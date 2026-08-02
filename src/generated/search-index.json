@@ -541,6 +541,20 @@
     "collection": "history"
   },
   {
+    "id": "yearglass",
+    "type": "experience",
+    "title": "YearGlass",
+    "description": "A cozy ambient terrarium companion where users nurture a living sanctuary through time, simulation, and observation.",
+    "tags": [
+      "ambient",
+      "sanctuary",
+      "terrarium",
+      "relaxation",
+      "nature",
+      "time"
+    ]
+  },
+  {
     "id": "creativity",
     "type": "collection",
     "title": "Creativity",
