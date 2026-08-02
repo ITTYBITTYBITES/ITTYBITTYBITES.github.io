@@ -26,13 +26,12 @@ const yearglass: ExperienceModule = {
       ]),
       h('section', { class: 'section app-connection-section', style: 'text-align: center; margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid color-mix(in srgb, var(--line-strong) 24%, var(--line) 76%);' }, [
         h('h3', {}, ['Launch YearGlass']),
-        h('p', {}, ['Open the sanctuary in a new experience.']),
+        h('p', {}, ['Open the sanctuary in a new tab.']),
         h('div', { style: 'margin-top: var(--space-4);' }, [
-          h('a', { href: '/yearglass/', class: 'btn primary' }, ['Open Sanctuary'])
+          h('a', { href: '/yearglass/', target: '_blank', rel: 'noopener noreferrer', class: 'btn primary' }, ['Open Sanctuary'])
         ])
       ])
     ]);
-
     clearElement(container);
     container.appendChild(wrapper);
     return () => {};
