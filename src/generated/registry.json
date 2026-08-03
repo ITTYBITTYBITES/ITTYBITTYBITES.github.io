@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-08-03T00:00:08.817Z",
+  "generatedAt": "2026-08-03T01:03:09.916Z",
   "experiences": [
     {
       "id": "adaptation",
@@ -1282,7 +1282,7 @@
         "slow"
       ],
       "estimatedDuration": "long",
-      "returnValue": "A calm, long-term companion experience that deepens with observation and time.",
+      "returnValue": "A calm, long-term companion experience. Return after 1 day: a gentle welcome. After 1 week: changes noticed quietly. After longer: memories kept faithfully. The sanctuary remembers you.",
       "collection": "nature",
       "story": "the-living-web",
       "accessibility": {

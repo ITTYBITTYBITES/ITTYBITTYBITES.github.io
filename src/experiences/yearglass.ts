@@ -3,12 +3,12 @@ import { clearElement, h } from '../platform/utils';
 
 const yearglass: ExperienceModule = {
   mount(container: HTMLElement, _context: ExperienceContext) {
-    const wrapper = h('div', { class: 'yearglass-preview publication-panel', style: 'padding: var(--space-6);' }, [
+    const wrapper = h('div', { class: 'yearglass-preview publication-panel', style: 'padding: var(--space-6); max-width: 100%; overflow-x: hidden; font-size: 1rem; line-height: 1.5;' }, [
       h('div', { class: 'hero-copy', style: 'margin-bottom: var(--space-8);' }, [
         h('p', { class: 'eyebrow' }, ['Ambient / Sanctuary']),
         h('h2', {}, ['YearGlass']),
         h('p', { class: 'lead' }, ['A cozy ambient terrarium companion where users nurture a living sanctuary through time, simulation, and observation.']),
-        h('p', {}, ['Watch your sanctuary change with daylight, weather, and the quiet presence of small creatures. A calm space you can always return to.'])
+        h('p', {}, ['Watch your sanctuary change with daylight, weather, and the quiet presence of small creatures. A calm space you can always return to.']),
         h('p', { style: 'font-size:0.8125rem;opacity:0.7;margin-top:var(--space-2);line-height:1.4;' }, ['Pip the ladybug is already here. The jar holds a small world. Nothing is required — just observation.'])
       ]),
       h('section', { class: 'section overview-section' }, [
@@ -19,12 +19,7 @@ const yearglass: ExperienceModule = {
         h('h3', {}, ['Terrarium Focus Mode']),
         h('p', {}, ['Click below to enter a closer, calmer view of the living sanctuary — the same world, observed closely. Plants, Pip, and the quiet weather continue their lives inside the glass.']),
         h('div', { style: 'margin-top: var(--space-4);' }, [
-          h('button', { class: 'btn secondary', onclick: () => {
-            const focusEl = document.createElement('div');
-            focusEl.style.cssText = 'position:fixed;inset:0;z-index:9999;background:#0d0d0e;color:#f0ede8;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:system-ui,sans-serif;animation:fadeIn 0.5s ease';
-            focusEl.innerHTML = '<style>@keyframes fadeIn{from{opacity:0;transform:scale(0.96)}to{opacity:1;transform:scale(1)}}</style><div style="text-align:center;padding:var(--space-6);max-width:640px;"><h2 style="font-size:2rem;margin-bottom:var(--space-3);">Terrarium Focus</h2><p style="font-size:1.125rem;line-height:1.6;opacity:0.85;margin-bottom:var(--space-6);">A closer, calmer view of the same living sanctuary. The jar, Pip, and growing plants continue quietly inside the glass — observed more closely.</p><div style="border:2px solid #bfa06a;border-radius:16px;padding:var(--space-6);background:#1a1814;margin-bottom:var(--space-6);transform:scale(1.1);transform-origin:center;box-shadow:0 20px 60px rgba(191,160,106,0.15);"><p style="font-size:0.875rem;opacity:0.8;">Close observation mode — the same world, viewed more closely. Plants grow, Pip explores, weather passes over glass.</p><p style="font-size:0.75rem;margin-top:var(--space-2);opacity:0.5;">No separate scene. Just presence, closer.</p></div><button onclick="this.closest(\'[style*=z-index]\').remove()" style="padding:0.75rem 1.5rem;border-radius:8px;border:1px solid #bfa06a;background:transparent;color:#bfa06a;font-weight:600;font-size:1rem;cursor:pointer;">Return to Room</button></div>';
-            document.body.appendChild(focusEl);
-          } }, ['Enter Focus Mode'])
+          h('button', { class: 'btn secondary', onclick: 'const el=document.createElement("div");el.style.cssText="position:fixed;inset:0;z-index:9999;background:#0d0d0e;color:#f0ede8;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:system-ui,sans-serif;animation:fadeIn 0.5s ease";el.innerHTML="<style>@keyframes fadeIn{from{opacity:0;transform:scale(0.96)}to{opacity:1;transform:scale(1)}}</style><div style=text-align:center;padding:var(--space-6);max-width:640px;><h2 style=font-size:2rem;margin-bottom:var(--space-3);>Terrarium Focus</h2><p style=font-size:1.125rem;line-height:1.6;opacity:0.85;margin-bottom:var(--space-6);>A closer, calmer view of the same living sanctuary.</p><div style=border:2px solid #bfa06a;border-radius:16px;padding:var(--space-6);background:#1a1814;margin-bottom:var(--space-6);transform:scale(1.1);transform-origin:center;box-shadow:0 20px 60px rgba(191,160,106,0.15);><p style=font-size:0.875rem;opacity:0.8;>Close observation mode — same world, closer.</p></div><button onclick=\"this.closest(\'[style*=z-index]\').remove()\" style=padding:0.75rem 1.5rem;border-radius:8px;border:1px solid #bfa06a;background:transparent;color:#bfa06a;font-weight:600;font-size:1rem;cursor:pointer;>Return to Room</button></div>";document.body.appendChild(el);' }, ['Enter Focus Mode'])
         ])
       ]),
       h('section', { class: 'section preview-section' }, [
@@ -35,6 +30,10 @@ const yearglass: ExperienceModule = {
           h('li', {}, ['1 week away: milestone memory; creature behavior patterns visible.']),
           h('li', {}, ['Longer absence: deeper anniversary reflection; photos preserved; sanctuary unchanged but grown.'])
         ])
+      ]),
+      h('section', { class: 'section preview-section' }, [
+        h('h3', {}, ['First Morning']),
+        h('p', {}, ['Pip the ladybug is already here, exploring quietly. The jar holds a small world. The notebook holds memories not yet written. The camera waits for a moment worth keeping. Nothing is required — observation is enough. The sanctuary continues whether watched closely or from a distance. It remembers. It grows quietly. It is calm space designed to return to.'])
       ]),
       h('section', { class: 'section preview-section' }, [
         h('h3', {}, ['What to Expect']),
