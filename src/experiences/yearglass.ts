@@ -5,7 +5,7 @@ import { clearElement, h } from '../platform/utils';
 const yearglass: ExperienceModule = {
   mount(container: HTMLElement, _context: ExperienceContext) {
     initAudio(); unlockAudio();
-    const wrapper = h('div', { class: 'yearglass-preview publication-panel', style: 'padding: var(--space-6); max-width: 100%; overflow-x: hidden; font-size: 1rem; line-height: 1.5;' }, [
+    const wrapper = h('div', { class: 'yearglass-preview publication-panel', style: 'padding: var(--space-6); max-width: 100%; min-height: 100vh; display: flex; flex-direction: column; justify-content: center;; overflow-x: hidden; font-size: 1rem; line-height: 1.5;' }, [
       h('div', { class: 'hero-copy', style: 'margin-bottom: var(--space-8);' }, [
         h('p', { class: 'eyebrow' }, ['Ambient / Sanctuary']),
         h('h2', {}, ['YearGlass']),
@@ -65,7 +65,7 @@ const yearglass: ExperienceModule = {
   relationshipEl.innerHTML = '<strong>Relationship Memory:</strong> Pip is still getting to know you. Gentle interactions build familiarity over time.';
   wrapper.appendChild(relationshipEl);
 
-  container.addEventListener('click', () => {
+  container.addEventListener('click', () => { initAudio(); unlockAudio();
     relationshipClicks++;
     if (relationshipClicks === 3) {
       relationshipVisits++;
