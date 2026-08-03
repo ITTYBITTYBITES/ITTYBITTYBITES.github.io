@@ -9,10 +9,32 @@ const yearglass: ExperienceModule = {
         h('h2', {}, ['YearGlass']),
         h('p', { class: 'lead' }, ['A cozy ambient terrarium companion where users nurture a living sanctuary through time, simulation, and observation.']),
         h('p', {}, ['Watch your sanctuary change with daylight, weather, and the quiet presence of small creatures. A calm space you can always return to.'])
+        h('p', { style: 'font-size:0.8125rem;opacity:0.7;margin-top:var(--space-2);line-height:1.4;' }, ['Pip the ladybug is already here. The jar holds a small world. Nothing is required — just observation.'])
       ]),
       h('section', { class: 'section overview-section' }, [
         h('h3', {}, ['Experience Overview']),
         h('p', {}, ['YearGlass is a standalone interactive sanctuary. Plants grow, weather shifts, and a starter creature named Pip explores. Photos, naming, and a focus-mode hourglass deepen the attachment over days. No scores, no pressure — just presence.'])
+      ]),
+      h('section', { class: 'section preview-section' }, [
+        h('h3', {}, ['Terrarium Focus Mode']),
+        h('p', {}, ['Click below to enter a closer, calmer view of the living sanctuary — the same world, observed closely. Plants, Pip, and the quiet weather continue their lives inside the glass.']),
+        h('div', { style: 'margin-top: var(--space-4);' }, [
+          h('button', { class: 'btn secondary', onclick: () => {
+            const focusEl = document.createElement('div');
+            focusEl.style.cssText = 'position:fixed;inset:0;z-index:9999;background:#0d0d0e;color:#f0ede8;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:system-ui,sans-serif;animation:fadeIn 0.5s ease';
+            focusEl.innerHTML = '<style>@keyframes fadeIn{from{opacity:0;transform:scale(0.96)}to{opacity:1;transform:scale(1)}}</style><div style="text-align:center;padding:var(--space-6);max-width:640px;"><h2 style="font-size:2rem;margin-bottom:var(--space-3);">Terrarium Focus</h2><p style="font-size:1.125rem;line-height:1.6;opacity:0.85;margin-bottom:var(--space-6);">A closer, calmer view of the same living sanctuary. The jar, Pip, and growing plants continue quietly inside the glass — observed more closely.</p><div style="border:2px solid #bfa06a;border-radius:16px;padding:var(--space-6);background:#1a1814;margin-bottom:var(--space-6);transform:scale(1.1);transform-origin:center;box-shadow:0 20px 60px rgba(191,160,106,0.15);"><p style="font-size:0.875rem;opacity:0.8;">Close observation mode — the same world, viewed more closely. Plants grow, Pip explores, weather passes over glass.</p><p style="font-size:0.75rem;margin-top:var(--space-2);opacity:0.5;">No separate scene. Just presence, closer.</p></div><button onclick="this.closest(\'[style*=z-index]\').remove()" style="padding:0.75rem 1.5rem;border-radius:8px;border:1px solid #bfa06a;background:transparent;color:#bfa06a;font-weight:600;font-size:1rem;cursor:pointer;">Return to Room</button></div>';
+            document.body.appendChild(focusEl);
+          } }, ['Enter Focus Mode'])
+        ])
+      ]),
+      h('section', { class: 'section preview-section' }, [
+        h('h3', {}, ['Return Experience']),
+        h('p', {}, ['YearGlass remembers. If you return after 1 day: the sanctuary has quietly lived on, plants grown slightly, weather passed. After 1 week: new growth stages, creature patterns more familiar. After longer: the jar feels like a place you have tended over time — memories kept, growth noticed, companionship deepened. No penalties. No guilt. Just gentle continuity.']),
+        h('ul', { style: 'margin-top: var(--space-3); padding-left: var(--space-4); font-size: 0.8125rem; opacity: 0.85;' }, [
+          h('li', {}, ['1 day away: welcome back message; subtle growth changes.']),
+          h('li', {}, ['1 week away: milestone memory; creature behavior patterns visible.']),
+          h('li', {}, ['Longer absence: deeper anniversary reflection; photos preserved; sanctuary unchanged but grown.'])
+        ])
       ]),
       h('section', { class: 'section preview-section' }, [
         h('h3', {}, ['What to Expect']),
@@ -34,8 +56,29 @@ const yearglass: ExperienceModule = {
     ]);
     clearElement(container);
     container.appendChild(wrapper);
-    return () => {};
-  }
+  // Simple relationship tracking (Batch 2 — memory enhancement)
+  let relationshipClicks = 0;
+  let relationshipVisits = 0;
+  const relationshipEl = document.createElement('div');
+  relationshipEl.style.cssText = 'margin-top:var(--space-3);padding:var(--space-3);background:#1a1814;border:1px solid #bfa06a;border-radius:8px;font-size:0.8125rem;opacity:0.85;line-height:1.5;';
+  relationshipEl.innerHTML = '<strong>Relationship Memory:</strong> Pip is still getting to know you. Gentle interactions build familiarity over time.';
+  wrapper.appendChild(relationshipEl);
+
+  container.addEventListener('click', () => {
+    relationshipClicks++;
+    if (relationshipClicks === 3) {
+      relationshipVisits++;
+      relationshipEl.innerHTML = '<strong>Companion Memory:</strong> Pip has visited you several times. "You keep returning. I notice." A quiet familiarity is growing.';
+      relationshipEl.style.opacity = '1';
+      relationshipEl.style.background = '#1f1b14';
+    } else if (relationshipClicks >= 8) {
+      relationshipVisits++;
+      relationshipEl.innerHTML = '<strong>Companion Memory:</strong> Pip spends more time near the orchid. A preference is forming. "This is my place now."';
+    }
+  }, { once: false, capture: false });
+
+  return () => {};
+}
 };
 
 export default yearglass;
