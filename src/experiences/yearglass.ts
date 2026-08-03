@@ -1,8 +1,10 @@
+import { initAudio, unlockAudio } from "../core/audio";
 import type { ExperienceContext, ExperienceModule } from '../platform/types';
 import { clearElement, h } from '../platform/utils';
 
 const yearglass: ExperienceModule = {
   mount(container: HTMLElement, _context: ExperienceContext) {
+    initAudio(); unlockAudio();
     const wrapper = h('div', { class: 'yearglass-preview publication-panel', style: 'padding: var(--space-6); max-width: 100%; overflow-x: hidden; font-size: 1rem; line-height: 1.5;' }, [
       h('div', { class: 'hero-copy', style: 'margin-bottom: var(--space-8);' }, [
         h('p', { class: 'eyebrow' }, ['Ambient / Sanctuary']),
