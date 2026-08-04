@@ -1,6 +1,24 @@
 <!doctype html>
 <html lang="en" dir="ltr">
   <head>
+    <script>
+      // DEBUG: On-screen boot error diagnostics - injected per critical task
+      // This must be the first script to catch all boot errors before modules load.
+      window.addEventListener('error', function(e) {
+        var box = document.getElementById('debug-box') || document.createElement('div');
+        box.id = 'debug-box';
+        box.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:#111;color:#ff5555;padding:20px;z-index:999999;font-family:monospace;font-size:13px;white-space:pre-wrap;word-break:break-all;overflow:auto;';
+        box.innerText += 'BOOT ERROR:\n' + e.message + '\nAt: ' + e.filename + ':' + e.lineno + ':' + e.colno + '\n\n' + (e.error ? e.error.stack : '') + '\n\n';
+        (document.body || document.documentElement).appendChild(box);
+      });
+      window.addEventListener('unhandledrejection', function(e) {
+        var box = document.getElementById('debug-box') || document.createElement('div');
+        box.id = 'debug-box';
+        box.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:#111;color:#ff5555;padding:20px;z-index:999999;font-family:monospace;font-size:13px;white-space:pre-wrap;word-break:break-all;overflow:auto;';
+        box.innerText += 'PROMISE REJECTION:\n' + (e.reason ? (e.reason.stack || e.reason.message || e.reason) : e) + '\n\n';
+        (document.body || document.documentElement).appendChild(box);
+      });
+    </script>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     
@@ -55,27 +73,60 @@
       /**
        * Bulletproof Self-Healing Recovery Script
        * Detects critical asset failures (e.g. ChunkLoadError) and force-clears
-       * the Service Worker to recover from white screens caused by stale caches.
+       * the Service Worker + CacheStorage to recover from white screens caused by
+       * stale caches or mismatched hashed assets after a new deploy.
+       * Improved: handles MIME type errors, HTML instead of JS, and clears caches.
        */
-      window.addEventListener('error', function(e) {
-        const isChunkError = e.message && (
-          e.message.includes('ChunkLoadError') || 
-          e.message.includes('Loading chunk') || 
-          e.message.includes('Failed to fetch dynamically imported module')
-        );
-        if (isChunkError) {
-          console.warn('ITTYBITTYBITES: Asset mismatch detected. Self-healing...');
-          if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.getRegistrations().then(function(registrations) {
-              return Promise.all(registrations.map(r => r.unregister()));
-            }).then(function() {
-              window.location.reload(true);
-            });
-          } else {
-            window.location.reload(true);
-          }
+      (function() {
+        var RECOVERY_KEY = 'ittybittybites-recovery-attempt';
+        function shouldRecover(msg) {
+          if (!msg) return false;
+          return (
+            msg.includes('ChunkLoadError') ||
+            msg.includes('Loading chunk') ||
+            msg.includes('Failed to fetch dynamically imported module') ||
+            msg.includes('Importing a module script failed') ||
+            msg.includes('Failed to load module script') ||
+            msg.includes('Unexpected token') && msg.includes('<') ||
+            msg.includes('MIME type') ||
+            msg.includes('Failed to fetch')
+          );
         }
-      }, true);
+        window.addEventListener('error', function(e) {
+          var msg = e.message || '';
+          if (!shouldRecover(msg)) return;
+          // Prevent infinite reload loop - only try once per 5 minutes
+          try {
+            var last = parseInt(localStorage.getItem(RECOVERY_KEY) || '0', 10);
+            var now = Date.now();
+            if (now - last < 5 * 60 * 1000) return;
+            localStorage.setItem(RECOVERY_KEY, String(now));
+          } catch (err) {}
+          console.warn('ITTYBITTYBITES: Asset mismatch detected. Self-healing...', msg);
+          function doReload() {
+            window.location.reload();
+          }
+          if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.getRegistrations().then(function(regs) {
+              return Promise.all(regs.map(function(r) { return r.unregister(); }));
+            }).then(function() {
+              if ('caches' in window) {
+                return caches.keys().then(function(keys) {
+                  return Promise.all(keys.map(function(k) { return caches.delete(k); }));
+                });
+              }
+            }).then(doReload).catch(doReload);
+          } else {
+            if ('caches' in window) {
+              caches.keys().then(function(keys) {
+                return Promise.all(keys.map(function(k) { return caches.delete(k); }));
+              }).then(doReload).catch(doReload);
+            } else {
+              doReload();
+            }
+          }
+        }, true);
+      })();
     </script>
   </head>
   <body>
