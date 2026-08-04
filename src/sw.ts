@@ -1,3 +1,5 @@
+declare const self: any;
+declare const caches: any;
 self.addEventListener('install', (event: any) => {
   self.skipWaiting();
 });
