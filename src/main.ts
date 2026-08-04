@@ -8,6 +8,7 @@ import { SkipLink } from './components/skip-link';
 import { initAnalytics } from './platform/analytics';
 import { registerPWA } from './platform/pwa';
 import { initRouter, registerRoute } from './platform/router';
+import { initViewportStabilizer } from './platform/viewport';
 import { renderCollections } from './pages/collections';
 import { renderIndex } from './pages/experience-index';
 import { renderExperience } from './pages/experience';
@@ -58,6 +59,9 @@ function boot(): void {
 
   app.append(skipLink, header, main, footer);
   initRouter(main);
+
+  // Stabilize mobile viewport height (svh/dvh) to fix address-bar clipping.
+  initViewportStabilizer();
 
   void registerPWA();
 }
