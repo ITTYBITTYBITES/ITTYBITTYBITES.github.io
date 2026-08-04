@@ -2,7 +2,7 @@ import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
-  base: './',
+  base: '/',
   build: {
     outDir: 'dist',
     sourcemap: true,
@@ -31,8 +31,8 @@ export default defineConfig({
         background_color: '#ffffff',
         display: 'standalone',
         orientation: 'any',
-        start_url: './',
-        scope: './',
+        start_url: '/',
+        scope: '/',
         icons: [
           {
             src: 'icons/icon-192.png',
@@ -58,14 +58,14 @@ export default defineConfig({
             name: 'Experiences',
             short_name: 'Experiences',
             description: 'Browse all experiences',
-            url: './experiences',
+            url: '/experiences',
             icons: [{ src: 'icons/icon-192.png', sizes: '192x192' }],
           },
           {
             name: 'Collections',
             short_name: 'Collections',
             description: 'Browse curated collections',
-            url: './collections',
+            url: '/collections',
             icons: [{ src: 'icons/icon-192.png', sizes: '192x192' }],
           },
         ],
