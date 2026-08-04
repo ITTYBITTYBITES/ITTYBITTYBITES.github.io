@@ -18,11 +18,13 @@ const yearglass: ExperienceModule = {
         h('p', {}, ['YearGlass is a standalone interactive sanctuary. Plants grow, weather shifts, and a starter creature named Pip explores. Photos, naming, and a focus-mode hourglass deepen the attachment over days. No scores, no pressure — just presence.'])
       ]),
       h('section', { class: 'section preview-section' }, [
+      h('section', { class: 'section preview-section' }, [
         h('h3', {}, ['Terrarium Focus Mode']),
-        h('p', {}, ['Click the dome below to observe closely.']),
-        h('div', { style: 'margin-top: var(--space-4); display: flex; justify-content: center; align-items: center;' }, [
+        h('p', {}, ['Click the dome to observe closely.']),
+        h('div', { style: 'margin-top: var(--space-4); display: flex; justify-content: center;' }, [
           h('div', { onclick: 'openDome();', style: 'width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle at 30% 20%, rgba(191,160,106,0.35), rgba(26,24,20,0.9)); border: 2px solid #bfa06a; box-shadow: 0 20px 60px rgba(191,160,106,0.25); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.2s ease;' }, ['Dome'])
         ])
+      ]),
         h('h3', {}, ['Return Experience']),
         h('p', {}, ['YearGlass remembers. If you return after 1 day: the sanctuary has quietly lived on, plants grown slightly, weather passed. After 1 week: new growth stages, creature patterns more familiar. After longer: the jar feels like a place you have tended over time — memories kept, growth noticed, companionship deepened. No penalties. No guilt. Just gentle continuity.']),
         h('ul', { style: 'margin-top: var(--space-3); padding-left: var(--space-4); font-size: 0.8125rem; opacity: 0.85;' }, [
@@ -45,7 +47,7 @@ const yearglass: ExperienceModule = {
           h('li', {}, ['Use the hourglass focus mode for calm, attentive time.'])
         ])
       ]),
-      h('script', {}, ['function openDome(){initAudio();unlockAudio();var d=document.createElement("div");d.innerHTML="<div style=text-align:center;padding:2rem;color:#f0ede8;background:linear-gradient(135deg,#0d0d0e,#1a1814);position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;animation:fadeIn 0.8s ease><h2>The Dome Opens</h2><p>Observe carefully.</p><button onclick=\"this.closest(\\"div\\").parentElement.remove()\">Return</button></div>";d.style.cssText="position:fixed;inset:0;z-index:9999;background:linear-gradient(135deg,#0d0d0e,#1a1814);animation:fadeIn 0.8s ease;";document.body.appendChild(d);}'])
+
       h('section', { class: 'section app-connection-section', style: 'text-align: center; margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid color-mix(in srgb, var(--line-strong) 24%, var(--line) 76%);' }, [
         h('h3', {}, ['Launch YearGlass']),
         h('p', {}, ['Open the sanctuary in a new tab.']),
