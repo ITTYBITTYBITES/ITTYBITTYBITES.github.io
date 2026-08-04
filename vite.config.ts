@@ -19,7 +19,7 @@ export default defineConfig({
       output: {
         entryFileNames: 'assets/[name]-[hash].js',
         chunkFileNames: 'assets/[name]-[hash].js',
-        assetFileNames: 'assets/[name]-[hash][extname]',
+        assetFileNames: 'assets/[name]-[hash].[ext]',
       },
     },
   },
@@ -77,6 +77,8 @@ export default defineConfig({
         categories: ['education', 'entertainment', 'books'],
       },
       workbox: {
+        skipWaiting: true,
+        clientsClaim: true,
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json,woff2,webmanifest}'],
         navigateFallback: 'index.html',
         navigateFallbackDenylist: [/^\/.well-known/, /^\/api/],

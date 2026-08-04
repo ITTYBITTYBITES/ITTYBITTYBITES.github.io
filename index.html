@@ -22,6 +22,25 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     
+    <!-- Critical Inline Styles for Immediate High-Contrast & Mobile Viewport Override -->
+    <style>
+      html, body, #app, canvas {
+        width: 100% !important;
+        height: 100dvh !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        overflow: hidden !important;
+      }
+      [class*="card"], [class*="dialogue"], [class*="popup"] {
+        background-color: #f7f2ea !important;
+        color: #111111 !important;
+      }
+      [class*="card"] *, [class*="dialogue"] * {
+        color: #111111 !important;
+        -webkit-text-fill-color: #111111 !important;
+      }
+    </style>
+
     <!-- Primary Meta Tags -->
     <title>ITTYBITTYBITES</title>
     <meta name="title" content="ITTYBITTYBITES — Interactive collections worth returning to." />
@@ -132,6 +151,6 @@
   <body>
     <div id="app"></div>
     <script type="module" src="/src/main.ts"></script>
-  <script src="version-check.js"></script>
+    <script type="module" src="/version-check.js"></script>
 </body>
 </html>
