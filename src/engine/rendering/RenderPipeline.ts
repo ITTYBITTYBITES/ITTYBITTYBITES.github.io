@@ -1,13 +1,12 @@
 /**
  * YearGlass — Render Pipeline
  *
- * Runs the requestAnimationFrame loop at 60 FPS while the user is active,
- * then reactively throttles down to ~12 FPS after `IDLE_THROTTLE_MS` of no
- * interaction to save battery / reduce heat. Any user gesture restores 60 FPS.
- * Textures and event listeners are released on destroy() to avoid leaks.
+ * Runs requestAnimationFrame loop at 60 FPS while active, reactively throttling
+ * down to ~12 FPS after `IDLE_THROTTLE_MS` of inactivity.
+ * Integrates precise pointer/touch dome hit-testing (`onDomeTap`).
  */
 
-import { TerrariumScene } from './TerrariumScene';
+import { TerrariumScene, DomeHitResult } from './TerrariumScene';
 import { CameraController } from './CameraController';
 
 const HIGH_FPS = 1000 / 60;
@@ -15,11 +14,13 @@ const IDLE_FPS = 1000 / 12;
 const IDLE_THROTTLE_MS = 30_000;
 
 type FrameCallback = (dtSeconds: number) => void;
+type DomeTapCallback = (normX: number, normY: number) => void;
 
 export class RenderPipeline {
-  private readonly scene: TerrariumScene;
-  private readonly camera: CameraController;
+  readonly scene: TerrariumScene;
+  readonly camera: CameraController;
   private readonly onFrame: FrameCallback;
+  private onDomeTapCallback: DomeTapCallback | null = null;
 
   private rafId = 0;
   private throttleId = 0;
@@ -30,39 +31,60 @@ export class RenderPipeline {
   private idle = false;
   private readonly listeners: Array<() => void> = [];
 
-  private readonly onPointer = (ev: Event) => {
-    this.lastInteraction = performance.now();
-    if (this.idle) this.setIdle(false);
-
-    // Feed pointer/touch position into the camera so the dome lighting
-    // wakes up near the cursor.
-    const point = RenderPipeline.eventPoint(ev);
-    if (point) this.camera.setPointer(point.x, point.y);
-  };
-
-  /** Extract client coordinates from pointer, mouse, touch, or wheel events. */
-  private static eventPoint(ev: Event): { x: number; y: number } | null {
-    const mouse = ev as Partial<MouseEvent>;
-    if (typeof mouse.clientX === 'number' && typeof mouse.clientY === 'number') {
-      return { x: mouse.clientX, y: mouse.clientY };
-    }
-    const touch = ev as TouchEvent;
-    if (typeof TouchEvent !== 'undefined' && ev instanceof TouchEvent && touch.touches.length > 0) {
-      const first = touch.touches[0];
-      return { x: first.clientX, y: first.clientY };
-    }
-    return null;
-  }
-
   constructor(
     container: HTMLElement,
     camera: CameraController,
-    onFrame: FrameCallback
+    onFrame: FrameCallback,
+    onDomeTap?: DomeTapCallback
   ) {
     this.scene = new TerrariumScene(container);
     this.camera = camera;
     this.onFrame = onFrame;
+    if (onDomeTap) this.onDomeTapCallback = onDomeTap;
     this.lastInteraction = performance.now();
+  }
+
+  setOnDomeTap(cb: DomeTapCallback): void {
+    this.onDomeTapCallback = cb;
+  }
+
+  private readonly onPointer = (ev: Event) => {
+    this.lastInteraction = performance.now();
+    if (this.idle) this.setIdle(false);
+
+    const point = RenderPipeline.eventPoint(ev);
+    if (point) this.camera.setPointer(point.x, point.y);
+  };
+
+  private readonly onTapOrClick = (ev: Event) => {
+    this.lastInteraction = performance.now();
+    if (this.idle) this.setIdle(false);
+
+    const point = RenderPipeline.eventPoint(ev);
+    if (!point) return;
+
+    const hitResult: DomeHitResult = this.scene.isPointInDome(point.x, point.y);
+    if (hitResult.hit) {
+      this.scene.triggerRipple(hitResult.normX, hitResult.normY);
+      if (this.onDomeTapCallback) {
+        this.onDomeTapCallback(hitResult.normX, hitResult.normY);
+      }
+    }
+  };
+
+  private static eventPoint(ev: Event): { x: number; y: number } | null {
+    if (ev instanceof MouseEvent) {
+      return { x: ev.clientX, y: ev.clientY };
+    }
+    if (typeof TouchEvent !== 'undefined' && ev instanceof TouchEvent) {
+      if (ev.changedTouches.length > 0) {
+        return { x: ev.changedTouches[0].clientX, y: ev.changedTouches[0].clientY };
+      }
+      if (ev.touches.length > 0) {
+        return { x: ev.touches[0].clientX, y: ev.touches[0].clientY };
+      }
+    }
+    return null;
   }
 
   start(): void {
@@ -70,14 +92,19 @@ export class RenderPipeline {
     this.running = true;
 
     const gestureTarget = this.scene.domElement;
-    const register = (target: EventTarget, type: string) => {
-      target.addEventListener(type, this.onPointer, { passive: true });
-      this.listeners.push(() => target.removeEventListener(type, this.onPointer));
+    const register = (target: EventTarget, type: string, handler: EventListener, passive = true) => {
+      target.addEventListener(type, handler, { passive });
+      this.listeners.push(() => target.removeEventListener(type, handler));
     };
-    register(gestureTarget, 'pointerdown');
-    register(gestureTarget, 'pointermove');
-    register(gestureTarget, 'touchstart');
-    register(gestureTarget, 'wheel');
+
+    register(gestureTarget, 'pointerdown', this.onPointer as EventListener);
+    register(gestureTarget, 'pointermove', this.onPointer as EventListener);
+    register(gestureTarget, 'touchstart', this.onPointer as EventListener);
+    register(gestureTarget, 'wheel', this.onPointer as EventListener);
+
+    // Hit-testing click & touchend handlers
+    register(gestureTarget, 'click', this.onTapOrClick as EventListener, false);
+    register(gestureTarget, 'touchend', this.onTapOrClick as EventListener, false);
 
     this.lastFrame = performance.now();
     this.rafId = requestAnimationFrame(this.tick);
@@ -118,7 +145,6 @@ export class RenderPipeline {
     return this.idle;
   }
 
-  /** Force the pipeline back to full FPS (e.g. on intro dismiss). */
   wake(): void {
     this.lastInteraction = performance.now();
     if (this.idle) this.setIdle(false);
@@ -129,8 +155,6 @@ export class RenderPipeline {
     this.disposed = true;
     this.running = false;
     cancelAnimationFrame(this.rafId);
-    // The FPS throttle is a setTimeout — cancelAnimationFrame cannot cancel
-    // it, so it needs its own clear or the loop resurrects after teardown.
     if (this.throttleId) {
       window.clearTimeout(this.throttleId);
       this.throttleId = 0;

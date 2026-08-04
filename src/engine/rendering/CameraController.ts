@@ -1,20 +1,14 @@
 /**
  * YearGlass — Camera Controller
  *
- * Smooth zoom transition between the Room view and the Focus Mode (dome
- * centered) view. Handles mobile viewport centering and desktop framing,
- * and tracks a light/intensity value that responds to pointer proximity so
- * the dome subtly "wakes" when the user is near it.
- *
- * Responsive behavior:
- *   - Mobile: dome centered, full-bleed framing.
- *   - Desktop: dome framed at ~45% of the desk area.
- * The camera re-evaluates on resize / orientationchange.
+ * Smooth zoom transition between Room view and Focus Mode (dome centered).
+ * Dynamically scales canvas framing and zoom based on viewport aspect ratio
+ * so mobile devices fill screen height without dark top/bottom letterboxing.
  */
 
 export interface CameraView {
   zoom: number;
-  offsetX: number; // in fractional [-1..1]
+  offsetX: number;
   offsetY: number;
   focusMode: boolean;
 }
@@ -31,7 +25,7 @@ export class CameraController {
   private disposed = false;
   private readonly onResize: () => void;
 
-  private readonly viewport: { width: number; height: number } = {
+  private viewport: { width: number; height: number } = {
     width: typeof window !== 'undefined' ? window.innerWidth : 1024,
     height: typeof window !== 'undefined' ? window.innerHeight : 768,
   };
@@ -47,66 +41,77 @@ export class CameraController {
   }
 
   private refreshViewport(): void {
-    // Use visual viewport height when available to avoid mobile address-bar
-    // layout shifts (dvh / svh fallback handled in CSS).
     if (typeof window !== 'undefined' && window.visualViewport) {
       this.viewport.width = window.visualViewport.width || window.innerWidth;
       this.viewport.height = window.visualViewport.height || window.innerHeight;
-    } else {
+    } else if (typeof window !== 'undefined') {
       this.viewport.width = window.innerWidth;
       this.viewport.height = window.innerHeight;
     }
   }
 
   private computeTargets(): void {
-    const isMobile = this.viewport.width < MOBILE_BREAKPOINT;
-    if (isMobile) {
-      this.target.zoom = 1.0;
+    const { width, height } = this.viewport;
+    const aspect = width / Math.max(1, height);
+    const isMobile = width < MOBILE_BREAKPOINT || aspect < 1.2;
+
+    if (this.target.focusMode) {
+      this.target.zoom = isMobile ? 1.75 : 1.65;
       this.target.offsetX = 0;
       this.target.offsetY = 0;
-    } else {
-      // Desktop framing: dome at ~45% of the desk area, slightly up.
-      this.target.zoom = 1.15;
+      return;
+    }
+
+    if (isMobile) {
+      // Dynamic zoom tailored to phone aspect ratio to eliminate letterboxing
+      this.target.zoom = Math.max(1.0, Math.min(1.3, 1.15 / aspect));
       this.target.offsetX = 0;
-      this.target.offsetY = -0.12;
+      this.target.offsetY = -0.04;
+    } else {
+      this.target.zoom = 1.18;
+      this.target.offsetX = 0;
+      this.target.offsetY = -0.08;
     }
   }
 
-  /** Recompute the default framing (used at mount). */
   computeDesktop(): void {
     this.refreshViewport();
     this.computeTargets();
   }
 
-  /** Move the camera toward Focus Mode (dome centered). */
   focusOnDome(): void {
-    this.target.zoom = 1.65;
-    this.target.offsetX = 0;
-    this.target.offsetY = 0;
     this.target.focusMode = true;
+    this.computeTargets();
   }
 
-  /** Return to the default framing. */
   exitFocus(): void {
     this.target.focusMode = false;
     this.computeTargets();
   }
 
-  /** Called each frame; smoothly interpolates toward the target view. */
+  toggleFocus(): boolean {
+    if (this.target.focusMode) {
+      this.exitFocus();
+      return false;
+    } else {
+      this.focusOnDome();
+      return true;
+    }
+  }
+
   update(dt: number): void {
-    const k = Math.min(1, dt * 4.5);
+    const k = Math.min(1, dt * 5.0);
     this.view.zoom += (this.target.zoom - this.view.zoom) * k;
     this.view.offsetX += (this.target.offsetX - this.view.offsetX) * k;
     this.view.offsetY += (this.target.offsetY - this.view.offsetY) * k;
     this.view.focusMode = this.target.focusMode;
   }
 
-  /** Pointer-proximity driven lighting (dome wakes near the cursor). */
   setPointer(x: number, y: number): void {
     const dx = x / Math.max(1, this.viewport.width) - 0.5;
     const dy = y / Math.max(1, this.viewport.height) - 0.5;
     const dist = Math.sqrt(dx * dx + dy * dy);
-    this.light += (ACTIVE_LIGHT * Math.max(0, 1 - dist * 2) - this.light) * 0.2;
+    this.light += (ACTIVE_LIGHT * Math.max(0, 1 - dist * 2) - this.light) * 0.25;
     this.light = Math.max(IDLE_LIGHT, Math.min(ACTIVE_LIGHT, this.light));
   }
 

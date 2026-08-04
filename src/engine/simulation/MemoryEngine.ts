@@ -16,7 +16,8 @@ export type MemoryEventType =
   | 'growth-milestone'
   | 'journal'
   | 'weather-change'
-  | 'focus-complete';
+  | 'focus-complete'
+  | 'care-water';
 
 export interface MemoryEvent {
   id: string;
@@ -38,7 +39,7 @@ interface MemoryState {
 export class MemoryEngine {
   private readonly events: MemoryEvent[] = [];
   private readonly save: SaveEngine;
-  private state: MemoryState = { day: 1, lastSave: 0 };
+  private state: MemoryState = { day: 1, lastSave: Date.now() };
   private ready = false;
 
   constructor(save: SaveEngine) {
@@ -51,7 +52,7 @@ export class MemoryEngine {
       this.save.get<MemoryState>(STATE_KEY),
     ]);
     if (Array.isArray(log)) this.events.push(...log);
-    if (state) this.state = { ...this.state, ...state };
+    if (state && typeof state.day === 'number') this.state = { ...this.state, ...state };
     this.ready = true;
   }
 
@@ -75,15 +76,23 @@ export class MemoryEngine {
     return event;
   }
 
+  async addJournalEntry(note: string): Promise<MemoryEvent> {
+    return this.record('journal', note);
+  }
+
   /** Advance the sanctuary day and persist the milestone. */
-  async advanceDay(): Promise<void> {
-    this.state.day += 1;
+  async advanceDay(count = 1): Promise<void> {
+    this.state.day += count;
     this.state.lastSave = Date.now();
     await this.save.put(STATE_KEY, this.state);
   }
 
   get currentDay(): number {
     return this.state.day;
+  }
+
+  get lastSaveTimestamp(): number {
+    return this.state.lastSave;
   }
 
   get isReady(): boolean {
@@ -109,19 +118,15 @@ export class MemoryEngine {
     const milestones = this.eventsByType('growth-milestone').length;
     const journals = this.eventsByType('journal').length;
     const parts = [
-      `${this.state.day} day${this.state.day === 1 ? '' : 's'} in the sanctuary`,
-      `${total} memory${total === 1 ? '' : 'ies'}`,
-      `${milestones} growth milestone${milestones === 1 ? '' : 's'}`,
+      `Day ${this.state.day} Sanctuary`,
+      `${total} memor${total === 1 ? 'y' : 'ies'}`,
+      `${milestones} milestone${milestones === 1 ? '' : 's'}`,
     ];
     if (creatures > 0) parts.push(`${creatures} creature visit${creatures === 1 ? '' : 's'}`);
-    if (journals > 0) parts.push(`${journals} journal entr${journals === 1 ? 'y' : 'ies'}`);
+    if (journals > 0) parts.push(`${journals} journal note${journals === 1 ? '' : 's'}`);
     return parts.join(' · ');
   }
 
-  /**
-   * Rebuild in-memory aggregates after a reload so event listeners can be
-   * re-attached without data loss.
-   */
   replay(callback: (event: MemoryEvent) => void): void {
     for (const event of this.events) {
       callback(event);
@@ -130,7 +135,7 @@ export class MemoryEngine {
 
   async clear(): Promise<void> {
     this.events.length = 0;
-    this.state = { day: 1, lastSave: 0 };
+    this.state = { day: 1, lastSave: Date.now() };
     await this.save.put(LOG_KEY, this.events);
     await this.save.put(STATE_KEY, this.state);
   }

@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "generatedAt": "2026-08-04T05:57:01.117Z",
+  "generatedAt": "2026-08-04T18:01:04.081Z",
   "experiences": [
     {
       "id": "adaptation",
@@ -1287,7 +1287,6 @@
       ],
       "estimatedDuration": "long",
       "returnValue": "A calm long-term companion. Day 1: welcome + subtle growth. Week 1: milestone memory + creature patterns. Longer: anniversary reflection + preserved photos + grown sanctuary.",
-      "collection": "nature",
       "story": "the-living-web",
       "accessibility": {
         "keyboard": true,

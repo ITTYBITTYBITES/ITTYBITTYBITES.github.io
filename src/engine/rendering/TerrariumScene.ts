@@ -1,5 +1,5 @@
 /**
- * YearGlass — Terrarium Scene (5-layer depth stack)
+ * YearGlass — Terrarium Scene (5-layer depth stack & hit-testing)
  *
  * The terrarium is rendered into a WebGL2 framebuffer in five ordered
  * layers, front to back:
@@ -9,18 +9,13 @@
  *   Layer 2: Background Moss & Secondary Flora
  *   Layer 1: Inner Bioluminescence & Ambient Backlight
  *
- * The glass layers (Layer 5) are produced by the custom GlassProgram shaders
- * from `shaders.ts`. If WebGL2 is unavailable the scene falls back to a plain
- * canvas-2D composition so the sanctuary never white-screens.
- *
- * Context split: a single <canvas> element can only ever hold ONE rendering
- * context. The five depth layers are therefore composed into a separate,
- * offscreen 2D `sceneCanvas`, uploaded as a texture, and the glass shader's
- * output is drawn to the visible canvas which exclusively owns the WebGL2
- * context.
+ * Includes precise pointer/touch dome hit testing (`isPointInDome`) and
+ * interactive shimmer wave triggers (`triggerRipple`).
  */
 
 import { GlassProgram, DEFAULT_GLASS_UNIFORMS, GlassUniforms } from './shaders';
+import type { PlantNode } from '../simulation/GrowthSystem';
+import type { PipObservation } from '../simulation/PipAI';
 
 export interface SceneSize {
   width: number;
@@ -28,12 +23,11 @@ export interface SceneSize {
   dpr: number;
 }
 
-/** How deeply the dome curvature bends the refracted scene. */
 export const DOME_CURVE = 0.28;
 
 interface LayerSpec {
   key: string;
-  depth: number; // 1..5
+  depth: number;
   tint: string;
   alpha: number;
 }
@@ -46,10 +40,15 @@ const LAYERS: LayerSpec[] = [
   { key: 'glass', depth: 5, tint: '#bcd8ee', alpha: 1 },
 ];
 
+export interface DomeHitResult {
+  hit: boolean;
+  normX: number; // -1..1
+  normY: number; // -1..1
+}
+
 export class TerrariumScene {
   private readonly container: HTMLElement;
   private readonly canvas: HTMLCanvasElement;
-  /** Offscreen 2D canvas used to compose the five depth layers. */
   private readonly sceneCanvas: HTMLCanvasElement;
   private readonly ctx: CanvasRenderingContext2D | null;
   private readonly gl: WebGL2RenderingContext | null;
@@ -62,17 +61,18 @@ export class TerrariumScene {
   private disposed = false;
   private readonly onResize: () => void;
 
+  // External simulation state for rendering
+  private plantNodes: PlantNode[] = [];
+  private pipObservation: PipObservation | null = null;
+  private soilMoisture = 0.8;
+
   constructor(container: HTMLElement) {
     this.container = container;
     this.canvas = document.createElement('canvas');
     this.canvas.className = 'yearglass-canvas';
     this.canvas.setAttribute('aria-label', 'The glass dome terrarium — a small living world.');
-    this.canvas.style.width = '100%';
-    this.canvas.style.height = '100%';
-    this.canvas.style.display = 'block';
+    this.canvas.style.cssText = 'position:absolute;inset:0;width:100%;height:100%;display:block;touch-action:none;';
 
-    // Layer the 5 depth planes as translucent DOM strata above the canvas so
-    // the depth stack remains visible and stylable even without WebGL.
     for (const layer of LAYERS) {
       const div = document.createElement('div');
       div.className = `yearglass-layer yearglass-layer-${layer.key}`;
@@ -89,10 +89,6 @@ export class TerrariumScene {
     window.addEventListener('resize', this.onResize);
     window.addEventListener('orientationchange', this.onResize);
 
-    // A single canvas cannot hand out both a '2d' and a 'webgl2' context —
-    // asking for the second silently returns null. The scene layers are
-    // composed on a detached 2D canvas instead; the visible canvas is
-    // reserved exclusively for the WebGL2 output.
     this.sceneCanvas = document.createElement('canvas');
     this.ctx = this.sceneCanvas.getContext('2d');
 
@@ -122,7 +118,6 @@ export class TerrariumScene {
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
     gl.bindTexture(gl.TEXTURE_2D, null);
 
-    // Fullscreen quad (triangle strip).
     const quad = gl.createBuffer() as WebGLBuffer;
     gl.bindBuffer(gl.ARRAY_BUFFER, quad);
     gl.bufferData(
@@ -137,8 +132,8 @@ export class TerrariumScene {
   }
 
   resize(): void {
-    const width = Math.max(1, this.container.clientWidth || 1);
-    const height = Math.max(1, this.container.clientHeight || 1);
+    const width = Math.max(1, this.container.clientWidth || window.innerWidth || 1);
+    const height = Math.max(1, this.container.clientHeight || window.innerHeight || 1);
     const dpr = Math.min(2, window.devicePixelRatio || 1);
 
     this.size = { width, height, dpr };
@@ -155,10 +150,53 @@ export class TerrariumScene {
     this.uniforms.uResolution = [width, height];
   }
 
-  /** Advance the simulation-driven lighting uniforms. */
+  /**
+   * Pointer/touch hit-testing for the Glass Dome.
+   * Maps client coordinates to the dome circle in screen space.
+   */
+  isPointInDome(clientX: number, clientY: number): DomeHitResult {
+    const rect = this.canvas.getBoundingClientRect();
+    const x = clientX - rect.left;
+    const y = clientY - rect.top;
+
+    const cx = rect.width / 2;
+    const cy = rect.height / 2;
+    // Generous dome radius (~46% of viewport min dimension) for reliable mobile/desktop targets.
+    const r = Math.min(rect.width, rect.height) * 0.46;
+
+    const dx = x - cx;
+    const dy = y - cy;
+    const dist = Math.hypot(dx, dy);
+
+    if (dist <= r * 1.1) { // 10% hit margin for effortless tapping
+      return {
+        hit: true,
+        normX: Math.max(-1, Math.min(1, dx / r)),
+        normY: Math.max(-1, Math.min(1, dy / r)),
+      };
+    }
+    return { hit: false, normX: 0, normY: 0 };
+  }
+
+  /** Trigger an interactive ripple/shimmer wave on dome tap. */
+  triggerRipple(normX: number, normY: number): void {
+    this.uniforms.uTapPos = [normX, normY];
+    this.uniforms.uTapPulse = 1.0;
+  }
+
+  /** Set real-time ecosystem simulation render data. */
+  setSimulationData(plants: PlantNode[], pip: PipObservation | null, moisture: number): void {
+    this.plantNodes = plants;
+    this.pipObservation = pip;
+    this.soilMoisture = moisture;
+  }
+
   update(dt: number, lightIntensity: number): void {
     this.uniforms.uTime += dt;
     this.uniforms.uLightIntensity = lightIntensity;
+    if (this.uniforms.uTapPulse > 0) {
+      this.uniforms.uTapPulse = Math.max(0, this.uniforms.uTapPulse - dt * 2.2);
+    }
     this.render();
   }
 
@@ -178,10 +216,6 @@ export class TerrariumScene {
     const gl = this.gl as WebGL2RenderingContext;
     const program = this.program as GlassProgram;
 
-    // Compose the five depth layers on the offscreen 2D canvas, then upload
-    // it as the scene texture the shader samples from. FLIP_Y keeps the
-    // canvas top edge aligned with UV v=1 (otherwise the dome renders
-    // upside-down).
     this.paintScene2D(width, height);
 
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
@@ -190,8 +224,6 @@ export class TerrariumScene {
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this.sceneCanvas);
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
 
-    // Draw to the DEFAULT framebuffer — binding an offscreen FBO here would
-    // keep the result off-screen forever.
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
     gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
     gl.clearColor(0.03, 0.05, 0.04, 1);
@@ -208,6 +240,8 @@ export class TerrariumScene {
     program.setUniform('uRefraction', this.uniforms.uRefraction);
     program.setUniform('uBrightness', this.uniforms.uBrightness);
     program.setUniform('uCurve', DOME_CURVE);
+    program.setUniform('uTapPos', this.uniforms.uTapPos);
+    program.setUniform('uTapPulse', this.uniforms.uTapPulse);
     program.setSceneTexture(0);
 
     gl.bindBuffer(gl.ARRAY_BUFFER, this.quad);
@@ -221,7 +255,6 @@ export class TerrariumScene {
     this.checkGLError('renderWebGL');
   }
 
-  /** Surface silent WebGL failures in development builds. */
   private checkGLError(op: string): void {
     if (!this.gl) return;
     const err = this.gl.getError();
@@ -233,10 +266,6 @@ export class TerrariumScene {
   private renderFallback(width: number, height: number): void {
     if (!this.ctx) return;
     this.paintScene2D(width, height);
-    // Without WebGL the visible canvas shows nothing on its own — copy the
-    // composed scene over so the 2D fallback actually reaches the screen.
-    // (Safe to ask for '2d' here: the fallback only runs when the visible
-    // canvas never acquired a webgl2 context.)
     const out = this.canvas.getContext('2d');
     if (out) {
       out.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -244,7 +273,7 @@ export class TerrariumScene {
     }
   }
 
-  /** 2D composition of the five depth layers (used as scene + fallback). */
+  /** 2D composition of the 5 depth layers, plants, and Pip. */
   private paintScene2D(width: number, height: number): void {
     const ctx = this.ctx as CanvasRenderingContext2D;
     ctx.setTransform(this.size.dpr, 0, 0, this.size.dpr, 0, 0);
@@ -254,49 +283,119 @@ export class TerrariumScene {
     const cy = height / 2;
     const r = Math.min(width, height) * 0.42;
 
-    // Layer 1: bioluminescent backlight
+    // Layer 1: Bioluminescent ambient backlight
     const bg = ctx.createRadialGradient(cx, cy, 0, cx, cy, r * 1.3);
-    bg.addColorStop(0, '#12211a');
-    bg.addColorStop(1, '#050806');
+    bg.addColorStop(0, '#12251e');
+    bg.addColorStop(0.7, '#081410');
+    bg.addColorStop(1, '#030605');
     ctx.fillStyle = bg;
     ctx.fillRect(0, 0, width, height);
 
-    // Layer 2: background moss
-    ctx.fillStyle = '#1c3226';
-    for (let i = 0; i < 18; i++) {
-      const a = Math.random() * Math.PI * 2;
-      const d = Math.random() * r * 0.7;
+    // Layer 2: Background moss & soil bed
+    ctx.fillStyle = this.soilMoisture > 0.4 ? '#1f382b' : '#2b3026';
+    for (let i = 0; i < 22; i++) {
+      const a = (i / 22) * Math.PI * 2;
+      const d = (0.2 + (i % 5) * 0.12) * r;
       const x = cx + Math.cos(a) * d;
       const y = cy + Math.sin(a) * d;
       ctx.beginPath();
-      ctx.arc(x, y, 2 + Math.random() * 5, 0, Math.PI * 2);
+      ctx.arc(x, y, 3 + (i % 4) * 2, 0, Math.PI * 2);
       ctx.fill();
     }
 
-    // Layer 3: active stage glow
-    ctx.fillStyle = '#3a5c46';
-    const glow = ctx.createRadialGradient(cx, cy, 0, cx, cy, r * 0.55);
-    glow.addColorStop(0, 'rgba(90,140,110,0.35)');
-    glow.addColorStop(1, 'rgba(90,140,110,0)');
-    ctx.fillStyle = glow;
-    ctx.fillRect(0, 0, width, height);
+    // Layer 3: Active Stage (Plants & Growth Stages)
+    for (const plant of this.plantNodes) {
+      const px = cx + (plant.x - 0.5) * r * 1.2;
+      const py = cy + (plant.y - 0.5) * r * 1.2;
+      const size = 12 + plant.growth * 28;
 
-    // Layer 4: foreground soil edge
-    ctx.strokeStyle = '#241c13';
-    ctx.lineWidth = Math.max(2, r * 0.08);
+      ctx.save();
+      ctx.translate(px, py);
+
+      if (plant.species === 'moss') {
+        ctx.fillStyle = '#2e5a3c';
+        ctx.beginPath();
+        ctx.arc(0, 0, size * 0.6, 0, Math.PI * 2);
+        ctx.fill();
+      } else if (plant.species === 'fern') {
+        ctx.strokeStyle = '#3e784f';
+        ctx.lineWidth = 3;
+        for (let frond = -2; frond <= 2; frond++) {
+          ctx.beginPath();
+          ctx.moveTo(0, 0);
+          ctx.quadraticCurveTo(frond * 8, -size * 0.8, frond * 12, -size);
+          ctx.stroke();
+        }
+      } else if (plant.species === 'orchid') {
+        ctx.strokeStyle = '#4a8058';
+        ctx.lineWidth = 2.5;
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(0, -size);
+        ctx.stroke();
+        if (plant.growth > 0.4) {
+          ctx.fillStyle = '#d896a8';
+          ctx.beginPath();
+          ctx.arc(0, -size, 5 + plant.growth * 4, 0, Math.PI * 2);
+          ctx.fill();
+        }
+      } else if (plant.species === 'vine') {
+        ctx.strokeStyle = '#295438';
+        ctx.lineWidth = 2;
+        ctx.beginPath();
+        ctx.arc(0, 0, size * 0.7, 0, Math.PI * 1.5);
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+
+    // Pip the ladybug (Resident)
+    if (this.pipObservation) {
+      const pipX = cx + (this.pipObservation.x - 0.5) * r * 1.1;
+      const pipY = cy + (this.pipObservation.y - 0.5) * r * 1.1;
+
+      ctx.save();
+      ctx.translate(pipX, pipY);
+
+      // Ladybug shell
+      ctx.fillStyle = '#d94336';
+      ctx.beginPath();
+      ctx.arc(0, 0, 7, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Head
+      ctx.fillStyle = '#111111';
+      ctx.beginPath();
+      ctx.arc(0, -5, 3.5, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Spots
+      ctx.fillStyle = '#111111';
+      ctx.beginPath();
+      ctx.arc(-2.5, -1, 1.2, 0, Math.PI * 2);
+      ctx.arc(2.5, -1, 1.2, 0, Math.PI * 2);
+      ctx.arc(0, 3, 1.2, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.restore();
+    }
+
+    // Layer 4: Foreground soil ring
+    ctx.strokeStyle = '#281e15';
+    ctx.lineWidth = Math.max(3, r * 0.07);
     ctx.beginPath();
     ctx.arc(cx, cy, r, 0, Math.PI * 2);
     ctx.stroke();
 
-    // Layer 5: glass rim
-    ctx.strokeStyle = 'rgba(188,216,238,0.6)';
+    // Layer 5: Glass specular rim & soft highlight
+    ctx.strokeStyle = 'rgba(188, 216, 238, 0.55)';
     ctx.lineWidth = 2;
     ctx.beginPath();
     ctx.arc(cx, cy, r, 0, Math.PI * 2);
     ctx.stroke();
 
-    const spec = ctx.createRadialGradient(cx - r * 0.35, cy - r * 0.35, 0, cx - r * 0.35, cy - r * 0.35, r * 0.5);
-    spec.addColorStop(0, 'rgba(255,255,255,0.28)');
+    const spec = ctx.createRadialGradient(cx - r * 0.35, cy - r * 0.35, 0, cx - r * 0.35, cy - r * 0.35, r * 0.45);
+    spec.addColorStop(0, 'rgba(255,255,255,0.22)');
     spec.addColorStop(1, 'rgba(255,255,255,0)');
     ctx.fillStyle = spec;
     ctx.fillRect(0, 0, width, height);

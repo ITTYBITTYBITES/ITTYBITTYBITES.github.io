@@ -3,12 +3,10 @@
  *
  * Custom GLSL ES 3.00 shaders for the sanctuary's glass dome:
  *   - curved glass refraction (thick-dome distortion of the background)
- *   - specular highlight band
+ *   - balanced tone-mapped specular highlight band (no blown-out white pixels)
  *   - dynamic lighting (parallax lamp + dimmable light)
  *   - rim lighting on the dome silhouette
- *
- * No external assets are required; uniforms are wired directly to the
- * active WebGL2 renderer.
+ *   - responsive interaction pulse waves on tap/click
  */
 
 export interface GlassUniforms {
@@ -19,26 +17,28 @@ export interface GlassUniforms {
   uSpecular: number;
   uRimColor: [number, number, number];
   uRimIntensity: number;
-  uRefraction: number; // thickness / index bending strength
+  uRefraction: number;
   uBrightness: number;
+  uTapPos: [number, number];
+  uTapPulse: number;
 }
 
 export const DEFAULT_GLASS_UNIFORMS: GlassUniforms = {
   uResolution: [1, 1],
   uTime: 0,
   uLightDir: [-0.45, 0.65],
-  uLightIntensity: 0.9,
-  uSpecular: 0.85,
+  uLightIntensity: 0.85,
+  uSpecular: 0.45,
   uRimColor: [0.62, 0.78, 0.92],
-  uRimIntensity: 0.55,
-  uRefraction: 0.14,
+  uRimIntensity: 0.45,
+  uRefraction: 0.12,
   uBrightness: 1.0,
+  uTapPos: [0, 0],
+  uTapPulse: 0.0,
 };
 
 /**
- * Vertex shader: fullscreen quad with the curvature baked into the UV.
- * The dome sits at screen center; `uCurve` bends the sampling coordinates
- * to emulate a thick convex lens.
+ * Vertex shader: fullscreen quad with curvature baked into the UV.
  */
 export const GLASS_VERTEX = /* glsl */ `#version 300 es
   precision highp float;
@@ -53,7 +53,6 @@ export const GLASS_VERTEX = /* glsl */ `#version 300 es
     gl_Position = vec4(clip, 0.0, 1.0);
     vUv = aPos;
 
-    // Radial lens bend toward the rim -> thick-glass refraction.
     vec2 centered = aPos - 0.5;
     float r = length(centered);
     vec2 bent = centered * (1.0 + uCurve * r * r);
@@ -62,9 +61,7 @@ export const GLASS_VERTEX = /* glsl */ `#version 300 es
 `;
 
 /**
- * Fragment shader: composite refraction, specular, dynamic light and rim.
- * The scene texture `uScene` is sampled with the lens-distorted UV, then
- * layered with a moving specular glint and an emissive rim.
+ * Fragment shader: composite refraction, soft specular, dynamic light, rim, and tap wave.
  */
 export const GLASS_FRAGMENT = /* glsl */ `#version 300 es
   precision highp float;
@@ -78,6 +75,9 @@ export const GLASS_FRAGMENT = /* glsl */ `#version 300 es
   uniform float uRimIntensity;
   uniform float uRefraction;
   uniform float uBrightness;
+  uniform vec2 uTapPos;
+  uniform float uTapPulse;
+
   in vec2 vUv;
   in vec2 vLensUv;
   out vec4 outColor;
@@ -89,44 +89,47 @@ export const GLASS_FRAGMENT = /* glsl */ `#version 300 es
     // 1) Refracted scene (thick dome bending)
     vec3 refracted = texture(uScene, lensUv).rgb;
 
-    // subtle chromatic aberration on the rim
+    // Subtle chromatic aberration on the rim
     vec2 dir = normalize(lensUv - 0.5);
-    float ca = 0.008 * uRefraction;
+    float ca = 0.006 * uRefraction;
     vec3 chroma = vec3(
       texture(uScene, lensUv + dir * ca).r,
       texture(uScene, lensUv).g,
       texture(uScene, lensUv - dir * ca).b
     );
-    refracted = mix(refracted, chroma, 0.4);
+    refracted = mix(refracted, chroma, 0.35);
 
-    // 2) Dynamic lighting — parallax by fragment position
+    // 2) Dynamic lighting — ambient warm glow balance
     vec2 frag = uv - 0.5;
     float light = dot(normalize(frag + uLightDir), normalize(uLightDir));
     light = max(0.0, light) * uLightIntensity;
-    refracted *= mix(0.7, 1.0, min(1.0, 0.35 + light));
+    refracted *= mix(0.78, 1.02, min(1.0, 0.4 + light));
 
-    // 3) Moving specular highlight band
-    float t = uTime * 0.12;
-    vec2 sp = vec2(0.5 + 0.35 * cos(t), 0.5 + 0.22 * sin(t * 1.3));
+    // 3) Soft, tone-mapped specular highlight (prevents blown-out white orbs)
+    float t = uTime * 0.1;
+    vec2 sp = vec2(0.5 + 0.32 * cos(t), 0.5 + 0.2 * sin(t * 1.2));
     float sd = distance(uv, sp);
-    float spec = exp(-sd * sd * 60.0) * uSpecular;
-    refracted += vec3(spec);
+    float specIntensity = exp(-sd * sd * 45.0) * uSpecular * 0.45;
+    vec3 specColor = vec3(0.92, 0.96, 1.0);
+    refracted = mix(refracted, specColor, specIntensity);
 
-    // 4) Rim lighting on the dome silhouette
-    float rimDist = distance(uv, 0.5);
-    float rim = smoothstep(0.42, 0.5, rimDist) * uRimIntensity;
-    refracted = mix(refracted, uRimColor, rim * 0.6);
+    // 4) Interactive tap shimmer pulse
+    if (uTapPulse > 0.01) {
+      vec2 tapUv = uv - (vec2(0.5) + uTapPos * 0.4);
+      float tapDist = length(tapUv);
+      float wave = sin(tapDist * 32.0 - uTime * 10.0) * exp(-tapDist * 7.0) * uTapPulse;
+      refracted += vec3(0.2, 0.45, 0.55) * max(0.0, wave);
+    }
+
+    // 5) Rim lighting on the dome silhouette
+    float rimDist = distance(uv, vec2(0.5));
+    float rim = smoothstep(0.4, 0.5, rimDist) * uRimIntensity;
+    refracted = mix(refracted, uRimColor, rim * 0.35);
 
     outColor = vec4(refracted * uBrightness, 1.0);
   }
 `;
 
-/**
- * Lightweight WebGL2 program wrapper. Compiles + links the given shaders
- * and caches uniform locations. `compileGlassProgram` returns null when
- * WebGL2 is unavailable or shaders fail, so the caller can fall back to a
- * canvas-2D renderer without crashing.
- */
 export class GlassProgram {
   readonly gl: WebGL2RenderingContext;
   readonly program: WebGLProgram;
@@ -169,7 +172,7 @@ export class GlassProgram {
     return new GlassProgram(gl, program, [
       'uScene', 'uResolution', 'uTime', 'uLightDir', 'uLightIntensity',
       'uSpecular', 'uRimColor', 'uRimIntensity', 'uRefraction', 'uBrightness',
-      'uCurve'
+      'uCurve', 'uTapPos', 'uTapPulse'
     ]);
   }
 
