@@ -2,5 +2,6 @@ node_modules/
 dist/
 .build-reports/
 .npm/
+yearglass-sanctuary/
 *.log
 .DS_Store

@@ -46,10 +46,10 @@ const yearglass: ExperienceModule = {
       ]),
 
       h('section', { class: 'section app-connection-section', style: 'text-align: center; margin-top: var(--space-8); padding-top: var(--space-6); border-top: 1px solid color-mix(in srgb, var(--line-strong) 24%, var(--line) 76%);' }, [
-        h('h3', {}, ['Launch YearGlass']),
-        h('p', {}, ['Open the sanctuary in a new tab.']),
+        h('h3', {}, ['Launch Standalone YearGlass Sanctuary']),
+        h('p', {}, ['Open the independent standalone sanctuary application.']),
         h('div', { style: 'margin-top: var(--space-4);' }, [
-          h('a', { href: '/yearglass/', target: '_blank', rel: 'noopener noreferrer', class: 'btn primary' }, ['Open Sanctuary'])
+          h('a', { href: 'https://ittybittybites.github.io/yearglass-sanctuary/', target: '_blank', rel: 'noopener noreferrer', class: 'btn primary' }, ['Open Standalone Sanctuary'])
         ])
       ])
     ]);
