@@ -6,7 +6,7 @@ fetch('app-version.json', {cache: 'no-store'})
     if (stored && stored !== data.build) {
       console.log('New version detected:', data.build, '— refreshing');
       localStorage.setItem(KEY, data.build);
-      window.location.reload();
+      setTimeout(function(){window.location.reload();}, 2000);
     } else {
       localStorage.setItem(KEY, data.build);
     }
