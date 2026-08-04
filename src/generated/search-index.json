@@ -544,14 +544,16 @@
     "id": "yearglass",
     "type": "experience",
     "title": "YearGlass",
-    "description": "A cozy ambient terrarium companion where users nurture a living sanctuary through time, simulation, and observation.",
+    "description": "A living persistent sanctuary framed within a cozy evening workspace. Nurture an evolving micro-ecosystem, observe procedural growth, and unwind with responsive atmosphere.",
     "tags": [
       "ambient",
       "sanctuary",
       "terrarium",
       "relaxation",
       "nature",
-      "time"
+      "time",
+      "ecosystem",
+      "simulation"
     ],
     "collection": "nature"
   },

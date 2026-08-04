@@ -15,7 +15,7 @@ const yearglass: ExperienceModule = {
       ]),
       h('section', { class: 'section overview-section' }, [
         h('h3', {}, ['Experience Overview']),
-        h('p', {}, ['YearGlass is a standalone interactive sanctuary. Plants grow, weather shifts, and a starter creature named Pip explores. Photos, naming, and a focus-mode hourglass deepen the attachment over days. No scores, no pressure — just presence.'])
+        h('p', {}, ['YearGlass is a persistent living sanctuary framed within a cozy evening workspace. Nurture an evolving micro-ecosystem, observe procedural growth through dynamic cycles, and unwind with responsive atmosphere.'])
       ]),
       h('section', { class: 'section preview-section' }, [
       h('section', { class: 'section preview-section' }, [

@@ -1,19 +1,27 @@
 {
   "id": "yearglass",
   "title": "YearGlass",
-  "description": "A cozy ambient terrarium companion where users nurture a living sanctuary through time, simulation, and observation.",
-  "summary": "A living digital sanctuary. Nurture plants, observe creatures, and watch your sanctuary grow through day, night, and weather.",
+  "description": "A living persistent sanctuary framed within a cozy evening workspace. Nurture an evolving micro-ecosystem, observe procedural growth, and unwind with responsive atmosphere.",
+  "summary": "A persistent living sanctuary combining time, simulation, and responsive atmosphere into a calm desktop companion.",
   "category": "interactive",
   "module": "yearglass.ts",
-  "tags": ["ambient", "sanctuary", "terrarium", "relaxation", "nature", "time"],
-  "searchKeywords": ["yearglass", "terrarium", "ambient", "sanctuary", "relax", "garden", "slow"],
+  "tags": ["ambient", "sanctuary", "terrarium", "relaxation", "nature", "time", "ecosystem", "simulation"],
+  "searchKeywords": ["yearglass", "terrarium", "ambient", "sanctuary", "relax", "garden", "slow", "ecosystem", "sim"],
   "estimatedDuration": "long",
-  "returnValue": "A calm, long-term companion experience. Return after 1 day: a gentle welcome. After 1 week: changes noticed quietly. After longer: memories kept faithfully. The sanctuary remembers you.",
+  "returnValue": "A calm long-term companion. Day 1: welcome + subtle growth. Week 1: milestone memory + creature patterns. Longer: anniversary reflection + preserved photos + grown sanctuary.",
   "collection": "nature",
   "story": "the-living-web",
   "accessibility": {
     "keyboard": true,
     "screenReader": false,
     "contrast": true
-  }
+  },
+  "updatedOverview": "YearGlass is a persistent living sanctuary framed within a cozy evening workspace. Nurture an evolving micro-ecosystem, observe procedural plant growth through dynamic day/night cycles, and unwind with an interactive, focus-driven environment.",
+  "expectations": [
+    "Living Ecosystem & Companion: Nurture Pip the ladybug and watch your terrarium respond to gentle daily care.",
+    "Dynamic Lighting & Shaders: Real-time day/night shifts, realistic ambient lamp glow, and multi-layered WebGL depth effects.",
+    "Procedural Soundscape: Zero-loop ambient Web Audio that gently swells and reacts as you interact with the room.",
+    "Focus Zoom & Journal: Tap to transition directly into close-up terrarium focus mode, track memory logs, and record field notes.",
+    "Performance Optimized: Low-power idle engine throttling designed to run quietly in the background without draining battery."
+  ]
 }
