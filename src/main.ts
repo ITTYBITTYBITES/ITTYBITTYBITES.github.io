@@ -27,3 +27,18 @@ try {
 } catch (e) {
   console.error('Engine init failed:', e);
 }
+
+window.addEventListener('error', (e: any) => {
+  if (e.message && (e.message.includes('Loading chunk') || e.message.includes('Importing a module script failed'))) {
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.getRegistrations().then((registrations: any[]) => {
+        for (let registration of registrations) {
+          registration.unregister();
+        }
+        window.location.reload();
+      });
+    } else {
+      window.location.reload();
+    }
+  }
+});
