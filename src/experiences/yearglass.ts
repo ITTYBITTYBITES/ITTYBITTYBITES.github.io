@@ -18,13 +18,10 @@ const yearglass: ExperienceModule = {
         h('p', {}, ['YearGlass is a persistent living sanctuary framed within a cozy evening workspace. Nurture an evolving micro-ecosystem, observe procedural growth through dynamic cycles, and unwind with responsive atmosphere.'])
       ]),
       h('section', { class: 'section preview-section' }, [
-      h('section', { class: 'section preview-section' }, [
         h('h3', {}, ['Terrarium Focus Mode']),
-        h('p', {}, ['Click the dome to observe closely.']),
-        h('div', { style: 'margin-top: var(--space-4); display: flex; justify-content: center;' }, [
-          h('div', { onclick: 'openDome();', style: 'width: 200px; height: 200px; border-radius: 50%; background: radial-gradient(circle at 30% 20%, rgba(191,160,106,0.35), rgba(26,24,20,0.9)); border: 2px solid #bfa06a; box-shadow: 0 20px 60px rgba(191,160,106,0.25); cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform 0.2s ease;' }, ['Dome'])
-        ])
+        h('p', {}, ['Click the dome to observe closely.'])
       ]),
+      h('section', { class: 'section preview-section' }, [
         h('h3', {}, ['Return Experience']),
         h('p', {}, ['YearGlass remembers. If you return after 1 day: the sanctuary has quietly lived on, plants grown slightly, weather passed. After 1 week: new growth stages, creature patterns more familiar. After longer: the jar feels like a place you have tended over time — memories kept, growth noticed, companionship deepened. No penalties. No guilt. Just gentle continuity.']),
         h('ul', { style: 'margin-top: var(--space-3); padding-left: var(--space-4); font-size: 0.8125rem; opacity: 0.85;' }, [

@@ -52,6 +52,20 @@
   --collection-gradient: linear-gradient(180deg, #f4f1ea 0%, #e5e0d7 100%);
   --collection-pattern-url: none;
   --collection-background-url: none;
+
+  /* Mobile viewport height stabilization.
+     Set at runtime by platform/viewport.ts; fall back to svh/dvh/100vh so
+     address-bar layout shifts never clip content. */
+  --vh: 1vh;
+  --svh: 1svh;
+  --dvh: 1dvh;
+  --viewport-height: 100vh;
+}
+
+@supports (height: 100dvh) {
+  :root {
+    --viewport-height: 100dvh;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
@@ -144,6 +158,8 @@ main:focus {
 
 .app-main {
   min-height: 60vh;
+  min-height: 60svh;
+  min-height: calc(var(--dvh, 1vh) * 60);
   padding-block: var(--space-10) var(--space-16);
 }
 
@@ -1444,5 +1460,97 @@ experience-host {
   .quick-actions .btn,
   .btn {
     width: 100%;
+  }
+}
+
+/* ─────────────────────────────────────────────────────────────────────
+   YearGlass — sanctuary scene styles
+   Backed by src/engine/rendering/* (TerrariumScene, RoomScene) and the
+   bootstrap in src/yearglass/main.ts. Styled with the stabilized mobile
+   viewport units so the dome never clips on mobile browsers.
+   ───────────────────────────────────────────────────────────────────── */
+
+#yearglass-mount,
+.yearglass-mount {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  background: #0d0d0e;
+  color: #f0ede8;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
+  height: 100%;
+  height: 100dvh;
+  height: var(--dvh, 100vh);
+}
+
+.yearglass-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+  touch-action: none;
+}
+
+/* Depth strata (Layer 1..5) — soft-lit planes above the canvas. */
+.yearglass-layer {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+/* Room backdrop (desk, window, lamp). */
+.yearglass-room {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  overflow: hidden;
+  transition: filter var(--duration-slow, 260ms) var(--easing, ease);
+}
+
+.yearglass-room.night {
+  filter: brightness(0.72) saturate(0.9);
+}
+
+.yearglass-room-window {
+  transition: background var(--duration-slow, 260ms) var(--easing, ease);
+}
+
+.yearglass-room-window.night {
+  background: linear-gradient(160deg, #070d18, #12203a);
+}
+
+.yearglass-room-lamp.off {
+  opacity: 0.25;
+}
+
+/* Intro overlay — keeps "I was here waiting for you." intact. */
+.yearglass-intro {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.25rem;
+  cursor: pointer;
+  text-align: center;
+  padding: 2rem;
+  background: rgba(10, 12, 10, 0.55);
+  backdrop-filter: blur(2px);
+  user-select: none;
+}
+
+.yearglass-intro:focus {
+  outline: 2px solid #bfa06a;
+  outline-offset: -4px;
+}
+
+/* Responsive focus-mode container — used when the dome is focused. */
+@media (max-width: 48rem) {
+  #yearglass-mount .yearglass-canvas {
+    height: 100% !important;
   }
 }

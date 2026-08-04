@@ -10,6 +10,7 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: 'index.html',
+        yearglass: 'yearglass.html',
       },
       output: {
         entryFileNames: 'assets/[name]-[hash].js',
