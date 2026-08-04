@@ -31,7 +31,7 @@ try {
 window.addEventListener('error', (e: any) => {
   if (e.message && (e.message.includes('Loading chunk') || e.message.includes('Importing a module script failed'))) {
     if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations().then((registrations: any[]) => {
+      navigator.serviceWorker.getRegistrations().then((registrations: readonly ServiceWorkerRegistration[]) => {
         for (let registration of registrations) {
           registration.unregister();
         }
