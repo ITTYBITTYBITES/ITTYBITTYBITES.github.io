@@ -12,6 +12,12 @@
  * The glass layers (Layer 5) are produced by the custom GlassProgram shaders
  * from `shaders.ts`. If WebGL2 is unavailable the scene falls back to a plain
  * canvas-2D composition so the sanctuary never white-screens.
+ *
+ * Context split: a single <canvas> element can only ever hold ONE rendering
+ * context. The five depth layers are therefore composed into a separate,
+ * offscreen 2D `sceneCanvas`, uploaded as a texture, and the glass shader's
+ * output is drawn to the visible canvas which exclusively owns the WebGL2
+ * context.
  */
 
 import { GlassProgram, DEFAULT_GLASS_UNIFORMS, GlassUniforms } from './shaders';
@@ -43,11 +49,12 @@ const LAYERS: LayerSpec[] = [
 export class TerrariumScene {
   private readonly container: HTMLElement;
   private readonly canvas: HTMLCanvasElement;
+  /** Offscreen 2D canvas used to compose the five depth layers. */
+  private readonly sceneCanvas: HTMLCanvasElement;
   private readonly ctx: CanvasRenderingContext2D | null;
   private readonly gl: WebGL2RenderingContext | null;
   private readonly program: GlassProgram | null;
   private readonly sceneTexture: WebGLTexture | null;
-  private readonly framebuffer: WebGLFramebuffer | null;
   private readonly quad: WebGLBuffer | null;
 
   private readonly uniforms: GlassUniforms;
@@ -82,29 +89,30 @@ export class TerrariumScene {
     window.addEventListener('resize', this.onResize);
     window.addEventListener('orientationchange', this.onResize);
 
-    const ctx = this.canvas.getContext('2d');
-    this.ctx = ctx;
+    // A single canvas cannot hand out both a '2d' and a 'webgl2' context —
+    // asking for the second silently returns null. The scene layers are
+    // composed on a detached 2D canvas instead; the visible canvas is
+    // reserved exclusively for the WebGL2 output.
+    this.sceneCanvas = document.createElement('canvas');
+    this.ctx = this.sceneCanvas.getContext('2d');
 
     this.gl = this.canvas.getContext('webgl2') as WebGL2RenderingContext | null;
     this.uniforms = { ...DEFAULT_GLASS_UNIFORMS };
 
-    if (this.gl) {
-      this.program = GlassProgram.create(this.gl);
-      const [sceneTexture, framebuffer, quad] = this.setupGL();
+    this.program = this.gl ? GlassProgram.create(this.gl) : null;
+    if (this.gl && this.program) {
+      const [sceneTexture, quad] = this.setupGL();
       this.sceneTexture = sceneTexture;
-      this.framebuffer = framebuffer;
       this.quad = quad;
     } else {
-      this.program = null;
       this.sceneTexture = null;
-      this.framebuffer = null;
       this.quad = null;
     }
 
     this.resize();
   }
 
-  private setupGL(): [WebGLTexture, WebGLFramebuffer, WebGLBuffer] {
+  private setupGL(): [WebGLTexture, WebGLBuffer] {
     const gl = this.gl as WebGL2RenderingContext;
     const texture = gl.createTexture() as WebGLTexture;
     gl.bindTexture(gl.TEXTURE_2D, texture);
@@ -112,11 +120,7 @@ export class TerrariumScene {
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-
-    const framebuffer = gl.createFramebuffer() as WebGLFramebuffer;
-    gl.bindFramebuffer(gl.FRAMEBUFFER, framebuffer);
-    gl.framebufferTexture2D(gl.FRAMEBUFFER, gl.COLOR_ATTACHMENT0, gl.TEXTURE_2D, texture, 0);
-    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    gl.bindTexture(gl.TEXTURE_2D, null);
 
     // Fullscreen quad (triangle strip).
     const quad = gl.createBuffer() as WebGLBuffer;
@@ -128,7 +132,8 @@ export class TerrariumScene {
     );
     gl.bindBuffer(gl.ARRAY_BUFFER, null);
 
-    return [texture, framebuffer, quad];
+    this.checkGLError('setupGL');
+    return [texture, quad];
   }
 
   resize(): void {
@@ -142,6 +147,10 @@ export class TerrariumScene {
     if (this.canvas.width !== pw || this.canvas.height !== ph) {
       this.canvas.width = pw;
       this.canvas.height = ph;
+    }
+    if (this.sceneCanvas.width !== pw || this.sceneCanvas.height !== ph) {
+      this.sceneCanvas.width = pw;
+      this.sceneCanvas.height = ph;
     }
     this.uniforms.uResolution = [width, height];
   }
@@ -157,7 +166,7 @@ export class TerrariumScene {
     if (this.disposed) return;
     const { width, height } = this.size;
 
-    if (this.gl && this.program && this.framebuffer && this.sceneTexture && this.quad) {
+    if (this.gl && this.program && this.sceneTexture && this.quad) {
       this.renderWebGL(width, height);
       return;
     }
@@ -169,8 +178,22 @@ export class TerrariumScene {
     const gl = this.gl as WebGL2RenderingContext;
     const program = this.program as GlassProgram;
 
-    gl.bindFramebuffer(gl.FRAMEBUFFER, this.framebuffer);
-    gl.viewport(0, 0, Math.round(width * this.size.dpr), Math.round(height * this.size.dpr));
+    // Compose the five depth layers on the offscreen 2D canvas, then upload
+    // it as the scene texture the shader samples from. FLIP_Y keeps the
+    // canvas top edge aligned with UV v=1 (otherwise the dome renders
+    // upside-down).
+    this.paintScene2D(width, height);
+
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, true);
+    gl.activeTexture(gl.TEXTURE0);
+    gl.bindTexture(gl.TEXTURE_2D, this.sceneTexture);
+    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, this.sceneCanvas);
+    gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, false);
+
+    // Draw to the DEFAULT framebuffer — binding an offscreen FBO here would
+    // keep the result off-screen forever.
+    gl.bindFramebuffer(gl.FRAMEBUFFER, null);
+    gl.viewport(0, 0, gl.drawingBufferWidth, gl.drawingBufferHeight);
     gl.clearColor(0.03, 0.05, 0.04, 1);
     gl.clear(gl.COLOR_BUFFER_BIT);
 
@@ -185,15 +208,6 @@ export class TerrariumScene {
     program.setUniform('uRefraction', this.uniforms.uRefraction);
     program.setUniform('uBrightness', this.uniforms.uBrightness);
     program.setUniform('uCurve', DOME_CURVE);
-
-    // The scene layers are painted into the canvas-2D ctx first, then bound as
-    // the texture; the shader's "uScene" samples that composed scene.
-    if (this.ctx) {
-      this.paintScene2D(width, height);
-    }
-
-    gl.activeTexture(gl.TEXTURE0);
-    gl.bindTexture(gl.TEXTURE_2D, this.sceneTexture);
     program.setSceneTexture(0);
 
     gl.bindBuffer(gl.ARRAY_BUFFER, this.quad);
@@ -203,11 +217,31 @@ export class TerrariumScene {
       gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
     }
     gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
+
+    this.checkGLError('renderWebGL');
+  }
+
+  /** Surface silent WebGL failures in development builds. */
+  private checkGLError(op: string): void {
+    if (!this.gl) return;
+    const err = this.gl.getError();
+    if (err !== this.gl.NO_ERROR && import.meta.env?.DEV) {
+      console.error(`[YearGlass] WebGL error during ${op}: 0x${err.toString(16)}`);
+    }
   }
 
   private renderFallback(width: number, height: number): void {
     if (!this.ctx) return;
     this.paintScene2D(width, height);
+    // Without WebGL the visible canvas shows nothing on its own — copy the
+    // composed scene over so the 2D fallback actually reaches the screen.
+    // (Safe to ask for '2d' here: the fallback only runs when the visible
+    // canvas never acquired a webgl2 context.)
+    const out = this.canvas.getContext('2d');
+    if (out) {
+      out.clearRect(0, 0, this.canvas.width, this.canvas.height);
+      out.drawImage(this.sceneCanvas, 0, 0);
+    }
   }
 
   /** 2D composition of the five depth layers (used as scene + fallback). */
@@ -280,7 +314,6 @@ export class TerrariumScene {
     if (this.gl && this.program) {
       this.program.destroy();
       if (this.sceneTexture) this.gl.deleteTexture(this.sceneTexture);
-      if (this.framebuffer) this.gl.deleteFramebuffer(this.framebuffer);
       if (this.quad) this.gl.deleteBuffer(this.quad);
     }
     this.canvas.remove();

@@ -59,7 +59,9 @@ export class SaveEngine {
         this.usingIDB = true;
         resolve(true);
       };
-      request.onerror = () => {
+      request.onerror = (event) => {
+        // Prevent the failure from propagating as an unhandled error event.
+        event.preventDefault();
         this.db = null;
         this.usingIDB = false;
         resolve(false);
@@ -75,9 +77,14 @@ export class SaveEngine {
     await this.open();
     const record: SaveData = { key, value, updatedAt: Date.now() };
     if (this.usingIDB && this.db) {
-      return this.transact(STORE, 'readwrite', (store) => {
-        store.put(record);
-      });
+      try {
+        await this.transact(STORE, 'readwrite', (store) => {
+          store.put(record);
+        });
+        return;
+      } catch {
+        this.degradeToMemory();
+      }
     }
     this.memory.set(key, record);
   }
@@ -85,14 +92,17 @@ export class SaveEngine {
   async get<T>(key: string): Promise<T | null> {
     await this.open();
     if (this.usingIDB && this.db) {
-      return this.transact<T | null>(STORE, 'readonly', (store) => {
-        return store.get(key);
-      }).then((record) => {
+      try {
+        const record = await this.transact<SaveData | undefined>(STORE, 'readonly', (store) => {
+          return store.get(key);
+        });
         if (record && typeof record === 'object') {
-          return (record as unknown as SaveData).value as T;
+          return record.value as T;
         }
-        return record as T | null;
-      });
+        return null;
+      } catch {
+        this.degradeToMemory();
+      }
     }
     const record = this.memory.get(key);
     return record ? (record.value as T) : null;
@@ -101,9 +111,14 @@ export class SaveEngine {
   async del(key: string): Promise<void> {
     await this.open();
     if (this.usingIDB && this.db) {
-      return this.transact(STORE, 'readwrite', (store) => {
-        store.delete(key);
-      });
+      try {
+        await this.transact(STORE, 'readwrite', (store) => {
+          store.delete(key);
+        });
+        return;
+      } catch {
+        this.degradeToMemory();
+      }
     }
     this.memory.delete(key);
   }
@@ -111,9 +126,14 @@ export class SaveEngine {
   async getKeys(): Promise<string[]> {
     await this.open();
     if (this.usingIDB && this.db) {
-      return this.transact<IDBValidKey[]>(STORE, 'readonly', (store) => store.getAllKeys()).then(
-        (keys) => (keys || []).map((k) => String(k))
-      );
+      try {
+        const keys = await this.transact<IDBValidKey[]>(STORE, 'readonly', (store) =>
+          store.getAllKeys()
+        );
+        return (keys || []).map((k) => String(k));
+      } catch {
+        this.degradeToMemory();
+      }
     }
     return Array.from(this.memory.keys());
   }
@@ -121,11 +141,33 @@ export class SaveEngine {
   async clear(): Promise<void> {
     await this.open();
     if (this.usingIDB && this.db) {
-      return this.transact(STORE, 'readwrite', (store) => {
-        store.clear();
-      });
+      try {
+        await this.transact(STORE, 'readwrite', (store) => {
+          store.clear();
+        });
+        return;
+      } catch {
+        this.degradeToMemory();
+      }
     }
     this.memory.clear();
+  }
+
+  /**
+   * IndexedDB failed mid-session (quota, private mode quirks, closed db).
+   * Degrade to the in-memory map instead of surfacing rejections — the
+   * sanctuary keeps working for the current session.
+   */
+  private degradeToMemory(): void {
+    this.usingIDB = false;
+    if (this.db) {
+      try {
+        this.db.close();
+      } catch {
+        /* ignore */
+      }
+      this.db = null;
+    }
   }
 
   private transact<T>(
@@ -135,7 +177,14 @@ export class SaveEngine {
   ): Promise<T> {
     const db = this.db as IDBDatabase;
     return new Promise<T>((resolve, reject) => {
-      const tx = db.transaction(storeName, mode);
+      let tx: IDBTransaction;
+      try {
+        tx = db.transaction(storeName, mode);
+      } catch (err) {
+        // db closed / store missing — reject so callers fall back to memory.
+        reject(err instanceof Error ? err : new Error(String(err)));
+        return;
+      }
       const store = tx.objectStore(storeName);
       const req = action(store);
       let result: T | undefined;
@@ -145,8 +194,8 @@ export class SaveEngine {
         };
       }
       tx.oncomplete = () => resolve(result as T);
-      tx.onerror = () => reject(tx.error);
-      tx.onabort = () => reject(tx.error);
+      tx.onerror = () => reject(tx.error ?? new Error('IndexedDB transaction failed'));
+      tx.onabort = () => reject(tx.error ?? new Error('IndexedDB transaction aborted'));
     });
   }
 

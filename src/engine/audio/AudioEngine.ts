@@ -8,8 +8,10 @@
  *   - ambient hum: low sine drone + gentle detuned octave
  *   - "dome open" shimmer: rising arpeggio
  *
- * The AudioContext is created lazily and unlocked on the first user gesture
- * (touch/click/keydown) to satisfy autoplay policies.
+ * The AudioContext is created/resumed only inside the first user gesture
+ * (touch/click/keydown) to satisfy autoplay policies — constructing or
+ * resuming it eagerly outside a gesture gets silently blocked. The ambient
+ * bed (rain + hum + birdsong) starts from within that same gesture callback.
  */
 
 export type YearglassSound = 'rain' | 'bird' | 'hum' | 'shimmer';
@@ -25,6 +27,8 @@ export class AudioEngine {
   private ambientGain: GainNode | null = null;
   private noiseBuffer: AudioBuffer | null = null;
   private started = false;
+  private disposed = false;
+  private birdTimer = 0; // window.setTimeout id for the birdsong scheduler
   private readonly active: ActiveNode[] = [];
   private readonly unlockHandlers: Array<() => void> = [];
 
@@ -33,6 +37,7 @@ export class AudioEngine {
    * Creates + resumes the context and arms the ambient master bus.
    */
   async unlock(): Promise<boolean> {
+    if (this.disposed) return false;
     if (this.ctx && this.ctx.state === 'running') return true;
     try {
       const AC =
@@ -61,7 +66,18 @@ export class AudioEngine {
     const targets = ['pointerdown', 'touchstart', 'keydown'] as const;
     for (const type of targets) {
       const handler = () => {
-        void this.unlock();
+        if (this.disposed) return;
+        // Create/resume the context *inside* the gesture callback (autoplay
+        // policies block it outside), then start the ambient bed from the
+        // same gesture so rain/hum/birds begin without a second tap.
+        // Listeners only retire once the unlock actually succeeded, so a
+        // transient failure can retry on the next gesture.
+        void this.unlock().then((ok) => {
+          if (ok) {
+            this.startAmbient();
+            this.removeGestureUnlock();
+          }
+        });
       };
       window.addEventListener(type, handler, { once: true, passive: true });
       this.unlockHandlers.push(() => window.removeEventListener(type, handler));
@@ -95,18 +111,29 @@ export class AudioEngine {
 
   stopAmbient(): void {
     if (!this.ctx) return;
+    this.started = false;
+    this.clearBirdTimer();
     const gain = this.ambientGain;
     if (gain) {
       gain.gain.linearRampToValueAtTime(0, this.ctx.currentTime + 0.8);
       window.setTimeout(() => {
         for (const node of this.active.splice(0)) {
           try {
+            node.stop();
             node.disconnect();
           } catch {
             /* ignore */
           }
         }
       }, 900);
+    }
+    this.ambientGain = null;
+  }
+
+  private clearBirdTimer(): void {
+    if (this.birdTimer) {
+      window.clearTimeout(this.birdTimer);
+      this.birdTimer = 0;
     }
   }
 
@@ -203,15 +230,17 @@ export class AudioEngine {
   }
 
   private scheduleBirds(): void {
+    this.clearBirdTimer();
     const chirp = () => {
-      if (!this.ctx || !this.master) return;
+      if (this.disposed || !this.ctx || !this.master) return;
       this.playChirp(0.35 + Math.random() * 0.3);
     };
     const loop = () => {
-      const ctx = this.ctx;
-      if (!ctx) return;
+      if (this.disposed || !this.ctx || !this.started) return;
       const delay = 4000 + Math.random() * 7000;
-      window.setTimeout(() => {
+      this.birdTimer = window.setTimeout(() => {
+        if (this.disposed) return;
+        this.birdTimer = 0;
         chirp();
         loop();
       }, delay);
@@ -284,6 +313,10 @@ export class AudioEngine {
 
   /** Fully dispose of the context and all active nodes. */
   destroy(): void {
+    this.disposed = true;
+    // The birdsong scheduler is a self-rescheduling setTimeout — cancel it
+    // explicitly, otherwise it keeps firing against a closed context.
+    this.clearBirdTimer();
     this.removeGestureUnlock();
     if (this.ctx && this.ctx.state !== 'closed') {
       void this.ctx.close();

@@ -31,7 +31,7 @@ export class SimulationEngine {
   private readonly growth = new GrowthSystem();
   private readonly pip = new PipAI();
   private readonly camera = new CameraController();
-  private readonly room: RoomScene | null = null;
+  private room: RoomScene | null = null;
   private pipeline: RenderPipeline | null = null;
 
   private readonly hooks: SimulationHooks;
@@ -55,11 +55,18 @@ export class SimulationEngine {
     if (this.started) return;
     this.started = true;
 
-    await this.memory.init();
+    // Storage init can fail (private mode, blocked IDB); the sanctuary must
+    // still run on in-memory state, so never let this reject the mount.
+    try {
+      await this.memory.init();
+    } catch (err) {
+      console.warn('[YearGlass] memory init failed — continuing in-memory:', err);
+    }
     this.seedWorld();
 
-    this.room && this.room.setLamp(this.clock.lampOn);
-    this.room && this.room.setTimeOfDay(7.5);
+    this.room = new RoomScene(container);
+    this.room.setLamp(this.clock.lampOn);
+    this.room.setTimeOfDay(7.5);
     this.memory.replay((ev) => {
       if (ev.type === 'growth-milestone') this.hooks.onMemory?.(ev.message);
     });
@@ -71,10 +78,10 @@ export class SimulationEngine {
     });
     this.pipeline.start();
 
+    // AudioContext creation/resume only happens inside a genuine user
+    // gesture (autoplay policy); the gesture callback also starts the
+    // ambient bed. Calling unlock() here — outside a gesture — gets blocked.
     this.audio.installGestureUnlock();
-    this.audio.unlock().then((ok) => {
-      if (ok) this.audio.startAmbient();
-    });
 
     const firstDay = this.memory.currentDay;
     void this.memory

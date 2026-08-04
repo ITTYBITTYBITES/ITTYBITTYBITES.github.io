@@ -73,7 +73,13 @@ async function bootSanctuary(): Promise<void> {
     intro.style.opacity = '0';
     setTimeout(() => intro.remove(), 650);
     engine.focusDome();
-    await engine.mount(mount);
+    try {
+      await engine.mount(mount);
+    } catch (err) {
+      // Never let a mount failure escape as an unhandled rejection — the
+      // frame loop and intro teardown must keep working either way.
+      console.error('[YearGlass] mount failed:', err);
+    }
   };
 
   intro.addEventListener('click', start, { once: true });
@@ -93,11 +99,11 @@ async function bootSanctuary(): Promise<void> {
 }
 
 console.log('YearGlass — Enterprise Sanctuary Engine');
-try {
-  void bootSanctuary();
-} catch (e) {
+// bootSanctuary is async — a try/catch alone would miss rejected promises,
+// so attach an explicit catch to keep init failures from stalling the loop.
+bootSanctuary().catch((e) => {
   console.error('Engine init failed:', e);
-}
+});
 
 window.addEventListener('error', (e: any) => {
   if (

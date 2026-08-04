@@ -22,6 +22,7 @@ export class RenderPipeline {
   private readonly onFrame: FrameCallback;
 
   private rafId = 0;
+  private throttleId = 0;
   private lastFrame = 0;
   private lastInteraction = 0;
   private running = false;
@@ -29,10 +30,29 @@ export class RenderPipeline {
   private idle = false;
   private readonly listeners: Array<() => void> = [];
 
-  private readonly onPointer = () => {
+  private readonly onPointer = (ev: Event) => {
     this.lastInteraction = performance.now();
     if (this.idle) this.setIdle(false);
+
+    // Feed pointer/touch position into the camera so the dome lighting
+    // wakes up near the cursor.
+    const point = RenderPipeline.eventPoint(ev);
+    if (point) this.camera.setPointer(point.x, point.y);
   };
+
+  /** Extract client coordinates from pointer, mouse, touch, or wheel events. */
+  private static eventPoint(ev: Event): { x: number; y: number } | null {
+    const mouse = ev as Partial<MouseEvent>;
+    if (typeof mouse.clientX === 'number' && typeof mouse.clientY === 'number') {
+      return { x: mouse.clientX, y: mouse.clientY };
+    }
+    const touch = ev as TouchEvent;
+    if (typeof TouchEvent !== 'undefined' && ev instanceof TouchEvent && touch.touches.length > 0) {
+      const first = touch.touches[0];
+      return { x: first.clientX, y: first.clientY };
+    }
+    return null;
+  }
 
   constructor(
     container: HTMLElement,
@@ -77,7 +97,9 @@ export class RenderPipeline {
     this.onFrame(dt);
 
     const frameMs = this.idle ? IDLE_FPS : HIGH_FPS;
-    this.rafId = window.setTimeout(() => {
+    this.throttleId = window.setTimeout(() => {
+      this.throttleId = 0;
+      if (this.disposed || !this.running) return;
       this.rafId = requestAnimationFrame(this.tick);
     }, Math.max(0, frameMs - (performance.now() - now)));
   };
@@ -107,6 +129,12 @@ export class RenderPipeline {
     this.disposed = true;
     this.running = false;
     cancelAnimationFrame(this.rafId);
+    // The FPS throttle is a setTimeout — cancelAnimationFrame cannot cancel
+    // it, so it needs its own clear or the loop resurrects after teardown.
+    if (this.throttleId) {
+      window.clearTimeout(this.throttleId);
+      this.throttleId = 0;
+    }
     for (const remove of this.listeners) {
       try {
         remove();
