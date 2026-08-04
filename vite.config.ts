@@ -7,11 +7,11 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: true,
     target: 'es2020',
-    rollupOptions: {
+        rollupOptions: {
       input: {
         main: 'index.html',
-        yearglass: 'src/yearglass/main.ts',
       },
+    },
       output: {
         entryFileNames: 'assets/[name]-[hash].js',
         chunkFileNames: 'assets/[name]-[hash].js',
