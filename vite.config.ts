@@ -7,11 +7,10 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: true,
     target: 'es2020',
-        rollupOptions: {
+    rollupOptions: {
       input: {
         main: 'index.html',
       },
-    },
       output: {
         entryFileNames: 'assets/[name]-[hash].js',
         chunkFileNames: 'assets/[name]-[hash].js',
@@ -32,23 +31,23 @@ export default defineConfig({
         background_color: '#ffffff',
         display: 'standalone',
         orientation: 'any',
-        start_url: '/',
-        scope: '/',
+        start_url: './',
+        scope: './',
         icons: [
           {
-            src: '/icons/icon-192.png',
+            src: 'icons/icon-192.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'any',
           },
           {
-            src: '/icons/icon-512.png',
+            src: 'icons/icon-512.png',
             sizes: '512x512',
             type: 'image/png',
             purpose: 'any',
           },
           {
-            src: '/icons/maskable-192.png',
+            src: 'icons/maskable-192.png',
             sizes: '192x192',
             type: 'image/png',
             purpose: 'maskable',
@@ -56,21 +55,21 @@ export default defineConfig({
         ],
         shortcuts: [
           {
-            name: "Experiences",
-            short_name: "Experiences",
-            description: "Browse all experiences",
-            url: "/experiences",
-            icons: [{ src: "/icons/icon-192.png", sizes: "192x192" }]
+            name: 'Experiences',
+            short_name: 'Experiences',
+            description: 'Browse all experiences',
+            url: './experiences',
+            icons: [{ src: 'icons/icon-192.png', sizes: '192x192' }],
           },
           {
-            name: "Collections",
-            short_name: "Collections",
-            description: "Browse curated collections",
-            url: "/collections",
-            icons: [{ src: "/icons/icon-192.png", sizes: "192x192" }]
-          }
+            name: 'Collections',
+            short_name: 'Collections',
+            description: 'Browse curated collections',
+            url: './collections',
+            icons: [{ src: 'icons/icon-192.png', sizes: '192x192' }],
+          },
         ],
-        categories: ["education", "entertainment", "books"],
+        categories: ['education', 'entertainment', 'books'],
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json,woff2,webmanifest}'],

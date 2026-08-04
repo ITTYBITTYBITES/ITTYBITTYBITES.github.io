@@ -1,44 +1,69 @@
-import { SimulationEngine } from './engine/simulation/SimulationEngine';
+import './style.css';
 
-window.onerror = (msg, src, line) => {
-  console.error('Global error:', msg, src, line);
-  document.body.insertAdjacentHTML('beforeend', '<div style="position:fixed;inset:0;z-index:99999;background:#0d0d0e;color:#bfa06a;display:flex;align-items:center;justify-content:center;font-family:system-ui;padding:2rem;text-align:center;"><div><h2>The sanctuary is sleeping.</h2><p>Something went wrong.</p><button onclick="location.reload()" style="padding:0.75rem 1.5rem;background:#bfa06a;color:#0d0d0e;border:none;border-radius:8px;font-weight:700;cursor:pointer;">Clear Cache & Reload</button></div></div>');
-};
+import { AppFooter } from './components/app-footer';
+import { AppHeader } from './components/app-header';
+import './components/audio-toggle';
+import { ExperienceHost } from './components/experience-host';
+import { SkipLink } from './components/skip-link';
+import { initAnalytics } from './platform/analytics';
+import { registerPWA } from './platform/pwa';
+import { initRouter, registerRoute } from './platform/router';
+import { renderCollections } from './pages/collections';
+import { renderIndex } from './pages/experience-index';
+import { renderExperience } from './pages/experience';
+import { renderHome } from './pages/home';
+import { renderLibrary } from './pages/library';
 
-fetch('app-version.json', { cache: 'no-store' })
-  .then(r => r.json())
-  .then(data => {
-    const key = 'yearglass-app-version';
-    const stored = localStorage.getItem(key);
-    if (stored && stored !== data.build) {
-      console.log('New version:', data.build, '— reloading');
-      localStorage.setItem(key, data.build);
-      window.location.reload();
-    } else {
-      localStorage.setItem(key, data.build);
-    }
-  })
-  .catch(() => {});
-
-console.log('YearGlass — Enterprise Sanctuary Engine');
-try {
-  const engine = new SimulationEngine();
-  engine.startFirstLaunch();
-} catch (e) {
-  console.error('Engine init failed:', e);
+function defineElement(name: string, constructor: CustomElementConstructor): void {
+  if (!customElements.get(name)) {
+    customElements.define(name, constructor);
+  }
 }
 
-window.addEventListener('error', (e: any) => {
-  if (e.message && (e.message.includes('Loading chunk') || e.message.includes('Importing a module script failed'))) {
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.getRegistrations().then((registrations: readonly ServiceWorkerRegistration[]) => {
-        for (let registration of registrations) {
-          registration.unregister();
-        }
-        window.location.reload();
-      });
-    } else {
-      window.location.reload();
-    }
+function registerElements(): void {
+  defineElement('skip-link', SkipLink);
+  defineElement('app-header', AppHeader);
+  defineElement('app-footer', AppFooter);
+  defineElement('experience-host', ExperienceHost);
+}
+
+function registerRoutes(): void {
+  registerRoute('/', '', renderHome);
+  registerRoute('/experiences', 'Experiences', renderIndex);
+  registerRoute('/collections', 'Collections', renderCollections);
+  registerRoute('/library', 'Library', renderLibrary);
+  registerRoute('/experience/:id', 'Experience', renderExperience);
+}
+
+function boot(): void {
+  registerElements();
+  registerRoutes();
+  initAnalytics();
+
+  const app = document.getElementById('app');
+  if (!app) {
+    throw new Error('ITTYBITTYBITES boot failed: missing #app root.');
   }
-});
+
+  app.innerHTML = '';
+
+  const skipLink = document.createElement('skip-link');
+  const header = document.createElement('app-header');
+  const main = document.createElement('main');
+  const footer = document.createElement('app-footer');
+
+  main.id = 'main';
+  main.className = 'site-main';
+  main.setAttribute('tabindex', '-1');
+
+  app.append(skipLink, header, main, footer);
+  initRouter(main);
+
+  void registerPWA();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', boot, { once: true });
+} else {
+  boot();
+}
