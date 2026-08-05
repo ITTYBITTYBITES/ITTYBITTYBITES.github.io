@@ -1,19 +1,14 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>YearGlass — a living digital sanctuary</title>
-    <meta
-      name="description"
-      content="A living world that grows with you. A tiny ecosystem. A lifetime of memories."
-    />
-    <script type="module" crossorigin src="./assets/index-DxyXdlg0.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-DaYqTNSG.css">
-  </head>
-  <body style="margin:0;padding:0;width:100vw;height:100vh;overflow:hidden;background:#0d0d0e;color:#f0ede8;font-family:system-ui,sans-serif;">
-    <div id="root"></div>
-    <script>function initAudio(){try{window.audioCtx=new(window.AudioContext||window.webkitAudioContext)();console.log('Audio init')}catch(e){}}function unlockAudio(){if(window.audioCtx&&window.audioCtx.state==='suspended'){window.audioCtx.resume();console.log('Audio unlocked')}}function playTone(f,d,v){if(!window.audioCtx)return;try{const o=window.audioCtx.createOscillator();const g=window.audioCtx.createGain();o.type='sine';o.frequency.setValueAtTime(f||440,window.audioCtx.currentTime);g.gain.setValueAtTime(v||0.15,window.audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(0.01,window.audioCtx.currentTime+(d||0.2));o.connect(g);g.connect(window.audioCtx.destination);o.start();o.stop(window.audioCtx.currentTime+(d||0.2))}catch(e){console.error('Audio play error',e)}}</script>
-  <script>function openDome(){try{window.audioCtx=new(window.AudioContext||window.webkitAudioContext)()}catch(e){}if(window.audioCtx&&window.audioCtx.state=="suspended"){window.audioCtx.resume()}var d=document.createElement("div");d.innerHTML="<div style=text-align:center;padding:2rem;color:#f0ede8;background:linear-gradient(135deg,#0d0d0e,#1a1814);position:fixed;inset:0;z-index:9999;display:flex;align-items:center;justify-content:center;animation:fadeIn 0.8s ease><h2>The Dome Opens</h2><p>Observe carefully.</p><p id=obsTimer>00:00</p><button onclick=\"this.closest(\"div\").parentElement.remove()\">Return</button></div>";d.style.cssText="position:fixed;inset:0;z-index:9999;background:linear-gradient(135deg,#0d0d0e,#1a1814);animation:fadeIn 0.8s ease;";document.body.appendChild(d);var s=0,t=setInterval(function(){s++;var m=Math.floor(s/60).toString().padStart(2,"0"),sec=(s%60).toString().padStart(2,"0"),e=document.getElementById("obsTimer");if(e)e.textContent=m+":"+sec;},1000);}</script>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="refresh" content="0; url=https://ittybittybites.github.io/yearglass-sanctuary/" />
+  <title>Redirecting to YearGlass Sanctuary...</title>
+  <script>
+    window.location.href = "https://ittybittybites.github.io/yearglass-sanctuary/";
+  </script>
+</head>
+<body>
+  <p>Redirecting to <a href="https://ittybittybites.github.io/yearglass-sanctuary/">YearGlass Sanctuary</a>...</p>
 </body>
 </html>
