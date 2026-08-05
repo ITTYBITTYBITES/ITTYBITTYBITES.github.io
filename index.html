@@ -31,21 +31,13 @@
         width: 100%;
         min-height: 100%;
       }
-      /* Lock containment strictly to the game container/canvas */
+      /* Lock containment strictly to game containers or canvas elements */
       #root, #yearglass-mount, .game-container, .yearglass-mount, canvas {
         width: 100% !important;
         height: 100dvh !important;
         max-height: 100dvh !important;
         overflow: hidden !important;
         touch-action: none;
-      }
-      [class*="card"], [class*="dialogue"], [class*="popup"] {
-        background-color: #f7f2ea !important;
-        color: #111111 !important;
-      }
-      [class*="card"] *, [class*="dialogue"] * {
-        color: #111111 !important;
-        -webkit-text-fill-color: #111111 !important;
       }
     </style>
 
