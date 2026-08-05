@@ -84,6 +84,13 @@ function main() {
   });
   fs.writeFileSync(path.join(GEN_DIR, 'relationships.json'), JSON.stringify(relationships, null, 2));
 
+  // Generate app-version.json with dynamic build timestamp
+  const versionData = {
+    version: "1.0.0",
+    build: `build-${Date.now()}`
+  };
+  fs.writeFileSync(path.join(ROOT, 'public/app-version.json'), JSON.stringify(versionData, null, 2));
+
   console.log(`✅ Generated successfully`);
   console.log(`   ${experiences.length} experiences`);
   console.log(`   ${collections.length} collections`);

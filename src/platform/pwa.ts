@@ -1,5 +1,7 @@
 /**
  * Progressive Web App registration and update handling.
+ * Automatically reloads the application when a new build/Service Worker activates,
+ * ensuring users never experience stale chunk white-screens.
  */
 
 let pwaRegistered = false;
@@ -10,50 +12,45 @@ export async function registerPWA(): Promise<void> {
   if (pwaRegistered) return;
   pwaRegistered = true;
 
+  // Listen for controllerchange: when a new SW takes over, auto-reload immediately
+  let refreshing = false;
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (refreshing) return;
+    refreshing = true;
+    console.log('ITTYBITTYBITES: New application version activated. Reloading...');
+    window.location.reload();
+  });
+
   try {
     const { registerSW } = await import('virtual:pwa-register');
     const updateSW = registerSW({
       immediate: true,
       onOfflineReady() {
-        // Future UI: surface offline-ready notice.
-        // eslint-disable-next-line no-console
         console.log('ITTYBITTYBITES is ready for offline use.');
       },
       onNeedRefresh() {
-        // Automatically and silently update and hot-reload the page
-        // to prevent old hashed assets from causing white screens.
-        // We use a timeout fallback in case the SW controller fails to reload.
-        const reloadFallback = window.setTimeout(() => {
+        console.log('ITTYBITTYBITES: Update available — activating immediately.');
+        updateSW(true).catch(() => {
           window.location.reload();
-        }, 2000);
-
-        updateSW(true)
-          .then(() => {
-            window.clearTimeout(reloadFallback);
-          })
-          .catch(() => {
-            window.location.reload();
-          });
+        });
       },
       onRegisteredSW(swUrl, registration) {
-        // eslint-disable-next-line no-console
         console.log('Service worker registered:', swUrl);
         if (registration) {
-          // Check for updates immediately on registration.
+          // Check for updates immediately on load
           void registration.update();
 
-          // Periodically check for updates while the app is open.
+          // Periodically check for updates every 15 minutes
           window.setInterval(() => {
             void registration.update();
-          }, 60 * 60 * 1000);
+          }, 15 * 60 * 1000);
         }
       },
       onRegisterError(error) {
-        // eslint-disable-next-line no-console
-        console.error('Service worker registration failed:', error);
+        console.error('Service worker registration error:', error);
       },
     });
   } catch {
-    // PWA support is best-effort; failures must not break the app.
+    // PWA support is best-effort
   }
 }
