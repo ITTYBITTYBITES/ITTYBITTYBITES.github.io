@@ -1,17 +1,14 @@
 /**
- * YearGlass — Procedural Web Audio Engine
+ * YearGlass Sanctuary — Procedural Web Audio Engine
  *
- * Fully procedural ambient soundscape generated with the native Web Audio
- * API — no external MP3/WAV files required:
- *   - rain: filtered pink/brown noise through a band-pass with slow LFO
- *   - synthetic birdsong: short FM chirps on a schedule
- *   - ambient hum: low sine drone + gentle detuned octave
- *   - "dome open" shimmer: rising arpeggio
+ * Fully procedural ambient soundscape using Web Audio API:
+ *   - Rain: filtered noise through dynamic LFO bandpass
+ *   - Birdsong: procedural FM chirps
+ *   - Ambient hum: low sine drone + harmonic detune
+ *   - Dome shimmer: rising arpeggio
  *
- * The AudioContext is created/resumed only inside the first user gesture
- * (touch/click/keydown) to satisfy autoplay policies — constructing or
- * resuming it eagerly outside a gesture gets silently blocked. The ambient
- * bed (rain + hum + birdsong) starts from within that same gesture callback.
+ * Automatically suspends Web Audio context when document/tab is hidden
+ * and resumes when returning to foreground.
  */
 
 export type YearglassSound = 'rain' | 'bird' | 'hum' | 'shimmer';
@@ -28,14 +25,32 @@ export class AudioEngine {
   private noiseBuffer: AudioBuffer | null = null;
   private started = false;
   private disposed = false;
-  private birdTimer = 0; // window.setTimeout id for the birdsong scheduler
+  private birdTimer = 0;
   private readonly active: ActiveNode[] = [];
   private readonly unlockHandlers: Array<() => void> = [];
 
-  /**
-   * Must be called on a user gesture (pointerdown/touchstart/keydown) once.
-   * Creates + resumes the context and arms the ambient master bus.
-   */
+  constructor() {
+    this.installVisibilityListener();
+  }
+
+  installVisibilityListener(): () => void {
+    if (typeof document === 'undefined') return () => undefined;
+    const handler = () => {
+      if (this.disposed || !this.ctx) return;
+      if (document.hidden || document.visibilityState === 'hidden') {
+        if (this.ctx.state === 'running') {
+          void this.ctx.suspend();
+        }
+      } else if (document.visibilityState === 'visible') {
+        if (this.ctx.state === 'suspended' && this.started) {
+          void this.ctx.resume();
+        }
+      }
+    };
+    document.addEventListener('visibilitychange', handler);
+    return () => document.removeEventListener('visibilitychange', handler);
+  }
+
   async unlock(): Promise<boolean> {
     if (this.disposed) return false;
     if (this.ctx && this.ctx.state === 'running') return true;
@@ -51,7 +66,7 @@ export class AudioEngine {
         this.master.connect(this.ctx.destination);
         this.buildNoiseBuffer();
       }
-      if (this.ctx.state === 'suspended') {
+      if (this.ctx.state === 'suspended' && (!document.hidden)) {
         await this.ctx.resume();
       }
       return true;
@@ -60,18 +75,12 @@ export class AudioEngine {
     }
   }
 
-  /** Install the first-gesture unlock listener (auto-play policy). */
   installGestureUnlock(): () => void {
     if (typeof window === 'undefined') return () => undefined;
     const targets = ['pointerdown', 'touchstart', 'keydown'] as const;
     for (const type of targets) {
       const handler = () => {
         if (this.disposed) return;
-        // Create/resume the context *inside* the gesture callback (autoplay
-        // policies block it outside), then start the ambient bed from the
-        // same gesture so rain/hum/birds begin without a second tap.
-        // Listeners only retire once the unlock actually succeeded, so a
-        // transient failure can retry on the next gesture.
         void this.unlock().then((ok) => {
           if (ok) {
             this.startAmbient();
@@ -95,7 +104,6 @@ export class AudioEngine {
     }
   }
 
-  /** Start the layered ambient bed (rain + hum). Safe to call repeatedly. */
   startAmbient(): void {
     if (this.started || !this.ctx || !this.master) return;
     this.started = true;
@@ -142,7 +150,6 @@ export class AudioEngine {
     const len = Math.floor(this.ctx.sampleRate * 2);
     const buffer = this.ctx.createBuffer(1, len, this.ctx.sampleRate);
     const data = buffer.getChannelData(0);
-    // Brown noise approximation for deep, warm rain.
     let last = 0;
     for (let i = 0; i < len; i++) {
       const white = Math.random() * 2 - 1;
@@ -248,7 +255,6 @@ export class AudioEngine {
     loop();
   }
 
-  /** Short FM bird chirp. */
   private playChirp(vol: number): void {
     const ctx = this.ctx as AudioContext;
     const t0 = ctx.currentTime;
@@ -280,7 +286,6 @@ export class AudioEngine {
     mod.stop(t0 + dur + 0.02);
   }
 
-  /** Rising shimmer when the dome is opened. */
   playShimmer(): void {
     const ctx = this.ctx as AudioContext;
     if (!ctx || ctx.state !== 'running') return;
@@ -302,20 +307,53 @@ export class AudioEngine {
     });
   }
 
-  /** Public helper: play a one-shot procedural sound. */
+  playWaterDrop(): void {
+    const ctx = this.ctx as AudioContext;
+    if (!ctx || ctx.state !== 'running') return;
+    const t0 = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(800, t0);
+    osc.frequency.exponentialRampToValueAtTime(320, t0 + 0.12);
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(0.25, t0 + 0.01);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.14);
+    osc.connect(g);
+    g.connect(this.master as GainNode);
+    osc.start(t0);
+    osc.stop(t0 + 0.15);
+  }
+
+  playButtonTap(): void {
+    const ctx = this.ctx as AudioContext;
+    if (!ctx || ctx.state !== 'running') return;
+    const t0 = ctx.currentTime;
+    const osc = ctx.createOscillator();
+    osc.type = 'triangle';
+    osc.frequency.setValueAtTime(480, t0);
+    osc.frequency.exponentialRampToValueAtTime(240, t0 + 0.04);
+    const g = ctx.createGain();
+    g.gain.setValueAtTime(0.0001, t0);
+    g.gain.exponentialRampToValueAtTime(0.15, t0 + 0.005);
+    g.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.045);
+    osc.connect(g);
+    g.connect(this.master as GainNode);
+    osc.start(t0);
+    osc.stop(t0 + 0.05);
+  }
+
   play(sound: YearglassSound): void {
     if (!this.ctx) return;
     if (sound === 'shimmer') {
       this.playShimmer();
+    } else if (sound === 'hum') {
+      this.playWaterDrop();
     }
-    // rain/bird/hum are ambient layers started via startAmbient().
   }
 
-  /** Fully dispose of the context and all active nodes. */
   destroy(): void {
     this.disposed = true;
-    // The birdsong scheduler is a self-rescheduling setTimeout — cancel it
-    // explicitly, otherwise it keeps firing against a closed context.
     this.clearBirdTimer();
     this.removeGestureUnlock();
     if (this.ctx && this.ctx.state !== 'closed') {
