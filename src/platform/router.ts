@@ -112,6 +112,11 @@ function patternToRegex(pattern: string): { regex: RegExp; keys: string[] } {
 async function render(path: string, replaceState: boolean, isPush = false): Promise<void> {
   if (!outlet) return;
 
+  if (path.startsWith('/yearglass-sanctuary') || path === '/yearglass' || path === '/yearglass/') {
+    window.location.href = 'https://ittybittybites.github.io/yearglass-sanctuary/';
+    return;
+  }
+
   const matched = matchRoute(path);
   const query = new URLSearchParams(window.location.search);
 

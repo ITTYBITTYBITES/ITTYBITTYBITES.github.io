@@ -81,7 +81,13 @@ export default defineConfig({
         clientsClaim: true,
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json,woff2,webmanifest}'],
         navigateFallback: 'index.html',
-        navigateFallbackDenylist: [/^\/.well-known/, /^\/api/],
+        navigateFallbackDenylist: [
+          /^\/.well-known/,
+          /^\/api/,
+          /^\/yearglass-sanctuary/,
+          /^\/yearglass/,
+          /^\/experience\/yearglass/,
+        ],
         runtimeCaching: [
           {
             urlPattern: ({ request }) => request.destination === 'document',
