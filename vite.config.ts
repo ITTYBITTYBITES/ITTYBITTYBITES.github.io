@@ -82,6 +82,7 @@ export default defineConfig({
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json,woff2,webmanifest}'],
         navigateFallback: 'index.html',
         navigateFallbackDenylist: [
+          /^\/prosumer-matrix/,
           /^\/.well-known/,
           /^\/api/,
           /^\/yearglass-sanctuary/,
