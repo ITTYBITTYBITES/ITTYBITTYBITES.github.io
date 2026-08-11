@@ -147,6 +147,14 @@ function replaceOutlet(page: HTMLElement, title: string, replaceState: boolean, 
   updateMetaTags(title);
   analytics.pageView(title);
   focusMainContent(outlet);
+  // Refresh AdSense slots after SPA navigation (if consent given)
+  setTimeout(() => {
+    try {
+      // lazy import to avoid circular dep
+      import('./ads').then(({ refreshAds }) => refreshAds());
+    } catch {}
+    window.dispatchEvent(new CustomEvent('ads-refresh'));
+  }, 120);
 
   // If there's a hash, scroll to it after a brief layout yield
   if (window.location.hash) {

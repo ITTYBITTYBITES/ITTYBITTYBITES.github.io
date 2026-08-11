@@ -18,6 +18,7 @@ import {
 } from '../platform/collection-identity';
 import { renderExperienceHero, renderLibraryHero } from '../platform/illustration-system';
 import { search } from '../platform/search';
+import { adHomeTop, adHomeInFeed } from '../components/ad-slot';
 
 export function renderHome(): HTMLElement {
   const collections = getAllCollections();
@@ -246,9 +247,11 @@ export function renderHome(): HTMLElement {
     h('div', { class: 'search-wrapper', style: 'width: 100%; max-width: 48rem;' }, [searchInput, searchResults]),
   ]);
 
-  const children: HTMLElement[] = [hero];
+  const children: HTMLElement[] = [hero, adHomeTop()];
   if (featuredSection) children.push(featuredSection);
   if (continueSection) children.push(continueSection);
+  // Second ad after continue/recent — high viewability without breaking library metaphor
+  if (continueSection || recentSection) children.push(adHomeInFeed());
   if (recentSection) children.push(recentSection);
   if (recommendationsSection) children.push(recommendationsSection);
   children.push(searchContainer, browseCollectionsSection, browseThemesSection);

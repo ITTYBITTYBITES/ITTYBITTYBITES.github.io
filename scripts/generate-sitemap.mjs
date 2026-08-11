@@ -47,7 +47,22 @@ experiences.forEach(e => {
   </url>\n`;
 });
 
-xml += `</urlset>`;
+xml += `  <url>
+    <loc>https://ittybittybites.github.io/privacy</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ittybittybites.github.io/terms</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://ittybittybites.github.io/contact</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+</urlset>`;
 
 fs.writeFileSync(SITEMAP_PATH, xml);
-console.log('✅ Generated sitemap.xml with ' + (4 + experiences.length) + ' URLs.');
+console.log('✅ Generated sitemap.xml with ' + (7 + experiences.length) + ' URLs.');

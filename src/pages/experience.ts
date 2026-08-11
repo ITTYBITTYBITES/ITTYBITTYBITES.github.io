@@ -11,6 +11,7 @@ import {
 import { renderExperienceFigure, EXP_SLUG_TO_DIR, renderBookmarkIcon } from '../platform/illustration-system';
 import { clearElement, h, updateMetaTags } from '../platform/utils';
 import { feedback } from '../platform/feedback';
+import { adExperienceAbove, adExperienceBelow } from '../components/ad-slot';
 
 export function renderExperience({ params, query }: { params: Record<string, string>; query: URLSearchParams }): HTMLElement {
   const id = params.id;
@@ -94,7 +95,11 @@ export function renderExperience({ params, query }: { params: Record<string, str
     header.appendChild(figure);
   }
 
-  const elements: HTMLElement[] = [header, host];
+  // Ads: above game (safe zone) and below game (after completion) — never inside host/canvas
+  const aboveAd = adExperienceAbove();
+  const belowAd = adExperienceBelow();
+
+  const elements: HTMLElement[] = [header, aboveAd, host];
 
   if (storyTransition) {
     elements.push(storyTransition);
@@ -108,7 +113,7 @@ export function renderExperience({ params, query }: { params: Record<string, str
   }
 
   const footerWrap = h('div', { class: 'experience-footer-wrap' }, []);
-  elements.push(footerWrap);
+  elements.push(belowAd, footerWrap);
 
   const renderFooter = () => {
     clearElement(footerWrap);

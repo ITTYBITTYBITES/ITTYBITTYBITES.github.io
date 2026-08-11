@@ -1600,3 +1600,53 @@ experience-host {
 .yg-evolution-popup p {
   color: #222222 !important;
 }
+
+/* ── AdSense ─────────────────────────────────────────────── */
+.ad-container {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 100px;
+  margin: 2rem 0;
+  padding: 18px 12px 12px;
+  background: color-mix(in srgb, var(--panel-strong) 88%, var(--paper) 12%);
+  border: 1px dashed rgba(51,63,79,.15);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.ad-container:empty { display: none; }
+.ad-label {
+  position: absolute;
+  top: 8px;
+  left: 12px;
+  font-size: .66rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  background: rgba(255,255,255,.7);
+  padding: 2px 6px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+}
+.ad-container .adsbygoogle { width: 100%; min-height: 90px; }
+.ad-container.ad-multiplex .adsbygoogle { min-height: 250px; }
+.ad-container.ad-in-feed { min-height: 280px; }
+.ad-placeholder {
+  padding: 12px;
+  text-align: center;
+  color: var(--muted);
+  font-size: .85rem;
+}
+.ad-placeholder-text { margin: 0; }
+/* Reserve space to avoid CLS */
+.ad-home-top, .ad-experiences-top, .ad-experience-above, .ad-experience-below { min-height: 120px; }
+@media (min-width: 768px){
+  .ad-home-top, .ad-experiences-top, .ad-experience-above { min-height: 110px; }
+}
+@media (max-width: 640px){
+  .ad-container { margin: 1.25rem 0; }
+}
+/* Hide in-feed placeholders cleanly during loading */
+.ad-container .ad-placeholder a:hover { text-decoration: underline; }
+

@@ -6,6 +6,8 @@ import { searchExperiences } from '../platform/search';
 import { debounce, h } from '../platform/utils';
 import { getCollectionCSSVariables, getCollectionIdentity, renderCollectionBadge } from '../platform/collection-identity';
 import { renderExperienceHero } from '../platform/illustration-system';
+import { adExperiencesTop, adExperiencesMultiplex, createAdSlot } from '../components/ad-slot';
+import { AD_SLOTS } from '../platform/ads';
 
 import type { RouteParams } from '../platform/router';
 
@@ -112,7 +114,9 @@ export function renderIndex(args?: RouteParams): HTMLElement {
     ]),
     search,
     filterTabs,
+    adExperiencesTop(),
     grid,
+    adExperiencesMultiplex(),
   ]);
 }
 
@@ -128,7 +132,11 @@ function renderGrid(container: HTMLElement, entries: ExperienceEntry[]): void {
     return;
   }
 
-  for (const entry of entries) {
+  // Track ads inserted so we can trigger refresh
+  let inFeedInserted = false;
+
+  for (let idx = 0; idx < entries.length; idx++) {
+    const entry = entries[idx];
     const summary = getReturnSummary(entry.id);
     const progressBadge = summary.completed
       ? h('span', { class: 'badge completed' }, ['Completed'])
@@ -182,5 +190,15 @@ function renderGrid(container: HTMLElement, entries: ExperienceEntry[]): void {
     ]));
 
     container.appendChild(card);
+
+    // Insert in-feed ad after 6th card (and every 12th thereafter) — policy-safe, not inside game
+    if ((idx === 5 || idx === 17) && !inFeedInserted && entries.length > 6) {
+      const ad = createAdSlot({ slot: AD_SLOTS.experiencesInFeed, variant: 'in-feed', className: 'ad-in-grid' });
+      // Make ad span full grid width on mobile, mimic card dimensions
+      ad.style.gridColumn = '1 / -1';
+      container.appendChild(ad);
+      inFeedInserted = (idx === 5); // only once for first threshold; allow second at idx 17 if long list
+      if (idx === 17) inFeedInserted = true;
+    }
   }
 }
