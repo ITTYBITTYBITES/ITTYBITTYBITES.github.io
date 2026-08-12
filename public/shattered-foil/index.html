@@ -2,155 +2,4246 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>Shattered Foil — Test Sub-site</title>
-  <meta name="description" content="Standalone Shattered Foil test page. Isolated from the ITTYBITTYBITES library PWA." />
-  <meta name="theme-color" content="#0A0E14" />
-  <meta name="robots" content="noindex" />
-  <link rel="canonical" href="https://ittybittybites.github.io/shattered-foil/" />
-  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
-  <script src="/shattered-foil/version-check.js?v=sf-20260812-v2"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#090B0E" />
+  <title>Solitaire: Shattered Foil Edition</title>
   <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* THEME SYSTEM: LUXURY STAINED GLASS ATMOSPHERES */
     :root {
-      --bg: #0A0E14;
-      --panel: #121821;
-      --line: rgba(200, 100, 50, 0.35);
-      --copper: #C86432;
-      --amber: #F08E58;
-      --text: #F3E6D8;
-      --muted: #8E98A8;
-      --ok: #3DDC97;
-      --font-ui: system-ui, -apple-system, Segoe UI, sans-serif;
-      --font-serif: Georgia, "Times New Roman", serif;
+      /* Theme 1: Dark Cathedral Oak (Default) */
+      --bg-canvas: #090B0E;
+      --bg-workbench: #0F141C;
+      --bg-workbench-vignette: radial-gradient(circle at 50% 30%, #16202E 0%, #0D131C 55%, #06080B 100%);
+      --copper-foil: #C86432;
+      --copper-foil-bright: #F08E58;
+      --copper-foil-glint: #FFC49B;
+      --copper-foil-dark: #7A3617;
+      --solder-lead: #282C34;
+      --cathedral-glow: rgba(255, 235, 180, 0.25);
+      --text-parchment: #F5EFE0;
+      --text-muted: #8E98A8;
+      --glass-panel: rgba(15, 20, 28, 0.94);
+      --glass-border: rgba(200, 100, 50, 0.45);
+      --btn-grad-start: #1D2633;
+      --btn-grad-end: #101620;
+      --card-bg: #0C121A;
+      --card-face-bg: #101622;
+      --ad-bg: #050709;
+      --shadow-color: rgba(0, 0, 0, 0.75);
+
+      /* Clean Stained Glass Suit Colors */
+      --glass-red: #FF4757;
+      --glass-red-bg: rgba(255, 71, 87, 0.08);
+      --glass-black: #70A1FF;
+      --glass-black-bg: rgba(112, 161, 255, 0.08);
+      --glass-diamond: #FF4757;
+      --glass-club: #70A1FF;
     }
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: var(--font-ui); }
+
+    /* 4-Color Accessibility Palette */
+    body.four-color-suits {
+      --glass-red: #FF4757; /* Hearts: Ruby Red */
+      --glass-black: #3498DB; /* Spades: Sapphire Blue */
+      --glass-diamond: #FFA502; /* Diamonds: Amber Orange */
+      --glass-club: #2ED573; /* Clubs: Emerald Green */
+    }
+
+    [data-theme="sapphire"] {
+      --bg-canvas: #04060A;
+      --bg-workbench: #0A0F1A;
+      --bg-workbench-vignette: radial-gradient(circle at 50% 30%, #17243B 0%, #09101C 80%, #020408 100%);
+      --copper-foil: #E07A48;
+      --copper-foil-bright: #FFA473;
+      --copper-foil-glint: #FFE5D4;
+      --copper-foil-dark: #8F3A15;
+      --solder-lead: #1F242E;
+      --cathedral-glow: rgba(0, 180, 255, 0.3);
+      --text-parchment: #FFFFFF;
+      --text-muted: #7E8C9F;
+      --glass-panel: rgba(8, 14, 24, 0.95);
+      --glass-border: rgba(224, 122, 72, 0.55);
+      --btn-grad-start: #131E30;
+      --btn-grad-end: #0A101C;
+      --card-bg: #09101C;
+      --card-face-bg: #0A1220;
+      --ad-bg: #020408;
+      --shadow-color: rgba(0, 0, 0, 0.95);
+    }
+
+    [data-theme="amethyst"] {
+      --bg-canvas: #07040A;
+      --bg-workbench: #120A1A;
+      --bg-workbench-vignette: radial-gradient(circle at 50% 30%, #261436 0%, #100817 80%, #040206 100%);
+      --copper-foil: #D47242;
+      --copper-foil-bright: #FF9B6A;
+      --copper-foil-glint: #FFE0D0;
+      --copper-foil-dark: #7A2E10;
+      --solder-lead: #281D33;
+      --cathedral-glow: rgba(180, 80, 255, 0.28);
+      --text-parchment: #F8F2FC;
+      --text-muted: #9E8AA8;
+      --glass-panel: rgba(18, 10, 26, 0.95);
+      --glass-border: rgba(212, 114, 66, 0.5);
+      --btn-grad-start: #20122E;
+      --btn-grad-end: #100817;
+      --card-bg: #100817;
+      --card-face-bg: #160C20;
+      --ad-bg: #040206;
+      --shadow-color: rgba(0, 0, 0, 0.95);
+    }
+
+    [data-theme="obsidian"] {
+      --bg-canvas: #000000;
+      --bg-workbench: #000000;
+      --bg-workbench-vignette: radial-gradient(circle at 50% 30%, #0F1216 0%, #000000 70%, #000000 100%);
+      --copper-foil: #C86432;
+      --copper-foil-bright: #F08E58;
+      --copper-foil-glint: #FFC49B;
+      --copper-foil-dark: #7A3617;
+      --solder-lead: #1B1D22;
+      --cathedral-glow: rgba(200, 100, 50, 0.2);
+      --text-parchment: #FFFFFF;
+      --text-muted: #808894;
+      --glass-panel: rgba(5, 6, 8, 0.98);
+      --glass-border: rgba(200, 100, 50, 0.5);
+      --btn-grad-start: #14171C;
+      --btn-grad-end: #080A0D;
+      --card-bg: #06080A;
+      --card-face-bg: #06080A;
+      --ad-bg: #000000;
+      --shadow-color: rgba(0, 0, 0, 0.98);
+    }
+
     body {
-      min-height: 100dvh;
-      background:
-        radial-gradient(circle at 50% 0%, #1a2738 0%, transparent 42%),
-        radial-gradient(circle at 80% 80%, rgba(200, 100, 50, 0.12), transparent 36%),
-        var(--bg);
+      background-color: var(--bg-canvas);
+      color: var(--text-parchment);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Georgia, serif;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 6px;
+      overflow: hidden;
+      transition: background-color 0.4s ease, color 0.4s ease;
     }
-    .wrap { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
-    .eyebrow { color: var(--copper); letter-spacing: 0.18em; text-transform: uppercase; font-size: 0.75rem; font-weight: 700; margin: 0 0 0.6rem; }
-    h1 { font-family: var(--font-serif); font-weight: 700; font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 0 0 0.4rem; }
-    .lead { font-family: var(--font-serif); font-style: italic; color: var(--amber); font-size: 1.15rem; margin: 0 0 1rem; }
-    p { line-height: 1.6; color: var(--muted); }
-    .badge {
-      display: inline-block;
-      padding: 0.25rem 0.7rem;
-      border: 1px solid var(--line);
-      border-radius: 999px;
-      color: var(--amber);
-      font-size: 0.75rem;
+
+    /* Standalone Mobile App Frame */
+    .app-frame {
+      width: 100%;
+      max-width: 420px;
+      height: 840px;
+      max-height: 98vh;
+      background: var(--bg-workbench-vignette);
+      border: 1.5px solid var(--copper-foil);
+      border-radius: 32px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 25px 60px -15px var(--shadow-color), 0 0 0 1px rgba(200, 100, 50, 0.25);
+    }
+
+    .app-frame::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 50% 28%, var(--cathedral-glow) 0%, transparent 60%);
+      pointer-events: none;
+      opacity: 0.8;
+      z-index: 1;
+    }
+
+    /* View Switcher */
+    .view-container {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .view-hidden {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      display: none !important;
+    }
+
+    /* 1. INTRO SPLASH SCREEN */
+    .intro-splash-screen {
+      position: absolute;
+      inset: 0;
+      background: #06080B;
+      z-index: 500;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      cursor: pointer;
+      transition: opacity 0.4s ease;
+    }
+
+    .intro-splash-screen.fade-out {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      display: none !important;
+    }
+
+    .sponsor-tag {
+      font-size: 9.5px;
+      letter-spacing: 4px;
+      color: var(--copper-foil-bright);
+      text-transform: uppercase;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .studio-logo-emblem {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      border: 3px solid var(--copper-foil);
+      background: radial-gradient(circle, #281710 0%, #06080B 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 34px;
+      box-shadow: 0 0 32px rgba(200, 100, 50, 0.55);
+      margin-bottom: 14px;
+    }
+
+    .studio-name {
+      font-size: 18px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: var(--text-parchment);
+      text-transform: uppercase;
+      margin-bottom: 3px;
+    }
+
+    .studio-subtext {
+      font-size: 10.5px;
+      color: var(--copper-foil-glint);
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
       font-weight: 700;
-      letter-spacing: 0.06em;
+    }
+
+    .tap-to-skip {
+      position: absolute;
+      bottom: 24px;
+      font-size: 10px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      opacity: 0.7;
+    }
+
+    /* 2. PRELOADER */
+    .preloader-screen {
+      position: absolute;
+      inset: 0;
+      background: #090B0E;
+      z-index: 400;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      transition: opacity 0.4s ease;
+    }
+
+    .preloader-screen.hidden {
+      opacity: 0 !important;
+      pointer-events: none !important;
+      display: none !important;
+    }
+
+    .loader-card-preview {
+      width: 90px;
+      height: 130px;
+      border-radius: 12px;
+      border: 2px solid var(--copper-foil);
+      background: #111A24;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 20px rgba(200, 100, 50, 0.4);
+      margin-bottom: 20px;
+      animation: pulseGlow 2.5s ease-in-out infinite;
+      overflow: hidden;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: translateY(0); box-shadow: 0 10px 30px rgba(0,0,0,0.8), 0 0 15px rgba(200, 100, 50, 0.3); }
+      50% { transform: translateY(-5px); box-shadow: 0 18px 40px rgba(0,0,0,0.9), 0 0 30px rgba(200, 100, 50, 0.6); }
+    }
+
+    .loader-title {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--text-parchment);
+      margin-bottom: 3px;
+    }
+
+    .loader-quote {
+      font-size: 11px;
+      font-style: italic;
+      color: var(--copper-foil-bright);
+      margin-bottom: 22px;
+    }
+
+    .progress-track {
+      width: 100%;
+      max-width: 230px;
+      height: 5px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--glass-border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #C86432 0%, #F08E58 50%, #FFC49B 100%);
+      box-shadow: 0 0 12px rgba(240, 142, 88, 0.8);
+      border-radius: 10px;
+      transition: width 0.15s ease-out;
+    }
+
+    .loader-status-text {
+      font-size: 9.5px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      font-family: -apple-system, sans-serif;
+    }
+
+    /* 3. PRIVACY CONSENT MODAL */
+    .consent-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      z-index: 450;
+      display: none;
+      flex-direction: column;
+      justify-content: flex-end;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .consent-overlay.open {
+      display: flex !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+
+    .consent-card {
+      width: 100%;
+      max-height: 85%;
+      background: var(--glass-panel);
+      border-top: 2.5px solid var(--copper-foil-bright);
+      border-radius: 28px 28px 0 0;
+      padding: 18px 16px 20px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 -20px 50px rgba(0,0,0,0.95);
+      font-family: -apple-system, sans-serif;
+      overflow-y: auto;
+    }
+
+    .consent-badge {
+      display: inline-block;
+      align-self: flex-start;
+      background: rgba(200, 100, 50, 0.2);
+      border: 1px solid var(--copper-foil-bright);
+      color: var(--copper-foil-glint);
+      font-size: 9px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      padding: 2px 7px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .consent-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-parchment);
+      margin-bottom: 6px;
+    }
+
+    .consent-body {
+      font-size: 11px;
+      line-height: 1.45;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .consent-preferences-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 10px 12px;
+      margin-bottom: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .consent-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .consent-item-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text-parchment);
+    }
+
+    .consent-item-desc {
+      font-size: 10px;
+      color: var(--text-muted);
+      line-height: 1.35;
+    }
+
+    .consent-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .btn-consent {
+      width: 100%;
+      height: 44px;
+      border-radius: 22px;
+      font-size: 12.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.1s ease;
+      touch-action: manipulation;
+    }
+
+    .btn-consent:active {
+      transform: scale(0.98);
+    }
+
+    .btn-consent-primary {
+      background: linear-gradient(135deg, #C86432 0%, #7A3617 100%);
+      border: 1.5px solid var(--copper-foil-bright);
+      color: #FFF;
+      box-shadow: 0 4px 14px rgba(200,100,50,0.4);
+    }
+
+    .btn-consent-secondary {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--glass-border);
+      color: var(--text-muted);
+    }
+
+    /* 4. MAIN MENU */
+    .menu-header {
+      padding: 14px 18px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: var(--glass-panel);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .shards-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--glass-border);
+      padding: 3px 10px;
+      border-radius: 18px;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: -apple-system, sans-serif;
+    }
+
+    .icon-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--copper-foil-bright);
+      touch-action: manipulation;
+    }
+
+    .icon-btn.muted {
+      color: var(--text-muted);
+      opacity: 0.5;
+    }
+
+    .icon-btn.music-active, .hud-action-btn.music-active {
+      color: #F1C40F !important;
+      border-color: #F1C40F !important;
+      box-shadow: 0 0 12px rgba(241, 196, 15, 0.5) !important;
+      animation: musicPulsing 2.2s infinite ease-in-out;
+    }
+
+    @keyframes musicPulsing {
+      0%, 100% { transform: scale(1); box-shadow: 0 0 6px rgba(241, 196, 15, 0.35); }
+      50% { transform: scale(1.06); box-shadow: 0 0 14px rgba(241, 196, 15, 0.7); }
+    }
+
+    .icon-btn.muted, .hud-action-btn.muted {
+      color: var(--text-muted) !important;
+      opacity: 0.45 !important;
+    }
+
+    /* Glass Toast Notification */
+    .glass-toast {
+      position: fixed;
+      top: 16px;
+      left: 50%;
+      transform: translateX(-50%) translateY(-70px);
+      background: rgba(13, 15, 18, 0.94);
+      border: 1.5px solid var(--copper-foil);
+      color: var(--text-parchment);
+      padding: 8px 18px;
+      border-radius: 24px;
+      font-size: 12px;
+      font-weight: 700;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7), 0 0 16px rgba(200, 100, 50, 0.4);
+      backdrop-filter: blur(14px);
+      z-index: 9999;
+      pointer-events: none;
+      opacity: 0;
+      transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.35s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.3px;
+      white-space: nowrap;
+    }
+
+    .glass-toast.show {
+      transform: translateX(-50%) translateY(0);
+      opacity: 1;
+    }
+
+    /* Settings Audio Sliders & Selectors */
+    .settings-group-title {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--copper-foil-bright);
+      margin: 10px 0 2px 4px;
+    }
+
+    .settings-row {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .settings-slider-row {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 8px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .settings-slider-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 11px;
+      color: var(--text-parchment);
+    }
+
+    .settings-slider {
+      width: 100%;
+      accent-color: var(--copper-foil-bright);
+      cursor: pointer;
+      height: 4px;
+      border-radius: 2px;
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .settings-select {
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid var(--copper-foil);
+      color: var(--text-parchment);
+      padding: 5px 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      outline: none;
+      cursor: pointer;
+      max-width: 175px;
+    }
+
+    .hero-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      perspective: 1000px;
+      padding: 4px 16px 14px;
+      margin-top: -6px;
+      touch-action: none;
+    }
+
+    .title-group {
+      text-align: center;
+      margin-bottom: 8px;
+      pointer-events: none;
+    }
+
+    .brand-eyebrow {
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 3.5px;
+      color: var(--copper-foil-bright);
+      text-transform: uppercase;
+      margin-bottom: 1px;
+      font-family: -apple-system, sans-serif;
+    }
+
+    .brand-title {
+      font-size: 23px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      background: linear-gradient(135deg, var(--text-parchment) 30%, var(--copper-foil-bright) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      line-height: 1.15;
+    }
+
+    .brand-subtitle {
+      font-size: 11px;
+      font-style: italic;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .card-3d-wrapper {
+      position: relative;
+      width: 168px;
+      height: 242px;
+      transform-style: preserve-3d;
+      will-change: transform;
+      transition: transform 0.08s linear;
+      margin-top: 2px;
+      margin-bottom: 6px;
+      pointer-events: none;
+    }
+
+    .floating-idle {
+      animation: floatGlass 4.5s ease-in-out infinite;
+    }
+
+    @keyframes floatGlass {
+      0%, 100% { transform: translateY(0px) rotateX(7deg) rotateY(-8deg); }
+      50% { transform: translateY(-7px) rotateX(11deg) rotateY(-3deg); }
+    }
+
+    .card-glass-pane {
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      background: var(--card-bg);
+      border: 3.5px solid var(--copper-foil);
+      box-shadow: 0 20px 36px -6px rgba(0, 0, 0, 0.85), 0 0 25px rgba(200, 100, 50, 0.35);
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .deck-badge {
+      position: absolute;
+      bottom: -8px;
+      background: linear-gradient(135deg, var(--copper-foil-bright), var(--copper-foil-dark));
+      color: #090B0E;
+      font-size: 8.5px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      padding: 3px 11px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
+      border: 1px solid var(--copper-foil-glint);
+      font-family: -apple-system, sans-serif;
+    }
+
+    .action-stack {
+      padding: 6px 18px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+      z-index: 10;
+    }
+
+    .btn-action {
+      position: relative;
+      width: 100%;
+      height: 48px;
+      border-radius: 24px;
+      background: linear-gradient(180deg, var(--btn-grad-start) 0%, var(--btn-grad-end) 100%);
+      border: 1.5px solid var(--glass-border);
+      color: var(--text-parchment);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      cursor: pointer;
+      font-family: -apple-system, sans-serif;
+      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+      touch-action: manipulation;
+    }
+
+    .btn-hero {
+      height: 54px;
+      background: linear-gradient(135deg, #2B1E17 0%, #15100E 100%);
+      border: 2px solid var(--copper-foil-bright);
+      box-shadow: 0 6px 20px rgba(200, 100, 50, 0.35);
+    }
+
+    .btn-hero .btn-main-text {
+      color: var(--copper-foil-glint);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    /* 5. ULTRA-CLEAN MOBILE GAME HUD */
+    .game-hud {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 8px 12px;
+      height: 48px;
+      background: var(--glass-panel);
+      border-bottom: 1.5px solid var(--glass-border);
+      backdrop-filter: blur(16px);
+      z-index: 50;
+    }
+
+    .hud-menu-btn {
+      padding: 5px 10px;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--glass-border);
+      color: var(--copper-foil-bright);
+      font-size: 11.5px;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 3px;
+      touch-action: manipulation;
+    }
+
+    .hud-center-pill {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid var(--glass-border);
+      padding: 4px 10px;
+      border-radius: 16px;
+      font-size: 11px;
+      font-family: -apple-system, sans-serif;
+    }
+
+    .hud-center-pill span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .hud-center-pill strong {
+      color: var(--copper-foil-glint);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .hud-action-icons {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .hud-action-btn {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--glass-border);
+      color: var(--text-parchment);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+      touch-action: manipulation;
+      transition: transform 0.1s ease;
+    }
+
+    .hud-action-btn:active {
+      transform: scale(0.92);
+      background: rgba(200, 100, 50, 0.3);
+    }
+
+    .hud-action-btn:disabled {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    /* ==========================================================================
+       6. IMMACULATE TABLETOP CARDS (NO UGLY WATERMARKS / OVERLAYS)
+       ========================================================================== */
+    .board-area {
+      flex: 1;
+      padding: 10px 8px 6px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      touch-action: manipulation;
+    }
+
+    body.left-handed .top-grid-row {
+      direction: rtl;
+    }
+    body.left-handed .top-grid-row > * {
+      direction: ltr;
+    }
+
+    .top-grid-row {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+      margin-bottom: 12px;
+      z-index: 10;
+    }
+
+    .tableau-grid-row {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+      position: relative;
+    }
+
+    .tableau-grid-row.spider-grid {
+      grid-template-columns: repeat(10, 1fr);
+      gap: 3px;
+    }
+
+    .tableau-grid-row.freecell-grid {
+      grid-template-columns: repeat(8, 1fr);
+      gap: 4px;
+    }
+
+    .tableau-col {
+      position: relative;
+      height: 100%;
+    }
+
+    .card-slot {
+      width: 100%;
+      aspect-ratio: 1 / 1.42;
+      border: 1.5px dashed rgba(200, 100, 50, 0.35);
+      border-radius: 6px;
+      background: rgba(0, 0, 0, 0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(200, 100, 50, 0.45);
+      font-size: 13px;
+      font-weight: 700;
+      position: relative;
+      touch-action: manipulation;
+      cursor: pointer;
+    }
+
+    .stock-counter-badge {
+      position: absolute;
+      top: -4px;
+      right: -4px;
+      background: var(--copper-foil-bright);
+      color: #090B0E;
+      font-size: 8.5px;
+      font-weight: 900;
+      padding: 1px 5px;
+      border-radius: 8px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.5);
+      pointer-events: none;
+      z-index: 20;
+    }
+
+    /* Pure, Luminous Stained Glass Card (Zero Clutter) */
+    .game-card {
+      width: 100%;
+      aspect-ratio: 1 / 1.42;
+      border-radius: 6px;
+      border: 1.8px solid var(--copper-foil);
+      background: var(--card-face-bg);
+      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 3.5px 4px;
+      position: absolute;
+      top: 0;
+      left: 0;
+      cursor: pointer;
+      touch-action: manipulation;
+      transition: transform 0.12s ease;
+      pointer-events: auto;
+      overflow: hidden;
+    }
+
+    .game-card:active {
+      transform: scale(0.96);
+    }
+
+    /* Face Down: Immaculate Pure Stained Glass Art (Zero text overlays) */
+    .game-card.face-down {
+      background: #0C121A;
+      border: 1.8px solid var(--copper-foil);
+      padding: 0;
+    }
+
+    /* Face Up: Pure Clean Crisp Pips */
+    .game-card.suit-hearts {
+      color: var(--glass-red);
+      background: linear-gradient(180deg, var(--glass-red-bg) 0%, var(--card-face-bg) 70%);
+    }
+
+    .game-card.suit-diamonds {
+      color: var(--glass-diamond);
+      background: linear-gradient(180deg, rgba(255, 71, 87, 0.08) 0%, var(--card-face-bg) 70%);
+    }
+
+    .game-card.suit-spades {
+      color: var(--glass-black);
+      background: linear-gradient(180deg, var(--glass-black-bg) 0%, var(--card-face-bg) 70%);
+    }
+
+    .game-card.suit-clubs {
+      color: var(--glass-club);
+      background: linear-gradient(180deg, rgba(112, 161, 255, 0.08) 0%, var(--card-face-bg) 70%);
+    }
+
+    .card-corner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .card-rank {
+      font-size: 12px;
+      font-weight: 900;
+      font-family: Georgia, serif;
+      letter-spacing: -0.5px;
+    }
+
+    .card-suit {
+      font-size: 10px;
+      margin-top: 1px;
+    }
+
+    .card-inner-fillet {
+      position: absolute;
+      inset: 2px;
+      border: 1px solid rgba(200, 100, 50, 0.25);
+      border-radius: 4px;
+      pointer-events: none;
+    }
+
+    .game-card.highlight-hint {
+      border-color: #F1C40F !important;
+      box-shadow: 0 0 15px #F1C40F !important;
+      animation: pulseHint 1s ease-in-out infinite;
+    }
+
+    @keyframes pulseHint {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+
+    /* Bottom Display Ad Space */
+    .bottom-ad-space {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      height: 50px;
+      background: var(--ad-bg);
+      border-top: 1px solid var(--glass-border);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2px 10px;
+      font-family: -apple-system, sans-serif;
+    }
+
+    .ad-label {
+      font-size: 7.5px;
+      letter-spacing: 1.2px;
+      color: var(--text-muted);
       text-transform: uppercase;
     }
-    .grid { display: grid; gap: 0.9rem; margin: 1.5rem 0; }
-    @media (min-width: 700px) { .grid { grid-template-columns: 1fr 1fr; } }
-    .card {
-      background: color-mix(in srgb, var(--panel) 92%, black);
-      border: 1px solid var(--line);
-      border-radius: 14px;
-      padding: 1rem 1.1rem;
-    }
-    .card h2 { margin: 0 0 0.55rem; font-size: 0.95rem; color: var(--amber); }
-    .status { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.82rem; color: var(--text); }
-    .ok { color: var(--ok); }
-    .warn { color: var(--amber); }
-    ul { margin: 0; padding-left: 1.1rem; color: var(--muted); }
-    li { margin: 0.35rem 0; }
-    a { color: var(--amber); }
-    a.btn {
-      display: inline-block;
-      margin: 0.2rem 0.4rem 0.2rem 0;
-      padding: 0.55rem 0.95rem;
-      border-radius: 999px;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 0.85rem;
-    }
-    a.btn.primary { background: linear-gradient(135deg, #C86432, #7A3617); color: #fff; }
-    a.btn.ghost { border: 1px solid var(--line); color: var(--amber); }
-    footer { margin-top: 2rem; font-size: 0.8rem; color: var(--muted); }
-  </style>
-</head>
-<body>
-  <main class="wrap">
-    <p class="eyebrow">Artisan Card Lounge · Isolated Sub-site</p>
-    <h1>Solitaire: Shattered Foil</h1>
-    <p class="lead">“Fragments of beauty, brought together.”</p>
-    <span class="badge" id="pageBadge">Test page · /shattered-foil/</span>
-    <p>
-      This is a standalone GitHub Pages folder, same pattern as
-      <a href="https://ittybittybites.github.io/prosumer-matrix/">/prosumer-matrix/</a>
-      and <a href="https://ittybittybites.github.io/yearglass-sanctuary/">/yearglass-sanctuary/</a>.
-      It has its own 404, scoped service worker, and cache version key so the root library PWA cannot swallow it.
-    </p>
 
-    <div class="grid">
-      <section class="card">
-        <h2>Isolation checks</h2>
-        <p class="status" id="swStatus">Service worker: checking…</p>
-        <p class="status" id="versionStatus">Cache version: checking…</p>
-        <p class="status" id="scopeStatus">Path: checking…</p>
-      </section>
-      <section class="card">
-        <h2>Existing sub-sites (must still work)</h2>
-        <ul>
-          <li><a href="/">Library home</a></li>
-          <li><a href="/experiences">Experiences</a></li>
-          <li><a href="https://ittybittybites.github.io/prosumer-matrix/">Prosumer Matrix</a></li>
-          <li><a href="https://ittybittybites.github.io/yearglass-sanctuary/">YearGlass Sanctuary</a></li>
-          <li><a href="/yearglass/">/yearglass/ redirect</a></li>
-        </ul>
-      </section>
+    .ad-placeholder {
+      width: 100%;
+      max-width: 300px;
+      height: 30px;
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px dashed rgba(200, 100, 50, 0.25);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 9px;
+      color: var(--text-muted);
+    }
+
+    /* 7. THE GLASS ATELIER: 3D CARD SHOWCASE */
+    .atelier-inspector-box {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 18px;
+      padding: 14px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 12px;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.6);
+    }
+
+    .atelier-preview-card {
+      width: 78px;
+      height: 112px;
+      border-radius: 10px;
+      border: 2.5px solid var(--copper-foil-bright);
+      background: #0C121A;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.8), 0 0 15px rgba(200,100,50,0.35);
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .atelier-info-col {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .deck-category-badge {
+      font-size: 8.5px;
+      font-weight: 800;
+      letter-spacing: 1.5px;
+      color: var(--copper-foil-bright);
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    .deck-inspector-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--text-parchment);
+      margin-bottom: 4px;
+    }
+
+    .deck-inspector-desc {
+      font-size: 10.5px;
+      color: var(--text-muted);
+      line-height: 1.35;
+      margin-bottom: 8px;
+    }
+
+    .deck-actions-row {
+      display: flex;
+      gap: 6px;
+    }
+
+    .deck-equip-btn {
+      padding: 5px 12px;
+      border-radius: 14px;
+      font-size: 11px;
+      font-weight: 800;
+      border: none;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--copper-foil-bright), var(--copper-foil-dark));
+      color: #090B0E;
+      box-shadow: 0 2px 8px rgba(200,100,50,0.4);
+      touch-action: manipulation;
+    }
+
+    .deck-equip-btn.equipped {
+      background: rgba(255,255,255,0.08);
+      color: var(--text-parchment);
+      border: 1px solid var(--glass-border);
+      box-shadow: none;
+    }
+
+    .deck-stamp-btn {
+      padding: 5px 10px;
+      border-radius: 14px;
+      font-size: 10.5px;
+      font-weight: 700;
+      border: 1px solid var(--copper-foil-bright);
+      background: rgba(200,100,50,0.2);
+      color: var(--copper-foil-glint);
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .deck-catalog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+    }
+
+    .deck-thumb-box {
+      background: rgba(0, 0, 0, 0.35);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 8px 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.15s ease, border-color 0.15s ease;
+      touch-action: manipulation;
+    }
+
+    .deck-thumb-box:active {
+      transform: scale(0.96);
+    }
+
+    .deck-thumb-box.active-deck {
+      border-color: var(--copper-foil-bright);
+      background: rgba(200, 100, 50, 0.15);
+      box-shadow: 0 0 12px rgba(200, 100, 50, 0.3);
+    }
+
+    .deck-mini-glass-frame {
+      width: 46px;
+      height: 66px;
+      border-radius: 7px;
+      border: 1.8px solid var(--copper-foil);
+      background: #0C121A;
+      margin-bottom: 5px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .deck-thumb-name {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text-parchment);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 100%;
+    }
+
+    .deck-thumb-status {
+      font-size: 8px;
+      color: var(--copper-foil-bright);
+      font-weight: 800;
+      margin-top: 1px;
+    }
+
+    /* S-Curve Campaign Realm Map */
+    .campaign-scurve-box {
+      background: radial-gradient(circle at 50% 50%, #17243B 0%, #060B12 100%);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 16px;
+      padding: 16px;
+      margin-bottom: 12px;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .campaign-node-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 10px 14px;
+      cursor: pointer;
+    }
+
+    .campaign-node-row.active {
+      border-color: var(--copper-foil-bright);
+      background: rgba(200, 100, 50, 0.2);
+    }
+
+    /* MODAL OVERLAYS (STRICT DISPLAY TOGGLE) */
+    .modal-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.88);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      z-index: 300;
+      display: none;
+      flex-direction: column;
+      justify-content: flex-end;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .modal-overlay.open {
+      display: flex !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+    }
+
+    .modal-card {
+      width: 100%;
+      max-height: 86%;
+      background: var(--glass-panel);
+      border-top: 2.5px solid var(--copper-foil-bright);
+      border-radius: 28px 28px 0 0;
+      padding: 18px 16px 22px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 -20px 40px rgba(0, 0, 0, 0.95);
+      overflow-y: auto;
+    }
+
+    .modal-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .modal-title {
+      font-size: 15px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      color: var(--copper-foil-bright);
+      text-transform: uppercase;
+    }
+
+    .close-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--glass-border);
+      color: var(--text-parchment);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .info-circle-btn {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(200, 100, 50, 0.2);
+      border: 1px solid var(--copper-foil-bright);
+      color: var(--copper-foil-glint);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .history-card {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 10px;
+      line-height: 1.45;
+      font-size: 12px;
+      color: var(--text-parchment);
+    }
+
+    .history-year {
+      display: inline-block;
+      background: var(--copper-foil-bright);
+      color: #090B0E;
+      font-weight: 900;
+      font-size: 9.5px;
+      padding: 2px 6px;
+      border-radius: 6px;
+      margin-bottom: 6px;
+    }
+
+    .theme-card-option {
+      background: rgba(0, 0, 0, 0.4);
+      border: 1.5px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 10px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      cursor: pointer;
+      margin-bottom: 8px;
+    }
+
+    .theme-card-option.active {
+      border-color: var(--copper-foil-bright);
+      background: rgba(200, 100, 50, 0.22);
+    }
+
+    .theme-thumb-swatch {
+      width: 30px;
+      height: 30px;
+      border-radius: 8px;
+      border: 1.5px solid var(--copper-foil);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 15px;
+    }
+
+    /* 8. SCRUBBABLE MOVE TIMELINE & STEP LOG */
+    .timeline-scrubber-box {
+      background: rgba(0, 0, 0, 0.45);
+      border: 1px solid var(--glass-border);
+      border-radius: 14px;
+      padding: 12px;
+      margin-bottom: 12px;
+    }
+
+    .scrubber-slider {
+      width: 100%;
+      accent-color: var(--copper-foil-bright);
+      margin: 8px 0;
+    }
+
+    .steps-timeline-list {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      max-height: 180px;
+      overflow-y: auto;
+      background: rgba(0, 0, 0, 0.35);
+      border: 1px solid var(--glass-border);
+      border-radius: 12px;
+      padding: 8px;
+      font-size: 11px;
+      font-family: -apple-system, sans-serif;
+    }
+
+    .step-entry {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 4px 6px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .step-num {
+      font-weight: 800;
+      color: var(--copper-foil-bright);
+      width: 24px;
+    }
+
+    .step-desc {
+      flex: 1;
+      color: var(--text-parchment);
+      padding: 0 6px;
+    }
+
+    .step-pts {
+      font-weight: 700;
+      color: var(--copper-foil-glint);
+    }
+  </style>
+  <script src="./version-check.js"></script>
+</head>
+<body data-theme="dark">
+  <!-- Live Glass Toast Notification -->
+  <div class="glass-toast" id="glassToast">🎵 Zen Music Playing</div>
+
+  <!-- MAIN STANDALONE APPLICATION CONTAINER -->
+  <div class="app-frame" id="appFrame">
+
+    <!-- 1. SPONSOR SPLASH (Tap to Skip) -->
+    <div class="intro-splash-screen" id="sponsorSplash" onclick="skipSplashFast()">
+      <div class="sponsor-tag">Presented By</div>
+      <div class="studio-logo-emblem">🪟</div>
+      <h2 class="studio-name">ITTYBITTYBITES</h2>
+      <p class="studio-subtext">Experiences</p>
+      <div class="tap-to-skip">Tap anywhere to enter</div>
     </div>
 
-    <p>
-      <a class="btn primary" href="/shattered-foil/missing-pane">Hit custom 404</a>
-      <a class="btn ghost" href="/">Back to library</a>
-    </p>
-    <footer>ITTYBITTYBITES · Shattered Foil test stub · does not register the root service worker.</footer>
-  </main>
+    <!-- 2. PRELOADER -->
+    <div class="preloader-screen" id="gamePreloader">
+      <div class="loader-card-preview" id="preloaderCardHero"></div>
+      <h1 class="loader-title">Solitaire: Shattered Foil</h1>
+      <p class="loader-quote">“Fragments of beauty, brought together.”</p>
+      
+      <div class="progress-track">
+        <div class="progress-fill" id="progressFill"></div>
+      </div>
+      <div class="loader-status-text" id="loaderStatus">Initializing Stained Glass Engine...</div>
+    </div>
+
+    <!-- 3. PRIVACY DIALOG -->
+    <div class="consent-overlay" id="consentModal">
+      <div class="consent-card">
+        <div class="consent-badge">Privacy & Preferences</div>
+        <h3 class="consent-title">Privacy & Consent Choices</h3>
+        <p class="consent-body">
+          We respect your privacy. Under GDPR and privacy regulations, you have full control over data and ad preferences. Choose your options below:
+        </p>
+
+        <div class="consent-preferences-box">
+          <div class="consent-item">
+            <div>
+              <div class="consent-item-title">Essential Game Storage</div>
+              <div class="consent-item-desc">Required to save your score, board state, and streak offline.</div>
+            </div>
+            <span style="font-size: 11px; font-weight: 800; color: var(--copper-foil-bright);">Always Active</span>
+          </div>
+
+          <div class="consent-item">
+            <div>
+              <div class="consent-item-title">Personalized Advertising (Google)</div>
+              <div class="consent-item-desc">Allows relevant ads based on preferences. If off, contextual ads are shown.</div>
+            </div>
+            <input type="checkbox" id="consentAdsToggle" style="transform: scale(1.3); accent-color: var(--copper-foil-bright);" />
+          </div>
+
+          <div class="consent-item">
+            <div>
+              <div class="consent-item-title">Performance Analytics</div>
+              <div class="consent-item-desc">Helps us optimize frame rate and solver speed.</div>
+            </div>
+            <input type="checkbox" id="consentAnalyticsToggle" style="transform: scale(1.3); accent-color: var(--copper-foil-bright);" />
+          </div>
+        </div>
+
+        <div class="consent-actions">
+          <button class="btn-consent btn-consent-primary" id="btnConsentAcceptAll" onclick="saveConsentCustom(true)">
+            Accept All (Recommended)
+          </button>
+          <button class="btn-consent btn-consent-secondary" id="btnConsentReject" onclick="saveConsentCustom(false)">
+            Essential Only / Reject Non-Essential
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW A: MASTER MAIN MENU -->
+    <div class="view-container" id="mainMenuView">
+      <header class="menu-header">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <div style="width: 28px; height: 28px; border-radius: 50%; background: linear-gradient(135deg, var(--copper-foil-bright), var(--copper-foil-dark)); color: #090B0E; font-weight: 900; font-size: 11.5px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 8px rgba(200, 100, 50, 0.4);">
+            1
+          </div>
+          <div class="shards-pill">
+            <span>🪟 <strong style="color: var(--copper-foil-glint);" id="menuShards">450 Shards</strong></span>
+            <span>⭐ <strong id="menuStars">12</strong></span>
+          </div>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <!-- Interactive Sound Foley Toggle -->
+          <button class="icon-btn" id="btnSoundToggle" title="Sound Foley" onclick="toggleAudioEngine()">
+            <svg id="soundIconSvg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+            </svg>
+          </button>
+
+          <!-- Interactive Ambient Zen Music Toggle -->
+          <button class="icon-btn" id="btnMusicToggle" title="Zen Music Loop" onclick="toggleZenMusic()">
+            <svg id="musicIconSvg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M9 18V5l12-2v13"></path>
+              <circle cx="6" cy="18" r="3"></circle>
+              <circle cx="18" cy="16" r="3"></circle>
+            </svg>
+          </button>
+
+          <!-- Settings Gear -->
+          <button class="icon-btn" title="Settings" onclick="openModal('settingsModal')">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="12" cy="12" r="3"></circle>
+              <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+            </svg>
+          </button>
+        </div>
+      </header>
+
+      <section class="hero-section" id="heroSection">
+        <div class="title-group">
+          <div class="brand-eyebrow">Solitaire</div>
+          <h1 class="brand-title">Shattered Foil</h1>
+          <div class="brand-subtitle">“Fragments of beauty, brought together.”</div>
+        </div>
+
+        <div class="card-3d-wrapper floating-idle" id="card3d">
+          <div class="card-glass-pane" id="menuHeroCardPane"></div>
+          <div class="deck-badge" id="menuHeroDeckBadge">Classic Copper Foil</div>
+        </div>
+      </section>
+
+      <div class="action-stack">
+        <!-- 1. Primary Hero Action Button -->
+        <button class="btn-action btn-hero" id="btnHeroAction" onclick="handleHeroButtonClick()">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" style="color: var(--copper-foil-bright);">
+              <polygon points="5 3 19 12 5 21 5 3"></polygon>
+            </svg>
+            <div style="text-align: left;">
+              <div class="btn-main-text" id="heroMainText">Play Solitaire</div>
+              <div style="font-size: 9.5px; color: var(--text-muted); font-weight: 500; text-transform: none;" id="heroSubText">Classic Klondike • True Original</div>
+            </div>
+          </div>
+          <span style="font-size: 9.5px; font-weight: 800; padding: 2px 7px; border-radius: 10px; background: rgba(200, 100, 50, 0.2); border: 1px solid var(--copper-foil-bright); color: var(--copper-foil-glint);" id="heroBadgeText">Start</span>
+        </button>
+
+        <!-- 2. Game Modes -->
+        <button class="btn-action" onclick="openModal('quickPlayModal')">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--copper-foil-bright);">
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+              <line x1="8" y1="21" x2="16" y2="21"></line>
+              <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            <span>Game Modes & History</span>
+          </div>
+          <span style="color: var(--copper-foil-bright); font-size: 11.5px;">5 Variations ›</span>
+        </button>
+
+        <!-- 3. Themes Atelier -->
+        <button class="btn-action" onclick="openModal('themesModal')">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--copper-foil-bright);">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"></path>
+            </svg>
+            <span>The Glass Atelier</span>
+          </div>
+          <span style="font-size: 10.5px; color: var(--text-muted);">24 Decks</span>
+        </button>
+
+        <!-- 4. Daily Challenge -->
+        <button class="btn-action" onclick="openModal('dailyModal')">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--copper-foil-bright);">
+              <path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"></path>
+            </svg>
+            <span>Daily Challenge</span>
+          </div>
+          <span style="font-size: 9.5px; font-weight: 800; padding: 2px 7px; border-radius: 10px; background: rgba(240, 142, 88, 0.2); border: 1px solid var(--copper-foil-bright); color: var(--copper-foil-glint);" id="menuDailyStreakTag">🔥 14 Streak</span>
+        </button>
+
+        <!-- 5. Campaign Journey Map -->
+        <button class="btn-action" onclick="openModal('campaignModal')">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--copper-foil-bright);">
+              <polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon>
+              <line x1="8" y1="2" x2="8" y2="18"></line>
+              <line x1="16" y1="6" x2="16" y2="22"></line>
+            </svg>
+            <span>The Glass Journey</span>
+          </div>
+          <span style="font-size: 10.5px; color: var(--copper-foil-bright); font-weight: 800;">Realm II ›</span>
+        </button>
+      </div>
+
+      <footer class="bottom-ad-space">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">
+          <span>Responsive Bottom Display Ad Unit</span>
+        </div>
+      </footer>
+    </div>
+
+    <!-- VIEW B: WORKING TABLETOP GAMEPLAY VIEW -->
+    <div class="view-container view-hidden" id="gameplayView">
+      <header class="game-hud">
+        <button class="hud-menu-btn" onclick="returnToMenu()">
+          <span>‹ Menu</span>
+        </button>
+
+        <div class="hud-center-pill">
+          <span id="hudModeName">Klondike</span>
+          <span style="color: var(--glass-border);">|</span>
+          <span>Score: <strong id="hudScore">0</strong></span>
+          <span style="color: var(--glass-border);">|</span>
+          <span>⏱️ <strong id="hudTimer">00:00</strong></span>
+        </div>
+
+        <div class="hud-action-icons">
+          <button class="hud-action-btn" id="btnSoundToggleGame" onclick="toggleAudioEngine()" title="Toggle Sound Foley">🔊</button>
+          <button class="hud-action-btn" id="btnMusicToggleGame" onclick="toggleZenMusic()" title="Toggle Zen Music">🎵</button>
+          <button class="hud-action-btn" id="btnHint" onclick="giveSmartHint()" title="Hint">💡</button>
+          <button class="hud-action-btn" id="btnUndo" onclick="undoMove()" title="Undo">↩</button>
+          <button class="hud-action-btn" onclick="openModal('gameStepsModal')" title="Steps Log">📜</button>
+          <button class="hud-action-btn" onclick="openModal('settingsModal')" title="Settings">⚙️</button>
+        </div>
+      </header>
+
+      <!-- Main Game Board Tabletop -->
+      <main class="board-area" id="boardArea">
+        <div class="top-grid-row" id="topGridRow">
+          <div class="card-slot" id="fnd-0" data-fnd="0">♠</div>
+          <div class="card-slot" id="fnd-1" data-fnd="1" style="color: var(--glass-red);">♥</div>
+          <div class="card-slot" id="fnd-2" data-fnd="2" style="color: var(--glass-diamond);">♦</div>
+          <div class="card-slot" id="fnd-3" data-fnd="3" style="color: var(--glass-club);">♣</div>
+          <div style="visibility: hidden;"></div>
+          <div class="card-slot" id="wasteSlot">
+            <span style="font-size: 9px; opacity: 0.35;">WASTE</span>
+          </div>
+          <div class="card-slot" id="stockSlot" onclick="drawFromStock()" style="cursor: pointer; position: relative;">
+            <span id="stockIcon" style="font-size: 15px; opacity: 0.5;">🂠</span>
+            <span class="stock-counter-badge" id="stockCountBadge">24</span>
+          </div>
+        </div>
+
+        <div class="tableau-grid-row" id="tableauRow"></div>
+      </main>
+
+      <footer class="bottom-ad-space">
+        <div class="ad-label">Advertisement</div>
+        <div class="ad-placeholder">
+          <span>Responsive Bottom Display Ad Unit</span>
+        </div>
+      </footer>
+    </div>
+
+    <!-- MODALS -->
+    <!-- MODAL 1: GAME MODES -->
+    <div class="modal-overlay" id="quickPlayModal" onclick="closeModalOnBg(event, 'quickPlayModal')">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-title">Game Modes & History</div>
+          <button class="close-btn" onclick="closeModal('quickPlayModal')">✕</button>
+        </div>
+
+        <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px;">Classic Solitaire (The Big Three)</div>
+        
+        <div style="background: rgba(255,255,255,0.04); border: 1.5px solid var(--glass-border); border-radius: 14px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 7px;">
+          <div style="display: flex; align-items: center; gap: 10px; flex: 1; cursor: pointer;" onclick="launchGameMode('klondike')">
+            <div style="font-size: 18px; width: 32px; height: 32px; border-radius: 8px; background: rgba(0,0,0,0.4); border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center;">🂡</div>
+            <div>
+              <div style="font-size: 13px; font-weight: 700;">Klondike (The True Classic)</div>
+              <div style="font-size: 10.5px; color: var(--text-muted);">7 Columns • Draw 1 & Draw 3 • 1896 Gold Rush</div>
+            </div>
+          </div>
+          <button class="info-circle-btn" onclick="showHistory('klondike')" title="History">ℹ</button>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.04); border: 1.5px solid var(--glass-border); border-radius: 14px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 7px;">
+          <div style="display: flex; align-items: center; gap: 10px; flex: 1; cursor: pointer;" onclick="launchGameMode('spider')">
+            <div style="font-size: 18px; width: 32px; height: 32px; border-radius: 8px; background: rgba(0,0,0,0.4); border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center;">🕷️</div>
+            <div>
+              <div style="font-size: 13px; font-weight: 700;">Spider Solitaire</div>
+              <div style="font-size: 10.5px; color: var(--text-muted);">10 Columns • Sequence Clears • 1949 Puzzle</div>
+            </div>
+          </div>
+          <button class="info-circle-btn" onclick="showHistory('spider')" title="History">ℹ</button>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.04); border: 1.5px solid var(--glass-border); border-radius: 14px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px;">
+          <div style="display: flex; align-items: center; gap: 10px; flex: 1; cursor: pointer;" onclick="launchGameMode('freecell')">
+            <div style="font-size: 18px; width: 32px; height: 32px; border-radius: 8px; background: rgba(0,0,0,0.4); border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center;">🏰</div>
+            <div>
+              <div style="font-size: 13px; font-weight: 700;">FreeCell</div>
+              <div style="font-size: 10.5px; color: var(--text-muted);">4 Open Cells • 8 Cascades • Pure Strategy</div>
+            </div>
+          </div>
+          <button class="info-circle-btn" onclick="showHistory('freecell')" title="History">ℹ</button>
+        </div>
+
+        <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px;">Arcade Variations</div>
+
+        <div style="background: rgba(255,255,255,0.04); border: 1.5px solid var(--glass-border); border-radius: 14px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between; margin-bottom: 7px;">
+          <div style="display: flex; align-items: center; gap: 10px; flex: 1; cursor: pointer;" onclick="launchGameMode('tripeaks')">
+            <div style="font-size: 18px; width: 32px; height: 32px; border-radius: 8px; background: rgba(0,0,0,0.4); border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center;">⛰️</div>
+            <div>
+              <div style="font-size: 13px; font-weight: 700;">TriPeaks Mosaic</div>
+              <div style="font-size: 10.5px; color: var(--text-muted);">3 Overlapping Peaks • ±1 Streak Multipliers</div>
+            </div>
+          </div>
+          <button class="info-circle-btn" onclick="showHistory('tripeaks')" title="History">ℹ</button>
+        </div>
+
+        <div style="background: rgba(255,255,255,0.04); border: 1.5px solid var(--glass-border); border-radius: 14px; padding: 10px 12px; display: flex; align-items: center; justify-content: space-between;">
+          <div style="display: flex; align-items: center; gap: 10px; flex: 1; cursor: pointer;" onclick="launchGameMode('pyramid')">
+            <div style="font-size: 18px; width: 32px; height: 32px; border-radius: 8px; background: rgba(0,0,0,0.4); border: 1px solid var(--glass-border); display: flex; align-items: center; justify-content: center;">🔺</div>
+            <div>
+              <div style="font-size: 13px; font-weight: 700;">Pyramid Alignment</div>
+              <div style="font-size: 10.5px; color: var(--text-muted);">28-Card Pyramid • Pair Cards Summing to 13</div>
+            </div>
+          </div>
+          <button class="info-circle-btn" onclick="showHistory('pyramid')" title="History">ℹ</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 2: HISTORICAL LORE POPUP -->
+    <div class="modal-overlay" id="historyModal" onclick="closeModalOnBg(event, 'historyModal')">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-title" id="historyTitle">Game Origin & History</div>
+          <button class="close-btn" onclick="closeModal('historyModal')">✕</button>
+        </div>
+        <div id="historyContent"></div>
+      </div>
+    </div>
+
+    <!-- MODAL 3: THE GLASS ATELIER (24 DECKS) -->
+    <div class="modal-overlay" id="themesModal" onclick="closeModalOnBg(event, 'themesModal')">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-title">The Glass Atelier</div>
+          <button class="close-btn" onclick="closeModal('themesModal')">✕</button>
+        </div>
+
+        <div class="atelier-inspector-box">
+          <div class="atelier-preview-card" id="atelierPreviewCard"></div>
+          <div class="atelier-info-col">
+            <div class="deck-category-badge" id="atelierDeckCollection">Signature Series</div>
+            <div class="deck-inspector-title" id="atelierDeckTitle">Classic Copper Foil</div>
+            <div class="deck-inspector-desc" id="atelierDeckDesc">Hand-cut jewel glass bound by authentic copper foil solder lines.</div>
+            <div class="deck-actions-row">
+              <button class="deck-equip-btn" id="btnEquipDeck" onclick="equipSelectedDeck()">Equip Theme</button>
+              <button class="deck-stamp-btn" id="btnForgeStamp" onclick="forgeSolderStamp()">Forge Stamp (Ad 📺)</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 8px;">Handcrafted Glass Catalog</div>
+        <div class="deck-catalog-grid" id="deckCatalogGrid"></div>
+      </div>
+    </div>
+
+    <!-- MODAL 4: DAILY CHALLENGE -->
+    <div class="modal-overlay" id="dailyModal" onclick="closeModalOnBg(event, 'dailyModal')">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-title">Daily Window Challenge</div>
+          <button class="close-btn" onclick="closeModal('dailyModal')">✕</button>
+        </div>
+        <div style="background: rgba(200, 100, 50, 0.15); border: 1px solid var(--glass-border); border-radius: 14px; padding: 14px; text-align: center; margin-bottom: 12px;">
+          <div style="font-size: 13px; font-weight: 800; color: var(--copper-foil-bright);" id="dailySeedHeader">TODAY'S DEAL • SEED #224</div>
+          <div style="font-size: 11px; color: var(--text-muted); margin-top: 3px;">Solve today's deal to earn your daily star seal.</div>
+          <button class="btn-action btn-hero" style="height: 42px; margin-top: 10px;" onclick="closeModal('dailyModal'); startDailyChallenge();">
+            <div style="width: 100%; text-align: center; font-weight: 800; font-size: 12.5px; color: var(--copper-foil-glint);">PLAY TODAY'S DEAL</div>
+          </button>
+        </div>
+        
+        <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px;">Monthly Streak Calendar</div>
+        <div style="display: flex; justify-content: space-between; font-size: 11.5px; color: var(--text-parchment); background: rgba(0,0,0,0.3); padding: 10px 12px; border-radius: 10px;">
+          <span>🔥 Current Streak: <strong style="color: var(--copper-foil-bright);" id="dailyStreakCounter">14 Days</strong></span>
+          <span>🏆 August Badge: <strong>14/31</strong></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 5: S-CURVE CAMPAIGN MAP -->
+    <div class="modal-overlay" id="campaignModal" onclick="closeModalOnBg(event, 'campaignModal')">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-title">Chronos: The Realm of Cards</div>
+          <button class="close-btn" onclick="closeModal('campaignModal')">✕</button>
+        </div>
+        <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 10px;">Journey through 5 mystical floating fantasy realms:</div>
+        
+        <div class="campaign-scurve-box">
+          <div class="campaign-node-row" onclick="alert('Realm I: Botanical Gardens Completed! ⭐⭐⭐')">
+            <div>
+              <div style="font-size: 12.5px; font-weight: 800; color: #2ECC71;">Realm I: Botanical Gardens</div>
+              <div style="font-size: 10px; color: var(--text-muted);">10/10 Windows Assembled • Complete</div>
+            </div>
+            <span>⭐⭐⭐</span>
+          </div>
+
+          <div class="campaign-node-row active" onclick="closeModal('campaignModal'); launchGameMode('klondike');">
+            <div>
+              <div style="font-size: 12.5px; font-weight: 800; color: var(--copper-foil-bright);">Realm II: Notre-Dame Spires</div>
+              <div style="font-size: 10px; color: var(--text-muted);">Window 18 of 50 • Active Challenge</div>
+            </div>
+            <span style="font-size: 11px; font-weight: 800; color: var(--copper-foil-bright);">[ PLAY ]</span>
+          </div>
+
+          <div class="campaign-node-row" style="opacity: 0.6; cursor: not-allowed;" onclick="alert('Complete Realm II to unlock Crystal Caverns!')">
+            <div>
+              <div style="font-size: 12.5px; font-weight: 800;">Realm III: Crystal Caverns</div>
+              <div style="font-size: 10px; color: var(--text-muted);">Locked 🔒</div>
+            </div>
+            <span>🔒</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 6: SETTINGS -->
+    <div class="modal-overlay" id="settingsModal" onclick="closeModalOnBg(event, 'settingsModal')">
+      <div class="modal-card" style="max-height: 88vh; overflow-y: auto;">
+        <div class="modal-header">
+          <div class="modal-title">Settings & Audio Preferences</div>
+          <button class="close-btn" onclick="closeModal('settingsModal')">✕</button>
+        </div>
+        
+        <div style="display: flex; flex-direction: column; gap: 8px;">
+          <!-- AUDIO & IN-GAME MELODIC SOUNDTRACK SECTION -->
+          <div class="settings-group-title">🎵 In-Game Melodic Soundtrack (10 Loops)</div>
+
+          <!-- Ambient Music Toggle -->
+          <div class="settings-row">
+            <div>
+              <div style="font-size: 13px; font-weight: 700; color: var(--text-parchment);">In-Game Melodies</div>
+              <div style="font-size: 10.5px; color: var(--text-muted);" id="zenMusicStatusLabel">Plays melodic glass celesta loops in game</div>
+            </div>
+            <input type="checkbox" id="toggleZenMusicCheckbox" onchange="toggleZenMusicFromSettings(this.checked)" style="transform: scale(1.2); accent-color: var(--copper-foil-bright);" />
+          </div>
+
+          <!-- Music Volume Slider (Default 60%) -->
+          <div class="settings-slider-row">
+            <div class="settings-slider-header">
+              <span>Soundtrack Volume</span>
+              <strong id="musicVolLabel" style="color: var(--copper-foil-glint);">60%</strong>
+            </div>
+            <input type="range" id="musicVolSlider" min="0" max="100" value="60" class="settings-slider" oninput="setMusicVolume(this.value, false)" onchange="setMusicVolume(this.value, true)" style="touch-action: pan-x;" />
+          </div>
+
+          <!-- 10 Melodic Loops Selector -->
+          <div class="settings-row">
+            <div>
+              <div style="font-size: 13px; font-weight: 700; color: var(--text-parchment);">Active Melody Loop</div>
+              <div style="font-size: 10.5px; color: var(--text-muted);" id="currentLoopSubtitle">Auto-Rotating 10 Melodic Movements</div>
+            </div>
+            <select class="settings-select" id="musicLoopSelect" onchange="setMusicLoopMode(this.value)">
+              <option value="auto">🔄 Auto-Rotate All 10 Loops</option>
+              <option value="0">1. Rose Window Serenade</option>
+              <option value="1">2. Cobalt Spires Rhapsody</option>
+              <option value="2">3. Copper Artisan Waltz</option>
+              <option value="3">4. Tiffany Dragonfly Sparkle</option>
+              <option value="4">5. Favrile Amber Sunset</option>
+              <option value="5">6. Notre-Dame Carillon Bells</option>
+              <option value="6">7. Murano Glass Carnival</option>
+              <option value="7">8. Sainte-Chapelle Sunburst</option>
+              <option value="8">9. Obsidian Midnight Music Box</option>
+              <option value="9">10. Celestial Rose Grand Finale</option>
+            </select>
+          </div>
+
+          <!-- Quick Actions: Next Loop & Test -->
+          <div style="display: flex; gap: 8px; margin: 2px 0;">
+            <button class="action-btn-sm" style="flex: 1; font-size: 11px; padding: 7px; background: rgba(255,255,255,0.06); border: 1px solid var(--copper-foil); border-radius: 8px; color: var(--copper-foil-bright); cursor: pointer;" onclick="skipToNextZenLoop()">
+              ⏭️ Skip to Next Melody
+            </button>
+            <button class="action-btn-sm" style="flex: 1; font-size: 11px; padding: 7px; background: rgba(255,255,255,0.06); border: 1px solid var(--copper-foil); border-radius: 8px; color: var(--copper-foil-bright); cursor: pointer;" onclick="testZenChordPreview()">
+              🎵 Audition Melody
+            </button>
+          </div>
+
+          <!-- FOLEY SFX SECTION -->
+          <div class="settings-group-title">🔔 Glass & Copper Foley SFX</div>
+
+          <!-- Glass Foley Sound FX Toggle -->
+          <div class="settings-row">
+            <div>
+              <div style="font-size: 13px; font-weight: 700; color: var(--text-parchment);">Tactile Foley SFX</div>
+              <div style="font-size: 10.5px; color: var(--text-muted);">Acoustic glass taps, copper snaps & chimes</div>
+            </div>
+            <input type="checkbox" id="toggleSoundCheckbox" onchange="toggleSoundFromSettings(this.checked)" style="transform: scale(1.2); accent-color: var(--copper-foil-bright);" />
+          </div>
+
+          <!-- Sound Foley Volume Slider -->
+          <div class="settings-slider-row">
+            <div class="settings-slider-header">
+              <span>Foley Volume</span>
+              <strong id="soundVolLabel" style="color: var(--copper-foil-glint);">70%</strong>
+            </div>
+            <input type="range" id="soundVolSlider" min="0" max="100" value="70" class="settings-slider" oninput="setSoundVolume(this.value, false)" onchange="setSoundVolume(this.value, true)" style="touch-action: pan-x;" />
+          </div>
+
+          <!-- Quick Foley Test Preview -->
+          <button class="action-btn-sm" style="width: 100%; font-size: 11px; padding: 7px; background: rgba(255,255,255,0.06); border: 1px solid var(--copper-foil); border-radius: 8px; color: var(--copper-foil-bright); cursor: pointer;" onclick="testGlassAudioPreview()">
+            🔔 Test Glass Tap, Copper Snap & Foundation Chime
+          </button>
+
+          <!-- ATMOSPHERE & THEME SECTION -->
+          <div class="settings-group-title">🪟 Visual Atmosphere & Decks</div>
+
+          <!-- Atmosphere & Theme -->
+          <div class="settings-row" style="cursor: pointer;" onclick="openThemeSelector()">
+            <div>
+              <div style="font-size: 13px; font-weight: 700; color: var(--text-parchment);">Atmosphere & Theme</div>
+              <div style="font-size: 10.5px; color: var(--text-muted);" id="currentThemeLabel">Dark Cathedral Oak</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 4px; color: var(--copper-foil-bright); font-size: 12px; font-weight: 700;">
+              <span>Change ›</span>
+            </div>
+          </div>
+
+          <!-- ACCESSIBILITY SECTION -->
+          <div class="settings-group-title">♿ Accessibility & Ergonomics</div>
+
+          <!-- Left-Handed Mode -->
+          <div class="settings-row">
+            <div>
+              <div style="font-size: 13px; font-weight: 700;">Left-Handed Mode</div>
+              <div style="font-size: 10.5px; color: var(--text-muted);">Mirror foundation and stock piles</div>
+            </div>
+            <input type="checkbox" id="toggleLeftHanded" onchange="toggleLeftHandedMode(this.checked)" style="transform: scale(1.2); accent-color: var(--copper-foil-bright);" />
+          </div>
+
+          <!-- 4-Color Suit Palette -->
+          <div class="settings-row">
+            <div>
+              <div style="font-size: 13px; font-weight: 700;">4-Color Suit Palette</div>
+              <div style="font-size: 10.5px; color: var(--text-muted);">High-contrast Blue & Green suits</div>
+            </div>
+            <input type="checkbox" id="toggleFourColor" onchange="toggleFourColorMode(this.checked)" style="transform: scale(1.2); accent-color: var(--copper-foil-bright);" />
+          </div>
+
+          <!-- PRIVACY SECTION -->
+          <div class="settings-group-title">🛡️ Privacy & Compliance</div>
+
+          <!-- Privacy & GDPR Ad Consent -->
+          <div class="settings-row" style="cursor: pointer;" onclick="openPrivacySettings()">
+            <div>
+              <div style="font-size: 13px; font-weight: 700; color: var(--text-parchment);">Privacy & Ad Preferences</div>
+              <div style="font-size: 10.5px; color: var(--text-muted);" id="privacyConsentStatusLabel">Non-Personalized (Strict Privacy)</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 4px; color: var(--copper-foil-bright); font-size: 12px; font-weight: 700;">
+              <span>Manage ›</span>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 8px; font-size: 10px; color: var(--text-muted);">
+            Solitaire: Shattered Foil Edition • v1.0.0<br>
+            Presented by ITTYBITTYBITES Experiences
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 7: THEME SELECTOR MODAL -->
+    <div class="modal-overlay" id="themeSelectModal" onclick="closeModalOnBg(event, 'themeSelectModal')">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-title">Select Atmosphere</div>
+          <button class="close-btn" onclick="closeModal('themeSelectModal')">✕</button>
+        </div>
+
+        <div class="theme-card-option active" id="optTheme-dark" onclick="selectAtmosphere('dark', 'Dark Cathedral Oak')">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div class="theme-thumb-swatch" style="background: #101620;">🪵</div>
+            <div>
+              <div style="font-size: 13px; font-weight: 700; color: var(--text-parchment);">Dark Cathedral Oak</div>
+              <div style="font-size: 10px; color: var(--text-muted);">Signature warm oak with copper gleam</div>
+            </div>
+          </div>
+          <span style="font-size: 11px; color: var(--copper-foil-bright); font-weight: 800;">Active</span>
+        </div>
+
+        <div class="theme-card-option" id="optTheme-sapphire" onclick="selectAtmosphere('sapphire', 'Cathedral Sapphire')">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div class="theme-thumb-swatch" style="background: #09101C; border-color: #74B9FF;">⛪</div>
+            <div>
+              <div style="font-size: 13px; font-weight: 700; color: var(--text-parchment);">Cathedral Sapphire</div>
+              <div style="font-size: 10px; color: var(--text-muted);">Deep cobalt sanctuary with starlight caustics</div>
+            </div>
+          </div>
+          <span style="font-size: 11px; color: var(--text-muted); font-weight: 800;">Select</span>
+        </div>
+
+        <div class="theme-card-option" id="optTheme-amethyst" onclick="selectAtmosphere('amethyst', 'Amethyst Sanctuary')">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div class="theme-thumb-swatch" style="background: #140A1C; border-color: #D47242;">🔮</div>
+            <div>
+              <div style="font-size: 13px; font-weight: 700; color: var(--text-parchment);">Amethyst Sanctuary</div>
+              <div style="font-size: 10px; color: var(--text-muted);">Mystic violet velvet with copper foil highlights</div>
+            </div>
+          </div>
+          <span style="font-size: 11px; color: var(--text-muted); font-weight: 800;">Select</span>
+        </div>
+
+        <div class="theme-card-option" id="optTheme-obsidian" onclick="selectAtmosphere('obsidian', 'Obsidian Noir (OLED)')">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div class="theme-thumb-swatch" style="background: #000000; border-color: #555;">🖤</div>
+            <div>
+              <div style="font-size: 13px; font-weight: 700; color: var(--text-parchment);">Obsidian Noir (OLED)</div>
+              <div style="font-size: 10px; color: var(--text-muted);">Pure black backdrop with glowing translucent glass</div>
+            </div>
+          </div>
+          <span style="font-size: 11px; color: var(--text-muted); font-weight: 800;">Select</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 8: GAME STEPS & MOVE TIMELINE -->
+    <div class="modal-overlay" id="gameStepsModal" onclick="closeModalOnBg(event, 'gameStepsModal')">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-title">Move Timeline & Analysis</div>
+          <button class="close-btn" onclick="closeModal('gameStepsModal')">✕</button>
+        </div>
+        
+        <div class="timeline-scrubber-box">
+          <div style="display: flex; justify-content: space-between; font-size: 11px;">
+            <span>Move Timeline Scrubber</span>
+            <strong style="color: var(--copper-foil-bright);" id="scrubberPosLabel">Step 0 / 0</strong>
+          </div>
+          <input type="range" min="0" max="0" value="0" class="scrubber-slider" id="timelineScrubberRange" oninput="handleScrubTimeline(this.value)" />
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin-bottom: 10px; text-align: center;">
+          <div style="background: rgba(0,0,0,0.35); padding: 6px; border-radius: 10px; border: 1px solid var(--glass-border);">
+            <div style="font-size: 8.5px; color: var(--text-muted); text-transform: uppercase;">Total Moves</div>
+            <div style="font-size: 14px; font-weight: 800; color: var(--copper-foil-glint);" id="stepModalMoves">0</div>
+          </div>
+          <div style="background: rgba(0,0,0,0.35); padding: 6px; border-radius: 10px; border: 1px solid var(--glass-border);">
+            <div style="font-size: 8.5px; color: var(--text-muted); text-transform: uppercase;">Score Delta</div>
+            <div style="font-size: 14px; font-weight: 800; color: var(--copper-foil-glint);" id="stepModalScore">0</div>
+          </div>
+          <div style="background: rgba(0,0,0,0.35); padding: 6px; border-radius: 10px; border: 1px solid var(--glass-border);">
+            <div style="font-size: 8.5px; color: var(--text-muted); text-transform: uppercase;">Time Elapsed</div>
+            <div style="font-size: 14px; font-weight: 800; color: var(--copper-foil-glint);" id="stepModalTime">00:00</div>
+          </div>
+        </div>
+
+        <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px;">Chronological Move Log</div>
+        <div class="steps-timeline-list" id="stepsTimelineList">
+          <div style="color: var(--text-muted); text-align: center; padding: 12px;">No moves recorded yet.</div>
+        </div>
+
+        <div style="margin-top: 10px; display: flex; gap: 8px;">
+          <button class="btn-action" style="height: 38px; font-size: 11px;" onclick="closeModal('gameStepsModal'); startNewDeal();">
+            <span>New Deal (Restart)</span>
+            <span>🔄</span>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 9: VICTORY CELEBRATION -->
+    <div class="modal-overlay" id="victoryModal">
+      <div class="modal-card" style="text-align: center; align-items: center;">
+        <div style="font-size: 42px; margin-bottom: 3px;">🪟✨</div>
+        <h2 style="font-size: 20px; font-weight: 900; color: var(--copper-foil-bright); letter-spacing: 1px; margin-bottom: 2px;">WINDOW ASSEMBLED!</h2>
+        <p style="font-size: 11px; color: var(--text-muted); margin-bottom: 12px;">All 52 glass fragments have been joined into a radiant work of art.</p>
+        
+        <div style="background: rgba(200, 100, 50, 0.15); border: 1px solid var(--glass-border); border-radius: 14px; padding: 10px 14px; width: 100%; max-width: 270px; margin-bottom: 12px;">
+          <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 3px;">
+            <span>Final Score:</span>
+            <strong style="color: var(--copper-foil-glint);" id="vicScore">720</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 3px;">
+            <span>Total Steps:</span>
+            <strong id="vicMoves">64</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 12px;">
+            <span>Time Taken:</span>
+            <strong id="vicTime">02:45</strong>
+          </div>
+        </div>
+
+        <button class="btn-action btn-hero" style="height: 44px; max-width: 270px;" onclick="closeVictoryAndRestart()">
+          <div style="width: 100%; text-align: center; font-size: 13px; color: var(--copper-foil-glint);">PLAY ANOTHER DEAL</div>
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- ==========================================================================
+       COMPLETE JAVASCRIPT ENGINE (ZEN MUSIC, AUDIO FOLEY, 5 GAMES)
+       ========================================================================== -->
   <script>
-    (function () {
-      var pathEl = document.getElementById('scopeStatus');
-      var swEl = document.getElementById('swStatus');
-      var verEl = document.getElementById('versionStatus');
-      pathEl.textContent = 'Path: ' + location.pathname;
-      pathEl.className = 'status ' + (location.pathname.indexOf('/shattered-foil') === 0 ? 'ok' : 'warn');
+    // --- 1. MODAL CONTROLLERS ---
+    function openModal(id) {
+      var openModals = document.querySelectorAll('.modal-overlay.open');
+      for (var i = 0; i < openModals.length; i++) {
+        openModals[i].classList.remove('open');
+        openModals[i].style.display = 'none';
+      }
 
-      fetch('/shattered-foil/app-version.json', { cache: 'no-store' })
-        .then(function (r) { return r.json(); })
-        .then(function (data) {
-          verEl.textContent = 'Cache version: ' + data.build + ' (' + data.version + ')';
-          verEl.className = 'status ok';
-        })
-        .catch(function () {
-          verEl.textContent = 'Cache version: app-version.json missing';
-          verEl.className = 'status warn';
-        });
+      var modal = document.getElementById(id);
+      if (modal) {
+        modal.style.display = 'flex';
+        void modal.offsetWidth;
+        modal.classList.add('open');
+        if (id === 'gameStepsModal') renderStepsTimelineModal();
+        if (id === 'themesModal') renderAtelierUI();
+        if (id === 'settingsModal') updateAudioUIState();
+      }
+    }
 
-      if (!('serviceWorker' in navigator)) {
-        swEl.textContent = 'Service worker: not supported';
-        swEl.className = 'status warn';
+    function closeModal(id) {
+      var modal = document.getElementById(id);
+      if (modal) {
+        modal.classList.remove('open');
+        modal.style.display = 'none';
+      }
+    }
+
+    function closeModalOnBg(e, id) {
+      if (e.target.id === id) {
+        closeModal(id);
+      }
+    }
+
+    // --- 2. ZERO-DEPENDENCY SYNTHESIZED WEB AUDIO & PROCEDURAL ZEN MUSIC ENGINE ---
+    var audioCtx = null;
+    var masterCompressor = null;
+    var masterHighpass = null;
+    var masterGainNode = null;
+    var musicGainNode = null;
+    var sfxGainNode = null;
+
+    var isAudioMuted = (function() {
+      try { return localStorage.getItem('shattered_foil_sound_enabled') === 'false'; } catch(e) { return false; }
+    })();
+
+    var isZenMusicEnabled = (function() {
+      try { return localStorage.getItem('shattered_foil_music_enabled') !== 'false'; } catch(e) { return true; }
+    })();
+
+    var isZenMusicPlaying = false;
+    var musicSchedulerTimer = null;
+    var nextMeasureTime = 0;
+
+    var musicLoopMode = (function() {
+      try { return localStorage.getItem('shattered_foil_music_mode') || 'auto'; } catch(e) { return 'auto'; }
+    })();
+
+    var currentLoopIdx = 0;
+    var currentMeasureInLoopIdx = 0;
+    var loopRepeatCount = 0;
+
+    // Start music volume calibrated to 60% by default
+    var musicVolume = (function() {
+      try { var v = parseFloat(localStorage.getItem('shattered_foil_music_vol')); return (!isNaN(v) && v >= 0 && v <= 1) ? v : 0.60; } catch(e) { return 0.60; }
+    })();
+
+    var sfxVolume = (function() {
+      try { var v = parseFloat(localStorage.getItem('shattered_foil_sfx_vol')); return (!isNaN(v) && v >= 0 && v <= 1) ? v : 0.70; } catch(e) { return 0.70; }
+    })();
+
+    // True Logarithmic / Audio Taper Gain (Smooth human ear perception)
+    function getEffectiveMusicGain() {
+      if (!isZenMusicEnabled) return 0.0001;
+      var g = Math.pow(musicVolume, 2);
+      return Math.max(0.0001, Math.min(1.0, g));
+    }
+
+    function getEffectiveSfxGain() {
+      if (isAudioMuted) return 0.0001;
+      var g = Math.pow(sfxVolume, 2);
+      return Math.max(0.0001, Math.min(1.0, g));
+    }
+
+    var toastTimeout = null;
+    function showToast(message, duration) {
+      duration = duration || 2400;
+      var toast = document.getElementById('glassToast');
+      if (!toast) return;
+      toast.innerHTML = message;
+      toast.classList.add('show');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(function() {
+        toast.classList.remove('show');
+      }, duration);
+    }
+
+    // Precise Note Frequency Map (C2 to C7)
+    var NOTE_MAP = {};
+    (function initNoteMap() {
+      var noteNames = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'Bb', 'B'];
+      for (var oct = 2; oct <= 7; oct++) {
+        for (var n = 0; n < 12; n++) {
+          var midi = (oct + 1) * 12 + n;
+          var freq = 440 * Math.pow(2, (midi - 69) / 12);
+          NOTE_MAP[noteNames[n] + oct] = Math.round(freq * 100) / 100;
+        }
+      }
+      var aliases = {'Db': 'C#', 'Eb': 'D#', 'Gb': 'F#', 'Ab': 'G#', 'A#': 'Bb'};
+      for (var o = 2; o <= 7; o++) {
+        for (var k in aliases) {
+          NOTE_MAP[k + o] = NOTE_MAP[aliases[k] + o];
+        }
+      }
+    })();
+
+    // 10 Melodic, Catchy, Soothing Stained-Glass Soundtrack Loops (Celesta, Marimba, Harp & Carillon)
+    var MELODIC_MUSIC_LOOPS = [
+      {
+        id: 1,
+        title: "Rose Window Serenade",
+        genre: "Glass Celesta & Marimba • C Major",
+        bpm: 116,
+        bass: ['C3', 'F3', 'A3', 'G3'],
+        chords: [['C4', 'E4', 'G4'], ['F3', 'A3', 'C4'], ['A3', 'C4', 'E4'], ['G3', 'B3', 'D4']],
+        melody: [
+          ['C4', 'E4', 'G4', 'B4', 'C5', 'B4', 'G4', 'E4'],
+          ['F4', 'A4', 'C5', 'E5', 'G5', 'E5', 'C5', 'A4'],
+          ['A4', 'C5', 'E5', 'G5', 'A5', 'G5', 'E5', 'C5'],
+          ['G4', 'B4', 'D5', 'G5', 'B5', 'A5', 'G5', 'D5']
+        ]
+      },
+      {
+        id: 2,
+        title: "Cobalt Spires Rhapsody",
+        genre: "Gothic Glass Harp • A Minor",
+        bpm: 112,
+        bass: ['A3', 'E3', 'F3', 'D3'],
+        chords: [['A3', 'C4', 'E4'], ['E3', 'G3', 'B3'], ['F3', 'A3', 'C4'], ['D3', 'F3', 'A3']],
+        melody: [
+          ['A4', 'E5', 'A5', 'C6', 'B5', 'A5', 'E5', 'C5'],
+          ['E4', 'B4', 'E5', 'G5', 'A5', 'G5', 'E5', 'B4'],
+          ['F4', 'C5', 'F5', 'A5', 'C6', 'A5', 'F5', 'C5'],
+          ['D4', 'A4', 'D5', 'F5', 'G5', 'F5', 'D5', 'A4']
+        ]
+      },
+      {
+        id: 3,
+        title: "Copper Artisan Waltz",
+        genre: "Parisian Salon Dance • D Minor",
+        bpm: 124,
+        bass: ['D3', 'G3', 'C3', 'A3'],
+        chords: [['D4', 'F4', 'A4'], ['G3', 'F4', 'B4'], ['C4', 'E4', 'G4'], ['A3', 'E4', 'A4']],
+        melody: [
+          ['D4', 'F4', 'A4', 'D5', 'C5', 'A4', 'F4', 'D4'],
+          ['G4', 'B4', 'D5', 'F5', 'E5', 'D5', 'B4', 'G4'],
+          ['C4', 'E4', 'G4', 'C5', 'D5', 'E5', 'D5', 'C5'],
+          ['A3', 'C#4', 'E4', 'A4', 'C#5', 'B4', 'A4', 'E4']
+        ]
+      },
+      {
+        id: 4,
+        title: "Tiffany Dragonfly Sparkle",
+        genre: "Prismatic Celesta • G Major",
+        bpm: 118,
+        bass: ['G3', 'E3', 'C3', 'D3'],
+        chords: [['G3', 'B3', 'D4'], ['E3', 'G3', 'B3'], ['C3', 'E3', 'G3'], ['D3', 'F#3', 'A3']],
+        melody: [
+          ['G4', 'B4', 'D5', 'E5', 'D5', 'B4', 'G4', 'D4'],
+          ['E4', 'G4', 'B4', 'D5', 'B4', 'G4', 'E4', 'B3'],
+          ['C4', 'E4', 'G4', 'C5', 'G4', 'E4', 'C4', 'G3'],
+          ['D4', 'F#4', 'A4', 'D5', 'C5', 'A4', 'F#4', 'D4']
+        ]
+      },
+      {
+        id: 5,
+        title: "Favrile Amber Sunset",
+        genre: "Mellow Acoustic Rhodes • E Minor",
+        bpm: 104,
+        bass: ['E3', 'C3', 'A3', 'B3'],
+        chords: [['E4', 'G4', 'B4'], ['C4', 'E4', 'G4'], ['A3', 'C4', 'E4'], ['B3', 'D#4', 'F#4']],
+        melody: [
+          ['E4', 'G4', 'B4', 'D5', 'E5', 'B4', 'G4', 'E4'],
+          ['C4', 'E4', 'G4', 'B4', 'D5', 'B4', 'G4', 'E4'],
+          ['A3', 'C4', 'E4', 'G4', 'C5', 'G4', 'E4', 'C4'],
+          ['B3', 'D4', 'F#4', 'A4', 'B4', 'A4', 'F#4', 'D4']
+        ]
+      },
+      {
+        id: 6,
+        title: "Notre-Dame Carillon Bells",
+        genre: "Cathedral Carillon Melodies • F Lydian",
+        bpm: 114,
+        bass: ['F3', 'G3', 'E3', 'A3'],
+        chords: [['F3', 'A3', 'C4'], ['G3', 'B3', 'D4'], ['E3', 'G3', 'B3'], ['A3', 'C4', 'E4']],
+        melody: [
+          ['F4', 'A4', 'C5', 'E5', 'F5', 'E5', 'C5', 'A4'],
+          ['G4', 'B4', 'D5', 'G5', 'D5', 'B4', 'G4', 'D4'],
+          ['E4', 'G4', 'B4', 'E5', 'B4', 'G4', 'E4', 'B3'],
+          ['A4', 'C5', 'E5', 'G5', 'E5', 'C5', 'A4', 'E4']
+        ]
+      },
+      {
+        id: 7,
+        title: "Murano Glass Carnival",
+        genre: "Venetian Baroque Dance • D Minor",
+        bpm: 122,
+        bass: ['D3', 'Bb3', 'F3', 'C3'],
+        chords: [['D4', 'F4', 'A4'], ['Bb3', 'D4', 'F4'], ['F3', 'A3', 'C4'], ['C4', 'E4', 'G4']],
+        melody: [
+          ['D4', 'F4', 'A4', 'D5', 'F5', 'D5', 'A4', 'F4'],
+          ['D4', 'F4', 'Bb4', 'D5', 'F5', 'D5', 'Bb4', 'F4'],
+          ['C4', 'F4', 'A4', 'C5', 'F5', 'C5', 'A4', 'F4'],
+          ['C4', 'E4', 'G4', 'C5', 'E5', 'C5', 'G4', 'E4']
+        ]
+      },
+      {
+        id: 8,
+        title: "Sainte-Chapelle Sunburst",
+        genre: "Royal Court Fanfare • A Major",
+        bpm: 116,
+        bass: ['A3', 'F#3', 'D3', 'E3'],
+        chords: [['A3', 'C#4', 'E4'], ['F#3', 'A3', 'C#4'], ['D3', 'F#3', 'A3'], ['E3', 'G#3', 'B3']],
+        melody: [
+          ['A4', 'C#5', 'E5', 'A5', 'G#5', 'E5', 'C#5', 'A4'],
+          ['F#4', 'A4', 'C#5', 'F#5', 'E5', 'C#5', 'A4', 'F#4'],
+          ['D4', 'F#4', 'A4', 'D5', 'C#5', 'A4', 'F#4', 'D4'],
+          ['E4', 'G#4', 'B4', 'E5', 'D5', 'B4', 'G#4', 'E4']
+        ]
+      },
+      {
+        id: 9,
+        title: "Obsidian Midnight Music Box",
+        genre: "Crystal Music Box Lullaby • B Minor",
+        bpm: 108,
+        bass: ['B3', 'G3', 'E3', 'F#3'],
+        chords: [['B3', 'D4', 'F#4'], ['G3', 'B3', 'D4'], ['E3', 'G3', 'B3'], ['F#3', 'A#3', 'C#4']],
+        melody: [
+          ['B4', 'D5', 'F#5', 'D5', 'B4', 'F#4', 'D4', 'F#4'],
+          ['G4', 'B4', 'D5', 'B4', 'G4', 'D4', 'B3', 'D4'],
+          ['E4', 'G4', 'B4', 'G4', 'E4', 'B3', 'G3', 'B3'],
+          ['F#4', 'A4', 'C#5', 'A4', 'F#4', 'C#4', 'A3', 'C#4']
+        ]
+      },
+      {
+        id: 10,
+        title: "Celestial Rose Grand Finale",
+        genre: "Triumphant Polyphony • C Major",
+        bpm: 120,
+        bass: ['C3', 'B2', 'A2', 'F2'],
+        chords: [['C4', 'E4', 'G4'], ['B3', 'D4', 'G4'], ['A3', 'C4', 'E4'], ['F3', 'A3', 'C4']],
+        melody: [
+          ['C4', 'G4', 'C5', 'E5', 'G5', 'E5', 'C5', 'G4'],
+          ['B3', 'G4', 'B4', 'D5', 'G5', 'D5', 'B4', 'G4'],
+          ['A3', 'E4', 'A4', 'C5', 'E5', 'C5', 'A4', 'E4'],
+          ['F3', 'C4', 'F4', 'A4', 'C5', 'A4', 'F4', 'C4']
+        ]
+      }
+    ];
+
+    function getAudioContext() {
+      if (!audioCtx) {
+        var AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) {
+          audioCtx = new AudioContextClass();
+        }
+      }
+      
+      if (audioCtx) {
+        if (!masterCompressor) {
+          try {
+            // Transparent peak limiter only (-1.0 dB threshold) so volume slider response is 100% true
+            masterCompressor = audioCtx.createDynamicsCompressor();
+            masterCompressor.threshold.setValueAtTime(-1.0, audioCtx.currentTime);
+            masterCompressor.knee.setValueAtTime(6.0, audioCtx.currentTime);
+            masterCompressor.ratio.setValueAtTime(3.0, audioCtx.currentTime);
+            masterCompressor.attack.setValueAtTime(0.003, audioCtx.currentTime);
+            masterCompressor.release.setValueAtTime(0.10, audioCtx.currentTime);
+
+            // Highpass filter at 75 Hz (removes DC rumble)
+            masterHighpass = audioCtx.createBiquadFilter();
+            masterHighpass.type = 'highpass';
+            masterHighpass.frequency.setValueAtTime(75, audioCtx.currentTime);
+            masterHighpass.Q.setValueAtTime(0.707, audioCtx.currentTime);
+
+            masterHighpass.connect(masterCompressor);
+            masterCompressor.connect(audioCtx.destination);
+
+            // Master Gain
+            masterGainNode = audioCtx.createGain();
+            masterGainNode.gain.setValueAtTime(1.0, audioCtx.currentTime);
+            masterGainNode.connect(masterHighpass);
+
+            // Music Gain Bus (Smooth, click-free audio taper)
+            musicGainNode = audioCtx.createGain();
+            var initMusicGain = isZenMusicPlaying ? getEffectiveMusicGain() : 0.0001;
+            musicGainNode.gain.setValueAtTime(initMusicGain, audioCtx.currentTime);
+            musicGainNode.connect(masterGainNode);
+
+            // SFX Gain Bus (Crisp glass taps)
+            sfxGainNode = audioCtx.createGain();
+            var initSfxGain = isAudioMuted ? 0.0001 : getEffectiveSfxGain();
+            sfxGainNode.gain.setValueAtTime(initSfxGain, audioCtx.currentTime);
+            sfxGainNode.connect(masterGainNode);
+          } catch(e) {}
+        }
+        if (audioCtx.state === 'suspended') {
+          audioCtx.resume().catch(function() {});
+        }
+      }
+      return audioCtx;
+    }
+
+    // Unlock audio context on user gesture (does NOT start music on menu!)
+    function unlockAudioOnFirstInteraction() {
+      var ctx = getAudioContext();
+      if (ctx && ctx.state === 'suspended') {
+        ctx.resume().catch(function() {});
+      }
+    }
+
+    window.addEventListener('pointerdown', unlockAudioOnFirstInteraction);
+    window.addEventListener('touchstart', unlockAudioOnFirstInteraction);
+    window.addEventListener('click', unlockAudioOnFirstInteraction);
+    window.addEventListener('keydown', unlockAudioOnFirstInteraction);
+
+    // High-Quality Glass Melodic Voice Synthesizer (Click-Free Smooth Envelope)
+    function playMelodyNote(ctx, noteName, startTime, duration, volScale, customBus) {
+      if (!ctx || !noteName) return;
+      var freq = NOTE_MAP[noteName];
+      if (!freq) return;
+
+      var now = startTime;
+      var dur = duration || 0.28;
+      var vol = (volScale || 0.32);
+
+      try {
+        var osc1 = ctx.createOscillator();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(freq, now);
+
+        var osc2 = ctx.createOscillator();
+        osc2.type = 'sine';
+        osc2.frequency.setValueAtTime(freq * 2, now);
+
+        var gain1 = ctx.createGain();
+        gain1.gain.setValueAtTime(0.0001, now);
+        gain1.gain.linearRampToValueAtTime(vol, now + 0.006);
+        gain1.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+
+        var gain2 = ctx.createGain();
+        gain2.gain.setValueAtTime(0.0001, now);
+        gain2.gain.linearRampToValueAtTime(vol * 0.25, now + 0.006);
+        gain2.gain.exponentialRampToValueAtTime(0.0001, now + dur * 0.7);
+
+        osc1.connect(gain1);
+        osc2.connect(gain2);
+
+        if (customBus === null) {
+          var audGain = ctx.createGain();
+          audGain.gain.setValueAtTime(getEffectiveMusicGain(), now);
+          gain1.connect(audGain);
+          gain2.connect(audGain);
+          audGain.connect(masterGainNode || ctx.destination);
+        } else {
+          var dest = customBus || musicGainNode;
+          gain1.connect(dest || ctx.destination);
+          gain2.connect(dest || ctx.destination);
+        }
+
+        osc1.start(now);
+        osc1.stop(now + dur + 0.02);
+        osc2.start(now);
+        osc2.stop(now + dur + 0.02);
+      } catch(e) {}
+    }
+
+    // Warm Bass Pluck Voice Synthesizer
+    function playBassPluck(ctx, noteName, startTime, duration, volScale, customBus) {
+      if (!ctx || !noteName) return;
+      var freq = NOTE_MAP[noteName];
+      if (!freq) return;
+
+      var now = startTime;
+      var dur = duration || 0.42;
+      var vol = (volScale || 0.38);
+
+      try {
+        var osc = ctx.createOscillator();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, now);
+
+        var gain = ctx.createGain();
+        gain.gain.setValueAtTime(0.0001, now);
+        gain.gain.linearRampToValueAtTime(vol, now + 0.008);
+        gain.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+
+        var filter = ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(500, now);
+
+        osc.connect(gain);
+        gain.connect(filter);
+
+        if (customBus === null) {
+          var audGain = ctx.createGain();
+          audGain.gain.setValueAtTime(getEffectiveMusicGain(), now);
+          filter.connect(audGain);
+          audGain.connect(masterGainNode || ctx.destination);
+        } else {
+          filter.connect(customBus || musicGainNode || ctx.destination);
+        }
+
+        osc.start(now);
+        osc.stop(now + dur + 0.02);
+      } catch(e) {}
+    }
+
+    // Soft Background Harmony Chord
+    function playBackgroundChord(ctx, chordNotes, startTime, duration, volScale, customBus) {
+      if (!ctx || !chordNotes || chordNotes.length === 0) return;
+      var now = startTime;
+      var dur = duration || 0.65;
+      var vol = (volScale || 0.12);
+
+      try {
+        var chordGain = ctx.createGain();
+        chordGain.gain.setValueAtTime(0.0001, now);
+        chordGain.gain.linearRampToValueAtTime(vol, now + 0.04);
+        chordGain.gain.exponentialRampToValueAtTime(0.0001, now + dur);
+
+        var filter = ctx.createBiquadFilter();
+        filter.type = 'lowpass';
+        filter.frequency.setValueAtTime(1200, now);
+
+        chordGain.connect(filter);
+
+        if (customBus === null) {
+          var audGain = ctx.createGain();
+          audGain.gain.setValueAtTime(getEffectiveMusicGain(), now);
+          filter.connect(audGain);
+          audGain.connect(masterGainNode || ctx.destination);
+        } else {
+          filter.connect(customBus || musicGainNode || ctx.destination);
+        }
+
+        for (var i = 0; i < chordNotes.length; i++) {
+          var freq = NOTE_MAP[chordNotes[i]];
+          if (freq) {
+            var osc = ctx.createOscillator();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(freq, now);
+            osc.connect(chordGain);
+            osc.start(now);
+            osc.stop(now + dur + 0.02);
+          }
+        }
+      } catch(e) {}
+    }
+
+    var ZenMusicEngine = {
+      scheduleMeasure: function(isAudition) {
+        var ctx = getAudioContext();
+        if (!ctx) return;
+        if (!isZenMusicPlaying && !isAudition) return;
+
+        var activeLoop = MELODIC_MUSIC_LOOPS[currentLoopIdx % MELODIC_MUSIC_LOOPS.length];
+        var bpm = activeLoop.bpm || 116;
+        var beatDuration = 60 / bpm;
+        var stepDuration = beatDuration / 2;
+
+        var measIdx = isAudition ? 0 : currentMeasureInLoopIdx;
+        var melodyNotes = activeLoop.melody[measIdx % activeLoop.melody.length];
+        var bassNote = activeLoop.bass[measIdx % activeLoop.bass.length];
+        var chordNotes = activeLoop.chords[measIdx % activeLoop.chords.length];
+
+        var measureStartTime = isAudition ? (ctx.currentTime + 0.02) : Math.max(ctx.currentTime + 0.04, nextMeasureTime);
+        var measureDuration = melodyNotes.length * stepDuration;
+        if (!isAudition) {
+          nextMeasureTime = measureStartTime + measureDuration;
+        }
+
+        var customBus = isAudition ? null : musicGainNode;
+
+        // 1. Play Bass Note on measure downbeat
+        playBassPluck(ctx, bassNote, measureStartTime, beatDuration * 1.5, 0.35, customBus);
+
+        // 2. Play Soft Background Chord on beat 1 and beat 3
+        playBackgroundChord(ctx, chordNotes, measureStartTime, beatDuration * 1.8, 0.12, customBus);
+        if (melodyNotes.length >= 8) {
+          playBackgroundChord(ctx, chordNotes, measureStartTime + beatDuration * 2, beatDuration * 1.8, 0.10, customBus);
+        }
+
+        // 3. Play Melodic Glass Celesta Sequence
+        for (var s = 0; s < melodyNotes.length; s++) {
+          var noteTime = measureStartTime + s * stepDuration;
+          var nName = melodyNotes[s];
+          playMelodyNote(ctx, nName, noteTime, stepDuration * 0.95, 0.32, customBus);
+        }
+
+        if (!isAudition) {
+          currentMeasureInLoopIdx++;
+          if (currentMeasureInLoopIdx >= activeLoop.melody.length) {
+            currentMeasureInLoopIdx = 0;
+            loopRepeatCount++;
+            if (loopRepeatCount >= 2) {
+              loopRepeatCount = 0;
+              if (musicLoopMode === 'auto') {
+                currentLoopIdx = (currentLoopIdx + 1) % MELODIC_MUSIC_LOOPS.length;
+                var nextLoop = MELODIC_MUSIC_LOOPS[currentLoopIdx];
+                showToast("🎵 " + nextLoop.id + ". " + nextLoop.title, 2000);
+                updateAudioUIState();
+              }
+            }
+          }
+        }
+      },
+
+      start: function(silentToast) {
+        var ctx = getAudioContext();
+        if (ctx && ctx.state === 'suspended') {
+          ctx.resume().catch(function() {});
+        }
+        
+        isZenMusicPlaying = true;
+        isZenMusicEnabled = true;
+        try { localStorage.setItem('shattered_foil_music_enabled', 'true'); } catch(e) {}
+
+        if (musicGainNode && ctx) {
+          var targetGain = getEffectiveMusicGain();
+          musicGainNode.gain.setTargetAtTime(targetGain, ctx.currentTime, 0.04);
+        }
+
+        nextMeasureTime = ctx ? (ctx.currentTime + 0.05) : 0;
+        this.scheduleMeasure();
+
+        clearInterval(musicSchedulerTimer);
+        musicSchedulerTimer = setInterval(function() {
+          if (!isZenMusicPlaying) return;
+          var actx = getAudioContext();
+          if (actx && nextMeasureTime < actx.currentTime + 0.6) {
+            ZenMusicEngine.scheduleMeasure();
+          }
+        }, 180);
+
+        updateAudioUIState();
+
+        if (!silentToast) {
+          var activeLoop = MELODIC_MUSIC_LOOPS[currentLoopIdx % MELODIC_MUSIC_LOOPS.length];
+          showToast("🎵 " + activeLoop.id + ". " + activeLoop.title);
+        }
+      },
+
+      stop: function(silentToast) {
+        isZenMusicPlaying = false;
+        clearInterval(musicSchedulerTimer);
+
+        var ctx = getAudioContext();
+        if (musicGainNode && ctx) {
+          musicGainNode.gain.setTargetAtTime(0.0001, ctx.currentTime, 0.04);
+        }
+
+        updateAudioUIState();
+
+        if (!silentToast) {
+          showToast("🔇 Soundtrack Muted");
+        }
+      },
+
+      nextLoop: function() {
+        currentLoopIdx = (currentLoopIdx + 1) % MELODIC_MUSIC_LOOPS.length;
+        currentMeasureInLoopIdx = 0;
+        loopRepeatCount = 0;
+        var activeLoop = MELODIC_MUSIC_LOOPS[currentLoopIdx];
+        showToast("🎵 " + activeLoop.id + ". " + activeLoop.title);
+        if (isZenMusicPlaying) {
+          var ctx = getAudioContext();
+          if (ctx) nextMeasureTime = ctx.currentTime + 0.02;
+          this.scheduleMeasure();
+        }
+        updateAudioUIState();
+      }
+    };
+
+    function updateAudioUIState() {
+      var activeLoop = MELODIC_MUSIC_LOOPS[currentLoopIdx % MELODIC_MUSIC_LOOPS.length];
+
+      // Menu Music Button
+      var btnMenu = document.getElementById('btnMusicToggle');
+      if (btnMenu) {
+        btnMenu.classList.toggle('music-active', isZenMusicPlaying);
+        btnMenu.classList.toggle('muted', !isZenMusicEnabled);
+        btnMenu.title = isZenMusicEnabled ? 'In-Game Soundtrack (Enabled for Gameplay)' : 'In-Game Soundtrack (Muted)';
+      }
+
+      // Game HUD Music Button
+      var btnGame = document.getElementById('btnMusicToggleGame');
+      if (btnGame) {
+        btnGame.classList.toggle('music-active', isZenMusicPlaying);
+        btnGame.classList.toggle('muted', !isZenMusicPlaying);
+        btnGame.title = isZenMusicPlaying ? ('Playing: ' + activeLoop.id + '. ' + activeLoop.title + ' - Tap to Mute') : 'Soundtrack (Muted - Tap to Play)';
+      }
+
+      // Menu Sound Button
+      var btnSoundMenu = document.getElementById('btnSoundToggle');
+      var svgSound = document.getElementById('soundIconSvg');
+      if (btnSoundMenu) {
+        btnSoundMenu.classList.toggle('muted', isAudioMuted);
+      }
+      if (svgSound) {
+        if (isAudioMuted) {
+          svgSound.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>';
+        } else {
+          svgSound.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>';
+        }
+      }
+
+      // Game HUD Sound Button
+      var btnSoundGame = document.getElementById('btnSoundToggleGame');
+      if (btnSoundGame) {
+        btnSoundGame.classList.toggle('muted', isAudioMuted);
+        btnSoundGame.textContent = isAudioMuted ? '🔇' : '🔊';
+      }
+
+      // Settings Modal Sync
+      var toggleMusicCheck = document.getElementById('toggleZenMusicCheckbox');
+      if (toggleMusicCheck) toggleMusicCheck.checked = isZenMusicEnabled;
+
+      var toggleSoundCheck = document.getElementById('toggleSoundCheckbox');
+      if (toggleSoundCheck) toggleSoundCheck.checked = !isAudioMuted;
+
+      var musicVolSlider = document.getElementById('musicVolSlider');
+      var musicVolInt = Math.round(musicVolume * 100);
+      if (musicVolSlider) musicVolSlider.value = String(musicVolInt);
+
+      var musicVolLabel = document.getElementById('musicVolLabel');
+      if (musicVolLabel) musicVolLabel.textContent = musicVolInt + '%';
+
+      var soundVolSlider = document.getElementById('soundVolSlider');
+      var soundVolInt = Math.round(sfxVolume * 100);
+      if (soundVolSlider) soundVolSlider.value = String(soundVolInt);
+
+      var soundVolLabel = document.getElementById('soundVolLabel');
+      if (soundVolLabel) soundVolLabel.textContent = soundVolInt + '%';
+
+      var loopSelect = document.getElementById('musicLoopSelect');
+      if (loopSelect) loopSelect.value = musicLoopMode === 'auto' ? 'auto' : String(currentLoopIdx);
+
+      var loopSubtitle = document.getElementById('currentLoopSubtitle');
+      if (loopSubtitle) {
+        if (musicLoopMode === 'auto') {
+          loopSubtitle.textContent = 'Auto-Rotating (Now: ' + activeLoop.id + '. ' + activeLoop.title + ')';
+        } else {
+          loopSubtitle.textContent = 'Locked to: ' + activeLoop.id + '. ' + activeLoop.title;
+        }
+      }
+
+      var musicStatusLabel = document.getElementById('zenMusicStatusLabel');
+      if (musicStatusLabel) {
+        musicStatusLabel.textContent = isZenMusicPlaying 
+          ? ('Playing In-Game: ' + activeLoop.id + '. ' + activeLoop.title)
+          : (isZenMusicEnabled ? 'Ready (Plays in-game)' : 'Muted');
+      }
+    }
+
+    function toggleZenMusic() {
+      if (isZenMusicPlaying) {
+        isZenMusicEnabled = false;
+        try { localStorage.setItem('shattered_foil_music_enabled', 'false'); } catch(e) {}
+        ZenMusicEngine.stop();
+      } else {
+        isZenMusicEnabled = true;
+        try { localStorage.setItem('shattered_foil_music_enabled', 'true'); } catch(e) {}
+        ZenMusicEngine.start();
+        SoundFX.playGlassTap();
+      }
+    }
+
+    function toggleZenMusicFromSettings(enabled) {
+      isZenMusicEnabled = enabled;
+      try { localStorage.setItem('shattered_foil_music_enabled', String(enabled)); } catch(e) {}
+      
+      var gameplayView = document.getElementById('gameplayView');
+      var isInGame = gameplayView && !gameplayView.classList.contains('view-hidden');
+      
+      if (enabled && isInGame) {
+        ZenMusicEngine.start();
+      } else if (!enabled) {
+        ZenMusicEngine.stop();
+      }
+      SoundFX.playGlassTap();
+      updateAudioUIState();
+    }
+
+    // Smooth, click-free real-time volume adjustment (uses exponential timeConstant smoothing)
+    function setMusicVolume(val, isRelease) {
+      var numVal = Math.max(0, Math.min(100, parseInt(val, 10)));
+      musicVolume = numVal / 100;
+      try { localStorage.setItem('shattered_foil_music_vol', String(musicVolume)); } catch(e) {}
+      
+      var ctx = getAudioContext();
+      if (musicGainNode && ctx) {
+        var targetGain = isZenMusicPlaying ? getEffectiveMusicGain() : 0.0001;
+        // setTargetAtTime provides click-free, zipper-free exponential smoothing
+        musicGainNode.gain.setTargetAtTime(targetGain, ctx.currentTime, 0.025);
+      }
+      
+      var lbl = document.getElementById('musicVolLabel');
+      if (lbl) lbl.textContent = numVal + '%';
+
+      var slider = document.getElementById('musicVolSlider');
+      if (slider && slider.value !== String(numVal)) slider.value = String(numVal);
+
+      // Audition only on slider release/finger lift (NEVER during active dragging)
+      if (isRelease && !isZenMusicPlaying && musicVolume > 0.02) {
+        ZenMusicEngine.scheduleMeasure(true);
+      }
+    }
+
+    function setMusicLoopMode(mode) {
+      musicLoopMode = mode;
+      try { localStorage.setItem('shattered_foil_music_mode', mode); } catch(e) {}
+      
+      if (mode !== 'auto') {
+        currentLoopIdx = parseInt(mode, 10);
+        currentMeasureInLoopIdx = 0;
+        loopRepeatCount = 0;
+      }
+      var activeLoop = MELODIC_MUSIC_LOOPS[currentLoopIdx % MELODIC_MUSIC_LOOPS.length];
+      showToast("🎵 Selected: " + activeLoop.id + ". " + activeLoop.title);
+      if (isZenMusicPlaying) {
+        var ctx = getAudioContext();
+        if (ctx) nextMeasureTime = ctx.currentTime + 0.02;
+        ZenMusicEngine.scheduleMeasure();
+      }
+      updateAudioUIState();
+    }
+
+    function skipToNextZenLoop() {
+      ZenMusicEngine.nextLoop();
+    }
+
+    function toggleSoundFromSettings(enabled) {
+      isAudioMuted = !enabled;
+      try { localStorage.setItem('shattered_foil_sound_enabled', String(!isAudioMuted)); } catch(e) {}
+      var ctx = getAudioContext();
+      if (sfxGainNode && ctx) {
+        var targetGain = !isAudioMuted ? getEffectiveSfxGain() : 0.0001;
+        sfxGainNode.gain.setTargetAtTime(targetGain, ctx.currentTime, 0.025);
+      }
+      updateAudioUIState();
+      if (!isAudioMuted) {
+        SoundFX.playGlassTap();
+        showToast("🔊 Foley Sound FX Enabled");
+      } else {
+        showToast("🔇 Foley Sound FX Muted");
+      }
+    }
+
+    function setSoundVolume(val, isRelease) {
+      var numVal = Math.max(0, Math.min(100, parseInt(val, 10)));
+      sfxVolume = numVal / 100;
+      try { localStorage.setItem('shattered_foil_sfx_vol', String(sfxVolume)); } catch(e) {}
+      
+      var ctx = getAudioContext();
+      if (sfxGainNode && ctx && !isAudioMuted) {
+        var targetGain = getEffectiveSfxGain();
+        sfxGainNode.gain.setTargetAtTime(targetGain, ctx.currentTime, 0.025);
+      }
+      
+      var lbl = document.getElementById('soundVolLabel');
+      if (lbl) lbl.textContent = numVal + '%';
+
+      var slider = document.getElementById('soundVolSlider');
+      if (slider && slider.value !== String(numVal)) slider.value = String(numVal);
+
+      if (isRelease && !isAudioMuted && sfxVolume > 0.02) {
+        SoundFX.playGlassTap();
+      }
+    }
+
+    function testGlassAudioPreview() {
+      SoundFX.playGlassTap();
+      setTimeout(function() { SoundFX.playCopperSnap(); }, 140);
+      setTimeout(function() { SoundFX.playFoundationChime(2); }, 280);
+      showToast("🔔 Tested: Glass Tap, Copper Snap & Foundation Chime");
+    }
+
+    function testZenChordPreview() {
+      getAudioContext();
+      ZenMusicEngine.scheduleMeasure(true);
+      var activeLoop = MELODIC_MUSIC_LOOPS[currentLoopIdx % MELODIC_MUSIC_LOOPS.length];
+      showToast("🎵 Auditioning: " + activeLoop.id + ". " + activeLoop.title);
+    }
+
+    var SoundFX = {
+      // Acoustic Glass Tap (Crisp Crystal Overtone with Soft Attack)
+      playGlassTap: function() {
+        if (isAudioMuted) return;
+        var ctx = getAudioContext();
+        if (!ctx) return;
+        try {
+          var now = ctx.currentTime;
+          var osc = ctx.createOscillator();
+          var gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(1350 + Math.random() * 150, now);
+          osc.frequency.exponentialRampToValueAtTime(700, now + 0.07);
+          gain.gain.setValueAtTime(0.0001, now);
+          gain.gain.linearRampToValueAtTime(0.30, now + 0.004);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.07);
+          osc.connect(gain);
+          gain.connect(sfxGainNode || ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.08);
+        } catch (e) {}
+      },
+
+      // Copper Solder Snap / Drop Impact
+      playCopperSnap: function() {
+        if (isAudioMuted) return;
+        var ctx = getAudioContext();
+        if (!ctx) return;
+        try {
+          var now = ctx.currentTime;
+          var osc = ctx.createOscillator();
+          var gain = ctx.createGain();
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(340, now);
+          osc.frequency.exponentialRampToValueAtTime(130, now + 0.08);
+          gain.gain.setValueAtTime(0.0001, now);
+          gain.gain.linearRampToValueAtTime(0.32, now + 0.005);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.08);
+          osc.connect(gain);
+          gain.connect(sfxGainNode || ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.09);
+        } catch (e) {}
+      },
+
+      // Foundation Harmonic Locking Chime
+      playFoundationChime: function(fndIndex) {
+        if (isAudioMuted) return;
+        var ctx = getAudioContext();
+        if (!ctx) return;
+        try {
+          var now = ctx.currentTime;
+          var notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+          var freq = notes[fndIndex % notes.length] || 523.25;
+          
+          var osc = ctx.createOscillator();
+          var gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(freq, now);
+          gain.gain.setValueAtTime(0.0001, now);
+          gain.gain.linearRampToValueAtTime(0.35, now + 0.005);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.60);
+          osc.connect(gain);
+          gain.connect(sfxGainNode || ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.62);
+
+          var osc2 = ctx.createOscillator();
+          var gain2 = ctx.createGain();
+          osc2.type = 'sine';
+          osc2.frequency.setValueAtTime(freq * 2, now);
+          gain2.gain.setValueAtTime(0.0001, now);
+          gain2.gain.linearRampToValueAtTime(0.14, now + 0.005);
+          gain2.gain.exponentialRampToValueAtTime(0.0001, now + 0.35);
+          osc2.connect(gain2);
+          gain2.connect(sfxGainNode || ctx.destination);
+          osc2.start(now);
+          osc2.stop(now + 0.37);
+        } catch (e) {}
+      },
+
+      // Card Flip Sound
+      playCardFlip: function() {
+        if (isAudioMuted) return;
+        var ctx = getAudioContext();
+        if (!ctx) return;
+        try {
+          var now = ctx.currentTime;
+          var osc = ctx.createOscillator();
+          var gain = ctx.createGain();
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(580, now);
+          osc.frequency.exponentialRampToValueAtTime(1100, now + 0.05);
+          gain.gain.setValueAtTime(0.0001, now);
+          gain.gain.linearRampToValueAtTime(0.20, now + 0.004);
+          gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.05);
+          osc.connect(gain);
+          gain.connect(sfxGainNode || ctx.destination);
+          osc.start(now);
+          osc.stop(now + 0.06);
+        } catch (e) {}
+      },
+
+      // Victory Cathedral Chord Fanfare
+      playVictoryFanfare: function() {
+        if (isAudioMuted) return;
+        var ctx = getAudioContext();
+        if (!ctx) return;
+        try {
+          var now = ctx.currentTime;
+          var chord = [523.25, 659.25, 783.99, 1046.50, 1318.51];
+          for (var i = 0; i < chord.length; i++) {
+            var osc = ctx.createOscillator();
+            var gain = ctx.createGain();
+            osc.type = 'triangle';
+            osc.frequency.setValueAtTime(chord[i], now + i * 0.13);
+            gain.gain.setValueAtTime(0.0001, now + i * 0.13);
+            gain.gain.linearRampToValueAtTime(0.25, now + i * 0.13 + 0.005);
+            gain.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.13 + 1.3);
+            osc.connect(gain);
+            gain.connect(sfxGainNode || ctx.destination);
+            osc.start(now + i * 0.13);
+            osc.stop(now + i * 0.13 + 1.32);
+          }
+        } catch (e) {}
+      }
+    };
+
+    function toggleAudioEngine() {
+      isAudioMuted = !isAudioMuted;
+      try { localStorage.setItem('shattered_foil_sound_enabled', String(!isAudioMuted)); } catch(e) {}
+      var ctx = getAudioContext();
+      if (sfxGainNode && ctx) {
+        var targetGain = !isAudioMuted ? getEffectiveSfxGain() : 0.0001;
+        sfxGainNode.gain.setTargetAtTime(targetGain, ctx.currentTime, 0.025);
+      }
+      updateAudioUIState();
+
+      if (!isAudioMuted) {
+        SoundFX.playGlassTap();
+        showToast("🔊 Foley Sound FX Enabled");
+      } else {
+        showToast("🔇 Foley Sound FX Muted");
+      }
+    }
+
+    // --- 3. THE GLASS ATELIER & STAINED GLASS DECKS ---
+    var DECK_CATALOG = [
+      {
+        id: "copper_foil",
+        title: "Classic Copper Foil",
+        collection: "Signature Series",
+        desc: "Hand-cut jewel glass bound by authentic Tiffany copper foil solder lines.",
+        unlocked: true,
+        stamps: 3,
+        renderSVG: function(w, h) {
+          return '<svg viewBox="0 0 120 180" style="width: 100%; height: 100%;">' +
+            '<defs>' +
+              '<linearGradient id="gRuby" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#C0262D"/><stop offset="100%" stop-color="#7B1113"/></linearGradient>' +
+              '<linearGradient id="gCobalt" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#2060A0"/><stop offset="100%" stop-color="#0E2F56"/></linearGradient>' +
+              '<linearGradient id="gAmber" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#F5A623"/><stop offset="100%" stop-color="#B7650C"/></linearGradient>' +
+              '<linearGradient id="gEmerald" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#2E8555"/><stop offset="100%" stop-color="#14462C"/></linearGradient>' +
+            '</defs>' +
+            '<rect x="4" y="4" width="112" height="172" rx="8" fill="#0C121A" stroke="#C86432" stroke-width="2.5"/>' +
+            '<path d="M 10 16 L 60 10 L 60 48 L 10 40 Z" fill="url(#gCobalt)" stroke="#C86432" stroke-width="2"/>' +
+            '<path d="M 110 16 L 60 10 L 60 48 L 110 40 Z" fill="url(#gRuby)" stroke="#C86432" stroke-width="2"/>' +
+            '<circle cx="60" cy="90" r="30" fill="#4A235A" stroke="#C86432" stroke-width="2.5"/>' +
+            '<path d="M 60 60 L 74 76 L 60 90 L 46 76 Z" fill="url(#gAmber)" stroke="#C86432" stroke-width="1.8"/>' +
+            '<path d="M 60 120 L 74 104 L 60 90 L 46 104 Z" fill="url(#gAmber)" stroke="#C86432" stroke-width="1.8"/>' +
+            '<path d="M 28 90 L 46 76 L 60 90 L 46 104 Z" fill="url(#gEmerald)" stroke="#C86432" stroke-width="1.8"/>' +
+            '<path d="M 92 90 L 74 76 L 60 90 L 74 104 Z" fill="url(#gEmerald)" stroke="#C86432" stroke-width="1.8"/>' +
+            '<circle cx="60" cy="90" r="8" fill="url(#gRuby)" stroke="#FFC49B" stroke-width="2"/>' +
+            '<path d="M 10 164 L 60 170 L 60 132 L 10 140 Z" fill="url(#gRuby)" stroke="#C86432" stroke-width="2"/>' +
+            '<path d="M 110 164 L 60 170 L 60 132 L 110 140 Z" fill="url(#gCobalt)" stroke="#C86432" stroke-width="2"/>' +
+          '</svg>';
+        }
+      },
+      {
+        id: "cathedral_azure",
+        title: "Notre-Dame Azure",
+        collection: "Cathedral Gothic",
+        desc: "French high Gothic cathedral lancet window with deep cobalt and ultramarine tones.",
+        unlocked: true,
+        stamps: 3,
+        renderSVG: function(w, h) {
+          return '<svg viewBox="0 0 120 180" style="width: 100%; height: 100%;">' +
+            '<defs>' +
+              '<linearGradient id="cDeepBlue" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#0984E3"/><stop offset="100%" stop-color="#0A3D62"/></linearGradient>' +
+              '<linearGradient id="cSky" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#74B9FF"/><stop offset="100%" stop-color="#2E86DE"/></linearGradient>' +
+            '</defs>' +
+            '<rect x="4" y="4" width="112" height="172" rx="8" fill="#060C14" stroke="#74B9FF" stroke-width="2.5"/>' +
+            '<path d="M 60 12 C 30 40, 14 70, 14 168 L 106 168 C 106 70, 90 40, 60 12 Z" fill="url(#cDeepBlue)" stroke="#A0C4FF" stroke-width="2"/>' +
+            '<circle cx="60" cy="70" r="24" fill="none" stroke="#FFA473" stroke-width="2"/>' +
+            '<circle cx="60" cy="70" r="14" fill="url(#cSky)" stroke="#A0C4FF" stroke-width="1.5"/>' +
+            '<path d="M 60 94 L 60 168 M 38 94 L 38 168 M 82 94 L 82 168" stroke="#A0C4FF" stroke-width="1.8"/>' +
+          '</svg>';
+        }
+      },
+      {
+        id: "tiffany_flora",
+        title: "Tiffany Dragonfly",
+        collection: "Art Nouveau",
+        desc: "Iridescent emerald wings, sapphire waterlilies, and delicate organic copper solder.",
+        unlocked: false,
+        stamps: 2,
+        renderSVG: function(w, h) {
+          return '<svg viewBox="0 0 120 180" style="width: 100%; height: 100%;">' +
+            '<defs>' +
+              '<linearGradient id="tGreen" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00B894"/><stop offset="100%" stop-color="#006266"/></linearGradient>' +
+              '<linearGradient id="tAqua" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#81ECEC"/><stop offset="100%" stop-color="#00CEC9"/></linearGradient>' +
+            '</defs>' +
+            '<rect x="4" y="4" width="112" height="172" rx="8" fill="#071714" stroke="#00B894" stroke-width="2.5"/>' +
+            '<circle cx="60" cy="90" r="32" fill="url(#tGreen)" stroke="#C86432" stroke-width="2"/>' +
+            '<path d="M 20 60 Q 60 75 60 90 Q 60 75 100 60" fill="url(#tAqua)" stroke="#FFC49B" stroke-width="1.8"/>' +
+            '<path d="M 20 120 Q 60 105 60 90 Q 60 105 100 120" fill="url(#tAqua)" stroke="#FFC49B" stroke-width="1.8"/>' +
+            '<line x1="60" y1="30" x2="60" y2="150" stroke="#FFC49B" stroke-width="2.5"/>' +
+          '</svg>';
+        }
+      },
+      {
+        id: "favrile_amber",
+        title: "Favrile Amber Pearl",
+        collection: "Art Nouveau",
+        desc: "Opalescent amber swirls and warm radiant sunburst gold leaf craftsmanship.",
+        unlocked: false,
+        stamps: 1,
+        renderSVG: function(w, h) {
+          return '<svg viewBox="0 0 120 180" style="width: 100%; height: 100%;">' +
+            '<defs>' +
+              '<linearGradient id="fGold" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#FDCB6E"/><stop offset="100%" stop-color="#E17055"/></linearGradient>' +
+            '</defs>' +
+            '<rect x="4" y="4" width="112" height="172" rx="8" fill="#1C1008" stroke="#FDCB6E" stroke-width="2.5"/>' +
+            '<circle cx="60" cy="90" r="36" fill="url(#fGold)" stroke="#D47242" stroke-width="2"/>' +
+            '<circle cx="60" cy="90" r="20" fill="#2D1A0E" stroke="#FFC49B" stroke-width="1.5"/>' +
+            '<circle cx="60" cy="90" r="8" fill="#FDCB6E"/>' +
+          '</svg>';
+        }
+      },
+      {
+        id: "murano_mosaic",
+        title: "Murano Millefiori",
+        collection: "Venetian Murano",
+        desc: "Kaleidoscopic mosaic rosettes in royal purple, turquoise, and gold leaf.",
+        unlocked: false,
+        stamps: 0,
+        renderSVG: function(w, h) {
+          return '<svg viewBox="0 0 120 180" style="width: 100%; height: 100%;">' +
+            '<defs>' +
+              '<linearGradient id="mPurple" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#A29BFE"/><stop offset="100%" stop-color="#6C5CE7"/></linearGradient>' +
+            '</defs>' +
+            '<rect x="4" y="4" width="112" height="172" rx="8" fill="#100A18" stroke="#A29BFE" stroke-width="2.5"/>' +
+            '<circle cx="60" cy="55" r="18" fill="url(#mPurple)" stroke="#FFC49B" stroke-width="1.8"/>' +
+            '<circle cx="60" cy="125" r="18" fill="url(#mPurple)" stroke="#FFC49B" stroke-width="1.8"/>' +
+            '<circle cx="60" cy="90" r="22" fill="#E84393" stroke="#FFC49B" stroke-width="2"/>' +
+          '</svg>';
+        }
+      },
+      {
+        id: "prism_bauhaus",
+        title: "Prismatic Bauhaus",
+        collection: "Modern Prism",
+        desc: "Minimalist optical crystal facets with clean geometric diagonal silver bevels.",
+        unlocked: false,
+        stamps: 0,
+        renderSVG: function(w, h) {
+          return '<svg viewBox="0 0 120 180" style="width: 100%; height: 100%;">' +
+            '<defs>' +
+              '<linearGradient id="pCyan" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#00CEC9"/><stop offset="0984E3"/></linearGradient>' +
+            '</defs>' +
+            '<rect x="4" y="4" width="112" height="172" rx="8" fill="#060E14" stroke="#00CEC9" stroke-width="2.5"/>' +
+            '<polygon points="60,20 105,90 60,160 15,90" fill="url(#pCyan)" stroke="#FFFFFF" stroke-width="2"/>' +
+            '<line x1="15" y1="90" x2="105" y2="90" stroke="#FFFFFF" stroke-width="1.5"/>' +
+            '<line x1="60" y1="20" x2="60" y2="160" stroke="#FFFFFF" stroke-width="1.5"/>' +
+          '</svg>';
+        }
+      }
+    ];
+
+    var equippedDeckId = "copper_foil";
+    var inspectingDeckId = "copper_foil";
+
+    function getEquippedDeck() {
+      for (var i = 0; i < DECK_CATALOG.length; i++) {
+        if (DECK_CATALOG[i].id === equippedDeckId) return DECK_CATALOG[i];
+      }
+      return DECK_CATALOG[0];
+    }
+
+    function renderAtelierUI() {
+      var grid = document.getElementById('deckCatalogGrid');
+      if (!grid) return;
+
+      var html = '';
+      for (var i = 0; i < DECK_CATALOG.length; i++) {
+        var d = DECK_CATALOG[i];
+        var isEquipped = (d.id === equippedDeckId);
+        var isInspecting = (d.id === inspectingDeckId);
+        var activeClass = isInspecting ? 'active-deck' : '';
+        var statusText = isEquipped ? 'Equipped ✓' : (d.unlocked ? 'Unlocked' : (d.stamps + '/3 Stamps ★'));
+
+        html += '<div class="deck-thumb-box ' + activeClass + '" onclick="selectDeckToInspect(\'' + d.id + '\')">' +
+          '<div class="deck-mini-glass-frame">' + d.renderSVG(46, 66) + '</div>' +
+          '<div class="deck-thumb-name">' + d.title + '</div>' +
+          '<div class="deck-thumb-status">' + statusText + '</div>' +
+        '</div>';
+      }
+      grid.innerHTML = html;
+
+      var deck = null;
+      for (var j = 0; j < DECK_CATALOG.length; j++) {
+        if (DECK_CATALOG[j].id === inspectingDeckId) { deck = DECK_CATALOG[j]; break; }
+      }
+      if (!deck) deck = DECK_CATALOG[0];
+
+      document.getElementById('atelierPreviewCard').innerHTML = deck.renderSVG(78, 112);
+      document.getElementById('atelierDeckCollection').textContent = deck.collection;
+      document.getElementById('atelierDeckTitle').textContent = deck.title;
+      document.getElementById('atelierDeckDesc').textContent = deck.desc;
+
+      var btnEquip = document.getElementById('btnEquipDeck');
+      var btnStamp = document.getElementById('btnForgeStamp');
+
+      if (deck.id === equippedDeckId) {
+        btnEquip.textContent = 'Equipped ✓';
+        btnEquip.className = 'deck-equip-btn equipped';
+        btnEquip.disabled = true;
+        btnStamp.style.display = 'none';
+      } else if (deck.unlocked) {
+        btnEquip.textContent = 'Equip Theme';
+        btnEquip.className = 'deck-equip-btn';
+        btnEquip.disabled = false;
+        btnStamp.style.display = 'none';
+      } else {
+        btnEquip.textContent = 'Locked (' + deck.stamps + '/3)';
+        btnEquip.className = 'deck-equip-btn equipped';
+        btnEquip.disabled = true;
+        btnStamp.style.display = 'block';
+      }
+
+      updateMainMenuCardBack();
+    }
+
+    function selectDeckToInspect(deckId) {
+      inspectingDeckId = deckId;
+      SoundFX.playGlassTap();
+      renderAtelierUI();
+    }
+
+    function equipSelectedDeck() {
+      var deck = null;
+      for (var i = 0; i < DECK_CATALOG.length; i++) {
+        if (DECK_CATALOG[i].id === inspectingDeckId) { deck = DECK_CATALOG[i]; break; }
+      }
+      if (!deck || !deck.unlocked) return;
+
+      equippedDeckId = deck.id;
+      SoundFX.playCopperSnap();
+      renderAtelierUI();
+      renderBoard();
+    }
+
+    function forgeSolderStamp() {
+      var deck = null;
+      for (var i = 0; i < DECK_CATALOG.length; i++) {
+        if (DECK_CATALOG[i].id === inspectingDeckId) { deck = DECK_CATALOG[i]; break; }
+      }
+      if (!deck || deck.unlocked) return;
+
+      SoundFX.playCopperSnap();
+      deck.stamps++;
+      if (deck.stamps >= 3) {
+        deck.unlocked = true;
+        deck.stamps = 3;
+        SoundFX.playFoundationChime(2);
+        alert("✨ Masterpiece Window Assembled! " + deck.title + " is now permanently unlocked in your Atelier!");
+      } else {
+        alert("📺 Ad Completed! +1 Solder Stamp forged for " + deck.title + " (" + deck.stamps + "/3 Stamps).");
+      }
+      renderAtelierUI();
+    }
+
+    function updateMainMenuCardBack() {
+      var deck = getEquippedDeck();
+      var menuPane = document.getElementById('menuHeroCardPane');
+      var menuBadge = document.getElementById('menuHeroDeckBadge');
+      if (menuPane) menuPane.innerHTML = deck.renderSVG(168, 242);
+      if (menuBadge) menuBadge.textContent = deck.title;
+      var preloaderCard = document.getElementById('preloaderCardHero');
+      if (preloaderCard) preloaderCard.innerHTML = deck.renderSVG(90, 130);
+    }
+
+    // --- 4. ACCESSIBILITY & SETTINGS TOGGLES ---
+    function toggleLeftHandedMode(isLeftHanded) {
+      document.body.classList.toggle('left-handed', isLeftHanded);
+      SoundFX.playGlassTap();
+    }
+
+    function toggleFourColorMode(isFourColor) {
+      document.body.classList.toggle('four-color-suits', isFourColor);
+      SoundFX.playGlassTap();
+      renderBoard();
+    }
+
+    // --- 5. SAFE STORAGE & LORE DATABASE ---
+    var SafeStorage = {
+      getItem: function(key) {
+        try { return localStorage.getItem(key); } catch (e) { return null; }
+      },
+      setItem: function(key, value) {
+        try { localStorage.setItem(key, value); } catch (e) {}
+      }
+    };
+
+    var HISTORY_LORE = {
+      klondike: {
+        title: "Klondike: The True Original",
+        year: "EST. 1896 • KLONDIKE GOLD RUSH",
+        text: "<strong>Klondike</strong> is the world's quintessential solitaire game. Named during the 1896 Klondike Gold Rush in the Canadian Yukon, prospectors and miners played it by candlelight in rugged taverns during brutal northern winters.<br><br>In 1990, Microsoft bundled Klondike into <strong>Windows 3.0</strong> (coded by intern Wes Cherry), turning it into the most played video game in human history."
+      },
+      spider: {
+        title: "Spider Solitaire: Tactical Sequences",
+        year: "EST. 1949 • 2-DECK PUZZLE",
+        text: "<strong>Spider Solitaire</strong> was created in 1949 and named for its eight foundation legs, resembling a spider. Unlike Klondike, Spider uses two full decks (104 cards) across 10 columns, requiring players to build complete 13-card same-suit runs from King to Ace to clear them from the board."
+      },
+      freecell: {
+        title: "FreeCell: The Solvable Masterpiece",
+        year: "EST. 1978 • PAUL ALFILLE",
+        text: "Created by Paul Alfille in 1978, <strong>FreeCell</strong> revolutionized card puzzles by dealing all 52 cards face-up and providing 4 open holding 'cells'. Unlike luck-dependent games, virtually 100% of all FreeCell deals are mathematically solvable through pure forward planning."
+      },
+      tripeaks: {
+        title: "TriPeaks: The Mosaic Chain",
+        year: "EST. 1989 • ROBERT HOGUE",
+        text: "Invented by Robert Hogue in 1989, <strong>TriPeaks</strong> combines elements of Pyramid and Golf. Cards are arranged in three overlapping pyramid peaks, rewarding quick arithmetic instincts and streak multipliers by clearing cards ±1 in rank."
+      },
+      pyramid: {
+        title: "Pyramid: Ancient Pair Arithmetic",
+        year: "CLASSICAL GEOMETRIC SOLITAIRE",
+        text: "<strong>Pyramid Solitaire</strong> challenges players to dismantle a 28-card triangle by pairing exposed cards whose numeric values sum exactly to 13 (Kings count as 13 alone). It is one of the oldest recorded geometric pairing pastimes."
+      }
+    };
+
+    function showHistory(modeKey) {
+      var lore = HISTORY_LORE[modeKey];
+      if (!lore) return;
+      document.getElementById('historyTitle').textContent = lore.title;
+      document.getElementById('historyContent').innerHTML = 
+        '<div class="history-card">' +
+          '<div class="history-year">' + lore.year + '</div>' +
+          '<p>' + lore.text + '</p>' +
+        '</div>';
+      closeModal('quickPlayModal');
+      openModal('historyModal');
+    }
+
+    // --- 6. THEME CONTROLLER ---
+    var currentActiveTheme = 'dark';
+
+    function openThemeSelector() {
+      closeModal('settingsModal');
+      openModal('themeSelectModal');
+    }
+
+    function selectAtmosphere(themeKey, themeLabel) {
+      currentActiveTheme = themeKey;
+      document.body.setAttribute('data-theme', themeKey);
+      document.getElementById('currentThemeLabel').textContent = themeLabel;
+
+      var cards = document.querySelectorAll('.theme-card-option');
+      for (var i = 0; i < cards.length; i++) {
+        var card = cards[i];
+        var isActive = card.id === ('optTheme-' + themeKey);
+        card.classList.toggle('active', isActive);
+        var labelEl = card.querySelector('span:last-child');
+        if (labelEl) {
+          labelEl.textContent = isActive ? 'Active' : 'Select';
+          labelEl.style.color = isActive ? 'var(--copper-foil-bright)' : 'var(--text-muted)';
+        }
+      }
+
+      closeModal('themeSelectModal');
+      openModal('settingsModal');
+    }
+
+    // --- 7. GDPR & PRIVACY CONSENT MANAGEMENT ---
+    function openPrivacySettings() {
+      closeModal('settingsModal');
+      var adsOptIn = SafeStorage.getItem('shattered_foil_ads_optin') === 'true';
+      var analyticsOptIn = SafeStorage.getItem('shattered_foil_analytics_optin') === 'true';
+      document.getElementById('consentAdsToggle').checked = adsOptIn;
+      document.getElementById('consentAnalyticsToggle').checked = analyticsOptIn;
+      openModal('consentModal');
+    }
+
+    function saveConsentCustom(acceptAll) {
+      if (acceptAll) {
+        document.getElementById('consentAdsToggle').checked = true;
+        document.getElementById('consentAnalyticsToggle').checked = true;
+      }
+      var isAdsAllowed = document.getElementById('consentAdsToggle').checked;
+      var isAnalyticsAllowed = document.getElementById('consentAnalyticsToggle').checked;
+
+      SafeStorage.setItem('shattered_foil_consent_granted', 'true');
+      SafeStorage.setItem('shattered_foil_ads_optin', isAdsAllowed ? 'true' : 'false');
+      SafeStorage.setItem('shattered_foil_analytics_optin', isAnalyticsAllowed ? 'true' : 'false');
+
+      if (!isAdsAllowed) {
+        try {
+          (window.adsbygoogle = window.adsbygoogle || []).requestNonPersonalizedAds = 1;
+        } catch (e) {}
+      }
+
+      var statusLabel = document.getElementById('privacyConsentStatusLabel');
+      if (statusLabel) {
+        statusLabel.textContent = isAdsAllowed ? 'Personalized (Active)' : 'Non-Personalized (Strict Privacy)';
+      }
+      closeModal('consentModal');
+    }
+
+    // --- 8. FTUE ORCHESTRATOR ---
+    var sponsorSplash = document.getElementById('sponsorSplash');
+    var gamePreloader = document.getElementById('gamePreloader');
+    var progressFill = document.getElementById('progressFill');
+    var loaderStatus = document.getElementById('loaderStatus');
+    var consentModal = document.getElementById('consentModal');
+
+    var LOADING_STEPS = [
+      { progress: 25, text: "Calibrating Stained Glass Shaders..." },
+      { progress: 60, text: "Pre-Calculating Solvable Seeds..." },
+      { progress: 90, text: "Tuning Acoustic Glass Soundbank..." },
+      { progress: 100, text: "Studio Ready." }
+    ];
+
+    var hasStartedInit = false;
+    var preloaderFinished = false;
+
+    function skipSplashFast() {
+      if (sponsorSplash) {
+        sponsorSplash.classList.add('fade-out');
+        sponsorSplash.style.display = 'none';
+      }
+      if (!preloaderFinished) {
+        runPreloader(function() { finishPreloaderFlow(); });
+      }
+    }
+
+    function runPreloader(onComplete) {
+      var stepIndex = 0;
+      function nextStep() {
+        if (stepIndex < LOADING_STEPS.length) {
+          var step = LOADING_STEPS[stepIndex];
+          if (progressFill) progressFill.style.width = step.progress + '%';
+          if (loaderStatus) loaderStatus.textContent = step.text;
+          stepIndex++;
+          setTimeout(nextStep, 160);
+        } else {
+          setTimeout(onComplete, 180);
+        }
+      }
+      nextStep();
+    }
+
+    function finishPreloaderFlow() {
+      preloaderFinished = true;
+      if (gamePreloader) {
+        gamePreloader.classList.add('hidden');
+        gamePreloader.style.display = 'none';
+      }
+      
+      var hasConsented = SafeStorage.getItem('shattered_foil_consent_granted');
+      if (!hasConsented) {
+        var adsToggle = document.getElementById('consentAdsToggle');
+        var analyticsToggle = document.getElementById('consentAnalyticsToggle');
+        if (adsToggle) adsToggle.checked = false;
+        if (analyticsToggle) analyticsToggle.checked = false;
+        openModal('consentModal');
+      } else {
+        var isAdsAllowed = SafeStorage.getItem('shattered_foil_ads_optin') === 'true';
+        var statusLabel = document.getElementById('privacyConsentStatusLabel');
+        if (statusLabel) {
+          statusLabel.textContent = isAdsAllowed ? 'Personalized (Active)' : 'Non-Personalized (Strict Privacy)';
+        }
+      }
+    }
+
+    function initExperience() {
+      if (hasStartedInit) return;
+      hasStartedInit = true;
+
+      updateMainMenuCardBack();
+
+      setTimeout(function() {
+        if (sponsorSplash) {
+          sponsorSplash.classList.add('fade-out');
+          sponsorSplash.style.display = 'none';
+        }
+        runPreloader(function() { finishPreloaderFlow(); });
+      }, 1400);
+    }
+
+    if (document.readyState !== 'loading') {
+      initExperience();
+    } else {
+      document.addEventListener('DOMContentLoaded', initExperience);
+    }
+
+    // --- 9. FULL 5-GAME SUITE CONTROLLER & ENGINE ---
+    var SUITS = [
+      { name: 'spades', symbol: '♠', cssClass: 'suit-spades', isRed: false, fndIndex: 0 },
+      { name: 'hearts', symbol: '♥', cssClass: 'suit-hearts', isRed: true, fndIndex: 1 },
+      { name: 'diamonds', symbol: '♦', cssClass: 'suit-diamonds', isRed: true, fndIndex: 2 },
+      { name: 'clubs', symbol: '♣', cssClass: 'suit-clubs', isRed: false, fndIndex: 3 }
+    ];
+    var RANKS = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+
+    var activeGameMode = 'klondike';
+    var stock = [];
+    var waste = [];
+    var foundations = [[], [], [], []];
+    var tableau = [[], [], [], [], [], [], []];
+    var freeCells = [null, null, null, null];
+    var undoHistory = [];
+    var gameStepLogs = [];
+
+    var hasActiveGame = false;
+    var score = 0;
+    var moves = 0;
+    var timerSeconds = 0;
+    var timerInterval = null;
+    var isWon = false;
+
+    function launchGameMode(modeKey) {
+      activeGameMode = modeKey;
+      closeModal('quickPlayModal');
+      startNewDeal();
+    }
+
+    function startDailyChallenge() {
+      activeGameMode = 'klondike';
+      startNewDeal(true);
+    }
+
+    function handleHeroButtonClick() {
+      if (hasActiveGame && !isWon) {
+        resumeActiveGame();
+      } else {
+        startNewDeal();
+      }
+    }
+
+    function startNewDeal(isDaily) {
+      closeModal('quickPlayModal');
+      closeModal('dailyModal');
+      closeModal('victoryModal');
+      closeModal('campaignModal');
+      document.getElementById('mainMenuView').classList.add('view-hidden');
+      document.getElementById('gameplayView').classList.remove('view-hidden');
+
+      hasActiveGame = true;
+      score = 0;
+      moves = 0;
+      timerSeconds = 0;
+      isWon = false;
+      undoHistory = [];
+      gameStepLogs = [];
+
+      var modeTitles = {
+        klondike: 'Klondike',
+        spider: 'Spider Solitaire',
+        freecell: 'FreeCell',
+        tripeaks: 'TriPeaks',
+        pyramid: 'Pyramid'
+      };
+      document.getElementById('hudModeName').textContent = modeTitles[activeGameMode] || 'Klondike';
+
+      startTimer();
+      updateHUD();
+      dealSelectedGameMode(isDaily);
+      recordStep("New " + (modeTitles[activeGameMode] || 'Klondike') + " Deal started", 0);
+      if (isZenMusicEnabled) {
+        ZenMusicEngine.start();
+      }
+    }
+
+    function resumeActiveGame() {
+      closeModal('quickPlayModal');
+      closeModal('dailyModal');
+      document.getElementById('mainMenuView').classList.add('view-hidden');
+      document.getElementById('gameplayView').classList.remove('view-hidden');
+
+      startTimer();
+      updateHUD();
+      renderBoard();
+      if (isZenMusicEnabled) {
+        ZenMusicEngine.start();
+      }
+    }
+
+    function startTimer() {
+      clearInterval(timerInterval);
+      timerInterval = setInterval(function() {
+        timerSeconds++;
+        var mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+        var secs = String(timerSeconds % 60).padStart(2, '0');
+        document.getElementById('hudTimer').textContent = mins + ':' + secs;
+      }, 1000);
+    }
+
+    function returnToMenu() {
+      clearInterval(timerInterval);
+      document.getElementById('gameplayView').classList.add('view-hidden');
+      document.getElementById('mainMenuView').classList.remove('view-hidden');
+      ZenMusicEngine.stop(true);
+      updateMainMenuHeroButton();
+    }
+
+    function updateMainMenuHeroButton() {
+      var heroMainText = document.getElementById('heroMainText');
+      var heroSubText = document.getElementById('heroSubText');
+      var heroBadgeText = document.getElementById('heroBadgeText');
+
+      if (hasActiveGame && !isWon) {
+        heroMainText.textContent = "Resume Game";
+        var mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+        var secs = String(timerSeconds % 60).padStart(2, '0');
+        heroSubText.textContent = activeGameMode.toUpperCase() + " • Score: " + score + " • " + mins + ":" + secs;
+        heroBadgeText.textContent = "Resume ›";
+        heroBadgeText.style.background = "rgba(240, 142, 88, 0.25)";
+      } else {
+        heroMainText.textContent = "Play Solitaire";
+        heroSubText.textContent = "Classic Klondike • True Original";
+        heroBadgeText.textContent = "Start";
+        heroBadgeText.style.background = "rgba(200, 100, 50, 0.2)";
+      }
+    }
+
+    function dealSelectedGameMode(isDaily) {
+      var deck = [];
+      var idCounter = 1;
+      var numDecks = (activeGameMode === 'spider') ? 2 : 1;
+
+      for (var d = 0; d < numDecks; d++) {
+        for (var s = 0; s < 4; s++) {
+          for (var r = 0; r < 13; r++) {
+            deck.push({
+              id: 'card-' + (idCounter++),
+              suitIndex: s,
+              suit: SUITS[s].symbol,
+              cssClass: SUITS[s].cssClass,
+              isRed: SUITS[s].isRed,
+              rankIndex: r + 1,
+              rank: RANKS[r],
+              isFaceUp: false
+            });
+          }
+        }
+      }
+
+      for (var i = deck.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = deck[i];
+        deck[i] = deck[j];
+        deck[j] = temp;
+      }
+
+      var tableauRow = document.getElementById('tableauRow');
+      tableauRow.className = 'tableau-grid-row';
+
+      if (activeGameMode === 'klondike') {
+        tableau = [[], [], [], [], [], [], []];
+        for (var col = 0; col < 7; col++) {
+          for (var row = 0; row <= col; row++) {
+            var c = deck.pop();
+            if (row === col) c.isFaceUp = true;
+            tableau[col].push(c);
+          }
+        }
+        stock = deck;
+        waste = [];
+        foundations = [[], [], [], []];
+      } else if (activeGameMode === 'spider') {
+        tableauRow.classList.add('spider-grid');
+        tableau = [[], [], [], [], [], [], [], [], [], []];
+        for (var cCol = 0; cCol < 10; cCol++) {
+          var count = (cCol < 4) ? 6 : 5;
+          for (var rRow = 0; rRow < count; rRow++) {
+            var sc = deck.pop();
+            if (rRow === count - 1) sc.isFaceUp = true;
+            tableau[cCol].push(sc);
+          }
+        }
+        stock = deck;
+        waste = [];
+        foundations = [[], [], [], []];
+      } else if (activeGameMode === 'freecell') {
+        tableauRow.classList.add('freecell-grid');
+        tableau = [[], [], [], [], [], [], [], []];
+        var fcIndex = 0;
+        while (deck.length > 0) {
+          var fcc = deck.pop();
+          fcc.isFaceUp = true;
+          tableau[fcIndex % 8].push(fcc);
+          fcIndex++;
+        }
+        freeCells = [null, null, null, null];
+        stock = [];
+        waste = [];
+        foundations = [[], [], [], []];
+      } else {
+        tableau = [[], [], [], [], [], [], []];
+        for (var ac = 0; ac < 7; ac++) {
+          for (var ar = 0; ar <= ac; ar++) {
+            var arc = deck.pop();
+            arc.isFaceUp = true;
+            tableau[ac].push(arc);
+          }
+        }
+        stock = deck;
+        waste = [];
+        foundations = [[], [], [], []];
+      }
+
+      renderBoard();
+    }
+
+    function recordStep(description, points) {
+      gameStepLogs.push({
+        stepNumber: gameStepLogs.length + 1,
+        time: document.getElementById('hudTimer').textContent,
+        description: description,
+        points: points > 0 ? ('+' + points) : (points < 0 ? String(points) : '0')
+      });
+    }
+
+    function renderStepsTimelineModal() {
+      document.getElementById('stepModalMoves').textContent = moves;
+      document.getElementById('stepModalScore').textContent = score;
+      document.getElementById('stepModalTime').textContent = document.getElementById('hudTimer').textContent;
+
+      var scrubber = document.getElementById('timelineScrubberRange');
+      var scrubberLabel = document.getElementById('scrubberPosLabel');
+      if (scrubber) {
+        scrubber.max = undoHistory.length;
+        scrubber.value = undoHistory.length;
+      }
+      if (scrubberLabel) {
+        scrubberLabel.textContent = 'Step ' + moves + ' / ' + moves;
+      }
+
+      var listContainer = document.getElementById('stepsTimelineList');
+      if (gameStepLogs.length === 0) {
+        listContainer.innerHTML = '<div style="color: var(--text-muted); text-align: center; padding: 12px;">No moves recorded yet.</div>';
         return;
       }
 
-      navigator.serviceWorker
-        .register('/shattered-foil/sw.js', { scope: '/shattered-foil/' })
-        .then(function (reg) {
-          swEl.textContent = 'Service worker: registered · scope ' + reg.scope;
-          swEl.className = 'status ok';
-        })
-        .catch(function (err) {
-          swEl.textContent = 'Service worker: ' + (err && err.message ? err.message : 'failed');
-          swEl.className = 'status warn';
-        });
-    })();
+      var html = '';
+      for (var i = gameStepLogs.length - 1; i >= 0; i--) {
+        var log = gameStepLogs[i];
+        html += '<div class="step-entry">' +
+          '<span class="step-num">#' + log.stepNumber + '</span>' +
+          '<span class="step-desc">' + log.description + ' <small style="color: var(--text-muted);">(' + log.time + ')</small></span>' +
+          '<span class="step-pts">' + log.points + '</span>' +
+        '</div>';
+      }
+      listContainer.innerHTML = html;
+    }
+
+    function handleScrubTimeline(targetStep) {
+      while (undoHistory.length > targetStep && undoHistory.length > 0) {
+        undoMove();
+      }
+      document.getElementById('scrubberPosLabel').textContent = 'Step ' + targetStep + ' / ' + moves;
+    }
+
+    function saveStateForUndo() {
+      undoHistory.push({
+        stock: JSON.parse(JSON.stringify(stock)),
+        waste: JSON.parse(JSON.stringify(waste)),
+        foundations: JSON.parse(JSON.stringify(foundations)),
+        tableau: JSON.parse(JSON.stringify(tableau)),
+        freeCells: JSON.parse(JSON.stringify(freeCells)),
+        score: score,
+        moves: moves,
+        stepLogsCount: gameStepLogs.length
+      });
+      if (undoHistory.length > 50) undoHistory.shift();
+      document.getElementById('btnUndo').disabled = false;
+    }
+
+    function undoMove() {
+      if (undoHistory.length === 0) return;
+      clearHints();
+      SoundFX.playGlassTap();
+      var prev = undoHistory.pop();
+      stock = prev.stock;
+      waste = prev.waste;
+      foundations = prev.foundations;
+      tableau = prev.tableau;
+      freeCells = prev.freeCells || [null, null, null, null];
+      score = prev.score;
+      moves = prev.moves;
+      gameStepLogs = gameStepLogs.slice(0, prev.stepLogsCount);
+      recordStep("Undid last move", 0);
+      updateHUD();
+      renderBoard();
+      if (undoHistory.length === 0) document.getElementById('btnUndo').disabled = true;
+    }
+
+    function updateHUD() {
+      document.getElementById('hudScore').textContent = score;
+      document.getElementById('btnUndo').disabled = (undoHistory.length === 0);
+    }
+
+    // --- DIRECT TOUCH STOCK & WASTE DRAWING ---
+    function drawFromStock() {
+      if (isWon) return;
+      clearHints();
+      saveStateForUndo();
+      moves++;
+
+      if (stock.length > 0) {
+        var card = stock.pop();
+        card.isFaceUp = true;
+        waste.push(card);
+        SoundFX.playGlassTap();
+        recordStep("Drew " + card.rank + card.suit + " (" + stock.length + " left)", 0);
+      } else {
+        if (waste.length === 0) return;
+        while (waste.length > 0) {
+          var c = waste.pop();
+          c.isFaceUp = false;
+          stock.push(c);
+        }
+        score = Math.max(0, score - 20);
+        SoundFX.playCopperSnap();
+        recordStep("Recycled waste to stock", -20);
+      }
+      updateHUD();
+      renderBoard();
+    }
+
+    // --- RULES VALIDATION ---
+    function canDropOnFoundation(card, fndIndex) {
+      var fndPile = foundations[fndIndex];
+      if (card.suitIndex !== fndIndex) return false;
+      if (fndPile.length === 0) {
+        return card.rankIndex === 1; // Must be Ace
+      }
+      var topCard = fndPile[fndPile.length - 1];
+      return card.rankIndex === topCard.rankIndex + 1;
+    }
+
+    function canDropOnTableau(card, colIndex) {
+      var colPile = tableau[colIndex];
+      if (colPile.length === 0) {
+        return card.rankIndex === 13; // King only
+      }
+      var topCard = colPile[colPile.length - 1];
+      if (!topCard.isFaceUp) return false;
+      return card.isRed !== topCard.isRed && card.rankIndex === topCard.rankIndex - 1;
+    }
+
+    // --- AUTO-MOVE (TOUCH/TAP TO MOVE) ---
+    function tryAutoMoveCard(card, sourceLocation) {
+      if (isWon || !card.isFaceUp) return;
+      clearHints();
+
+      // 1. Foundation Move
+      for (var f = 0; f < 4; f++) {
+        if (canDropOnFoundation(card, f)) {
+          saveStateForUndo();
+          removeCardFromSource(card, sourceLocation);
+          foundations[f].push(card);
+          score += 15;
+          moves++;
+          SoundFX.playFoundationChime(f);
+          recordStep("Moved " + card.rank + card.suit + " to Foundation", 15);
+          afterMoveCleanup(sourceLocation);
+          return;
+        }
+      }
+
+      // 2. Tableau Move
+      for (var c = 0; c < tableau.length; c++) {
+        if (sourceLocation.type === 'tableau' && sourceLocation.col === c) continue;
+        if (canDropOnTableau(card, c)) {
+          saveStateForUndo();
+          var movingStack = getStackFromSource(card, sourceLocation);
+          removeCardFromSource(card, sourceLocation);
+          for (var k = 0; k < movingStack.length; k++) {
+            tableau[c].push(movingStack[k]);
+          }
+          score += 5;
+          moves++;
+          SoundFX.playCopperSnap();
+          recordStep("Placed " + card.rank + card.suit + " on Col " + (c+1), 5);
+          afterMoveCleanup(sourceLocation);
+          return;
+        }
+      }
+    }
+
+    function getStackFromSource(card, source) {
+      if (source.type === 'tableau') {
+        var col = tableau[source.col];
+        var idx = -1;
+        for (var i = 0; i < col.length; i++) {
+          if (col[i].id === card.id) { idx = i; break; }
+        }
+        return col.slice(idx);
+      }
+      return [card];
+    }
+
+    function removeCardFromSource(card, source) {
+      if (source.type === 'waste') {
+        waste.pop();
+      } else if (source.type === 'tableau') {
+        var col = tableau[source.col];
+        var idx = -1;
+        for (var i = 0; i < col.length; i++) {
+          if (col[i].id === card.id) { idx = i; break; }
+        }
+        col.splice(idx);
+      } else if (source.type === 'foundation') {
+        foundations[source.fnd].pop();
+      }
+    }
+
+    function afterMoveCleanup(source) {
+      if (source.type === 'tableau') {
+        var col = tableau[source.col];
+        if (col.length > 0 && !col[col.length - 1].isFaceUp) {
+          col[col.length - 1].isFaceUp = true;
+          score += 10;
+          SoundFX.playGlassTap();
+          recordStep("Turned up card in Col " + (source.col+1), 10);
+        }
+      }
+
+      checkWinCondition();
+      updateHUD();
+      renderBoard();
+    }
+
+    function checkWinCondition() {
+      var totalFoundationCards = 0;
+      for (var f = 0; f < 4; f++) totalFoundationCards += foundations[f].length;
+
+      if (totalFoundationCards === 52) {
+        isWon = true;
+        hasActiveGame = false;
+        clearInterval(timerInterval);
+        score += 500;
+        SoundFX.playVictoryFanfare();
+        recordStep("Window Assembled! Solitaire Complete.", 500);
+        document.getElementById('vicScore').textContent = score;
+        document.getElementById('vicMoves').textContent = moves;
+        var mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
+        var secs = String(timerSeconds % 60).padStart(2, '0');
+        document.getElementById('vicTime').textContent = mins + ':' + secs;
+        openModal('victoryModal');
+        updateMainMenuHeroButton();
+      }
+    }
+
+    function closeVictoryAndRestart() {
+      closeModal('victoryModal');
+      startNewDeal();
+    }
+
+    // --- SMART HINTS ---
+    function giveSmartHint() {
+      clearHints();
+      SoundFX.playGlassTap();
+      if (waste.length > 0) {
+        var topWaste = waste[waste.length - 1];
+        for (var f = 0; f < 4; f++) {
+          if (canDropOnFoundation(topWaste, f)) {
+            highlightCard(topWaste.id);
+            return;
+          }
+        }
+        for (var c = 0; c < tableau.length; c++) {
+          if (canDropOnTableau(topWaste, c)) {
+            highlightCard(topWaste.id);
+            return;
+          }
+        }
+      }
+      for (var cCol = 0; cCol < tableau.length; cCol++) {
+        var col = tableau[cCol];
+        for (var i = 0; i < col.length; i++) {
+          var card = col[i];
+          if (!card.isFaceUp) continue;
+          for (var fFnd = 0; fFnd < 4; fFnd++) {
+            if (i === col.length - 1 && canDropOnFoundation(card, fFnd)) {
+              highlightCard(card.id);
+              return;
+            }
+          }
+          for (var tc = 0; tc < tableau.length; tc++) {
+            if (tc !== cCol && canDropOnTableau(card, tc)) {
+              if (i === 0 && card.rankIndex === 13 && tableau[tc].length === 0) continue;
+              highlightCard(card.id);
+              return;
+            }
+          }
+        }
+      }
+      if (stock.length > 0 || waste.length > 0) {
+        var stockSlot = document.getElementById('stockSlot');
+        stockSlot.style.boxShadow = '0 0 16px #F1C40F';
+        setTimeout(function() { stockSlot.style.boxShadow = ''; }, 2000);
+      }
+    }
+
+    function highlightCard(cardId) {
+      var el = document.querySelector('[data-id="' + cardId + '"]');
+      if (el) {
+        el.classList.add('highlight-hint');
+        setTimeout(function() { el.classList.remove('highlight-hint'); }, 2500);
+      }
+    }
+
+    function clearHints() {
+      var hints = document.querySelectorAll('.highlight-hint');
+      for (var i = 0; i < hints.length; i++) hints[i].classList.remove('highlight-hint');
+    }
+
+    // --- BOARD RENDERING (IMMACULATE CRISP CARDS) ---
+    function renderBoard() {
+      var activeDeck = getEquippedDeck();
+
+      // 1. Stock Pile (Column 6 of Top Grid)
+      var stockSlot = document.getElementById('stockSlot');
+      var countBadge = document.getElementById('stockCountBadge');
+      var stockIcon = document.getElementById('stockIcon');
+
+      if (stock.length > 0) {
+        stockSlot.style.borderColor = 'var(--copper-foil-bright)';
+        stockSlot.innerHTML = activeDeck.renderSVG(100, 142) + '<span class="stock-counter-badge" id="stockCountBadge">' + stock.length + '</span>';
+      } else {
+        stockSlot.style.background = 'rgba(0,0,0,0.25)';
+        stockSlot.style.borderColor = 'rgba(200, 100, 50, 0.35)';
+        stockSlot.innerHTML = '<span style="font-size: 16px; opacity: 0.4;">🔄</span>';
+      }
+
+      // 2. Waste Pile (Column 5 of Top Grid)
+      var wasteSlot = document.getElementById('wasteSlot');
+      wasteSlot.innerHTML = '';
+      if (waste.length > 0) {
+        var topWaste = waste[waste.length - 1];
+        var wasteCard = createCardElement(topWaste, { type: 'waste' });
+        wasteSlot.appendChild(wasteCard);
+      } else {
+        wasteSlot.innerHTML = '<span style="font-size: 8.5px; opacity: 0.35; pointer-events: none;">WASTE</span>';
+      }
+
+      // 3. Foundations (Columns 0-3 of Top Grid)
+      for (var f = 0; f < 4; f++) {
+        var fndSlot = document.getElementById('fnd-' + f);
+        fndSlot.innerHTML = '';
+        if (foundations[f].length > 0) {
+          var topCard = foundations[f][foundations[f].length - 1];
+          var fndCard = createCardElement(topCard, { type: 'foundation', fnd: f });
+          fndSlot.appendChild(fndCard);
+        } else {
+          fndSlot.textContent = SUITS[f].symbol;
+        }
+      }
+
+      // 4. Tableau Columns
+      var colCount = tableau.length;
+      var colContainerParent = document.getElementById('tableauRow');
+      colContainerParent.innerHTML = '';
+
+      for (var c = 0; c < colCount; c++) {
+        var colDiv = document.createElement('div');
+        colDiv.className = 'tableau-col';
+        colDiv.id = 'col-' + c;
+        colDiv.innerHTML = '<div class="card-slot"></div>';
+
+        var colCards = tableau[c];
+        for (var idx = 0; idx < colCards.length; idx++) {
+          var cardEl = createCardElement(colCards[idx], { type: 'tableau', col: c, index: idx });
+          cardEl.style.top = (idx * (colCount > 7 ? 16 : 21)) + 'px';
+          colDiv.appendChild(cardEl);
+        }
+        colContainerParent.appendChild(colDiv);
+      }
+    }
+
+    function createCardElement(card, sourceLocation) {
+      var el = document.createElement('div');
+      el.className = 'game-card ' + card.cssClass + ' ' + (!card.isFaceUp ? 'face-down' : '');
+      el.setAttribute('data-id', card.id);
+
+      if (card.isFaceUp) {
+        // Pure, Luminous Face-Up Design (Zero Center Clutter)
+        el.innerHTML = 
+          '<div class="card-inner-fillet"></div>' +
+          '<div class="card-corner">' +
+            '<span class="card-rank">' + card.rank + '</span>' +
+            '<span class="card-suit">' + card.suit + '</span>' +
+          '</div>' +
+          '<div class="card-corner" style="transform: rotate(180deg);">' +
+            '<span class="card-rank">' + card.rank + '</span>' +
+            '<span class="card-suit">' + card.suit + '</span>' +
+          '</div>';
+
+        el.onclick = function(e) {
+          e.stopPropagation();
+          tryAutoMoveCard(card, sourceLocation);
+        };
+      } else {
+        // Pure Stained Glass Artwork on Card Backs (No suits/numbers)
+        var activeDeck = getEquippedDeck();
+        el.innerHTML = activeDeck.renderSVG(100, 142);
+
+        el.onclick = function(e) {
+          e.stopPropagation();
+          if (sourceLocation.type === 'tableau') {
+            var col = tableau[sourceLocation.col];
+            if (col.length > 0 && col[col.length - 1].id === card.id) {
+              card.isFaceUp = true;
+              SoundFX.playGlassTap();
+              recordStep("Revealed card in Col " + (sourceLocation.col+1), 10);
+              score += 10;
+              updateHUD();
+              renderBoard();
+            }
+          }
+        };
+      }
+
+      return el;
+    }
+
+    // --- 10. 3D HERO CARD TILT CONTROLLER ---
+    var heroSection = document.getElementById('heroSection');
+    var card3d = document.getElementById('card3d');
+    var isInteracting = false;
+    var currentRotateX = 0, currentRotateY = 0;
+    var targetRotateX = 0, targetRotateY = 0;
+    var animFrameId = null;
+
+    function applyTilt(clientX, clientY) {
+      if (!heroSection) return;
+      var rect = heroSection.getBoundingClientRect();
+      var x = clientX - rect.left - rect.width / 2;
+      var y = clientY - rect.top - rect.height / 2;
+      targetRotateX = Math.max(-28, Math.min(28, -(y / (rect.height / 2)) * 26));
+      targetRotateY = Math.max(-28, Math.min(28, (x / (rect.width / 2)) * 26));
+    }
+
+    function smoothUpdate() {
+      if (isInteracting) {
+        currentRotateX += (targetRotateX - currentRotateX) * 0.22;
+        currentRotateY += (targetRotateY - currentRotateY) * 0.22;
+        if (card3d) card3d.style.transform = 'rotateX(' + currentRotateX.toFixed(2) + 'deg) rotateY(' + currentRotateY.toFixed(2) + 'deg) scale(1.06)';
+        animFrameId = requestAnimationFrame(smoothUpdate);
+      }
+    }
+
+    if (heroSection) {
+      heroSection.addEventListener('pointerdown', function(e) {
+        isInteracting = true;
+        if (card3d) card3d.classList.remove('floating-idle');
+        try { heroSection.setPointerCapture(e.pointerId); } catch(err) {}
+        applyTilt(e.clientX, e.clientY);
+        currentRotateX = targetRotateX;
+        currentRotateY = targetRotateY;
+        if (card3d) card3d.style.transform = 'rotateX(' + currentRotateX.toFixed(2) + 'deg) rotateY(' + currentRotateY.toFixed(2) + 'deg) scale(1.06)';
+        if (!animFrameId) animFrameId = requestAnimationFrame(smoothUpdate);
+      });
+
+      heroSection.addEventListener('pointermove', function(e) {
+        if (isInteracting || e.pointerType === 'mouse') {
+          if (!isInteracting) {
+            if (card3d) card3d.classList.remove('floating-idle');
+            isInteracting = true;
+            animFrameId = requestAnimationFrame(smoothUpdate);
+          }
+          applyTilt(e.clientX, e.clientY);
+        }
+      });
+
+      function resetTilt(e) {
+        if (isInteracting) {
+          isInteracting = false;
+          if (e && e.pointerId) {
+            try { heroSection.releasePointerCapture(e.pointerId); } catch(err) {}
+          }
+          if (animFrameId) {
+            cancelAnimationFrame(animFrameId);
+            animFrameId = null;
+          }
+          if (card3d) {
+            card3d.style.transition = 'transform 0.5s cubic-bezier(0.25, 1, 0.5, 1)';
+            card3d.style.transform = '';
+            setTimeout(function() {
+              if (card3d) {
+                card3d.style.transition = '';
+                card3d.classList.add('floating-idle');
+              }
+            }, 500);
+          }
+        }
+      }
+
+      heroSection.addEventListener('pointerup', resetTilt);
+      heroSection.addEventListener('pointercancel', resetTilt);
+      heroSection.addEventListener('pointerleave', function(e) {
+        if (e.pointerType === 'mouse') resetTilt(e);
+      });
+    }
+
+    if (window.DeviceOrientationEvent && typeof window.DeviceOrientationEvent.requestPermission !== 'function') {
+      window.addEventListener('deviceorientation', function(e) {
+        if (!isInteracting && e.gamma !== null && e.beta !== null) {
+          var tiltX = Math.max(-20, Math.min(20, (e.beta - 45) * 0.5));
+          var tiltY = Math.max(-20, Math.min(20, e.gamma * 0.6));
+          if (card3d) {
+            card3d.classList.remove('floating-idle');
+            card3d.style.transform = 'rotateX(' + tiltX.toFixed(2) + 'deg) rotateY(' + tiltY.toFixed(2) + 'deg)';
+          }
+        }
+      });
+    }
   </script>
 </body>
 </html>
