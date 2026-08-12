@@ -1,0 +1,39 @@
+{
+  "id": "solitaire-shattered-foil",
+  "title": "Solitaire: Shattered Foil Edition",
+  "description": "Fragments of beauty, brought together.",
+  "summary": "A contemplative solitaire experience inspired by the art of stained glass and Tiffany copper-foil craftsmanship. Reimagines classic card gameplay with translucent colored glass, copper solder seams, and rich historical variations.",
+  "category": "games",
+  "module": "solitaire-shattered-foil.ts",
+  "tags": [
+    "solitaire",
+    "cards",
+    "klondike",
+    "stained-glass",
+    "relaxing",
+    "strategy",
+    "classic",
+    "tactile"
+  ],
+  "searchKeywords": [
+    "solitaire",
+    "shattered foil",
+    "klondike",
+    "spider solitaire",
+    "freecell",
+    "stained glass",
+    "cards",
+    "patience",
+    "copper foil",
+    "tiffany glass"
+  ],
+  "estimatedDuration": "3–5 min",
+  "returnValue": "Mindful, tactile card puzzles, historical solitaire lineage, and 24 handcrafted stained-glass deck collections.",
+  "accessibility": {
+    "keyboard": true,
+    "screenReader": true,
+    "contrast": true,
+    "leftHandedMode": true,
+    "fourColorSuits": true
+  }
+}
