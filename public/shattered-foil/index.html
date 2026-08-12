@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <meta name="theme-color" content="#090B0E" />
   <title>Solitaire: Shattered Foil Edition</title>
   <style>
@@ -121,33 +121,56 @@
       --shadow-color: rgba(0, 0, 0, 0.98);
     }
 
+    html, body {
+      width: 100%;
+      height: 100%;
+      min-height: 100dvh;
+      min-height: 100svh;
+    }
+
     body {
       background-color: var(--bg-canvas);
       color: var(--text-parchment);
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Georgia, serif;
-      min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       justify-content: center;
-      align-items: center;
-      padding: 6px;
+      align-items: stretch;
+      padding: 0;
       overflow: hidden;
       transition: background-color 0.4s ease, color 0.4s ease;
     }
 
-    /* Standalone Mobile App Frame */
+    /* Standalone Mobile App Frame — fill the real device; desktop keeps a phone preview */
     .app-frame {
       width: 100%;
-      max-width: 420px;
-      height: 840px;
-      max-height: 98vh;
+      max-width: none;
+      height: 100dvh;
+      height: 100svh;
+      max-height: none;
       background: var(--bg-workbench-vignette);
-      border: 1.5px solid var(--copper-foil);
-      border-radius: 32px;
+      border: none;
+      border-radius: 0;
       display: flex;
       flex-direction: column;
       position: relative;
       overflow: hidden;
-      box-shadow: 0 25px 60px -15px var(--shadow-color), 0 0 0 1px rgba(200, 100, 50, 0.25);
+      box-shadow: none;
+    }
+
+    @media (min-width: 520px) and (min-height: 720px) {
+      body {
+        align-items: center;
+        padding: 12px;
+      }
+      .app-frame {
+        width: min(420px, 100%);
+        height: min(840px, calc(100dvh - 24px));
+        max-height: calc(100dvh - 24px);
+        border: 1.5px solid var(--copper-foil);
+        border-radius: 32px;
+        box-shadow: 0 25px 60px -15px var(--shadow-color), 0 0 0 1px rgba(200, 100, 50, 0.25);
+      }
     }
 
     .app-frame::before {
@@ -343,6 +366,7 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.25s ease;
+      padding-top: max(12px, env(safe-area-inset-top));
     }
 
     .consent-overlay.open {
@@ -463,7 +487,7 @@
 
     /* 4. MAIN MENU */
     .menu-header {
-      padding: 14px 18px 10px;
+      padding: max(14px, env(safe-area-inset-top)) 18px 10px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -757,8 +781,9 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 8px 12px;
-      height: 48px;
+      padding: max(8px, env(safe-area-inset-top)) 12px 8px;
+      min-height: 48px;
+      height: auto;
       background: var(--glass-panel);
       border-bottom: 1.5px solid var(--glass-border);
       backdrop-filter: blur(16px);
@@ -1017,7 +1042,9 @@
       position: relative;
       z-index: 10;
       width: 100%;
-      height: 50px;
+      min-height: 50px;
+      height: auto;
+      padding-bottom: max(2px, env(safe-area-inset-bottom));
       background: var(--ad-bg);
       border-top: 1px solid var(--glass-border);
       display: flex;
@@ -1893,8 +1920,7 @@
             </select>
           </div>
 
-          <!-- Quick Actions: Next Loop & Test -->
-          <div style="display: flex; gap: 8px; margin: 2px 0;">
+          <!--; gap: 8px; margin: 2px 0;">
             <button class="action-btn-sm" style="flex: 1; font-size: 11px; padding: 7px; background: rgba(255,255,255,0.06); border: 1px solid var(--copper-foil); border-radius: 8px; color: var(--copper-foil-bright); cursor: pointer;" onclick="skipToNextZenLoop()">
               ⏭️ Skip to Next Melody
             </button>
@@ -4242,6 +4268,19 @@
         }
       });
     }
+  </script>
+</body>
+</html>
+  }
+  </script>
+</body>
+</html>
+  });
+    }
+  </script>
+</body>
+</html>
+  }
   </script>
 </body>
 </html>
