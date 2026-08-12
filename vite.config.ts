@@ -1,5 +1,53 @@
+import fs from 'node:fs';
+import path from 'node:path';
 import { defineConfig } from 'vite';
 import { VitePWA } from 'vite-plugin-pwa';
+
+function serveIsolatedSubSites() {
+  const roots = [{ prefix: '/shattered-foil', dir: path.resolve('public/shattered-foil') }];
+
+  const serve = (req, res, next) => {
+    const url = (req.url || '').split('?')[0];
+    for (const site of roots) {
+      if (url === site.prefix || url.startsWith(`${site.prefix}/`)) {
+        let rel = url.slice(site.prefix.length) || '/';
+        if (rel === '/') rel = '/index.html';
+        const file = path.join(site.dir, rel);
+        if (fs.existsSync(file) && fs.statSync(file).isFile()) {
+          const ext = path.extname(file);
+          const types = {
+            '.html': 'text/html; charset=utf-8',
+            '.js': 'text/javascript; charset=utf-8',
+            '.json': 'application/json; charset=utf-8',
+            '.css': 'text/css; charset=utf-8',
+          };
+          res.setHeader('Content-Type', types[ext] || 'application/octet-stream');
+          res.setHeader('Cache-Control', 'no-store');
+          fs.createReadStream(file).pipe(res);
+          return;
+        }
+        const fallback = path.join(site.dir, '404.html');
+        if (fs.existsSync(fallback)) {
+          res.statusCode = 404;
+          res.setHeader('Content-Type', 'text/html; charset=utf-8');
+          fs.createReadStream(fallback).pipe(res);
+          return;
+        }
+      }
+    }
+    next();
+  };
+
+  return {
+    name: 'serve-isolated-subsites',
+    configureServer(server) {
+      server.middlewares.use(serve);
+    },
+    configurePreviewServer(server) {
+      server.middlewares.use(serve);
+    },
+  };
+}
 
 export default defineConfig({
   base: '/',
@@ -15,6 +63,7 @@ export default defineConfig({
       input: {
         main: 'index.html',
         yearglass: 'yearglass.html',
+        shatteredFoil: 'shattered-foil.html',
       },
       output: {
         entryFileNames: 'assets/[name]-[hash].js',
@@ -24,6 +73,7 @@ export default defineConfig({
     },
   },
   plugins: [
+    serveIsolatedSubSites(),
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: 'auto',
@@ -39,24 +89,9 @@ export default defineConfig({
         start_url: '/',
         scope: '/',
         icons: [
-          {
-            src: 'icons/icon-192.png',
-            sizes: '192x192',
-            type: 'image/png',
-            purpose: 'any',
-          },
-          {
-            src: 'icons/icon-512.png',
-            sizes: '512x512',
-            type: 'image/png',
-            purpose: 'any',
-          },
-          {
-            src: 'icons/maskable-192.png',
-            sizes: '192x192',
-            type: 'image/png',
-            purpose: 'maskable',
-          },
+          { src: 'icons/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any' },
+          { src: 'icons/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any' },
+          { src: 'icons/maskable-192.png', sizes: '192x192', type: 'image/png', purpose: 'maskable' },
         ],
         shortcuts: [
           {
@@ -80,6 +115,7 @@ export default defineConfig({
         skipWaiting: true,
         clientsClaim: true,
         globPatterns: ['**/*.{js,css,html,ico,png,svg,json,woff2,webmanifest}'],
+        globIgnores: ['**/shattered-foil/**', '**/yearglass/**', '**/experience/yearglass/**'],
         navigateFallback: 'index.html',
         navigateFallbackDenylist: [
           /^\/prosumer-matrix/,
@@ -88,6 +124,9 @@ export default defineConfig({
           /^\/yearglass-sanctuary/,
           /^\/yearglass/,
           /^\/experience\/yearglass/,
+          /^\/shattered-foil/,
+          /^\/shattered-foil\.html/,
+          /^\/ITTYBITTYBITES-Shattered-Foil/,
         ],
         runtimeCaching: [
           {

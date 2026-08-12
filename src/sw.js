@@ -2,13 +2,22 @@
 // Root Site Service Worker (ITTYBITTYBITES.github.io)
 // ============================================================================
 // This service worker handles caching for the root site.
-// IMPORTANT: It excludes /prosumer-matrix/ paths to allow
-// that subdirectory to manage its own service worker.
+// IMPORTANT: Isolated sub-sites (/prosumer-matrix, /yearglass-sanctuary,
+// /yearglass, /shattered-foil) manage their own workers and caches.
 // ============================================================================
 
-const CACHE_NAME = 'ittybittybites-root-v1';
-const STATIC_CACHE = 'ittybittybites-static-v1';
-const DYNAMIC_CACHE = 'ittybittybites-dynamic-v1';
+const CACHE_NAME = 'ittybittybites-root-v2';
+const STATIC_CACHE = 'ittybittybites-static-v2';
+const DYNAMIC_CACHE = 'ittybittybites-dynamic-v2';
+
+const EXTERNAL_SCOPES = [
+  '/prosumer-matrix',
+  '/yearglass-sanctuary',
+  '/yearglass',
+  '/experience/yearglass',
+  '/shattered-foil',
+  '/ITTYBITTYBITES-Shattered-Foil',
+];
 
 // Assets to cache immediately on install
 const STATIC_ASSETS = [
@@ -73,9 +82,9 @@ self.addEventListener('fetch', (event) => {
     return;
   }
   
-  // CRITICAL: Skip /prosumer-matrix/ paths - let that site manage its own SW
-  if (url.pathname.startsWith('/prosumer-matrix/')) {
-    console.log('[RootSite SW] Skipping /prosumer-matrix/ request - letting prosumer-matrix SW handle it');
+  // CRITICAL: Skip isolated sub-sites so each can keep its own worker + cache.
+  if (EXTERNAL_SCOPES.some((scope) => url.pathname === scope || url.pathname.startsWith(`${scope}/`))) {
+    console.log('[RootSite SW] Skipping isolated sub-site request:', url.pathname);
     return;
   }
   

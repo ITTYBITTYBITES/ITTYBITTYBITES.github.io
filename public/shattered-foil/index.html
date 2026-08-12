@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Shattered Foil — Test Sub-site</title>
+  <meta name="description" content="Standalone Shattered Foil test page. Isolated from the ITTYBITTYBITES library PWA." />
+  <meta name="theme-color" content="#0A0E14" />
+  <meta name="robots" content="noindex" />
+  <link rel="canonical" href="https://ittybittybites.github.io/shattered-foil/" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <script src="/shattered-foil/version-check.js?v=sf-20260812-v2"></script>
+  <style>
+    :root {
+      --bg: #0A0E14;
+      --panel: #121821;
+      --line: rgba(200, 100, 50, 0.35);
+      --copper: #C86432;
+      --amber: #F08E58;
+      --text: #F3E6D8;
+      --muted: #8E98A8;
+      --ok: #3DDC97;
+      --font-ui: system-ui, -apple-system, Segoe UI, sans-serif;
+      --font-serif: Georgia, "Times New Roman", serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; background: var(--bg); color: var(--text); font-family: var(--font-ui); }
+    body {
+      min-height: 100dvh;
+      background:
+        radial-gradient(circle at 50% 0%, #1a2738 0%, transparent 42%),
+        radial-gradient(circle at 80% 80%, rgba(200, 100, 50, 0.12), transparent 36%),
+        var(--bg);
+    }
+    .wrap { max-width: 860px; margin: 0 auto; padding: 2rem 1.25rem 4rem; }
+    .eyebrow { color: var(--copper); letter-spacing: 0.18em; text-transform: uppercase; font-size: 0.75rem; font-weight: 700; margin: 0 0 0.6rem; }
+    h1 { font-family: var(--font-serif); font-weight: 700; font-size: clamp(1.8rem, 4vw, 2.6rem); margin: 0 0 0.4rem; }
+    .lead { font-family: var(--font-serif); font-style: italic; color: var(--amber); font-size: 1.15rem; margin: 0 0 1rem; }
+    p { line-height: 1.6; color: var(--muted); }
+    .badge {
+      display: inline-block;
+      padding: 0.25rem 0.7rem;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      color: var(--amber);
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .grid { display: grid; gap: 0.9rem; margin: 1.5rem 0; }
+    @media (min-width: 700px) { .grid { grid-template-columns: 1fr 1fr; } }
+    .card {
+      background: color-mix(in srgb, var(--panel) 92%, black);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1rem 1.1rem;
+    }
+    .card h2 { margin: 0 0 0.55rem; font-size: 0.95rem; color: var(--amber); }
+    .status { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.82rem; color: var(--text); }
+    .ok { color: var(--ok); }
+    .warn { color: var(--amber); }
+    ul { margin: 0; padding-left: 1.1rem; color: var(--muted); }
+    li { margin: 0.35rem 0; }
+    a { color: var(--amber); }
+    a.btn {
+      display: inline-block;
+      margin: 0.2rem 0.4rem 0.2rem 0;
+      padding: 0.55rem 0.95rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+    a.btn.primary { background: linear-gradient(135deg, #C86432, #7A3617); color: #fff; }
+    a.btn.ghost { border: 1px solid var(--line); color: var(--amber); }
+    footer { margin-top: 2rem; font-size: 0.8rem; color: var(--muted); }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <p class="eyebrow">Artisan Card Lounge · Isolated Sub-site</p>
+    <h1>Solitaire: Shattered Foil</h1>
+    <p class="lead">“Fragments of beauty, brought together.”</p>
+    <span class="badge" id="pageBadge">Test page · /shattered-foil/</span>
+    <p>
+      This is a standalone GitHub Pages folder, same pattern as
+      <a href="https://ittybittybites.github.io/prosumer-matrix/">/prosumer-matrix/</a>
+      and <a href="https://ittybittybites.github.io/yearglass-sanctuary/">/yearglass-sanctuary/</a>.
+      It has its own 404, scoped service worker, and cache version key so the root library PWA cannot swallow it.
+    </p>
+
+    <div class="grid">
+      <section class="card">
+        <h2>Isolation checks</h2>
+        <p class="status" id="swStatus">Service worker: checking…</p>
+        <p class="status" id="versionStatus">Cache version: checking…</p>
+        <p class="status" id="scopeStatus">Path: checking…</p>
+      </section>
+      <section class="card">
+        <h2>Existing sub-sites (must still work)</h2>
+        <ul>
+          <li><a href="/">Library home</a></li>
+          <li><a href="/experiences">Experiences</a></li>
+          <li><a href="https://ittybittybites.github.io/prosumer-matrix/">Prosumer Matrix</a></li>
+          <li><a href="https://ittybittybites.github.io/yearglass-sanctuary/">YearGlass Sanctuary</a></li>
+          <li><a href="/yearglass/">/yearglass/ redirect</a></li>
+        </ul>
+      </section>
+    </div>
+
+    <p>
+      <a class="btn primary" href="/shattered-foil/missing-pane">Hit custom 404</a>
+      <a class="btn ghost" href="/">Back to library</a>
+    </p>
+    <footer>ITTYBITTYBITES · Shattered Foil test stub · does not register the root service worker.</footer>
+  </main>
+  <script>
+    (function () {
+      var pathEl = document.getElementById('scopeStatus');
+      var swEl = document.getElementById('swStatus');
+      var verEl = document.getElementById('versionStatus');
+      pathEl.textContent = 'Path: ' + location.pathname;
+      pathEl.className = 'status ' + (location.pathname.indexOf('/shattered-foil') === 0 ? 'ok' : 'warn');
+
+      fetch('/shattered-foil/app-version.json', { cache: 'no-store' })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          verEl.textContent = 'Cache version: ' + data.build + ' (' + data.version + ')';
+          verEl.className = 'status ok';
+        })
+        .catch(function () {
+          verEl.textContent = 'Cache version: app-version.json missing';
+          verEl.className = 'status warn';
+        });
+
+      if (!('serviceWorker' in navigator)) {
+        swEl.textContent = 'Service worker: not supported';
+        swEl.className = 'status warn';
+        return;
+      }
+
+      navigator.serviceWorker
+        .register('/shattered-foil/sw.js', { scope: '/shattered-foil/' })
+        .then(function (reg) {
+          swEl.textContent = 'Service worker: registered · scope ' + reg.scope;
+          swEl.className = 'status ok';
+        })
+        .catch(function (err) {
+          swEl.textContent = 'Service worker: ' + (err && err.message ? err.message : 'failed');
+          swEl.className = 'status warn';
+        });
+    })();
+  </script>
+</body>
+</html>
