@@ -18,9 +18,8 @@ describe('Isolated GitHub Pages sub-sites', () => {
 
   it('publishes a Shattered Foil test page at /shattered-foil/', () => {
     const index = read('public/shattered-foil/index.html');
-    assert.ok(index.includes('Shattered Foil'));
-    assert.ok(index.includes('/shattered-foil/sw.js'));
-    assert.ok(index.includes('scope: \'/shattered-foil/\''));
+    assert.ok(index.includes('Solitaire: Shattered Foil'));
+    assert.ok(index.includes('version-check.js'));
     assert.ok(fs.existsSync(path.join(ROOT, 'public/shattered-foil/404.html')));
     assert.ok(fs.existsSync(path.join(ROOT, 'public/shattered-foil/sw.js')));
     assert.ok(fs.existsSync(path.join(ROOT, 'public/shattered-foil/app-version.json')));
