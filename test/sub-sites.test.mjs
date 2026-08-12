@@ -37,7 +37,13 @@ describe('Isolated GitHub Pages sub-sites', () => {
 
     const versionCheck = read('public/shattered-foil/version-check.js');
     assert.ok(versionCheck.includes("KEY = 'sf-app-version'"));
-    assert.ok(versionCheck.includes("startsWith('shattered-foil-')"));
+    assert.ok(versionCheck.includes("getRegistrations()"));
+    assert.ok(versionCheck.includes('caches.delete'));
+    assert.ok(versionCheck.includes('reg.unregister()'));
+    assert.ok(
+      !versionCheck.includes("startsWith('shattered-foil-')"),
+      'must clear every Cache Storage name, including the root library PWA caches'
+    );
   });
 
   it('root PWA denylist and custom SW skip every isolated sub-site', () => {

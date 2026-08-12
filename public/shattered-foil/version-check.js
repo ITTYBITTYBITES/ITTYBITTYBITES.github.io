@@ -1,17 +1,13 @@
 const KEY = 'sf-app-version';
 
-function foilRegistrations() {
+function allRegistrations() {
   if (!('serviceWorker' in navigator)) return Promise.resolve([]);
-  return navigator.serviceWorker.getRegistrations().then((regs) =>
-    regs.filter((reg) => (reg.scope || '').includes('/shattered-foil'))
-  );
+  return navigator.serviceWorker.getRegistrations();
 }
 
-function clearFoilCaches() {
+function clearAllCaches() {
   if (!('caches' in window)) return Promise.resolve();
-  return caches.keys().then((keys) =>
-    Promise.all(keys.filter((k) => k.startsWith('shattered-foil-')).map((k) => caches.delete(k)))
-  );
+  return caches.keys().then((keys) => Promise.all(keys.map((k) => caches.delete(k))));
 }
 
 function hardRefresh() {
@@ -25,12 +21,12 @@ fetch('/shattered-foil/app-version.json?t=' + Date.now(), { cache: 'no-store' })
   .then((data) => {
     const stored = localStorage.getItem(KEY);
     if (stored && stored !== data.build) {
-      console.log('[Shattered Foil] New version', data.build, '— refreshing without a manual cache clear');
+      console.log('[Shattered Foil] New version', data.build, '— purging all workers/caches and refreshing');
       localStorage.setItem(KEY, data.build);
-      foilRegistrations()
+      allRegistrations()
         .then((regs) => Promise.all(regs.map((reg) => reg.unregister())))
         .catch(() => {})
-        .then(clearFoilCaches)
+        .then(clearAllCaches)
         .then(hardRefresh);
     } else {
       localStorage.setItem(KEY, data.build);
