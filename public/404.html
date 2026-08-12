@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ITTYBITTYBITES</title>
+  <script>
+    /* Same resolution as yearglass.html: send isolated sub-sites to a REAL file
+       before the library SPA can render "Page not found". */
+    (function () {
+      var path = location.pathname || '';
+      if (path === '/prosumer-matrix' || path.indexOf('/prosumer-matrix/') === 0) {
+        location.replace('https://ittybittybites.github.io/prosumer-matrix/');
+        return;
+      }
+      if (path === '/yearglass-sanctuary' || path.indexOf('/yearglass-sanctuary/') === 0 || path === '/yearglass' || path === '/yearglass/' || path.indexOf('/experience/yearglass') === 0) {
+        location.replace('https://ittybittybites.github.io/yearglass-sanctuary/');
+        return;
+      }
+      if (path === '/shattered-foil.html' || path === '/shattered-foil' || path.indexOf('/ITTYBITTYBITES-Shattered-Foil') === 0) {
+        location.replace('/shattered-foil/');
+        return;
+      }
+    })();
+  </script>
+</head>
+<body>
+  <p>Loading…</p>
+</body>
+</html>

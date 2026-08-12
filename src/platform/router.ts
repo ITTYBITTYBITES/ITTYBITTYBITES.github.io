@@ -117,6 +117,16 @@ async function render(path: string, replaceState: boolean, isPush = false): Prom
     return;
   }
 
+  if (path.startsWith('/prosumer-matrix')) {
+    window.location.href = 'https://ittybittybites.github.io/prosumer-matrix/';
+    return;
+  }
+
+  if (path.startsWith('/shattered-foil') || path.startsWith('/ITTYBITTYBITES-Shattered-Foil')) {
+    window.location.replace('/shattered-foil/');
+    return;
+  }
+
   const matched = matchRoute(path);
   const query = new URLSearchParams(window.location.search);
 
