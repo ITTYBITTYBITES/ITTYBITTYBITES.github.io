@@ -1103,8 +1103,24 @@
       font-weight: 700;
     }
     .card-suit-corner.card-suit-tl {
-      top: 4px;
-      left: 4px;
+      top: 3px;
+      left: 3px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 0.85;
+    }
+    .card-peek-rank {
+      font-size: clamp(13px, calc(var(--card-w, 48px) * 0.36), 18px);
+      font-weight: 900;
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 0.9;
+      letter-spacing: -0.4px;
+    }
+    .card-peek-suit {
+      font-size: clamp(10px, calc(var(--card-w, 48px) * 0.26), 14px);
+      line-height: 1;
+      margin-top: 0;
     }
     .card-suit-corner.card-suit-br {
       right: 4px;
@@ -1661,7 +1677,7 @@
       }
     }
   </style>
-  <script src="./version-check.js?v=sf-20260812-v23"></script>
+  <script src="./version-check.js?v=sf-20260812-v24"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -4675,8 +4691,8 @@
       }
       // Always leave room for a full suit so landscape never needs to scroll
       var stackReserve = Math.max(maxStack, 13);
-      var minFan = landscape ? 7 : 12;
-      var preferredFan = colCount > 7 ? (landscape ? 9 : 16) : (landscape ? 11 : 21);
+      var minFan = landscape ? 12 : 18;
+      var preferredFan = colCount > 7 ? (landscape ? 14 : 20) : (landscape ? 16 : 24);
       var fan = preferredFan;
       var topGap = landscape ? 6 : 12;
 
@@ -4838,7 +4854,10 @@
         var tenClass = (card.rank === '10') ? ' is-ten' : '';
         el.innerHTML = 
           '<div class="card-inner-fillet"></div>' +
-          '<div class="card-suit-corner card-suit-tl">' + card.suit + '</div>' +
+          '<div class="card-suit-corner card-suit-tl">' +
+            '<span class="card-peek-rank">' + card.rank + '</span>' +
+            '<span class="card-peek-suit">' + card.suit + '</span>' +
+          '</div>' +
           '<div class="card-center">' +
             '<span class="card-center-rank' + tenClass + '">' + card.rank + '</span>' +
           '</div>' +
