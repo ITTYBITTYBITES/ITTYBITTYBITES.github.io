@@ -1966,7 +1966,7 @@
       .deal-back-cover { transition: none; }
     }
   </style>
-  <script src="./version-check.js?v=sf-20260813-v31"></script>
+  <script src="./version-check.js?v=sf-20260813-v32"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -5178,16 +5178,14 @@
       if (boardW < 40) boardW = viewportSize().w - 24;
 
       var colW = Math.max(18, (boardW - gap * (colCount - 1)) / colCount);
-      var cardW = colW;
-      var cardH = cardW * 1.42;
       var topGap = landscape ? 6 : 12;
-      var availTableauH = Math.max(72, boardH - cardH - topGap);
 
       if (lockedCardMetrics &&
           lockedCardMetrics.landscape === landscape &&
           lockedCardMetrics.colCount === colCount &&
           Math.abs(lockedCardMetrics.boardW - boardW) < 8 &&
-          Math.abs(lockedCardMetrics.boardH - boardH) < 48) {
+          Math.abs(lockedCardMetrics.boardH - boardH) < 48 &&
+          lockedCardMetrics.h >= (landscape ? 50 : 40)) {
         return lockedCardMetrics;
       }
 
@@ -5198,27 +5196,28 @@
         }
       }
       var stackReserve = Math.max(maxStack, 13);
-      var minFan = landscape ? 12 : 18;
-      var preferredFan = colCount > 7 ? (landscape ? 14 : 20) : (landscape ? 16 : 24);
-      var fan = preferredFan;
+      var minFan = landscape ? 11 : 18;
+      var preferredFan = colCount > 7 ? (landscape ? 13 : 20) : (landscape ? 15 : 24);
 
-      function stackFits(h, f) {
-        return (h + (stackReserve - 1) * f) <= availTableauH;
+      // One pass: cap height so foundations + a 13-card column fit.
+      // Do not start from full column-width height — that floors landscape at 32px.
+      var heightCap = (boardH - topGap - (stackReserve - 1) * minFan) / 2;
+      if (landscape && heightCap < 56) {
+        minFan = Math.max(9, (boardH - topGap - 56 * 2) / Math.max(1, stackReserve - 1));
+        heightCap = (boardH - topGap - (stackReserve - 1) * minFan) / 2;
+      }
+      var floorH = landscape ? 54 : 40;
+      var cardH = Math.min(colW * 1.42, Math.max(floorH, heightCap));
+      var cardW = cardH / 1.42;
+      if (cardW > colW) {
+        cardW = colW;
+        cardH = cardW * 1.42;
       }
 
-      var fanForFullCard = (availTableauH - cardH) / Math.max(1, stackReserve - 1);
-      if (fanForFullCard >= preferredFan) {
-        fan = preferredFan;
-      } else if (fanForFullCard >= minFan) {
-        fan = fanForFullCard;
-      } else {
-        fan = minFan;
-        if (!stackFits(cardH, fan)) {
-          var maxCardH = availTableauH - (stackReserve - 1) * fan;
-          cardH = Math.max(32, Math.min(cardH, maxCardH));
-          cardW = cardH / 1.42;
-        }
-      }
+      var availTableauH = Math.max(72, boardH - cardH - topGap);
+      var fan = (availTableauH - cardH) / Math.max(1, stackReserve - 1);
+      if (fan > preferredFan) fan = preferredFan;
+      if (fan < minFan) fan = minFan;
 
       var root = document.getElementById('appFrame') || document.documentElement;
       var next = {
