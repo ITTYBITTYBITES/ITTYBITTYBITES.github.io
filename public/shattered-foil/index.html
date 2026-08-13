@@ -1608,7 +1608,7 @@
       }
     }
   </style>
-  <script src="./version-check.js?v=sf-20260812-v18"></script>
+  <script src="./version-check.js?v=sf-20260812-v19"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -1698,23 +1698,6 @@
         </div>
 
         <div style="display: flex; align-items: center; gap: 8px;">
-          <!-- Interactive Sound Foley Toggle -->
-          <button class="icon-btn" id="btnSoundToggle" title="Sound Foley" onclick="toggleAudioEngine()">
-            <svg id="soundIconSvg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
-              <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
-            </svg>
-          </button>
-
-          <!-- Interactive Ambient Zen Music Toggle -->
-          <button class="icon-btn" id="btnMusicToggle" title="Zen Music Loop" onclick="toggleZenMusic()">
-            <svg id="musicIconSvg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M9 18V5l12-2v13"></path>
-              <circle cx="6" cy="18" r="3"></circle>
-              <circle cx="18" cy="16" r="3"></circle>
-            </svg>
-          </button>
-
           <!-- Settings Gear -->
           <button class="icon-btn" title="Settings" onclick="openModal('settingsModal')">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -1819,8 +1802,6 @@
         </div>
 
         <div class="hud-action-icons">
-          <button class="hud-action-btn" id="btnSoundToggleGame" onclick="toggleAudioEngine()" title="Toggle Sound Foley">🔊</button>
-          <button class="hud-action-btn" id="btnMusicToggleGame" onclick="toggleZenMusic()" title="Toggle Zen Music">🎵</button>
           <button class="hud-action-btn" id="btnHint" onclick="giveSmartHint()" title="Hint">💡</button>
           <button class="hud-action-btn" id="btnUndo" onclick="undoMove()" title="Undo">↩</button>
           <button class="hud-action-btn" onclick="openModal('gameStepsModal')" title="Steps Log">📜</button>
@@ -2094,6 +2075,14 @@
               <div style="font-size: 10.5px; color: var(--text-muted);">Acoustic glass taps, copper snaps & chimes</div>
             </div>
             <input type="checkbox" id="toggleSoundCheckbox" onchange="toggleSoundFromSettings(this.checked)" style="transform: scale(1.2); accent-color: var(--copper-foil-bright);" />
+          </div>
+
+          <div class="settings-row">
+            <div>
+              <div style="font-size: 13px; font-weight: 700; color: var(--text-parchment);">Haptic Touch</div>
+              <div style="font-size: 10.5px; color: var(--text-muted);">Phone vibration on taps, moves & chimes</div>
+            </div>
+            <input type="checkbox" id="toggleHapticsCheckbox" onchange="toggleHapticsFromSettings(this.checked)" style="transform: scale(1.2); accent-color: var(--copper-foil-bright);" />
           </div>
 
           <!-- Sound Foley Volume Slider -->
@@ -2375,6 +2364,23 @@
     var sfxVolume = (function() {
       try { var v = parseFloat(localStorage.getItem('shattered_foil_sfx_vol')); return (!isNaN(v) && v >= 0 && v <= 1) ? v : 0.70; } catch(e) { return 0.70; }
     })();
+
+    var isHapticsEnabled = (function() {
+      try { return localStorage.getItem('shattered_foil_haptics') !== 'false'; } catch(e) { return true; }
+    })();
+
+    function haptic(pattern) {
+      if (!isHapticsEnabled) return;
+      try {
+        if (navigator.vibrate) navigator.vibrate(pattern || 10);
+      } catch (e) {}
+    }
+
+    function toggleHapticsFromSettings(enabled) {
+      isHapticsEnabled = !!enabled;
+      try { localStorage.setItem('shattered_foil_haptics', String(isHapticsEnabled)); } catch(e) {}
+      haptic(14);
+    }
 
     // True Logarithmic / Audio Taper Gain (Smooth human ear perception)
     function getEffectiveMusicGain() {
@@ -2935,46 +2941,12 @@
     function updateAudioUIState() {
       var activeLoop = MELODIC_MUSIC_LOOPS[currentLoopIdx % MELODIC_MUSIC_LOOPS.length];
 
-      // Menu Music Button
-      var btnMenu = document.getElementById('btnMusicToggle');
-      if (btnMenu) {
-        btnMenu.classList.toggle('music-active', isZenMusicPlaying);
-        btnMenu.classList.toggle('muted', !isZenMusicEnabled);
-        btnMenu.title = isZenMusicEnabled ? 'In-Game Soundtrack (Enabled for Gameplay)' : 'In-Game Soundtrack (Muted)';
-      }
-
-      // Game HUD Music Button
-      var btnGame = document.getElementById('btnMusicToggleGame');
-      if (btnGame) {
-        btnGame.classList.toggle('music-active', isZenMusicPlaying);
-        btnGame.classList.toggle('muted', !isZenMusicPlaying);
-        btnGame.title = isZenMusicPlaying ? ('Playing: ' + activeLoop.id + '. ' + activeLoop.title + ' - Tap to Mute') : 'Soundtrack (Muted - Tap to Play)';
-      }
-
-      // Menu Sound Button
-      var btnSoundMenu = document.getElementById('btnSoundToggle');
-      var svgSound = document.getElementById('soundIconSvg');
-      if (btnSoundMenu) {
-        btnSoundMenu.classList.toggle('muted', isAudioMuted);
-      }
-      if (svgSound) {
-        if (isAudioMuted) {
-          svgSound.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><line x1="23" y1="9" x2="17" y2="15"></line><line x1="17" y1="9" x2="23" y2="15"></line>';
-        } else {
-          svgSound.innerHTML = '<polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon><path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>';
-        }
-      }
-
-      // Game HUD Sound Button
-      var btnSoundGame = document.getElementById('btnSoundToggleGame');
-      if (btnSoundGame) {
-        btnSoundGame.classList.toggle('muted', isAudioMuted);
-        btnSoundGame.textContent = isAudioMuted ? '🔇' : '🔊';
-      }
-
       // Settings Modal Sync
       var toggleMusicCheck = document.getElementById('toggleZenMusicCheckbox');
       if (toggleMusicCheck) toggleMusicCheck.checked = isZenMusicEnabled;
+
+      var toggleHapticsCheck = document.getElementById('toggleHapticsCheckbox');
+      if (toggleHapticsCheck) toggleHapticsCheck.checked = isHapticsEnabled;
 
       var toggleSoundCheck = document.getElementById('toggleSoundCheckbox');
       if (toggleSoundCheck) toggleSoundCheck.checked = !isAudioMuted;
@@ -3146,6 +3118,7 @@
     var SoundFX = {
       // Acoustic Glass Tap (Crisp Crystal Overtone with Soft Attack)
       playGlassTap: function() {
+        haptic(8);
         if (isAudioMuted) return;
         var ctx = getAudioContext();
         if (!ctx) return;
@@ -3168,6 +3141,7 @@
 
       // Copper Solder Snap / Drop Impact
       playCopperSnap: function() {
+        haptic(14);
         if (isAudioMuted) return;
         var ctx = getAudioContext();
         if (!ctx) return;
@@ -3190,6 +3164,7 @@
 
       // Foundation Harmonic Locking Chime
       playFoundationChime: function(fndIndex) {
+        haptic([12, 30, 18]);
         if (isAudioMuted) return;
         var ctx = getAudioContext();
         if (!ctx) return;
@@ -3248,6 +3223,7 @@
 
       // Victory Cathedral Chord Fanfare
       playVictoryFanfare: function() {
+        haptic([20, 40, 20, 40, 35]);
         if (isAudioMuted) return;
         var ctx = getAudioContext();
         if (!ctx) return;
