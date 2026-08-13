@@ -1053,10 +1053,19 @@
       gap: 5px;
       margin-bottom: 12px;
       z-index: 10;
+      flex: 0 0 auto;
+      min-height: var(--card-h);
+      align-items: start;
     }
     .top-grid-row > * {
       min-width: 0;
-      min-height: 0;
+      min-height: var(--card-h);
+      height: var(--card-h);
+    }
+    .top-grid-row .card-slot {
+      min-height: var(--card-h);
+      height: var(--card-h);
+      overflow: hidden;
     }
     .stock-back {
       position: absolute;
@@ -1966,7 +1975,7 @@
       .deal-back-cover { transition: none; }
     }
   </style>
-  <script src="./version-check.js?v=sf-20260813-v34"></script>
+  <script src="./version-check.js?v=sf-20260813-v35"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -5218,17 +5227,12 @@
         }
       }
       var stackReserve = Math.max(maxStack, 13);
-      var minFan = landscape ? 11 : 18;
-      var preferredFan = colCount > 7 ? (landscape ? 13 : 20) : (landscape ? 15 : 24);
+      // Landscape must leave enough strip to read rank+suit (portrait 18 already does).
+      var minFan = landscape ? 16 : 18;
+      var preferredFan = colCount > 7 ? (landscape ? 16 : 20) : (landscape ? 18 : 24);
 
-      // One pass: cap height so foundations + a 13-card column fit.
-      // Do not start from full column-width height — that floors landscape at 32px.
       var heightCap = (boardH - topGap - (stackReserve - 1) * minFan) / 2;
-      if (landscape && heightCap < 56) {
-        minFan = Math.max(9, (boardH - topGap - 56 * 2) / Math.max(1, stackReserve - 1));
-        heightCap = (boardH - topGap - (stackReserve - 1) * minFan) / 2;
-      }
-      var floorH = landscape ? 54 : 40;
+      var floorH = landscape ? 44 : 40;
       var cardH = Math.min(colW * 1.42, Math.max(floorH, heightCap));
       var cardW = cardH / 1.42;
       if (cardW > colW) {
