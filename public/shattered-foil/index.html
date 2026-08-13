@@ -1661,7 +1661,7 @@
       }
     }
   </style>
-  <script src="./version-check.js?v=sf-20260812-v22"></script>
+  <script src="./version-check.js?v=sf-20260812-v23"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -1745,8 +1745,8 @@
             1
           </div>
           <div class="shards-pill">
-            <span>🪟 <strong style="color: var(--copper-foil-glint);" id="menuShards">450 Shards</strong></span>
-            <span>⭐ <strong id="menuStars">12</strong></span>
+            <span>🪟 <strong style="color: var(--copper-foil-glint);" id="menuShards">0 Shards</strong></span>
+            <span>⭐ <strong id="menuStars">0</strong></span>
           </div>
         </div>
 
@@ -1821,7 +1821,7 @@
             </svg>
             <span>Daily Challenge</span>
           </div>
-          <span style="font-size: 9.5px; font-weight: 800; padding: 2px 7px; border-radius: 10px; background: rgba(240, 142, 88, 0.2); border: 1px solid var(--copper-foil-bright); color: var(--copper-foil-glint);" id="menuDailyStreakTag">🔥 14 Streak</span>
+          <span style="font-size: 9.5px; font-weight: 800; padding: 2px 7px; border-radius: 10px; background: rgba(240, 142, 88, 0.2); border: 1px solid var(--copper-foil-bright); color: var(--copper-foil-glint);" id="menuDailyStreakTag">🔥 0 Streak</span>
         </button>
 
         <!-- 5. Campaign Journey Map -->
@@ -1988,7 +1988,7 @@
             <div class="deck-inspector-desc" id="atelierDeckDesc">Hand-cut jewel glass bound by authentic copper foil solder lines.</div>
             <div class="deck-actions-row">
               <button class="deck-equip-btn" id="btnEquipDeck" onclick="equipSelectedDeck()">Equip Theme</button>
-              <button class="deck-stamp-btn" id="btnForgeStamp" onclick="forgeSolderStamp()">Forge Stamp (Ad 📺)</button>
+              <button class="deck-stamp-btn" id="btnForgeStamp" onclick="unlockDeckWithShards()">Unlock for 250 Shards</button>
             </div>
           </div>
         </div>
@@ -2015,7 +2015,7 @@
         
         <div style="font-size: 10.5px; font-weight: 800; letter-spacing: 2px; color: var(--text-muted); text-transform: uppercase; margin-bottom: 6px;">Monthly Streak Calendar</div>
         <div style="display: flex; justify-content: space-between; font-size: 11.5px; color: var(--text-parchment); background: rgba(0,0,0,0.3); padding: 10px 12px; border-radius: 10px;">
-          <span>🔥 Current Streak: <strong style="color: var(--copper-foil-bright);" id="dailyStreakCounter">14 Days</strong></span>
+          <span>🔥 Current Streak: <strong style="color: var(--copper-foil-bright);" id="dailyStreakCounter">0 Days</strong></span>
           <span>🏆 August Badge: <strong>14/31</strong></span>
         </div>
       </div>
@@ -2030,31 +2030,8 @@
         </div>
         <div style="font-size: 11px; color: var(--text-muted); margin-bottom: 10px;">Journey through 5 mystical floating fantasy realms:</div>
         
-        <div class="campaign-scurve-box">
-          <div class="campaign-node-row" onclick="alert('Realm I: Botanical Gardens Completed! ⭐⭐⭐')">
-            <div>
-              <div style="font-size: 12.5px; font-weight: 800; color: #2ECC71;">Realm I: Botanical Gardens</div>
-              <div style="font-size: 10px; color: var(--text-muted);">10/10 Windows Assembled • Complete</div>
-            </div>
-            <span>⭐⭐⭐</span>
-          </div>
-
-          <div class="campaign-node-row active" onclick="closeModal('campaignModal'); launchGameMode('klondike');">
-            <div>
-              <div style="font-size: 12.5px; font-weight: 800; color: var(--copper-foil-bright);">Realm II: Notre-Dame Spires</div>
-              <div style="font-size: 10px; color: var(--text-muted);">Window 18 of 50 • Active Challenge</div>
-            </div>
-            <span style="font-size: 11px; font-weight: 800; color: var(--copper-foil-bright);">[ PLAY ]</span>
-          </div>
-
-          <div class="campaign-node-row" style="opacity: 0.6; cursor: not-allowed;" onclick="alert('Complete Realm II to unlock Crystal Caverns!')">
-            <div>
-              <div style="font-size: 12.5px; font-weight: 800;">Realm III: Crystal Caverns</div>
-              <div style="font-size: 10px; color: var(--text-muted);">Locked 🔒</div>
-            </div>
-            <span>🔒</span>
-          </div>
-        </div>
+        <div style="font-size: 10.5px; color: var(--text-muted); margin: -4px 0 10px;">⭐ Stars unlock later realms. Win campaign windows to earn them.</div>
+        <div class="campaign-scurve-box" id="campaignRealmList"></div>
       </div>
     </div>
 
@@ -2324,9 +2301,21 @@
             <span>Total Steps:</span>
             <strong id="vicMoves">64</strong>
           </div>
-          <div style="display: flex; justify-content: space-between; font-size: 12px;">
+          <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 3px;">
             <span>Time Taken:</span>
             <strong id="vicTime">02:45</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 3px;">
+            <span>🪟 Shards Earned:</span>
+            <strong style="color: var(--copper-foil-glint);" id="vicShards">+0</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 3px;">
+            <span>⭐ Stars Awarded:</span>
+            <strong id="vicStars">+0</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 11px; margin-top: 6px; padding-top: 6px; border-top: 1px solid var(--glass-border); color: var(--text-muted);">
+            <span>Totals:</span>
+            <strong id="vicTotals">0 Shards • 0 Stars</strong>
           </div>
         </div>
 
@@ -2358,6 +2347,8 @@
         if (id === 'gameStepsModal') renderStepsTimelineModal();
         if (id === 'themesModal') renderAtelierUI();
         if (id === 'settingsModal') updateAudioUIState();
+        if (id === 'campaignModal') renderCampaignUI();
+        if (id === 'dailyModal') updateDailyUI();
       }
     }
 
@@ -3551,7 +3542,7 @@
         var isEquipped = (d.id === equippedDeckId);
         var isInspecting = (d.id === inspectingDeckId);
         var activeClass = isInspecting ? 'active-deck' : '';
-        var statusText = isEquipped ? 'Equipped ✓' : (d.unlocked ? 'Unlocked' : (d.stamps + '/3 Stamps ★'));
+        var statusText = isEquipped ? 'Equipped ✓' : (d.unlocked ? 'Unlocked' : (d.shardCost ? (d.shardCost + ' Shards') : 'Locked'));
 
         html += '<div class="deck-thumb-box ' + activeClass + '" onclick="selectDeckToInspect(\'' + d.id + '\')">' +
           '<div class="deck-mini-glass-frame">' + d.renderSVG(46, 66) + '</div>' +
@@ -3586,10 +3577,12 @@
         btnEquip.disabled = false;
         btnStamp.style.display = 'none';
       } else {
-        btnEquip.textContent = 'Locked (' + deck.stamps + '/3)';
+        var cost = deck.shardCost || 250;
+        btnEquip.textContent = 'Locked';
         btnEquip.className = 'deck-equip-btn equipped';
         btnEquip.disabled = true;
         btnStamp.style.display = 'block';
+        btnStamp.textContent = playerShards >= cost ? ('Unlock for ' + cost + ' Shards') : ('Need ' + cost + ' Shards');
       }
 
       updateMainMenuCardBack();
@@ -3609,29 +3602,32 @@
       if (!deck || !deck.unlocked) return;
 
       equippedDeckId = deck.id;
+      SafeStorage.setItem('shattered_foil_equipped_deck', equippedDeckId);
       SoundFX.playCopperSnap();
       renderAtelierUI();
       renderBoard();
     }
 
-    function forgeSolderStamp() {
+    function unlockDeckWithShards() {
       var deck = null;
       for (var i = 0; i < DECK_CATALOG.length; i++) {
         if (DECK_CATALOG[i].id === inspectingDeckId) { deck = DECK_CATALOG[i]; break; }
       }
       if (!deck || deck.unlocked) return;
-
-      SoundFX.playCopperSnap();
-      deck.stamps++;
-      if (deck.stamps >= 3) {
-        deck.unlocked = true;
-        deck.stamps = 3;
-        SoundFX.playFoundationChime(2);
-        alert("✨ Masterpiece Window Assembled! " + deck.title + " is now permanently unlocked in your Atelier!");
-      } else {
-        alert("📺 Ad Completed! +1 Solder Stamp forged for " + deck.title + " (" + deck.stamps + "/3 Stamps).");
+      var cost = deck.shardCost || 250;
+      if (!spendShards(cost)) {
+        showToast('Need ' + cost + ' Shards — you have ' + playerShards);
+        return;
       }
+      deck.unlocked = true;
+      saveDecks();
+      SoundFX.playFoundationChime(2);
+      showToast('✨ Unlocked ' + deck.title + ' (−' + cost + ' Shards)');
       renderAtelierUI();
+    }
+
+    function forgeSolderStamp() {
+      unlockDeckWithShards();
     }
 
     function updateMainMenuCardBack() {
@@ -3665,6 +3661,197 @@
         try { localStorage.setItem(key, value); } catch (e) {}
       }
     };
+
+    // --- PROGRESSION: SHARDS, STARS, UNLOCKS ---
+    var DECK_SHARD_COSTS = {
+      copper_foil: 0,
+      nocturne_bat: 0,
+      cathedral_azure: 0,
+      tiffany_flora: 250,
+      favrile_amber: 350,
+      murano_mosaic: 500,
+      prism_bauhaus: 750
+    };
+    var CAMPAIGN_REALMS = [
+      { id: 'gardens', title: 'Realm I: Botanical Gardens', need: 0, goal: 3 },
+      { id: 'spires', title: 'Realm II: Notre-Dame Spires', need: 5, goal: 3 },
+      { id: 'caverns', title: 'Realm III: Crystal Caverns', need: 15, goal: 3 },
+      { id: 'atelier', title: 'Realm IV: The Glass Atelier', need: 28, goal: 3 },
+      { id: 'rose', title: 'Realm V: Celestial Rose', need: 45, goal: 3 }
+    ];
+    var playerShards = 0;
+    var playerStars = 0;
+    var dealShardsEarned = 0;
+    var dealStarsEarned = 0;
+    var isDailyDeal = false;
+    var activeCampaignId = null;
+    var pendingCampaignId = null;
+    var campaignWins = {};
+    var dailyState = { date: '', completed: false, streak: 0 };
+
+    function todayKey() {
+      var d = new Date();
+      return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
+    }
+
+    function loadProgression() {
+      playerShards = parseInt(SafeStorage.getItem('shattered_foil_shards'), 10);
+      if (isNaN(playerShards) || playerShards < 0) playerShards = 0;
+      playerStars = parseInt(SafeStorage.getItem('shattered_foil_stars'), 10);
+      if (isNaN(playerStars) || playerStars < 0) playerStars = 0;
+
+      try {
+        var decks = JSON.parse(SafeStorage.getItem('shattered_foil_decks') || '{}');
+        for (var i = 0; i < DECK_CATALOG.length; i++) {
+          var d = DECK_CATALOG[i];
+          d.shardCost = DECK_SHARD_COSTS.hasOwnProperty(d.id) ? DECK_SHARD_COSTS[d.id] : 400;
+          if (d.shardCost === 0) d.unlocked = true;
+          if (decks[d.id] && decks[d.id].unlocked) d.unlocked = true;
+        }
+      } catch (e) {}
+
+      var savedDeck = SafeStorage.getItem('shattered_foil_equipped_deck');
+      if (savedDeck) {
+        for (var e = 0; e < DECK_CATALOG.length; e++) {
+          if (DECK_CATALOG[e].id === savedDeck && DECK_CATALOG[e].unlocked) {
+            equippedDeckId = savedDeck;
+            inspectingDeckId = savedDeck;
+            break;
+          }
+        }
+      }
+
+      try {
+        campaignWins = JSON.parse(SafeStorage.getItem('shattered_foil_campaign') || '{}') || {};
+      } catch (err) { campaignWins = {}; }
+
+      try {
+        dailyState = JSON.parse(SafeStorage.getItem('shattered_foil_daily') || '{}') || {};
+      } catch (err2) { dailyState = {}; }
+      if (!dailyState.date) dailyState = { date: '', completed: false, streak: 0 };
+      var today = todayKey();
+      if (dailyState.date && dailyState.date !== today) {
+        var y = new Date(dailyState.date + 'T12:00:00');
+        var tday = new Date(today + 'T12:00:00');
+        var gap = Math.round((tday - y) / 86400000);
+        if (gap > 1) dailyState.streak = 0;
+        dailyState.completed = false;
+        dailyState.date = today;
+        saveDaily();
+      } else if (!dailyState.date) {
+        dailyState.date = today;
+      }
+
+      updateCurrencyUI();
+      updateDailyUI();
+    }
+
+    function saveShardsStars() {
+      SafeStorage.setItem('shattered_foil_shards', String(playerShards));
+      SafeStorage.setItem('shattered_foil_stars', String(playerStars));
+    }
+    function saveDecks() {
+      var out = {};
+      for (var i = 0; i < DECK_CATALOG.length; i++) {
+        out[DECK_CATALOG[i].id] = { unlocked: !!DECK_CATALOG[i].unlocked };
+      }
+      SafeStorage.setItem('shattered_foil_decks', JSON.stringify(out));
+    }
+    function saveCampaign() {
+      SafeStorage.setItem('shattered_foil_campaign', JSON.stringify(campaignWins));
+    }
+    function saveDaily() {
+      SafeStorage.setItem('shattered_foil_daily', JSON.stringify(dailyState));
+    }
+
+    function updateCurrencyUI() {
+      var sh = document.getElementById('menuShards');
+      if (sh) sh.textContent = playerShards + ' Shards';
+      var st = document.getElementById('menuStars');
+      if (st) st.textContent = String(playerStars);
+    }
+
+    function updateDailyUI() {
+      var tag = document.getElementById('menuDailyStreakTag');
+      if (tag) tag.textContent = '🔥 ' + (dailyState.streak || 0) + ' Streak';
+      var ctr = document.getElementById('dailyStreakCounter');
+      if (ctr) ctr.textContent = (dailyState.streak || 0) + ' Days';
+      var head = document.getElementById('dailySeedHeader');
+      if (head) {
+        head.textContent = dailyState.completed
+          ? ("TODAY CLEARED • STREAK " + (dailyState.streak || 0))
+          : ("TODAY'S DEAL • " + todayKey());
+      }
+    }
+
+    function addShards(n) {
+      n = parseInt(n, 10) || 0;
+      if (n === 0) return;
+      playerShards = Math.max(0, playerShards + n);
+      if (n > 0) dealShardsEarned += n;
+      saveShardsStars();
+      updateCurrencyUI();
+    }
+
+    function addStars(n) {
+      n = parseInt(n, 10) || 0;
+      if (n <= 0) return;
+      playerStars += n;
+      dealStarsEarned += n;
+      saveShardsStars();
+      updateCurrencyUI();
+    }
+
+    function spendShards(n) {
+      n = parseInt(n, 10) || 0;
+      if (n <= 0 || playerShards < n) return false;
+      playerShards -= n;
+      saveShardsStars();
+      updateCurrencyUI();
+      return true;
+    }
+
+    function renderCampaignUI() {
+      var box = document.getElementById('campaignRealmList');
+      if (!box) return;
+      var html = '';
+      for (var i = 0; i < CAMPAIGN_REALMS.length; i++) {
+        var r = CAMPAIGN_REALMS[i];
+        var wins = campaignWins[r.id] || 0;
+        var done = wins >= r.goal;
+        var locked = playerStars < r.need;
+        var cls = 'campaign-node-row' + (done ? '' : (locked ? '' : ' active'));
+        var sub = locked
+          ? ('Requires ⭐ ' + r.need + ' Stars')
+          : (done ? ('Complete • ' + wins + '/' + r.goal + ' windows') : (wins + '/' + r.goal + ' Windows Assembled'));
+        var badge = locked ? '🔒' : (done ? '⭐⭐⭐' : '[ PLAY ]');
+        var color = done ? '#2ECC71' : (locked ? 'var(--text-parchment)' : 'var(--copper-foil-bright)');
+        var click = locked
+          ? ('showToast("Need ⭐ ' + r.need + ' Stars to enter ' + r.title.split(':')[0] + '");')
+          : ('playCampaignRealm(\'' + r.id + '\')');
+        var extra = locked ? ' style="opacity: 0.6;"' : '';
+        html += '<div class="' + cls + '"' + extra + ' onclick="' + click + '">' +
+          '<div><div style="font-size: 12.5px; font-weight: 800; color: ' + color + ';">' + r.title + '</div>' +
+          '<div style="font-size: 10px; color: var(--text-muted);">' + sub + '</div></div>' +
+          '<span style="font-size: 11px; font-weight: 800; color: var(--copper-foil-bright);">' + badge + '</span></div>';
+      }
+      box.innerHTML = html;
+    }
+
+    function playCampaignRealm(realmId) {
+      var r = null;
+      for (var i = 0; i < CAMPAIGN_REALMS.length; i++) {
+        if (CAMPAIGN_REALMS[i].id === realmId) r = CAMPAIGN_REALMS[i];
+      }
+      if (!r || playerStars < r.need) {
+        showToast('Need ⭐ ' + (r ? r.need : '?') + ' Stars');
+        return;
+      }
+      pendingCampaignId = realmId;
+      closeModal('campaignModal');
+      activeGameMode = 'klondike';
+      startNewDeal();
+    }
 
     var HISTORY_LORE = {
       klondike: {
@@ -3841,6 +4028,7 @@
       if (hasStartedInit) return;
       hasStartedInit = true;
 
+      loadProgression();
       updateMainMenuCardBack();
 
       setTimeout(function() {
@@ -3930,6 +4118,11 @@
       isWon = false;
       undoHistory = [];
       gameStepLogs = [];
+      isDailyDeal = !!isDaily;
+      activeCampaignId = isDaily ? null : pendingCampaignId;
+      pendingCampaignId = null;
+      dealShardsEarned = 0;
+      dealStarsEarned = 0;
 
       var modeTitles = {
         klondike: 'Klondike',
@@ -4246,6 +4439,7 @@
           score += 15;
           moves++;
           SoundFX.playFoundationChime(f);
+          addShards(10);
           recordStep("Moved " + card.rank + card.suit + " to Foundation", 15);
           afterMoveCleanup(sourceLocation);
           return;
@@ -4305,6 +4499,7 @@
         if (col.length > 0 && !col[col.length - 1].isFaceUp) {
           col[col.length - 1].isFaceUp = true;
           score += 10;
+          addShards(5);
           SoundFX.playGlassTap();
           recordStep("Turned up card in Col " + (source.col+1), 10);
         }
@@ -4324,6 +4519,26 @@
         hasActiveGame = false;
         clearInterval(timerInterval);
         score += 500;
+        addShards(100);
+        var starsNow = 0;
+        if (timerSeconds <= 90) starsNow += 2;
+        else if (timerSeconds <= 180) starsNow += 1;
+        if (moves > 0 && moves <= 70) starsNow += 1;
+        if (isDailyDeal && !dailyState.completed) {
+          starsNow += 1;
+          dailyState.completed = true;
+          dailyState.date = todayKey();
+          dailyState.streak = (dailyState.streak || 0) + 1;
+          saveDaily();
+          updateDailyUI();
+        }
+        if (activeCampaignId) {
+          campaignWins[activeCampaignId] = (campaignWins[activeCampaignId] || 0) + 1;
+          saveCampaign();
+          starsNow += 1;
+          activeCampaignId = null;
+        }
+        if (starsNow > 0) addStars(starsNow);
         SoundFX.playVictoryFanfare();
         recordStep("Window Assembled! Solitaire Complete.", 500);
         document.getElementById('vicScore').textContent = score;
@@ -4331,6 +4546,13 @@
         var mins = String(Math.floor(timerSeconds / 60)).padStart(2, '0');
         var secs = String(timerSeconds % 60).padStart(2, '0');
         document.getElementById('vicTime').textContent = mins + ':' + secs;
+        var vs = document.getElementById('vicShards');
+        if (vs) vs.textContent = '+' + dealShardsEarned;
+        var vst = document.getElementById('vicStars');
+        if (vst) vst.textContent = dealStarsEarned > 0 ? ('+' + dealStarsEarned) : '—';
+        var vt = document.getElementById('vicTotals');
+        if (vt) vt.textContent = playerShards + ' Shards • ' + playerStars + ' Stars';
+        isDailyDeal = false;
         openModal('victoryModal');
         updateMainMenuHeroButton();
       }
@@ -4638,6 +4860,7 @@
             if (col.length > 0 && col[col.length - 1].id === card.id) {
               card.isFaceUp = true;
               SoundFX.playGlassTap();
+              addShards(5);
               recordStep("Revealed card in Col " + (sourceLocation.col+1), 10);
               score += 10;
               updateHUD();
