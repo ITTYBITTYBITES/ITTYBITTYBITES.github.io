@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-sf-build="sf-20260813-v37">
+<html lang="en" data-sf-build="sf-20260813-v38">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
@@ -1936,7 +1936,7 @@
     }
 
   </style>
-  <script src="./version-check.js?v=sf-20260813-v37"></script>
+  <script src="./version-check.js?v=sf-20260813-v38"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -2481,7 +2481,7 @@
           </div>
 
           <div style="text-align: center; margin-top: 8px; font-size: 10px; color: var(--text-muted);">
-            Solitaire: Shattered Foil Edition • v37<br>
+            Solitaire: Shattered Foil Edition • v38<br>
             Presented by ITTYBITTYBITES Experiences
           </div>
         </div>
@@ -4361,11 +4361,18 @@
     syncOrientationClass();
     window.addEventListener('resize', onViewportChange);
     window.addEventListener('orientationchange', function() {
-      setTimeout(onViewportChange, 60);
-      setTimeout(onViewportChange, 260);
+      onOrientationSnap();
+      setTimeout(onOrientationSnap, 80);
+      setTimeout(onOrientationSnap, 280);
     });
     if (window.visualViewport) {
       window.visualViewport.addEventListener('resize', onViewportChange);
+    }
+    if (window.matchMedia) {
+      var orientMq = window.matchMedia('(orientation: landscape)');
+      var onOrientMq = function() { onOrientationSnap(); };
+      if (orientMq.addEventListener) orientMq.addEventListener('change', onOrientMq);
+      else if (orientMq.addListener) orientMq.addListener(onOrientMq);
     }
 
     // --- 9. FULL 5-GAME SUITE CONTROLLER & ENGINE ---
@@ -5029,6 +5036,9 @@
     }
 
     function isLandscapePlay() {
+      if (window.matchMedia) {
+        try { return window.matchMedia('(orientation: landscape)').matches; } catch (e) {}
+      }
       var vp = viewportSize();
       return vp.w > vp.h;
     }
@@ -5057,9 +5067,7 @@
       var colW = Math.max(18, (boardW - gap * (colCount - 1)) / colCount);
       var topGap = landscape ? 6 : 12;
 
-      // Mid-deal: ignore Chrome URL-bar / visualViewport height jiggle.
-      // Only accept a new size on rotate, column-count change, or a real width change.
-      if (lockedCardMetrics &&
+      if (boardH >= 90 && lockedCardMetrics &&
           lockedCardMetrics.landscape === landscape &&
           lockedCardMetrics.colCount === colCount &&
           Math.abs(lockedCardMetrics.boardW - boardW) < 16) {
@@ -5073,14 +5081,17 @@
         }
       }
       var stackReserve = Math.max(maxStack, 13);
-      // Landscape must leave enough strip to read rank+suit (portrait 18 already does).
       var minFan = landscape ? 16 : 18;
       var preferredFan = colCount > 7 ? (landscape ? 16 : 20) : (landscape ? 18 : 24);
 
+      // Fill the column. Shrink only if a 13-card stack with a readable peek will not fit.
+      var cardW = colW;
+      var cardH = cardW * 1.42;
       var heightCap = (boardH - topGap - (stackReserve - 1) * minFan) / 2;
-      var floorH = landscape ? 44 : 40;
-      var cardH = Math.min(colW * 1.42, Math.max(floorH, heightCap));
-      var cardW = cardH / 1.42;
+      if (heightCap > 32 && cardH > heightCap) {
+        cardH = heightCap;
+        cardW = cardH / 1.42;
+      }
       if (cardW > colW) {
         cardW = colW;
         cardH = cardW * 1.42;
@@ -5104,18 +5115,26 @@
       root.style.setProperty('--card-w', Math.round(cardW * 10) / 10 + 'px');
       root.style.setProperty('--card-h', Math.round(cardH * 10) / 10 + 'px');
       root.style.setProperty('--card-fan', Math.round(fan * 10) / 10 + 'px');
-      lockedCardMetrics = next;
+      lockedCardMetrics = (boardH >= 90) ? next : null;
       return next;
     }
 
-    function onViewportChange() {
-      var wasLandscape = document.body.classList.contains('is-landscape');
+    function relayoutBoard(force) {
       syncOrientationClass();
       if (!hasActiveGame) return;
-      // Relayout only when orientation flips. Ignore URL-bar height jiggle.
-      if (wasLandscape === isLandscapePlay()) return;
+      var landscape = isLandscapePlay();
+      if (!force && lockedCardMetrics && lockedCardMetrics.landscape === landscape) return;
       lockedCardMetrics = null;
       renderBoard();
+    }
+
+    function onViewportChange() {
+      relayoutBoard(false);
+    }
+
+    function onOrientationSnap() {
+      lockedCardMetrics = null;
+      relayoutBoard(true);
     }
 
     function isTabFullscreen() {
@@ -5169,11 +5188,11 @@
 
     document.addEventListener('fullscreenchange', function() {
       updateFullscreenButton();
-      onViewportChange();
+      onOrientationSnap();
     });
     document.addEventListener('webkitfullscreenchange', function() {
       updateFullscreenButton();
-      onViewportChange();
+      onOrientationSnap();
     });
 
     function paintStockAndWaste(activeDeck) {
