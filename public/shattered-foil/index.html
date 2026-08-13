@@ -979,25 +979,33 @@
       padding: 0;
     }
 
-    /* Face Up: Pure Clean Crisp Pips */
+    /* Face Up: opaque so stacked backs never show through */
+    .game-card:not(.face-down) {
+      isolation: isolate;
+      background-color: #141A24;
+    }
     .game-card.suit-hearts {
       color: var(--glass-red);
-      background: linear-gradient(180deg, var(--glass-red-bg) 0%, var(--card-face-bg) 70%);
+      background-color: #1C1216;
+      background-image: linear-gradient(180deg, rgba(255, 71, 87, 0.28) 0%, #1C1216 58%);
     }
 
     .game-card.suit-diamonds {
       color: var(--glass-diamond);
-      background: linear-gradient(180deg, rgba(255, 71, 87, 0.08) 0%, var(--card-face-bg) 70%);
+      background-color: #1C1410;
+      background-image: linear-gradient(180deg, rgba(255, 71, 87, 0.28) 0%, #1C1410 58%);
     }
 
     .game-card.suit-spades {
       color: var(--glass-black);
-      background: linear-gradient(180deg, var(--glass-black-bg) 0%, var(--card-face-bg) 70%);
+      background-color: #121820;
+      background-image: linear-gradient(180deg, rgba(112, 161, 255, 0.26) 0%, #121820 58%);
     }
 
     .game-card.suit-clubs {
       color: var(--glass-club);
-      background: linear-gradient(180deg, rgba(112, 161, 255, 0.08) 0%, var(--card-face-bg) 70%);
+      background-color: #10181C;
+      background-image: linear-gradient(180deg, rgba(112, 161, 255, 0.26) 0%, #10181C 58%);
     }
 
     .card-corner {
@@ -1527,7 +1535,7 @@
       }
     }
   </style>
-  <script src="./version-check.js?v=sf-20260812-v5"></script>
+  <script src="./version-check.js?v=sf-20260812-v6"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -2555,6 +2563,49 @@
     window.addEventListener('touchstart', unlockAudioOnFirstInteraction);
     window.addEventListener('click', unlockAudioOnFirstInteraction);
     window.addEventListener('keydown', unlockAudioOnFirstInteraction);
+
+    var musicPausedBySystem = false;
+    var timerPausedBySystem = false;
+
+    function pauseAudioForBackground() {
+      if (isZenMusicPlaying) {
+        musicPausedBySystem = true;
+        ZenMusicEngine.stop(true);
+      }
+      if (audioCtx && audioCtx.state === 'running') {
+        audioCtx.suspend().catch(function() {});
+      }
+      if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+        timerPausedBySystem = true;
+      }
+    }
+
+    function resumeAudioFromBackground() {
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume().catch(function() {});
+      }
+      if (timerPausedBySystem && hasActiveGame && !isWon) {
+        timerPausedBySystem = false;
+        startTimer();
+      }
+      if (musicPausedBySystem && isZenMusicEnabled) {
+        musicPausedBySystem = false;
+        var gameplayView = document.getElementById('gameplayView');
+        var isInGame = gameplayView && !gameplayView.classList.contains('view-hidden');
+        if (isInGame) ZenMusicEngine.start(true);
+      }
+    }
+
+    document.addEventListener('visibilitychange', function() {
+      if (document.hidden) pauseAudioForBackground();
+      else resumeAudioFromBackground();
+    });
+    window.addEventListener('pagehide', pauseAudioForBackground);
+    window.addEventListener('pageshow', resumeAudioFromBackground);
+    window.addEventListener('freeze', pauseAudioForBackground);
+    window.addEventListener('resume', resumeAudioFromBackground);
 
     // High-Quality Glass Melodic Voice Synthesizer (Click-Free Smooth Envelope)
     function playMelodyNote(ctx, noteName, startTime, duration, volScale, customBus) {
@@ -4207,19 +4258,24 @@
           if (tableau[i] && tableau[i].length > maxStack) maxStack = tableau[i].length;
         }
       }
-      var stackReserve = Math.max(maxStack, landscape ? 9 : 12);
-      var minFan = landscape ? 9 : 13;
-      var preferredFan = colCount > 7 ? (landscape ? 11 : 16) : (landscape ? 13 : 21);
+      // Always leave room for a full suit so landscape never needs to scroll
+      var stackReserve = Math.max(maxStack, 13);
+      var minFan = landscape ? 7 : 12;
+      var preferredFan = colCount > 7 ? (landscape ? 9 : 16) : (landscape ? 11 : 21);
       var fan = preferredFan;
+      var topGap = landscape ? 6 : 12;
 
-      var needed = cardH + (stackReserve - 1) * fan;
-      if (needed > availTableauH) {
-        var maxCardH = availTableauH - (stackReserve - 1) * fan;
-        if (maxCardH < 44) {
-          fan = Math.max(minFan, (availTableauH - 44) / Math.max(1, stackReserve - 1));
-          maxCardH = availTableauH - (stackReserve - 1) * fan;
+      function stackFits(h, f) {
+        return (h + topGap + h + (stackReserve - 1) * f) <= boardH;
+      }
+
+      if (!stackFits(cardH, fan)) {
+        var maxCardH = (boardH - topGap - (stackReserve - 1) * fan) / 2;
+        if (maxCardH < 40) {
+          fan = Math.max(minFan, (boardH - topGap - 80) / Math.max(1, stackReserve - 1));
+          maxCardH = (boardH - topGap - (stackReserve - 1) * fan) / 2;
         }
-        cardH = Math.max(36, Math.min(cardH, maxCardH));
+        cardH = Math.max(32, Math.min(cardH, maxCardH));
         cardW = cardH / 1.42;
       }
 
@@ -4292,6 +4348,7 @@
         for (var idx = 0; idx < colCards.length; idx++) {
           var cardEl = createCardElement(colCards[idx], { type: 'tableau', col: c, index: idx });
           cardEl.style.top = (idx * metrics.fan) + 'px';
+          cardEl.style.zIndex = String(idx + 1);
           colDiv.appendChild(cardEl);
         }
         colContainerParent.appendChild(colDiv);
