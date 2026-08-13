@@ -1608,7 +1608,7 @@
       }
     }
   </style>
-  <script src="./version-check.js?v=sf-20260812-v19"></script>
+  <script src="./version-check.js?v=sf-20260812-v20"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -2056,7 +2056,7 @@
             </select>
           </div>
 
-          <!--; gap: 8px; margin: 2px 0;">
+          <div style="display: flex; gap: 8px; margin: 2px 0;">
             <button class="action-btn-sm" style="flex: 1; font-size: 11px; padding: 7px; background: rgba(255,255,255,0.06); border: 1px solid var(--copper-foil); border-radius: 8px; color: var(--copper-foil-bright); cursor: pointer;" onclick="skipToNextZenLoop()">
               ⏭️ Skip to Next Melody
             </button>
@@ -2346,9 +2346,19 @@
       try { return localStorage.getItem('shattered_foil_music_mode') || 'auto'; } catch(e) { return 'auto'; }
     })();
 
-    var currentLoopIdx = 0;
+    var currentLoopIdx = (function() {
+      try {
+        var n = parseInt(localStorage.getItem('shattered_foil_music_loop'), 10);
+        if (!isNaN(n) && n >= 0) return n % 10;
+      } catch (e) {}
+      return Math.floor(Math.random() * 10);
+    })();
     var currentMeasureInLoopIdx = 0;
     var loopRepeatCount = 0;
+
+    function persistMusicLoop() {
+      try { localStorage.setItem('shattered_foil_music_loop', String(currentLoopIdx)); } catch (e) {}
+    }
 
     // Start music volume calibrated to 32% by default
     var musicVolume = (function() {
@@ -2433,6 +2443,7 @@
         id: 1,
         title: "Rose Window Serenade",
         genre: "Glass Celesta & Marimba • C Major",
+        voice: "celesta",
         bpm: 116,
         bass: ['C3', 'F3', 'A3', 'G3'],
         chords: [['C4', 'E4', 'G4'], ['F3', 'A3', 'C4'], ['A3', 'C4', 'E4'], ['G3', 'B3', 'D4']],
@@ -2447,6 +2458,7 @@
         id: 2,
         title: "Cobalt Spires Rhapsody",
         genre: "Gothic Glass Harp • A Minor",
+        voice: "harp",
         bpm: 112,
         bass: ['A3', 'E3', 'F3', 'D3'],
         chords: [['A3', 'C4', 'E4'], ['E3', 'G3', 'B3'], ['F3', 'A3', 'C4'], ['D3', 'F3', 'A3']],
@@ -2461,21 +2473,23 @@
         id: 3,
         title: "Copper Artisan Waltz",
         genre: "Parisian Salon Dance • D Minor",
-        bpm: 124,
+        voice: "warm",
+        bpm: 92,
         bass: ['D3', 'G3', 'C3', 'A3'],
         chords: [['D4', 'F4', 'A4'], ['G3', 'F4', 'B4'], ['C4', 'E4', 'G4'], ['A3', 'E4', 'A4']],
         melody: [
-          ['D4', 'F4', 'A4', 'D5', 'C5', 'A4', 'F4', 'D4'],
-          ['G4', 'B4', 'D5', 'F5', 'E5', 'D5', 'B4', 'G4'],
-          ['C4', 'E4', 'G4', 'C5', 'D5', 'E5', 'D5', 'C5'],
-          ['A3', 'C#4', 'E4', 'A4', 'C#5', 'B4', 'A4', 'E4']
+          ['D4', 'A4', 'F4', 'D5', 'A4', 'F4'],
+          ['G4', 'D5', 'B4', 'F5', 'D5', 'B4'],
+          ['C4', 'G4', 'E4', 'C5', 'G4', 'E4'],
+          ['A3', 'E4', 'C#4', 'A4', 'E4', 'C#5']
         ]
       },
       {
         id: 4,
         title: "Tiffany Dragonfly Sparkle",
         genre: "Prismatic Celesta • G Major",
-        bpm: 118,
+        voice: "sparkle",
+        bpm: 132,
         bass: ['G3', 'E3', 'C3', 'D3'],
         chords: [['G3', 'B3', 'D4'], ['E3', 'G3', 'B3'], ['C3', 'E3', 'G3'], ['D3', 'F#3', 'A3']],
         melody: [
@@ -2489,7 +2503,8 @@
         id: 5,
         title: "Favrile Amber Sunset",
         genre: "Mellow Acoustic Rhodes • E Minor",
-        bpm: 104,
+        voice: "warm",
+        bpm: 88,
         bass: ['E3', 'C3', 'A3', 'B3'],
         chords: [['E4', 'G4', 'B4'], ['C4', 'E4', 'G4'], ['A3', 'C4', 'E4'], ['B3', 'D#4', 'F#4']],
         melody: [
@@ -2503,21 +2518,23 @@
         id: 6,
         title: "Notre-Dame Carillon Bells",
         genre: "Cathedral Carillon Melodies • F Lydian",
-        bpm: 114,
+        voice: "bell",
+        bpm: 76,
         bass: ['F3', 'G3', 'E3', 'A3'],
         chords: [['F3', 'A3', 'C4'], ['G3', 'B3', 'D4'], ['E3', 'G3', 'B3'], ['A3', 'C4', 'E4']],
         melody: [
-          ['F4', 'A4', 'C5', 'E5', 'F5', 'E5', 'C5', 'A4'],
-          ['G4', 'B4', 'D5', 'G5', 'D5', 'B4', 'G4', 'D4'],
-          ['E4', 'G4', 'B4', 'E5', 'B4', 'G4', 'E4', 'B3'],
-          ['A4', 'C5', 'E5', 'G5', 'E5', 'C5', 'A4', 'E4']
+          ['F4', 'C5', 'A4', 'F5'],
+          ['G4', 'D5', 'B4', 'G5'],
+          ['E4', 'B4', 'G4', 'E5'],
+          ['A4', 'E5', 'C5', 'A5']
         ]
       },
       {
         id: 7,
         title: "Murano Glass Carnival",
         genre: "Venetian Baroque Dance • D Minor",
-        bpm: 122,
+        voice: "sparkle",
+        bpm: 138,
         bass: ['D3', 'Bb3', 'F3', 'C3'],
         chords: [['D4', 'F4', 'A4'], ['Bb3', 'D4', 'F4'], ['F3', 'A3', 'C4'], ['C4', 'E4', 'G4']],
         melody: [
@@ -2531,7 +2548,8 @@
         id: 8,
         title: "Sainte-Chapelle Sunburst",
         genre: "Royal Court Fanfare • A Major",
-        bpm: 116,
+        voice: "fanfare",
+        bpm: 108,
         bass: ['A3', 'F#3', 'D3', 'E3'],
         chords: [['A3', 'C#4', 'E4'], ['F#3', 'A3', 'C#4'], ['D3', 'F#3', 'A3'], ['E3', 'G#3', 'B3']],
         melody: [
@@ -2545,21 +2563,23 @@
         id: 9,
         title: "Obsidian Midnight Music Box",
         genre: "Crystal Music Box Lullaby • B Minor",
-        bpm: 108,
+        voice: "box",
+        bpm: 72,
         bass: ['B3', 'G3', 'E3', 'F#3'],
         chords: [['B3', 'D4', 'F#4'], ['G3', 'B3', 'D4'], ['E3', 'G3', 'B3'], ['F#3', 'A#3', 'C#4']],
         melody: [
-          ['B4', 'D5', 'F#5', 'D5', 'B4', 'F#4', 'D4', 'F#4'],
-          ['G4', 'B4', 'D5', 'B4', 'G4', 'D4', 'B3', 'D4'],
-          ['E4', 'G4', 'B4', 'G4', 'E4', 'B3', 'G3', 'B3'],
-          ['F#4', 'A4', 'C#5', 'A4', 'F#4', 'C#4', 'A3', 'C#4']
+          ['B5', 'F#5', 'D5', 'F#5'],
+          ['G5', 'D5', 'B4', 'D5'],
+          ['E5', 'B4', 'G4', 'B4'],
+          ['F#5', 'C#5', 'A4', 'C#5']
         ]
       },
       {
         id: 10,
         title: "Celestial Rose Grand Finale",
         genre: "Triumphant Polyphony • C Major",
-        bpm: 120,
+        voice: "fanfare",
+        bpm: 100,
         bass: ['C3', 'B2', 'A2', 'F2'],
         chords: [['C4', 'E4', 'G4'], ['B3', 'D4', 'G4'], ['A3', 'C4', 'E4'], ['F3', 'A3', 'C4']],
         melody: [
@@ -2681,7 +2701,7 @@
     window.addEventListener('resume', resumeAudioFromBackground);
 
     // High-Quality Glass Melodic Voice Synthesizer (Click-Free Smooth Envelope)
-    function playMelodyNote(ctx, noteName, startTime, duration, volScale, customBus) {
+    function playMelodyNote(ctx, noteName, startTime, duration, volScale, customBus, voice) {
       if (!ctx || !noteName) return;
       var freq = NOTE_MAP[noteName];
       if (!freq) return;
@@ -2689,24 +2709,36 @@
       var now = startTime;
       var dur = duration || 0.28;
       var vol = (volScale || 0.32);
+      voice = voice || 'celesta';
+      var osc1Type = 'sine';
+      var osc2Type = 'sine';
+      var osc2Ratio = 2;
+      var osc2Mix = 0.25;
+      var attack = 0.006;
+      if (voice === 'harp') { osc1Type = 'triangle'; osc2Type = 'sine'; osc2Ratio = 3; osc2Mix = 0.1; attack = 0.014; vol *= 0.88; dur *= 1.15; }
+      else if (voice === 'bell') { osc1Type = 'sine'; osc2Type = 'sine'; osc2Ratio = 2.76; osc2Mix = 0.16; attack = 0.004; vol *= 0.82; dur *= 1.85; }
+      else if (voice === 'box') { osc1Type = 'sine'; osc2Type = 'triangle'; osc2Ratio = 4; osc2Mix = 0.12; attack = 0.002; vol *= 0.7; }
+      else if (voice === 'warm') { osc1Type = 'triangle'; osc2Type = 'sine'; osc2Ratio = 2; osc2Mix = 0.18; attack = 0.022; vol *= 0.84; dur *= 1.25; }
+      else if (voice === 'sparkle') { osc1Type = 'sine'; osc2Type = 'sine'; osc2Ratio = 4; osc2Mix = 0.14; attack = 0.003; vol *= 0.72; }
+      else if (voice === 'fanfare') { osc1Type = 'triangle'; osc2Type = 'sine'; osc2Ratio = 2; osc2Mix = 0.22; attack = 0.01; vol *= 0.9; dur *= 1.2; }
 
       try {
         var osc1 = ctx.createOscillator();
-        osc1.type = 'sine';
+        osc1.type = osc1Type;
         osc1.frequency.setValueAtTime(freq, now);
 
         var osc2 = ctx.createOscillator();
-        osc2.type = 'sine';
-        osc2.frequency.setValueAtTime(freq * 2, now);
+        osc2.type = osc2Type;
+        osc2.frequency.setValueAtTime(freq * osc2Ratio, now);
 
         var gain1 = ctx.createGain();
         gain1.gain.setValueAtTime(0.0001, now);
-        gain1.gain.linearRampToValueAtTime(vol, now + 0.006);
+        gain1.gain.linearRampToValueAtTime(vol, now + attack);
         gain1.gain.exponentialRampToValueAtTime(0.0001, now + dur);
 
         var gain2 = ctx.createGain();
         gain2.gain.setValueAtTime(0.0001, now);
-        gain2.gain.linearRampToValueAtTime(vol * 0.25, now + 0.006);
+        gain2.gain.linearRampToValueAtTime(vol * osc2Mix, now + attack);
         gain2.gain.exponentialRampToValueAtTime(0.0001, now + dur * 0.7);
 
         osc1.connect(gain1);
@@ -2851,7 +2883,7 @@
         for (var s = 0; s < melodyNotes.length; s++) {
           var noteTime = measureStartTime + s * stepDuration;
           var nName = melodyNotes[s];
-          playMelodyNote(ctx, nName, noteTime, stepDuration * 0.95, 0.32, customBus);
+          playMelodyNote(ctx, nName, noteTime, stepDuration * 0.95, 0.32, customBus, activeLoop.voice);
         }
 
         if (!isAudition) {
@@ -2859,12 +2891,13 @@
           if (currentMeasureInLoopIdx >= activeLoop.melody.length) {
             currentMeasureInLoopIdx = 0;
             loopRepeatCount++;
-            if (loopRepeatCount >= 2) {
+            if (loopRepeatCount >= 1) {
               loopRepeatCount = 0;
               if (musicLoopMode === 'auto') {
                 currentLoopIdx = (currentLoopIdx + 1) % MELODIC_MUSIC_LOOPS.length;
+                persistMusicLoop();
                 var nextLoop = MELODIC_MUSIC_LOOPS[currentLoopIdx];
-                showToast("🎵 " + nextLoop.id + ". " + nextLoop.title, 2000);
+                showToast("🎵 " + nextLoop.id + ". " + nextLoop.title, 2600);
                 updateAudioUIState();
               }
             }
@@ -2925,6 +2958,7 @@
 
       nextLoop: function() {
         currentLoopIdx = (currentLoopIdx + 1) % MELODIC_MUSIC_LOOPS.length;
+        persistMusicLoop();
         currentMeasureInLoopIdx = 0;
         loopRepeatCount = 0;
         var activeLoop = MELODIC_MUSIC_LOOPS[currentLoopIdx];
@@ -3045,6 +3079,7 @@
       
       if (mode !== 'auto') {
         currentLoopIdx = parseInt(mode, 10);
+        persistMusicLoop();
         currentMeasureInLoopIdx = 0;
         loopRepeatCount = 0;
       }
