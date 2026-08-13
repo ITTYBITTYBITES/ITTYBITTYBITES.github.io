@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-sf-build="sf-20260813-v42">
+<html lang="en" data-sf-build="sf-20260813-v43">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
@@ -1932,7 +1932,7 @@
     }
 
   </style>
-  <script src="./version-check.js?v=sf-20260813-v42"></script>
+  <script src="./version-check.js?v=sf-20260813-v43"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -2477,7 +2477,7 @@
           </div>
 
           <div style="text-align: center; margin-top: 8px; font-size: 10px; color: var(--text-muted);">
-            Solitaire: Shattered Foil Edition • v42<br>
+            Solitaire: Shattered Foil Edition • v43<br>
             Presented by ITTYBITTYBITES Experiences
           </div>
         </div>
@@ -4714,13 +4714,29 @@
       document.getElementById('scrubberPosLabel').textContent = 'Step ' + targetStep + ' / ' + moves;
     }
 
+    function cloneCardList(list) {
+      var out = new Array(list.length);
+      for (var i = 0; i < list.length; i++) {
+        var c = list[i];
+        out[i] = {
+          id: c.id, suitIndex: c.suitIndex, suit: c.suit, cssClass: c.cssClass,
+          isRed: c.isRed, rankIndex: c.rankIndex, rank: c.rank, isFaceUp: c.isFaceUp
+        };
+      }
+      return out;
+    }
+
     function saveStateForUndo() {
+      var fndCopy = new Array(4);
+      for (var fi = 0; fi < 4; fi++) fndCopy[fi] = cloneCardList(foundations[fi]);
+      var tabCopy = new Array(tableau.length);
+      for (var ti = 0; ti < tableau.length; ti++) tabCopy[ti] = cloneCardList(tableau[ti]);
       undoHistory.push({
-        stock: JSON.parse(JSON.stringify(stock)),
-        waste: JSON.parse(JSON.stringify(waste)),
-        foundations: JSON.parse(JSON.stringify(foundations)),
-        tableau: JSON.parse(JSON.stringify(tableau)),
-        freeCells: JSON.parse(JSON.stringify(freeCells)),
+        stock: cloneCardList(stock),
+        waste: cloneCardList(waste),
+        foundations: fndCopy,
+        tableau: tabCopy,
+        freeCells: freeCells.slice(),
         score: score,
         moves: moves,
         stepLogsCount: gameStepLogs.length
@@ -4893,8 +4909,11 @@
 
     function refreshMovedPiles(source, dest) {
       var metrics = lockedCardMetrics || computeCardMetrics();
-      paintStockAndWaste();
-      paintFoundations();
+      if ((source && source.type === 'waste') || (dest && dest.type === 'waste')) {
+        paintWasteOnly();
+      }
+      if (source && source.type === 'foundation') paintOneFoundation(source.fnd);
+      if (dest && dest.type === 'foundation') paintOneFoundation(dest.fnd);
       if (source && source.type === 'tableau') paintColumn(source.col, metrics);
       if (dest && dest.type === 'tableau') paintColumn(dest.col, metrics);
       tightenFanForStacks();
@@ -5109,8 +5128,14 @@
       for (var i = 0; i < tableau.length; i++) {
         if (tableau[i] && tableau[i].length > maxStack) maxStack = tableau[i].length;
       }
-      var row = document.getElementById('tableauRow');
-      var avail = (row && row.clientHeight > 40) ? row.clientHeight : 0;
+      if (m.lastFanStack === maxStack) return m;
+      m.lastFanStack = maxStack;
+      var avail = m.tableauAvail;
+      if (!avail) {
+        var row = document.getElementById('tableauRow');
+        avail = (row && row.clientHeight > 40) ? row.clientHeight : 0;
+        if (avail >= 40) m.tableauAvail = avail;
+      }
       if (avail < 40) return m;
       var preferred = m.preferredFan || m.fan;
       var fan = preferred;
@@ -5242,15 +5267,28 @@
     }
 
     function paintFoundations() {
-      for (var f = 0; f < 4; f++) {
-        var fndSlot = document.getElementById('fnd-' + f);
-        if (!fndSlot) continue;
-        fndSlot.innerHTML = '';
-        if (foundations[f].length > 0) {
-          fndSlot.appendChild(createCardElement(foundations[f][foundations[f].length - 1], { type: 'foundation', fnd: f }));
-        } else {
-          fndSlot.textContent = SUITS[f].symbol;
-        }
+      for (var f = 0; f < 4; f++) paintOneFoundation(f);
+    }
+
+    function paintOneFoundation(f) {
+      var fndSlot = document.getElementById('fnd-' + f);
+      if (!fndSlot) return;
+      fndSlot.innerHTML = '';
+      if (foundations[f].length > 0) {
+        fndSlot.appendChild(createCardElement(foundations[f][foundations[f].length - 1], { type: 'foundation', fnd: f }));
+      } else {
+        fndSlot.textContent = SUITS[f].symbol;
+      }
+    }
+
+    function paintWasteOnly() {
+      var wasteSlot = document.getElementById('wasteSlot');
+      if (!wasteSlot) return;
+      wasteSlot.innerHTML = '';
+      if (waste.length > 0) {
+        wasteSlot.appendChild(createCardElement(waste[waste.length - 1], { type: 'waste' }));
+      } else {
+        wasteSlot.innerHTML = '<span class="slot-ghost">WASTE</span>';
       }
     }
 
