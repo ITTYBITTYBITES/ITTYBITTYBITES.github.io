@@ -1,9 +1,11 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-sf-build="sf-20260813-v36">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
   <meta name="theme-color" content="#090B0E" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
   <title>Solitaire: Shattered Foil Edition</title>
   <style>
     *, *::before, *::after {
@@ -1975,7 +1977,7 @@
       .deal-back-cover { transition: none; }
     }
   </style>
-  <script src="./version-check.js?v=sf-20260813-v35"></script>
+  <script src="./version-check.js?v=sf-20260813-v36"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -2520,7 +2522,7 @@
           </div>
 
           <div style="text-align: center; margin-top: 8px; font-size: 10px; color: var(--text-muted);">
-            Solitaire: Shattered Foil Edition • v1.0.0<br>
+            Solitaire: Shattered Foil Edition • v36<br>
             Presented by ITTYBITTYBITES Experiences
           </div>
         </div>
@@ -4403,7 +4405,9 @@
       setTimeout(onViewportChange, 60);
       setTimeout(onViewportChange, 260);
     });
-    // visualViewport resize fires on every tap (URL bar). Ignore during play.
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', onViewportChange);
+    }
 
     // --- 9. FULL 5-GAME SUITE CONTROLLER & ENGINE ---
     var SUITS = [
@@ -4667,6 +4671,8 @@
       requestAnimationFrame(function() {
         requestAnimationFrame(function() {
           if (!hasActiveGame) return;
+          lockedCardMetrics = null;
+          syncOrientationClass();
           renderBoard();
           playDealAnimation();
         });
@@ -5266,6 +5272,7 @@
       var wasLandscape = document.body.classList.contains('is-landscape');
       syncOrientationClass();
       if (!hasActiveGame) return;
+      // Relayout only when orientation flips. Ignore URL-bar height jiggle.
       if (wasLandscape === isLandscapePlay()) return;
       lockedCardMetrics = null;
       renderBoard();

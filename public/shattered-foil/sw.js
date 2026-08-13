@@ -5,7 +5,7 @@
 // the user clearing cache.
 // ============================================================================
 
-const CACHE_VERSION = 'sf-20260812-v2';
+const CACHE_VERSION = 'sf-20260813-v36';
 const STATIC_CACHE = `shattered-foil-static-${CACHE_VERSION}`;
 const DYNAMIC_CACHE = `shattered-foil-dynamic-${CACHE_VERSION}`;
 const SCOPE_PREFIX = '/shattered-foil';
@@ -54,8 +54,8 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(request.url);
 
-  // Never cache the version file — it is the update signal.
-  if (isVersionFile(url)) {
+  // Never cache the version file or the checker — they are the update signal.
+  if (isVersionFile(url) || url.pathname.endsWith('/version-check.js')) {
     event.respondWith(fetch(new Request(request, { cache: 'no-store' })));
     return;
   }
