@@ -957,7 +957,7 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      padding: 3.5px 4px;
+      padding: 0;
       position: absolute;
       top: 0;
       left: 0;
@@ -1012,8 +1012,19 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      line-height: 1;
+      line-height: 0.9;
       pointer-events: none;
+      position: absolute;
+      top: 4px;
+      left: 3px;
+      z-index: 2;
+    }
+    .card-corner.card-corner-br {
+      top: auto;
+      left: auto;
+      right: 3px;
+      bottom: 4px;
+      transform: rotate(180deg);
     }
 
     .card-rank {
@@ -1552,7 +1563,7 @@
       }
     }
   </style>
-  <script src="./version-check.js?v=sf-20260812-v10"></script>
+  <script src="./version-check.js?v=sf-20260812-v11"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -1917,7 +1928,7 @@
         <div style="background: rgba(200, 100, 50, 0.15); border: 1px solid var(--glass-border); border-radius: 14px; padding: 14px; text-align: center; margin-bottom: 12px;">
           <div style="font-size: 13px; font-weight: 800; color: var(--copper-foil-bright);" id="dailySeedHeader">TODAY'S DEAL • SEED #224</div>
           <div style="font-size: 11px; color: var(--text-muted); margin-top: 3px;">Solve today's deal to earn your daily star seal.</div>
-          <button class="btn-action btn-hero" style="height: 42px; margin-top: 10px;" onclick="closeModal('dailyModal'); startDailyChallenge();">
+          <button class="btn-action btn-hero" style="height: 42px; margin-top: 10px;" onclick="startDailyChallenge();">
             <div style="width: 100%; text-align: center; font-weight: 800; font-size: 12.5px; color: var(--copper-foil-glint);">PLAY TODAY'S DEAL</div>
           </button>
         </div>
@@ -3733,6 +3744,7 @@
     }
 
     function startDailyChallenge() {
+      enterTabFullscreen();
       activeGameMode = 'klondike';
       startNewDeal(true);
     }
@@ -3746,6 +3758,7 @@
     }
 
     function startNewDeal(isDaily) {
+      enterTabFullscreen();
       closeModal('quickPlayModal');
       closeModal('dailyModal');
       closeModal('victoryModal');
@@ -3781,6 +3794,7 @@
     }
 
     function resumeActiveGame() {
+      enterTabFullscreen();
       closeModal('quickPlayModal');
       closeModal('dailyModal');
       document.getElementById('mainMenuView').classList.add('view-hidden');
@@ -4309,13 +4323,24 @@
     }
 
     function enterTabFullscreen() {
-      var el = document.documentElement;
+      if (isTabFullscreen()) return;
+      var el = document.getElementById('appFrame') || document.documentElement;
       var req = el.requestFullscreen || el.webkitRequestFullscreen || el.webkitRequestFullScreen;
-      if (!req || isTabFullscreen()) return;
+      if (!req) {
+        el = document.documentElement;
+        req = el.requestFullscreen || el.webkitRequestFullscreen || el.webkitRequestFullScreen;
+      }
+      if (!req) return;
       try {
-        var result = req.call(el);
-        if (result && result.catch) result.catch(function() {});
-      } catch (e) {}
+        var result = req.call(el, { navigationUI: 'hide' });
+        if (result && result.catch) {
+          result.catch(function() {
+            try { req.call(el); } catch (err) {}
+          });
+        }
+      } catch (e) {
+        try { req.call(el); } catch (err) {}
+      }
     }
 
     function exitTabFullscreen() {
@@ -4407,7 +4432,7 @@
             '<span class="card-rank">' + card.rank + '</span>' +
             '<span class="card-suit">' + card.suit + '</span>' +
           '</div>' +
-          '<div class="card-corner" style="transform: rotate(180deg);">' +
+          '<div class="card-corner card-corner-br">' +
             '<span class="card-rank">' + card.rank + '</span>' +
             '<span class="card-suit">' + card.suit + '</span>' +
           '</div>';
