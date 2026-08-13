@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-sf-build="sf-20260813-v39">
+<html lang="en" data-sf-build="sf-20260813-v40">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
@@ -1055,8 +1055,7 @@
       gap: 5px;
       margin-bottom: 12px;
       z-index: 10;
-      flex: 0 0 auto;
-      min-height: var(--card-h);
+      flex: 0 0 var(--card-h);
       align-items: start;
     }
     .top-grid-row > * {
@@ -1111,12 +1110,10 @@
     }
 
     .card-slot {
-      width: min(100%, var(--card-w, 100%));
+      width: var(--card-w, 48px);
       max-width: 100%;
-      height: var(--card-h, auto);
-      aspect-ratio: 1 / 1.42;
+      height: var(--card-h, 68px);
       min-width: 0;
-      min-height: 0;
       overflow: hidden;
       border: 1.5px solid var(--well-border);
       border-radius: 6px;
@@ -1154,10 +1151,9 @@
 
     /* Pure, Luminous Stained Glass Card (Zero Clutter) */
     .game-card {
-      width: min(100%, var(--card-w, 100%));
+      width: var(--card-w, 48px);
       max-width: 100%;
-      height: var(--card-h, auto);
-      aspect-ratio: 1 / 1.42;
+      height: var(--card-h, 68px);
       border-radius: 6px;
       border: 1.8px solid var(--copper-foil);
       background: var(--card-face-bg);
@@ -1936,7 +1932,7 @@
     }
 
   </style>
-  <script src="./version-check.js?v=sf-20260813-v39"></script>
+  <script src="./version-check.js?v=sf-20260813-v40"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -2481,7 +2477,7 @@
           </div>
 
           <div style="text-align: center; margin-top: 8px; font-size: 10px; color: var(--text-muted);">
-            Solitaire: Shattered Foil Edition • v39<br>
+            Solitaire: Shattered Foil Edition • v40<br>
             Presented by ITTYBITTYBITES Experiences
           </div>
         </div>
@@ -4360,19 +4356,11 @@
 
     syncOrientationClass();
     window.addEventListener('resize', onViewportChange);
-    window.addEventListener('orientationchange', function() {
-      onOrientationSnap();
-      setTimeout(onOrientationSnap, 80);
-      setTimeout(onOrientationSnap, 280);
-    });
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', onViewportChange);
-    }
+    window.addEventListener('orientationchange', scheduleRelayout);
     if (window.matchMedia) {
       var orientMq = window.matchMedia('(orientation: landscape)');
-      var onOrientMq = function() { onOrientationSnap(); };
-      if (orientMq.addEventListener) orientMq.addEventListener('change', onOrientMq);
-      else if (orientMq.addListener) orientMq.addListener(onOrientMq);
+      if (orientMq.addEventListener) orientMq.addEventListener('change', scheduleRelayout);
+      else if (orientMq.addListener) orientMq.addListener(scheduleRelayout);
     }
 
     // --- 9. FULL 5-GAME SUITE CONTROLLER & ENGINE ---
@@ -4517,14 +4505,9 @@
       var timerEl = document.getElementById('hudTimer');
       if (timerEl) timerEl.textContent = '00:00';
       dealSelectedGameMode(isDaily);
-      requestAnimationFrame(function() {
-        requestAnimationFrame(function() {
-          if (!hasActiveGame) return;
-          lockedCardMetrics = null;
-          syncOrientationClass();
-          renderBoard();
-        });
-      });
+      lockedCardMetrics = null;
+      syncOrientationClass();
+      renderBoard();
       startTimer();
       recordStep("New " + (modeTitles[activeGameMode] || 'Klondike') + " Deal started", 0);
       if (isZenMusicEnabled) {
@@ -4673,8 +4656,6 @@
         waste = [];
         foundations = [[], [], [], []];
       }
-
-      renderBoard();
     }
 
     function recordStep(description, points) {
@@ -4904,7 +4885,7 @@
     }
 
     function refreshMovedPiles(source, dest) {
-      var metrics = computeCardMetrics();
+      var metrics = lockedCardMetrics || computeCardMetrics();
       paintStockAndWaste();
       paintFoundations();
       if (source && source.type === 'tableau') paintColumn(source.col, metrics);
@@ -5028,10 +5009,6 @@
     function viewportSize() {
       var w = window.innerWidth || document.documentElement.clientWidth || 360;
       var h = window.innerHeight || document.documentElement.clientHeight || 640;
-      if (window.visualViewport) {
-        w = window.visualViewport.width || w;
-        h = window.visualViewport.height || h;
-      }
       return { w: w, h: h };
     }
 
@@ -5047,88 +5024,103 @@
       document.body.classList.toggle('is-landscape', isLandscapePlay());
     }
 
+    function applyCardMetrics(m) {
+      var root = document.getElementById('appFrame') || document.documentElement;
+      root.style.setProperty('--card-w', (Math.round(m.w * 10) / 10) + 'px');
+      root.style.setProperty('--card-h', (Math.round(m.h * 10) / 10) + 'px');
+      root.style.setProperty('--card-fan', (Math.round(m.fan * 10) / 10) + 'px');
+    }
+
     function computeCardMetrics() {
-      var board = document.getElementById('boardArea');
-      var colCount = Math.max(1, (tableau && tableau.length) ? tableau.length : 7);
       var landscape = isLandscapePlay();
-      var gap = colCount > 7 ? (landscape ? 2 : 3) : (landscape ? 4 : 5);
-      var boardW = board ? board.clientWidth : viewportSize().w;
-      var boardH = board ? board.clientHeight : Math.max(160, viewportSize().h - 90);
-      var gridEl = document.getElementById('tableauRow') || document.getElementById('topGridRow');
-      if (gridEl && gridEl.clientWidth > 40) boardW = gridEl.clientWidth;
-      if (boardW < 40) boardW = viewportSize().w - 16;
+      var colCount = Math.max(1, (tableau && tableau.length) ? tableau.length : 7);
+      var board = document.getElementById('boardArea');
+      var innerW = board && board.clientWidth > 40 ? board.clientWidth : viewportSize().w;
+      var innerH = board && board.clientHeight > 40 ? board.clientHeight : Math.max(160, viewportSize().h - 100);
+      if (board) {
+        var cs = window.getComputedStyle(board);
+        innerW = board.clientWidth - (parseFloat(cs.paddingLeft) || 0) - (parseFloat(cs.paddingRight) || 0);
+        innerH = board.clientHeight - (parseFloat(cs.paddingTop) || 0) - (parseFloat(cs.paddingBottom) || 0);
+      }
+      innerW = Math.max(40, innerW);
+      innerH = Math.max(80, innerH);
 
-      var top = document.getElementById('topGridRow');
-      var topH = top ? (top.offsetHeight + (landscape ? 6 : 12)) : (landscape ? 52 : 72);
-      var availTableauH = Math.max(72, boardH - topH);
-
-      var colW = Math.max(18, (boardW - gap * (colCount - 1)) / colCount);
-
-      if (availTableauH >= 72 && lockedCardMetrics &&
+      if (lockedCardMetrics &&
           lockedCardMetrics.landscape === landscape &&
           lockedCardMetrics.colCount === colCount &&
-          Math.abs(lockedCardMetrics.boardW - boardW) < 16) {
+          Math.abs(lockedCardMetrics.boardW - innerW) < 12) {
         return lockedCardMetrics;
       }
 
-      var maxStack = 1;
-      if (tableau) {
-        for (var i = 0; i < tableau.length; i++) {
-          if (tableau[i] && tableau[i].length > maxStack) maxStack = tableau[i].length;
-        }
-      }
-      // Same idea as the first rotate-fit: fill the column, reserve a typical
-      // stack (not a forced 13), shrink only if that stack will not fit.
-      var stackReserve = Math.max(maxStack, landscape ? 9 : 12);
-      var minFan = landscape ? 12 : 18;
-      var preferredFan = colCount > 7 ? (landscape ? 11 : 16) : (landscape ? 13 : 21);
-      var fan = preferredFan;
+      var gap = colCount > 7 ? (landscape ? 2 : 3) : (landscape ? 4 : 5);
+      var colW = Math.max(20, (innerW - gap * (colCount - 1)) / colCount);
       var cardW = colW;
       var cardH = cardW * 1.42;
+      var topGap = landscape ? 6 : 12;
+      var minFan = landscape ? 12 : 18;
+      var preferredFan = colCount > 7 ? (landscape ? 11 : 16) : (landscape ? 13 : 21);
+      var stackReserve = landscape ? 8 : 12;
+      var fan = preferredFan;
+      var avail = innerH - cardH - topGap;
       var needed = cardH + (stackReserve - 1) * fan;
-      if (needed > availTableauH) {
-        var maxCardH = availTableauH - (stackReserve - 1) * fan;
-        if (maxCardH < 44) {
-          fan = Math.max(minFan, (availTableauH - 44) / Math.max(1, stackReserve - 1));
-          maxCardH = availTableauH - (stackReserve - 1) * fan;
+      if (needed > avail) {
+        var cap = (innerH - topGap - (stackReserve - 1) * minFan) / 2;
+        if (cap >= 56 && cap < cardH) {
+          cardH = cap;
+          cardW = cardH / 1.42;
+          fan = minFan;
+        } else {
+          cardH = Math.min(cardH, Math.max(56, cap));
+          cardW = Math.min(colW, cardH / 1.42);
+          fan = Math.max(minFan, (innerH - topGap - cardH * 2) / Math.max(1, stackReserve - 1));
+          if (fan > preferredFan) fan = preferredFan;
         }
-        cardH = Math.max(36, Math.min(cardH, maxCardH));
-        cardW = cardH / 1.42;
+      }
+      if (cardW > colW) {
+        cardW = colW;
+        cardH = cardW * 1.42;
       }
 
-      var root = document.getElementById('appFrame') || document.documentElement;
       var next = {
         fan: fan,
         w: cardW,
         h: cardH,
         landscape: landscape,
         colCount: colCount,
-        boardW: boardW,
-        boardH: boardH
+        boardW: innerW
       };
-      root.style.setProperty('--card-w', Math.round(cardW * 10) / 10 + 'px');
-      root.style.setProperty('--card-h', Math.round(cardH * 10) / 10 + 'px');
-      root.style.setProperty('--card-fan', Math.round(fan * 10) / 10 + 'px');
-      lockedCardMetrics = (availTableauH >= 72) ? next : null;
+      applyCardMetrics(next);
+      lockedCardMetrics = next;
       return next;
     }
 
-    function relayoutBoard(force) {
-      syncOrientationClass();
-      if (!hasActiveGame) return;
-      var landscape = isLandscapePlay();
-      if (!force && lockedCardMetrics && lockedCardMetrics.landscape === landscape) return;
-      lockedCardMetrics = null;
-      renderBoard();
+    var relayoutTimer = null;
+    function scheduleRelayout() {
+      if (relayoutTimer) return;
+      relayoutTimer = setTimeout(function() {
+        relayoutTimer = null;
+        if (!hasActiveGame) return;
+        lockedCardMetrics = null;
+        syncOrientationClass();
+        renderBoard();
+      }, 140);
     }
 
     function onViewportChange() {
-      relayoutBoard(false);
-    }
-
-    function onOrientationSnap() {
-      lockedCardMetrics = null;
-      relayoutBoard(true);
+      if (!hasActiveGame) {
+        syncOrientationClass();
+        return;
+      }
+      var landscape = isLandscapePlay();
+      var board = document.getElementById('boardArea');
+      var w = board ? board.clientWidth : viewportSize().w;
+      if (lockedCardMetrics &&
+          lockedCardMetrics.landscape === landscape &&
+          Math.abs(lockedCardMetrics.boardW - w) < 24) {
+        syncOrientationClass();
+        return;
+      }
+      scheduleRelayout();
     }
 
     function isTabFullscreen() {
@@ -5182,11 +5174,11 @@
 
     document.addEventListener('fullscreenchange', function() {
       updateFullscreenButton();
-      onOrientationSnap();
+      scheduleRelayout();
     });
     document.addEventListener('webkitfullscreenchange', function() {
       updateFullscreenButton();
-      onOrientationSnap();
+      scheduleRelayout();
     });
 
     function paintStockAndWaste(activeDeck) {
@@ -5196,7 +5188,7 @@
       if (stock.length > 0) {
         stockSlot.style.background = '';
         stockSlot.style.borderColor = 'var(--copper-foil-bright)';
-        stockSlot.innerHTML = '<div class="stock-back">' + activeDeck.renderSVG(100, 142) + '</div><span class="stock-counter-badge" id="stockCountBadge">' + stock.length + '</span>';
+        stockSlot.innerHTML = '<div class="stock-back">' + cardBackSVG() + '</div><span class="stock-counter-badge" id="stockCountBadge">' + stock.length + '</span>';
       } else {
         stockSlot.style.background = 'rgba(0,0,0,0.25)';
         stockSlot.style.borderColor = 'rgba(200, 100, 50, 0.35)';
@@ -5308,7 +5300,7 @@
               recordStep("Revealed card in Col " + (sourceLocation.col+1), 10);
               score += 10;
               updateHUD();
-              paintColumn(sourceLocation.col, computeCardMetrics());
+              paintColumn(sourceLocation.col, lockedCardMetrics || computeCardMetrics());
             }
           }
         };
