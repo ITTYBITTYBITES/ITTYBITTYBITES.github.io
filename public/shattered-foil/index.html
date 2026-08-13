@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-sf-build="sf-20260813-v36">
+<html lang="en" data-sf-build="sf-20260813-v37">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
@@ -1935,49 +1935,8 @@
       color: var(--text-muted);
     }
 
-    #tableauRow.is-predeal .game-card { opacity: 0; }
-
-    .board-area.is-dealing #topGridRow,
-    .board-area.is-dealing #tableauRow {
-      pointer-events: none;
-    }
-
-    .deal-back-cover {
-      position: absolute;
-      inset: 0;
-      z-index: 6;
-      pointer-events: none;
-      border-radius: inherit;
-      overflow: hidden;
-      background: #0C121A;
-      transition: opacity 0.18s ease, transform 0.2s ease;
-      transform-origin: center center;
-    }
-    .deal-back-cover.is-off {
-      opacity: 0;
-      transform: rotateY(88deg);
-    }
-    .deal-back-cover svg {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    @keyframes stockDealPulse {
-      0%, 100% { transform: scale(1); }
-      35% { transform: scale(0.94) rotate(-2deg); }
-      70% { transform: scale(1.05) rotate(2deg); }
-    }
-    #stockSlot.stock-dealing {
-      animation: stockDealPulse 0.36s ease-in-out 2;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      #stockSlot.stock-dealing { animation: none; }
-      .deal-back-cover { transition: none; }
-    }
   </style>
-  <script src="./version-check.js?v=sf-20260813-v36"></script>
+  <script src="./version-check.js?v=sf-20260813-v37"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -2522,7 +2481,7 @@
           </div>
 
           <div style="text-align: center; margin-top: 8px; font-size: 10px; color: var(--text-muted);">
-            Solitaire: Shattered Foil Edition • v36<br>
+            Solitaire: Shattered Foil Edition • v37<br>
             Presented by ITTYBITTYBITES Experiences
           </div>
         </div>
@@ -4433,8 +4392,6 @@
     var timerSeconds = 0;
     var timerInterval = null;
     var isWon = false;
-    var isDealing = false;
-    var dealAnimTimer = null;
     var lockedCardMetrics = null;
     var cachedBackSVG = "";
     var cachedBackDeckId = "";
@@ -4493,121 +4450,6 @@
       document.getElementById('howToContent').innerHTML =
         '<p class="how-to-lead">' + pack.lead + '</p>' + HOW_TO_BASICS;
       openModal('howToModal');
-    }
-
-    function prefersReducedMotion() {
-      return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    }
-
-    function clearDealAnimation() {
-      isDealing = false;
-      if (dealAnimTimer) {
-        clearTimeout(dealAnimTimer);
-        dealAnimTimer = null;
-      }
-      var board = document.getElementById('boardArea');
-      if (board) board.classList.remove('is-dealing');
-      var stockSlot = document.getElementById('stockSlot');
-      if (stockSlot) stockSlot.classList.remove('stock-dealing');
-      var row = document.getElementById('tableauRow');
-      if (row) row.classList.remove('is-predeal');
-    }
-
-    function finishDealAnimation() {
-      var covers = document.querySelectorAll('.deal-back-cover');
-      for (var i = 0; i < covers.length; i++) {
-        if (covers[i].parentNode) covers[i].parentNode.removeChild(covers[i]);
-      }
-      var cards = document.querySelectorAll('#tableauRow .game-card');
-      for (var c = 0; c < cards.length; c++) {
-        cards[c].style.transition = '';
-        cards[c].style.transitionDelay = '';
-        cards[c].style.transform = '';
-        cards[c].style.opacity = '';
-        cards[c].style.zIndex = '';
-      }
-      clearDealAnimation();
-      if (hasActiveGame && !isWon) startTimer();
-    }
-
-    function playDealAnimation() {
-      if (dealAnimTimer) {
-        clearTimeout(dealAnimTimer);
-        dealAnimTimer = null;
-      }
-      var board = document.getElementById('boardArea');
-      var stockSlot = document.getElementById('stockSlot');
-      var colParent = document.getElementById('tableauRow');
-      if (!board || !colParent) {
-        clearDealAnimation();
-        if (hasActiveGame && !isWon) startTimer();
-        return;
-      }
-
-      var cardEls = [];
-      var cols = colParent.querySelectorAll('.tableau-col');
-      for (var ci = 0; ci < cols.length; ci++) {
-        var pile = cols[ci].querySelectorAll('.game-card');
-        for (var pi = 0; pi < pile.length; pi++) cardEls.push(pile[pi]);
-      }
-
-      if (!cardEls.length || prefersReducedMotion()) {
-        clearDealAnimation();
-        if (hasActiveGame && !isWon) startTimer();
-        return;
-      }
-
-      isDealing = true;
-      board.classList.add('is-dealing');
-      if (stockSlot) stockSlot.classList.add('stock-dealing');
-
-      var srect = stockSlot ? stockSlot.getBoundingClientRect() : { left: 0, top: 0, width: 40, height: 56 };
-      var sx = srect.left + srect.width / 2;
-      var sy = srect.top + srect.height / 2;
-      var n = cardEls.length;
-      var stagger = Math.max(12, Math.min(26, Math.floor(720 / n)));
-      var flyMs = 320;
-      var equipped = getEquippedDeck();
-
-      for (var i = 0; i < n; i++) {
-        (function(el, idx) {
-          var r = el.getBoundingClientRect();
-          var dx = sx - (r.left + r.width / 2);
-          var dy = sy - (r.top + r.height / 2);
-          el.style.transition = 'none';
-          el.style.transform = 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px) scale(0.9)';
-          el.style.opacity = '0.55';
-          el.style.zIndex = String(80 + idx);
-
-          if (!el.classList.contains('face-down')) {
-            var cover = document.createElement('div');
-            cover.className = 'deal-back-cover';
-            try { cover.innerHTML = equipped.renderSVG(100, 142); } catch (err) {}
-            el.appendChild(cover);
-          }
-
-          window.setTimeout(function() {
-            if (!isDealing) return;
-            el.style.transition = 'transform ' + flyMs + 'ms cubic-bezier(0.22, 0.82, 0.2, 1), opacity 220ms ease';
-            el.style.transform = 'translate(0,0) scale(1)';
-            el.style.opacity = '1';
-            window.setTimeout(function() {
-              var cov = el.querySelector('.deal-back-cover');
-              if (cov) cov.classList.add('is-off');
-            }, Math.max(80, flyMs - 40));
-          }, 24 + idx * stagger);
-        })(cardEls[i], i);
-      }
-
-      colParent.classList.remove('is-predeal');
-
-      try { SoundFX.playCopperSnap(); } catch (err) {}
-
-      var total = 24 + (n - 1) * stagger + flyMs + 220;
-      dealAnimTimer = window.setTimeout(function() {
-        dealAnimTimer = null;
-        finishDealAnimation();
-      }, total);
     }
 
     function launchGameMode(modeKey) {
@@ -4674,9 +4516,9 @@
           lockedCardMetrics = null;
           syncOrientationClass();
           renderBoard();
-          playDealAnimation();
         });
       });
+      startTimer();
       recordStep("New " + (modeTitles[activeGameMode] || 'Klondike') + " Deal started", 0);
       if (isZenMusicEnabled) {
         ZenMusicEngine.start();
@@ -4711,7 +4553,6 @@
     }
 
     function returnToMenu() {
-      clearDealAnimation();
       clearInterval(timerInterval);
       document.getElementById('gameplayView').classList.add('view-hidden');
       document.getElementById('mainMenuView').classList.remove('view-hidden');
@@ -4826,7 +4667,6 @@
         foundations = [[], [], [], []];
       }
 
-      tableauRow.classList.add('is-predeal');
       renderBoard();
     }
 
@@ -4895,7 +4735,7 @@
     }
 
     function undoMove() {
-      if (isDealing || undoHistory.length === 0) return;
+      if (undoHistory.length === 0) return;
       clearHints();
       SoundFX.playGlassTap();
       var prev = undoHistory.pop();
@@ -4920,7 +4760,7 @@
 
     // --- DIRECT TOUCH STOCK & WASTE DRAWING ---
     function drawFromStock() {
-      if (isWon || isDealing) return;
+      if (isWon) return;
       clearHints();
       saveStateForUndo();
       moves++;
@@ -4969,7 +4809,7 @@
 
     // --- AUTO-MOVE (TOUCH/TAP TO MOVE) ---
     function tryAutoMoveCard(card, sourceLocation) {
-      if (isWon || isDealing || !card.isFaceUp) return;
+      if (isWon || !card.isFaceUp) return;
       clearHints();
 
       // 1. Foundation Move
@@ -5119,7 +4959,7 @@
 
     // --- SMART HINTS ---
     function giveSmartHint() {
-      if (isDealing || isWon) return;
+      if (isWon) return;
       clearHints();
       SoundFX.playGlassTap();
       if (waste.length > 0) {
@@ -5446,7 +5286,6 @@
 
         el.onclick = function(e) {
           e.stopPropagation();
-          if (isDealing) return;
           if (sourceLocation.type === 'tableau') {
             var col = tableau[sourceLocation.col];
             if (col.length > 0 && col[col.length - 1].id === card.id) {
