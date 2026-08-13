@@ -781,7 +781,8 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: max(8px, env(safe-area-inset-top)) 12px 8px;
+      gap: 6px;
+      padding: max(8px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) 8px max(10px, env(safe-area-inset-left));
       min-height: 48px;
       height: auto;
       background: var(--glass-panel);
@@ -866,7 +867,8 @@
        ========================================================================== */
     .board-area {
       flex: 1;
-      padding: 10px 8px 6px;
+      min-width: 0;
+      padding: 10px max(12px, env(safe-area-inset-right)) 6px max(8px, env(safe-area-inset-left));
       display: flex;
       flex-direction: column;
       position: relative;
@@ -913,7 +915,8 @@
     }
 
     .card-slot {
-      width: var(--card-w, 100%);
+      width: min(100%, var(--card-w, 100%));
+      max-width: 100%;
       height: var(--card-h, auto);
       aspect-ratio: 1 / 1.42;
       border: 1.5px dashed rgba(200, 100, 50, 0.35);
@@ -947,7 +950,8 @@
 
     /* Pure, Luminous Stained Glass Card (Zero Clutter) */
     .game-card {
-      width: var(--card-w, 100%);
+      width: min(100%, var(--card-w, 100%));
+      max-width: 100%;
       height: var(--card-h, auto);
       aspect-ratio: 1 / 1.42;
       border-radius: 6px;
@@ -1505,7 +1509,7 @@
       }
 
       .board-area {
-        padding: 4px max(8px, env(safe-area-inset-right)) 4px max(8px, env(safe-area-inset-left));
+        padding: 4px max(14px, env(safe-area-inset-right)) 4px max(8px, env(safe-area-inset-left));
       }
       .top-grid-row {
         gap: 4px;
@@ -1563,7 +1567,7 @@
       }
     }
   </style>
-  <script src="./version-check.js?v=sf-20260812-v11"></script>
+  <script src="./version-check.js?v=sf-20260812-v12"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -1780,6 +1784,7 @@
           <button class="hud-action-btn" id="btnUndo" onclick="undoMove()" title="Undo">↩</button>
           <button class="hud-action-btn" onclick="openModal('gameStepsModal')" title="Steps Log">📜</button>
           <button class="hud-action-btn" onclick="openModal('settingsModal')" title="Settings">⚙️</button>
+          <button class="hud-action-btn" id="btnFullscreen" onclick="toggleTabFullscreen()" title="Fullscreen">⛶</button>
         </div>
       </header>
 
@@ -3738,6 +3743,7 @@
     var isWon = false;
 
     function launchGameMode(modeKey) {
+      enterTabFullscreen();
       activeGameMode = modeKey;
       closeModal('quickPlayModal');
       startNewDeal();
@@ -3786,6 +3792,7 @@
       startTimer();
       updateHUD();
       dealSelectedGameMode(isDaily);
+      requestAnimationFrame(function() { if (hasActiveGame) renderBoard(); });
       recordStep("New " + (modeTitles[activeGameMode] || 'Klondike') + " Deal started", 0);
       if (isZenMusicEnabled) {
         ZenMusicEngine.start();
@@ -4269,7 +4276,15 @@
       var gap = colCount > 7 ? (landscape ? 2 : 3) : (landscape ? 4 : 5);
       var boardW = board ? board.clientWidth : viewportSize().w;
       var boardH = board ? board.clientHeight : Math.max(160, viewportSize().h - 90);
-      if (boardW < 40) boardW = viewportSize().w - 16;
+      if (board) {
+        var bcs = window.getComputedStyle(board);
+        boardW = board.clientWidth - (parseFloat(bcs.paddingLeft) || 0) - (parseFloat(bcs.paddingRight) || 0);
+        boardH = board.clientHeight - (parseFloat(bcs.paddingTop) || 0) - (parseFloat(bcs.paddingBottom) || 0);
+      }
+      var gridEl = document.getElementById('tableauRow') || document.getElementById('topGridRow');
+      if (gridEl && gridEl.clientWidth > 40) boardW = gridEl.clientWidth;
+      boardW = Math.max(40, boardW - 2);
+      if (boardW < 40) boardW = viewportSize().w - 24;
 
       var top = document.getElementById('topGridRow');
       var topH = top ? (top.offsetHeight + (landscape ? 6 : 12)) : (landscape ? 52 : 72);
@@ -4322,6 +4337,21 @@
       return !!(document.fullscreenElement || document.webkitFullscreenElement);
     }
 
+    function updateFullscreenButton() {
+      var btn = document.getElementById('btnFullscreen');
+      if (!btn) return;
+      var on = isTabFullscreen();
+      btn.textContent = on ? '⊡' : '⛶';
+      btn.title = on ? 'Exit Fullscreen' : 'Fullscreen';
+      btn.setAttribute('aria-label', btn.title);
+    }
+
+    function toggleTabFullscreen() {
+      if (isTabFullscreen()) exitTabFullscreen();
+      else enterTabFullscreen();
+      setTimeout(updateFullscreenButton, 80);
+    }
+
     function enterTabFullscreen() {
       if (isTabFullscreen()) return;
       var el = document.getElementById('appFrame') || document.documentElement;
@@ -4352,8 +4382,14 @@
       } catch (e) {}
     }
 
-    document.addEventListener('fullscreenchange', onViewportChange);
-    document.addEventListener('webkitfullscreenchange', onViewportChange);
+    document.addEventListener('fullscreenchange', function() {
+      updateFullscreenButton();
+      onViewportChange();
+    });
+    document.addEventListener('webkitfullscreenchange', function() {
+      updateFullscreenButton();
+      onViewportChange();
+    });
 
     function renderBoard() {
       var activeDeck = getEquippedDeck();
