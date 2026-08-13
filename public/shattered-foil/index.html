@@ -1966,7 +1966,7 @@
       .deal-back-cover { transition: none; }
     }
   </style>
-  <script src="./version-check.js?v=sf-20260813-v32"></script>
+  <script src="./version-check.js?v=sf-20260813-v33"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -5180,12 +5180,12 @@
       var colW = Math.max(18, (boardW - gap * (colCount - 1)) / colCount);
       var topGap = landscape ? 6 : 12;
 
+      // Mid-deal: ignore Chrome URL-bar / visualViewport height jiggle.
+      // Only accept a new size on rotate, column-count change, or a real width change.
       if (lockedCardMetrics &&
           lockedCardMetrics.landscape === landscape &&
           lockedCardMetrics.colCount === colCount &&
-          Math.abs(lockedCardMetrics.boardW - boardW) < 8 &&
-          Math.abs(lockedCardMetrics.boardH - boardH) < 48 &&
-          lockedCardMetrics.h >= (landscape ? 50 : 40)) {
+          Math.abs(lockedCardMetrics.boardW - boardW) < 16) {
         return lockedCardMetrics;
       }
 
@@ -5237,8 +5237,16 @@
     }
 
     function onViewportChange() {
+      var wasLandscape = document.body.classList.contains('is-landscape');
       syncOrientationClass();
       if (!hasActiveGame) return;
+      var nowLandscape = isLandscapePlay();
+      var board = document.getElementById('boardArea');
+      var widthNow = board ? board.clientWidth : viewportSize().w;
+      var widthWas = lockedCardMetrics ? lockedCardMetrics.boardW : 0;
+      var rotated = wasLandscape !== nowLandscape;
+      var widthShift = Math.abs(widthNow - widthWas) >= 16;
+      if (!rotated && !widthShift && lockedCardMetrics) return;
       var prev = lockedCardMetrics;
       var next = computeCardMetrics();
       if (!prev || prev.w !== next.w || prev.h !== next.h || prev.fan !== next.fan || prev.colCount !== next.colCount) {
