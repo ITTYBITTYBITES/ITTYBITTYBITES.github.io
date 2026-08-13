@@ -5,7 +5,7 @@
 // the user clearing cache.
 // ============================================================================
 
-const CACHE_VERSION = 'sf-20260813-v40';
+const CACHE_VERSION = 'sf-20260813-v41';
 const STATIC_CACHE = `shattered-foil-static-${CACHE_VERSION}`;
 const DYNAMIC_CACHE = `shattered-foil-dynamic-${CACHE_VERSION}`;
 const SCOPE_PREFIX = '/shattered-foil';

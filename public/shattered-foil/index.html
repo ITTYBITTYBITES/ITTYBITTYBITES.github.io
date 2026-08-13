@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-sf-build="sf-20260813-v40">
+<html lang="en" data-sf-build="sf-20260813-v41">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
@@ -1932,7 +1932,7 @@
     }
 
   </style>
-  <script src="./version-check.js?v=sf-20260813-v40"></script>
+  <script src="./version-check.js?v=sf-20260813-v41"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -2477,7 +2477,7 @@
           </div>
 
           <div style="text-align: center; margin-top: 8px; font-size: 10px; color: var(--text-muted);">
-            Solitaire: Shattered Foil Edition • v40<br>
+            Solitaire: Shattered Foil Edition • v41<br>
             Presented by ITTYBITTYBITES Experiences
           </div>
         </div>
@@ -4356,11 +4356,15 @@
 
     syncOrientationClass();
     window.addEventListener('resize', onViewportChange);
-    window.addEventListener('orientationchange', scheduleRelayout);
+    window.addEventListener('orientationchange', function() {
+      lockedCardMetrics = null;
+      scheduleRelayout();
+    });
     if (window.matchMedia) {
       var orientMq = window.matchMedia('(orientation: landscape)');
-      if (orientMq.addEventListener) orientMq.addEventListener('change', scheduleRelayout);
-      else if (orientMq.addListener) orientMq.addListener(scheduleRelayout);
+      var onOrient = function() { lockedCardMetrics = null; scheduleRelayout(); };
+      if (orientMq.addEventListener) orientMq.addEventListener('change', onOrient);
+      else if (orientMq.addListener) orientMq.addListener(onOrient);
     }
 
     // --- 9. FULL 5-GAME SUITE CONTROLLER & ENGINE ---
@@ -4507,13 +4511,16 @@
       dealSelectedGameMode(isDaily);
       lockedCardMetrics = null;
       syncOrientationClass();
-      renderBoard();
       startTimer();
       recordStep("New " + (modeTitles[activeGameMode] || 'Klondike') + " Deal started", 0);
       if (isZenMusicEnabled) {
         ZenMusicEngine.start();
       }
-      enterTabFullscreen();
+      setTimeout(function() {
+        if (!hasActiveGame) return;
+        lockedCardMetrics = null;
+        renderBoard();
+      }, 120);
     }
 
     function resumeActiveGame() {
@@ -5047,8 +5054,7 @@
 
       if (lockedCardMetrics &&
           lockedCardMetrics.landscape === landscape &&
-          lockedCardMetrics.colCount === colCount &&
-          Math.abs(lockedCardMetrics.boardW - innerW) < 12) {
+          lockedCardMetrics.colCount === colCount) {
         return lockedCardMetrics;
       }
 
@@ -5100,27 +5106,15 @@
       relayoutTimer = setTimeout(function() {
         relayoutTimer = null;
         if (!hasActiveGame) return;
-        lockedCardMetrics = null;
         syncOrientationClass();
+        if (lockedCardMetrics && lockedCardMetrics.landscape === isLandscapePlay()) return;
+        lockedCardMetrics = null;
         renderBoard();
-      }, 140);
+      }, 160);
     }
 
     function onViewportChange() {
-      if (!hasActiveGame) {
-        syncOrientationClass();
-        return;
-      }
-      var landscape = isLandscapePlay();
-      var board = document.getElementById('boardArea');
-      var w = board ? board.clientWidth : viewportSize().w;
-      if (lockedCardMetrics &&
-          lockedCardMetrics.landscape === landscape &&
-          Math.abs(lockedCardMetrics.boardW - w) < 24) {
-        syncOrientationClass();
-        return;
-      }
-      scheduleRelayout();
+      syncOrientationClass();
     }
 
     function isTabFullscreen() {
@@ -5174,11 +5168,9 @@
 
     document.addEventListener('fullscreenchange', function() {
       updateFullscreenButton();
-      scheduleRelayout();
     });
     document.addEventListener('webkitfullscreenchange', function() {
       updateFullscreenButton();
-      scheduleRelayout();
     });
 
     function paintStockAndWaste(activeDeck) {
