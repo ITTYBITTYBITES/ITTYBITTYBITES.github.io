@@ -51,7 +51,7 @@
       --well-border: rgba(200, 100, 50, 0.40);
       --well-highlight: rgba(255, 196, 155, 0.14);
       --well-glyph: rgba(240, 142, 88, 0.42);
-      --table-grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");
+      --table-grain: repeating-radial-gradient(circle at 1px 1px, rgba(255,255,255,0.035) 0 1px, transparent 1px 3px);
 
 
       /* Clean Stained Glass Suit Colors */
@@ -1966,7 +1966,7 @@
       .deal-back-cover { transition: none; }
     }
   </style>
-  <script src="./version-check.js?v=sf-20260813-v33"></script>
+  <script src="./version-check.js?v=sf-20260813-v34"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -3864,6 +3864,14 @@
       return DECK_CATALOG[0];
     }
 
+    function cardBackSVG() {
+      if (cachedBackDeckId !== equippedDeckId || !cachedBackSVG) {
+        cachedBackSVG = getEquippedDeck().renderSVG(100, 142);
+        cachedBackDeckId = equippedDeckId;
+      }
+      return cachedBackSVG;
+    }
+
     function renderAtelierUI() {
       var grid = document.getElementById('deckCatalogGrid');
       if (!grid) return;
@@ -3934,6 +3942,8 @@
       if (!deck || !deck.unlocked) return;
 
       equippedDeckId = deck.id;
+      cachedBackSVG = "";
+      cachedBackDeckId = "";
       SafeStorage.setItem('shattered_foil_equipped_deck', equippedDeckId);
       SoundFX.playCopperSnap();
       renderAtelierUI();
@@ -4384,9 +4394,7 @@
       setTimeout(onViewportChange, 60);
       setTimeout(onViewportChange, 260);
     });
-    if (window.visualViewport) {
-      window.visualViewport.addEventListener('resize', onViewportChange);
-    }
+    // visualViewport resize fires on every tap (URL bar). Ignore during play.
 
     // --- 9. FULL 5-GAME SUITE CONTROLLER & ENGINE ---
     var SUITS = [
@@ -4415,6 +4423,8 @@
     var isDealing = false;
     var dealAnimTimer = null;
     var lockedCardMetrics = null;
+    var cachedBackSVG = "";
+    var cachedBackDeckId = "";
 
 
     var HOW_TO_BASICS =
@@ -4958,7 +4968,7 @@
           SoundFX.playFoundationChime(f);
           addShards(10);
           recordStep("Moved " + card.rank + card.suit + " to Foundation", 15);
-          afterMoveCleanup(sourceLocation);
+          afterMoveCleanup(sourceLocation, { type: 'foundation', fnd: f });
           return;
         }
       }
@@ -4977,7 +4987,7 @@
           moves++;
           SoundFX.playCopperSnap();
           recordStep("Placed " + card.rank + card.suit + " on Col " + (c+1), 5);
-          afterMoveCleanup(sourceLocation);
+          afterMoveCleanup(sourceLocation, { type: 'tableau', col: c });
           return;
         }
       }
@@ -5010,8 +5020,8 @@
       }
     }
 
-    function afterMoveCleanup(source) {
-      if (source.type === 'tableau') {
+    function afterMoveCleanup(source, dest) {
+      if (source && source.type === 'tableau') {
         var col = tableau[source.col];
         if (col.length > 0 && !col[col.length - 1].isFaceUp) {
           col[col.length - 1].isFaceUp = true;
@@ -5024,7 +5034,19 @@
 
       checkWinCondition();
       updateHUD();
-      renderBoard();
+      if (isWon) {
+        renderBoard();
+        return;
+      }
+      refreshMovedPiles(source, dest);
+    }
+
+    function refreshMovedPiles(source, dest) {
+      var metrics = computeCardMetrics();
+      paintStockAndWaste();
+      paintFoundations();
+      if (source && source.type === 'tableau') paintColumn(source.col, metrics);
+      if (dest && dest.type === 'tableau') paintColumn(dest.col, metrics);
     }
 
     function checkWinCondition() {
@@ -5240,18 +5262,9 @@
       var wasLandscape = document.body.classList.contains('is-landscape');
       syncOrientationClass();
       if (!hasActiveGame) return;
-      var nowLandscape = isLandscapePlay();
-      var board = document.getElementById('boardArea');
-      var widthNow = board ? board.clientWidth : viewportSize().w;
-      var widthWas = lockedCardMetrics ? lockedCardMetrics.boardW : 0;
-      var rotated = wasLandscape !== nowLandscape;
-      var widthShift = Math.abs(widthNow - widthWas) >= 16;
-      if (!rotated && !widthShift && lockedCardMetrics) return;
-      var prev = lockedCardMetrics;
-      var next = computeCardMetrics();
-      if (!prev || prev.w !== next.w || prev.h !== next.h || prev.fan !== next.fan || prev.colCount !== next.colCount) {
-        renderBoard();
-      }
+      if (wasLandscape === isLandscapePlay()) return;
+      lockedCardMetrics = null;
+      renderBoard();
     }
 
     function isTabFullscreen() {
@@ -5341,39 +5354,55 @@
       var metrics = computeCardMetrics();
 
       paintStockAndWaste(activeDeck);
+      paintFoundations();
+      paintAllColumns(metrics);
+    }
 
-      // 3. Foundations (Columns 0-3 of Top Grid)
+    function paintFoundations() {
       for (var f = 0; f < 4; f++) {
         var fndSlot = document.getElementById('fnd-' + f);
+        if (!fndSlot) continue;
         fndSlot.innerHTML = '';
         if (foundations[f].length > 0) {
-          var topCard = foundations[f][foundations[f].length - 1];
-          var fndCard = createCardElement(topCard, { type: 'foundation', fnd: f });
-          fndSlot.appendChild(fndCard);
+          fndSlot.appendChild(createCardElement(foundations[f][foundations[f].length - 1], { type: 'foundation', fnd: f }));
         } else {
           fndSlot.textContent = SUITS[f].symbol;
         }
       }
+    }
 
-      // 4. Tableau Columns
-      var colCount = tableau.length;
-      var colContainerParent = document.getElementById('tableauRow');
-      colContainerParent.innerHTML = '';
+    function paintColumn(c, metrics) {
+      metrics = metrics || computeCardMetrics();
+      var parent = document.getElementById('tableauRow');
+      if (!parent) return;
+      var colDiv = document.getElementById('col-' + c);
+      if (!colDiv) {
+        colDiv = document.createElement('div');
+        colDiv.className = 'tableau-col';
+        colDiv.id = 'col-' + c;
+        parent.appendChild(colDiv);
+      }
+      colDiv.innerHTML = '<div class="card-slot"></div>';
+      var colCards = tableau[c] || [];
+      for (var idx = 0; idx < colCards.length; idx++) {
+        var cardEl = createCardElement(colCards[idx], { type: 'tableau', col: c, index: idx });
+        cardEl.style.top = (idx * metrics.fan) + 'px';
+        cardEl.style.zIndex = String(idx + 1);
+        colDiv.appendChild(cardEl);
+      }
+    }
 
-      for (var c = 0; c < colCount; c++) {
+    function paintAllColumns(metrics) {
+      metrics = metrics || computeCardMetrics();
+      var parent = document.getElementById('tableauRow');
+      if (!parent) return;
+      parent.innerHTML = '';
+      for (var c = 0; c < tableau.length; c++) {
         var colDiv = document.createElement('div');
         colDiv.className = 'tableau-col';
         colDiv.id = 'col-' + c;
-        colDiv.innerHTML = '<div class="card-slot"></div>';
-
-        var colCards = tableau[c];
-        for (var idx = 0; idx < colCards.length; idx++) {
-          var cardEl = createCardElement(colCards[idx], { type: 'tableau', col: c, index: idx });
-          cardEl.style.top = (idx * metrics.fan) + 'px';
-          cardEl.style.zIndex = String(idx + 1);
-          colDiv.appendChild(cardEl);
-        }
-        colContainerParent.appendChild(colDiv);
+        parent.appendChild(colDiv);
+        paintColumn(c, metrics);
       }
     }
 
@@ -5402,8 +5431,7 @@
         };
       } else {
         // Pure Stained Glass Artwork on Card Backs (No suits/numbers)
-        var activeDeck = getEquippedDeck();
-        el.innerHTML = activeDeck.renderSVG(100, 142);
+        el.innerHTML = cardBackSVG();
 
         el.onclick = function(e) {
           e.stopPropagation();
@@ -5417,7 +5445,7 @@
               recordStep("Revealed card in Col " + (sourceLocation.col+1), 10);
               score += 10;
               updateHUD();
-              renderBoard();
+              paintColumn(sourceLocation.col, computeCardMetrics());
             }
           }
         };
