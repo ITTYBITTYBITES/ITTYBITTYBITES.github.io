@@ -1720,8 +1720,97 @@
         padding-bottom: max(12px, env(safe-area-inset-bottom));
       }
     }
+
+    .how-to-fab {
+      position: absolute;
+      left: max(6px, env(safe-area-inset-left));
+      bottom: 6px;
+      z-index: 46;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1.5px solid var(--copper-foil-bright);
+      background: rgba(12, 16, 24, 0.82);
+      color: var(--copper-foil-glint);
+      font-size: 15px;
+      font-weight: 900;
+      font-style: italic;
+      font-family: Georgia, "Times New Roman", serif;
+      line-height: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+    }
+    .how-to-fab:active { transform: scale(0.94); }
+
+    .how-to-body {
+      font-size: 13.5px;
+      line-height: 1.45;
+      color: var(--text-main, #f2ebe3);
+    }
+    .how-to-lead {
+      margin: 0 0 12px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .how-to-steps {
+      margin: 0 0 8px;
+      padding-left: 1.2em;
+    }
+    .how-to-steps li { margin: 0 0 8px; }
+    .how-to-note {
+      margin: 8px 0 0;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    #tableauRow.is-predeal .game-card { opacity: 0; }
+
+    .board-area.is-dealing #topGridRow,
+    .board-area.is-dealing #tableauRow {
+      pointer-events: none;
+    }
+
+    .deal-back-cover {
+      position: absolute;
+      inset: 0;
+      z-index: 6;
+      pointer-events: none;
+      border-radius: inherit;
+      overflow: hidden;
+      background: #0C121A;
+      transition: opacity 0.18s ease, transform 0.2s ease;
+      transform-origin: center center;
+    }
+    .deal-back-cover.is-off {
+      opacity: 0;
+      transform: rotateY(88deg);
+    }
+    .deal-back-cover svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    @keyframes stockDealPulse {
+      0%, 100% { transform: scale(1); }
+      35% { transform: scale(0.94) rotate(-2deg); }
+      70% { transform: scale(1.05) rotate(2deg); }
+    }
+    #stockSlot.stock-dealing {
+      animation: stockDealPulse 0.36s ease-in-out 2;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      #stockSlot.stock-dealing { animation: none; }
+      .deal-back-cover { transition: none; }
+    }
   </style>
-  <script src="./version-check.js?v=sf-20260812-v27"></script>
+  <script src="./version-check.js?v=sf-20260813-v28"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -1913,6 +2002,7 @@
         </div>
 
         <div class="tableau-grid-row" id="tableauRow"></div>
+        <button type="button" class="how-to-fab" id="howToFab" onclick="openHowTo()" title="How to play" aria-label="How to play">i</button>
       </main>
 
       <footer class="bottom-ad-space">
@@ -2004,6 +2094,17 @@
       </div>
     </div>
 
+
+    <!-- HOW TO PLAY -->
+    <div class="modal-overlay" id="howToModal" onclick="closeModalOnBg(event, 'howToModal')">
+      <div class="modal-card">
+        <div class="modal-header">
+          <div class="modal-title" id="howToTitle">How to play</div>
+          <button class="close-btn" onclick="closeModal('howToModal')">✕</button>
+        </div>
+        <div id="howToContent" class="how-to-body"></div>
+      </div>
+    </div>
     <!-- MODAL 3: THE GLASS ATELIER (24 DECKS) -->
     <div class="modal-overlay" id="themesModal" onclick="closeModalOnBg(event, 'themesModal')">
       <div class="modal-card">
@@ -4155,6 +4256,179 @@
     var timerSeconds = 0;
     var timerInterval = null;
     var isWon = false;
+    var isDealing = false;
+    var dealAnimTimer = null;
+
+
+    var HOW_TO_BASICS =
+      '<ol class="how-to-steps">' +
+        '<li>Tap a card. If it can move, it goes there by itself.</li>' +
+        '<li>On the table, a card can only sit on the next-higher rank and the <strong>other color</strong> (red 6 on black 7).</li>' +
+        '<li>An empty column only takes a <strong>King</strong>.</li>' +
+        '<li>The 4 pads at the top are Ace to King, one suit each.</li>' +
+        '<li>Tap the deck (top right) to flip <strong>one</strong> card. When it is empty, tap again to reuse leftovers (−20 points).</li>' +
+        '<li>A face-down card turns over when the card on top of it is moved.</li>' +
+      '</ol>' +
+      '<p class="how-to-note">💡 Hint &nbsp;·&nbsp; ↩ Undo</p>' +
+      '<p class="how-to-note">Turn a card up: +5 shards. Onto a pad: +10. Win: +100. Fast or short games can earn extra stars.</p>';
+
+    var HOW_TO = {
+      klondike: {
+        title: 'How to play · Klondike',
+        lead: 'This is the classic game. Get every card onto the 4 pads at the top.'
+      },
+      daily: {
+        title: 'How to play · Daily',
+        lead: 'Same as Klondike. Your <strong>first win today</strong> gives +1 star and adds 1 to your streak. Extra wins the same day do not.'
+      },
+      campaign: {
+        title: 'How to play · Journey',
+        lead: 'Same as Klondike. A win counts as <strong>1 window</strong> for this realm and gives +1 star. Each realm needs 3 wins.'
+      },
+      spider: {
+        title: 'How to play · Spider',
+        lead: 'This table has 10 columns and two decks. Play it like Klondike for now. You cannot finish this mode yet.'
+      },
+      freecell: {
+        title: 'How to play · FreeCell',
+        lead: 'All 52 cards start face-up in 8 columns. There is no deck. Play it like Klondike. The 4 holding spots are not in the game yet.'
+      },
+      tripeaks: {
+        title: 'How to play · TriPeaks',
+        lead: 'The name is different. The table is still Klondike — use the steps below.'
+      },
+      pyramid: {
+        title: 'How to play · Pyramid',
+        lead: 'The name is different. The table is still Klondike — use the steps below.'
+      }
+    };
+
+    function openHowTo() {
+      var key = 'klondike';
+      if (isDailyDeal) key = 'daily';
+      else if (activeCampaignId) key = 'campaign';
+      else if (HOW_TO[activeGameMode]) key = activeGameMode;
+      var pack = HOW_TO[key] || HOW_TO.klondike;
+      document.getElementById('howToTitle').textContent = pack.title;
+      document.getElementById('howToContent').innerHTML =
+        '<p class="how-to-lead">' + pack.lead + '</p>' + HOW_TO_BASICS;
+      openModal('howToModal');
+    }
+
+    function prefersReducedMotion() {
+      return window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    }
+
+    function clearDealAnimation() {
+      isDealing = false;
+      if (dealAnimTimer) {
+        clearTimeout(dealAnimTimer);
+        dealAnimTimer = null;
+      }
+      var board = document.getElementById('boardArea');
+      if (board) board.classList.remove('is-dealing');
+      var stockSlot = document.getElementById('stockSlot');
+      if (stockSlot) stockSlot.classList.remove('stock-dealing');
+      var row = document.getElementById('tableauRow');
+      if (row) row.classList.remove('is-predeal');
+    }
+
+    function finishDealAnimation() {
+      var covers = document.querySelectorAll('.deal-back-cover');
+      for (var i = 0; i < covers.length; i++) {
+        if (covers[i].parentNode) covers[i].parentNode.removeChild(covers[i]);
+      }
+      var cards = document.querySelectorAll('#tableauRow .game-card');
+      for (var c = 0; c < cards.length; c++) {
+        cards[c].style.transition = '';
+        cards[c].style.transitionDelay = '';
+        cards[c].style.transform = '';
+        cards[c].style.opacity = '';
+        cards[c].style.zIndex = '';
+      }
+      clearDealAnimation();
+      if (hasActiveGame && !isWon) startTimer();
+    }
+
+    function playDealAnimation() {
+      if (dealAnimTimer) {
+        clearTimeout(dealAnimTimer);
+        dealAnimTimer = null;
+      }
+      var board = document.getElementById('boardArea');
+      var stockSlot = document.getElementById('stockSlot');
+      var colParent = document.getElementById('tableauRow');
+      if (!board || !colParent) {
+        clearDealAnimation();
+        if (hasActiveGame && !isWon) startTimer();
+        return;
+      }
+
+      var cardEls = [];
+      var cols = colParent.querySelectorAll('.tableau-col');
+      for (var ci = 0; ci < cols.length; ci++) {
+        var pile = cols[ci].querySelectorAll('.game-card');
+        for (var pi = 0; pi < pile.length; pi++) cardEls.push(pile[pi]);
+      }
+
+      if (!cardEls.length || prefersReducedMotion()) {
+        clearDealAnimation();
+        if (hasActiveGame && !isWon) startTimer();
+        return;
+      }
+
+      isDealing = true;
+      board.classList.add('is-dealing');
+      if (stockSlot) stockSlot.classList.add('stock-dealing');
+
+      var srect = stockSlot ? stockSlot.getBoundingClientRect() : { left: 0, top: 0, width: 40, height: 56 };
+      var sx = srect.left + srect.width / 2;
+      var sy = srect.top + srect.height / 2;
+      var n = cardEls.length;
+      var stagger = Math.max(12, Math.min(26, Math.floor(720 / n)));
+      var flyMs = 320;
+      var equipped = getEquippedDeck();
+
+      for (var i = 0; i < n; i++) {
+        (function(el, idx) {
+          var r = el.getBoundingClientRect();
+          var dx = sx - (r.left + r.width / 2);
+          var dy = sy - (r.top + r.height / 2);
+          el.style.transition = 'none';
+          el.style.transform = 'translate(' + dx.toFixed(1) + 'px,' + dy.toFixed(1) + 'px) scale(0.9)';
+          el.style.opacity = '0.55';
+          el.style.zIndex = String(80 + idx);
+
+          if (!el.classList.contains('face-down')) {
+            var cover = document.createElement('div');
+            cover.className = 'deal-back-cover';
+            try { cover.innerHTML = equipped.renderSVG(100, 142); } catch (err) {}
+            el.appendChild(cover);
+          }
+
+          window.setTimeout(function() {
+            if (!isDealing) return;
+            el.style.transition = 'transform ' + flyMs + 'ms cubic-bezier(0.22, 0.82, 0.2, 1), opacity 220ms ease';
+            el.style.transform = 'translate(0,0) scale(1)';
+            el.style.opacity = '1';
+            window.setTimeout(function() {
+              var cov = el.querySelector('.deal-back-cover');
+              if (cov) cov.classList.add('is-off');
+            }, Math.max(80, flyMs - 40));
+          }, 24 + idx * stagger);
+        })(cardEls[i], i);
+      }
+
+      colParent.classList.remove('is-predeal');
+
+      try { SoundFX.playCopperSnap(); } catch (err) {}
+
+      var total = 24 + (n - 1) * stagger + flyMs + 220;
+      dealAnimTimer = window.setTimeout(function() {
+        dealAnimTimer = null;
+        finishDealAnimation();
+      }, total);
+    }
 
     function launchGameMode(modeKey) {
       enterTabFullscreen();
@@ -4183,6 +4457,7 @@
       closeModal('dailyModal');
       closeModal('victoryModal');
       closeModal('campaignModal');
+      closeModal('howToModal');
       document.getElementById('mainMenuView').classList.add('view-hidden');
       document.getElementById('gameplayView').classList.remove('view-hidden');
 
@@ -4208,10 +4483,17 @@
       };
       document.getElementById('hudModeName').textContent = modeTitles[activeGameMode] || 'Klondike';
 
-      startTimer();
       updateHUD();
+      var timerEl = document.getElementById('hudTimer');
+      if (timerEl) timerEl.textContent = '00:00';
       dealSelectedGameMode(isDaily);
-      requestAnimationFrame(function() { if (hasActiveGame) renderBoard(); });
+      requestAnimationFrame(function() {
+        requestAnimationFrame(function() {
+          if (!hasActiveGame) return;
+          renderBoard();
+          playDealAnimation();
+        });
+      });
       recordStep("New " + (modeTitles[activeGameMode] || 'Klondike') + " Deal started", 0);
       if (isZenMusicEnabled) {
         ZenMusicEngine.start();
@@ -4246,6 +4528,7 @@
     }
 
     function returnToMenu() {
+      clearDealAnimation();
       clearInterval(timerInterval);
       document.getElementById('gameplayView').classList.add('view-hidden');
       document.getElementById('mainMenuView').classList.remove('view-hidden');
@@ -4360,6 +4643,7 @@
         foundations = [[], [], [], []];
       }
 
+      tableauRow.classList.add('is-predeal');
       renderBoard();
     }
 
@@ -4428,7 +4712,7 @@
     }
 
     function undoMove() {
-      if (undoHistory.length === 0) return;
+      if (isDealing || undoHistory.length === 0) return;
       clearHints();
       SoundFX.playGlassTap();
       var prev = undoHistory.pop();
@@ -4453,7 +4737,7 @@
 
     // --- DIRECT TOUCH STOCK & WASTE DRAWING ---
     function drawFromStock() {
-      if (isWon) return;
+      if (isWon || isDealing) return;
       clearHints();
       saveStateForUndo();
       moves++;
@@ -4502,7 +4786,7 @@
 
     // --- AUTO-MOVE (TOUCH/TAP TO MOVE) ---
     function tryAutoMoveCard(card, sourceLocation) {
-      if (isWon || !card.isFaceUp) return;
+      if (isWon || isDealing || !card.isFaceUp) return;
       clearHints();
 
       // 1. Foundation Move
@@ -4640,6 +4924,7 @@
 
     // --- SMART HINTS ---
     function giveSmartHint() {
+      if (isDealing || isWon) return;
       clearHints();
       SoundFX.playGlassTap();
       if (waste.length > 0) {
@@ -4933,6 +5218,7 @@
 
         el.onclick = function(e) {
           e.stopPropagation();
+          if (isDealing) return;
           if (sourceLocation.type === 'tableau') {
             var col = tableau[sourceLocation.col];
             if (col.length > 0 && col[col.length - 1].id === card.id) {
