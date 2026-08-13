@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-sf-build="sf-20260813-v38">
+<html lang="en" data-sf-build="sf-20260813-v39">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
@@ -1936,7 +1936,7 @@
     }
 
   </style>
-  <script src="./version-check.js?v=sf-20260813-v38"></script>
+  <script src="./version-check.js?v=sf-20260813-v39"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -2481,7 +2481,7 @@
           </div>
 
           <div style="text-align: center; margin-top: 8px; font-size: 10px; color: var(--text-muted);">
-            Solitaire: Shattered Foil Edition • v38<br>
+            Solitaire: Shattered Foil Edition • v39<br>
             Presented by ITTYBITTYBITES Experiences
           </div>
         </div>
@@ -5054,20 +5054,17 @@
       var gap = colCount > 7 ? (landscape ? 2 : 3) : (landscape ? 4 : 5);
       var boardW = board ? board.clientWidth : viewportSize().w;
       var boardH = board ? board.clientHeight : Math.max(160, viewportSize().h - 90);
-      if (board) {
-        var bcs = window.getComputedStyle(board);
-        boardW = board.clientWidth - (parseFloat(bcs.paddingLeft) || 0) - (parseFloat(bcs.paddingRight) || 0);
-        boardH = board.clientHeight - (parseFloat(bcs.paddingTop) || 0) - (parseFloat(bcs.paddingBottom) || 0);
-      }
       var gridEl = document.getElementById('tableauRow') || document.getElementById('topGridRow');
       if (gridEl && gridEl.clientWidth > 40) boardW = gridEl.clientWidth;
-      boardW = Math.max(40, boardW - 2);
-      if (boardW < 40) boardW = viewportSize().w - 24;
+      if (boardW < 40) boardW = viewportSize().w - 16;
+
+      var top = document.getElementById('topGridRow');
+      var topH = top ? (top.offsetHeight + (landscape ? 6 : 12)) : (landscape ? 52 : 72);
+      var availTableauH = Math.max(72, boardH - topH);
 
       var colW = Math.max(18, (boardW - gap * (colCount - 1)) / colCount);
-      var topGap = landscape ? 6 : 12;
 
-      if (boardH >= 90 && lockedCardMetrics &&
+      if (availTableauH >= 72 && lockedCardMetrics &&
           lockedCardMetrics.landscape === landscape &&
           lockedCardMetrics.colCount === colCount &&
           Math.abs(lockedCardMetrics.boardW - boardW) < 16) {
@@ -5080,27 +5077,24 @@
           if (tableau[i] && tableau[i].length > maxStack) maxStack = tableau[i].length;
         }
       }
-      var stackReserve = Math.max(maxStack, 13);
-      var minFan = landscape ? 16 : 18;
-      var preferredFan = colCount > 7 ? (landscape ? 16 : 20) : (landscape ? 18 : 24);
-
-      // Fill the column. Shrink only if a 13-card stack with a readable peek will not fit.
+      // Same idea as the first rotate-fit: fill the column, reserve a typical
+      // stack (not a forced 13), shrink only if that stack will not fit.
+      var stackReserve = Math.max(maxStack, landscape ? 9 : 12);
+      var minFan = landscape ? 12 : 18;
+      var preferredFan = colCount > 7 ? (landscape ? 11 : 16) : (landscape ? 13 : 21);
+      var fan = preferredFan;
       var cardW = colW;
       var cardH = cardW * 1.42;
-      var heightCap = (boardH - topGap - (stackReserve - 1) * minFan) / 2;
-      if (heightCap > 32 && cardH > heightCap) {
-        cardH = heightCap;
+      var needed = cardH + (stackReserve - 1) * fan;
+      if (needed > availTableauH) {
+        var maxCardH = availTableauH - (stackReserve - 1) * fan;
+        if (maxCardH < 44) {
+          fan = Math.max(minFan, (availTableauH - 44) / Math.max(1, stackReserve - 1));
+          maxCardH = availTableauH - (stackReserve - 1) * fan;
+        }
+        cardH = Math.max(36, Math.min(cardH, maxCardH));
         cardW = cardH / 1.42;
       }
-      if (cardW > colW) {
-        cardW = colW;
-        cardH = cardW * 1.42;
-      }
-
-      var availTableauH = Math.max(72, boardH - cardH - topGap);
-      var fan = (availTableauH - cardH) / Math.max(1, stackReserve - 1);
-      if (fan > preferredFan) fan = preferredFan;
-      if (fan < minFan) fan = minFan;
 
       var root = document.getElementById('appFrame') || document.documentElement;
       var next = {
@@ -5115,7 +5109,7 @@
       root.style.setProperty('--card-w', Math.round(cardW * 10) / 10 + 'px');
       root.style.setProperty('--card-h', Math.round(cardH * 10) / 10 + 'px');
       root.style.setProperty('--card-fan', Math.round(fan * 10) / 10 + 'px');
-      lockedCardMetrics = (boardH >= 90) ? next : null;
+      lockedCardMetrics = (availTableauH >= 72) ? next : null;
       return next;
     }
 
