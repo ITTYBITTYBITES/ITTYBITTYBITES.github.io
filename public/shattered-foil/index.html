@@ -862,6 +862,39 @@
       pointer-events: none;
     }
 
+    /* Portrait: two rows so Menu + 5 icons + score all stay on screen */
+    @media (orientation: portrait) {
+      .game-hud {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-template-areas:
+          "menu icons"
+          "pill pill";
+        align-items: center;
+        column-gap: 8px;
+        row-gap: 6px;
+        padding: max(8px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) 8px max(10px, env(safe-area-inset-left));
+      }
+      .hud-menu-btn { grid-area: menu; flex-shrink: 0; }
+      .hud-action-icons {
+        grid-area: icons;
+        justify-content: flex-end;
+        flex-wrap: nowrap;
+        min-width: 0;
+      }
+      .hud-center-pill {
+        grid-area: pill;
+        justify-content: center;
+        width: 100%;
+        box-sizing: border-box;
+      }
+      .hud-action-btn {
+        width: 30px;
+        height: 30px;
+        flex-shrink: 0;
+      }
+    }
+
     /* ==========================================================================
        6. IMMACULATE TABLETOP CARDS (NO UGLY WATERMARKS / OVERLAYS)
        ========================================================================== */
@@ -1526,9 +1559,13 @@
       }
 
       .game-hud {
+        display: flex;
+        grid-template-columns: none;
+        grid-template-areas: none;
         min-height: 34px;
         padding: 3px max(8px, env(safe-area-inset-right)) 3px max(8px, env(safe-area-inset-left));
       }
+      .hud-menu-btn, .hud-action-icons, .hud-center-pill { grid-area: auto; }
       .hud-action-btn, .icon-btn {
         width: 28px;
         height: 28px;
@@ -1608,7 +1645,7 @@
       }
     }
   </style>
-  <script src="./version-check.js?v=sf-20260812-v20"></script>
+  <script src="./version-check.js?v=sf-20260812-v21"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
