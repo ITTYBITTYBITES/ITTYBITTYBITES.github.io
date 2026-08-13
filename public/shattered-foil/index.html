@@ -158,7 +158,7 @@
       box-shadow: none;
     }
 
-    @media (min-width: 520px) and (min-height: 720px) {
+    @media (min-width: 520px) and (min-height: 720px) and (orientation: portrait) {
       body {
         align-items: center;
         padding: 12px;
@@ -913,7 +913,8 @@
     }
 
     .card-slot {
-      width: 100%;
+      width: var(--card-w, 100%);
+      height: var(--card-h, auto);
       aspect-ratio: 1 / 1.42;
       border: 1.5px dashed rgba(200, 100, 50, 0.35);
       border-radius: 6px;
@@ -946,7 +947,8 @@
 
     /* Pure, Luminous Stained Glass Card (Zero Clutter) */
     .game-card {
-      width: 100%;
+      width: var(--card-w, 100%);
+      height: var(--card-h, auto);
       aspect-ratio: 1 / 1.42;
       border-radius: 6px;
       border: 1.8px solid var(--copper-foil);
@@ -1445,8 +1447,87 @@
       font-weight: 700;
       color: var(--copper-foil-glint);
     }
+
+    /* Landscape / rotate: fill the real screen and shrink cards to fit */
+    @media (orientation: landscape) and (max-height: 720px) {
+      html, body, .app-frame {
+        height: 100dvh;
+        height: 100svh;
+      }
+
+      .game-hud {
+        min-height: 34px;
+        padding: 3px max(8px, env(safe-area-inset-right)) 3px max(8px, env(safe-area-inset-left));
+      }
+      .hud-action-btn, .icon-btn {
+        width: 28px;
+        height: 28px;
+      }
+      .hud-center-pill {
+        font-size: 10px;
+        padding: 2px 8px;
+        gap: 5px;
+      }
+
+      #gameplayView .bottom-ad-space,
+      #mainMenuView .bottom-ad-space {
+        display: none;
+      }
+
+      .board-area {
+        padding: 4px max(8px, env(safe-area-inset-right)) 4px max(8px, env(safe-area-inset-left));
+      }
+      .top-grid-row {
+        gap: 4px;
+        margin-bottom: 6px;
+      }
+      .tableau-grid-row { gap: 4px; }
+      .tableau-grid-row.spider-grid { gap: 2px; }
+
+      .card-slot,
+      .game-card { border-radius: 5px; }
+      .card-rank { font-size: 10px; }
+      .card-suit { font-size: 8px; }
+
+      .menu-header {
+        padding: 6px max(12px, env(safe-area-inset-right)) 6px max(12px, env(safe-area-inset-left));
+      }
+      #mainMenuView {
+        flex-direction: row;
+        flex-wrap: nowrap;
+      }
+      #mainMenuView .menu-header {
+        position: absolute;
+        top: 0; left: 0; right: 0;
+        z-index: 20;
+      }
+      #mainMenuView .hero-section {
+        flex: 0 0 34%;
+        margin-top: 44px;
+        padding: 4px 8px;
+      }
+      #mainMenuView .card-3d-wrapper {
+        width: 108px;
+        height: 154px;
+      }
+      #mainMenuView .action-stack {
+        flex: 1;
+        margin-top: 44px;
+        padding: 6px max(10px, env(safe-area-inset-right)) 8px 8px;
+        gap: 6px;
+        overflow-y: auto;
+      }
+      #mainMenuView .btn-action { height: 40px; }
+      #mainMenuView .btn-hero { height: 44px; }
+
+      .consent-card,
+      .modal-card {
+        max-height: 92%;
+        padding-bottom: max(12px, env(safe-area-inset-bottom));
+      }
+    }
   </style>
-  <script src="./version-check.js?v=sf-20260812-v4"></script>
+  <script src="./version-check.js?v=sf-20260812-v5"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -3549,6 +3630,16 @@
       document.addEventListener('DOMContentLoaded', initExperience);
     }
 
+    syncOrientationClass();
+    window.addEventListener('resize', onViewportChange);
+    window.addEventListener('orientationchange', function() {
+      setTimeout(onViewportChange, 60);
+      setTimeout(onViewportChange, 260);
+    });
+    if (window.visualViewport) {
+      window.visualViewport.addEventListener('resize', onViewportChange);
+    }
+
     // --- 9. FULL 5-GAME SUITE CONTROLLER & ENGINE ---
     var SUITS = [
       { name: 'spades', symbol: '♠', cssClass: 'suit-spades', isRed: false, fndIndex: 0 },
@@ -4074,8 +4165,79 @@
     }
 
     // --- BOARD RENDERING (IMMACULATE CRISP CARDS) ---
+    function viewportSize() {
+      var w = window.innerWidth || document.documentElement.clientWidth || 360;
+      var h = window.innerHeight || document.documentElement.clientHeight || 640;
+      if (window.visualViewport) {
+        w = window.visualViewport.width || w;
+        h = window.visualViewport.height || h;
+      }
+      return { w: w, h: h };
+    }
+
+    function isLandscapePlay() {
+      var vp = viewportSize();
+      return vp.w > vp.h;
+    }
+
+    function syncOrientationClass() {
+      document.body.classList.toggle('is-landscape', isLandscapePlay());
+    }
+
+    function computeCardMetrics() {
+      var board = document.getElementById('boardArea');
+      var colCount = Math.max(1, (tableau && tableau.length) ? tableau.length : 7);
+      var landscape = isLandscapePlay();
+      var gap = colCount > 7 ? (landscape ? 2 : 3) : (landscape ? 4 : 5);
+      var boardW = board ? board.clientWidth : viewportSize().w;
+      var boardH = board ? board.clientHeight : Math.max(160, viewportSize().h - 90);
+      if (boardW < 40) boardW = viewportSize().w - 16;
+
+      var top = document.getElementById('topGridRow');
+      var topH = top ? (top.offsetHeight + (landscape ? 6 : 12)) : (landscape ? 52 : 72);
+      var availTableauH = Math.max(72, boardH - topH);
+
+      var colW = Math.max(18, (boardW - gap * (colCount - 1)) / colCount);
+      var cardW = colW;
+      var cardH = cardW * 1.42;
+
+      var maxStack = 1;
+      if (tableau) {
+        for (var i = 0; i < tableau.length; i++) {
+          if (tableau[i] && tableau[i].length > maxStack) maxStack = tableau[i].length;
+        }
+      }
+      var stackReserve = Math.max(maxStack, landscape ? 9 : 12);
+      var minFan = landscape ? 9 : 13;
+      var preferredFan = colCount > 7 ? (landscape ? 11 : 16) : (landscape ? 13 : 21);
+      var fan = preferredFan;
+
+      var needed = cardH + (stackReserve - 1) * fan;
+      if (needed > availTableauH) {
+        var maxCardH = availTableauH - (stackReserve - 1) * fan;
+        if (maxCardH < 44) {
+          fan = Math.max(minFan, (availTableauH - 44) / Math.max(1, stackReserve - 1));
+          maxCardH = availTableauH - (stackReserve - 1) * fan;
+        }
+        cardH = Math.max(36, Math.min(cardH, maxCardH));
+        cardW = cardH / 1.42;
+      }
+
+      var root = document.getElementById('appFrame') || document.documentElement;
+      root.style.setProperty('--card-w', Math.round(cardW * 10) / 10 + 'px');
+      root.style.setProperty('--card-h', Math.round(cardH * 10) / 10 + 'px');
+      root.style.setProperty('--card-fan', Math.round(fan * 10) / 10 + 'px');
+      return { fan: fan, w: cardW, h: cardH };
+    }
+
+    function onViewportChange() {
+      syncOrientationClass();
+      if (hasActiveGame) renderBoard();
+    }
+
     function renderBoard() {
       var activeDeck = getEquippedDeck();
+      var metrics = computeCardMetrics();
 
       // 1. Stock Pile (Column 6 of Top Grid)
       var stockSlot = document.getElementById('stockSlot');
@@ -4129,7 +4291,7 @@
         var colCards = tableau[c];
         for (var idx = 0; idx < colCards.length; idx++) {
           var cardEl = createCardElement(colCards[idx], { type: 'tableau', col: c, index: idx });
-          cardEl.style.top = (idx * (colCount > 7 ? 16 : 21)) + 'px';
+          cardEl.style.top = (idx * metrics.fan) + 'px';
           colDiv.appendChild(cardEl);
         }
         colContainerParent.appendChild(colDiv);
