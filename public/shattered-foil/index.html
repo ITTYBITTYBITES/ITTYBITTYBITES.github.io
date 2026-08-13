@@ -1054,6 +1054,27 @@
       margin-bottom: 12px;
       z-index: 10;
     }
+    .top-grid-row > * {
+      min-width: 0;
+      min-height: 0;
+    }
+    .stock-back {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      border-radius: inherit;
+      pointer-events: none;
+    }
+    .stock-back svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+    .slot-ghost {
+      font-size: 8.5px;
+      opacity: 0.35;
+      pointer-events: none;
+    }
 
     .tableau-grid-row {
       flex: 1;
@@ -1083,6 +1104,9 @@
       max-width: 100%;
       height: var(--card-h, auto);
       aspect-ratio: 1 / 1.42;
+      min-width: 0;
+      min-height: 0;
+      overflow: hidden;
       border: 1.5px solid var(--well-border);
       border-radius: 6px;
       background:
@@ -1942,7 +1966,7 @@
       .deal-back-cover { transition: none; }
     }
   </style>
-  <script src="./version-check.js?v=sf-20260813-v30"></script>
+  <script src="./version-check.js?v=sf-20260813-v31"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -4390,6 +4414,7 @@
     var isWon = false;
     var isDealing = false;
     var dealAnimTimer = null;
+    var lockedCardMetrics = null;
 
 
     var HOW_TO_BASICS =
@@ -4605,6 +4630,7 @@
       pendingCampaignId = null;
       dealShardsEarned = 0;
       dealStarsEarned = 0;
+      lockedCardMetrics = null;
 
       var modeTitles = {
         klondike: 'Klondike',
@@ -4892,7 +4918,7 @@
         recordStep("Recycled waste to stock", -20);
       }
       updateHUD();
-      renderBoard();
+      paintStockAndWaste();
     }
 
     // --- RULES VALIDATION ---
@@ -5151,13 +5177,19 @@
       boardW = Math.max(40, boardW - 2);
       if (boardW < 40) boardW = viewportSize().w - 24;
 
-      var top = document.getElementById('topGridRow');
-      var topH = top ? (top.offsetHeight + (landscape ? 6 : 12)) : (landscape ? 52 : 72);
-      var availTableauH = Math.max(72, boardH - topH);
-
       var colW = Math.max(18, (boardW - gap * (colCount - 1)) / colCount);
       var cardW = colW;
       var cardH = cardW * 1.42;
+      var topGap = landscape ? 6 : 12;
+      var availTableauH = Math.max(72, boardH - cardH - topGap);
+
+      if (lockedCardMetrics &&
+          lockedCardMetrics.landscape === landscape &&
+          lockedCardMetrics.colCount === colCount &&
+          Math.abs(lockedCardMetrics.boardW - boardW) < 8 &&
+          Math.abs(lockedCardMetrics.boardH - boardH) < 48) {
+        return lockedCardMetrics;
+      }
 
       var maxStack = 1;
       if (tableau) {
@@ -5165,14 +5197,11 @@
           if (tableau[i] && tableau[i].length > maxStack) maxStack = tableau[i].length;
         }
       }
-      // Always leave room for a full suit so landscape never needs to scroll
       var stackReserve = Math.max(maxStack, 13);
       var minFan = landscape ? 12 : 18;
       var preferredFan = colCount > 7 ? (landscape ? 14 : 20) : (landscape ? 16 : 24);
       var fan = preferredFan;
 
-      // Fit a 13-card column in the tableau only (foundations already live in topH).
-      // Keep cards as wide as the column; tighten fan first so they do not look tiny.
       function stackFits(h, f) {
         return (h + (stackReserve - 1) * f) <= availTableauH;
       }
@@ -5192,15 +5221,30 @@
       }
 
       var root = document.getElementById('appFrame') || document.documentElement;
+      var next = {
+        fan: fan,
+        w: cardW,
+        h: cardH,
+        landscape: landscape,
+        colCount: colCount,
+        boardW: boardW,
+        boardH: boardH
+      };
       root.style.setProperty('--card-w', Math.round(cardW * 10) / 10 + 'px');
       root.style.setProperty('--card-h', Math.round(cardH * 10) / 10 + 'px');
       root.style.setProperty('--card-fan', Math.round(fan * 10) / 10 + 'px');
-      return { fan: fan, w: cardW, h: cardH };
+      lockedCardMetrics = next;
+      return next;
     }
 
     function onViewportChange() {
       syncOrientationClass();
-      if (hasActiveGame) renderBoard();
+      if (!hasActiveGame) return;
+      var prev = lockedCardMetrics;
+      var next = computeCardMetrics();
+      if (!prev || prev.w !== next.w || prev.h !== next.h || prev.fan !== next.fan || prev.colCount !== next.colCount) {
+        renderBoard();
+      }
     }
 
     function isTabFullscreen() {
@@ -5261,34 +5305,35 @@
       onViewportChange();
     });
 
-    function renderBoard() {
-      var activeDeck = getEquippedDeck();
-      var metrics = computeCardMetrics();
-
-      // 1. Stock Pile (Column 6 of Top Grid)
+    function paintStockAndWaste(activeDeck) {
+      activeDeck = activeDeck || getEquippedDeck();
       var stockSlot = document.getElementById('stockSlot');
-      var countBadge = document.getElementById('stockCountBadge');
-      var stockIcon = document.getElementById('stockIcon');
-
+      if (!stockSlot) return;
       if (stock.length > 0) {
+        stockSlot.style.background = '';
         stockSlot.style.borderColor = 'var(--copper-foil-bright)';
-        stockSlot.innerHTML = activeDeck.renderSVG(100, 142) + '<span class="stock-counter-badge" id="stockCountBadge">' + stock.length + '</span>';
+        stockSlot.innerHTML = '<div class="stock-back">' + activeDeck.renderSVG(100, 142) + '</div><span class="stock-counter-badge" id="stockCountBadge">' + stock.length + '</span>';
       } else {
         stockSlot.style.background = 'rgba(0,0,0,0.25)';
         stockSlot.style.borderColor = 'rgba(200, 100, 50, 0.35)';
         stockSlot.innerHTML = '<span style="font-size: 16px; opacity: 0.4;">🔄</span>';
       }
 
-      // 2. Waste Pile (Column 5 of Top Grid)
       var wasteSlot = document.getElementById('wasteSlot');
+      if (!wasteSlot) return;
       wasteSlot.innerHTML = '';
       if (waste.length > 0) {
-        var topWaste = waste[waste.length - 1];
-        var wasteCard = createCardElement(topWaste, { type: 'waste' });
-        wasteSlot.appendChild(wasteCard);
+        wasteSlot.appendChild(createCardElement(waste[waste.length - 1], { type: 'waste' }));
       } else {
-        wasteSlot.innerHTML = '<span style="font-size: 8.5px; opacity: 0.35; pointer-events: none;">WASTE</span>';
+        wasteSlot.innerHTML = '<span class="slot-ghost">WASTE</span>';
       }
+    }
+
+    function renderBoard() {
+      var activeDeck = getEquippedDeck();
+      var metrics = computeCardMetrics();
+
+      paintStockAndWaste(activeDeck);
 
       // 3. Foundations (Columns 0-3 of Top Grid)
       for (var f = 0; f < 4; f++) {
