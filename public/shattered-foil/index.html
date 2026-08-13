@@ -1514,11 +1514,10 @@
       #mainMenuView {
         display: grid;
         grid-template-columns: 34% 1fr;
-        grid-template-rows: auto 1fr auto;
+        grid-template-rows: auto 1fr;
         grid-template-areas:
           "header header"
-          "hero actions"
-          "ad ad";
+          "hero actions";
       }
       #mainMenuView .menu-header {
         grid-area: header;
@@ -1543,9 +1542,6 @@
         overflow-y: auto;
         min-height: 0;
       }
-      #mainMenuView .bottom-ad-space {
-        grid-area: ad;
-      }
       #mainMenuView .btn-action { height: 40px; }
       #mainMenuView .btn-hero { height: 44px; }
 
@@ -1556,7 +1552,7 @@
       }
     }
   </style>
-  <script src="./version-check.js?v=sf-20260812-v9"></script>
+  <script src="./version-check.js?v=sf-20260812-v10"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -1749,13 +1745,6 @@
           <span style="font-size: 10.5px; color: var(--copper-foil-bright); font-weight: 800;">Realm II ›</span>
         </button>
       </div>
-
-      <footer class="bottom-ad-space">
-        <div class="ad-label">Advertisement</div>
-        <div class="ad-placeholder">
-          <span>Responsive Bottom Display Ad Unit</span>
-        </div>
-      </footer>
     </div>
 
     <!-- VIEW B: WORKING TABLETOP GAMEPLAY VIEW -->
