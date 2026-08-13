@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-sf-build="sf-20260813-v41">
+<html lang="en" data-sf-build="sf-20260813-v42">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
@@ -1932,7 +1932,7 @@
     }
 
   </style>
-  <script src="./version-check.js?v=sf-20260813-v41"></script>
+  <script src="./version-check.js?v=sf-20260813-v42"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -2477,7 +2477,7 @@
           </div>
 
           <div style="text-align: center; margin-top: 8px; font-size: 10px; color: var(--text-muted);">
-            Solitaire: Shattered Foil Edition • v41<br>
+            Solitaire: Shattered Foil Edition • v42<br>
             Presented by ITTYBITTYBITES Experiences
           </div>
         </div>
@@ -4897,6 +4897,7 @@
       paintFoundations();
       if (source && source.type === 'tableau') paintColumn(source.col, metrics);
       if (dest && dest.type === 'tableau') paintColumn(dest.col, metrics);
+      tightenFanForStacks();
     }
 
     function checkWinCondition() {
@@ -5089,6 +5090,7 @@
 
       var next = {
         fan: fan,
+        preferredFan: preferredFan,
         w: cardW,
         h: cardH,
         landscape: landscape,
@@ -5098,6 +5100,38 @@
       applyCardMetrics(next);
       lockedCardMetrics = next;
       return next;
+    }
+
+    function tightenFanForStacks() {
+      var m = lockedCardMetrics;
+      if (!m || !tableau) return m;
+      var maxStack = 1;
+      for (var i = 0; i < tableau.length; i++) {
+        if (tableau[i] && tableau[i].length > maxStack) maxStack = tableau[i].length;
+      }
+      var row = document.getElementById('tableauRow');
+      var avail = (row && row.clientHeight > 40) ? row.clientHeight : 0;
+      if (avail < 40) return m;
+      var preferred = m.preferredFan || m.fan;
+      var fan = preferred;
+      if (maxStack > 1) {
+        fan = (avail - m.h) / (maxStack - 1);
+        if (fan > preferred) fan = preferred;
+        if (fan < 7) fan = 7;
+      }
+      if (Math.abs(fan - m.fan) < 0.4) return m;
+      m.fan = fan;
+      var root = document.getElementById('appFrame') || document.documentElement;
+      root.style.setProperty('--card-fan', (Math.round(fan * 10) / 10) + 'px');
+      for (var c = 0; c < tableau.length; c++) {
+        var col = document.getElementById('col-' + c);
+        if (!col) continue;
+        var cards = col.querySelectorAll('.game-card');
+        for (var k = 0; k < cards.length; k++) {
+          cards[k].style.top = (k * fan) + 'px';
+        }
+      }
+      return m;
     }
 
     var relayoutTimer = null;
@@ -5204,6 +5238,7 @@
       paintStockAndWaste(activeDeck);
       paintFoundations();
       paintAllColumns(metrics);
+      tightenFanForStacks();
     }
 
     function paintFoundations() {
