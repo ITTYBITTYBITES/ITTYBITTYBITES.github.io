@@ -1049,12 +1049,14 @@
       50% { transform: scale(1.05); }
     }
 
-    /* Bottom Display Ad Space */
+    /* Bottom Display Ad Space — reserved banner, never collapsed */
     .bottom-ad-space {
       position: relative;
-      z-index: 10;
+      z-index: 40;
+      flex: 0 0 auto;
+      flex-shrink: 0;
       width: 100%;
-      min-height: 50px;
+      min-height: 62px;
       height: auto;
       background: var(--ad-bg);
       border-top: 1px solid var(--glass-border);
@@ -1062,8 +1064,10 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 2px 10px max(8px, env(safe-area-inset-bottom));
+      gap: 2px;
+      padding: 4px 10px max(8px, env(safe-area-inset-bottom));
       font-family: -apple-system, sans-serif;
+      box-sizing: border-box;
     }
 
     .ad-label {
@@ -1074,17 +1078,17 @@
     }
 
     .ad-placeholder {
-      width: 100%;
-      max-width: 300px;
-      height: 30px;
-      background: rgba(255, 255, 255, 0.03);
-      border: 1px dashed rgba(200, 100, 50, 0.25);
+      width: min(100%, 320px);
+      height: 50px;
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px dashed rgba(200, 100, 50, 0.4);
       border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
       font-size: 9px;
       color: var(--text-muted);
+      box-sizing: border-box;
     }
 
     /* 7. THE GLASS ATELIER: 3D CARD SHOWCASE */
@@ -1479,9 +1483,14 @@
         gap: 5px;
       }
 
-      #gameplayView .bottom-ad-space,
-      #mainMenuView .bottom-ad-space {
-        display: none;
+      .bottom-ad-space {
+        display: flex !important;
+        min-height: 54px;
+        padding: 2px max(10px, env(safe-area-inset-right)) max(4px, env(safe-area-inset-bottom)) max(10px, env(safe-area-inset-left));
+      }
+      .ad-placeholder {
+        width: min(100%, 728px);
+        height: 46px;
       }
 
       .board-area {
@@ -1503,29 +1512,39 @@
         padding: 6px max(12px, env(safe-area-inset-right)) 6px max(12px, env(safe-area-inset-left));
       }
       #mainMenuView {
-        flex-direction: row;
-        flex-wrap: nowrap;
+        display: grid;
+        grid-template-columns: 34% 1fr;
+        grid-template-rows: auto 1fr auto;
+        grid-template-areas:
+          "header header"
+          "hero actions"
+          "ad ad";
       }
       #mainMenuView .menu-header {
-        position: absolute;
-        top: 0; left: 0; right: 0;
+        grid-area: header;
+        position: relative;
         z-index: 20;
       }
       #mainMenuView .hero-section {
-        flex: 0 0 34%;
-        margin-top: 44px;
+        grid-area: hero;
+        margin-top: 0;
         padding: 4px 8px;
+        min-height: 0;
       }
       #mainMenuView .card-3d-wrapper {
         width: 108px;
         height: 154px;
       }
       #mainMenuView .action-stack {
-        flex: 1;
-        margin-top: 44px;
+        grid-area: actions;
+        margin-top: 0;
         padding: 6px max(10px, env(safe-area-inset-right)) 8px 8px;
         gap: 6px;
         overflow-y: auto;
+        min-height: 0;
+      }
+      #mainMenuView .bottom-ad-space {
+        grid-area: ad;
       }
       #mainMenuView .btn-action { height: 40px; }
       #mainMenuView .btn-hero { height: 44px; }
@@ -1537,7 +1556,7 @@
       }
     }
   </style>
-  <script src="./version-check.js?v=sf-20260812-v8"></script>
+  <script src="./version-check.js?v=sf-20260812-v9"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
