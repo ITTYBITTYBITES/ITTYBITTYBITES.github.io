@@ -862,7 +862,7 @@
       pointer-events: none;
     }
 
-    /* Portrait: two rows so Menu + 5 icons + score all stay on screen */
+    /* Portrait: two roomy rows so Menu, icons, and score are easy to read */
     @media (orientation: portrait) {
       .game-hud {
         display: grid;
@@ -871,26 +871,42 @@
           "menu icons"
           "pill pill";
         align-items: center;
-        column-gap: 8px;
-        row-gap: 6px;
-        padding: max(8px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) 8px max(10px, env(safe-area-inset-left));
+        column-gap: 10px;
+        row-gap: 8px;
+        padding: max(10px, env(safe-area-inset-top)) max(10px, env(safe-area-inset-right)) 10px max(10px, env(safe-area-inset-left));
       }
-      .hud-menu-btn { grid-area: menu; flex-shrink: 0; }
+      .hud-menu-btn {
+        grid-area: menu;
+        flex-shrink: 0;
+        padding: 9px 14px;
+        border-radius: 16px;
+        font-size: 15px;
+        min-height: 42px;
+      }
       .hud-action-icons {
         grid-area: icons;
         justify-content: flex-end;
         flex-wrap: nowrap;
         min-width: 0;
+        gap: 8px;
       }
       .hud-center-pill {
         grid-area: pill;
-        justify-content: center;
+        justify-content: space-evenly;
         width: 100%;
         box-sizing: border-box;
+        padding: 8px 12px;
+        border-radius: 18px;
+        font-size: 15px;
+        gap: 10px;
+      }
+      .hud-center-pill strong {
+        font-size: 16px;
       }
       .hud-action-btn {
-        width: 30px;
-        height: 30px;
+        width: 42px;
+        height: 42px;
+        font-size: 18px;
         flex-shrink: 0;
       }
     }
@@ -1645,7 +1661,7 @@
       }
     }
   </style>
-  <script src="./version-check.js?v=sf-20260812-v21"></script>
+  <script src="./version-check.js?v=sf-20260812-v22"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
