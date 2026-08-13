@@ -1751,8 +1751,34 @@
 
       .card-slot,
       .game-card { border-radius: 5px; }
-      .card-rank { font-size: clamp(14px, calc(var(--card-w, 40px) * 0.40), 20px); }
-      .card-suit { font-size: clamp(12px, calc(var(--card-w, 40px) * 0.32), 16px); }
+      .card-suit-corner {
+        font-size: clamp(8px, calc(var(--card-w, 40px) * 0.26), 13px);
+      }
+      .card-suit-corner.card-suit-tl {
+        top: 2px;
+        left: 2px;
+        flex-direction: row;
+        align-items: center;
+        gap: 0;
+      }
+      .card-peek-rank {
+        font-size: clamp(9px, calc(var(--card-w, 40px) * 0.34), 14px);
+      }
+      .card-peek-suit {
+        font-size: clamp(8px, calc(var(--card-w, 40px) * 0.30), 13px);
+        margin-top: 0;
+      }
+      .card-suit-corner.card-suit-br {
+        right: 2px;
+        bottom: 2px;
+      }
+      .card-center { inset: 18% 5% 12%; }
+      .card-center-rank {
+        font-size: clamp(14px, calc(var(--card-w, 40px) * 0.58), 28px);
+      }
+      .card-center-rank.is-ten {
+        font-size: clamp(11px, calc(var(--card-w, 40px) * 0.44), 22px);
+      }
 
       .menu-header {
         padding: 6px max(12px, env(safe-area-inset-right)) 6px max(12px, env(safe-area-inset-left));
@@ -1796,6 +1822,35 @@
         max-height: 92%;
         padding-bottom: max(12px, env(safe-area-inset-bottom));
       }
+    }
+
+    body.is-landscape .card-suit-corner {
+      font-size: clamp(8px, calc(var(--card-w, 40px) * 0.26), 13px);
+    }
+    body.is-landscape .card-suit-corner.card-suit-tl {
+      top: 2px;
+      left: 2px;
+      flex-direction: row;
+      align-items: center;
+      gap: 0;
+    }
+    body.is-landscape .card-peek-rank {
+      font-size: clamp(9px, calc(var(--card-w, 40px) * 0.34), 14px);
+    }
+    body.is-landscape .card-peek-suit {
+      font-size: clamp(8px, calc(var(--card-w, 40px) * 0.30), 13px);
+      margin-top: 0;
+    }
+    body.is-landscape .card-suit-corner.card-suit-br {
+      right: 2px;
+      bottom: 2px;
+    }
+    body.is-landscape .card-center { inset: 18% 5% 12%; }
+    body.is-landscape .card-center-rank {
+      font-size: clamp(14px, calc(var(--card-w, 40px) * 0.58), 28px);
+    }
+    body.is-landscape .card-center-rank.is-ten {
+      font-size: clamp(11px, calc(var(--card-w, 40px) * 0.44), 22px);
     }
 
     .how-to-fab {
@@ -1887,7 +1942,7 @@
       .deal-back-cover { transition: none; }
     }
   </style>
-  <script src="./version-check.js?v=sf-20260813-v29"></script>
+  <script src="./version-check.js?v=sf-20260813-v30"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -5115,20 +5170,25 @@
       var minFan = landscape ? 12 : 18;
       var preferredFan = colCount > 7 ? (landscape ? 14 : 20) : (landscape ? 16 : 24);
       var fan = preferredFan;
-      var topGap = landscape ? 6 : 12;
 
+      // Fit a 13-card column in the tableau only (foundations already live in topH).
+      // Keep cards as wide as the column; tighten fan first so they do not look tiny.
       function stackFits(h, f) {
-        return (h + topGap + h + (stackReserve - 1) * f) <= boardH;
+        return (h + (stackReserve - 1) * f) <= availTableauH;
       }
 
-      if (!stackFits(cardH, fan)) {
-        var maxCardH = (boardH - topGap - (stackReserve - 1) * fan) / 2;
-        if (maxCardH < 40) {
-          fan = Math.max(minFan, (boardH - topGap - 80) / Math.max(1, stackReserve - 1));
-          maxCardH = (boardH - topGap - (stackReserve - 1) * fan) / 2;
+      var fanForFullCard = (availTableauH - cardH) / Math.max(1, stackReserve - 1);
+      if (fanForFullCard >= preferredFan) {
+        fan = preferredFan;
+      } else if (fanForFullCard >= minFan) {
+        fan = fanForFullCard;
+      } else {
+        fan = minFan;
+        if (!stackFits(cardH, fan)) {
+          var maxCardH = availTableauH - (stackReserve - 1) * fan;
+          cardH = Math.max(32, Math.min(cardH, maxCardH));
+          cardW = cardH / 1.42;
         }
-        cardH = Math.max(32, Math.min(cardH, maxCardH));
-        cardW = cardH / 1.42;
       }
 
       var root = document.getElementById('appFrame') || document.documentElement;
