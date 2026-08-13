@@ -1537,7 +1537,7 @@
       }
     }
   </style>
-  <script src="./version-check.js?v=sf-20260812-v7"></script>
+  <script src="./version-check.js?v=sf-20260812-v8"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
@@ -3769,6 +3769,7 @@
       if (isZenMusicEnabled) {
         ZenMusicEngine.start();
       }
+      enterTabFullscreen();
     }
 
     function resumeActiveGame() {
@@ -3783,6 +3784,7 @@
       if (isZenMusicEnabled) {
         ZenMusicEngine.start();
       }
+      enterTabFullscreen();
     }
 
     function startTimer() {
@@ -3801,6 +3803,7 @@
       document.getElementById('mainMenuView').classList.remove('view-hidden');
       ZenMusicEngine.stop(true);
       updateMainMenuHeroButton();
+      exitTabFullscreen();
     }
 
     function updateMainMenuHeroButton() {
@@ -4292,6 +4295,32 @@
       syncOrientationClass();
       if (hasActiveGame) renderBoard();
     }
+
+    function isTabFullscreen() {
+      return !!(document.fullscreenElement || document.webkitFullscreenElement);
+    }
+
+    function enterTabFullscreen() {
+      var el = document.documentElement;
+      var req = el.requestFullscreen || el.webkitRequestFullscreen || el.webkitRequestFullScreen;
+      if (!req || isTabFullscreen()) return;
+      try {
+        var result = req.call(el);
+        if (result && result.catch) result.catch(function() {});
+      } catch (e) {}
+    }
+
+    function exitTabFullscreen() {
+      var exit = document.exitFullscreen || document.webkitExitFullscreen || document.webkitCancelFullScreen;
+      if (!exit || !isTabFullscreen()) return;
+      try {
+        var result = exit.call(document);
+        if (result && result.catch) result.catch(function() {});
+      } catch (e) {}
+    }
+
+    document.addEventListener('fullscreenchange', onViewportChange);
+    document.addEventListener('webkitfullscreenchange', onViewportChange);
 
     function renderBoard() {
       var activeDeck = getEquippedDeck();
