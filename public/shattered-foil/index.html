@@ -27,6 +27,9 @@
       --copper-foil-dark: #7A3617;
       --solder-lead: #282C34;
       --cathedral-glow: rgba(255, 235, 180, 0.25);
+      --aurora-a: rgba(200, 100, 50, 0.22);
+      --aurora-b: rgba(255, 235, 180, 0.14);
+      --aurora-c: rgba(22, 32, 46, 0.55);
       --text-parchment: #F5EFE0;
       --text-muted: #8E98A8;
       --glass-panel: rgba(15, 20, 28, 0.94);
@@ -65,6 +68,9 @@
       --copper-foil-dark: #8F3A15;
       --solder-lead: #1F242E;
       --cathedral-glow: rgba(0, 180, 255, 0.3);
+      --aurora-a: rgba(0, 140, 220, 0.22);
+      --aurora-b: rgba(116, 185, 255, 0.12);
+      --aurora-c: rgba(8, 20, 48, 0.5);
       --text-parchment: #FFFFFF;
       --text-muted: #7E8C9F;
       --glass-panel: rgba(8, 14, 24, 0.95);
@@ -87,6 +93,9 @@
       --copper-foil-dark: #7A2E10;
       --solder-lead: #281D33;
       --cathedral-glow: rgba(180, 80, 255, 0.28);
+      --aurora-a: rgba(160, 70, 230, 0.22);
+      --aurora-b: rgba(212, 114, 66, 0.12);
+      --aurora-c: rgba(38, 16, 54, 0.5);
       --text-parchment: #F8F2FC;
       --text-muted: #9E8AA8;
       --glass-panel: rgba(18, 10, 26, 0.95);
@@ -109,6 +118,9 @@
       --copper-foil-dark: #7A3617;
       --solder-lead: #1B1D22;
       --cathedral-glow: rgba(200, 100, 50, 0.2);
+      --aurora-a: rgba(200, 100, 50, 0.16);
+      --aurora-b: rgba(80, 80, 90, 0.12);
+      --aurora-c: rgba(0, 0, 0, 0.35);
       --text-parchment: #FFFFFF;
       --text-muted: #808894;
       --glass-panel: rgba(5, 6, 8, 0.98);
@@ -173,14 +185,44 @@
       }
     }
 
-    .app-frame::before {
+    .app-frame::before,
+    .app-frame::after {
       content: "";
       position: absolute;
-      inset: 0;
-      background: radial-gradient(circle at 50% 28%, var(--cathedral-glow) 0%, transparent 60%);
+      inset: -30% -20%;
       pointer-events: none;
-      opacity: 0.8;
-      z-index: 1;
+      z-index: 0;
+      will-change: transform;
+    }
+    .app-frame::before {
+      background:
+        radial-gradient(ellipse 58% 48% at 28% 22%, var(--aurora-a) 0%, transparent 68%),
+        radial-gradient(ellipse 50% 42% at 78% 68%, var(--aurora-b) 0%, transparent 70%);
+      opacity: 0.7;
+      animation: auroraDrift 38s ease-in-out infinite alternate;
+    }
+    .app-frame::after {
+      background:
+        radial-gradient(ellipse 46% 52% at 52% 86%, var(--aurora-c) 0%, transparent 72%),
+        radial-gradient(circle at 50% 28%, var(--cathedral-glow) 0%, transparent 58%);
+      opacity: 0.55;
+      animation: auroraDrift2 52s ease-in-out infinite alternate;
+    }
+    .app-frame:has(#gameplayView:not(.view-hidden))::before { opacity: 0.28; }
+    .app-frame:has(#gameplayView:not(.view-hidden))::after { opacity: 0.2; }
+
+    @keyframes auroraDrift {
+      0%   { transform: translate3d(-3%, -2%, 0) scale(1); }
+      50%  { transform: translate3d(4%, 3%, 0) scale(1.06); }
+      100% { transform: translate3d(2%, -4%, 0) scale(1.03); }
+    }
+    @keyframes auroraDrift2 {
+      0%   { transform: translate3d(3%, 2%, 0) scale(1.04); }
+      50%  { transform: translate3d(-4%, -3%, 0) scale(1); }
+      100% { transform: translate3d(-2%, 4%, 0) scale(1.05); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .app-frame::before, .app-frame::after { animation: none; }
     }
 
     /* View Switcher */
@@ -189,6 +231,7 @@
       inset: 0;
       display: flex;
       flex-direction: column;
+      z-index: 2;
       transition: opacity 0.25s ease, transform 0.25s ease;
     }
 
@@ -1678,7 +1721,7 @@
       }
     }
   </style>
-  <script src="./version-check.js?v=sf-20260812-v26"></script>
+  <script src="./version-check.js?v=sf-20260812-v27"></script>
 </head>
 <body data-theme="dark">
   <!-- Live Glass Toast Notification -->
