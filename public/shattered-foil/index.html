@@ -1,9 +1,17 @@
 <!DOCTYPE html>
-<html lang="en" data-sf-build="sf-20260813-v43">
+<html lang="en" data-sf-build="sf-20260820-v44">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-  <meta name="theme-color" content="#090B0E" />
+  <meta name="theme-color" content="#E6DCC8" />
+  <!-- Installing to the home screen is the only reliable way to lose the
+       browser URL bar on iOS; the Fullscreen API is the in-browser fallback. -->
+  <link rel="manifest" href="./manifest.json" />
+  <link rel="apple-touch-icon" href="./icon-192.png" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Shattered Foil" />
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <title>Solitaire: Shattered Foil Edition</title>
@@ -43,6 +51,15 @@
       --ad-bg: #050709;
       --shadow-color: rgba(0, 0, 0, 0.75);
       --table-base: #0A0E14;
+
+      /* Surface tokens (were hardcoded; now themable) */
+      --slot-bg: rgba(0, 0, 0, 0.25);
+      --slot-border: rgba(200, 100, 50, 0.35);
+      --slot-text: rgba(200, 100, 50, 0.45);
+      --card-back-bg: #0C121A;
+      --card-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
+      --card-drag-shadow: 0 14px 28px rgba(0, 0, 0, 0.7);
+      --fillet-border: rgba(200, 100, 50, 0.25);
       --table-mid: #151C28;
       --table-deep: #06080C;
       --table-spot: rgba(255, 196, 155, 0.11);
@@ -63,6 +80,8 @@
       --glass-black-bg: rgba(112, 161, 255, 0.08);
       --glass-diamond: #FF4757;
       --glass-club: #70A1FF;
+      --glass-diamond-bg: rgba(255, 71, 87, 0.08);
+      --glass-club-bg: rgba(112, 161, 255, 0.08);
     }
 
     [data-theme="dark"] {
@@ -193,6 +212,64 @@
       --well-border: rgba(200, 100, 50, 0.38);
       --well-highlight: rgba(255, 196, 155, 0.08);
       --well-glyph: rgba(240, 142, 88, 0.38);
+    }
+
+    /* Theme 5: Cathedral Daylight (Light — default) */
+    [data-theme="daylight"] {
+      --bg-canvas: #E6DCC8;
+      --bg-workbench: #F6F1E5;
+      /* Daylight through a leaded window: pools of amber, rose and cool blue
+         glass cast onto a warm cream ground, rather than a flat parchment
+         wash. Mirrors how the dark themes light a single hue out of the
+         gloom -- same premise, lit from the other side. */
+      --bg-workbench-vignette:
+        radial-gradient(ellipse at 20% 14%, rgba(255, 168, 76, 0.34) 0%, rgba(255, 168, 76, 0) 44%),
+        radial-gradient(ellipse at 82% 20%, rgba(203, 82, 114, 0.26) 0%, rgba(203, 82, 114, 0) 42%),
+        radial-gradient(ellipse at 72% 90%, rgba(96, 150, 194, 0.16) 0%, rgba(96, 150, 194, 0) 42%),
+        radial-gradient(circle at 50% 30%, #FFFEF9 0%, #F6EEDF 54%, #E7DCC6 100%);
+      --copper-foil: #A8541F;
+      --copper-foil-bright: #99490F;
+      --copper-foil-glint: #7A3510;
+      --copper-foil-dark: #5E2A0C;
+      --solder-lead: #8A7B62;
+      --cathedral-glow: rgba(255, 198, 122, 0.42);
+      --text-parchment: #2A2118;
+      --text-muted: #6B6053;
+      --glass-panel: rgba(253, 250, 244, 0.97);
+      --glass-border: rgba(168, 84, 31, 0.34);
+      --btn-grad-start: #FFFFFF;
+      --btn-grad-end: #EFE6D6;
+      --card-bg: #FFFDF8;
+      --card-face-bg: #FFFDF8;
+      --ad-bg: #E3D9C5;
+      --shadow-color: rgba(92, 72, 46, 0.30);
+
+      --slot-bg: rgba(120, 96, 60, 0.10);
+      --slot-border: rgba(168, 84, 31, 0.38);
+      --slot-text: rgba(120, 62, 24, 0.55);
+      --card-back-bg: #FFFDF8;
+      --card-shadow: 0 2px 6px rgba(92, 72, 46, 0.30);
+      --card-drag-shadow: 0 14px 26px rgba(92, 72, 46, 0.42);
+      --fillet-border: rgba(168, 84, 31, 0.22);
+
+      /* High-contrast pips on a light card face */
+      --glass-red: #C0392B;
+      --glass-red-bg: rgba(192, 57, 43, 0.10);
+      --glass-black: #1C2330;
+      --glass-black-bg: rgba(28, 35, 48, 0.09);
+      --glass-diamond: #C0392B;
+      --glass-diamond-bg: rgba(192, 57, 43, 0.10);
+      --glass-club: #1C2330;
+      --glass-club-bg: rgba(28, 35, 48, 0.09);
+    }
+
+    /* Keep the 4-colour palette legible on the light theme */
+    [data-theme="daylight"] body.four-color-suits,
+    body.four-color-suits[data-theme="daylight"] {
+      --glass-red: #C0392B;
+      --glass-black: #1F6FB2;
+      --glass-diamond: #B4700A;
+      --glass-club: #1E8449;
     }
 
     html, body {
@@ -646,6 +723,11 @@
       50% { transform: scale(1.06); box-shadow: 0 0 14px rgba(241, 196, 15, 0.7); }
     }
 
+    .hud-action-btn.is-active {
+      color: var(--copper-foil-glint) !important;
+      border-color: var(--copper-foil-bright) !important;
+    }
+
     .icon-btn.muted, .hud-action-btn.muted {
       color: var(--text-muted) !important;
       opacity: 0.45 !important;
@@ -938,6 +1020,11 @@
       display: flex;
       align-items: center;
       gap: 5px;
+      flex-shrink: 0;
+    }
+
+    .hud-menu-btn {
+      flex-shrink: 0;
     }
 
     .hud-action-btn {
@@ -1126,7 +1213,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      color: var(--well-glyph);
+      color: var(--slot-text, var(--well-glyph));
       font-size: 13px;
       font-weight: 700;
       position: relative;
@@ -1157,7 +1244,7 @@
       border-radius: 6px;
       border: 1.8px solid var(--copper-foil);
       background: var(--card-face-bg);
-      box-shadow: 0 3px 8px rgba(0, 0, 0, 0.6);
+      box-shadow: var(--card-shadow);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
@@ -1178,7 +1265,7 @@
 
     /* Face Down: Immaculate Pure Stained Glass Art (Zero text overlays) */
     .game-card.face-down {
-      background: #0C121A;
+      background: var(--card-back-bg);
       border: 1.8px solid var(--copper-foil);
       padding: 0;
     }
@@ -1197,116 +1284,55 @@
     .game-card.suit-diamonds {
       color: var(--glass-diamond);
       background-color: #1C1410;
-      background-image: linear-gradient(180deg, rgba(255, 71, 87, 0.28) 0%, #1C1410 58%);
+      background-image: linear-gradient(180deg, var(--glass-diamond-bg) 0%, var(--card-face-bg) 70%);
     }
 
     .game-card.suit-spades {
       color: var(--glass-black);
       background-color: #121820;
-      background-image: linear-gradient(180deg, rgba(112, 161, 255, 0.26) 0%, #121820 58%);
+      background-image: linear-gradient(180deg, rgba(112, 161, 255, 0.26) 0%, var(--card-face-bg) 70%);
     }
 
     .game-card.suit-clubs {
       color: var(--glass-club);
       background-color: #10181C;
-      background-image: linear-gradient(180deg, rgba(112, 161, 255, 0.26) 0%, #10181C 58%);
+      background-image: linear-gradient(180deg, var(--glass-club-bg) 0%, var(--card-face-bg) 70%);
     }
 
+    /* Corner index. Left-aligned like a real deck so the rank+suit of a
+       covered card reads in the sliver left visible by the card above it. */
     .card-corner {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      line-height: 0.9;
+      flex-direction: row;
+      align-items: baseline;
+      gap: 2px;
+      line-height: 1;
       pointer-events: none;
-      position: absolute;
-      top: 4px;
-      left: 3px;
-      z-index: 2;
-    }
-    .card-corner.card-corner-br {
-      top: auto;
-      left: auto;
-      right: 3px;
-      bottom: 4px;
-      transform: rotate(180deg);
+      text-shadow: 0 1px 2px var(--shadow-color);
     }
 
     .card-rank {
-      font-size: clamp(15px, calc(var(--card-w, 48px) * 0.42), 22px);
+      font-size: 16px;
       font-weight: 900;
       font-family: Georgia, serif;
       letter-spacing: -0.5px;
-      line-height: 1;
     }
 
     .card-suit {
-      font-size: clamp(13px, calc(var(--card-w, 48px) * 0.34), 18px);
-      margin-top: 1px;
+      font-size: 14px;
       line-height: 1;
     }
 
-    .card-suit-corner {
-      position: absolute;
-      z-index: 2;
-      pointer-events: none;
-      font-size: clamp(11px, calc(var(--card-w, 48px) * 0.28), 16px);
-      line-height: 1;
-      font-weight: 700;
-    }
-    .card-suit-corner.card-suit-tl {
-      top: 3px;
-      left: 3px;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 1px;
-      line-height: 1;
-    }
-    .card-peek-rank {
-      font-size: clamp(12px, calc(var(--card-w, 48px) * 0.34), 17px);
-      font-weight: 900;
-      font-family: Georgia, "Times New Roman", serif;
-      line-height: 1;
-      letter-spacing: -0.5px;
-    }
-    .card-peek-suit {
-      font-size: clamp(11px, calc(var(--card-w, 48px) * 0.30), 15px);
-      line-height: 1;
-      margin-top: 0;
-    }
-    .card-suit-corner.card-suit-br {
-      right: 4px;
-      bottom: 4px;
-      transform: rotate(180deg);
-    }
-
-    .card-center {
-      position: absolute;
-      inset: 16% 8% 16%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
-      z-index: 1;
-    }
-    .card-center-rank {
-      font-size: clamp(22px, calc(var(--card-w, 48px) * 0.62), 40px);
-      font-weight: 900;
-      font-family: Georgia, "Times New Roman", serif;
-      line-height: 0.85;
-      letter-spacing: 0;
-      text-shadow: 0 1px 0 rgba(0,0,0,0.35);
-    }
-    .card-center-rank.is-ten {
-      font-size: clamp(16px, calc(var(--card-w, 48px) * 0.46), 30px);
-      letter-spacing: -1px;
-    }
+    /* Narrow boards (Spider 10-col / FreeCell 8-col) get a small step down. */
+    .tableau-grid-row.spider-grid .card-rank,
+    .tableau-grid-row.freecell-grid .card-rank { font-size: 13px; }
+    .tableau-grid-row.spider-grid .card-suit,
+    .tableau-grid-row.freecell-grid .card-suit { font-size: 11px; }
 
     .card-inner-fillet {
       position: absolute;
       inset: 2px;
-      border: 1px solid rgba(200, 100, 50, 0.25);
+      border: 1px solid var(--fillet-border);
       border-radius: 4px;
       pointer-events: none;
     }
@@ -1320,6 +1346,64 @@
     @keyframes pulseHint {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.05); }
+    }
+
+    /* Draggable faces must own the gesture. */
+    .game-card.is-draggable {
+      touch-action: none;
+    }
+
+    .game-card.drag-source-hidden {
+      opacity: 0.26;
+      filter: grayscale(0.35);
+    }
+
+    .drag-ghost {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 9000;
+      pointer-events: none;
+      will-change: transform;
+    }
+
+    .drag-ghost .game-card {
+      box-shadow: var(--card-drag-shadow);
+      transform: scale(1.04);
+      transition: none;
+    }
+
+    .drag-ghost.is-returning {
+      transition: transform 0.18s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    /* Drop feedback */
+    .card-slot.drop-ok,
+    .game-card.drop-ok {
+      outline: 2.5px solid #2ED573;
+      outline-offset: 1px;
+      box-shadow: 0 0 14px rgba(46, 213, 115, 0.55) !important;
+    }
+
+    .tableau-col.drop-ok::after {
+      content: "";
+      position: absolute;
+      inset: -3px;
+      border: 2.5px solid #2ED573;
+      border-radius: 8px;
+      box-shadow: 0 0 14px rgba(46, 213, 115, 0.45);
+      pointer-events: none;
+      z-index: 30;
+    }
+
+    @keyframes cardRefuse {
+      0%, 100% { transform: translateX(0); }
+      25% { transform: translateX(-5px); }
+      75% { transform: translateX(5px); }
+    }
+
+    .game-card.refuse-shake {
+      animation: cardRefuse 0.22s ease;
     }
 
     /* Bottom Display Ad Space — reserved banner, never collapsed */
@@ -1735,6 +1819,135 @@
       color: var(--copper-foil-glint);
     }
 
+    /* The HUD was already over-subscribed before the fullscreen button was
+       added: menu + pill + icons overflow a 420px frame, and flexbox was
+       silently squashing the pill. Below 430px the mode name steps aside so
+       the live values (score and timer) always stay readable. */
+    @media (max-width: 430px) {
+      .game-hud {
+        padding: 8px 8px;
+      }
+
+      .hud-action-icons {
+        gap: 3px;
+      }
+
+      .hud-action-btn {
+        width: 28px;
+        height: 28px;
+        font-size: 11px;
+      }
+
+      .hud-center-pill {
+        padding: 4px 8px;
+        gap: 6px;
+        font-size: 10.5px;
+        min-width: 0;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+
+      .hud-mode-chip {
+        display: none;
+      }
+    }
+
+    /* ------------------------------------------------------------------
+       LANDSCAPE (phones)
+
+       Portrait keeps the 420px phone frame. In landscape the frame goes
+       edge to edge, the foundations/stock move into a two-column rail on the
+       left, and the tableau takes the full remaining height.
+
+       Card width is capped in vh rather than left at 1fr: a full-width
+       landscape grid would make each card enormously wide, and since cards
+       are a fixed 1:1.42 ratio that height is exactly what a 13-card fan
+       cannot afford. Capping by viewport height keeps the fan readable.
+       ------------------------------------------------------------------ */
+    @media (orientation: landscape) and (max-height: 600px) {
+      body {
+        padding: 0;
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        padding-left: env(safe-area-inset-left);
+        padding-right: env(safe-area-inset-right);
+      }
+
+      .app-frame {
+        max-width: 100%;
+        width: 100%;
+        height: 100%;
+        max-height: 100%;
+        border-radius: 0;
+        border-width: 0;
+      }
+
+      .game-hud {
+        height: 38px;
+        padding: 4px 10px;
+      }
+
+      .hud-action-btn {
+        width: 27px;
+        height: 27px;
+        font-size: 11px;
+      }
+
+      .board-area {
+        flex-direction: row;
+        align-items: stretch;
+        gap: 8px;
+        padding: 6px 10px 5px;
+      }
+
+      /* Foundations + waste + stock become a left rail. */
+      .top-grid-row {
+        grid-template-columns: repeat(2, minmax(0, 12vh));
+        grid-auto-rows: min-content;
+        align-content: start;
+        justify-content: start;
+        flex: 0 0 auto;
+        margin-bottom: 0;
+        gap: 5px;
+      }
+
+      body.left-handed .board-area {
+        flex-direction: row-reverse;
+      }
+
+      .top-grid-row .grid-spacer {
+        display: none;
+      }
+
+      .tableau-grid-row {
+        flex: 1;
+        grid-template-columns: repeat(7, minmax(0, 13vh));
+        justify-content: center;
+        align-content: start;
+      }
+
+      .tableau-grid-row.spider-grid {
+        grid-template-columns: repeat(10, minmax(0, 10.5vh));
+      }
+
+      .tableau-grid-row.freecell-grid {
+        grid-template-columns: repeat(8, minmax(0, 12vh));
+      }
+
+      .bottom-ad-space {
+        height: 34px;
+        padding: 1px 10px;
+      }
+
+      .ad-label {
+        display: none;
+      }
+
+      .ad-placeholder {
+        height: 26px;
+      }
+    }
+
     /* Landscape / rotate: fill the real screen and shrink cards to fit */
     @media (orientation: landscape) and (max-height: 720px) {
       html, body, .app-frame {
@@ -1932,9 +2145,9 @@
     }
 
   </style>
-  <script src="./version-check.js?v=sf-20260813-v43"></script>
+  <script src="./version-check.js?v=sf-20260820-v44"></script>
 </head>
-<body data-theme="dark">
+<body data-theme="daylight">
   <!-- Live Glass Toast Notification -->
   <div class="glass-toast" id="glassToast">🎵 Zen Music Playing</div>
 
@@ -2090,8 +2303,8 @@
         </button>
 
         <div class="hud-center-pill">
-          <span id="hudModeName">Klondike</span>
-          <span style="color: var(--glass-border);">|</span>
+          <span class="hud-mode-chip" id="hudModeName">Klondike</span>
+          <span class="hud-mode-chip" style="color: var(--glass-border);">|</span>
           <span>Score: <strong id="hudScore">0</strong></span>
           <span style="color: var(--glass-border);">|</span>
           <span>⏱️ <strong id="hudTimer">00:00</strong></span>
@@ -2101,8 +2314,8 @@
           <button class="hud-action-btn" id="btnHint" onclick="giveSmartHint()" title="Hint">💡</button>
           <button class="hud-action-btn" id="btnUndo" onclick="undoMove()" title="Undo">↩</button>
           <button class="hud-action-btn" onclick="openModal('gameStepsModal')" title="Steps Log">📜</button>
+          <button class="hud-action-btn" id="btnFullscreen" onclick="toggleFullscreen()" title="Fullscreen">⛶</button>
           <button class="hud-action-btn" onclick="openModal('settingsModal')" title="Settings">⚙️</button>
-          <button class="hud-action-btn" id="btnFullscreen" onclick="toggleTabFullscreen()" title="Fullscreen">⛶</button>
         </div>
       </header>
 
@@ -2113,7 +2326,7 @@
           <div class="card-slot" id="fnd-1" data-fnd="1" style="color: var(--glass-red);">♥</div>
           <div class="card-slot" id="fnd-2" data-fnd="2" style="color: var(--glass-diamond);">♦</div>
           <div class="card-slot" id="fnd-3" data-fnd="3" style="color: var(--glass-club);">♣</div>
-          <div style="visibility: hidden;"></div>
+          <div class="grid-spacer" style="visibility: hidden;"></div>
           <div class="card-slot" id="wasteSlot">
             <span style="font-size: 9px; opacity: 0.35;">WASTE</span>
           </div>
@@ -2434,7 +2647,7 @@
           <div class="settings-row" style="cursor: pointer;" onclick="openThemeSelector()">
             <div>
               <div style="font-size: 13px; font-weight: 700; color: var(--text-parchment);">Atmosphere & Theme</div>
-              <div style="font-size: 10.5px; color: var(--text-muted);" id="currentThemeLabel">Dark Cathedral Oak</div>
+              <div style="font-size: 10.5px; color: var(--text-muted);" id="currentThemeLabel">Cathedral Daylight</div>
             </div>
             <div style="display: flex; align-items: center; gap: 4px; color: var(--copper-foil-bright); font-size: 12px; font-weight: 700;">
               <span>Change ›</span>
@@ -2451,6 +2664,15 @@
               <div style="font-size: 10.5px; color: var(--text-muted);">Mirror foundation and stock piles</div>
             </div>
             <input type="checkbox" id="toggleLeftHanded" onchange="toggleLeftHandedMode(this.checked)" style="transform: scale(1.2); accent-color: var(--copper-foil-bright);" />
+          </div>
+
+          <!-- Landscape Lock -->
+          <div class="settings-row">
+            <div>
+              <div style="font-size: 13px; font-weight: 700;">Prefer Landscape</div>
+              <div style="font-size: 10.5px; color: var(--text-muted);">Rotate to landscape when entering fullscreen (Android only)</div>
+            </div>
+            <input type="checkbox" id="toggleLandscapeLock" checked onchange="toggleLandscapePreference(this.checked)" style="transform: scale(1.2); accent-color: var(--copper-foil-bright);" />
           </div>
 
           <!-- 4-Color Suit Palette -->
@@ -2477,7 +2699,7 @@
           </div>
 
           <div style="text-align: center; margin-top: 8px; font-size: 10px; color: var(--text-muted);">
-            Solitaire: Shattered Foil Edition • v43<br>
+            Solitaire: Shattered Foil Edition • v44<br>
             Presented by ITTYBITTYBITES Experiences
           </div>
         </div>
@@ -2492,7 +2714,18 @@
           <button class="close-btn" onclick="closeModal('themeSelectModal')">✕</button>
         </div>
 
-        <div class="theme-card-option active" id="optTheme-dark" onclick="selectAtmosphere('dark', 'Dark Cathedral Oak')">
+        <div class="theme-card-option active" id="optTheme-daylight" onclick="selectAtmosphere('daylight', 'Cathedral Daylight')">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <div class="theme-thumb-swatch" style="background: #F6F1E5; border-color: #A8541F; color: #A8541F;">☀️</div>
+            <div>
+              <div style="font-size: 13px; font-weight: 700; color: var(--text-parchment);">Cathedral Daylight</div>
+              <div style="font-size: 10px; color: var(--text-muted);">Bright parchment daylight with copper leading</div>
+            </div>
+          </div>
+          <span style="font-size: 11px; color: var(--copper-foil-bright); font-weight: 800;">Active</span>
+        </div>
+
+        <div class="theme-card-option" id="optTheme-dark" onclick="selectAtmosphere('dark', 'Dark Cathedral Oak')">
           <div style="display: flex; align-items: center; gap: 10px;">
             <div class="theme-thumb-swatch" style="background: #101620;">🪵</div>
             <div>
@@ -2500,7 +2733,7 @@
               <div style="font-size: 10px; color: var(--text-muted);">Signature warm oak with copper gleam</div>
             </div>
           </div>
-          <span style="font-size: 11px; color: var(--copper-foil-bright); font-weight: 800;">Active</span>
+          <span style="font-size: 11px; color: var(--text-muted); font-weight: 800;">Select</span>
         </div>
 
         <div class="theme-card-option" id="optTheme-sapphire" onclick="selectAtmosphere('sapphire', 'Cathedral Sapphire')">
@@ -4203,17 +4436,32 @@
     }
 
     // --- 6. THEME CONTROLLER ---
-    var currentActiveTheme = 'dark';
+    var currentActiveTheme = 'daylight';
+    var THEME_LABELS = {
+      daylight: 'Cathedral Daylight',
+      dark: 'Dark Cathedral Oak',
+      sapphire: 'Cathedral Sapphire',
+      amethyst: 'Amethyst Sanctuary',
+      obsidian: 'Obsidian Noir (OLED)'
+    };
 
     function openThemeSelector() {
       closeModal('settingsModal');
       openModal('themeSelectModal');
     }
 
-    function selectAtmosphere(themeKey, themeLabel) {
+    // Applies the visual theme only. No modal side effects, so it is safe to
+    // call during boot when restoring a saved preference.
+    function applyTheme(themeKey, themeLabel) {
       currentActiveTheme = themeKey;
       document.body.setAttribute('data-theme', themeKey);
-      document.getElementById('currentThemeLabel').textContent = themeLabel;
+      try { localStorage.setItem('shattered_foil_theme', themeKey); } catch (e) {}
+      var themeLabelEl = document.getElementById('currentThemeLabel');
+      if (themeLabelEl) themeLabelEl.textContent = themeLabel;
+      var metaTheme = document.querySelector('meta[name="theme-color"]');
+      if (metaTheme) {
+        metaTheme.setAttribute('content', getComputedStyle(document.body).getPropertyValue('--bg-canvas').trim() || '#E6DCC8');
+      }
 
       var cards = document.querySelectorAll('.theme-card-option');
       for (var i = 0; i < cards.length; i++) {
@@ -4227,8 +4475,19 @@
         }
       }
 
+    }
+
+    // User-facing pick from the Select Atmosphere modal.
+    function selectAtmosphere(themeKey, themeLabel) {
+      applyTheme(themeKey, themeLabel);
       closeModal('themeSelectModal');
       openModal('settingsModal');
+    }
+
+    function restoreSavedTheme() {
+      var saved = SafeStorage.getItem('shattered_foil_theme');
+      if (!saved || !THEME_LABELS[saved]) return;
+      applyTheme(saved, THEME_LABELS[saved]);
     }
 
     // --- 7. GDPR & PRIVACY CONSENT MANAGEMENT ---
@@ -4335,6 +4594,9 @@
     function initExperience() {
       if (hasStartedInit) return;
       hasStartedInit = true;
+
+      restoreSavedTheme();
+      restoreDisplayPreferences();
 
       loadProgression();
       updateMainMenuCardBack();
@@ -4452,14 +4714,14 @@
     }
 
     function launchGameMode(modeKey) {
-      enterTabFullscreen();
+      enterFullscreen();
       activeGameMode = modeKey;
       closeModal('quickPlayModal');
       startNewDeal();
     }
 
     function startDailyChallenge() {
-      enterTabFullscreen();
+      enterFullscreen();
       activeGameMode = 'klondike';
       startNewDeal(true);
     }
@@ -4473,7 +4735,7 @@
     }
 
     function startNewDeal(isDaily) {
-      enterTabFullscreen();
+      enterFullscreen();
       closeModal('quickPlayModal');
       closeModal('dailyModal');
       closeModal('victoryModal');
@@ -4524,7 +4786,7 @@
     }
 
     function resumeActiveGame() {
-      enterTabFullscreen();
+      enterFullscreen();
       closeModal('quickPlayModal');
       closeModal('dailyModal');
       document.getElementById('mainMenuView').classList.add('view-hidden');
@@ -4536,7 +4798,7 @@
       if (isZenMusicEnabled) {
         ZenMusicEngine.start();
       }
-      enterTabFullscreen();
+      enterFullscreen();
     }
 
     function startTimer() {
@@ -4555,7 +4817,7 @@
       document.getElementById('mainMenuView').classList.remove('view-hidden');
       ZenMusicEngine.stop(true);
       updateMainMenuHeroButton();
-      exitTabFullscreen();
+      exitFullscreen();
     }
 
     function updateMainMenuHeroButton() {
@@ -4739,6 +5001,8 @@
         freeCells: freeCells.slice(),
         score: score,
         moves: moves,
+        shards: playerShards,
+        dealShards: dealShardsEarned,
         stepLogsCount: gameStepLogs.length
       });
       if (undoHistory.length > 50) undoHistory.shift();
@@ -4757,6 +5021,9 @@
       freeCells = prev.freeCells || [null, null, null, null];
       score = prev.score;
       moves = prev.moves;
+      if (typeof prev.shards === 'number') playerShards = prev.shards;
+      if (typeof prev.dealShards === 'number') dealShardsEarned = prev.dealShards;
+      updateCurrencyUI();
       gameStepLogs = gameStepLogs.slice(0, prev.stepLogsCount);
       recordStep("Undid last move", 0);
       updateHUD();
@@ -4819,13 +5086,31 @@
     }
 
     // --- AUTO-MOVE (TOUCH/TAP TO MOVE) ---
+
+    // A run is only liftable as a unit if it is a proper descending,
+    // alternating-colour sequence.
+    function isSequentialRun(cards) {
+      for (var i = 1; i < cards.length; i++) {
+        var lower = cards[i - 1], upper = cards[i];
+        if (!lower.isFaceUp || !upper.isFaceUp) return false;
+        if (upper.rankIndex !== lower.rankIndex - 1) return false;
+        if (upper.isRed === lower.isRed) return false;
+      }
+      return true;
+    }
+
     function tryAutoMoveCard(card, sourceLocation) {
       if (isWon || !card.isFaceUp) return;
       clearHints();
 
+      // The cards that would travel with this one.
+      var movingStack = getStackFromSource(card, sourceLocation);
+      var isTopCard = movingStack.length === 1;
+      var stackIsMovable = isTopCard || isSequentialRun(movingStack);
+
       // 1. Foundation Move
       for (var f = 0; f < 4; f++) {
-        if (canDropOnFoundation(card, f)) {
+        if (isTopCard && canDropOnFoundation(card, f)) {
           saveStateForUndo();
           removeCardFromSource(card, sourceLocation);
           foundations[f].push(card);
@@ -4840,11 +5125,12 @@
       }
 
       // 2. Tableau Move
+      if (!stackIsMovable) return;
+
       for (var c = 0; c < tableau.length; c++) {
         if (sourceLocation.type === 'tableau' && sourceLocation.col === c) continue;
         if (canDropOnTableau(card, c)) {
           saveStateForUndo();
-          var movingStack = getStackFromSource(card, sourceLocation);
           removeCardFromSource(card, sourceLocation);
           for (var k = 0; k < movingStack.length; k++) {
             tableau[c].push(movingStack[k]);
@@ -4916,7 +5202,18 @@
       if (dest && dest.type === 'foundation') paintOneFoundation(dest.fnd);
       if (source && source.type === 'tableau') paintColumn(source.col, metrics);
       if (dest && dest.type === 'tableau') paintColumn(dest.col, metrics);
-      tightenFanForStacks();
+      if (source && source.type === 'tableau' && dest && dest.type === 'tableau') {
+        var parent = document.getElementById('tableauRow');
+        if (parent) {
+          var allCols = [];
+          for (var i = 0; i < tableau.length; i++) {
+            var colEl = document.getElementById('col-' + i);
+            var els = colEl ? Array.prototype.slice.call(colEl.querySelectorAll('.game-card')) : [];
+            allCols.push(els);
+          }
+          layoutTableauFan(parent, allCols, tableau.length);
+        }
+      }
     }
 
     function checkWinCondition() {
@@ -5121,44 +5418,6 @@
       return next;
     }
 
-    function tightenFanForStacks() {
-      var m = lockedCardMetrics;
-      if (!m || !tableau) return m;
-      var maxStack = 1;
-      for (var i = 0; i < tableau.length; i++) {
-        if (tableau[i] && tableau[i].length > maxStack) maxStack = tableau[i].length;
-      }
-      if (m.lastFanStack === maxStack) return m;
-      m.lastFanStack = maxStack;
-      var avail = m.tableauAvail;
-      if (!avail) {
-        var row = document.getElementById('tableauRow');
-        avail = (row && row.clientHeight > 40) ? row.clientHeight : 0;
-        if (avail >= 40) m.tableauAvail = avail;
-      }
-      if (avail < 40) return m;
-      var preferred = m.preferredFan || m.fan;
-      var fan = preferred;
-      if (maxStack > 1) {
-        fan = (avail - m.h) / (maxStack - 1);
-        if (fan > preferred) fan = preferred;
-        if (fan < 7) fan = 7;
-      }
-      if (Math.abs(fan - m.fan) < 0.4) return m;
-      m.fan = fan;
-      var root = document.getElementById('appFrame') || document.documentElement;
-      root.style.setProperty('--card-fan', (Math.round(fan * 10) / 10) + 'px');
-      for (var c = 0; c < tableau.length; c++) {
-        var col = document.getElementById('col-' + c);
-        if (!col) continue;
-        var cards = col.querySelectorAll('.game-card');
-        for (var k = 0; k < cards.length; k++) {
-          cards[k].style.top = (k * fan) + 'px';
-        }
-      }
-      return m;
-    }
-
     var relayoutTimer = null;
     function scheduleRelayout() {
       if (relayoutTimer) return;
@@ -5176,61 +5435,7 @@
       syncOrientationClass();
     }
 
-    function isTabFullscreen() {
-      return !!(document.fullscreenElement || document.webkitFullscreenElement);
-    }
-
-    function updateFullscreenButton() {
-      var btn = document.getElementById('btnFullscreen');
-      if (!btn) return;
-      var on = isTabFullscreen();
-      btn.textContent = on ? '⊡' : '⛶';
-      btn.title = on ? 'Exit Fullscreen' : 'Fullscreen';
-      btn.setAttribute('aria-label', btn.title);
-    }
-
-    function toggleTabFullscreen() {
-      if (isTabFullscreen()) exitTabFullscreen();
-      else enterTabFullscreen();
-      setTimeout(updateFullscreenButton, 80);
-    }
-
-    function enterTabFullscreen() {
-      if (isTabFullscreen()) return;
-      var el = document.getElementById('appFrame') || document.documentElement;
-      var req = el.requestFullscreen || el.webkitRequestFullscreen || el.webkitRequestFullScreen;
-      if (!req) {
-        el = document.documentElement;
-        req = el.requestFullscreen || el.webkitRequestFullscreen || el.webkitRequestFullScreen;
-      }
-      if (!req) return;
-      try {
-        var result = req.call(el, { navigationUI: 'hide' });
-        if (result && result.catch) {
-          result.catch(function() {
-            try { req.call(el); } catch (err) {}
-          });
-        }
-      } catch (e) {
-        try { req.call(el); } catch (err) {}
-      }
-    }
-
-    function exitTabFullscreen() {
-      var exit = document.exitFullscreen || document.webkitExitFullscreen || document.webkitCancelFullScreen;
-      if (!exit || !isTabFullscreen()) return;
-      try {
-        var result = exit.call(document);
-        if (result && result.catch) result.catch(function() {});
-      } catch (e) {}
-    }
-
-    document.addEventListener('fullscreenchange', function() {
-      updateFullscreenButton();
-    });
-    document.addEventListener('webkitfullscreenchange', function() {
-      updateFullscreenButton();
-    });
+    
 
     function paintStockAndWaste(activeDeck) {
       activeDeck = activeDeck || getEquippedDeck();
@@ -5263,7 +5468,6 @@
       paintStockAndWaste(activeDeck);
       paintFoundations();
       paintAllColumns(metrics);
-      tightenFanForStacks();
     }
 
     function paintFoundations() {
@@ -5305,12 +5509,18 @@
       }
       colDiv.innerHTML = '<div class="card-slot"></div>';
       var colCards = tableau[c] || [];
+      var els = [];
       for (var idx = 0; idx < colCards.length; idx++) {
         var cardEl = createCardElement(colCards[idx], { type: 'tableau', col: c, index: idx });
-        cardEl.style.top = (idx * metrics.fan) + 'px';
         cardEl.style.zIndex = String(idx + 1);
         colDiv.appendChild(cardEl);
+        els.push(cardEl);
       }
+      // Layout this single column's fan (positions are measured live).
+      var fakeCols = new Array(tableau.length);
+      for (var i = 0; i < tableau.length; i++) fakeCols[i] = [];
+      fakeCols[c] = els;
+      layoutTableauFan(parent, fakeCols, tableau.length);
     }
 
     function paintAllColumns(metrics) {
@@ -5318,12 +5528,73 @@
       var parent = document.getElementById('tableauRow');
       if (!parent) return;
       parent.innerHTML = '';
+      var builtCols = [];
       for (var c = 0; c < tableau.length; c++) {
         var colDiv = document.createElement('div');
         colDiv.className = 'tableau-col';
         colDiv.id = 'col-' + c;
         parent.appendChild(colDiv);
-        paintColumn(c, metrics);
+        colDiv.innerHTML = '<div class="card-slot"></div>';
+        var colCards = tableau[c] || [];
+        var colEls = [];
+        for (var idx = 0; idx < colCards.length; idx++) {
+          var cardEl = createCardElement(colCards[idx], { type: 'tableau', col: c, index: idx });
+          cardEl.style.zIndex = String(idx + 1);
+          colDiv.appendChild(cardEl);
+          colEls.push(cardEl);
+        }
+        builtCols.push(colEls);
+      }
+      layoutTableauFan(parent, builtCols, tableau.length);
+    }
+
+    // Positions the cards in each tableau column.
+    //
+    // The old code used a flat step, but the corner index needs ~28px of
+    // exposed card to render un-clipped, so ranks and suits on covered cards
+    // were being cut in half. Face-down cards carry no information, so they
+    // overlap tightly and hand their spare room to the face-up cards. If a
+    // column still runs past the bottom of the board the whole fan is scaled
+    // down proportionally rather than spilling out of the clipped board area.
+    function layoutTableauFan(container, builtCols, colCount) {
+      colCount = colCount || 7;
+      var narrow = colCount > 7;
+      var gapUp = narrow ? 22 : 28;
+      var gapDown = narrow ? 11 : 14;
+      var minScale = 0.4;
+
+      var firstCol = container.firstChild;
+      var cardW = firstCol ? firstCol.clientWidth : 0;
+      var cardH = cardW ? cardW * 1.42 : 0;
+      var availH = container.clientHeight;
+
+      for (var c = 0; c < builtCols.length; c++) {
+        var els = builtCols[c];
+        var pile = tableau[c];
+        if (!els || !els.length) continue;
+
+        var gaps = [];
+        var stackH = cardH;
+        for (var i = 1; i < els.length; i++) {
+          var g = pile[i - 1].isFaceUp ? gapUp : gapDown;
+          gaps.push(g);
+          stackH += g;
+        }
+
+        // Only compress when we actually know the box and it overflows.
+        var scale = 1;
+        if (cardH > 0 && availH > cardH && stackH > availH && stackH > cardH) {
+          scale = (availH - cardH) / (stackH - cardH);
+          if (scale < minScale) scale = minScale;
+          if (scale > 1) scale = 1;
+        }
+
+        var top = 0;
+        els[0].style.top = '0px';
+        for (var j = 1; j < els.length; j++) {
+          top += gaps[j - 1] * scale;
+          els[j].style.top = Math.round(top) + 'px';
+        }
       }
     }
 
@@ -5346,10 +5617,12 @@
           '</div>' +
           '<div class="card-suit-corner card-suit-br">' + card.suit + '</div>';
 
-        el.onclick = function(e) {
+        el.classList.add('is-draggable');
+        el.addEventListener('pointerdown', function(e) {
+          if (e.button !== undefined && e.button !== 0) return;
           e.stopPropagation();
-          tryAutoMoveCard(card, sourceLocation);
-        };
+          beginCardDrag(e, card, sourceLocation, el);
+        });
       } else {
         // Pure Stained Glass Artwork on Card Backs (No suits/numbers)
         el.innerHTML = cardBackSVG();
@@ -5374,7 +5647,395 @@
       return el;
     }
 
-    // --- 10. 3D HERO CARD TILT CONTROLLER ---
+    
+    // DRAG & DROP
+    //
+    // Built on Pointer Events, so one code path serves mouse, touch and
+    // stylus (same approach the hero-tilt controller already uses).
+    //
+    // Key constraints this has to respect:
+    //  - renderBoard() rebuilds the whole tableau subtree on every move, so
+    //    the drag ghost is mounted on .app-frame instead, out of its reach.
+    //  - A drag under DRAG_THRESHOLD px falls through to the original
+    //    tap-to-auto-move, so existing one-tap play is untouched.
+    //  - All legality still goes through canDropOnFoundation /
+    //    canDropOnTableau, and every commit goes through saveStateForUndo +
+    //    afterMoveCleanup, so undo, scoring, sound and the step log keep
+    //    working exactly as before.
+    // ------------------------------------------------------------------
+    var DRAG_THRESHOLD = 7;
+    var dragCtx = null;
+
+    function collectDropZones() {
+      var zones = [];
+      for (var f = 0; f < 4; f++) {
+        var fEl = document.getElementById('fnd-' + f);
+        if (fEl) zones.push({ type: 'foundation', fnd: f, el: fEl, rect: fEl.getBoundingClientRect() });
+      }
+      for (var c = 0; c < tableau.length; c++) {
+        var cEl = document.getElementById('col-' + c);
+        if (cEl) zones.push({ type: 'tableau', col: c, el: cEl, rect: cEl.getBoundingClientRect() });
+      }
+      return zones;
+    }
+
+    // Rects are cached at drag start (the board never scrolls) and matched by
+    // hit test, with a small forgiveness radius for fat fingers.
+    function zoneAtPoint(x, y) {
+      if (!dragCtx) return null;
+      var nearest = null, nearestDist = Infinity;
+      for (var i = 0; i < dragCtx.zones.length; i++) {
+        var z = dragCtx.zones[i], r = z.rect;
+        if (x >= r.left && x <= r.right && y >= r.top && y <= r.bottom) return z;
+        var dx = x < r.left ? r.left - x : (x > r.right ? x - r.right : 0);
+        var dy = y < r.top ? r.top - y : (y > r.bottom ? y - r.bottom : 0);
+        var d = Math.sqrt(dx * dx + dy * dy);
+        if (d < nearestDist) { nearestDist = d; nearest = z; }
+      }
+      return nearestDist <= 26 ? nearest : null;
+    }
+
+    function canDropStackOn(stack, zone) {
+      if (!zone || !stack.length) return false;
+      if (zone.type === 'foundation') {
+        return stack.length === 1 && canDropOnFoundation(stack[0], zone.fnd);
+      }
+      if (zone.type === 'tableau') {
+        if (dragCtx && dragCtx.source.type === 'tableau' && dragCtx.source.col === zone.col) return false;
+        return canDropOnTableau(stack[0], zone.col);
+      }
+      return false;
+    }
+
+    function beginCardDrag(e, card, sourceLocation, el) {
+      if (isWon || !card.isFaceUp || dragCtx) return;
+
+      var stack = getStackFromSource(card, sourceLocation);
+      // Refuse to lift a jumbled pile; only a real run travels together.
+      if (stack.length > 1 && !isSequentialRun(stack)) {
+        dragCtx = null;
+        el.classList.remove('refuse-shake');
+        void el.offsetWidth;
+        el.classList.add('refuse-shake');
+        setTimeout(function () { el.classList.remove('refuse-shake'); }, 240);
+        return;
+      }
+
+      var els = [el];
+      if (sourceLocation.type === 'tableau') {
+        var sib = el.nextSibling;
+        while (sib && els.length < stack.length) {
+          if (sib.classList && sib.classList.contains('game-card')) els.push(sib);
+          sib = sib.nextSibling;
+        }
+      }
+
+      dragCtx = {
+        card: card,
+        source: sourceLocation,
+        stack: stack,
+        els: els,
+        el: el,
+        startX: e.clientX,
+        startY: e.clientY,
+        pointerId: e.pointerId,
+        active: false,
+        ghost: null,
+        zones: null,
+        hoverZone: null,
+        originRect: el.getBoundingClientRect()
+      };
+    }
+
+    function activateDrag() {
+      var ctx = dragCtx;
+      ctx.active = true;
+      ctx.zones = collectDropZones();
+      clearHints();
+
+      var host = document.getElementById('appFrame') || document.body;
+      var ghost = document.createElement('div');
+      ghost.className = 'drag-ghost';
+
+      var base = ctx.originRect;
+      ghost.style.width = base.width + 'px';
+
+      for (var i = 0; i < ctx.els.length; i++) {
+        var src = ctx.els[i];
+        var r = src.getBoundingClientRect();
+        var clone = src.cloneNode(true);
+        clone.classList.remove('drag-source-hidden', 'highlight-hint');
+        clone.style.position = 'absolute';
+        clone.style.left = '0px';
+        clone.style.top = (r.top - base.top) + 'px';
+        clone.style.width = base.width + 'px';
+        ghost.appendChild(clone);
+        src.classList.add('drag-source-hidden');
+      }
+
+      ctx.ghost = ghost;
+      ctx.ghostBaseX = base.left;
+      ctx.ghostBaseY = base.top;
+      host.appendChild(ghost);
+      moveGhost(ctx.startX, ctx.startY);
+      SoundFX.playGlassTap();
+    }
+
+    function moveGhost(x, y) {
+      var ctx = dragCtx;
+      if (!ctx || !ctx.ghost) return;
+      var tx = ctx.ghostBaseX + (x - ctx.startX);
+      var ty = ctx.ghostBaseY + (y - ctx.startY);
+      ctx.ghost.style.transform = 'translate3d(' + tx + 'px,' + ty + 'px,0)';
+    }
+
+    function setHoverZone(zone, isLegal) {
+      var ctx = dragCtx;
+      if (ctx.hoverZone === zone && ctx.hoverLegal === isLegal) return;
+      if (ctx.hoverZone && ctx.hoverZone.el) ctx.hoverZone.el.classList.remove('drop-ok');
+      ctx.hoverZone = zone;
+      ctx.hoverLegal = isLegal;
+      if (zone && isLegal && zone.el) zone.el.classList.add('drop-ok');
+    }
+
+    function onDragPointerMove(e) {
+      if (!dragCtx || e.pointerId !== dragCtx.pointerId) return;
+      var dx = e.clientX - dragCtx.startX;
+      var dy = e.clientY - dragCtx.startY;
+
+      if (!dragCtx.active) {
+        if (Math.sqrt(dx * dx + dy * dy) < DRAG_THRESHOLD) return;
+        activateDrag();
+      }
+
+      e.preventDefault();
+      moveGhost(e.clientX, e.clientY);
+      var zone = zoneAtPoint(e.clientX, e.clientY);
+      setHoverZone(zone, canDropStackOn(dragCtx.stack, zone));
+    }
+
+    function finishDrag(commitZone) {
+      var ctx = dragCtx;
+      if (!ctx) return;
+
+      if (ctx.hoverZone && ctx.hoverZone.el) ctx.hoverZone.el.classList.remove('drop-ok');
+
+      if (commitZone) {
+        if (ctx.ghost && ctx.ghost.parentNode) ctx.ghost.parentNode.removeChild(ctx.ghost);
+        var card = ctx.card, source = ctx.source, stack = ctx.stack;
+        dragCtx = null;
+        commitDrop(card, source, stack, commitZone);
+        return;
+      }
+
+      // Illegal or missed drop: glide the ghost home, then restore.
+      var els = ctx.els, ghost = ctx.ghost;
+      dragCtx = null;
+
+      function restore() {
+        for (var i = 0; i < els.length; i++) els[i].classList.remove('drag-source-hidden');
+        if (ghost && ghost.parentNode) ghost.parentNode.removeChild(ghost);
+      }
+
+      if (!ghost) { restore(); return; }
+      ghost.classList.add('is-returning');
+      ghost.style.transform = 'translate3d(' + ctx.ghostBaseX + 'px,' + ctx.ghostBaseY + 'px,0)';
+      setTimeout(restore, 190);
+    }
+
+    function commitDrop(card, source, stack, zone) {
+      saveStateForUndo();
+
+      if (zone.type === 'foundation') {
+        removeCardFromSource(card, source);
+        foundations[zone.fnd].push(card);
+        score += 15;
+        moves++;
+        addShards(10);
+        SoundFX.playFoundationChime(zone.fnd);
+        recordStep("Moved " + card.rank + card.suit + " to Foundation", 15);
+      } else {
+        removeCardFromSource(card, source);
+        for (var k = 0; k < stack.length; k++) tableau[zone.col].push(stack[k]);
+        score += 5;
+        moves++;
+        SoundFX.playCopperSnap();
+        recordStep("Placed " + card.rank + card.suit + " on Col " + (zone.col + 1), 5);
+      }
+
+      // Pass the destination so the moved pile repaints, exactly like the
+      // tap path (tryAutoMoveCard passes its dest to afterMoveCleanup).
+      afterMoveCleanup(source, zone);
+    }
+
+    function onDragPointerUp(e) {
+      if (!dragCtx || e.pointerId !== dragCtx.pointerId) return;
+
+      if (!dragCtx.active) {
+        // Never crossed the threshold: this was a tap. Preserve legacy behaviour.
+        var card = dragCtx.card, source = dragCtx.source;
+        dragCtx = null;
+        tryAutoMoveCard(card, source);
+        return;
+      }
+
+      e.preventDefault();
+      var zone = zoneAtPoint(e.clientX, e.clientY);
+      finishDrag(canDropStackOn(dragCtx.stack, zone) ? zone : null);
+    }
+
+    function onDragPointerCancel(e) {
+      if (!dragCtx || e.pointerId !== dragCtx.pointerId) return;
+      if (!dragCtx.active) { dragCtx = null; return; }
+      finishDrag(null);
+    }
+
+    window.addEventListener('pointermove', onDragPointerMove, { passive: false });
+    window.addEventListener('pointerup', onDragPointerUp, { passive: false });
+    window.addEventListener('pointercancel', onDragPointerCancel);
+
+
+    // FULLSCREEN & ORIENTATION
+    //
+    // Fullscreen cannot be forced: browsers only honour requestFullscreen
+    // inside a real user gesture, which is why this hangs off a HUD button.
+    //
+    // iPhone Safari implements no Fullscreen API at all, and
+    // screen.orientation.lock() works only while fullscreen on Android. So
+    // installing to the home screen (see manifest.json, display:fullscreen)
+    // is the only dependable way to lose the browser URL bar, and we point
+    // the user there when the API is missing.
+    // ------------------------------------------------------------------
+    var prefersLandscapeLock = true;
+
+    function toggleLandscapePreference(enabled) {
+      prefersLandscapeLock = !!enabled;
+      try { localStorage.setItem('shattered_foil_landscape_lock', String(prefersLandscapeLock)); } catch (e) {}
+      SoundFX.playGlassTap();
+      if (prefersLandscapeLock && getFullscreenElement()) tryLockLandscape();
+    }
+
+    function restoreDisplayPreferences() {
+      var saved = SafeStorage.getItem('shattered_foil_landscape_lock');
+      if (saved !== null) prefersLandscapeLock = (saved !== 'false');
+      var box = document.getElementById('toggleLandscapeLock');
+      if (box) box.checked = prefersLandscapeLock;
+      syncFullscreenButton();
+    }
+
+    function isStandaloneDisplay() {
+      if (window.navigator.standalone === true) return true;
+      try {
+        return window.matchMedia('(display-mode: fullscreen)').matches ||
+               window.matchMedia('(display-mode: standalone)').matches ||
+               window.matchMedia('(display-mode: minimal-ui)').matches;
+      } catch (e) { return false; }
+    }
+
+    function getFullscreenElement() {
+      return document.fullscreenElement || document.webkitFullscreenElement ||
+             document.mozFullScreenElement || document.msFullscreenElement || null;
+    }
+
+    function isFullscreenSupported() {
+      var el = document.documentElement;
+      return !!(el.requestFullscreen || el.webkitRequestFullscreen ||
+                el.mozRequestFullScreen || el.msRequestFullscreen);
+    }
+
+    function tryLockLandscape() {
+      if (!prefersLandscapeLock) return;
+      try {
+        if (screen.orientation && screen.orientation.lock) {
+          var res = screen.orientation.lock('landscape');
+          // Rejects on iOS and on desktop; harmless, so swallow it.
+          if (res && res.catch) res.catch(function () {});
+        }
+      } catch (e) {}
+    }
+
+    function enterFullscreen() {
+      var el = document.documentElement;
+      var req = el.requestFullscreen || el.webkitRequestFullscreen ||
+                el.mozRequestFullScreen || el.msRequestFullscreen;
+      if (!req) return false;
+      try {
+        var res = req.call(el, { navigationUI: 'hide' });
+        if (res && res.then) res.then(tryLockLandscape).catch(function () {});
+        else tryLockLandscape();
+      } catch (e) {
+        try { req.call(el); } catch (e2) { return false; }
+      }
+      return true;
+    }
+
+    function exitFullscreen() {
+      var fn = document.exitFullscreen || document.webkitExitFullscreen ||
+               document.mozCancelFullScreen || document.msExitFullscreen;
+      if (!fn) return;
+      try {
+        if (screen.orientation && screen.orientation.unlock) screen.orientation.unlock();
+      } catch (e) {}
+      try { fn.call(document); } catch (e) {}
+    }
+
+    function toggleFullscreen() {
+      SoundFX.playGlassTap();
+
+      if (getFullscreenElement()) { exitFullscreen(); return; }
+
+      if (!isFullscreenSupported()) {
+        // Almost always iPhone Safari.
+        showToast(isStandaloneDisplay()
+          ? 'Already running full screen'
+          : 'Tap Share ▸ Add to Home Screen to play without the address bar', 4200);
+        return;
+      }
+
+      enterFullscreen();
+    }
+
+    function syncFullscreenButton() {
+      var btn = document.getElementById('btnFullscreen');
+      if (!btn) return;
+
+      // Installed to the home screen: there is no browser chrome left to hide.
+      if (isStandaloneDisplay() && !isFullscreenSupported()) {
+        btn.style.display = 'none';
+        return;
+      }
+
+      var on = !!getFullscreenElement();
+      btn.textContent = on ? '⤡' : '⛶';
+      btn.title = on ? 'Exit fullscreen' : 'Fullscreen';
+      btn.classList.toggle('is-active', on);
+    }
+
+    ['fullscreenchange', 'webkitfullscreenchange', 'mozfullscreenchange', 'MSFullscreenChange']
+      .forEach(function (evt) { document.addEventListener(evt, function () {
+        syncFullscreenButton();
+        relayoutBoardSoon();
+      }); });
+
+    // The fan layout is measured from live element sizes, so any resize or
+    // rotation needs a re-render to stay correctly spaced.
+    var relayoutTimer = null;
+    function relayoutBoardSoon() {
+      if (relayoutTimer) clearTimeout(relayoutTimer);
+      relayoutTimer = setTimeout(function () {
+        relayoutTimer = null;
+        var view = document.getElementById('gameplayView');
+        if (view && !view.classList.contains('view-hidden')) renderBoard();
+      }, 120);
+    }
+
+    window.addEventListener('resize', relayoutBoardSoon);
+    window.addEventListener('orientationchange', relayoutBoardSoon);
+
+    // ------------------------------------------------------------------
+
+
+// --- 10. 3D HERO CARD TILT CONTROLLER ---
     var heroSection = document.getElementById('heroSection');
     var card3d = document.getElementById('card3d');
     var isInteracting = false;
