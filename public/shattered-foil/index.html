@@ -5001,6 +5001,8 @@
         freeCells: freeCells.slice(),
         score: score,
         moves: moves,
+        shards: playerShards,
+        dealShards: dealShardsEarned,
         stepLogsCount: gameStepLogs.length
       });
       if (undoHistory.length > 50) undoHistory.shift();
@@ -5019,6 +5021,9 @@
       freeCells = prev.freeCells || [null, null, null, null];
       score = prev.score;
       moves = prev.moves;
+      if (typeof prev.shards === 'number') playerShards = prev.shards;
+      if (typeof prev.dealShards === 'number') dealShardsEarned = prev.dealShards;
+      updateCurrencyUI();
       gameStepLogs = gameStepLogs.slice(0, prev.stepLogsCount);
       recordStep("Undid last move", 0);
       updateHUD();
@@ -5209,7 +5214,6 @@
           layoutTableauFan(parent, allCols, tableau.length);
         }
       }
-      tightenFanForStacks();
     }
 
     function checkWinCondition() {
@@ -5414,44 +5418,6 @@
       return next;
     }
 
-    function tightenFanForStacks() {
-      var m = lockedCardMetrics;
-      if (!m || !tableau) return m;
-      var maxStack = 1;
-      for (var i = 0; i < tableau.length; i++) {
-        if (tableau[i] && tableau[i].length > maxStack) maxStack = tableau[i].length;
-      }
-      if (m.lastFanStack === maxStack) return m;
-      m.lastFanStack = maxStack;
-      var avail = m.tableauAvail;
-      if (!avail) {
-        var row = document.getElementById('tableauRow');
-        avail = (row && row.clientHeight > 40) ? row.clientHeight : 0;
-        if (avail >= 40) m.tableauAvail = avail;
-      }
-      if (avail < 40) return m;
-      var preferred = m.preferredFan || m.fan;
-      var fan = preferred;
-      if (maxStack > 1) {
-        fan = (avail - m.h) / (maxStack - 1);
-        if (fan > preferred) fan = preferred;
-        if (fan < 7) fan = 7;
-      }
-      if (Math.abs(fan - m.fan) < 0.4) return m;
-      m.fan = fan;
-      var root = document.getElementById('appFrame') || document.documentElement;
-      root.style.setProperty('--card-fan', (Math.round(fan * 10) / 10) + 'px');
-      for (var c = 0; c < tableau.length; c++) {
-        var col = document.getElementById('col-' + c);
-        if (!col) continue;
-        var cards = col.querySelectorAll('.game-card');
-        for (var k = 0; k < cards.length; k++) {
-          cards[k].style.top = (k * fan) + 'px';
-        }
-      }
-      return m;
-    }
-
     var relayoutTimer = null;
     function scheduleRelayout() {
       if (relayoutTimer) return;
@@ -5502,7 +5468,6 @@
       paintStockAndWaste(activeDeck);
       paintFoundations();
       paintAllColumns(metrics);
-      tightenFanForStacks();
     }
 
     function paintFoundations() {
@@ -5898,7 +5863,9 @@
         recordStep("Placed " + card.rank + card.suit + " on Col " + (zone.col + 1), 5);
       }
 
-      afterMoveCleanup(source);
+      // Pass the destination so the moved pile repaints, exactly like the
+      // tap path (tryAutoMoveCard passes its dest to afterMoveCleanup).
+      afterMoveCleanup(source, zone);
     }
 
     function onDragPointerUp(e) {
