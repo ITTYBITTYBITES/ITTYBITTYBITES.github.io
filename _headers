@@ -1,0 +1,25 @@
+# Cloudflare Pages response headers (picked up automatically on Pages).
+# Keep in sync with the "Security headers" section of the README.
+
+/*
+  Strict-Transport-Security: max-age=63072000; includeSubDomains; preload
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'self'; frame-ancestors 'self'; base-uri 'self'; form-action 'self'; object-src 'none'; upgrade-insecure-requests
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: SAMEORIGIN
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=()
+  Cross-Origin-Opener-Policy: same-origin
+
+# Long-cache immutable fingerprinted build assets
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Feeds & llms.txt: short cache so subscribers see fresh posts
+/f.json
+  Cache-Control: public, max-age=300
+/f.rss
+  Cache-Control: public, max-age=300
+/f.atom
+  Cache-Control: public, max-age=300
+/llms.txt
+  Cache-Control: public, max-age=300

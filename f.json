@@ -1,0 +1,26 @@
+{
+  "version": "https://jsonfeed.org/version/1",
+  "title": "Aligned With Heaven Inc.",
+  "home_page_url": "https://ittybittybites.github.io",
+  "description": "Christian equipment nonprofit supporting outreach and spiritual warfare tools. Books, the \"Golfing With The King\" spiritual caddy, teaching resources and outbound store links.",
+  "authors": [
+    {
+      "name": "Aligned With Heaven Inc."
+    }
+  ],
+  "items": [
+    {
+      "id": "https://ittybittybites.github.io/blog/what-to-think-about-the-results-of-the-2026-elections/",
+      "url": "https://ittybittybites.github.io/blog/what-to-think-about-the-results-of-the-2026-elections/",
+      "title": "What to Think About the Results of the 2026 Elections?",
+      "summary": "Many have weighed in on the results of the 2026 elections. A reflection on what voters may have been repudiating — and where real hope for the nation lies.",
+      "date_published": "2026-11-08T23:32:38.000Z",
+      "date_modified": "2026-11-08T23:32:38.000Z",
+      "tags": [
+        "2026 elections",
+        "prayer",
+        "United States"
+      ]
+    }
+  ]
+}
