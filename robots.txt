@@ -1,5 +1,2 @@
-# alignedwithheaven.net — robots.txt (static, same policy as legacy)
 User-agent: *
 Allow: /
-
-Sitemap: https://alignedwithheaven.net/sitemap-index.xml
